@@ -1,0 +1,145 @@
+grammar org.xtext.HLCLSpecificationLanguage with org.eclipse.xtext.common.Terminals
+
+generate hLCLSpecificationLanguage "http://www.xtext.org/HLCLSpecificationLanguage"
+
+Model:
+	'model' name=ID 'variables:' vars+=(VarDeclaration)+  'constraints:'constraints+=(Constraint)+
+	;
+	
+VarDeclaration:
+	Modifier name=ID  'variants:' dom= VariantDeclaration
+	;
+	
+Modifier:
+	instantiable?='instantiable'? & type=VarType
+;
+
+
+VariantDeclaration: 
+  variantsInterval | variantsEnumeration //| variantsSet son los conjuntos de variables
+	;
+
+variantsInterval:
+	{variantsInterval}(start=Value) ('::') (end=Value)
+	;
+variantsEnumeration:
+	{variantsEnumeration}('[') list +=  Enumeration  (']')
+	;
+Enumeration:
+	ListOfValues | ListOfIDs
+;
+//variantsSet:
+//		 vars=('(') list +=  ListOfIDs  (')') 
+//	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
+//;
+
+
+Constraint:
+	  name=ID ':'  exp= ConsExpression 
+;
+
+
+ConsExpression:
+	IDCons|Refinement |Rule |SPLNotation
+;
+TerminalExp returns Expression:
+	'(' ConsExpression ')' | IDCons
+;
+IDCons:
+	name=ID
+;
+Refinement:
+	Assignment | VarRefinement | SetRefinement
+;
+
+Assignment:
+	var= ID 'is' value= Value
+	
+;
+VarRefinement:
+	var=ID 'in' variants= VariantDeclaration
+;
+SetRefinement:
+	'(' vars=ListOfIDs  ')'  
+	'variants'
+	'[' '('head= ListOfValues ')'  ( ',' '('tail+= ListOfValues')')+ ']'
+;
+
+Rule:
+	condition= TerminalExp '-->' consequence= TerminalExp
+;
+
+SPLNotation:
+	var1= ID op= SPLop var2= ID
+;
+
+
+
+//Simple:
+//	UnaryConstraint |SubType
+//;
+//
+//
+//
+//SubType:
+//	vars= '(' ListOfIDs ')' 'subtypeOf' var=ID
+//;
+//
+//UnaryConstraint:
+//	var= ID 'is' op=UnaryOperator 
+//;
+//
+//UnaryOperator:
+//	'optional' |'mandatory'
+//;
+//BinConstraint:
+//	var1= TerminalExp op= BinOperator var2= TerminalExp
+//;
+//
+//BinOperator:
+//	'requires' |'excludes' |'->'
+//;
+
+//NaryConstraint:
+//	op=NaryOperator vars=('(') list +=  ListOfIDs  (')') 
+//	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
+//;
+//
+//NaryOperator:
+//	'variants'
+//;
+
+
+
+//syntactic categories
+
+Value:
+	INT | 'selected' | 'unselected' 
+;
+VarType:
+	 'boolean' |'numeric' 
+;
+ListOfValues:
+	 Value (',' Value)+
+;
+
+ListOfIDs:
+	 ID (',' ID)+
+;
+
+SPLop:
+	 'optional' |'mandatory'|'requires' |'excludes'
+;
+
+//RequiresExp:
+//	var1= TerminalExp 'requires' var2= TerminalExp
+//;
+//ExcludesExp:
+//	var1= ID 'excludes' var2= ID	
+//;
+//
+//Consequence:
+//	left=   '->' right= Expression
+//;
+
+
