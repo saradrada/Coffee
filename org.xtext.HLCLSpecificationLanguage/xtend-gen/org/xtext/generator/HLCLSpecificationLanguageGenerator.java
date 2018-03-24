@@ -3,10 +3,18 @@
  */
 package org.xtext.generator;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.hLCLSpecificationLanguage.Model;
+import org.xtext.hLCLSpecificationLanguage.VarDeclaration;
 
 /**
  * Generates code from your model files on save.
@@ -15,7 +23,272 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
+  private String modelName;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+    this.modelName = this.modelName(((Model) _head));
+    EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
+    fsa.generateFile(this.modelName, this.toJavaCode(((Model) _head_1)));
+  }
+  
+  public String modelName(final Model model) {
+    String name = StringExtensions.toFirstUpper(model.getName());
+    return (name + ".java");
+  }
+  
+  public String className(final Resource res) {
+    String name = res.getURI().lastSegment();
+    InputOutput.<String>println(name);
+    return name.substring(0, name.indexOf("."));
+  }
+  
+  public CharSequence toJavaCode(final Model model) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("//Java imports");
+    _builder.newLine();
+    _builder.append("import java.util.Map;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("//imports for hlcl ");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.core.HlclProgram;");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.model.expressions.HlclFactory;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* This class is automatically generated from a product line model described in ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* extended HLCL");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @author Angela Villota ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @version Extended HLCL Version1");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public class ");
+    _builder.append(this.modelName);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private String modelName;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private HlclFactory factory;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private HlclProgram hlclProgram;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("//private Solver solver;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private Map variables;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private Map numbers;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private Map constraints;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("* Constructor method");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("* @param modelName is the name of the model in the Extended HLCL specification");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("*/\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    _builder.append(this.modelName, "\t");
+    _builder.append("(String modelName){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("this.modelName= modelName;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("hlclProgram= new HlclProgram();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("factory = new HlclFactory();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append(" obj = new ");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("(\"");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("obj.run();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void run(){");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("// first obtain a HlclProgram from the specification");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("transformVars(); ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("// use the solver to solve the constraint program");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("//show the output");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void transformVars() {");
+    _builder.newLine();
+    {
+      EList<VarDeclaration> _vars = model.getVars();
+      for(final VarDeclaration c : _vars) {
+        _builder.append("\t\t");
+        CharSequence _declareVars = this.declareVars(c);
+        _builder.append(_declareVars, "\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public String getModelName() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return modelName;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setModelName(String modelName) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.modelName = modelName;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public HlclFactory getFactory() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return factory;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setFactory(HlclFactory factory) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.factory = factory;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public HlclProgram getHlclProgram() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return hlclProgram;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setHlclProgram(HlclProgram hlclProgram) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.hlclProgram = hlclProgram;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence declareVars(final VarDeclaration variable) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("Identifier ");
+    String _name = variable.getName();
+    _builder.append(_name, "\t\t");
+    _builder.append(" = f.newIdentifier(\"");
+    String _name_1 = variable.getName();
+    _builder.append(_name_1, "\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    CharSequence _declareVariants = this.declareVariants(variable);
+    _builder.append(_declareVariants, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence declareVariants(final VarDeclaration variable) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nSetDom cannot be resolved to a type."
+      + "\nThe method declareRangeDom(Object, Object) is undefined"
+      + "\nThe method or field dom is undefined"
+      + "\nThe method or field name is undefined"
+      + "\nThe method or field dom is undefined"
+      + "\nThe method declareSetDom(Object, Object) is undefined"
+      + "\nThe method or field dom is undefined"
+      + "\nThe method or field name is undefined"
+      + "\nThe method or field name is undefined"
+      + "\nThe method or field name is undefined"
+      + "\nThe method or field name is undefined");
   }
 }

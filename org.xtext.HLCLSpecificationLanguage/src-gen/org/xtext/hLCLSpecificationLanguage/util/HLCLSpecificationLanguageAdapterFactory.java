@@ -86,11 +86,6 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
         return createVarDeclarationAdapter();
       }
       @Override
-      public Adapter caseModifier(Modifier object)
-      {
-        return createModifierAdapter();
-      }
-      @Override
       public Adapter caseVariantDeclaration(VariantDeclaration object)
       {
         return createVariantDeclarationAdapter();
@@ -203,21 +198,6 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVarDeclarationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.Modifier <em>Modifier</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier
-   * @generated
-   */
-  public Adapter createModifierAdapter()
   {
     return null;
   }

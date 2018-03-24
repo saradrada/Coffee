@@ -87,14 +87,6 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HLCLSpecificationLanguagePackage.MODIFIER:
-      {
-        Modifier modifier = (Modifier)theEObject;
-        T result = caseModifier(modifier);
-        if (result == null) result = caseVarDeclaration(modifier);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case HLCLSpecificationLanguagePackage.VARIANT_DECLARATION:
       {
         VariantDeclaration variantDeclaration = (VariantDeclaration)theEObject;
@@ -238,22 +230,6 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVarDeclaration(VarDeclaration object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Modifier</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Modifier</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModifier(Modifier object)
   {
     return null;
   }

@@ -18,7 +18,6 @@ import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguageFactory;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
 import org.xtext.hLCLSpecificationLanguage.Model;
-import org.xtext.hLCLSpecificationLanguage.Modifier;
 import org.xtext.hLCLSpecificationLanguage.Refinement;
 import org.xtext.hLCLSpecificationLanguage.Rule;
 import org.xtext.hLCLSpecificationLanguage.SPLNotation;
@@ -50,13 +49,6 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * @generated
    */
   private EClass varDeclarationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass modifierEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -267,9 +259,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getModifier()
+  public EAttribute getVarDeclaration_Instantiable()
   {
-    return modifierEClass;
+    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -277,9 +269,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModifier_Name()
+  public EAttribute getVarDeclaration_Type()
   {
-    return (EAttribute)modifierEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -287,9 +279,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModifier_Dom()
+  public EAttribute getVarDeclaration_Name()
   {
-    return (EReference)modifierEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -297,19 +289,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModifier_Instantiable()
+  public EReference getVarDeclaration_Variants()
   {
-    return (EAttribute)modifierEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getModifier_Type()
-  {
-    return (EAttribute)modifierEClass.getEStructuralFeatures().get(3);
+    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -658,12 +640,10 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     createEReference(modelEClass, MODEL__CONSTRAINTS);
 
     varDeclarationEClass = createEClass(VAR_DECLARATION);
-
-    modifierEClass = createEClass(MODIFIER);
-    createEAttribute(modifierEClass, MODIFIER__NAME);
-    createEReference(modifierEClass, MODIFIER__DOM);
-    createEAttribute(modifierEClass, MODIFIER__INSTANTIABLE);
-    createEAttribute(modifierEClass, MODIFIER__TYPE);
+    createEAttribute(varDeclarationEClass, VAR_DECLARATION__INSTANTIABLE);
+    createEAttribute(varDeclarationEClass, VAR_DECLARATION__TYPE);
+    createEAttribute(varDeclarationEClass, VAR_DECLARATION__NAME);
+    createEReference(varDeclarationEClass, VAR_DECLARATION__VARIANTS);
 
     variantDeclarationEClass = createEClass(VARIANT_DECLARATION);
 
@@ -739,7 +719,6 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    modifierEClass.getESuperTypes().add(this.getVarDeclaration());
     variantsIntervalEClass.getESuperTypes().add(this.getVariantDeclaration());
     variantsEnumerationEClass.getESuperTypes().add(this.getVariantDeclaration());
     consExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -758,12 +737,10 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     initEReference(getModel_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varDeclarationEClass, VarDeclaration.class, "VarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(modifierEClass, Modifier.class, "Modifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModifier_Name(), ecorePackage.getEString(), "name", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModifier_Dom(), this.getVariantDeclaration(), null, "dom", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getModifier_Instantiable(), ecorePackage.getEBoolean(), "instantiable", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getModifier_Type(), ecorePackage.getEString(), "type", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Instantiable(), ecorePackage.getEBoolean(), "instantiable", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarDeclaration_Variants(), this.getVariantDeclaration(), null, "variants", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variantDeclarationEClass, VariantDeclaration.class, "VariantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

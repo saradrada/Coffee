@@ -10,6 +10,15 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Var Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#isInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getVariants <em>Variants</em>}</li>
+ * </ul>
  *
  * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getVarDeclaration()
  * @model
@@ -17,4 +26,108 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface VarDeclaration extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Instantiable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Instantiable</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Instantiable</em>' attribute.
+   * @see #setInstantiable(boolean)
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getVarDeclaration_Instantiable()
+   * @model
+   * @generated
+   */
+  boolean isInstantiable();
+
+  /**
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#isInstantiable <em>Instantiable</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Instantiable</em>' attribute.
+   * @see #isInstantiable()
+   * @generated
+   */
+  void setInstantiable(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see #setType(String)
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getVarDeclaration_Type()
+   * @model
+   * @generated
+   */
+  String getType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see #getType()
+   * @generated
+   */
+  void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getVarDeclaration_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Variants</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Variants</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Variants</em>' containment reference.
+   * @see #setVariants(VariantDeclaration)
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getVarDeclaration_Variants()
+   * @model containment="true"
+   * @generated
+   */
+  VariantDeclaration getVariants();
+
+  /**
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getVariants <em>Variants</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Variants</em>' containment reference.
+   * @see #getVariants()
+   * @generated
+   */
+  void setVariants(VariantDeclaration value);
+
 } // VarDeclaration

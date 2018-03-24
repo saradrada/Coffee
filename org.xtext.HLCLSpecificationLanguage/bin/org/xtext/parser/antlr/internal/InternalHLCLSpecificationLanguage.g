@@ -163,137 +163,112 @@ ruleVarDeclaration returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getVarDeclarationAccess().getModifierParserRuleCall_0());
-		}
-		this_Modifier_0=ruleModifier
-		{
-			$current = $this_Modifier_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				lv_name_1_0=RULE_ID
-				{
-					newLeafNode(lv_name_1_0, grammarAccess.getVarDeclarationAccess().getNameIDTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getVarDeclarationRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
-		otherlv_2='variants:'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getVarDeclarationAccess().getVariantsKeyword_2());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getVarDeclarationAccess().getDomVariantDeclarationParserRuleCall_3_0());
-				}
-				lv_dom_3_0=ruleVariantDeclaration
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVarDeclarationRule());
-					}
-					set(
-						$current,
-						"dom",
-						lv_dom_3_0,
-						"org.xtext.HLCLSpecificationLanguage.VariantDeclaration");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleModifier
-entryRuleModifier returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getModifierRule()); }
-	iv_ruleModifier=ruleModifier
-	{ $current=$iv_ruleModifier.current; }
-	EOF;
-
-// Rule Modifier
-ruleModifier returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
 		(
 			{ 
-			  getUnorderedGroupHelper().enter(grammarAccess.getModifierAccess().getUnorderedGroup());
+			  getUnorderedGroupHelper().enter(grammarAccess.getVarDeclarationAccess().getUnorderedGroup());
 			}
 			(
 				(
 		(
-			{getUnorderedGroupHelper().canSelect(grammarAccess.getModifierAccess().getUnorderedGroup(), 0)}?=>(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getVarDeclarationAccess().getUnorderedGroup(), 0)}?=>(
 				{
-					getUnorderedGroupHelper().select(grammarAccess.getModifierAccess().getUnorderedGroup(), 0);
+					getUnorderedGroupHelper().select(grammarAccess.getVarDeclarationAccess().getUnorderedGroup(), 0);
 				}
 							({true}?=>((
 								lv_instantiable_1_0='instantiable'
 								{
-									newLeafNode(lv_instantiable_1_0, grammarAccess.getModifierAccess().getInstantiableInstantiableKeyword_0_0());
+									newLeafNode(lv_instantiable_1_0, grammarAccess.getVarDeclarationAccess().getInstantiableInstantiableKeyword_0_0());
 								}
 								{
 									if ($current==null) {
-										$current = createModelElement(grammarAccess.getModifierRule());
+										$current = createModelElement(grammarAccess.getVarDeclarationRule());
 									}
 									setWithLastConsumed($current, "instantiable", true, "instantiable");
 								}
 							)
 							))
 				{ 
-					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModifierAccess().getUnorderedGroup());
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getVarDeclarationAccess().getUnorderedGroup());
 				}
 			)
 		)|
 		(
-			{getUnorderedGroupHelper().canSelect(grammarAccess.getModifierAccess().getUnorderedGroup(), 1)}?=>(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getVarDeclarationAccess().getUnorderedGroup(), 1)}?=>(
 				{
-					getUnorderedGroupHelper().select(grammarAccess.getModifierAccess().getUnorderedGroup(), 1);
+					getUnorderedGroupHelper().select(grammarAccess.getVarDeclarationAccess().getUnorderedGroup(), 1);
 				}
 							({true}?=>((
-								{
-									newCompositeNode(grammarAccess.getModifierAccess().getTypeVarTypeParserRuleCall_1_0());
-								}
-								lv_type_2_0=ruleVarType
-								{
-									if ($current==null) {
-										$current = createModelElementForParent(grammarAccess.getModifierRule());
+								(
+									{
+										newCompositeNode(grammarAccess.getVarDeclarationAccess().getTypeVarTypeParserRuleCall_1_0_0());
 									}
-									set(
-										$current,
-										"type",
-										lv_type_2_0,
-										"org.xtext.HLCLSpecificationLanguage.VarType");
-									afterParserOrEnumRuleCall();
-								}
+									lv_type_2_0=ruleVarType
+									{
+										if ($current==null) {
+											$current = createModelElementForParent(grammarAccess.getVarDeclarationRule());
+										}
+										set(
+											$current,
+											"type",
+											lv_type_2_0,
+											"org.xtext.HLCLSpecificationLanguage.VarType");
+										afterParserOrEnumRuleCall();
+									}
+								)
+							)
+							(
+								(
+									lv_name_3_0=RULE_ID
+									{
+										newLeafNode(lv_name_3_0, grammarAccess.getVarDeclarationAccess().getNameIDTerminalRuleCall_1_1_0());
+									}
+									{
+										if ($current==null) {
+											$current = createModelElement(grammarAccess.getVarDeclarationRule());
+										}
+										setWithLastConsumed(
+											$current,
+											"name",
+											lv_name_3_0,
+											"org.eclipse.xtext.common.Terminals.ID");
+									}
+								)
+							)
+							otherlv_4='variants:'
+							{
+								newLeafNode(otherlv_4, grammarAccess.getVarDeclarationAccess().getVariantsKeyword_1_2());
+							}
+							(
+								(
+									{
+										newCompositeNode(grammarAccess.getVarDeclarationAccess().getVariantsVariantDeclarationParserRuleCall_1_3_0());
+									}
+									lv_variants_5_0=ruleVariantDeclaration
+									{
+										if ($current==null) {
+											$current = createModelElementForParent(grammarAccess.getVarDeclarationRule());
+										}
+										set(
+											$current,
+											"variants",
+											lv_variants_5_0,
+											"org.xtext.HLCLSpecificationLanguage.VariantDeclaration");
+										afterParserOrEnumRuleCall();
+									}
+								)
 							)
 							))
 				{ 
-					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModifierAccess().getUnorderedGroup());
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getVarDeclarationAccess().getUnorderedGroup());
 				}
 			)
 		)
 				)+
-				{getUnorderedGroupHelper().canLeave(grammarAccess.getModifierAccess().getUnorderedGroup())}?
+				{getUnorderedGroupHelper().canLeave(grammarAccess.getVarDeclarationAccess().getUnorderedGroup())}?
 			)
 		)
 			{ 
-			  getUnorderedGroupHelper().leave(grammarAccess.getModifierAccess().getUnorderedGroup());
+			  getUnorderedGroupHelper().leave(grammarAccess.getVarDeclarationAccess().getUnorderedGroup());
 			}
 	)
 ;

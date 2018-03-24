@@ -8,18 +8,147 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
+//from the grammar
+import org.xtext.hLCLSpecificationLanguage.Model
+import org.xtext.hLCLSpecificationLanguage.VarDeclaration
+import org.xtext.hLCLSpecificationLanguage.VariantDeclaration
+import org.xtext.hLCLSpecificationLanguage.variantsInterval
+
+
 /**
  * Generates code from your model files on save.
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
+	private String modelName
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		// call to generate a file with .java extension and with contents 
+//		fsa.generateFile(resource.className+".java", toJavaCode(resource.contents.head as Model))
+
+		modelName= modelName(resource.contents.head as Model)
+		fsa.generateFile(modelName, toJavaCode(resource.contents.head as Model))
+		//fsa.generateFile(modelName(resource.contents.head as Model), toJavaCode(resource.contents.head as Model))
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 
 //			resource.allContents
 //				.filter(Greeting)
 //				.map[name]
 //				.join(', '))
+
 	}
+	
+		def modelName(Model model) {
+		var name = model.name.toFirstUpper
+		
+		return name+".java"
+	}
+	def className(Resource res) {
+		var name = res.URI.lastSegment
+		println(name);
+		return name.substring(0, name.indexOf('.'))
+	}
+	
+	def toJavaCode(Model model) '''
+			//Java imports
+			import java.util.Map;
+			
+			//imports for hlcl 
+			import com.variamos.hlcl.core.HlclProgram;
+			import com.variamos.hlcl.model.expressions.HlclFactory;
+			
+			/**
+			 * This class is automatically generated from a product line model described in 
+			 * extended HLCL
+			 * @author Angela Villota 
+			 * @version Extended HLCL Version1
+			 *
+			 */
+			public class «modelName» {
+				private String modelName;
+				private HlclFactory factory;
+				private HlclProgram hlclProgram;
+				//private Solver solver;
+				private Map variables;
+				private Map numbers;
+				private Map constraints;
+				
+				/**
+				 * Constructor method
+				 * @param modelName is the name of the model in the Extended HLCL specification
+				 */	
+				public «modelName»(String modelName){
+					this.modelName= modelName;
+					hlclProgram= new HlclProgram();
+					factory = new HlclFactory();
+				}
+				public static void main(String[] args) {
+					«modelName» obj = new «modelName»("«modelName»");
+					obj.run();
+				}
+				public void run(){
+				// first obtain a HlclProgram from the specification
+				transformVars(); 
+				// use the solver to solve the constraint program
+				//show the output
+				}
+				
+				public void transformVars() {
+					«FOR c : model.vars»
+						«c.declareVars»
+					«ENDFOR»
+						
+				}
+				
+				public String getModelName() {
+					return modelName;
+				}
+			
+				public void setModelName(String modelName) {
+					this.modelName = modelName;
+				}
+			
+				public HlclFactory getFactory() {
+					return factory;
+				}
+			
+				public void setFactory(HlclFactory factory) {
+					this.factory = factory;
+				}
+			
+				public HlclProgram getHlclProgram() {
+					return hlclProgram;
+				}
+			
+				public void setHlclProgram(HlclProgram hlclProgram) {
+					this.hlclProgram = hlclProgram;
+				}
+			}
+	'''
+	def declareVars(VarDeclaration variable) '''
+	
+			Identifier «variable.name» = f.newIdentifier("«variable.name»");
+			«declareVariants(variable)»
+			
+		
+	'''
+		def declareVariants(VarDeclaration variable) '''
+		«««	con esto declaro los distintos tipos de dominios y después los distintos tipos de expresiones :-)
+				«IF variable.variants instanceof variantsInterval»
+					«declareRangeDom(dom, name)»
+				«ELSEIF dom instanceof SetDom»
+					«declareSetDom(dom, name)»
+		«««		«ELSEIF dom instanceof StringDomain»
+		«««			«declareRangeDom(dom, name)»
+				«ELSE»
+				   //se declara un boolDomain
+				   BinaryDomain «name»Dom= new BinaryDomain();
+				    «name».setDomain(«name»Dom);
+				«ENDIF»
+	
+			Identifier «variable.name» = f.newIdentifier("«variable.name»");
+			
+			
+		
+	'''
 }

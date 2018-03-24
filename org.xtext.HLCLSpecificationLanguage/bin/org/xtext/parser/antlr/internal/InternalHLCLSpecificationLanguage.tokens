@@ -10,7 +10,7 @@
 'constraints:'=13
 'excludes'=34
 'in'=23
-'instantiable'=15
+'instantiable'=14
 'is'=22
 'mandatory'=32
 'model'=11
@@ -21,7 +21,7 @@
 'unselected'=28
 'variables:'=12
 'variants'=24
-'variants:'=14
+'variants:'=15
 RULE_ANY_OTHER=10
 RULE_ID=4
 RULE_INT=5

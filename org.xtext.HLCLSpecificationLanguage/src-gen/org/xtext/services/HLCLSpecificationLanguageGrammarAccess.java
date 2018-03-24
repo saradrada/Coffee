@@ -73,52 +73,23 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	public class VarDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.VarDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cModifierParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cVariantsKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDomAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDomVariantDeclarationParserRuleCall_3_0 = (RuleCall)cDomAssignment_3.eContents().get(0);
-		
-		//VarDeclaration:
-		//	Modifier name=ID 'variants:' dom=VariantDeclaration;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Modifier name=ID 'variants:' dom=VariantDeclaration
-		public Group getGroup() { return cGroup; }
-		
-		//Modifier
-		public RuleCall getModifierParserRuleCall_0() { return cModifierParserRuleCall_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//'variants:'
-		public Keyword getVariantsKeyword_2() { return cVariantsKeyword_2; }
-		
-		//dom=VariantDeclaration
-		public Assignment getDomAssignment_3() { return cDomAssignment_3; }
-		
-		//VariantDeclaration
-		public RuleCall getDomVariantDeclarationParserRuleCall_3_0() { return cDomVariantDeclarationParserRuleCall_3_0; }
-	}
-	public class ModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.Modifier");
 		private final UnorderedGroup cUnorderedGroup = (UnorderedGroup)rule.eContents().get(1);
 		private final Assignment cInstantiableAssignment_0 = (Assignment)cUnorderedGroup.eContents().get(0);
 		private final Keyword cInstantiableInstantiableKeyword_0_0 = (Keyword)cInstantiableAssignment_0.eContents().get(0);
-		private final Assignment cTypeAssignment_1 = (Assignment)cUnorderedGroup.eContents().get(1);
-		private final RuleCall cTypeVarTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cUnorderedGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cTypeVarTypeParserRuleCall_1_0_0 = (RuleCall)cTypeAssignment_1_0.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Keyword cVariantsKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cVariantsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cVariantsVariantDeclarationParserRuleCall_1_3_0 = (RuleCall)cVariantsAssignment_1_3.eContents().get(0);
 		
-		//Modifier:
-		//	instantiable?='instantiable'? & type=VarType;
+		//VarDeclaration:
+		//	instantiable?='instantiable'? & type=VarType name=ID 'variants:' variants=VariantDeclaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//instantiable?='instantiable'? & type=VarType
+		//instantiable?='instantiable'? & type=VarType name=ID 'variants:' variants=VariantDeclaration
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 		
 		//instantiable?='instantiable'?
@@ -127,11 +98,29 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		//'instantiable'
 		public Keyword getInstantiableInstantiableKeyword_0_0() { return cInstantiableInstantiableKeyword_0_0; }
 		
+		//type=VarType name=ID 'variants:' variants=VariantDeclaration
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//type=VarType
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
 		
 		//VarType
-		public RuleCall getTypeVarTypeParserRuleCall_1_0() { return cTypeVarTypeParserRuleCall_1_0; }
+		public RuleCall getTypeVarTypeParserRuleCall_1_0_0() { return cTypeVarTypeParserRuleCall_1_0_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
+		
+		//'variants:'
+		public Keyword getVariantsKeyword_1_2() { return cVariantsKeyword_1_2; }
+		
+		//variants=VariantDeclaration
+		public Assignment getVariantsAssignment_1_3() { return cVariantsAssignment_1_3; }
+		
+		//VariantDeclaration
+		public RuleCall getVariantsVariantDeclarationParserRuleCall_1_3_0() { return cVariantsVariantDeclarationParserRuleCall_1_3_0; }
 	}
 	public class VariantDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.VariantDeclaration");
@@ -139,6 +128,9 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		private final RuleCall cVariantsIntervalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cVariantsEnumerationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		////Modifier:
+		////	instantiable?='instantiable'? & type=VarType
+		////;
 		//VariantDeclaration:
 		//	variantsInterval | variantsEnumeration //| variantsSet son los conjuntos de variables
 		//;
@@ -738,7 +730,6 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	
 	private final ModelElements pModel;
 	private final VarDeclarationElements pVarDeclaration;
-	private final ModifierElements pModifier;
 	private final VariantDeclarationElements pVariantDeclaration;
 	private final VariantsIntervalElements pVariantsInterval;
 	private final VariantsEnumerationElements pVariantsEnumeration;
@@ -770,7 +761,6 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
 		this.pVarDeclaration = new VarDeclarationElements();
-		this.pModifier = new ModifierElements();
 		this.pVariantDeclaration = new VariantDeclarationElements();
 		this.pVariantsInterval = new VariantsIntervalElements();
 		this.pVariantsEnumeration = new VariantsEnumerationElements();
@@ -830,7 +820,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//VarDeclaration:
-	//	Modifier name=ID 'variants:' dom=VariantDeclaration;
+	//	instantiable?='instantiable'? & type=VarType name=ID 'variants:' variants=VariantDeclaration;
 	public VarDeclarationElements getVarDeclarationAccess() {
 		return pVarDeclaration;
 	}
@@ -839,16 +829,9 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		return getVarDeclarationAccess().getRule();
 	}
 	
-	//Modifier:
-	//	instantiable?='instantiable'? & type=VarType;
-	public ModifierElements getModifierAccess() {
-		return pModifier;
-	}
-	
-	public ParserRule getModifierRule() {
-		return getModifierAccess().getRule();
-	}
-	
+	////Modifier:
+	////	instantiable?='instantiable'? & type=VarType
+	////;
 	//VariantDeclaration:
 	//	variantsInterval | variantsEnumeration //| variantsSet son los conjuntos de variables
 	//;

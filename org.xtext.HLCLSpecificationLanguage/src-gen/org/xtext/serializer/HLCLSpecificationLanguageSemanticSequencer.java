@@ -19,7 +19,6 @@ import org.xtext.hLCLSpecificationLanguage.Constraint;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
 import org.xtext.hLCLSpecificationLanguage.Model;
-import org.xtext.hLCLSpecificationLanguage.Modifier;
 import org.xtext.hLCLSpecificationLanguage.Rule;
 import org.xtext.hLCLSpecificationLanguage.SPLNotation;
 import org.xtext.hLCLSpecificationLanguage.SetRefinement;
@@ -55,16 +54,6 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 			case HLCLSpecificationLanguagePackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
-			case HLCLSpecificationLanguagePackage.MODIFIER:
-				if (rule == grammarAccess.getModifierRule()) {
-					sequence_Modifier(context, (Modifier) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getVarDeclarationRule()) {
-					sequence_Modifier_VarDeclaration(context, (Modifier) semanticObject); 
-					return; 
-				}
-				else break;
 			case HLCLSpecificationLanguagePackage.RULE:
 				sequence_Rule(context, (Rule) semanticObject); 
 				return; 
@@ -170,30 +159,6 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	
 	/**
 	 * Contexts:
-	 *     Modifier returns Modifier
-	 *
-	 * Constraint:
-	 *     (instantiable?='instantiable' | type=VarType)+
-	 */
-	protected void sequence_Modifier(ISerializationContext context, Modifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     VarDeclaration returns Modifier
-	 *
-	 * Constraint:
-	 *     ((instantiable?='instantiable' | type=VarType)+ name=ID dom=VariantDeclaration)
-	 */
-	protected void sequence_Modifier_VarDeclaration(ISerializationContext context, Modifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ConsExpression returns Rule
 	 *     TerminalExp returns Rule
 	 *     Rule returns Rule
@@ -261,7 +226,7 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	 *     VarDeclaration returns VarDeclaration
 	 *
 	 * Constraint:
-	 *     (name=ID dom=VariantDeclaration)
+	 *     (instantiable?='instantiable' | (type=VarType name=ID variants=VariantDeclaration))+
 	 */
 	protected void sequence_VarDeclaration(ISerializationContext context, VarDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

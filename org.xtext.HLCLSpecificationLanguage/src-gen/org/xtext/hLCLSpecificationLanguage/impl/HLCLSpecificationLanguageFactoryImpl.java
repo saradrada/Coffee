@@ -67,7 +67,6 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
     {
       case HLCLSpecificationLanguagePackage.MODEL: return createModel();
       case HLCLSpecificationLanguagePackage.VAR_DECLARATION: return createVarDeclaration();
-      case HLCLSpecificationLanguagePackage.MODIFIER: return createModifier();
       case HLCLSpecificationLanguagePackage.VARIANT_DECLARATION: return createVariantDeclaration();
       case HLCLSpecificationLanguagePackage.VARIANTS_INTERVAL: return createvariantsInterval();
       case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION: return createvariantsEnumeration();
@@ -106,17 +105,6 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
   {
     VarDeclarationImpl varDeclaration = new VarDeclarationImpl();
     return varDeclaration;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Modifier createModifier()
-  {
-    ModifierImpl modifier = new ModifierImpl();
-    return modifier;
   }
 
   /**

@@ -114,50 +114,13 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int VAR_DECLARATION = 1;
 
   /**
-   * The number of structural features of the '<em>Var Declaration</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VAR_DECLARATION_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ModifierImpl <em>Modifier</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.hLCLSpecificationLanguage.impl.ModifierImpl
-   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getModifier()
-   * @generated
-   */
-  int MODIFIER = 2;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MODIFIER__NAME = VAR_DECLARATION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Dom</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MODIFIER__DOM = VAR_DECLARATION_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Instantiable</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODIFIER__INSTANTIABLE = VAR_DECLARATION_FEATURE_COUNT + 2;
+  int VAR_DECLARATION__INSTANTIABLE = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -166,16 +129,34 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODIFIER__TYPE = VAR_DECLARATION_FEATURE_COUNT + 3;
+  int VAR_DECLARATION__TYPE = 1;
 
   /**
-   * The number of structural features of the '<em>Modifier</em>' class.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODIFIER_FEATURE_COUNT = VAR_DECLARATION_FEATURE_COUNT + 4;
+  int VAR_DECLARATION__NAME = 2;
+
+  /**
+   * The feature id for the '<em><b>Variants</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR_DECLARATION__VARIANTS = 3;
+
+  /**
+   * The number of structural features of the '<em>Var Declaration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR_DECLARATION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.VariantDeclarationImpl <em>Variant Declaration</em>}' class.
@@ -185,7 +166,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getVariantDeclaration()
    * @generated
    */
-  int VARIANT_DECLARATION = 3;
+  int VARIANT_DECLARATION = 2;
 
   /**
    * The number of structural features of the '<em>Variant Declaration</em>' class.
@@ -204,7 +185,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getvariantsInterval()
    * @generated
    */
-  int VARIANTS_INTERVAL = 4;
+  int VARIANTS_INTERVAL = 3;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' attribute.
@@ -241,7 +222,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getvariantsEnumeration()
    * @generated
    */
-  int VARIANTS_ENUMERATION = 5;
+  int VARIANTS_ENUMERATION = 4;
 
   /**
    * The feature id for the '<em><b>List</b></em>' attribute list.
@@ -269,7 +250,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 6;
+  int CONSTRAINT = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -306,7 +287,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -325,7 +306,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getConsExpression()
    * @generated
    */
-  int CONS_EXPRESSION = 7;
+  int CONS_EXPRESSION = 6;
 
   /**
    * The number of structural features of the '<em>Cons Expression</em>' class.
@@ -344,7 +325,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getIDCons()
    * @generated
    */
-  int ID_CONS = 9;
+  int ID_CONS = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -372,7 +353,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getRefinement()
    * @generated
    */
-  int REFINEMENT = 10;
+  int REFINEMENT = 9;
 
   /**
    * The number of structural features of the '<em>Refinement</em>' class.
@@ -391,7 +372,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 11;
+  int ASSIGNMENT = 10;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -428,7 +409,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getVarRefinement()
    * @generated
    */
-  int VAR_REFINEMENT = 12;
+  int VAR_REFINEMENT = 11;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -465,7 +446,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSetRefinement()
    * @generated
    */
-  int SET_REFINEMENT = 13;
+  int SET_REFINEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' attribute.
@@ -511,7 +492,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getRule()
    * @generated
    */
-  int RULE = 14;
+  int RULE = 13;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -548,7 +529,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSPLNotation()
    * @generated
    */
-  int SPL_NOTATION = 15;
+  int SPL_NOTATION = 14;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' attribute.
@@ -641,58 +622,48 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   EClass getVarDeclaration();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.Modifier <em>Modifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Modifier</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier
-   * @generated
-   */
-  EClass getModifier();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.Modifier#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier#getName()
-   * @see #getModifier()
-   * @generated
-   */
-  EAttribute getModifier_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.Modifier#getDom <em>Dom</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Dom</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier#getDom()
-   * @see #getModifier()
-   * @generated
-   */
-  EReference getModifier_Dom();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.Modifier#isInstantiable <em>Instantiable</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#isInstantiable <em>Instantiable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Instantiable</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier#isInstantiable()
-   * @see #getModifier()
+   * @see org.xtext.hLCLSpecificationLanguage.VarDeclaration#isInstantiable()
+   * @see #getVarDeclaration()
    * @generated
    */
-  EAttribute getModifier_Instantiable();
+  EAttribute getVarDeclaration_Instantiable();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.Modifier#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.Modifier#getType()
-   * @see #getModifier()
+   * @see org.xtext.hLCLSpecificationLanguage.VarDeclaration#getType()
+   * @see #getVarDeclaration()
    * @generated
    */
-  EAttribute getModifier_Type();
+  EAttribute getVarDeclaration_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.VarDeclaration#getName()
+   * @see #getVarDeclaration()
+   * @generated
+   */
+  EAttribute getVarDeclaration_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.VarDeclaration#getVariants <em>Variants</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variants</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.VarDeclaration#getVariants()
+   * @see #getVarDeclaration()
+   * @generated
+   */
+  EReference getVarDeclaration_Variants();
 
   /**
    * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.VariantDeclaration <em>Variant Declaration</em>}'.
@@ -1090,38 +1061,12 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
     EClass VAR_DECLARATION = eINSTANCE.getVarDeclaration();
 
     /**
-     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ModifierImpl <em>Modifier</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.hLCLSpecificationLanguage.impl.ModifierImpl
-     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getModifier()
-     * @generated
-     */
-    EClass MODIFIER = eINSTANCE.getModifier();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MODIFIER__NAME = eINSTANCE.getModifier_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Dom</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODIFIER__DOM = eINSTANCE.getModifier_Dom();
-
-    /**
      * The meta object literal for the '<em><b>Instantiable</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MODIFIER__INSTANTIABLE = eINSTANCE.getModifier_Instantiable();
+    EAttribute VAR_DECLARATION__INSTANTIABLE = eINSTANCE.getVarDeclaration_Instantiable();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1129,7 +1074,23 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MODIFIER__TYPE = eINSTANCE.getModifier_Type();
+    EAttribute VAR_DECLARATION__TYPE = eINSTANCE.getVarDeclaration_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VAR_DECLARATION__NAME = eINSTANCE.getVarDeclaration_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Variants</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VAR_DECLARATION__VARIANTS = eINSTANCE.getVarDeclaration_Variants();
 
     /**
      * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.VariantDeclarationImpl <em>Variant Declaration</em>}' class.

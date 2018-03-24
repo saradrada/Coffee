@@ -126,10 +126,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:14:7: ( 'variants:' )
-            // InternalHLCLSpecificationLanguage.g:14:9: 'variants:'
+            // InternalHLCLSpecificationLanguage.g:14:7: ( 'instantiable' )
+            // InternalHLCLSpecificationLanguage.g:14:9: 'instantiable'
             {
-            match("variants:"); 
+            match("instantiable"); 
 
 
             }
@@ -147,10 +147,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:15:7: ( 'instantiable' )
-            // InternalHLCLSpecificationLanguage.g:15:9: 'instantiable'
+            // InternalHLCLSpecificationLanguage.g:15:7: ( 'variants:' )
+            // InternalHLCLSpecificationLanguage.g:15:9: 'variants:'
             {
-            match("instantiable"); 
+            match("variants:"); 
 
 
             }
@@ -561,10 +561,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1307:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalHLCLSpecificationLanguage.g:1307:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalHLCLSpecificationLanguage.g:1282:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalHLCLSpecificationLanguage.g:1282:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalHLCLSpecificationLanguage.g:1307:11: ( '^' )?
+            // InternalHLCLSpecificationLanguage.g:1282:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -573,7 +573,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalHLCLSpecificationLanguage.g:1307:11: '^'
+                    // InternalHLCLSpecificationLanguage.g:1282:11: '^'
                     {
                     match('^'); 
 
@@ -591,7 +591,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalHLCLSpecificationLanguage.g:1307:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalHLCLSpecificationLanguage.g:1282:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -640,10 +640,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1309:10: ( ( '0' .. '9' )+ )
-            // InternalHLCLSpecificationLanguage.g:1309:12: ( '0' .. '9' )+
+            // InternalHLCLSpecificationLanguage.g:1284:10: ( ( '0' .. '9' )+ )
+            // InternalHLCLSpecificationLanguage.g:1284:12: ( '0' .. '9' )+
             {
-            // InternalHLCLSpecificationLanguage.g:1309:12: ( '0' .. '9' )+
+            // InternalHLCLSpecificationLanguage.g:1284:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -657,7 +657,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalHLCLSpecificationLanguage.g:1309:13: '0' .. '9'
+            	    // InternalHLCLSpecificationLanguage.g:1284:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -689,10 +689,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1311:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalHLCLSpecificationLanguage.g:1311:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalHLCLSpecificationLanguage.g:1286:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalHLCLSpecificationLanguage.g:1286:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalHLCLSpecificationLanguage.g:1311:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalHLCLSpecificationLanguage.g:1286:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -710,10 +710,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalHLCLSpecificationLanguage.g:1311:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalHLCLSpecificationLanguage.g:1286:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalHLCLSpecificationLanguage.g:1311:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalHLCLSpecificationLanguage.g:1286:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -729,7 +729,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalHLCLSpecificationLanguage.g:1311:21: '\\\\' .
+                    	    // InternalHLCLSpecificationLanguage.g:1286:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -737,7 +737,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalHLCLSpecificationLanguage.g:1311:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalHLCLSpecificationLanguage.g:1286:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -762,10 +762,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalHLCLSpecificationLanguage.g:1311:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalHLCLSpecificationLanguage.g:1286:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalHLCLSpecificationLanguage.g:1311:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalHLCLSpecificationLanguage.g:1286:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -781,7 +781,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalHLCLSpecificationLanguage.g:1311:54: '\\\\' .
+                    	    // InternalHLCLSpecificationLanguage.g:1286:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -789,7 +789,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalHLCLSpecificationLanguage.g:1311:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalHLCLSpecificationLanguage.g:1286:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -832,12 +832,12 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1313:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalHLCLSpecificationLanguage.g:1313:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalHLCLSpecificationLanguage.g:1288:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalHLCLSpecificationLanguage.g:1288:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalHLCLSpecificationLanguage.g:1313:24: ( options {greedy=false; } : . )*
+            // InternalHLCLSpecificationLanguage.g:1288:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -862,7 +862,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalHLCLSpecificationLanguage.g:1313:52: .
+            	    // InternalHLCLSpecificationLanguage.g:1288:52: .
             	    {
             	    matchAny(); 
 
@@ -892,12 +892,12 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1315:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalHLCLSpecificationLanguage.g:1315:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalHLCLSpecificationLanguage.g:1290:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalHLCLSpecificationLanguage.g:1290:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalHLCLSpecificationLanguage.g:1315:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalHLCLSpecificationLanguage.g:1290:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -910,7 +910,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalHLCLSpecificationLanguage.g:1315:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalHLCLSpecificationLanguage.g:1290:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -930,7 +930,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalHLCLSpecificationLanguage.g:1315:40: ( ( '\\r' )? '\\n' )?
+            // InternalHLCLSpecificationLanguage.g:1290:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -939,9 +939,9 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalHLCLSpecificationLanguage.g:1315:41: ( '\\r' )? '\\n'
+                    // InternalHLCLSpecificationLanguage.g:1290:41: ( '\\r' )? '\\n'
                     {
-                    // InternalHLCLSpecificationLanguage.g:1315:41: ( '\\r' )?
+                    // InternalHLCLSpecificationLanguage.g:1290:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -950,7 +950,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalHLCLSpecificationLanguage.g:1315:41: '\\r'
+                            // InternalHLCLSpecificationLanguage.g:1290:41: '\\r'
                             {
                             match('\r'); 
 
@@ -982,10 +982,10 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1317:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalHLCLSpecificationLanguage.g:1317:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalHLCLSpecificationLanguage.g:1292:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalHLCLSpecificationLanguage.g:1292:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalHLCLSpecificationLanguage.g:1317:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalHLCLSpecificationLanguage.g:1292:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1039,8 +1039,8 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalHLCLSpecificationLanguage.g:1319:16: ( . )
-            // InternalHLCLSpecificationLanguage.g:1319:18: .
+            // InternalHLCLSpecificationLanguage.g:1294:16: ( . )
+            // InternalHLCLSpecificationLanguage.g:1294:18: .
             {
             matchAny(); 
 
@@ -1292,7 +1292,7 @@ public class InternalHLCLSpecificationLanguageLexer extends Lexer {
     static final String DFA12_maxS =
         "\1\uffff\1\157\1\141\1\157\1\163\1\72\5\uffff\1\55\1\145\1\156\1\157\1\165\1\160\1\145\1\170\1\172\2\uffff\2\uffff\1\57\2\uffff\1\144\1\156\1\uffff\1\162\1\156\2\172\10\uffff\1\154\1\163\1\157\1\155\1\164\1\161\1\143\5\uffff\1\145\1\144\1\151\1\163\1\164\2\uffff\2\145\1\154\1\145\1\151\1\165\2\154\2\141\1\164\1\141\1\143\1\154\1\145\1\162\1\157\1\151\1\165\1\172\1\164\1\156\1\162\1\156\1\164\1\145\1\141\1\151\1\156\1\162\1\144\1\uffff\1\157\1\154\1\164\1\141\1\164\1\145\1\143\1\156\1\143\1\141\2\145\1\162\1\145\1\163\2\151\1\144\1\164\2\172\1\154\2\163\1\171\1\163\1\172\1\156\1\141\1\172\1\145\2\uffff\4\172\1\72\2\uffff\1\164\1\142\1\uffff\1\144\5\uffff\1\163\1\154\1\172\1\72\1\145\2\uffff\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\6\uffff\1\7\1\10\1\12\1\13\1\17\11\uffff\1\31\1\32\3\uffff\1\36\1\37\2\uffff\1\31\4\uffff\1\6\1\11\1\7\1\10\1\12\1\13\1\17\1\20\7\uffff\1\32\1\33\1\34\1\35\1\36\5\uffff\1\15\1\14\37\uffff\1\1\37\uffff\1\23\1\24\5\uffff\1\4\1\16\2\uffff\1\21\1\uffff\1\25\1\27\1\30\1\26\1\2\5\uffff\1\22\1\3\1\uffff\1\5";
+        "\6\uffff\1\7\1\10\1\12\1\13\1\17\11\uffff\1\31\1\32\3\uffff\1\36\1\37\2\uffff\1\31\4\uffff\1\6\1\11\1\7\1\10\1\12\1\13\1\17\1\20\7\uffff\1\32\1\33\1\34\1\35\1\36\5\uffff\1\15\1\14\37\uffff\1\1\37\uffff\1\23\1\24\5\uffff\1\5\1\16\2\uffff\1\21\1\uffff\1\25\1\27\1\30\1\26\1\2\5\uffff\1\22\1\3\1\uffff\1\4";
     static final String DFA12_specialS =
         "\1\0\25\uffff\1\1\1\2\177\uffff}>";
     static final String[] DFA12_transitionS = {

@@ -7,12 +7,12 @@ Model:
 	;
 	
 VarDeclaration:
-	Modifier name=ID  'variants:' dom= VariantDeclaration
+	instantiable?='instantiable'? & type=VarType name=ID  'variants:' variants= VariantDeclaration
 	;
 	
-Modifier:
-	instantiable?='instantiable'? & type=VarType
-;
+//Modifier:
+//	instantiable?='instantiable'? & type=VarType
+//;
 
 
 VariantDeclaration: 
