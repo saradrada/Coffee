@@ -7,13 +7,11 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-
-//from the grammar
 import org.xtext.hLCLSpecificationLanguage.Model
 import org.xtext.hLCLSpecificationLanguage.VarDeclaration
-import org.xtext.hLCLSpecificationLanguage.VariantDeclaration
+import org.xtext.hLCLSpecificationLanguage.variantsEnumeration
 import org.xtext.hLCLSpecificationLanguage.variantsInterval
-
+import org.xtext.hLCLSpecificationLanguage.VariantDeclaration
 
 /**
  * Generates code from your model files on save.
@@ -28,7 +26,7 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 //		fsa.generateFile(resource.className+".java", toJavaCode(resource.contents.head as Model))
 
 		modelName= modelName(resource.contents.head as Model)
-		fsa.generateFile(modelName, toJavaCode(resource.contents.head as Model))
+		fsa.generateFile(modelName+".java", toJavaCode(resource.contents.head as Model))
 		//fsa.generateFile(modelName(resource.contents.head as Model), toJavaCode(resource.contents.head as Model))
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 
 //			resource.allContents
@@ -41,7 +39,7 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 		def modelName(Model model) {
 		var name = model.name.toFirstUpper
 		
-		return name+".java"
+		return name
 	}
 	def className(Resource res) {
 		var name = res.URI.lastSegment
@@ -56,6 +54,10 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 			//imports for hlcl 
 			import com.variamos.hlcl.core.HlclProgram;
 			import com.variamos.hlcl.model.expressions.HlclFactory;
+			import com.variamos.hlcl.model.domains.BinaryDomain;
+			import com.variamos.hlcl.model.domains.IntervalDomain;
+			import com.variamos.hlcl.model.domains.RangeDomain;
+			import com.variamos.hlcl.model.expressions.Identifier;
 			
 			/**
 			 * This class is automatically generated from a product line model described in 
@@ -126,29 +128,49 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 			}
 	'''
 	def declareVars(VarDeclaration variable) '''
-	
-			Identifier «variable.name» = f.newIdentifier("«variable.name»");
-			«declareVariants(variable)»
-			
-		
+			//
+			//declaring variable «variable.name»
+			Identifier «variable.name» = factory.newIdentifier("«variable.name»");
+			«declareVariants(variable.variants, variable.type, variable.name)»
 	'''
-		def declareVariants(VarDeclaration variable) '''
-		«««	con esto declaro los distintos tipos de dominios y después los distintos tipos de expresiones :-)
-				«IF variable.variants instanceof variantsInterval»
-					«declareRangeDom(dom, name)»
-				«ELSEIF dom instanceof SetDom»
-					«declareSetDom(dom, name)»
-		«««		«ELSEIF dom instanceof StringDomain»
-		«««			«declareRangeDom(dom, name)»
-				«ELSE»
-				   //se declara un boolDomain
-				   BinaryDomain «name»Dom= new BinaryDomain();
-				    «name».setDomain(«name»Dom);
-				«ENDIF»
-	
-			Identifier «variable.name» = f.newIdentifier("«variable.name»");
-			
-			
-		
+	def declareVariants(VariantDeclaration variant, String type, String name) '''
+		«IF type.equals("boolean")»
+			BinaryDomain «name»Dom= new BinaryDomain();
+		«ELSE»	
+			«IF variant instanceof variantsInterval»
+				RangeDomain «name»Dom= new RangeDomain(«variant.start», «variant.end»);
+			«ELSE»
+				«IF variant instanceof variantsEnumeration»
+					IntervalDomain «name»Dom= new IntervalDomain();
+					«FOR e : variant.list.values.values»
+						«name»Dom.add(«e»);
+					«ENDFOR»
+				«ENDIF»	
+			«ENDIF»
+		«ENDIF»
+		«name».setDomain(«name»Dom);	
+	'''
+	def declareBool(String name ) '''
+		BinaryDomain «name»Dom= new BinaryDomain();
+
+	'''
+	def declareInterval(variantsInterval variants, String type, String name ) '''
+		«IF type.equals("boolean")»
+			«declareBool(name)»
+		«ELSE»
+			RangeDomain «name»Dom= new RangeDomain(«variants.start», «variants.end»);
+		«ENDIF»
+
+	'''
+	def declareEnumeration(variantsEnumeration variants, String type, String name ) '''
+		«IF type.equals("boolean")»
+			«declareBool(name)»
+		«ELSE»
+		IntervalDomain «name»Dom= new IntervalDomain();
+			«FOR e : variants.list.values.values»
+				«name»Dom.add(«e»);
+			«ENDFOR»
+		«ENDIF»
+
 	'''
 }

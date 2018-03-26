@@ -15,6 +15,9 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.hLCLSpecificationLanguage.Model;
 import org.xtext.hLCLSpecificationLanguage.VarDeclaration;
+import org.xtext.hLCLSpecificationLanguage.VariantDeclaration;
+import org.xtext.hLCLSpecificationLanguage.variantsEnumeration;
+import org.xtext.hLCLSpecificationLanguage.variantsInterval;
 
 /**
  * Generates code from your model files on save.
@@ -30,12 +33,12 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     this.modelName = this.modelName(((Model) _head));
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
-    fsa.generateFile(this.modelName, this.toJavaCode(((Model) _head_1)));
+    fsa.generateFile((this.modelName + ".java"), this.toJavaCode(((Model) _head_1)));
   }
   
   public String modelName(final Model model) {
     String name = StringExtensions.toFirstUpper(model.getName());
-    return (name + ".java");
+    return name;
   }
   
   public String className(final Resource res) {
@@ -56,6 +59,14 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     _builder.append("import com.variamos.hlcl.core.HlclProgram;");
     _builder.newLine();
     _builder.append("import com.variamos.hlcl.model.expressions.HlclFactory;");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.model.domains.BinaryDomain;");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.model.domains.IntervalDomain;");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.model.domains.RangeDomain;");
+    _builder.newLine();
+    _builder.append("import com.variamos.hlcl.model.expressions.Identifier;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("/**");
@@ -256,39 +267,141 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
   
   public CharSequence declareVars(final VarDeclaration variable) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("//");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Identifier ");
+    _builder.append("//declaring variable ");
     String _name = variable.getName();
-    _builder.append(_name, "\t\t");
-    _builder.append(" = f.newIdentifier(\"");
+    _builder.append(_name);
+    _builder.newLineIfNotEmpty();
+    _builder.append("Identifier ");
     String _name_1 = variable.getName();
-    _builder.append(_name_1, "\t\t");
+    _builder.append(_name_1);
+    _builder.append(" = factory.newIdentifier(\"");
+    String _name_2 = variable.getName();
+    _builder.append(_name_2);
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    CharSequence _declareVariants = this.declareVariants(variable);
-    _builder.append(_declareVariants, "\t\t");
+    CharSequence _declareVariants = this.declareVariants(variable.getVariants(), variable.getType(), variable.getName());
+    _builder.append(_declareVariants);
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("\t");
+    return _builder;
+  }
+  
+  public CharSequence declareVariants(final VariantDeclaration variant, final String type, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _equals = type.equals("boolean");
+      if (_equals) {
+        _builder.append("BinaryDomain ");
+        _builder.append(name);
+        _builder.append("Dom= new BinaryDomain();");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          if ((variant instanceof variantsInterval)) {
+            _builder.append("RangeDomain ");
+            _builder.append(name);
+            _builder.append("Dom= new RangeDomain(");
+            String _start = ((variantsInterval)variant).getStart();
+            _builder.append(_start);
+            _builder.append(", ");
+            String _end = ((variantsInterval)variant).getEnd();
+            _builder.append(_end);
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              if ((variant instanceof variantsEnumeration)) {
+                _builder.append("IntervalDomain ");
+                _builder.append(name);
+                _builder.append("Dom= new IntervalDomain();");
+                _builder.newLineIfNotEmpty();
+                {
+                  EList<String> _values = ((variantsEnumeration)variant).getList().getValues().getValues();
+                  for(final String e : _values) {
+                    _builder.append(name);
+                    _builder.append("Dom.add(");
+                    _builder.append(e);
+                    _builder.append(");");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append(name);
+    _builder.append(".setDomain(");
+    _builder.append(name);
+    _builder.append("Dom);\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareBool(final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("BinaryDomain ");
+    _builder.append(name);
+    _builder.append("Dom= new BinaryDomain();");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     return _builder;
   }
   
-  public CharSequence declareVariants(final VarDeclaration variable) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nSetDom cannot be resolved to a type."
-      + "\nThe method declareRangeDom(Object, Object) is undefined"
-      + "\nThe method or field dom is undefined"
-      + "\nThe method or field name is undefined"
-      + "\nThe method or field dom is undefined"
-      + "\nThe method declareSetDom(Object, Object) is undefined"
-      + "\nThe method or field dom is undefined"
-      + "\nThe method or field name is undefined"
-      + "\nThe method or field name is undefined"
-      + "\nThe method or field name is undefined"
-      + "\nThe method or field name is undefined");
+  public CharSequence declareInterval(final variantsInterval variants, final String type, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _equals = type.equals("boolean");
+      if (_equals) {
+        CharSequence _declareBool = this.declareBool(name);
+        _builder.append(_declareBool);
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("RangeDomain ");
+        _builder.append(name);
+        _builder.append("Dom= new RangeDomain(");
+        String _start = variants.getStart();
+        _builder.append(_start);
+        _builder.append(", ");
+        String _end = variants.getEnd();
+        _builder.append(_end);
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence declareEnumeration(final variantsEnumeration variants, final String type, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _equals = type.equals("boolean");
+      if (_equals) {
+        CharSequence _declareBool = this.declareBool(name);
+        _builder.append(_declareBool);
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("IntervalDomain ");
+        _builder.append(name);
+        _builder.append("Dom= new IntervalDomain();");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<String> _values = variants.getList().getValues().getValues();
+          for(final String e : _values) {
+            _builder.append("\t");
+            _builder.append(name, "\t");
+            _builder.append("Dom.add(");
+            _builder.append(e, "\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    return _builder;
   }
 }

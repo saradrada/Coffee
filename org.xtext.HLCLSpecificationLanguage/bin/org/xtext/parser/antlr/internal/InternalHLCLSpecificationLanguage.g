@@ -414,7 +414,7 @@ rulevariantsEnumeration returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getVariantsEnumerationRule());
 					}
-					add(
+					set(
 						$current,
 						"list",
 						lv_list_2_0,
@@ -431,14 +431,14 @@ rulevariantsEnumeration returns [EObject current=null]
 ;
 
 // Entry rule entryRuleEnumeration
-entryRuleEnumeration returns [String current=null]:
+entryRuleEnumeration returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getEnumerationRule()); }
 	iv_ruleEnumeration=ruleEnumeration
-	{ $current=$iv_ruleEnumeration.current.getText(); }
+	{ $current=$iv_ruleEnumeration.current; }
 	EOF;
 
 // Rule Enumeration
-ruleEnumeration returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleEnumeration returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -446,25 +446,32 @@ ruleEnumeration returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getEnumerationAccess().getListOfValuesParserRuleCall_0());
-		}
-		this_ListOfValues_0=ruleListOfValues
-		{
-			$current.merge(this_ListOfValues_0);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEnumerationAccess().getValuesListOfValuesParserRuleCall_0_0());
+				}
+				lv_values_0_0=ruleListOfValues
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEnumerationRule());
+					}
+					set(
+						$current,
+						"values",
+						lv_values_0_0,
+						"org.xtext.HLCLSpecificationLanguage.ListOfValues");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		    |
 		{
 			newCompositeNode(grammarAccess.getEnumerationAccess().getListOfIDsParserRuleCall_1());
 		}
 		this_ListOfIDs_1=ruleListOfIDs
 		{
-			$current.merge(this_ListOfIDs_1);
-		}
-		{
+			$current = $this_ListOfIDs_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1152,14 +1159,14 @@ ruleVarType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 ;
 
 // Entry rule entryRuleListOfValues
-entryRuleListOfValues returns [String current=null]:
+entryRuleListOfValues returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getListOfValuesRule()); }
 	iv_ruleListOfValues=ruleListOfValues
-	{ $current=$iv_ruleListOfValues.current.getText(); }
+	{ $current=$iv_ruleListOfValues.current; }
 	EOF;
 
 // Rule ListOfValues
-ruleListOfValues returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleListOfValues returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1167,45 +1174,35 @@ ruleListOfValues returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getListOfValuesAccess().getValueParserRuleCall_0());
-		}
-		this_Value_0=ruleValue
-		{
-			$current.merge(this_Value_0);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
 		(
-			kw=','
 			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
+				newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_0());
 			}
+			lv_values_0_0=ruleValue
 			{
-				newCompositeNode(grammarAccess.getListOfValuesAccess().getValueParserRuleCall_1_1());
-			}
-			this_Value_2=ruleValue
-			{
-				$current.merge(this_Value_2);
-			}
-			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getListOfValuesRule());
+				}
+				add(
+					$current,
+					"values",
+					lv_values_0_0,
+					"org.xtext.HLCLSpecificationLanguage.Value");
 				afterParserOrEnumRuleCall();
 			}
-		)+
-	)
+		)
+	)+
 ;
 
 // Entry rule entryRuleListOfIDs
-entryRuleListOfIDs returns [String current=null]:
+entryRuleListOfIDs returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getListOfIDsRule()); }
 	iv_ruleListOfIDs=ruleListOfIDs
-	{ $current=$iv_ruleListOfIDs.current.getText(); }
+	{ $current=$iv_ruleListOfIDs.current; }
 	EOF;
 
 // Rule ListOfIDs
-ruleListOfIDs returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleListOfIDs returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1213,23 +1210,30 @@ ruleListOfIDs returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	leaveRule();
 }:
 	(
-		this_ID_0=RULE_ID
-		{
-			$current.merge(this_ID_0);
-		}
-		{
-			newLeafNode(this_ID_0, grammarAccess.getListOfIDsAccess().getIDTerminalRuleCall_0());
-		}
 		(
-			kw=','
+			(
+				lv_ids_0_0=RULE_ID
+				{
+					newLeafNode(lv_ids_0_0, grammarAccess.getListOfIDsAccess().getIdsIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getListOfIDsRule());
+					}
+					addWithLastConsumed(
+						$current,
+						"ids",
+						lv_ids_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			otherlv_1=','
 			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
+				newLeafNode(otherlv_1, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
 			}
 			this_ID_2=RULE_ID
-			{
-				$current.merge(this_ID_2);
-			}
 			{
 				newLeafNode(this_ID_2, grammarAccess.getListOfIDsAccess().getIDTerminalRuleCall_1_1());
 			}

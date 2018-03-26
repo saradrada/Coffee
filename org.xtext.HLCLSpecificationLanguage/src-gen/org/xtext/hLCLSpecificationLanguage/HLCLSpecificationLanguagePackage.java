@@ -225,7 +225,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int VARIANTS_ENUMERATION = 4;
 
   /**
-   * The feature id for the '<em><b>List</b></em>' attribute list.
+   * The feature id for the '<em><b>List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -243,6 +243,34 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int VARIANTS_ENUMERATION_FEATURE_COUNT = VARIANT_DECLARATION_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.EnumerationImpl <em>Enumeration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.hLCLSpecificationLanguage.impl.EnumerationImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getEnumeration()
+   * @generated
+   */
+  int ENUMERATION = 5;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUMERATION__VALUES = 0;
+
+  /**
+   * The number of structural features of the '<em>Enumeration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUMERATION_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ConstraintImpl <em>Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -250,7 +278,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 5;
+  int CONSTRAINT = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -287,7 +315,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 7;
+  int EXPRESSION = 8;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -306,7 +334,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getConsExpression()
    * @generated
    */
-  int CONS_EXPRESSION = 6;
+  int CONS_EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Cons Expression</em>' class.
@@ -325,7 +353,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getIDCons()
    * @generated
    */
-  int ID_CONS = 8;
+  int ID_CONS = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -353,7 +381,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getRefinement()
    * @generated
    */
-  int REFINEMENT = 9;
+  int REFINEMENT = 10;
 
   /**
    * The number of structural features of the '<em>Refinement</em>' class.
@@ -372,7 +400,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 10;
+  int ASSIGNMENT = 11;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -409,7 +437,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getVarRefinement()
    * @generated
    */
-  int VAR_REFINEMENT = 11;
+  int VAR_REFINEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -446,10 +474,10 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSetRefinement()
    * @generated
    */
-  int SET_REFINEMENT = 12;
+  int SET_REFINEMENT = 13;
 
   /**
-   * The feature id for the '<em><b>Vars</b></em>' attribute.
+   * The feature id for the '<em><b>Vars</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -458,7 +486,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int SET_REFINEMENT__VARS = REFINEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Head</b></em>' attribute.
+   * The feature id for the '<em><b>Head</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -467,7 +495,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int SET_REFINEMENT__HEAD = REFINEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Tail</b></em>' attribute list.
+   * The feature id for the '<em><b>Tail</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -492,7 +520,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getRule()
    * @generated
    */
-  int RULE = 13;
+  int RULE = 14;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -529,7 +557,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSPLNotation()
    * @generated
    */
-  int SPL_NOTATION = 14;
+  int SPL_NOTATION = 15;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' attribute.
@@ -566,6 +594,71 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @ordered
    */
   int SPL_NOTATION_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfValues()
+   * @generated
+   */
+  int LIST_OF_VALUES = 16;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_VALUES__VALUES = 0;
+
+  /**
+   * The number of structural features of the '<em>List Of Values</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_VALUES_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.hLCLSpecificationLanguage.impl.ListOfIDsImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfIDs()
+   * @generated
+   */
+  int LIST_OF_IDS = 17;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_IDS__VALUES = ENUMERATION__VALUES;
+
+  /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_IDS__IDS = ENUMERATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>List Of IDs</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_IDS_FEATURE_COUNT = ENUMERATION_FEATURE_COUNT + 1;
 
 
   /**
@@ -718,15 +811,36 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   EClass getvariantsEnumeration();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.hLCLSpecificationLanguage.variantsEnumeration#getList <em>List</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.variantsEnumeration#getList <em>List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>List</em>'.
+   * @return the meta object for the containment reference '<em>List</em>'.
    * @see org.xtext.hLCLSpecificationLanguage.variantsEnumeration#getList()
    * @see #getvariantsEnumeration()
    * @generated
    */
-  EAttribute getvariantsEnumeration_List();
+  EReference getvariantsEnumeration_List();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.Enumeration <em>Enumeration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enumeration</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.Enumeration
+   * @generated
+   */
+  EClass getEnumeration();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.Enumeration#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Values</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.Enumeration#getValues()
+   * @see #getEnumeration()
+   * @generated
+   */
+  EReference getEnumeration_Values();
 
   /**
    * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.Constraint <em>Constraint</em>}'.
@@ -886,37 +1000,37 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   EClass getSetRefinement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getVars <em>Vars</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getVars <em>Vars</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Vars</em>'.
+   * @return the meta object for the containment reference '<em>Vars</em>'.
    * @see org.xtext.hLCLSpecificationLanguage.SetRefinement#getVars()
    * @see #getSetRefinement()
    * @generated
    */
-  EAttribute getSetRefinement_Vars();
+  EReference getSetRefinement_Vars();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getHead <em>Head</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getHead <em>Head</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Head</em>'.
+   * @return the meta object for the containment reference '<em>Head</em>'.
    * @see org.xtext.hLCLSpecificationLanguage.SetRefinement#getHead()
    * @see #getSetRefinement()
    * @generated
    */
-  EAttribute getSetRefinement_Head();
+  EReference getSetRefinement_Head();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getTail <em>Tail</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getTail <em>Tail</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Tail</em>'.
+   * @return the meta object for the containment reference list '<em>Tail</em>'.
    * @see org.xtext.hLCLSpecificationLanguage.SetRefinement#getTail()
    * @see #getSetRefinement()
    * @generated
    */
-  EAttribute getSetRefinement_Tail();
+  EReference getSetRefinement_Tail();
 
   /**
    * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.Rule <em>Rule</em>}'.
@@ -992,6 +1106,48 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @generated
    */
   EAttribute getSPLNotation_Var2();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.ListOfValues <em>List Of Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Of Values</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfValues
+   * @generated
+   */
+  EClass getListOfValues();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.hLCLSpecificationLanguage.ListOfValues#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Values</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfValues#getValues()
+   * @see #getListOfValues()
+   * @generated
+   */
+  EAttribute getListOfValues_Values();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.ListOfIDs <em>List Of IDs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Of IDs</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfIDs
+   * @generated
+   */
+  EClass getListOfIDs();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.hLCLSpecificationLanguage.ListOfIDs#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Ids</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfIDs#getIds()
+   * @see #getListOfIDs()
+   * @generated
+   */
+  EAttribute getListOfIDs_Ids();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1139,12 +1295,30 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
     EClass VARIANTS_ENUMERATION = eINSTANCE.getvariantsEnumeration();
 
     /**
-     * The meta object literal for the '<em><b>List</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>List</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VARIANTS_ENUMERATION__LIST = eINSTANCE.getvariantsEnumeration_List();
+    EReference VARIANTS_ENUMERATION__LIST = eINSTANCE.getvariantsEnumeration_List();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.EnumerationImpl <em>Enumeration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.hLCLSpecificationLanguage.impl.EnumerationImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getEnumeration()
+     * @generated
+     */
+    EClass ENUMERATION = eINSTANCE.getEnumeration();
+
+    /**
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUMERATION__VALUES = eINSTANCE.getEnumeration_Values();
 
     /**
      * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -1283,28 +1457,28 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
     EClass SET_REFINEMENT = eINSTANCE.getSetRefinement();
 
     /**
-     * The meta object literal for the '<em><b>Vars</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Vars</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SET_REFINEMENT__VARS = eINSTANCE.getSetRefinement_Vars();
+    EReference SET_REFINEMENT__VARS = eINSTANCE.getSetRefinement_Vars();
 
     /**
-     * The meta object literal for the '<em><b>Head</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Head</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SET_REFINEMENT__HEAD = eINSTANCE.getSetRefinement_Head();
+    EReference SET_REFINEMENT__HEAD = eINSTANCE.getSetRefinement_Head();
 
     /**
-     * The meta object literal for the '<em><b>Tail</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Tail</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SET_REFINEMENT__TAIL = eINSTANCE.getSetRefinement_Tail();
+    EReference SET_REFINEMENT__TAIL = eINSTANCE.getSetRefinement_Tail();
 
     /**
      * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.RuleImpl <em>Rule</em>}' class.
@@ -1365,6 +1539,42 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
      * @generated
      */
     EAttribute SPL_NOTATION__VAR2 = eINSTANCE.getSPLNotation_Var2();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfValues()
+     * @generated
+     */
+    EClass LIST_OF_VALUES = eINSTANCE.getListOfValues();
+
+    /**
+     * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LIST_OF_VALUES__VALUES = eINSTANCE.getListOfValues_Values();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.hLCLSpecificationLanguage.impl.ListOfIDsImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfIDs()
+     * @generated
+     */
+    EClass LIST_OF_IDS = eINSTANCE.getListOfIDs();
+
+    /**
+     * The meta object literal for the '<em><b>Ids</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LIST_OF_IDS__IDS = eINSTANCE.getListOfIDs_Ids();
 
   }
 

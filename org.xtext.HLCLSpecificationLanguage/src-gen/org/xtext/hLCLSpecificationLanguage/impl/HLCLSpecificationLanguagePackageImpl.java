@@ -13,10 +13,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.hLCLSpecificationLanguage.Assignment;
 import org.xtext.hLCLSpecificationLanguage.ConsExpression;
 import org.xtext.hLCLSpecificationLanguage.Constraint;
+import org.xtext.hLCLSpecificationLanguage.Enumeration;
 import org.xtext.hLCLSpecificationLanguage.Expression;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguageFactory;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
+import org.xtext.hLCLSpecificationLanguage.ListOfIDs;
+import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.Model;
 import org.xtext.hLCLSpecificationLanguage.Refinement;
 import org.xtext.hLCLSpecificationLanguage.Rule;
@@ -70,6 +73,13 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * @generated
    */
   private EClass variantsEnumerationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumerationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,6 +150,20 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * @generated
    */
   private EClass splNotationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfValuesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfIDsEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -349,9 +373,29 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getvariantsEnumeration_List()
+  public EReference getvariantsEnumeration_List()
   {
-    return (EAttribute)variantsEnumerationEClass.getEStructuralFeatures().get(0);
+    return (EReference)variantsEnumerationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumeration()
+  {
+    return enumerationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumeration_Values()
+  {
+    return (EReference)enumerationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -509,9 +553,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSetRefinement_Vars()
+  public EReference getSetRefinement_Vars()
   {
-    return (EAttribute)setRefinementEClass.getEStructuralFeatures().get(0);
+    return (EReference)setRefinementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -519,9 +563,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSetRefinement_Head()
+  public EReference getSetRefinement_Head()
   {
-    return (EAttribute)setRefinementEClass.getEStructuralFeatures().get(1);
+    return (EReference)setRefinementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -529,9 +573,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSetRefinement_Tail()
+  public EReference getSetRefinement_Tail()
   {
-    return (EAttribute)setRefinementEClass.getEStructuralFeatures().get(2);
+    return (EReference)setRefinementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -609,6 +653,46 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getListOfValues()
+  {
+    return listOfValuesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getListOfValues_Values()
+  {
+    return (EAttribute)listOfValuesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getListOfIDs()
+  {
+    return listOfIDsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getListOfIDs_Ids()
+  {
+    return (EAttribute)listOfIDsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public HLCLSpecificationLanguageFactory getHLCLSpecificationLanguageFactory()
   {
     return (HLCLSpecificationLanguageFactory)getEFactoryInstance();
@@ -652,7 +736,10 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     createEAttribute(variantsIntervalEClass, VARIANTS_INTERVAL__END);
 
     variantsEnumerationEClass = createEClass(VARIANTS_ENUMERATION);
-    createEAttribute(variantsEnumerationEClass, VARIANTS_ENUMERATION__LIST);
+    createEReference(variantsEnumerationEClass, VARIANTS_ENUMERATION__LIST);
+
+    enumerationEClass = createEClass(ENUMERATION);
+    createEReference(enumerationEClass, ENUMERATION__VALUES);
 
     constraintEClass = createEClass(CONSTRAINT);
     createEAttribute(constraintEClass, CONSTRAINT__NAME);
@@ -676,9 +763,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     createEReference(varRefinementEClass, VAR_REFINEMENT__VARIANTS);
 
     setRefinementEClass = createEClass(SET_REFINEMENT);
-    createEAttribute(setRefinementEClass, SET_REFINEMENT__VARS);
-    createEAttribute(setRefinementEClass, SET_REFINEMENT__HEAD);
-    createEAttribute(setRefinementEClass, SET_REFINEMENT__TAIL);
+    createEReference(setRefinementEClass, SET_REFINEMENT__VARS);
+    createEReference(setRefinementEClass, SET_REFINEMENT__HEAD);
+    createEReference(setRefinementEClass, SET_REFINEMENT__TAIL);
 
     ruleEClass = createEClass(RULE);
     createEReference(ruleEClass, RULE__CONDITION);
@@ -688,6 +775,12 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     createEAttribute(splNotationEClass, SPL_NOTATION__VAR1);
     createEAttribute(splNotationEClass, SPL_NOTATION__OP);
     createEAttribute(splNotationEClass, SPL_NOTATION__VAR2);
+
+    listOfValuesEClass = createEClass(LIST_OF_VALUES);
+    createEAttribute(listOfValuesEClass, LIST_OF_VALUES__VALUES);
+
+    listOfIDsEClass = createEClass(LIST_OF_IDS);
+    createEAttribute(listOfIDsEClass, LIST_OF_IDS__IDS);
   }
 
   /**
@@ -729,6 +822,7 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     setRefinementEClass.getESuperTypes().add(this.getRefinement());
     ruleEClass.getESuperTypes().add(this.getConsExpression());
     splNotationEClass.getESuperTypes().add(this.getConsExpression());
+    listOfIDsEClass.getESuperTypes().add(this.getEnumeration());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -749,7 +843,10 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     initEAttribute(getvariantsInterval_End(), ecorePackage.getEString(), "end", null, 0, 1, variantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variantsEnumerationEClass, variantsEnumeration.class, "variantsEnumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getvariantsEnumeration_List(), ecorePackage.getEString(), "list", null, 0, -1, variantsEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getvariantsEnumeration_List(), this.getEnumeration(), null, "list", null, 0, 1, variantsEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumerationEClass, Enumeration.class, "Enumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumeration_Values(), this.getListOfValues(), null, "values", null, 0, 1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -773,9 +870,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     initEReference(getVarRefinement_Variants(), this.getVariantDeclaration(), null, "variants", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setRefinementEClass, SetRefinement.class, "SetRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSetRefinement_Vars(), ecorePackage.getEString(), "vars", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSetRefinement_Head(), ecorePackage.getEString(), "head", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSetRefinement_Tail(), ecorePackage.getEString(), "tail", null, 0, -1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetRefinement_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetRefinement_Head(), this.getListOfValues(), null, "head", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetRefinement_Tail(), this.getListOfValues(), null, "tail", null, 0, -1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRule_Condition(), this.getExpression(), null, "condition", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -785,6 +882,12 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     initEAttribute(getSPLNotation_Var1(), ecorePackage.getEString(), "var1", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSPLNotation_Op(), ecorePackage.getEString(), "op", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSPLNotation_Var2(), ecorePackage.getEString(), "var2", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getListOfValues_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listOfIDsEClass, ListOfIDs.class, "ListOfIDs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getListOfIDs_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, ListOfIDs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

@@ -101,6 +101,11 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
         return createvariantsEnumerationAdapter();
       }
       @Override
+      public Adapter caseEnumeration(Enumeration object)
+      {
+        return createEnumerationAdapter();
+      }
+      @Override
       public Adapter caseConstraint(Constraint object)
       {
         return createConstraintAdapter();
@@ -149,6 +154,16 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSPLNotation(SPLNotation object)
       {
         return createSPLNotationAdapter();
+      }
+      @Override
+      public Adapter caseListOfValues(ListOfValues object)
+      {
+        return createListOfValuesAdapter();
+      }
+      @Override
+      public Adapter caseListOfIDs(ListOfIDs object)
+      {
+        return createListOfIDsAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -243,6 +258,21 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createvariantsEnumerationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.Enumeration <em>Enumeration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.hLCLSpecificationLanguage.Enumeration
+   * @generated
+   */
+  public Adapter createEnumerationAdapter()
   {
     return null;
   }
@@ -393,6 +423,36 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSPLNotationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.ListOfValues <em>List Of Values</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfValues
+   * @generated
+   */
+  public Adapter createListOfValuesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.ListOfIDs <em>List Of IDs</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.hLCLSpecificationLanguage.ListOfIDs
+   * @generated
+   */
+  public Adapter createListOfIDsAdapter()
   {
     return null;
   }

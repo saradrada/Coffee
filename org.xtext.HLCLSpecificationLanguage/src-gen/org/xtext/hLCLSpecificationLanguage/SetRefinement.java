@@ -26,71 +26,71 @@ import org.eclipse.emf.common.util.EList;
 public interface SetRefinement extends Refinement
 {
   /**
-   * Returns the value of the '<em><b>Vars</b></em>' attribute.
+   * Returns the value of the '<em><b>Vars</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Vars</em>' attribute isn't clear,
+   * If the meaning of the '<em>Vars</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Vars</em>' attribute.
-   * @see #setVars(String)
+   * @return the value of the '<em>Vars</em>' containment reference.
+   * @see #setVars(ListOfIDs)
    * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSetRefinement_Vars()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getVars();
+  ListOfIDs getVars();
 
   /**
-   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getVars <em>Vars</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getVars <em>Vars</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Vars</em>' attribute.
+   * @param value the new value of the '<em>Vars</em>' containment reference.
    * @see #getVars()
    * @generated
    */
-  void setVars(String value);
+  void setVars(ListOfIDs value);
 
   /**
-   * Returns the value of the '<em><b>Head</b></em>' attribute.
+   * Returns the value of the '<em><b>Head</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Head</em>' attribute isn't clear,
+   * If the meaning of the '<em>Head</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Head</em>' attribute.
-   * @see #setHead(String)
+   * @return the value of the '<em>Head</em>' containment reference.
+   * @see #setHead(ListOfValues)
    * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSetRefinement_Head()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getHead();
+  ListOfValues getHead();
 
   /**
-   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getHead <em>Head</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SetRefinement#getHead <em>Head</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Head</em>' attribute.
+   * @param value the new value of the '<em>Head</em>' containment reference.
    * @see #getHead()
    * @generated
    */
-  void setHead(String value);
+  void setHead(ListOfValues value);
 
   /**
-   * Returns the value of the '<em><b>Tail</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Tail</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.hLCLSpecificationLanguage.ListOfValues}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Tail</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Tail</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Tail</em>' attribute list.
+   * @return the value of the '<em>Tail</em>' containment reference list.
    * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSetRefinement_Tail()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getTail();
+  EList<ListOfValues> getTail();
 
 } // SetRefinement

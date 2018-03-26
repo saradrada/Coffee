@@ -3,7 +3,6 @@
  */
 package org.xtext.hLCLSpecificationLanguage;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,19 +23,29 @@ import org.eclipse.emf.common.util.EList;
 public interface variantsEnumeration extends VariantDeclaration
 {
   /**
-   * Returns the value of the '<em><b>List</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>List</em>' attribute list isn't clear,
+   * If the meaning of the '<em>List</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>List</em>' attribute list.
+   * @return the value of the '<em>List</em>' containment reference.
+   * @see #setList(Enumeration)
    * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getvariantsEnumeration_List()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getList();
+  Enumeration getList();
+
+  /**
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.variantsEnumeration#getList <em>List</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>List</em>' containment reference.
+   * @see #getList()
+   * @generated
+   */
+  void setList(Enumeration value);
 
 } // variantsEnumeration

@@ -3,14 +3,15 @@
  */
 package org.xtext.hLCLSpecificationLanguage.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.xtext.hLCLSpecificationLanguage.Enumeration;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.variantsEnumeration;
 
@@ -30,14 +31,14 @@ import org.xtext.hLCLSpecificationLanguage.variantsEnumeration;
 public class variantsEnumerationImpl extends VariantDeclarationImpl implements variantsEnumeration
 {
   /**
-   * The cached value of the '{@link #getList() <em>List</em>}' attribute list.
+   * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getList()
    * @generated
    * @ordered
    */
-  protected EList<String> list;
+  protected Enumeration list;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,13 +66,63 @@ public class variantsEnumerationImpl extends VariantDeclarationImpl implements v
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getList()
+  public Enumeration getList()
   {
-    if (list == null)
-    {
-      list = new EDataTypeEList<String>(String.class, this, HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST);
-    }
     return list;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetList(Enumeration newList, NotificationChain msgs)
+  {
+    Enumeration oldList = list;
+    list = newList;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST, oldList, newList);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setList(Enumeration newList)
+  {
+    if (newList != list)
+    {
+      NotificationChain msgs = null;
+      if (list != null)
+        msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST, null, msgs);
+      if (newList != null)
+        msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST, null, msgs);
+      msgs = basicSetList(newList, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST, newList, newList));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST:
+        return basicSetList(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -95,15 +146,13 @@ public class variantsEnumerationImpl extends VariantDeclarationImpl implements v
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST:
-        getList().clear();
-        getList().addAll((Collection<? extends String>)newValue);
+        setList((Enumeration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -120,7 +169,7 @@ public class variantsEnumerationImpl extends VariantDeclarationImpl implements v
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST:
-        getList().clear();
+        setList((Enumeration)null);
         return;
     }
     super.eUnset(featureID);
@@ -137,26 +186,9 @@ public class variantsEnumerationImpl extends VariantDeclarationImpl implements v
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION__LIST:
-        return list != null && !list.isEmpty();
+        return list != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (list: ");
-    result.append(list);
-    result.append(')');
-    return result.toString();
   }
 
 } //variantsEnumerationImpl

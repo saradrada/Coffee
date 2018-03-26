@@ -6,16 +6,21 @@ package org.xtext.hLCLSpecificationLanguage.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
+import org.xtext.hLCLSpecificationLanguage.ListOfIDs;
+import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.SetRefinement;
 
 /**
@@ -36,54 +41,34 @@ import org.xtext.hLCLSpecificationLanguage.SetRefinement;
 public class SetRefinementImpl extends RefinementImpl implements SetRefinement
 {
   /**
-   * The default value of the '{@link #getVars() <em>Vars</em>}' attribute.
+   * The cached value of the '{@link #getVars() <em>Vars</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getVars()
    * @generated
    * @ordered
    */
-  protected static final String VARS_EDEFAULT = null;
+  protected ListOfIDs vars;
 
   /**
-   * The cached value of the '{@link #getVars() <em>Vars</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVars()
-   * @generated
-   * @ordered
-   */
-  protected String vars = VARS_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getHead() <em>Head</em>}' attribute.
+   * The cached value of the '{@link #getHead() <em>Head</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getHead()
    * @generated
    * @ordered
    */
-  protected static final String HEAD_EDEFAULT = null;
+  protected ListOfValues head;
 
   /**
-   * The cached value of the '{@link #getHead() <em>Head</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHead()
-   * @generated
-   * @ordered
-   */
-  protected String head = HEAD_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getTail() <em>Tail</em>}' attribute list.
+   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTail()
    * @generated
    * @ordered
    */
-  protected EList<String> tail;
+  protected EList<ListOfValues> tail;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,7 +96,7 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVars()
+  public ListOfIDs getVars()
   {
     return vars;
   }
@@ -121,12 +106,16 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVars(String newVars)
+  public NotificationChain basicSetVars(ListOfIDs newVars, NotificationChain msgs)
   {
-    String oldVars = vars;
+    ListOfIDs oldVars = vars;
     vars = newVars;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS, oldVars, vars));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS, oldVars, newVars);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -134,7 +123,28 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getHead()
+  public void setVars(ListOfIDs newVars)
+  {
+    if (newVars != vars)
+    {
+      NotificationChain msgs = null;
+      if (vars != null)
+        msgs = ((InternalEObject)vars).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS, null, msgs);
+      if (newVars != null)
+        msgs = ((InternalEObject)newVars).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS, null, msgs);
+      msgs = basicSetVars(newVars, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS, newVars, newVars));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfValues getHead()
   {
     return head;
   }
@@ -144,12 +154,16 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setHead(String newHead)
+  public NotificationChain basicSetHead(ListOfValues newHead, NotificationChain msgs)
   {
-    String oldHead = head;
+    ListOfValues oldHead = head;
     head = newHead;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD, oldHead, head));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD, oldHead, newHead);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -157,13 +171,54 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getTail()
+  public void setHead(ListOfValues newHead)
+  {
+    if (newHead != head)
+    {
+      NotificationChain msgs = null;
+      if (head != null)
+        msgs = ((InternalEObject)head).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD, null, msgs);
+      if (newHead != null)
+        msgs = ((InternalEObject)newHead).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD, null, msgs);
+      msgs = basicSetHead(newHead, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD, newHead, newHead));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<ListOfValues> getTail()
   {
     if (tail == null)
     {
-      tail = new EDataTypeEList<String>(String.class, this, HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL);
+      tail = new EObjectContainmentEList<ListOfValues>(ListOfValues.class, this, HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL);
     }
     return tail;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS:
+        return basicSetVars(null, msgs);
+      case HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD:
+        return basicSetHead(null, msgs);
+      case HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL:
+        return ((InternalEList<?>)getTail()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -198,14 +253,14 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS:
-        setVars((String)newValue);
+        setVars((ListOfIDs)newValue);
         return;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD:
-        setHead((String)newValue);
+        setHead((ListOfValues)newValue);
         return;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL:
         getTail().clear();
-        getTail().addAll((Collection<? extends String>)newValue);
+        getTail().addAll((Collection<? extends ListOfValues>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,10 +277,10 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS:
-        setVars(VARS_EDEFAULT);
+        setVars((ListOfIDs)null);
         return;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD:
-        setHead(HEAD_EDEFAULT);
+        setHead((ListOfValues)null);
         return;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL:
         getTail().clear();
@@ -245,34 +300,13 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     switch (featureID)
     {
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__VARS:
-        return VARS_EDEFAULT == null ? vars != null : !VARS_EDEFAULT.equals(vars);
+        return vars != null;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__HEAD:
-        return HEAD_EDEFAULT == null ? head != null : !HEAD_EDEFAULT.equals(head);
+        return head != null;
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT__TAIL:
         return tail != null && !tail.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (vars: ");
-    result.append(vars);
-    result.append(", head: ");
-    result.append(head);
-    result.append(", tail: ");
-    result.append(tail);
-    result.append(')');
-    return result.toString();
   }
 
 } //SetRefinementImpl

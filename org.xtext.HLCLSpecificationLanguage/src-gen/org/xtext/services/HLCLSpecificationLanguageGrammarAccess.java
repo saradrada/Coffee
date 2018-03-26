@@ -190,10 +190,10 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//variantsEnumeration:
-		//	{variantsEnumeration} '[' list+=Enumeration ']';
+		//	{variantsEnumeration} '[' list=Enumeration ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{variantsEnumeration} '[' list+=Enumeration ']'
+		//{variantsEnumeration} '[' list=Enumeration ']'
 		public Group getGroup() { return cGroup; }
 		
 		//{variantsEnumeration}
@@ -202,7 +202,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//list+=Enumeration
+		//list=Enumeration
 		public Assignment getListAssignment_2() { return cListAssignment_2; }
 		
 		//Enumeration
@@ -214,18 +214,22 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	public class EnumerationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.Enumeration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cListOfValuesParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Assignment cValuesAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValuesListOfValuesParserRuleCall_0_0 = (RuleCall)cValuesAssignment_0.eContents().get(0);
 		private final RuleCall cListOfIDsParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Enumeration:
-		//	ListOfValues | ListOfIDs;
+		//	values=ListOfValues | ListOfIDs;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ListOfValues | ListOfIDs
+		//values=ListOfValues | ListOfIDs
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//values=ListOfValues
+		public Assignment getValuesAssignment_0() { return cValuesAssignment_0; }
+		
 		//ListOfValues
-		public RuleCall getListOfValuesParserRuleCall_0() { return cListOfValuesParserRuleCall_0; }
+		public RuleCall getValuesListOfValuesParserRuleCall_0_0() { return cValuesListOfValuesParserRuleCall_0_0; }
 		
 		//ListOfIDs
 		public RuleCall getListOfIDsParserRuleCall_1() { return cListOfIDsParserRuleCall_1; }
@@ -647,48 +651,40 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	public class ListOfValuesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.ListOfValues");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cValueParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cValueParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cValuesAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValuesValueParserRuleCall_0 = (RuleCall)cValuesAssignment.eContents().get(0);
 		
 		//ListOfValues:
-		//	Value (',' Value)+;
+		//	values+=Value+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Value (',' Value)+
-		public Group getGroup() { return cGroup; }
+		//values+=Value+
+		public Assignment getValuesAssignment() { return cValuesAssignment; }
 		
 		//Value
-		public RuleCall getValueParserRuleCall_0() { return cValueParserRuleCall_0; }
-		
-		//(',' Value)+
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//','
-		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
-		
-		//Value
-		public RuleCall getValueParserRuleCall_1_1() { return cValueParserRuleCall_1_1; }
+		public RuleCall getValuesValueParserRuleCall_0() { return cValuesValueParserRuleCall_0; }
 	}
 	public class ListOfIDsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.ListOfIDs");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cIdsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cIdsIDTerminalRuleCall_0_0 = (RuleCall)cIdsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//ListOfIDs:
-		//	ID (',' ID)+;
+		//	ids+=ID (',' ID)+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ID (',' ID)+
+		//ids+=ID (',' ID)+
 		public Group getGroup() { return cGroup; }
 		
+		//ids+=ID
+		public Assignment getIdsAssignment_0() { return cIdsAssignment_0; }
+		
 		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		public RuleCall getIdsIDTerminalRuleCall_0_0() { return cIdsIDTerminalRuleCall_0_0; }
 		
 		//(',' ID)+
 		public Group getGroup_1() { return cGroup_1; }
@@ -854,7 +850,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//variantsEnumeration:
-	//	{variantsEnumeration} '[' list+=Enumeration ']';
+	//	{variantsEnumeration} '[' list=Enumeration ']';
 	public VariantsEnumerationElements getVariantsEnumerationAccess() {
 		return pVariantsEnumeration;
 	}
@@ -864,7 +860,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//Enumeration:
-	//	ListOfValues | ListOfIDs;
+	//	values=ListOfValues | ListOfIDs;
 	public EnumerationElements getEnumerationAccess() {
 		return pEnumeration;
 	}
@@ -1033,7 +1029,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//ListOfValues:
-	//	Value (',' Value)+;
+	//	values+=Value+;
 	public ListOfValuesElements getListOfValuesAccess() {
 		return pListOfValues;
 	}
@@ -1043,7 +1039,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//ListOfIDs:
-	//	ID (',' ID)+;
+	//	ids+=ID (',' ID)+;
 	public ListOfIDsElements getListOfIDsAccess() {
 		return pListOfIDs;
 	}

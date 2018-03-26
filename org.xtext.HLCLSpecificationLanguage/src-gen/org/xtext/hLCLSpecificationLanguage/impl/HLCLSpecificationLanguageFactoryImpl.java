@@ -70,6 +70,7 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
       case HLCLSpecificationLanguagePackage.VARIANT_DECLARATION: return createVariantDeclaration();
       case HLCLSpecificationLanguagePackage.VARIANTS_INTERVAL: return createvariantsInterval();
       case HLCLSpecificationLanguagePackage.VARIANTS_ENUMERATION: return createvariantsEnumeration();
+      case HLCLSpecificationLanguagePackage.ENUMERATION: return createEnumeration();
       case HLCLSpecificationLanguagePackage.CONSTRAINT: return createConstraint();
       case HLCLSpecificationLanguagePackage.CONS_EXPRESSION: return createConsExpression();
       case HLCLSpecificationLanguagePackage.EXPRESSION: return createExpression();
@@ -80,6 +81,8 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT: return createSetRefinement();
       case HLCLSpecificationLanguagePackage.RULE: return createRule();
       case HLCLSpecificationLanguagePackage.SPL_NOTATION: return createSPLNotation();
+      case HLCLSpecificationLanguagePackage.LIST_OF_VALUES: return createListOfValues();
+      case HLCLSpecificationLanguagePackage.LIST_OF_IDS: return createListOfIDs();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -138,6 +141,17 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
   {
     variantsEnumerationImpl variantsEnumeration = new variantsEnumerationImpl();
     return variantsEnumeration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Enumeration createEnumeration()
+  {
+    EnumerationImpl enumeration = new EnumerationImpl();
+    return enumeration;
   }
 
   /**
@@ -248,6 +262,28 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
   {
     SPLNotationImpl splNotation = new SPLNotationImpl();
     return splNotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfValues createListOfValues()
+  {
+    ListOfValuesImpl listOfValues = new ListOfValuesImpl();
+    return listOfValues;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfIDs createListOfIDs()
+  {
+    ListOfIDsImpl listOfIDs = new ListOfIDsImpl();
+    return listOfIDs;
   }
 
   /**

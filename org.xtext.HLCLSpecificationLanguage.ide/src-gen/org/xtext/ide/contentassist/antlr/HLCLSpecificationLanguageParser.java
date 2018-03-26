@@ -51,8 +51,6 @@ public class HLCLSpecificationLanguageParser extends AbstractContentAssistParser
 					put(grammarAccess.getSetRefinementAccess().getGroup_8(), "rule__SetRefinement__Group_8__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getSPLNotationAccess().getGroup(), "rule__SPLNotation__Group__0");
-					put(grammarAccess.getListOfValuesAccess().getGroup(), "rule__ListOfValues__Group__0");
-					put(grammarAccess.getListOfValuesAccess().getGroup_1(), "rule__ListOfValues__Group_1__0");
 					put(grammarAccess.getListOfIDsAccess().getGroup(), "rule__ListOfIDs__Group__0");
 					put(grammarAccess.getListOfIDsAccess().getGroup_1(), "rule__ListOfIDs__Group_1__0");
 					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
@@ -65,6 +63,7 @@ public class HLCLSpecificationLanguageParser extends AbstractContentAssistParser
 					put(grammarAccess.getVariantsIntervalAccess().getStartAssignment_1(), "rule__VariantsInterval__StartAssignment_1");
 					put(grammarAccess.getVariantsIntervalAccess().getEndAssignment_3(), "rule__VariantsInterval__EndAssignment_3");
 					put(grammarAccess.getVariantsEnumerationAccess().getListAssignment_2(), "rule__VariantsEnumeration__ListAssignment_2");
+					put(grammarAccess.getEnumerationAccess().getValuesAssignment_0(), "rule__Enumeration__ValuesAssignment_0");
 					put(grammarAccess.getConstraintAccess().getNameAssignment_0(), "rule__Constraint__NameAssignment_0");
 					put(grammarAccess.getConstraintAccess().getExpAssignment_2(), "rule__Constraint__ExpAssignment_2");
 					put(grammarAccess.getIDConsAccess().getNameAssignment(), "rule__IDCons__NameAssignment");
@@ -80,6 +79,8 @@ public class HLCLSpecificationLanguageParser extends AbstractContentAssistParser
 					put(grammarAccess.getSPLNotationAccess().getVar1Assignment_0(), "rule__SPLNotation__Var1Assignment_0");
 					put(grammarAccess.getSPLNotationAccess().getOpAssignment_1(), "rule__SPLNotation__OpAssignment_1");
 					put(grammarAccess.getSPLNotationAccess().getVar2Assignment_2(), "rule__SPLNotation__Var2Assignment_2");
+					put(grammarAccess.getListOfValuesAccess().getValuesAssignment(), "rule__ListOfValues__ValuesAssignment");
+					put(grammarAccess.getListOfIDsAccess().getIdsAssignment_0(), "rule__ListOfIDs__IdsAssignment_0");
 					put(grammarAccess.getVarDeclarationAccess().getUnorderedGroup(), "rule__VarDeclaration__UnorderedGroup");
 				}
 			};

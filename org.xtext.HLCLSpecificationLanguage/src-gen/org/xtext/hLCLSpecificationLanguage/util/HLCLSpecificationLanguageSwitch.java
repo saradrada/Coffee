@@ -110,6 +110,13 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HLCLSpecificationLanguagePackage.ENUMERATION:
+      {
+        Enumeration enumeration = (Enumeration)theEObject;
+        T result = caseEnumeration(enumeration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case HLCLSpecificationLanguagePackage.CONSTRAINT:
       {
         Constraint constraint = (Constraint)theEObject;
@@ -198,6 +205,21 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HLCLSpecificationLanguagePackage.LIST_OF_VALUES:
+      {
+        ListOfValues listOfValues = (ListOfValues)theEObject;
+        T result = caseListOfValues(listOfValues);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HLCLSpecificationLanguagePackage.LIST_OF_IDS:
+      {
+        ListOfIDs listOfIDs = (ListOfIDs)theEObject;
+        T result = caseListOfIDs(listOfIDs);
+        if (result == null) result = caseEnumeration(listOfIDs);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -278,6 +300,22 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T casevariantsEnumeration(variantsEnumeration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enumeration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enumeration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumeration(Enumeration object)
   {
     return null;
   }
@@ -438,6 +476,38 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSPLNotation(SPLNotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfValues(ListOfValues object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of IDs</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of IDs</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfIDs(ListOfIDs object)
   {
     return null;
   }

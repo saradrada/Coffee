@@ -16,8 +16,11 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.hLCLSpecificationLanguage.Assignment;
 import org.xtext.hLCLSpecificationLanguage.Constraint;
+import org.xtext.hLCLSpecificationLanguage.Enumeration;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
+import org.xtext.hLCLSpecificationLanguage.ListOfIDs;
+import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.Model;
 import org.xtext.hLCLSpecificationLanguage.Rule;
 import org.xtext.hLCLSpecificationLanguage.SPLNotation;
@@ -48,8 +51,17 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 			case HLCLSpecificationLanguagePackage.CONSTRAINT:
 				sequence_Constraint(context, (Constraint) semanticObject); 
 				return; 
+			case HLCLSpecificationLanguagePackage.ENUMERATION:
+				sequence_Enumeration(context, (Enumeration) semanticObject); 
+				return; 
 			case HLCLSpecificationLanguagePackage.ID_CONS:
 				sequence_IDCons(context, (IDCons) semanticObject); 
+				return; 
+			case HLCLSpecificationLanguagePackage.LIST_OF_IDS:
+				sequence_ListOfIDs(context, (ListOfIDs) semanticObject); 
+				return; 
+			case HLCLSpecificationLanguagePackage.LIST_OF_VALUES:
+				sequence_ListOfValues(context, (ListOfValues) semanticObject); 
 				return; 
 			case HLCLSpecificationLanguagePackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -127,6 +139,24 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	
 	/**
 	 * Contexts:
+	 *     Enumeration returns Enumeration
+	 *
+	 * Constraint:
+	 *     values=ListOfValues
+	 */
+	protected void sequence_Enumeration(ISerializationContext context, Enumeration semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.ENUMERATION__VALUES) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.ENUMERATION__VALUES));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEnumerationAccess().getValuesListOfValuesParserRuleCall_0_0(), semanticObject.getValues());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ConsExpression returns IDCons
 	 *     TerminalExp returns IDCons
 	 *     IDCons returns IDCons
@@ -142,6 +172,31 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIDConsAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Enumeration returns ListOfIDs
+	 *     ListOfIDs returns ListOfIDs
+	 *
+	 * Constraint:
+	 *     ids+=ID
+	 */
+	protected void sequence_ListOfIDs(ISerializationContext context, ListOfIDs semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ListOfValues returns ListOfValues
+	 *
+	 * Constraint:
+	 *     values+=Value+
+	 */
+	protected void sequence_ListOfValues(ISerializationContext context, ListOfValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -263,10 +318,16 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	 *     variantsEnumeration returns variantsEnumeration
 	 *
 	 * Constraint:
-	 *     list+=Enumeration
+	 *     list=Enumeration
 	 */
 	protected void sequence_variantsEnumeration(ISerializationContext context, variantsEnumeration semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.VARIANTS_ENUMERATION__LIST) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.VARIANTS_ENUMERATION__LIST));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getVariantsEnumerationAccess().getListEnumerationParserRuleCall_2_0(), semanticObject.getList());
+		feeder.finish();
 	}
 	
 	

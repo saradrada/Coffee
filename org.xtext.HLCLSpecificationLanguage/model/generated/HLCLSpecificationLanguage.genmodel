@@ -23,7 +23,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//variantsInterval/end"/>
     </genClasses>
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//variantsEnumeration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//variantsEnumeration/list"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//variantsEnumeration/list"/>
+    </genClasses>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//Enumeration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//Enumeration/values"/>
     </genClasses>
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//Constraint/name"/>
@@ -44,9 +47,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//VarRefinement/variants"/>
     </genClasses>
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//SetRefinement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SetRefinement/vars"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SetRefinement/head"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SetRefinement/tail"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//SetRefinement/vars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//SetRefinement/head"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//SetRefinement/tail"/>
     </genClasses>
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//Rule/condition"/>
@@ -56,6 +59,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/var1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/op"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/var2"/>
+    </genClasses>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//ListOfValues">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//ListOfValues/values"/>
+    </genClasses>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//ListOfIDs">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//ListOfIDs/ids"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

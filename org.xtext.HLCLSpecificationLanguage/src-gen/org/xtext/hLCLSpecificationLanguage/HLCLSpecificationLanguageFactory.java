@@ -69,6 +69,15 @@ public interface HLCLSpecificationLanguageFactory extends EFactory
   variantsEnumeration createvariantsEnumeration();
 
   /**
+   * Returns a new object of class '<em>Enumeration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enumeration</em>'.
+   * @generated
+   */
+  Enumeration createEnumeration();
+
+  /**
    * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,6 +166,24 @@ public interface HLCLSpecificationLanguageFactory extends EFactory
    * @generated
    */
   SPLNotation createSPLNotation();
+
+  /**
+   * Returns a new object of class '<em>List Of Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of Values</em>'.
+   * @generated
+   */
+  ListOfValues createListOfValues();
+
+  /**
+   * Returns a new object of class '<em>List Of IDs</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of IDs</em>'.
+   * @generated
+   */
+  ListOfIDs createListOfIDs();
 
   /**
    * Returns the package supported by this factory.

@@ -23,10 +23,10 @@ variantsInterval:
 	{variantsInterval}(start=Value) ('::') (end=Value)
 	;
 variantsEnumeration:
-	{variantsEnumeration}('[') list +=  Enumeration  (']')
+	{variantsEnumeration}('[') list =  Enumeration  (']')
 	;
 Enumeration:
-	ListOfValues | ListOfIDs
+	values= ListOfValues | ListOfIDs
 ;
 //variantsSet:
 //		 vars=('(') list +=  ListOfIDs  (')') 
@@ -120,11 +120,11 @@ VarType:
 	 'boolean' |'numeric' 
 ;
 ListOfValues:
-	 Value (',' Value)+
+	values+= (Value)+
 ;
 
 ListOfIDs:
-	 ID (',' ID)+
+	ids+= ID (',' ID)+
 ;
 
 SPLop:
