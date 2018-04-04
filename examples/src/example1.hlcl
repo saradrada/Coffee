@@ -1,0 +1,27 @@
+
+model variablesExample
+
+variables:
+
+boolean A variants: [selected unselected]
+boolean B variants: selected::unselected
+numeric C variants: 1::20
+numeric D variants:[1 2 3 60]
+numeric E variants: [10 20 30]
+boolean T variants: selected::unselected
+boolean X variants: [selected unselected]
+numeric Y variants: 1::50 
+constraints:
+C1: A  is selected
+C2: C is 3
+C3: E is 20
+C4: (D E) variants [(1 10) , (3 20)]
+C5:  Y in 4::10
+C6: T is optional 
+C7: Y is mandatory
+C8: C1 --> C2
+C9: (Y is 4) --> C6
+C10: parent: A group:B T X card: [0,2]
+
+
+
