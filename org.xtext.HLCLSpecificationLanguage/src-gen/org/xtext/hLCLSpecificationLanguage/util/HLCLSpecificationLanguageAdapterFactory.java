@@ -151,9 +151,19 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
         return createRuleAdapter();
       }
       @Override
-      public Adapter caseSPLNotation(SPLNotation object)
+      public Adapter caseFodaUN(FodaUN object)
       {
-        return createSPLNotationAdapter();
+        return createFodaUNAdapter();
+      }
+      @Override
+      public Adapter caseFodaBin(FodaBin object)
+      {
+        return createFodaBinAdapter();
+      }
+      @Override
+      public Adapter caseFodaNary(FodaNary object)
+      {
+        return createFodaNaryAdapter();
       }
       @Override
       public Adapter caseListOfValues(ListOfValues object)
@@ -413,16 +423,46 @@ public class HLCLSpecificationLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation <em>SPL Notation</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.FodaUN <em>Foda UN</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.hLCLSpecificationLanguage.SPLNotation
+   * @see org.xtext.hLCLSpecificationLanguage.FodaUN
    * @generated
    */
-  public Adapter createSPLNotationAdapter()
+  public Adapter createFodaUNAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.FodaBin <em>Foda Bin</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaBin
+   * @generated
+   */
+  public Adapter createFodaBinAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.hLCLSpecificationLanguage.FodaNary <em>Foda Nary</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary
+   * @generated
+   */
+  public Adapter createFodaNaryAdapter()
   {
     return null;
   }

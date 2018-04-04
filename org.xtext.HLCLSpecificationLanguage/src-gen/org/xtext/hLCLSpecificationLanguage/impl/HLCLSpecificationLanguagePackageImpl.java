@@ -15,6 +15,9 @@ import org.xtext.hLCLSpecificationLanguage.ConsExpression;
 import org.xtext.hLCLSpecificationLanguage.Constraint;
 import org.xtext.hLCLSpecificationLanguage.Enumeration;
 import org.xtext.hLCLSpecificationLanguage.Expression;
+import org.xtext.hLCLSpecificationLanguage.FodaBin;
+import org.xtext.hLCLSpecificationLanguage.FodaNary;
+import org.xtext.hLCLSpecificationLanguage.FodaUN;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguageFactory;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
@@ -23,7 +26,6 @@ import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.Model;
 import org.xtext.hLCLSpecificationLanguage.Refinement;
 import org.xtext.hLCLSpecificationLanguage.Rule;
-import org.xtext.hLCLSpecificationLanguage.SPLNotation;
 import org.xtext.hLCLSpecificationLanguage.SetRefinement;
 import org.xtext.hLCLSpecificationLanguage.VarDeclaration;
 import org.xtext.hLCLSpecificationLanguage.VarRefinement;
@@ -149,7 +151,21 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass splNotationEClass = null;
+  private EClass fodaUNEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fodaBinEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fodaNaryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -613,9 +629,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSPLNotation()
+  public EClass getFodaUN()
   {
-    return splNotationEClass;
+    return fodaUNEClass;
   }
 
   /**
@@ -623,9 +639,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSPLNotation_Var1()
+  public EAttribute getFodaUN_Var()
   {
-    return (EAttribute)splNotationEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)fodaUNEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -633,9 +649,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSPLNotation_Op()
+  public EAttribute getFodaUN_Op()
   {
-    return (EAttribute)splNotationEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fodaUNEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -643,9 +659,89 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSPLNotation_Var2()
+  public EClass getFodaBin()
   {
-    return (EAttribute)splNotationEClass.getEStructuralFeatures().get(2);
+    return fodaBinEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaBin_Var1()
+  {
+    return (EAttribute)fodaBinEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaBin_Op()
+  {
+    return (EAttribute)fodaBinEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaBin_Var2()
+  {
+    return (EAttribute)fodaBinEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFodaNary()
+  {
+    return fodaNaryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaNary_Parent()
+  {
+    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFodaNary_Group()
+  {
+    return (EReference)fodaNaryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaNary_Min()
+  {
+    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFodaNary_Max()
+  {
+    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -771,10 +867,20 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     createEReference(ruleEClass, RULE__CONDITION);
     createEReference(ruleEClass, RULE__CONSEQUENCE);
 
-    splNotationEClass = createEClass(SPL_NOTATION);
-    createEAttribute(splNotationEClass, SPL_NOTATION__VAR1);
-    createEAttribute(splNotationEClass, SPL_NOTATION__OP);
-    createEAttribute(splNotationEClass, SPL_NOTATION__VAR2);
+    fodaUNEClass = createEClass(FODA_UN);
+    createEAttribute(fodaUNEClass, FODA_UN__VAR);
+    createEAttribute(fodaUNEClass, FODA_UN__OP);
+
+    fodaBinEClass = createEClass(FODA_BIN);
+    createEAttribute(fodaBinEClass, FODA_BIN__VAR1);
+    createEAttribute(fodaBinEClass, FODA_BIN__OP);
+    createEAttribute(fodaBinEClass, FODA_BIN__VAR2);
+
+    fodaNaryEClass = createEClass(FODA_NARY);
+    createEAttribute(fodaNaryEClass, FODA_NARY__PARENT);
+    createEReference(fodaNaryEClass, FODA_NARY__GROUP);
+    createEAttribute(fodaNaryEClass, FODA_NARY__MIN);
+    createEAttribute(fodaNaryEClass, FODA_NARY__MAX);
 
     listOfValuesEClass = createEClass(LIST_OF_VALUES);
     createEAttribute(listOfValuesEClass, LIST_OF_VALUES__VALUES);
@@ -821,7 +927,9 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     varRefinementEClass.getESuperTypes().add(this.getRefinement());
     setRefinementEClass.getESuperTypes().add(this.getRefinement());
     ruleEClass.getESuperTypes().add(this.getConsExpression());
-    splNotationEClass.getESuperTypes().add(this.getConsExpression());
+    fodaUNEClass.getESuperTypes().add(this.getConsExpression());
+    fodaBinEClass.getESuperTypes().add(this.getConsExpression());
+    fodaNaryEClass.getESuperTypes().add(this.getConsExpression());
     listOfIDsEClass.getESuperTypes().add(this.getEnumeration());
 
     // Initialize classes and features; add operations and parameters
@@ -878,10 +986,20 @@ public class HLCLSpecificationLanguagePackageImpl extends EPackageImpl implement
     initEReference(getRule_Condition(), this.getExpression(), null, "condition", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRule_Consequence(), this.getExpression(), null, "consequence", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(splNotationEClass, SPLNotation.class, "SPLNotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSPLNotation_Var1(), ecorePackage.getEString(), "var1", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSPLNotation_Op(), ecorePackage.getEString(), "op", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSPLNotation_Var2(), ecorePackage.getEString(), "var2", null, 0, 1, SPLNotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(fodaUNEClass, FodaUN.class, "FodaUN", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFodaUN_Var(), ecorePackage.getEString(), "var", null, 0, 1, FodaUN.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFodaUN_Op(), ecorePackage.getEString(), "op", null, 0, 1, FodaUN.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fodaBinEClass, FodaBin.class, "FodaBin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFodaBin_Var1(), ecorePackage.getEString(), "var1", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFodaBin_Op(), ecorePackage.getEString(), "op", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFodaBin_Var2(), ecorePackage.getEString(), "var2", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fodaNaryEClass, FodaNary.class, "FodaNary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFodaNary_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFodaNary_Group(), this.getListOfIDs(), null, "group", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFodaNary_Min(), ecorePackage.getEInt(), "min", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFodaNary_Max(), ecorePackage.getEInt(), "max", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getListOfValues_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

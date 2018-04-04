@@ -159,13 +159,31 @@ public interface HLCLSpecificationLanguageFactory extends EFactory
   Rule createRule();
 
   /**
-   * Returns a new object of class '<em>SPL Notation</em>'.
+   * Returns a new object of class '<em>Foda UN</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>SPL Notation</em>'.
+   * @return a new object of class '<em>Foda UN</em>'.
    * @generated
    */
-  SPLNotation createSPLNotation();
+  FodaUN createFodaUN();
+
+  /**
+   * Returns a new object of class '<em>Foda Bin</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Foda Bin</em>'.
+   * @generated
+   */
+  FodaBin createFodaBin();
+
+  /**
+   * Returns a new object of class '<em>Foda Nary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Foda Nary</em>'.
+   * @generated
+   */
+  FodaNary createFodaNary();
 
   /**
    * Returns a new object of class '<em>List Of Values</em>'.

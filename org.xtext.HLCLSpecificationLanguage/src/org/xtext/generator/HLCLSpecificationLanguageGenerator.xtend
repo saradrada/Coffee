@@ -12,13 +12,26 @@ import org.xtext.hLCLSpecificationLanguage.VarDeclaration
 import org.xtext.hLCLSpecificationLanguage.variantsEnumeration
 import org.xtext.hLCLSpecificationLanguage.variantsInterval
 import org.xtext.hLCLSpecificationLanguage.VariantDeclaration
+import org.xtext.hLCLSpecificationLanguage.IDCons
+import org.xtext.hLCLSpecificationLanguage.Refinement
+import org.xtext.hLCLSpecificationLanguage.FodaBin
+import org.xtext.hLCLSpecificationLanguage.Rule
+import org.xtext.hLCLSpecificationLanguage.Assignment
+import org.xtext.hLCLSpecificationLanguage.ConsExpression
+import org.xtext.hLCLSpecificationLanguage.VarRefinement
+import org.xtext.hLCLSpecificationLanguage.SetRefinement
+import org.xtext.hLCLSpecificationLanguage.ListOfIDs
+import org.xtext.hLCLSpecificationLanguage.ListOfValues
+import org.eclipse.emf.common.util.EList
+import org.xtext.hLCLSpecificationLanguage.FodaNary
+import org.xtext.hLCLSpecificationLanguage.FodaUN
 
 /**
  * Generates code from your model files on save.
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
-class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
+class HLCLSpecificationLanguageGenerator extends AbstractGenerator implements JavaCodeStrings {
 	private String modelName
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -27,18 +40,10 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 
 		modelName= modelName(resource.contents.head as Model)
 		fsa.generateFile(modelName+".java", toJavaCode(resource.contents.head as Model))
-		//fsa.generateFile(modelName(resource.contents.head as Model), toJavaCode(resource.contents.head as Model))
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
-
 	}
 	
-		def modelName(Model model) {
+	def modelName(Model model) {
 		var name = model.name.toFirstUpper
-		
 		return name
 	}
 	def className(Resource res) {
@@ -49,90 +54,213 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 	
 	def toJavaCode(Model model) '''
 			//Java imports
-			import java.util.Map;
+			«JAVA_IMPORTS»
 			
 			//imports for hlcl 
-			import com.variamos.hlcl.core.HlclProgram;
-			import com.variamos.hlcl.model.expressions.HlclFactory;
-			import com.variamos.hlcl.model.domains.BinaryDomain;
-			import com.variamos.hlcl.model.domains.IntervalDomain;
-			import com.variamos.hlcl.model.domains.RangeDomain;
-			import com.variamos.hlcl.model.expressions.Identifier;
+			«HLCL_IMPORTS»
 			
-			/**
-			 * This class is automatically generated from a product line model described in 
-			 * extended HLCL
-			 * @author Angela Villota 
-			 * @version Extended HLCL Version1
-			 *
-			 */
-			public class «modelName» {
-				private String modelName;
-				private HlclFactory factory;
-				private HlclProgram hlclProgram;
-				//private Solver solver;
-				private Map variables;
-				private Map numbers;
-				private Map constraints;
+			//imports for solver
+			«SOLVER_IMPORTS»
+
+			«CLASS_JAVADOC»
+			«CLASS_DECLARATION» «modelName» { ««« open class
 				
-				/**
-				 * Constructor method
-				 * @param modelName is the name of the model in the Extended HLCL specification
-				 */	
-				public «modelName»(String modelName){
-					this.modelName= modelName;
-					hlclProgram= new HlclProgram();
-					factory = new HlclFactory();
-				}
+				«CLASS_ATTRIBUTES»
+				«CONSTRUCTOR_JAVADOC»
+				public «modelName»(String modelName){ «««Consructor declaration
+					
+					«CONSTRUCTOR_CODE»
+				} ««« end Consructor 
+				
 				public static void main(String[] args) {
 					«modelName» obj = new «modelName»("«modelName»");
 					obj.run();
 				}
-				public void run(){
-				// first obtain a HlclProgram from the specification
-				transformVars(); 
-				// use the solver to solve the constraint program
-				//show the output
-				}
-				
+				«RUN_METHOD»
 				public void transformVars() {
+					//declaring the variable for the model
+					Identifier «modelName»Var = factory.newIdentifier("«modelName»");
+					BinaryDomain «modelName»Dom= new BinaryDomain();
+					«modelName»Var.setDomain(«modelName»Dom);	
+					variables.put("«modelName»Var", «modelName»Var); //including the variable in the map
 					«FOR c : model.vars»
 						«c.declareVars»
 					«ENDFOR»
-						
 				}
-				
-				public String getModelName() {
-					return modelName;
+				public void transformConstraints() {
+					//declaring the constraint for the model
+					IntBooleanExpression C«modelName»= factory.equals(variables.get("«modelName»Var"), getValue("1"));
+					constraints.put("C«modelName»", C«modelName»);
+					hlclProgram.add(C«modelName»);
+					«FOR c : model.constraints»
+						«declareCons(c.exp, c.name)»
+					«ENDFOR»
 				}
-			
-				public void setModelName(String modelName) {
-					this.modelName = modelName;
-				}
-			
-				public HlclFactory getFactory() {
-					return factory;
-				}
-			
-				public void setFactory(HlclFactory factory) {
-					this.factory = factory;
-				}
-			
-				public HlclProgram getHlclProgram() {
-					return hlclProgram;
-				}
-			
-				public void setHlclProgram(HlclProgram hlclProgram) {
-					this.hlclProgram = hlclProgram;
-				}
-			}
+				«EVALUATE_SATISFIABILITY»
+				«GET_VALUE_JAVADOC»
+				«GET_VALUE_CODE»
+				«GETTERS_SETTERS»
+			} ««« ends Class
 	'''
 	def declareVars(VarDeclaration variable) '''
 			//
 			//declaring variable «variable.name»
 			Identifier «variable.name» = factory.newIdentifier("«variable.name»");
 			«declareVariants(variable.variants, variable.type, variable.name)»
+			variables.put("«variable.name»", «variable.name»); //including the variable in the map
 	'''
+	
+	def declareCons(ConsExpression exp, String name) '''
+		//
+		//declaring constraint «name»
+		«IF exp instanceof Refinement»
+			«declareRefinement(exp, name)»
+		«ELSE»
+			«IF exp instanceof FodaBin»
+				«var FodaBin fCons= exp as FodaBin»
+				«declareFodaBin(fCons, name)»
+			«ELSE»
+				«IF exp instanceof Rule»
+					«var Rule rule= exp as Rule»
+					«declareRule(rule, name)»
+				«ELSE»
+					«IF exp instanceof FodaNary»
+						«var FodaNary nary= exp as FodaNary»
+						«declareNary(nary, name)»
+					«ELSE»
+						«var FodaUN unary= exp as FodaUN»
+						«declareFodaUnary(unary, name)»
+					«ENDIF»
+				«ENDIF»
+			«ENDIF»
+		«ENDIF»
+		constraints.put("«name»", «name»);
+		hlclProgram.add(«name»);
+	'''
+	def declareFodaUnary(FodaUN cons, String name) '''
+		«IF cons.op.equals("optional")»
+			IntBooleanExpression «name»= factory.greaterOrEqualsThan(variables.get("«modelName»Var"), variables.get("«cons.getVar»"));
+		«ELSE»
+			«IF cons.op.equals("mandatory")»
+				IntBooleanExpression «name»= factory.equals(variables.get("«modelName»Var"), variables.get("«cons.getVar»"));
+			«ELSE»
+			«ENDIF»
+		«ENDIF»
+	'''
+	def declareNary(FodaNary nary, String name) '''
+		//implies
+		«var String idsDeclaration=""»
+		«FOR child : nary.group.ids»
+			«{idsDeclaration+="variables.get(\""+ child +"\"),"; ""} »
+			«var String consName= child+"Imp"»
+			IntBooleanExpression «consName»= factory.implies(variables.get("«child»"), variables.get("«nary.parent»"));
+			constraints.put("«consName»", «consName»);
+			hlclProgram.add(«consName»);
+		«ENDFOR»
+		//sum
+		IntNumericExpression plus«name»=factory.sum(«idsDeclaration.substring(0, idsDeclaration.length() - 1)»);
+		
+		// selection of parent
+		IntBooleanExpression parentSelection«name»= factory.greaterOrEqualsThan(variables.get("«nary.parent»"), getValue("1"));
+		
+		//plusMin
+		IntBooleanExpression plusGTMin«name»= factory.greaterOrEqualsThan(plus«name», getValue("«nary.min»"));
+		
+		//plusMax
+		IntBooleanExpression plusLTMax«name»= factory.lessOrEqualsThan(plus«name», getValue("«nary.max»"));
+		
+		IntBooleanExpression left«name»=factory.implies(parentSelection«name»,plusGTMin«name»);
+		IntBooleanExpression right«name»=factory.implies(parentSelection«name», plusLTMax«name»);
+		IntBooleanExpression «name»=factory.and(left«name», right«name»);
+	'''
+	def declareRule(Rule rule, String name)'''
+		«IF rule.condition instanceof IDCons»
+			«var IDCons cond= rule.condition as IDCons»
+			IntBooleanExpression left«name»= constraints.get("«cond.name»"); 
+		«ELSE»
+			«var ConsExpression cond= rule.condition as ConsExpression»
+			«declareCons(cond, "left"+name)»
+		«ENDIF»
+		«IF rule.consequence instanceof IDCons»
+			«var IDCons cons= rule.consequence as IDCons»
+			IntBooleanExpression right«name»= constraints.get("«cons.name»"); 
+		«ELSE»
+			«var ConsExpression cond= rule.consequence as ConsExpression»
+			«declareCons(cond, "right"+name)»	
+		«ENDIF»
+		IntBooleanExpression «name»= factory.implies(left«name», right«name»);
+	'''
+	
+	def declareFodaBin(FodaBin cons, String name) '''
+		«IF cons.op.equals("requires")»
+			IntBooleanExpression «name»= factory.implies(variables.get("«cons.var1»"), variables.get("«cons.var2»"));
+		«ELSE»
+			«IF cons.op.equals("excludes")»
+				IntNumericExpression plus=factory.sum(variables.get("«cons.var1»"), variables.get("«cons.var2»"));
+				IntBooleanExpression «name»=factory.lessOrEqualsThan(plus,  getValue("1"));
+			«ELSE»
+			«ENDIF»
+		«ENDIF»
+	'''
+	def declareRefinement(ConsExpression refinement, String name) '''
+		«IF refinement instanceof Assignment»
+			IntBooleanExpression «name»= factory.equals(variables.get("«refinement.getVar»"), getValue("«refinement.value»"));
+		«ELSE»
+			«IF refinement instanceof VarRefinement»
+				«refinementVariants( refinement.variants, refinement.getVar, name)»
+			«ELSE»
+				«IF refinement instanceof SetRefinement»
+					«refinementSet(refinement, name)»
+				«ENDIF»
+			«ENDIF»
+		«ENDIF»
+	'''
+
+	def refinementVariants(VariantDeclaration variant, String varID, String consID) '''
+		«IF variant instanceof variantsInterval»
+			IntBooleanExpression left«consID»=factory.greaterOrEqualsThan(variables.get("«varID»"), getValue("«variant.start»"));
+			IntBooleanExpression right«consID»=factory.lessOrEqualsThan(variables.get("«varID»"), getValue("«variant.end»"));
+			IntBooleanExpression «consID»=factory.and(left«consID», right«consID»);
+		«ENDIF»
+	'''
+	def refinementSet(SetRefinement setRefinement,  String consID) '''
+		«declareTuples(setRefinement.head, setRefinement.tail)»
+		SymbolicExpression «consID» = factory.newSymbolicRelation(tuples 
+		«declareIds(setRefinement.vars)»);
+	'''
+	/**
+	 * Method for declare variants
+	 */
+	def declareIds(ListOfIDs idList) '''
+		«FOR id : idList.ids»
+			, variables.get("«id»")
+		«ENDFOR»
+	'''
+	/**
+	 * Method for declare the tuples for a relation constraint
+	 */
+	def declareTuples(ListOfValues head, EList<ListOfValues> tail) '''
+		«var int size= head.values.size»
+		NumericIdentifier[][] tuples= new NumericIdentifier[«size»][«size»];
+		«var int j=0»
+		«FOR value : head.values»
+			tuples[0][«j»]=getValue("«value»");
+			«{j=j+1;""}»	
+		«ENDFOR»	
+		«var int i=1»
+		«{j=0;""}»
+		«FOR values : tail»
+			«FOR value : values.values»
+				tuples[«i»][«j»]=getValue("«value»");
+				«{j=j+1;""}»	
+			«ENDFOR»	
+			«{i=i+1;""}»
+		«ENDFOR»
+	'''
+	
+	/**
+	 * Method for declare variants
+	 */
 	def declareVariants(VariantDeclaration variant, String type, String name) '''
 		«IF type.equals("boolean")»
 			BinaryDomain «name»Dom= new BinaryDomain();
@@ -150,27 +278,6 @@ class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
 		«ENDIF»
 		«name».setDomain(«name»Dom);	
 	'''
-	def declareBool(String name ) '''
-		BinaryDomain «name»Dom= new BinaryDomain();
 
-	'''
-	def declareInterval(variantsInterval variants, String type, String name ) '''
-		«IF type.equals("boolean")»
-			«declareBool(name)»
-		«ELSE»
-			RangeDomain «name»Dom= new RangeDomain(«variants.start», «variants.end»);
-		«ENDIF»
 
-	'''
-	def declareEnumeration(variantsEnumeration variants, String type, String name ) '''
-		«IF type.equals("boolean")»
-			«declareBool(name)»
-		«ELSE»
-		IntervalDomain «name»Dom= new IntervalDomain();
-			«FOR e : variants.list.values.values»
-				«name»Dom.add(«e»);
-			«ENDFOR»
-		«ENDIF»
-
-	'''
 }

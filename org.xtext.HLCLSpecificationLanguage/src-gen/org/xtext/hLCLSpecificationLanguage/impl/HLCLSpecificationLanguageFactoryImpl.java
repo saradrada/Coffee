@@ -80,7 +80,9 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
       case HLCLSpecificationLanguagePackage.VAR_REFINEMENT: return createVarRefinement();
       case HLCLSpecificationLanguagePackage.SET_REFINEMENT: return createSetRefinement();
       case HLCLSpecificationLanguagePackage.RULE: return createRule();
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION: return createSPLNotation();
+      case HLCLSpecificationLanguagePackage.FODA_UN: return createFodaUN();
+      case HLCLSpecificationLanguagePackage.FODA_BIN: return createFodaBin();
+      case HLCLSpecificationLanguagePackage.FODA_NARY: return createFodaNary();
       case HLCLSpecificationLanguagePackage.LIST_OF_VALUES: return createListOfValues();
       case HLCLSpecificationLanguagePackage.LIST_OF_IDS: return createListOfIDs();
       default:
@@ -258,10 +260,32 @@ public class HLCLSpecificationLanguageFactoryImpl extends EFactoryImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public SPLNotation createSPLNotation()
+  public FodaUN createFodaUN()
   {
-    SPLNotationImpl splNotation = new SPLNotationImpl();
-    return splNotation;
+    FodaUNImpl fodaUN = new FodaUNImpl();
+    return fodaUN;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FodaBin createFodaBin()
+  {
+    FodaBinImpl fodaBin = new FodaBinImpl();
+    return fodaBin;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FodaNary createFodaNary()
+  {
+    FodaNaryImpl fodaNary = new FodaNaryImpl();
+    return fodaNary;
   }
 
   /**

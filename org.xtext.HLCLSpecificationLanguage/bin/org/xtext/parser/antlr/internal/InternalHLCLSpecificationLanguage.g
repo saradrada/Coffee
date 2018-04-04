@@ -581,11 +581,29 @@ ruleConsExpression returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getConsExpressionAccess().getSPLNotationParserRuleCall_3());
+			newCompositeNode(grammarAccess.getConsExpressionAccess().getFodaBinParserRuleCall_3());
 		}
-		this_SPLNotation_3=ruleSPLNotation
+		this_FodaBin_3=ruleFodaBin
 		{
-			$current = $this_SPLNotation_3.current;
+			$current = $this_FodaBin_3.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getConsExpressionAccess().getFodaNaryParserRuleCall_4());
+		}
+		this_FodaNary_4=ruleFodaNary
+		{
+			$current = $this_FodaNary_4.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getConsExpressionAccess().getFodaUNParserRuleCall_5());
+		}
+		this_FodaUN_5=ruleFodaUN
+		{
+			$current = $this_FodaUN_5.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1016,15 +1034,75 @@ ruleRule returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleSPLNotation
-entryRuleSPLNotation returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getSPLNotationRule()); }
-	iv_ruleSPLNotation=ruleSPLNotation
-	{ $current=$iv_ruleSPLNotation.current; }
+// Entry rule entryRuleFodaUN
+entryRuleFodaUN returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFodaUNRule()); }
+	iv_ruleFodaUN=ruleFodaUN
+	{ $current=$iv_ruleFodaUN.current; }
 	EOF;
 
-// Rule SPLNotation
-ruleSPLNotation returns [EObject current=null]
+// Rule FodaUN
+ruleFodaUN returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_var_0_0=RULE_ID
+				{
+					newLeafNode(lv_var_0_0, grammarAccess.getFodaUNAccess().getVarIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFodaUNRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"var",
+						lv_var_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_1='is'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getFodaUNAccess().getIsKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFodaUNAccess().getOpUnaryOpParserRuleCall_2_0());
+				}
+				lv_op_2_0=ruleUnaryOp
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFodaUNRule());
+					}
+					set(
+						$current,
+						"op",
+						lv_op_2_0,
+						"org.xtext.HLCLSpecificationLanguage.UnaryOp");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleFodaBin
+entryRuleFodaBin returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFodaBinRule()); }
+	iv_ruleFodaBin=ruleFodaBin
+	{ $current=$iv_ruleFodaBin.current; }
+	EOF;
+
+// Rule FodaBin
+ruleFodaBin returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1036,11 +1114,11 @@ ruleSPLNotation returns [EObject current=null]
 			(
 				lv_var1_0_0=RULE_ID
 				{
-					newLeafNode(lv_var1_0_0, grammarAccess.getSPLNotationAccess().getVar1IDTerminalRuleCall_0_0());
+					newLeafNode(lv_var1_0_0, grammarAccess.getFodaBinAccess().getVar1IDTerminalRuleCall_0_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSPLNotationRule());
+						$current = createModelElement(grammarAccess.getFodaBinRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -1053,18 +1131,18 @@ ruleSPLNotation returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSPLNotationAccess().getOpSPLopParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getFodaBinAccess().getOpBinOpParserRuleCall_1_0());
 				}
-				lv_op_1_0=ruleSPLop
+				lv_op_1_0=ruleBinOp
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSPLNotationRule());
+						$current = createModelElementForParent(grammarAccess.getFodaBinRule());
 					}
 					set(
 						$current,
 						"op",
 						lv_op_1_0,
-						"org.xtext.HLCLSpecificationLanguage.SPLop");
+						"org.xtext.HLCLSpecificationLanguage.BinOp");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1073,11 +1151,11 @@ ruleSPLNotation returns [EObject current=null]
 			(
 				lv_var2_2_0=RULE_ID
 				{
-					newLeafNode(lv_var2_2_0, grammarAccess.getSPLNotationAccess().getVar2IDTerminalRuleCall_2_0());
+					newLeafNode(lv_var2_2_0, grammarAccess.getFodaBinAccess().getVar2IDTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSPLNotationRule());
+						$current = createModelElement(grammarAccess.getFodaBinRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -1087,6 +1165,122 @@ ruleSPLNotation returns [EObject current=null]
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleFodaNary
+entryRuleFodaNary returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFodaNaryRule()); }
+	iv_ruleFodaNary=ruleFodaNary
+	{ $current=$iv_ruleFodaNary.current; }
+	EOF;
+
+// Rule FodaNary
+ruleFodaNary returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='parent:'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getFodaNaryAccess().getParentKeyword_0());
+		}
+		(
+			(
+				lv_parent_1_0=RULE_ID
+				{
+					newLeafNode(lv_parent_1_0, grammarAccess.getFodaNaryAccess().getParentIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFodaNaryRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"parent",
+						lv_parent_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='group:'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getFodaNaryAccess().getGroupKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFodaNaryAccess().getGroupListOfIDsParserRuleCall_3_0());
+				}
+				lv_group_3_0=ruleListOfIDs
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFodaNaryRule());
+					}
+					set(
+						$current,
+						"group",
+						lv_group_3_0,
+						"org.xtext.HLCLSpecificationLanguage.ListOfIDs");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4='card:'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getFodaNaryAccess().getCardKeyword_4());
+		}
+		otherlv_5='['
+		{
+			newLeafNode(otherlv_5, grammarAccess.getFodaNaryAccess().getLeftSquareBracketKeyword_5());
+		}
+		(
+			(
+				lv_min_6_0=RULE_INT
+				{
+					newLeafNode(lv_min_6_0, grammarAccess.getFodaNaryAccess().getMinINTTerminalRuleCall_6_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFodaNaryRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"min",
+						lv_min_6_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+		otherlv_7=','
+		{
+			newLeafNode(otherlv_7, grammarAccess.getFodaNaryAccess().getCommaKeyword_7());
+		}
+		(
+			(
+				lv_max_8_0=RULE_INT
+				{
+					newLeafNode(lv_max_8_0, grammarAccess.getFodaNaryAccess().getMaxINTTerminalRuleCall_8_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFodaNaryRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"max",
+						lv_max_8_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+		otherlv_9=']'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getFodaNaryAccess().getRightSquareBracketKeyword_9());
+		}
 	)
 ;
 
@@ -1211,45 +1405,63 @@ ruleListOfIDs returns [EObject current=null]
 }:
 	(
 		(
-			(
-				lv_ids_0_0=RULE_ID
-				{
-					newLeafNode(lv_ids_0_0, grammarAccess.getListOfIDsAccess().getIdsIDTerminalRuleCall_0_0());
+			lv_ids_0_0=RULE_ID
+			{
+				newLeafNode(lv_ids_0_0, grammarAccess.getListOfIDsAccess().getIdsIDTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getListOfIDsRule());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getListOfIDsRule());
-					}
-					addWithLastConsumed(
-						$current,
-						"ids",
-						lv_ids_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
+				addWithLastConsumed(
+					$current,
+					"ids",
+					lv_ids_0_0,
+					"org.eclipse.xtext.common.Terminals.ID");
+			}
 		)
-		(
-			otherlv_1=','
-			{
-				newLeafNode(otherlv_1, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
-			}
-			this_ID_2=RULE_ID
-			{
-				newLeafNode(this_ID_2, grammarAccess.getListOfIDsAccess().getIDTerminalRuleCall_1_1());
-			}
-		)+
+	)+
+;
+
+// Entry rule entryRuleBinOp
+entryRuleBinOp returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getBinOpRule()); }
+	iv_ruleBinOp=ruleBinOp
+	{ $current=$iv_ruleBinOp.current.getText(); }
+	EOF;
+
+// Rule BinOp
+ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='requires'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBinOpAccess().getRequiresKeyword_0());
+		}
+		    |
+		kw='excludes'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBinOpAccess().getExcludesKeyword_1());
+		}
 	)
 ;
 
-// Entry rule entryRuleSPLop
-entryRuleSPLop returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getSPLopRule()); }
-	iv_ruleSPLop=ruleSPLop
-	{ $current=$iv_ruleSPLop.current.getText(); }
+// Entry rule entryRuleUnaryOp
+entryRuleUnaryOp returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getUnaryOpRule()); }
+	iv_ruleUnaryOp=ruleUnaryOp
+	{ $current=$iv_ruleUnaryOp.current.getText(); }
 	EOF;
 
-// Rule SPLop
-ruleSPLop returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+// Rule UnaryOp
+ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 @init {
 	enterRule();
 }
@@ -1260,25 +1472,13 @@ ruleSPLop returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 		kw='optional'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getSPLopAccess().getOptionalKeyword_0());
+			newLeafNode(kw, grammarAccess.getUnaryOpAccess().getOptionalKeyword_0());
 		}
 		    |
 		kw='mandatory'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getSPLopAccess().getMandatoryKeyword_1());
-		}
-		    |
-		kw='requires'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getSPLopAccess().getRequiresKeyword_2());
-		}
-		    |
-		kw='excludes'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getSPLopAccess().getExcludesKeyword_3());
+			newLeafNode(kw, grammarAccess.getUnaryOpAccess().getMandatoryKeyword_1());
 		}
 	)
 ;

@@ -10,7 +10,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -21,31 +20,19 @@ import org.xtext.services.HLCLSpecificationLanguageGrammarAccess;
 public class HLCLSpecificationLanguageSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected HLCLSpecificationLanguageGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ListOfIDs___CommaKeyword_1_0_IDTerminalRuleCall_1_1__p;
 	protected AbstractElementAlias match_TerminalExp_LeftParenthesisKeyword_0_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (HLCLSpecificationLanguageGrammarAccess) access;
-		match_ListOfIDs___CommaKeyword_1_0_IDTerminalRuleCall_1_1__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getListOfIDsAccess().getIDTerminalRuleCall_1_1()));
 		match_TerminalExp_LeftParenthesisKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTerminalExpAccess().getLeftParenthesisKeyword_0_0());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getIDRule())
-			return getIDToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-	 */
-	protected String getIDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -53,25 +40,12 @@ public class HLCLSpecificationLanguageSyntacticSequencer extends AbstractSyntact
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ListOfIDs___CommaKeyword_1_0_IDTerminalRuleCall_1_1__p.equals(syntax))
-				emit_ListOfIDs___CommaKeyword_1_0_IDTerminalRuleCall_1_1__p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TerminalExp_LeftParenthesisKeyword_0_0_q.equals(syntax))
+			if (match_TerminalExp_LeftParenthesisKeyword_0_0_q.equals(syntax))
 				emit_TerminalExp_LeftParenthesisKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     (',' ID)+
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     ids+=ID (ambiguity) (rule end)
-	 */
-	protected void emit_ListOfIDs___CommaKeyword_1_0_IDTerminalRuleCall_1_1__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     '('?

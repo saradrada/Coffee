@@ -17,13 +17,15 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.xtext.hLCLSpecificationLanguage.Assignment;
 import org.xtext.hLCLSpecificationLanguage.Constraint;
 import org.xtext.hLCLSpecificationLanguage.Enumeration;
+import org.xtext.hLCLSpecificationLanguage.FodaBin;
+import org.xtext.hLCLSpecificationLanguage.FodaNary;
+import org.xtext.hLCLSpecificationLanguage.FodaUN;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
 import org.xtext.hLCLSpecificationLanguage.IDCons;
 import org.xtext.hLCLSpecificationLanguage.ListOfIDs;
 import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.Model;
 import org.xtext.hLCLSpecificationLanguage.Rule;
-import org.xtext.hLCLSpecificationLanguage.SPLNotation;
 import org.xtext.hLCLSpecificationLanguage.SetRefinement;
 import org.xtext.hLCLSpecificationLanguage.VarDeclaration;
 import org.xtext.hLCLSpecificationLanguage.VarRefinement;
@@ -54,6 +56,15 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 			case HLCLSpecificationLanguagePackage.ENUMERATION:
 				sequence_Enumeration(context, (Enumeration) semanticObject); 
 				return; 
+			case HLCLSpecificationLanguagePackage.FODA_BIN:
+				sequence_FodaBin(context, (FodaBin) semanticObject); 
+				return; 
+			case HLCLSpecificationLanguagePackage.FODA_NARY:
+				sequence_FodaNary(context, (FodaNary) semanticObject); 
+				return; 
+			case HLCLSpecificationLanguagePackage.FODA_UN:
+				sequence_FodaUN(context, (FodaUN) semanticObject); 
+				return; 
 			case HLCLSpecificationLanguagePackage.ID_CONS:
 				sequence_IDCons(context, (IDCons) semanticObject); 
 				return; 
@@ -68,9 +79,6 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 				return; 
 			case HLCLSpecificationLanguagePackage.RULE:
 				sequence_Rule(context, (Rule) semanticObject); 
-				return; 
-			case HLCLSpecificationLanguagePackage.SPL_NOTATION:
-				sequence_SPLNotation(context, (SPLNotation) semanticObject); 
 				return; 
 			case HLCLSpecificationLanguagePackage.SET_REFINEMENT:
 				sequence_SetRefinement(context, (SetRefinement) semanticObject); 
@@ -157,6 +165,84 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	
 	/**
 	 * Contexts:
+	 *     ConsExpression returns FodaBin
+	 *     TerminalExp returns FodaBin
+	 *     FodaBin returns FodaBin
+	 *
+	 * Constraint:
+	 *     (var1=ID op=BinOp var2=ID)
+	 */
+	protected void sequence_FodaBin(ISerializationContext context, FodaBin semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__VAR1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__VAR1));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__OP));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__VAR2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_BIN__VAR2));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFodaBinAccess().getVar1IDTerminalRuleCall_0_0(), semanticObject.getVar1());
+		feeder.accept(grammarAccess.getFodaBinAccess().getOpBinOpParserRuleCall_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getFodaBinAccess().getVar2IDTerminalRuleCall_2_0(), semanticObject.getVar2());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConsExpression returns FodaNary
+	 *     TerminalExp returns FodaNary
+	 *     FodaNary returns FodaNary
+	 *
+	 * Constraint:
+	 *     (parent=ID group=ListOfIDs min=INT max=INT)
+	 */
+	protected void sequence_FodaNary(ISerializationContext context, FodaNary semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__PARENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__PARENT));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__GROUP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__GROUP));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__MIN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__MIN));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__MAX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_NARY__MAX));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFodaNaryAccess().getParentIDTerminalRuleCall_1_0(), semanticObject.getParent());
+		feeder.accept(grammarAccess.getFodaNaryAccess().getGroupListOfIDsParserRuleCall_3_0(), semanticObject.getGroup());
+		feeder.accept(grammarAccess.getFodaNaryAccess().getMinINTTerminalRuleCall_6_0(), semanticObject.getMin());
+		feeder.accept(grammarAccess.getFodaNaryAccess().getMaxINTTerminalRuleCall_8_0(), semanticObject.getMax());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConsExpression returns FodaUN
+	 *     TerminalExp returns FodaUN
+	 *     FodaUN returns FodaUN
+	 *
+	 * Constraint:
+	 *     (var=ID op=UnaryOp)
+	 */
+	protected void sequence_FodaUN(ISerializationContext context, FodaUN semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_UN__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_UN__VAR));
+			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_UN__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.FODA_UN__OP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFodaUNAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
+		feeder.accept(grammarAccess.getFodaUNAccess().getOpUnaryOpParserRuleCall_2_0(), semanticObject.getOp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ConsExpression returns IDCons
 	 *     TerminalExp returns IDCons
 	 *     IDCons returns IDCons
@@ -181,7 +267,7 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 	 *     ListOfIDs returns ListOfIDs
 	 *
 	 * Constraint:
-	 *     ids+=ID
+	 *     ids+=ID+
 	 */
 	protected void sequence_ListOfIDs(ISerializationContext context, ListOfIDs semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -231,32 +317,6 @@ public class HLCLSpecificationLanguageSemanticSequencer extends AbstractDelegati
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRuleAccess().getConditionTerminalExpParserRuleCall_0_0(), semanticObject.getCondition());
 		feeder.accept(grammarAccess.getRuleAccess().getConsequenceTerminalExpParserRuleCall_2_0(), semanticObject.getConsequence());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ConsExpression returns SPLNotation
-	 *     TerminalExp returns SPLNotation
-	 *     SPLNotation returns SPLNotation
-	 *
-	 * Constraint:
-	 *     (var1=ID op=SPLop var2=ID)
-	 */
-	protected void sequence_SPLNotation(ISerializationContext context, SPLNotation semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__VAR1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__VAR1));
-			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__OP));
-			if (transientValues.isValueTransient(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__VAR2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION__VAR2));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSPLNotationAccess().getVar1IDTerminalRuleCall_0_0(), semanticObject.getVar1());
-		feeder.accept(grammarAccess.getSPLNotationAccess().getOpSPLopParserRuleCall_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getSPLNotationAccess().getVar2IDTerminalRuleCall_2_0(), semanticObject.getVar2());
 		feeder.finish();
 	}
 	

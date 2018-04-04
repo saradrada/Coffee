@@ -6,23 +6,23 @@ package org.xtext.hLCLSpecificationLanguage;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>SPL Notation</b></em>'.
+ * A representation of the model object '<em><b>Foda Bin</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar1 <em>Var1</em>}</li>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getOp <em>Op</em>}</li>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar2 <em>Var2</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar1 <em>Var1</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getOp <em>Op</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar2 <em>Var2</em>}</li>
  * </ul>
  *
- * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSPLNotation()
+ * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getFodaBin()
  * @model
  * @generated
  */
-public interface SPLNotation extends ConsExpression
+public interface FodaBin extends ConsExpression
 {
   /**
    * Returns the value of the '<em><b>Var1</b></em>' attribute.
@@ -34,14 +34,14 @@ public interface SPLNotation extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Var1</em>' attribute.
    * @see #setVar1(String)
-   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSPLNotation_Var1()
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getFodaBin_Var1()
    * @model
    * @generated
    */
   String getVar1();
 
   /**
-   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar1 <em>Var1</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar1 <em>Var1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Var1</em>' attribute.
@@ -60,14 +60,14 @@ public interface SPLNotation extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Op</em>' attribute.
    * @see #setOp(String)
-   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSPLNotation_Op()
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getFodaBin_Op()
    * @model
    * @generated
    */
   String getOp();
 
   /**
-   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getOp <em>Op</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getOp <em>Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Op</em>' attribute.
@@ -86,14 +86,14 @@ public interface SPLNotation extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Var2</em>' attribute.
    * @see #setVar2(String)
-   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getSPLNotation_Var2()
+   * @see org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage#getFodaBin_Var2()
    * @model
    * @generated
    */
   String getVar2();
 
   /**
-   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar2 <em>Var2</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar2 <em>Var2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Var2</em>' attribute.
@@ -102,4 +102,4 @@ public interface SPLNotation extends ConsExpression
    */
   void setVar2(String value);
 
-} // SPLNotation
+} // FodaBin

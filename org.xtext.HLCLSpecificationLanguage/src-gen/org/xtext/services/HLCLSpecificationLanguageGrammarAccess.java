@@ -275,13 +275,15 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		private final RuleCall cIDConsParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRefinementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cRuleParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cSPLNotationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cFodaBinParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cFodaNaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cFodaUNParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//ConsExpression:
-		//	IDCons | Refinement | Rule | SPLNotation;
+		//	IDCons | Refinement | Rule | FodaBin | FodaNary | FodaUN;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IDCons | Refinement | Rule | SPLNotation
+		//IDCons | Refinement | Rule | FodaBin | FodaNary | FodaUN
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IDCons
@@ -293,8 +295,14 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		//Rule
 		public RuleCall getRuleParserRuleCall_2() { return cRuleParserRuleCall_2; }
 		
-		//SPLNotation
-		public RuleCall getSPLNotationParserRuleCall_3() { return cSPLNotationParserRuleCall_3; }
+		//FodaBin
+		public RuleCall getFodaBinParserRuleCall_3() { return cFodaBinParserRuleCall_3; }
+		
+		//FodaNary
+		public RuleCall getFodaNaryParserRuleCall_4() { return cFodaNaryParserRuleCall_4; }
+		
+		//FodaUN
+		public RuleCall getFodaUNParserRuleCall_5() { return cFodaUNParserRuleCall_5; }
 	}
 	public class TerminalExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.TerminalExp");
@@ -539,21 +547,52 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		//TerminalExp
 		public RuleCall getConsequenceTerminalExpParserRuleCall_2_0() { return cConsequenceTerminalExpParserRuleCall_2_0; }
 	}
-	public class SPLNotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.SPLNotation");
+	public class FodaUNElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.FodaUN");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVarIDTerminalRuleCall_0_0 = (RuleCall)cVarAssignment_0.eContents().get(0);
+		private final Keyword cIsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOpAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOpUnaryOpParserRuleCall_2_0 = (RuleCall)cOpAssignment_2.eContents().get(0);
+		
+		//FodaUN:
+		//	var=ID 'is' op=UnaryOp;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//var=ID 'is' op=UnaryOp
+		public Group getGroup() { return cGroup; }
+		
+		//var=ID
+		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
+		
+		//ID
+		public RuleCall getVarIDTerminalRuleCall_0_0() { return cVarIDTerminalRuleCall_0_0; }
+		
+		//'is'
+		public Keyword getIsKeyword_1() { return cIsKeyword_1; }
+		
+		//op=UnaryOp
+		public Assignment getOpAssignment_2() { return cOpAssignment_2; }
+		
+		//UnaryOp
+		public RuleCall getOpUnaryOpParserRuleCall_2_0() { return cOpUnaryOpParserRuleCall_2_0; }
+	}
+	public class FodaBinElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.FodaBin");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVar1Assignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVar1IDTerminalRuleCall_0_0 = (RuleCall)cVar1Assignment_0.eContents().get(0);
 		private final Assignment cOpAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOpSPLopParserRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
+		private final RuleCall cOpBinOpParserRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
 		private final Assignment cVar2Assignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cVar2IDTerminalRuleCall_2_0 = (RuleCall)cVar2Assignment_2.eContents().get(0);
 		
-		//SPLNotation:
-		//	var1=ID op=SPLop var2=ID;
+		//FodaBin:
+		//	var1=ID op=BinOp var2=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var1=ID op=SPLop var2=ID
+		//var1=ID op=BinOp var2=ID
 		public Group getGroup() { return cGroup; }
 		
 		//var1=ID
@@ -562,17 +601,84 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		//ID
 		public RuleCall getVar1IDTerminalRuleCall_0_0() { return cVar1IDTerminalRuleCall_0_0; }
 		
-		//op=SPLop
+		//op=BinOp
 		public Assignment getOpAssignment_1() { return cOpAssignment_1; }
 		
-		//SPLop
-		public RuleCall getOpSPLopParserRuleCall_1_0() { return cOpSPLopParserRuleCall_1_0; }
+		//BinOp
+		public RuleCall getOpBinOpParserRuleCall_1_0() { return cOpBinOpParserRuleCall_1_0; }
 		
 		//var2=ID
 		public Assignment getVar2Assignment_2() { return cVar2Assignment_2; }
 		
 		//ID
 		public RuleCall getVar2IDTerminalRuleCall_2_0() { return cVar2IDTerminalRuleCall_2_0; }
+	}
+	public class FodaNaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.FodaNary");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cParentKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cParentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cParentIDTerminalRuleCall_1_0 = (RuleCall)cParentAssignment_1.eContents().get(0);
+		private final Keyword cGroupKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cGroupAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cGroupListOfIDsParserRuleCall_3_0 = (RuleCall)cGroupAssignment_3.eContents().get(0);
+		private final Keyword cCardKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cMinAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cMinINTTerminalRuleCall_6_0 = (RuleCall)cMinAssignment_6.eContents().get(0);
+		private final Keyword cCommaKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cMaxAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cMaxINTTerminalRuleCall_8_0 = (RuleCall)cMaxAssignment_8.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		
+		//FodaNary:
+		//	'parent:' parent=ID 'group:' group=ListOfIDs 'card:' '[' min=INT ',' max=INT ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'parent:' parent=ID 'group:' group=ListOfIDs 'card:' '[' min=INT ',' max=INT ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'parent:'
+		public Keyword getParentKeyword_0() { return cParentKeyword_0; }
+		
+		//parent=ID
+		public Assignment getParentAssignment_1() { return cParentAssignment_1; }
+		
+		//ID
+		public RuleCall getParentIDTerminalRuleCall_1_0() { return cParentIDTerminalRuleCall_1_0; }
+		
+		//'group:'
+		public Keyword getGroupKeyword_2() { return cGroupKeyword_2; }
+		
+		//group=ListOfIDs
+		public Assignment getGroupAssignment_3() { return cGroupAssignment_3; }
+		
+		//ListOfIDs
+		public RuleCall getGroupListOfIDsParserRuleCall_3_0() { return cGroupListOfIDsParserRuleCall_3_0; }
+		
+		//'card:'
+		public Keyword getCardKeyword_4() { return cCardKeyword_4; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
+		
+		//min=INT
+		public Assignment getMinAssignment_6() { return cMinAssignment_6; }
+		
+		//INT
+		public RuleCall getMinINTTerminalRuleCall_6_0() { return cMinINTTerminalRuleCall_6_0; }
+		
+		//','
+		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
+		
+		//max=INT
+		public Assignment getMaxAssignment_8() { return cMaxAssignment_8; }
+		
+		//INT
+		public RuleCall getMaxINTTerminalRuleCall_8_0() { return cMaxINTTerminalRuleCall_8_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_9() { return cRightSquareBracketKeyword_9; }
 	}
 	public class ValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.Value");
@@ -666,48 +772,49 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	public class ListOfIDsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.ListOfIDs");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cIdsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cIdsIDTerminalRuleCall_0_0 = (RuleCall)cIdsAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cIdsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cIdsIDTerminalRuleCall_0 = (RuleCall)cIdsAssignment.eContents().get(0);
 		
 		//ListOfIDs:
-		//	ids+=ID (',' ID)+;
+		//	ids+=ID+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ids+=ID (',' ID)+
-		public Group getGroup() { return cGroup; }
-		
-		//ids+=ID
-		public Assignment getIdsAssignment_0() { return cIdsAssignment_0; }
+		//ids+=ID+
+		public Assignment getIdsAssignment() { return cIdsAssignment; }
 		
 		//ID
-		public RuleCall getIdsIDTerminalRuleCall_0_0() { return cIdsIDTerminalRuleCall_0_0; }
-		
-		//(',' ID)+
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//','
-		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
+		public RuleCall getIdsIDTerminalRuleCall_0() { return cIdsIDTerminalRuleCall_0; }
 	}
-	public class SPLopElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.SPLop");
+	public class BinOpElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.BinOp");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cRequiresKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cExcludesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//BinOp:
+		//	'requires' | 'excludes';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'requires' | 'excludes'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'requires'
+		public Keyword getRequiresKeyword_0() { return cRequiresKeyword_0; }
+		
+		//'excludes'
+		public Keyword getExcludesKeyword_1() { return cExcludesKeyword_1; }
+	}
+	public class UnaryOpElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.UnaryOp");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cOptionalKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cMandatoryKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cRequiresKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cExcludesKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
-		//SPLop:
-		//	'optional' | 'mandatory' | 'requires' | 'excludes';
+		//UnaryOp:
+		//	'optional' | 'mandatory';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'optional' | 'mandatory' | 'requires' | 'excludes'
+		//'optional' | 'mandatory'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'optional'
@@ -715,12 +822,6 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		
 		//'mandatory'
 		public Keyword getMandatoryKeyword_1() { return cMandatoryKeyword_1; }
-		
-		//'requires'
-		public Keyword getRequiresKeyword_2() { return cRequiresKeyword_2; }
-		
-		//'excludes'
-		public Keyword getExcludesKeyword_3() { return cExcludesKeyword_3; }
 	}
 	
 	
@@ -739,12 +840,15 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	private final VarRefinementElements pVarRefinement;
 	private final SetRefinementElements pSetRefinement;
 	private final RuleElements pRule;
-	private final SPLNotationElements pSPLNotation;
+	private final FodaUNElements pFodaUN;
+	private final FodaBinElements pFodaBin;
+	private final FodaNaryElements pFodaNary;
 	private final ValueElements pValue;
 	private final VarTypeElements pVarType;
 	private final ListOfValuesElements pListOfValues;
 	private final ListOfIDsElements pListOfIDs;
-	private final SPLopElements pSPLop;
+	private final BinOpElements pBinOp;
+	private final UnaryOpElements pUnaryOp;
 	
 	private final Grammar grammar;
 	
@@ -770,12 +874,15 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		this.pVarRefinement = new VarRefinementElements();
 		this.pSetRefinement = new SetRefinementElements();
 		this.pRule = new RuleElements();
-		this.pSPLNotation = new SPLNotationElements();
+		this.pFodaUN = new FodaUNElements();
+		this.pFodaBin = new FodaBinElements();
+		this.pFodaNary = new FodaNaryElements();
 		this.pValue = new ValueElements();
 		this.pVarType = new VarTypeElements();
 		this.pListOfValues = new ListOfValuesElements();
 		this.pListOfIDs = new ListOfIDsElements();
-		this.pSPLop = new SPLopElements();
+		this.pBinOp = new BinOpElements();
+		this.pUnaryOp = new UnaryOpElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -884,7 +991,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//ConsExpression:
-	//	IDCons | Refinement | Rule | SPLNotation;
+	//	IDCons | Refinement | Rule | FodaBin | FodaNary | FodaUN;
 	public ConsExpressionElements getConsExpressionAccess() {
 		return pConsExpression;
 	}
@@ -965,14 +1072,34 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		return getRuleAccess().getRule();
 	}
 	
-	//SPLNotation:
-	//	var1=ID op=SPLop var2=ID;
-	public SPLNotationElements getSPLNotationAccess() {
-		return pSPLNotation;
+	//FodaUN:
+	//	var=ID 'is' op=UnaryOp;
+	public FodaUNElements getFodaUNAccess() {
+		return pFodaUN;
 	}
 	
-	public ParserRule getSPLNotationRule() {
-		return getSPLNotationAccess().getRule();
+	public ParserRule getFodaUNRule() {
+		return getFodaUNAccess().getRule();
+	}
+	
+	//FodaBin:
+	//	var1=ID op=BinOp var2=ID;
+	public FodaBinElements getFodaBinAccess() {
+		return pFodaBin;
+	}
+	
+	public ParserRule getFodaBinRule() {
+		return getFodaBinAccess().getRule();
+	}
+	
+	//FodaNary:
+	//	'parent:' parent=ID 'group:' group=ListOfIDs 'card:' '[' min=INT ',' max=INT ']';
+	public FodaNaryElements getFodaNaryAccess() {
+		return pFodaNary;
+	}
+	
+	public ParserRule getFodaNaryRule() {
+		return getFodaNaryAccess().getRule();
 	}
 	
 	////Simple:
@@ -1039,7 +1166,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//ListOfIDs:
-	//	ids+=ID (',' ID)+;
+	//	ids+=ID+;
 	public ListOfIDsElements getListOfIDsAccess() {
 		return pListOfIDs;
 	}
@@ -1048,14 +1175,24 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		return getListOfIDsAccess().getRule();
 	}
 	
-	//SPLop:
-	//	'optional' | 'mandatory' | 'requires' | 'excludes';
-	public SPLopElements getSPLopAccess() {
-		return pSPLop;
+	//BinOp:
+	//	'requires' | 'excludes';
+	public BinOpElements getBinOpAccess() {
+		return pBinOp;
 	}
 	
-	public ParserRule getSPLopRule() {
-		return getSPLopAccess().getRule();
+	public ParserRule getBinOpRule() {
+		return getBinOpAccess().getRule();
+	}
+	
+	//UnaryOp:
+	//	'optional' | 'mandatory';
+	public UnaryOpElements getUnaryOpAccess() {
+		return pUnaryOp;
+	}
+	
+	public ParserRule getUnaryOpRule() {
+		return getUnaryOpAccess().getRule();
 	}
 	
 	//terminal ID:

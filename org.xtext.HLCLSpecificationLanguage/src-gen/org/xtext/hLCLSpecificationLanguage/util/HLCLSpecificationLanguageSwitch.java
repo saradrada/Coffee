@@ -196,12 +196,30 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION:
+      case HLCLSpecificationLanguagePackage.FODA_UN:
       {
-        SPLNotation splNotation = (SPLNotation)theEObject;
-        T result = caseSPLNotation(splNotation);
-        if (result == null) result = caseConsExpression(splNotation);
-        if (result == null) result = caseExpression(splNotation);
+        FodaUN fodaUN = (FodaUN)theEObject;
+        T result = caseFodaUN(fodaUN);
+        if (result == null) result = caseConsExpression(fodaUN);
+        if (result == null) result = caseExpression(fodaUN);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HLCLSpecificationLanguagePackage.FODA_BIN:
+      {
+        FodaBin fodaBin = (FodaBin)theEObject;
+        T result = caseFodaBin(fodaBin);
+        if (result == null) result = caseConsExpression(fodaBin);
+        if (result == null) result = caseExpression(fodaBin);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HLCLSpecificationLanguagePackage.FODA_NARY:
+      {
+        FodaNary fodaNary = (FodaNary)theEObject;
+        T result = caseFodaNary(fodaNary);
+        if (result == null) result = caseConsExpression(fodaNary);
+        if (result == null) result = caseExpression(fodaNary);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -465,17 +483,49 @@ public class HLCLSpecificationLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>SPL Notation</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Foda UN</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>SPL Notation</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Foda UN</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSPLNotation(SPLNotation object)
+  public T caseFodaUN(FodaUN object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Foda Bin</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Foda Bin</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFodaBin(FodaBin object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Foda Nary</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Foda Nary</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFodaNary(FodaNary object)
   {
     return null;
   }

@@ -9,25 +9,25 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.xtext.hLCLSpecificationLanguage.FodaBin;
 import org.xtext.hLCLSpecificationLanguage.HLCLSpecificationLanguagePackage;
-import org.xtext.hLCLSpecificationLanguage.SPLNotation;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SPL Notation</b></em>'.
+ * An implementation of the model object '<em><b>Foda Bin</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl#getVar1 <em>Var1</em>}</li>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl#getOp <em>Op</em>}</li>
- *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl#getVar2 <em>Var2</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl#getVar1 <em>Var1</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl#getOp <em>Op</em>}</li>
+ *   <li>{@link org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl#getVar2 <em>Var2</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
+public class FodaBinImpl extends ConsExpressionImpl implements FodaBin
 {
   /**
    * The default value of the '{@link #getVar1() <em>Var1</em>}' attribute.
@@ -94,7 +94,7 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SPLNotationImpl()
+  protected FodaBinImpl()
   {
     super();
   }
@@ -107,7 +107,7 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
   @Override
   protected EClass eStaticClass()
   {
-    return HLCLSpecificationLanguagePackage.Literals.SPL_NOTATION;
+    return HLCLSpecificationLanguagePackage.Literals.FODA_BIN;
   }
 
   /**
@@ -130,7 +130,7 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
     String oldVar1 = var1;
     var1 = newVar1;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR1, oldVar1, var1));
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.FODA_BIN__VAR1, oldVar1, var1));
   }
 
   /**
@@ -153,7 +153,7 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
     String oldOp = op;
     op = newOp;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SPL_NOTATION__OP, oldOp, op));
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.FODA_BIN__OP, oldOp, op));
   }
 
   /**
@@ -176,7 +176,7 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
     String oldVar2 = var2;
     var2 = newVar2;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR2, oldVar2, var2));
+      eNotify(new ENotificationImpl(this, Notification.SET, HLCLSpecificationLanguagePackage.FODA_BIN__VAR2, oldVar2, var2));
   }
 
   /**
@@ -189,11 +189,11 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
   {
     switch (featureID)
     {
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR1:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR1:
         return getVar1();
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__OP:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__OP:
         return getOp();
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR2:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR2:
         return getVar2();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -209,13 +209,13 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
   {
     switch (featureID)
     {
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR1:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR1:
         setVar1((String)newValue);
         return;
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__OP:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__OP:
         setOp((String)newValue);
         return;
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR2:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR2:
         setVar2((String)newValue);
         return;
     }
@@ -232,13 +232,13 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
   {
     switch (featureID)
     {
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR1:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR1:
         setVar1(VAR1_EDEFAULT);
         return;
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__OP:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__OP:
         setOp(OP_EDEFAULT);
         return;
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR2:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR2:
         setVar2(VAR2_EDEFAULT);
         return;
     }
@@ -255,11 +255,11 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
   {
     switch (featureID)
     {
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR1:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR1:
         return VAR1_EDEFAULT == null ? var1 != null : !VAR1_EDEFAULT.equals(var1);
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__OP:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
-      case HLCLSpecificationLanguagePackage.SPL_NOTATION__VAR2:
+      case HLCLSpecificationLanguagePackage.FODA_BIN__VAR2:
         return VAR2_EDEFAULT == null ? var2 != null : !VAR2_EDEFAULT.equals(var2);
     }
     return super.eIsSet(featureID);
@@ -286,4 +286,4 @@ public class SPLNotationImpl extends ConsExpressionImpl implements SPLNotation
     return result.toString();
   }
 
-} //SPLNotationImpl
+} //FodaBinImpl

@@ -40,7 +40,7 @@ Constraint:
 
 
 ConsExpression:
-	IDCons|Refinement |Rule |SPLNotation
+	IDCons|Refinement |Rule |FodaBin |FodaNary |FodaUN
 ;
 TerminalExp returns Expression:
 	'(' ConsExpression ')' | IDCons
@@ -69,11 +69,16 @@ Rule:
 	condition= TerminalExp '-->' consequence= TerminalExp
 ;
 
-SPLNotation:
-	var1= ID op= SPLop var2= ID
+FodaUN:
+	var=ID 'is' op= UnaryOp
+;
+FodaBin:
+	var1=ID op= BinOp var2= ID
 ;
 
-
+FodaNary:
+	'parent:' parent=ID  'group:'group=ListOfIDs  'card:''['min=INT ',' max=INT ']' 
+;
 
 //Simple:
 //	UnaryConstraint |SubType
@@ -124,11 +129,15 @@ ListOfValues:
 ;
 
 ListOfIDs:
-	ids+= ID (',' ID)+
+	ids+= (ID)+
 ;
 
-SPLop:
-	 'optional' |'mandatory'|'requires' |'excludes'
+BinOp:
+	 'requires' |'excludes'
+;
+
+UnaryOp:
+	 'optional' |'mandatory'
 ;
 
 //RequiresExp:

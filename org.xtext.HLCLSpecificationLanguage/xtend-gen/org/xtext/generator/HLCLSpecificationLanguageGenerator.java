@@ -13,8 +13,23 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.generator.JavaCodeStrings;
+import org.xtext.hLCLSpecificationLanguage.Assignment;
+import org.xtext.hLCLSpecificationLanguage.ConsExpression;
+import org.xtext.hLCLSpecificationLanguage.Constraint;
+import org.xtext.hLCLSpecificationLanguage.Expression;
+import org.xtext.hLCLSpecificationLanguage.FodaBin;
+import org.xtext.hLCLSpecificationLanguage.FodaNary;
+import org.xtext.hLCLSpecificationLanguage.FodaUN;
+import org.xtext.hLCLSpecificationLanguage.IDCons;
+import org.xtext.hLCLSpecificationLanguage.ListOfIDs;
+import org.xtext.hLCLSpecificationLanguage.ListOfValues;
 import org.xtext.hLCLSpecificationLanguage.Model;
+import org.xtext.hLCLSpecificationLanguage.Refinement;
+import org.xtext.hLCLSpecificationLanguage.Rule;
+import org.xtext.hLCLSpecificationLanguage.SetRefinement;
 import org.xtext.hLCLSpecificationLanguage.VarDeclaration;
+import org.xtext.hLCLSpecificationLanguage.VarRefinement;
 import org.xtext.hLCLSpecificationLanguage.VariantDeclaration;
 import org.xtext.hLCLSpecificationLanguage.variantsEnumeration;
 import org.xtext.hLCLSpecificationLanguage.variantsInterval;
@@ -25,7 +40,7 @@ import org.xtext.hLCLSpecificationLanguage.variantsInterval;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 @SuppressWarnings("all")
-public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
+public class HLCLSpecificationLanguageGenerator extends AbstractGenerator implements JavaCodeStrings {
   private String modelName;
   
   @Override
@@ -51,99 +66,45 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("//Java imports");
     _builder.newLine();
-    _builder.append("import java.util.Map;");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.JAVA_IMPORTS);
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("//imports for hlcl ");
     _builder.newLine();
-    _builder.append("import com.variamos.hlcl.core.HlclProgram;");
+    _builder.append(JavaCodeStrings.HLCL_IMPORTS);
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("import com.variamos.hlcl.model.expressions.HlclFactory;");
+    _builder.append("//imports for solver");
     _builder.newLine();
-    _builder.append("import com.variamos.hlcl.model.domains.BinaryDomain;");
+    _builder.append(JavaCodeStrings.SOLVER_IMPORTS);
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("import com.variamos.hlcl.model.domains.IntervalDomain;");
-    _builder.newLine();
-    _builder.append("import com.variamos.hlcl.model.domains.RangeDomain;");
-    _builder.newLine();
-    _builder.append("import com.variamos.hlcl.model.expressions.Identifier;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("/**");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.CLASS_JAVADOC);
+    _builder.newLineIfNotEmpty();
+    _builder.append(JavaCodeStrings.CLASS_DECLARATION);
     _builder.append(" ");
-    _builder.append("* This class is automatically generated from a product line model described in ");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* extended HLCL");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @author Angela Villota ");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @version Extended HLCL Version1");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("public class ");
     _builder.append(this.modelName);
-    _builder.append(" {");
+    _builder.append(" { ");
+    _builder.append("\t\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("private String modelName;");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.CLASS_ATTRIBUTES, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("private HlclFactory factory;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private HlclProgram hlclProgram;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("//private Solver solver;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private Map variables;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private Map numbers;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private Map constraints;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("* Constructor method");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("* @param modelName is the name of the model in the Extended HLCL specification");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("*/\t");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.CONSTRUCTOR_JAVADOC, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public ");
     _builder.append(this.modelName, "\t");
-    _builder.append("(String modelName){");
+    _builder.append("(String modelName){ ");
+    _builder.append("\t\t\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("this.modelName= modelName;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("hlclProgram= new HlclProgram();");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("factory = new HlclFactory();");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.CONSTRUCTOR_CODE, "\t\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("}");
+    _builder.append("} ");
+    _builder.append("\t\t\t\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public static void main(String[] args) {");
@@ -163,28 +124,39 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public void run(){");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("// first obtain a HlclProgram from the specification");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("transformVars(); ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("// use the solver to solve the constraint program");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("//show the output");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.RUN_METHOD, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public void transformVars() {");
     _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("//declaring the variable for the model");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("Identifier ");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Var = factory.newIdentifier(\"");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("BinaryDomain ");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Dom= new BinaryDomain();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Var.setDomain(");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Dom);\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("variables.put(\"");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Var\", ");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Var); //including the variable in the map");
+    _builder.newLineIfNotEmpty();
     {
       EList<VarDeclaration> _vars = model.getVars();
       for(final VarDeclaration c : _vars) {
@@ -194,74 +166,60 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t\t");
-    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public String getModelName() {");
+    _builder.append("public void transformConstraints() {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("return modelName;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public void setModelName(String modelName) {");
+    _builder.append("//declaring the constraint for the model");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("this.modelName = modelName;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public HlclFactory getFactory() {");
-    _builder.newLine();
+    _builder.append("IntBooleanExpression C");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("= factory.equals(variables.get(\"");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("Var\"), getValue(\"1\"));");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("return factory;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public void setFactory(HlclFactory factory) {");
-    _builder.newLine();
+    _builder.append("constraints.put(\"C");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append("\", C");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("this.factory = factory;");
-    _builder.newLine();
+    _builder.append("hlclProgram.add(C");
+    _builder.append(this.modelName, "\t\t");
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Constraint> _constraints = model.getConstraints();
+      for(final Constraint c_1 : _constraints) {
+        _builder.append("\t\t");
+        CharSequence _declareCons = this.declareCons(c_1.getExp(), c_1.getName());
+        _builder.append(_declareCons, "\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
-    _builder.newLine();
     _builder.append("\t");
-    _builder.append("public HlclProgram getHlclProgram() {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return hlclProgram;");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.EVALUATE_SATISFIABILITY, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.GET_VALUE_JAVADOC, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("public void setHlclProgram(HlclProgram hlclProgram) {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.hlclProgram = hlclProgram;");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.GET_VALUE_CODE, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
+    _builder.append(JavaCodeStrings.GETTERS_SETTERS, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("} ");
+    _builder.append("\t");
     return _builder;
   }
   
@@ -284,9 +242,509 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     CharSequence _declareVariants = this.declareVariants(variable.getVariants(), variable.getType(), variable.getName());
     _builder.append(_declareVariants);
     _builder.newLineIfNotEmpty();
+    _builder.append("variables.put(\"");
+    String _name_3 = variable.getName();
+    _builder.append(_name_3);
+    _builder.append("\", ");
+    String _name_4 = variable.getName();
+    _builder.append(_name_4);
+    _builder.append("); //including the variable in the map");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
+  public CharSequence declareCons(final ConsExpression exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("//");
+    _builder.newLine();
+    _builder.append("//declaring constraint ");
+    _builder.append(name);
+    _builder.newLineIfNotEmpty();
+    {
+      if ((exp instanceof Refinement)) {
+        CharSequence _declareRefinement = this.declareRefinement(exp, name);
+        _builder.append(_declareRefinement);
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          if ((exp instanceof FodaBin)) {
+            FodaBin fCons = ((FodaBin) exp);
+            _builder.newLineIfNotEmpty();
+            CharSequence _declareFodaBin = this.declareFodaBin(fCons, name);
+            _builder.append(_declareFodaBin);
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              if ((exp instanceof Rule)) {
+                Rule rule = ((Rule) exp);
+                _builder.newLineIfNotEmpty();
+                CharSequence _declareRule = this.declareRule(rule, name);
+                _builder.append(_declareRule);
+                _builder.newLineIfNotEmpty();
+              } else {
+                {
+                  if ((exp instanceof FodaNary)) {
+                    FodaNary nary = ((FodaNary) exp);
+                    _builder.newLineIfNotEmpty();
+                    CharSequence _declareNary = this.declareNary(nary, name);
+                    _builder.append(_declareNary);
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    FodaUN unary = ((FodaUN) exp);
+                    _builder.newLineIfNotEmpty();
+                    CharSequence _declareFodaUnary = this.declareFodaUnary(unary, name);
+                    _builder.append(_declareFodaUnary);
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("constraints.put(\"");
+    _builder.append(name);
+    _builder.append("\", ");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("hlclProgram.add(");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareFodaUnary(final FodaUN cons, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _equals = cons.getOp().equals("optional");
+      if (_equals) {
+        _builder.append("IntBooleanExpression ");
+        _builder.append(name);
+        _builder.append("= factory.greaterOrEqualsThan(variables.get(\"");
+        _builder.append(this.modelName);
+        _builder.append("Var\"), variables.get(\"");
+        String _var = cons.getVar();
+        _builder.append(_var);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          boolean _equals_1 = cons.getOp().equals("mandatory");
+          if (_equals_1) {
+            _builder.append("IntBooleanExpression ");
+            _builder.append(name);
+            _builder.append("= factory.equals(variables.get(\"");
+            _builder.append(this.modelName);
+            _builder.append("Var\"), variables.get(\"");
+            String _var_1 = cons.getVar();
+            _builder.append(_var_1);
+            _builder.append("\"));");
+            _builder.newLineIfNotEmpty();
+          } else {
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence declareNary(final FodaNary nary, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("//implies");
+    _builder.newLine();
+    String idsDeclaration = "";
+    _builder.newLineIfNotEmpty();
+    {
+      EList<String> _ids = nary.getGroup().getIds();
+      for(final String child : _ids) {
+        String _xblockexpression = null;
+        {
+          String _idsDeclaration = idsDeclaration;
+          idsDeclaration = (_idsDeclaration + (("variables.get(\"" + child) + "\"),"));
+          _xblockexpression = "";
+        }
+        _builder.append(_xblockexpression);
+        _builder.newLineIfNotEmpty();
+        String consName = (child + "Imp");
+        _builder.newLineIfNotEmpty();
+        _builder.append("IntBooleanExpression ");
+        _builder.append(consName);
+        _builder.append("= factory.implies(variables.get(\"");
+        _builder.append(child);
+        _builder.append("\"), variables.get(\"");
+        String _parent = nary.getParent();
+        _builder.append(_parent);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+        _builder.append("constraints.put(\"");
+        _builder.append(consName);
+        _builder.append("\", ");
+        _builder.append(consName);
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("hlclProgram.add(");
+        _builder.append(consName);
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("//sum");
+    _builder.newLine();
+    _builder.append("IntNumericExpression plus");
+    _builder.append(name);
+    _builder.append("=factory.sum(");
+    int _length = idsDeclaration.length();
+    int _minus = (_length - 1);
+    String _substring = idsDeclaration.substring(0, _minus);
+    _builder.append(_substring);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("// selection of parent");
+    _builder.newLine();
+    _builder.append("IntBooleanExpression parentSelection");
+    _builder.append(name);
+    _builder.append("= factory.greaterOrEqualsThan(variables.get(\"");
+    String _parent_1 = nary.getParent();
+    _builder.append(_parent_1);
+    _builder.append("\"), getValue(\"1\"));");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("//plusMin");
+    _builder.newLine();
+    _builder.append("IntBooleanExpression plusGTMin");
+    _builder.append(name);
+    _builder.append("= factory.greaterOrEqualsThan(plus");
+    _builder.append(name);
+    _builder.append(", getValue(\"");
+    int _min = nary.getMin();
+    _builder.append(_min);
+    _builder.append("\"));");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("//plusMax");
+    _builder.newLine();
+    _builder.append("IntBooleanExpression plusLTMax");
+    _builder.append(name);
+    _builder.append("= factory.lessOrEqualsThan(plus");
+    _builder.append(name);
+    _builder.append(", getValue(\"");
+    int _max = nary.getMax();
+    _builder.append(_max);
+    _builder.append("\"));");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("IntBooleanExpression left");
+    _builder.append(name);
+    _builder.append("=factory.implies(parentSelection");
+    _builder.append(name);
+    _builder.append(",plusGTMin");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression right");
+    _builder.append(name);
+    _builder.append("=factory.implies(parentSelection");
+    _builder.append(name);
+    _builder.append(", plusLTMax");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=factory.and(left");
+    _builder.append(name);
+    _builder.append(", right");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareRule(final Rule rule, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      Expression _condition = rule.getCondition();
+      if ((_condition instanceof IDCons)) {
+        Expression _condition_1 = rule.getCondition();
+        IDCons cond = ((IDCons) _condition_1);
+        _builder.newLineIfNotEmpty();
+        _builder.append("IntBooleanExpression left");
+        _builder.append(name);
+        _builder.append("= constraints.get(\"");
+        String _name = cond.getName();
+        _builder.append(_name);
+        _builder.append("\"); ");
+        _builder.newLineIfNotEmpty();
+      } else {
+        Expression _condition_2 = rule.getCondition();
+        ConsExpression cond_1 = ((ConsExpression) _condition_2);
+        _builder.newLineIfNotEmpty();
+        Object _declareCons = this.declareCons(cond_1, ("left" + name));
+        _builder.append(_declareCons);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Expression _consequence = rule.getConsequence();
+      if ((_consequence instanceof IDCons)) {
+        Expression _consequence_1 = rule.getConsequence();
+        IDCons cons = ((IDCons) _consequence_1);
+        _builder.newLineIfNotEmpty();
+        _builder.append("IntBooleanExpression right");
+        _builder.append(name);
+        _builder.append("= constraints.get(\"");
+        String _name_1 = cons.getName();
+        _builder.append(_name_1);
+        _builder.append("\"); ");
+        _builder.newLineIfNotEmpty();
+      } else {
+        Expression _consequence_2 = rule.getConsequence();
+        ConsExpression cond_2 = ((ConsExpression) _consequence_2);
+        _builder.newLineIfNotEmpty();
+        Object _declareCons_1 = this.declareCons(cond_2, ("right" + name));
+        _builder.append(_declareCons_1);
+        _builder.append("\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("= factory.implies(left");
+    _builder.append(name);
+    _builder.append(", right");
+    _builder.append(name);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareFodaBin(final FodaBin cons, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _equals = cons.getOp().equals("requires");
+      if (_equals) {
+        _builder.append("IntBooleanExpression ");
+        _builder.append(name);
+        _builder.append("= factory.implies(variables.get(\"");
+        String _var1 = cons.getVar1();
+        _builder.append(_var1);
+        _builder.append("\"), variables.get(\"");
+        String _var2 = cons.getVar2();
+        _builder.append(_var2);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          boolean _equals_1 = cons.getOp().equals("excludes");
+          if (_equals_1) {
+            _builder.append("IntNumericExpression plus=factory.sum(variables.get(\"");
+            String _var1_1 = cons.getVar1();
+            _builder.append(_var1_1);
+            _builder.append("\"), variables.get(\"");
+            String _var2_1 = cons.getVar2();
+            _builder.append(_var2_1);
+            _builder.append("\"));");
+            _builder.newLineIfNotEmpty();
+            _builder.append("IntBooleanExpression ");
+            _builder.append(name);
+            _builder.append("=factory.lessOrEqualsThan(plus,  getValue(\"1\"));");
+            _builder.newLineIfNotEmpty();
+          } else {
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence declareRefinement(final ConsExpression refinement, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((refinement instanceof Assignment)) {
+        _builder.append("IntBooleanExpression ");
+        _builder.append(name);
+        _builder.append("= factory.equals(variables.get(\"");
+        String _var = ((Assignment)refinement).getVar();
+        _builder.append(_var);
+        _builder.append("\"), getValue(\"");
+        String _value = ((Assignment)refinement).getValue();
+        _builder.append(_value);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          if ((refinement instanceof VarRefinement)) {
+            CharSequence _refinementVariants = this.refinementVariants(((VarRefinement)refinement).getVariants(), ((VarRefinement)refinement).getVar(), name);
+            _builder.append(_refinementVariants);
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              if ((refinement instanceof SetRefinement)) {
+                CharSequence _refinementSet = this.refinementSet(((SetRefinement)refinement), name);
+                _builder.append(_refinementSet);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence refinementVariants(final VariantDeclaration variant, final String varID, final String consID) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((variant instanceof variantsInterval)) {
+        _builder.append("IntBooleanExpression left");
+        _builder.append(consID);
+        _builder.append("=factory.greaterOrEqualsThan(variables.get(\"");
+        _builder.append(varID);
+        _builder.append("\"), getValue(\"");
+        String _start = ((variantsInterval)variant).getStart();
+        _builder.append(_start);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+        _builder.append("IntBooleanExpression right");
+        _builder.append(consID);
+        _builder.append("=factory.lessOrEqualsThan(variables.get(\"");
+        _builder.append(varID);
+        _builder.append("\"), getValue(\"");
+        String _end = ((variantsInterval)variant).getEnd();
+        _builder.append(_end);
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+        _builder.append("IntBooleanExpression ");
+        _builder.append(consID);
+        _builder.append("=factory.and(left");
+        _builder.append(consID);
+        _builder.append(", right");
+        _builder.append(consID);
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence refinementSet(final SetRefinement setRefinement, final String consID) {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _declareTuples = this.declareTuples(setRefinement.getHead(), setRefinement.getTail());
+    _builder.append(_declareTuples);
+    _builder.newLineIfNotEmpty();
+    _builder.append("SymbolicExpression ");
+    _builder.append(consID);
+    _builder.append(" = factory.newSymbolicRelation(tuples ");
+    _builder.newLineIfNotEmpty();
+    CharSequence _declareIds = this.declareIds(setRefinement.getVars());
+    _builder.append(_declareIds);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  /**
+   * Method for declare variants
+   */
+  public CharSequence declareIds(final ListOfIDs idList) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<String> _ids = idList.getIds();
+      for(final String id : _ids) {
+        _builder.append(", variables.get(\"");
+        _builder.append(id);
+        _builder.append("\")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Method for declare the tuples for a relation constraint
+   */
+  public CharSequence declareTuples(final ListOfValues head, final EList<ListOfValues> tail) {
+    StringConcatenation _builder = new StringConcatenation();
+    int size = head.getValues().size();
+    _builder.newLineIfNotEmpty();
+    _builder.append("NumericIdentifier[][] tuples= new NumericIdentifier[");
+    _builder.append(size);
+    _builder.append("][");
+    _builder.append(size);
+    _builder.append("];");
+    _builder.newLineIfNotEmpty();
+    int j = 0;
+    _builder.newLineIfNotEmpty();
+    {
+      EList<String> _values = head.getValues();
+      for(final String value : _values) {
+        _builder.append("tuples[0][");
+        _builder.append(j);
+        _builder.append("]=getValue(\"");
+        _builder.append(value);
+        _builder.append("\");");
+        _builder.newLineIfNotEmpty();
+        String _xblockexpression = null;
+        {
+          j = (j + 1);
+          _xblockexpression = "";
+        }
+        _builder.append(_xblockexpression);
+        _builder.append("\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    int i = 1;
+    _builder.newLineIfNotEmpty();
+    String _xblockexpression_1 = null;
+    {
+      j = 0;
+      _xblockexpression_1 = "";
+    }
+    _builder.append(_xblockexpression_1);
+    _builder.newLineIfNotEmpty();
+    {
+      for(final ListOfValues values : tail) {
+        {
+          EList<String> _values_1 = values.getValues();
+          for(final String value_1 : _values_1) {
+            _builder.append("tuples[");
+            _builder.append(i);
+            _builder.append("][");
+            _builder.append(j);
+            _builder.append("]=getValue(\"");
+            _builder.append(value_1);
+            _builder.append("\");");
+            _builder.newLineIfNotEmpty();
+            String _xblockexpression_2 = null;
+            {
+              j = (j + 1);
+              _xblockexpression_2 = "";
+            }
+            _builder.append(_xblockexpression_2);
+            _builder.append("\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        String _xblockexpression_3 = null;
+        {
+          i = (i + 1);
+          _xblockexpression_3 = "";
+        }
+        _builder.append(_xblockexpression_3);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Method for declare variants
+   */
   public CharSequence declareVariants(final VariantDeclaration variant, final String type, final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -337,71 +795,6 @@ public class HLCLSpecificationLanguageGenerator extends AbstractGenerator {
     _builder.append(name);
     _builder.append("Dom);\t");
     _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  public CharSequence declareBool(final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("BinaryDomain ");
-    _builder.append(name);
-    _builder.append("Dom= new BinaryDomain();");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence declareInterval(final variantsInterval variants, final String type, final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      boolean _equals = type.equals("boolean");
-      if (_equals) {
-        CharSequence _declareBool = this.declareBool(name);
-        _builder.append(_declareBool);
-        _builder.newLineIfNotEmpty();
-      } else {
-        _builder.append("RangeDomain ");
-        _builder.append(name);
-        _builder.append("Dom= new RangeDomain(");
-        String _start = variants.getStart();
-        _builder.append(_start);
-        _builder.append(", ");
-        String _end = variants.getEnd();
-        _builder.append(_end);
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence declareEnumeration(final variantsEnumeration variants, final String type, final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      boolean _equals = type.equals("boolean");
-      if (_equals) {
-        CharSequence _declareBool = this.declareBool(name);
-        _builder.append(_declareBool);
-        _builder.newLineIfNotEmpty();
-      } else {
-        _builder.append("IntervalDomain ");
-        _builder.append(name);
-        _builder.append("Dom= new IntervalDomain();");
-        _builder.newLineIfNotEmpty();
-        {
-          EList<String> _values = variants.getList().getValues().getValues();
-          for(final String e : _values) {
-            _builder.append("\t");
-            _builder.append(name, "\t");
-            _builder.append("Dom.add(");
-            _builder.append(e, "\t");
-            _builder.append(");");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    _builder.newLine();
     return _builder;
   }
 }

@@ -550,23 +550,23 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   int RULE_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl <em>SPL Notation</em>}' class.
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaUNImpl <em>Foda UN</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl
-   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSPLNotation()
+   * @see org.xtext.hLCLSpecificationLanguage.impl.FodaUNImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaUN()
    * @generated
    */
-  int SPL_NOTATION = 15;
+  int FODA_UN = 15;
 
   /**
-   * The feature id for the '<em><b>Var1</b></em>' attribute.
+   * The feature id for the '<em><b>Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPL_NOTATION__VAR1 = CONS_EXPRESSION_FEATURE_COUNT + 0;
+  int FODA_UN__VAR = CONS_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -575,7 +575,44 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPL_NOTATION__OP = CONS_EXPRESSION_FEATURE_COUNT + 1;
+  int FODA_UN__OP = CONS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Foda UN</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_UN_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl <em>Foda Bin</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaBin()
+   * @generated
+   */
+  int FODA_BIN = 16;
+
+  /**
+   * The feature id for the '<em><b>Var1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_BIN__VAR1 = CONS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_BIN__OP = CONS_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Var2</b></em>' attribute.
@@ -584,16 +621,71 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPL_NOTATION__VAR2 = CONS_EXPRESSION_FEATURE_COUNT + 2;
+  int FODA_BIN__VAR2 = CONS_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>SPL Notation</em>' class.
+   * The number of structural features of the '<em>Foda Bin</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPL_NOTATION_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 3;
+  int FODA_BIN_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaNaryImpl <em>Foda Nary</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.hLCLSpecificationLanguage.impl.FodaNaryImpl
+   * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaNary()
+   * @generated
+   */
+  int FODA_NARY = 17;
+
+  /**
+   * The feature id for the '<em><b>Parent</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_NARY__PARENT = CONS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Group</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_NARY__GROUP = CONS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_NARY__MIN = CONS_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_NARY__MAX = CONS_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Foda Nary</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FODA_NARY_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
@@ -603,7 +695,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 16;
+  int LIST_OF_VALUES = 18;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' attribute list.
@@ -631,7 +723,7 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
    * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 17;
+  int LIST_OF_IDS = 19;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference.
@@ -1065,47 +1157,133 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
   EReference getRule_Consequence();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation <em>SPL Notation</em>}'.
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.FodaUN <em>Foda UN</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>SPL Notation</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.SPLNotation
+   * @return the meta object for class '<em>Foda UN</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaUN
    * @generated
    */
-  EClass getSPLNotation();
+  EClass getFodaUN();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar1 <em>Var1</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaUN#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Var1</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar1()
-   * @see #getSPLNotation()
+   * @return the meta object for the attribute '<em>Var</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaUN#getVar()
+   * @see #getFodaUN()
    * @generated
    */
-  EAttribute getSPLNotation_Var1();
+  EAttribute getFodaUN_Var();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaUN#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.SPLNotation#getOp()
-   * @see #getSPLNotation()
+   * @see org.xtext.hLCLSpecificationLanguage.FodaUN#getOp()
+   * @see #getFodaUN()
    * @generated
    */
-  EAttribute getSPLNotation_Op();
+  EAttribute getFodaUN_Op();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar2 <em>Var2</em>}'.
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.FodaBin <em>Foda Bin</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Foda Bin</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaBin
+   * @generated
+   */
+  EClass getFodaBin();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar1 <em>Var1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Var1</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaBin#getVar1()
+   * @see #getFodaBin()
+   * @generated
+   */
+  EAttribute getFodaBin_Var1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaBin#getOp()
+   * @see #getFodaBin()
+   * @generated
+   */
+  EAttribute getFodaBin_Op();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaBin#getVar2 <em>Var2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Var2</em>'.
-   * @see org.xtext.hLCLSpecificationLanguage.SPLNotation#getVar2()
-   * @see #getSPLNotation()
+   * @see org.xtext.hLCLSpecificationLanguage.FodaBin#getVar2()
+   * @see #getFodaBin()
    * @generated
    */
-  EAttribute getSPLNotation_Var2();
+  EAttribute getFodaBin_Var2();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.FodaNary <em>Foda Nary</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Foda Nary</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary
+   * @generated
+   */
+  EClass getFodaNary();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaNary#getParent <em>Parent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Parent</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary#getParent()
+   * @see #getFodaNary()
+   * @generated
+   */
+  EAttribute getFodaNary_Parent();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.hLCLSpecificationLanguage.FodaNary#getGroup <em>Group</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Group</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary#getGroup()
+   * @see #getFodaNary()
+   * @generated
+   */
+  EReference getFodaNary_Group();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaNary#getMin <em>Min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary#getMin()
+   * @see #getFodaNary()
+   * @generated
+   */
+  EAttribute getFodaNary_Min();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.hLCLSpecificationLanguage.FodaNary#getMax <em>Max</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max</em>'.
+   * @see org.xtext.hLCLSpecificationLanguage.FodaNary#getMax()
+   * @see #getFodaNary()
+   * @generated
+   */
+  EAttribute getFodaNary_Max();
 
   /**
    * Returns the meta object for class '{@link org.xtext.hLCLSpecificationLanguage.ListOfValues <em>List Of Values</em>}'.
@@ -1507,22 +1685,22 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
     EReference RULE__CONSEQUENCE = eINSTANCE.getRule_Consequence();
 
     /**
-     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl <em>SPL Notation</em>}' class.
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaUNImpl <em>Foda UN</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.hLCLSpecificationLanguage.impl.SPLNotationImpl
-     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getSPLNotation()
+     * @see org.xtext.hLCLSpecificationLanguage.impl.FodaUNImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaUN()
      * @generated
      */
-    EClass SPL_NOTATION = eINSTANCE.getSPLNotation();
+    EClass FODA_UN = eINSTANCE.getFodaUN();
 
     /**
-     * The meta object literal for the '<em><b>Var1</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Var</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SPL_NOTATION__VAR1 = eINSTANCE.getSPLNotation_Var1();
+    EAttribute FODA_UN__VAR = eINSTANCE.getFodaUN_Var();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -1530,7 +1708,33 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SPL_NOTATION__OP = eINSTANCE.getSPLNotation_Op();
+    EAttribute FODA_UN__OP = eINSTANCE.getFodaUN_Op();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl <em>Foda Bin</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.hLCLSpecificationLanguage.impl.FodaBinImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaBin()
+     * @generated
+     */
+    EClass FODA_BIN = eINSTANCE.getFodaBin();
+
+    /**
+     * The meta object literal for the '<em><b>Var1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FODA_BIN__VAR1 = eINSTANCE.getFodaBin_Var1();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FODA_BIN__OP = eINSTANCE.getFodaBin_Op();
 
     /**
      * The meta object literal for the '<em><b>Var2</b></em>' attribute feature.
@@ -1538,7 +1742,49 @@ public interface HLCLSpecificationLanguagePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SPL_NOTATION__VAR2 = eINSTANCE.getSPLNotation_Var2();
+    EAttribute FODA_BIN__VAR2 = eINSTANCE.getFodaBin_Var2();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.FodaNaryImpl <em>Foda Nary</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.hLCLSpecificationLanguage.impl.FodaNaryImpl
+     * @see org.xtext.hLCLSpecificationLanguage.impl.HLCLSpecificationLanguagePackageImpl#getFodaNary()
+     * @generated
+     */
+    EClass FODA_NARY = eINSTANCE.getFodaNary();
+
+    /**
+     * The meta object literal for the '<em><b>Parent</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FODA_NARY__PARENT = eINSTANCE.getFodaNary_Parent();
+
+    /**
+     * The meta object literal for the '<em><b>Group</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FODA_NARY__GROUP = eINSTANCE.getFodaNary_Group();
+
+    /**
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FODA_NARY__MIN = eINSTANCE.getFodaNary_Min();
+
+    /**
+     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FODA_NARY__MAX = eINSTANCE.getFodaNary_Max();
 
     /**
      * The meta object literal for the '{@link org.xtext.hLCLSpecificationLanguage.impl.ListOfValuesImpl <em>List Of Values</em>}' class.

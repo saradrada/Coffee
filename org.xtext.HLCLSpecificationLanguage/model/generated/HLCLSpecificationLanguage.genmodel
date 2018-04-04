@@ -55,10 +55,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//Rule/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//Rule/consequence"/>
     </genClasses>
-    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//SPLNotation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/var1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/op"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//SPLNotation/var2"/>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//FodaUN">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaUN/var"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaUN/op"/>
+    </genClasses>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//FodaBin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaBin/var1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaBin/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaBin/var2"/>
+    </genClasses>
+    <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//FodaNary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaNary/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//FodaNary/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaNary/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//FodaNary/max"/>
     </genClasses>
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//ListOfValues">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//ListOfValues/values"/>
