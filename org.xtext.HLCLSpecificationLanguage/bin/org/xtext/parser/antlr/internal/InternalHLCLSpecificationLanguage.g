@@ -1450,6 +1450,18 @@ ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getBinOpAccess().getExcludesKeyword_1());
 		}
+		    |
+		kw='optional'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBinOpAccess().getOptionalKeyword_2());
+		}
+		    |
+		kw='mandatory'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBinOpAccess().getMandatoryKeyword_3());
+		}
 	)
 ;
 

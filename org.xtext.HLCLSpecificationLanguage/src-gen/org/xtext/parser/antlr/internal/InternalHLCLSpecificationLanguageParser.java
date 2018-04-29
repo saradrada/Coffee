@@ -3683,7 +3683,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
 
 
     // $ANTLR start "ruleBinOp"
-    // InternalHLCLSpecificationLanguage.g:1434:1: ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'requires' | kw= 'excludes' ) ;
+    // InternalHLCLSpecificationLanguage.g:1434:1: ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) ;
     public final AntlrDatatypeRuleToken ruleBinOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3693,25 +3693,39 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
         	enterRule();
 
         try {
-            // InternalHLCLSpecificationLanguage.g:1440:2: ( (kw= 'requires' | kw= 'excludes' ) )
-            // InternalHLCLSpecificationLanguage.g:1441:2: (kw= 'requires' | kw= 'excludes' )
+            // InternalHLCLSpecificationLanguage.g:1440:2: ( (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) )
+            // InternalHLCLSpecificationLanguage.g:1441:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
             {
-            // InternalHLCLSpecificationLanguage.g:1441:2: (kw= 'requires' | kw= 'excludes' )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
-
-            if ( (LA14_0==34) ) {
+            // InternalHLCLSpecificationLanguage.g:1441:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
+            int alt14=4;
+            switch ( input.LA(1) ) {
+            case 34:
+                {
                 alt14=1;
-            }
-            else if ( (LA14_0==35) ) {
+                }
+                break;
+            case 35:
+                {
                 alt14=2;
-            }
-            else {
+                }
+                break;
+            case 36:
+                {
+                alt14=3;
+                }
+                break;
+            case 37:
+                {
+                alt14=4;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
+
             switch (alt14) {
                 case 1 :
                     // InternalHLCLSpecificationLanguage.g:1442:3: kw= 'requires'
@@ -3731,6 +3745,28 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
 
                     			current.merge(kw);
                     			newLeafNode(kw, grammarAccess.getBinOpAccess().getExcludesKeyword_1());
+                    		
+
+                    }
+                    break;
+                case 3 :
+                    // InternalHLCLSpecificationLanguage.g:1454:3: kw= 'optional'
+                    {
+                    kw=(Token)match(input,36,FOLLOW_2); 
+
+                    			current.merge(kw);
+                    			newLeafNode(kw, grammarAccess.getBinOpAccess().getOptionalKeyword_2());
+                    		
+
+                    }
+                    break;
+                case 4 :
+                    // InternalHLCLSpecificationLanguage.g:1460:3: kw= 'mandatory'
+                    {
+                    kw=(Token)match(input,37,FOLLOW_2); 
+
+                    			current.merge(kw);
+                    			newLeafNode(kw, grammarAccess.getBinOpAccess().getMandatoryKeyword_3());
                     		
 
                     }
@@ -3758,7 +3794,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
 
 
     // $ANTLR start "entryRuleUnaryOp"
-    // InternalHLCLSpecificationLanguage.g:1457:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
+    // InternalHLCLSpecificationLanguage.g:1469:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
     public final String entryRuleUnaryOp() throws RecognitionException {
         String current = null;
 
@@ -3766,8 +3802,8 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
 
 
         try {
-            // InternalHLCLSpecificationLanguage.g:1457:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
-            // InternalHLCLSpecificationLanguage.g:1458:2: iv_ruleUnaryOp= ruleUnaryOp EOF
+            // InternalHLCLSpecificationLanguage.g:1469:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
+            // InternalHLCLSpecificationLanguage.g:1470:2: iv_ruleUnaryOp= ruleUnaryOp EOF
             {
              newCompositeNode(grammarAccess.getUnaryOpRule()); 
             pushFollow(FOLLOW_1);
@@ -3794,7 +3830,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
 
 
     // $ANTLR start "ruleUnaryOp"
-    // InternalHLCLSpecificationLanguage.g:1464:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'optional' | kw= 'mandatory' ) ;
+    // InternalHLCLSpecificationLanguage.g:1476:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'optional' | kw= 'mandatory' ) ;
     public final AntlrDatatypeRuleToken ruleUnaryOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3804,10 +3840,10 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
         	enterRule();
 
         try {
-            // InternalHLCLSpecificationLanguage.g:1470:2: ( (kw= 'optional' | kw= 'mandatory' ) )
-            // InternalHLCLSpecificationLanguage.g:1471:2: (kw= 'optional' | kw= 'mandatory' )
+            // InternalHLCLSpecificationLanguage.g:1482:2: ( (kw= 'optional' | kw= 'mandatory' ) )
+            // InternalHLCLSpecificationLanguage.g:1483:2: (kw= 'optional' | kw= 'mandatory' )
             {
-            // InternalHLCLSpecificationLanguage.g:1471:2: (kw= 'optional' | kw= 'mandatory' )
+            // InternalHLCLSpecificationLanguage.g:1483:2: (kw= 'optional' | kw= 'mandatory' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -3825,7 +3861,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
             }
             switch (alt15) {
                 case 1 :
-                    // InternalHLCLSpecificationLanguage.g:1472:3: kw= 'optional'
+                    // InternalHLCLSpecificationLanguage.g:1484:3: kw= 'optional'
                     {
                     kw=(Token)match(input,36,FOLLOW_2); 
 
@@ -3836,7 +3872,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
                     }
                     break;
                 case 2 :
-                    // InternalHLCLSpecificationLanguage.g:1478:3: kw= 'mandatory'
+                    // InternalHLCLSpecificationLanguage.g:1490:3: kw= 'mandatory'
                     {
                     kw=(Token)match(input,37,FOLLOW_2); 
 
@@ -3874,12 +3910,12 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
     static final String dfa_1s = "\14\uffff";
     static final String dfa_2s = "\1\uffff\1\5\12\uffff";
     static final String dfa_3s = "\3\4\3\uffff\1\5\2\uffff\1\4\1\uffff\1\30";
-    static final String dfa_4s = "\1\33\1\43\1\33\3\uffff\1\45\2\uffff\1\43\1\uffff\1\32";
+    static final String dfa_4s = "\1\33\1\45\1\33\3\uffff\1\45\2\uffff\1\45\1\uffff\1\32";
     static final String dfa_5s = "\3\uffff\1\5\1\4\1\1\1\uffff\1\2\1\3\1\uffff\1\6\1\uffff";
     static final String dfa_6s = "\14\uffff}>";
     static final String[] dfa_7s = {
             "\1\1\17\uffff\1\2\6\uffff\1\3",
-            "\1\5\20\uffff\1\5\1\6\1\7\2\uffff\1\10\7\uffff\2\4",
+            "\1\5\20\uffff\1\5\1\6\1\7\2\uffff\1\10\7\uffff\4\4",
             "\1\11\17\uffff\1\10\6\uffff\1\10",
             "",
             "",
@@ -3887,7 +3923,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
             "\1\7\30\uffff\2\7\4\uffff\2\12",
             "",
             "",
-            "\1\7\20\uffff\1\13\2\10\2\uffff\1\10\7\uffff\2\10",
+            "\1\7\20\uffff\1\13\2\10\2\uffff\1\10\7\uffff\4\10",
             "",
             "\1\7\1\uffff\1\10"
     };
@@ -3946,7 +3982,7 @@ public class InternalHLCLSpecificationLanguageParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000100010L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000003000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000C00000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000003C00000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000020L});

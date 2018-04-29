@@ -133,7 +133,7 @@ ListOfIDs:
 ;
 
 BinOp:
-	 'requires' |'excludes'
+	 'requires' |'excludes'|'optional' |'mandatory'
 ;
 
 UnaryOp:

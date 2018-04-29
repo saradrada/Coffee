@@ -862,6 +862,18 @@ rule__BinOp__Alternatives
 		'excludes'
 		{ after(grammarAccess.getBinOpAccess().getExcludesKeyword_1()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getBinOpAccess().getOptionalKeyword_2()); }
+		'optional'
+		{ after(grammarAccess.getBinOpAccess().getOptionalKeyword_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getBinOpAccess().getMandatoryKeyword_3()); }
+		'mandatory'
+		{ after(grammarAccess.getBinOpAccess().getMandatoryKeyword_3()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);

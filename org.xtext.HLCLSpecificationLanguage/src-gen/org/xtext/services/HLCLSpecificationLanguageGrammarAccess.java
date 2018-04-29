@@ -790,12 +790,14 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cRequiresKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cExcludesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cOptionalKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cMandatoryKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//BinOp:
-		//	'requires' | 'excludes';
+		//	'requires' | 'excludes' | 'optional' | 'mandatory';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'requires' | 'excludes'
+		//'requires' | 'excludes' | 'optional' | 'mandatory'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'requires'
@@ -803,6 +805,12 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 		
 		//'excludes'
 		public Keyword getExcludesKeyword_1() { return cExcludesKeyword_1; }
+		
+		//'optional'
+		public Keyword getOptionalKeyword_2() { return cOptionalKeyword_2; }
+		
+		//'mandatory'
+		public Keyword getMandatoryKeyword_3() { return cMandatoryKeyword_3; }
 	}
 	public class UnaryOpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.HLCLSpecificationLanguage.UnaryOp");
@@ -1176,7 +1184,7 @@ public class HLCLSpecificationLanguageGrammarAccess extends AbstractGrammarEleme
 	}
 	
 	//BinOp:
-	//	'requires' | 'excludes';
+	//	'requires' | 'excludes' | 'optional' | 'mandatory';
 	public BinOpElements getBinOpAccess() {
 		return pBinOp;
 	}
