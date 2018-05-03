@@ -1,4 +1,4 @@
-model PC
+model PC3
 variables:
 boolean Mainboard variants:[selected unselected]
 boolean Socket_1151 variants:[selected unselected]
@@ -18,5 +18,5 @@ C5: Optical_Drive is optional
 C8: Socket_AM4 requires Socket_AM4_compatible
 C9: Socket_1151 requires Socket_1151_compatible
 C2: parent:Mainboard group:Socket_1151 Socket_AM4  card:[1,1]
-C7: parent:CPU_Cooler group:Socket_1151_compatible Socket_AM4_compatible  card:[1,1]
+C7: parent:CPU_Cooler group:Socket_1151_compatible Socket_AM4_compatible  card:[1,3]
 

@@ -1,0 +1,193 @@
+grammar org.xtext.CPHLCL with org.eclipse.xtext.common.Terminals
+
+generate cPHLCL "http://www.xtext.org/CPHLCL"
+
+// A CSP is composed by a set of variables with their domains, a set of constraints and a series of search strategies
+Model:
+	'model' name=ID 'variables:' vars+=(VarDeclaration)+  'constraints:'constraints+=(Constraint)+
+	'strategy:' strategy= Strategy
+	;
+	
+//VAriables and domains declarations	
+VarDeclaration:
+	type=VarType name=ID  'domain:' domain= DomainDeclaration
+;
+	
+DomainDeclaration: 
+  Interval | Enumeration //| Mixed //domains
+	;
+
+Interval:
+	(start=EnumerableValue) ('..') (end=EnumerableValue)
+	;
+	
+	
+Enumeration:
+	('[') list =  ListOfValues  (']')
+	;
+
+
+
+/**
+ * Constraints and constraints declarations
+ */
+Constraint:
+	   name=ID ':' exp=Expression 
+	   //|BoolExpression//|Relational|Global
+	   ;
+Expression:
+	//Global|Logic|Relational|Arithmetic|Control
+	Global|Logic|Relational|Control
+	//Global|Logic|Relational|IntegerExp|Arithmetic|Control
+;
+
+//BooleanExpression:
+//	Logic|Relational
+//;
+
+BoolTerm returns BoolExpression:
+	//'('Logic')'|Bool
+	'('ComplexTerm')'| BoolVar 
+;
+ComplexTerm:
+	Logic|Relational|LogicUn
+;
+
+Logic:
+	=> logicLeft=BoolTerm 
+	logicOp=LogicOpBin
+	=> logicRight=BoolTerm
+;
+
+LogicUn:
+	logicOp= LogicOpUn '(' exp=BoolTerm ')' 
+;
+
+
+Relational:
+	 => relationalLeft=NumericTerm 
+	  relationalOp= RelationalOp 
+	  => relationalRight= NumericTerm
+;
+	
+
+
+//
+//NumericExpression:
+//	 IntegerExp |Arithmetic
+//	 
+//;
+
+NumericTerm returns NumExpression:
+	 //'(' Arithmetic ')' | Number
+	 //'('Arithmetic')' |'(' IntegerExp ')' | Number |IntVar
+	 '('Arithmetic')' | Number |IntVar
+	
+;	
+
+Arithmetic:
+	 left=NumericTerm
+	arithOperator=ArithmeticOp 
+	 right=NumericTerm
+	;
+
+//ArithmeticUn:
+//	
+//;
+
+//IntegerExp:
+//	intOperator=IntegerOp '(' values=ListOfEnumerables ')'  
+//	;
+	
+/**
+ * Global constraints
+ */
+Global:
+	op=GlobalOp '(' vars=ListOfIDs ')'   
+	;
+
+/*
+ * Control statement if-then-else
+ */
+Control:
+	'if''('cond=BoolTerm ')' 'then' trueStatement= Expression 'else' elseStatement= Expression 'end_if'
+;
+//Strategies
+Strategy:
+	'one'|'two'
+;
+
+//Terminals and categories
+Bool:
+	val=BoolVal
+;
+
+BoolVal:
+	'true'|'false'
+	;
+BoolVar:
+	id = ID
+;
+Number:
+	num = INT
+;
+IntVar:
+	id = ID
+;
+
+LogicOpBin:
+	'AND'|'OR'|'XOR'|'=>' |'<=>'
+;
+LogicOpUn:
+'NOT'
+;
+
+
+RelationalOp:
+	'>'|'<'|'>='|'<='|'='|'!='
+;
+
+GlobalOp:
+	'at_most'|'all_different'
+;
+
+ArithmeticOp:
+	'+'|'-'|'*'|'/'|'mod'|'pow'|'dist'
+;
+IntegerOp:
+	'abs'|'min'|'max'|'sqrt'
+;
+
+Value:
+	EnumerableValue|NonEnumerableValue
+;	
+EnumerableValue:
+	INT 
+;
+NonEnumerableValue:
+	BoolVal|ID
+;
+//
+
+//Double:
+//	INT'.'INT
+//;
+//
+
+VarType:
+	 'bool' |'integer'|'symbolic' 
+;
+//	
+ListOfValues:
+	values+= Value (',' + values+= Value)*
+	;
+ListOfEnumerables:
+	values+= EnumerableValue (',' + values+= EnumerableValue)*
+	;
+//ListOfNonEnumerables:
+//	values+= NonEnumerableValue (',' + values+= NonEnumerableValue)*
+//	;
+ListOfIDs:
+	ids+= (ID)+
+;
+//	
