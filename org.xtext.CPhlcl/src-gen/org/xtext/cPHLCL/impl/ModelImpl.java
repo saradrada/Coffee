@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.cPHLCL.CPHLCLPackage;
 import org.xtext.cPHLCL.Constraint;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.xtext.cPHLCL.VarDeclaration;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.cPHLCL.impl.ModelImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.cPHLCL.impl.ModelImpl#getVars <em>Vars</em>}</li>
+ *   <li>{@link org.xtext.cPHLCL.impl.ModelImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.impl.ModelImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.impl.ModelImpl#getStrategy <em>Strategy</em>}</li>
  * </ul>
@@ -63,14 +63,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getVars() <em>Vars</em>}' containment reference list.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVars()
+   * @see #getVariables()
    * @generated
    * @ordered
    */
-  protected EList<VarDeclaration> vars;
+  protected EList<Variable> variables;
 
   /**
    * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -151,13 +151,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<VarDeclaration> getVars()
+  public EList<Variable> getVariables()
   {
-    if (vars == null)
+    if (variables == null)
     {
-      vars = new EObjectContainmentEList<VarDeclaration>(VarDeclaration.class, this, CPHLCLPackage.MODEL__VARS);
+      variables = new EObjectContainmentEList<Variable>(Variable.class, this, CPHLCLPackage.MODEL__VARIABLES);
     }
-    return vars;
+    return variables;
   }
 
   /**
@@ -207,8 +207,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CPHLCLPackage.MODEL__VARS:
-        return ((InternalEList<?>)getVars()).basicRemove(otherEnd, msgs);
+      case CPHLCLPackage.MODEL__VARIABLES:
+        return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
       case CPHLCLPackage.MODEL__CONSTRAINTS:
         return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
     }
@@ -227,8 +227,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case CPHLCLPackage.MODEL__NAME:
         return getName();
-      case CPHLCLPackage.MODEL__VARS:
-        return getVars();
+      case CPHLCLPackage.MODEL__VARIABLES:
+        return getVariables();
       case CPHLCLPackage.MODEL__CONSTRAINTS:
         return getConstraints();
       case CPHLCLPackage.MODEL__STRATEGY:
@@ -251,9 +251,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case CPHLCLPackage.MODEL__NAME:
         setName((String)newValue);
         return;
-      case CPHLCLPackage.MODEL__VARS:
-        getVars().clear();
-        getVars().addAll((Collection<? extends VarDeclaration>)newValue);
+      case CPHLCLPackage.MODEL__VARIABLES:
+        getVariables().clear();
+        getVariables().addAll((Collection<? extends Variable>)newValue);
         return;
       case CPHLCLPackage.MODEL__CONSTRAINTS:
         getConstraints().clear();
@@ -279,8 +279,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case CPHLCLPackage.MODEL__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case CPHLCLPackage.MODEL__VARS:
-        getVars().clear();
+      case CPHLCLPackage.MODEL__VARIABLES:
+        getVariables().clear();
         return;
       case CPHLCLPackage.MODEL__CONSTRAINTS:
         getConstraints().clear();
@@ -304,8 +304,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case CPHLCLPackage.MODEL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case CPHLCLPackage.MODEL__VARS:
-        return vars != null && !vars.isEmpty();
+      case CPHLCLPackage.MODEL__VARIABLES:
+        return variables != null && !variables.isEmpty();
       case CPHLCLPackage.MODEL__CONSTRAINTS:
         return constraints != null && !constraints.isEmpty();
       case CPHLCLPackage.MODEL__STRATEGY:

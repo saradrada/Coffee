@@ -33,13 +33,13 @@ public interface CPHLCLFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Var Declaration</em>'.
+   * Returns a new object of class '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Var Declaration</em>'.
+   * @return a new object of class '<em>Variable</em>'.
    * @generated
    */
-  VarDeclaration createVarDeclaration();
+  Variable createVariable();
 
   /**
    * Returns a new object of class '<em>Domain Declaration</em>'.
@@ -87,42 +87,6 @@ public interface CPHLCLFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Bool Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bool Expression</em>'.
-   * @generated
-   */
-  BoolExpression createBoolExpression();
-
-  /**
-   * Returns a new object of class '<em>Complex Term</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Complex Term</em>'.
-   * @generated
-   */
-  ComplexTerm createComplexTerm();
-
-  /**
-   * Returns a new object of class '<em>Logic</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Logic</em>'.
-   * @generated
-   */
-  Logic createLogic();
-
-  /**
-   * Returns a new object of class '<em>Logic Un</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Logic Un</em>'.
-   * @generated
-   */
-  LogicUn createLogicUn();
-
-  /**
    * Returns a new object of class '<em>Relational</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,24 +94,6 @@ public interface CPHLCLFactory extends EFactory
    * @generated
    */
   Relational createRelational();
-
-  /**
-   * Returns a new object of class '<em>Num Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Num Expression</em>'.
-   * @generated
-   */
-  NumExpression createNumExpression();
-
-  /**
-   * Returns a new object of class '<em>Arithmetic</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Arithmetic</em>'.
-   * @generated
-   */
-  Arithmetic createArithmetic();
 
   /**
    * Returns a new object of class '<em>Global</em>'.
@@ -159,31 +105,13 @@ public interface CPHLCLFactory extends EFactory
   Global createGlobal();
 
   /**
-   * Returns a new object of class '<em>Control</em>'.
+   * Returns a new object of class '<em>Bool Val</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Control</em>'.
+   * @return a new object of class '<em>Bool Val</em>'.
    * @generated
    */
-  Control createControl();
-
-  /**
-   * Returns a new object of class '<em>Bool</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bool</em>'.
-   * @generated
-   */
-  Bool createBool();
-
-  /**
-   * Returns a new object of class '<em>Bool Var</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bool Var</em>'.
-   * @generated
-   */
-  BoolVar createBoolVar();
+  BoolVal createBoolVal();
 
   /**
    * Returns a new object of class '<em>Number</em>'.
@@ -195,13 +123,31 @@ public interface CPHLCLFactory extends EFactory
   Number createNumber();
 
   /**
-   * Returns a new object of class '<em>Int Var</em>'.
+   * Returns a new object of class '<em>Symbol</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Var</em>'.
+   * @return a new object of class '<em>Symbol</em>'.
    * @generated
    */
-  IntVar createIntVar();
+  Symbol createSymbol();
+
+  /**
+   * Returns a new object of class '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value</em>'.
+   * @generated
+   */
+  Value createValue();
+
+  /**
+   * Returns a new object of class '<em>Non Enumerable Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Non Enumerable Value</em>'.
+   * @generated
+   */
+  NonEnumerableValue createNonEnumerableValue();
 
   /**
    * Returns a new object of class '<em>List Of Values</em>'.
@@ -213,15 +159,6 @@ public interface CPHLCLFactory extends EFactory
   ListOfValues createListOfValues();
 
   /**
-   * Returns a new object of class '<em>List Of Enumerables</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>List Of Enumerables</em>'.
-   * @generated
-   */
-  ListOfEnumerables createListOfEnumerables();
-
-  /**
    * Returns a new object of class '<em>List Of IDs</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -229,6 +166,141 @@ public interface CPHLCLFactory extends EFactory
    * @generated
    */
   ListOfIDs createListOfIDs();
+
+  /**
+   * Returns a new object of class '<em>Iff</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Iff</em>'.
+   * @generated
+   */
+  Iff createIff();
+
+  /**
+   * Returns a new object of class '<em>Implies</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implies</em>'.
+   * @generated
+   */
+  Implies createImplies();
+
+  /**
+   * Returns a new object of class '<em>Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or</em>'.
+   * @generated
+   */
+  Or createOr();
+
+  /**
+   * Returns a new object of class '<em>And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And</em>'.
+   * @generated
+   */
+  And createAnd();
+
+  /**
+   * Returns a new object of class '<em>Equality</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equality</em>'.
+   * @generated
+   */
+  Equality createEquality();
+
+  /**
+   * Returns a new object of class '<em>Comparison</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comparison</em>'.
+   * @generated
+   */
+  Comparison createComparison();
+
+  /**
+   * Returns a new object of class '<em>Plus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Plus</em>'.
+   * @generated
+   */
+  Plus createPlus();
+
+  /**
+   * Returns a new object of class '<em>Minus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Minus</em>'.
+   * @generated
+   */
+  Minus createMinus();
+
+  /**
+   * Returns a new object of class '<em>Mul Or Div</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mul Or Div</em>'.
+   * @generated
+   */
+  MulOrDiv createMulOrDiv();
+
+  /**
+   * Returns a new object of class '<em>Negation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Negation</em>'.
+   * @generated
+   */
+  Negation createNegation();
+
+  /**
+   * Returns a new object of class '<em>Unary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unary</em>'.
+   * @generated
+   */
+  Unary createUnary();
+
+  /**
+   * Returns a new object of class '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function</em>'.
+   * @generated
+   */
+  Function createFunction();
+
+  /**
+   * Returns a new object of class '<em>Bool Constant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bool Constant</em>'.
+   * @generated
+   */
+  BoolConstant createBoolConstant();
+
+  /**
+   * Returns a new object of class '<em>Variable Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable Ref</em>'.
+   * @generated
+   */
+  VariableRef createVariableRef();
+
+  /**
+   * Returns a new object of class '<em>Int Constant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Constant</em>'.
+   * @generated
+   */
+  IntConstant createIntConstant();
 
   /**
    * Returns the package supported by this factory.

@@ -19,32 +19,32 @@ import org.xtext.cPHLCL.CPHLCLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.cPHLCL.impl.NumberImpl#getNum <em>Num</em>}</li>
+ *   <li>{@link org.xtext.cPHLCL.impl.NumberImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Number
+public class NumberImpl extends ValueImpl implements org.xtext.cPHLCL.Number
 {
   /**
-   * The default value of the '{@link #getNum() <em>Num</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNum()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final int NUM_EDEFAULT = 0;
+  protected static final int VALUE_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getNum() <em>Num</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNum()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected int num = NUM_EDEFAULT;
+  protected int value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,9 +72,9 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getNum()
+  public int getValue()
   {
-    return num;
+    return value;
   }
 
   /**
@@ -82,12 +82,12 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNum(int newNum)
+  public void setValue(int newValue)
   {
-    int oldNum = num;
-    num = newNum;
+    int oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, CPHLCLPackage.NUMBER__NUM, oldNum, num));
+      eNotify(new ENotificationImpl(this, Notification.SET, CPHLCLPackage.NUMBER__VALUE, oldValue, value));
   }
 
   /**
@@ -100,8 +100,8 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
   {
     switch (featureID)
     {
-      case CPHLCLPackage.NUMBER__NUM:
-        return getNum();
+      case CPHLCLPackage.NUMBER__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -116,8 +116,8 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
   {
     switch (featureID)
     {
-      case CPHLCLPackage.NUMBER__NUM:
-        setNum((Integer)newValue);
+      case CPHLCLPackage.NUMBER__VALUE:
+        setValue((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -133,8 +133,8 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
   {
     switch (featureID)
     {
-      case CPHLCLPackage.NUMBER__NUM:
-        setNum(NUM_EDEFAULT);
+      case CPHLCLPackage.NUMBER__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -150,8 +150,8 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
   {
     switch (featureID)
     {
-      case CPHLCLPackage.NUMBER__NUM:
-        return num != NUM_EDEFAULT;
+      case CPHLCLPackage.NUMBER__VALUE:
+        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -167,8 +167,8 @@ public class NumberImpl extends NumExpressionImpl implements org.xtext.cPHLCL.Nu
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (num: ");
-    result.append(num);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }

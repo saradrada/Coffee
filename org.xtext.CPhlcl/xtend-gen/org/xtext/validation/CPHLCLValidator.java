@@ -3,6 +3,25 @@
  */
 package org.xtext.validation;
 
+import com.google.common.base.Objects;
+import com.google.inject.Inject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.CPHLCLPackage;
+import org.xtext.cPHLCL.Constraint;
+import org.xtext.cPHLCL.DomainDeclaration;
+import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
+import org.xtext.typing.ExpressionsType;
+import org.xtext.typing.TypeProvider;
+import org.xtext.util.CPHlclUtil;
 import org.xtext.validation.AbstractCPHLCLValidator;
 
 /**
@@ -12,4 +31,119 @@ import org.xtext.validation.AbstractCPHLCLValidator;
  */
 @SuppressWarnings("all")
 public class CPHLCLValidator extends AbstractCPHLCLValidator {
+  public final static String FORWARD_REFERENCE = "org.example.expressions.ForwardReference";
+  
+  public final static String WRONG_TYPE = "org.example.expressions.WrongType";
+  
+  @Inject
+  @Extension
+  private TypeProvider _typeProvider;
+  
+  private final static CPHLCLPackage packageInstance = CPHLCLPackage.eINSTANCE;
+  
+  /**
+   * Method for checking that non boolean domains are correctly declarated
+   */
+  @Check
+  public void checkTypeForNonBooleanDomain(final Variable decl) {
+    String _type = decl.getType();
+    boolean _equals = Objects.equal(_type, "boolean");
+    if (_equals) {
+      return;
+    } else {
+      DomainDeclaration _domain = decl.getDomain();
+      boolean _tripleEquals = (_domain == null);
+      if (_tripleEquals) {
+        String _name = decl.getName();
+        String _plus = ("A domain declaration is required for variable \'" + _name);
+        String _plus_1 = (_plus + "\'");
+        this.error(_plus_1, 
+          CPHLCLPackage.eINSTANCE.getVariable_Domain());
+        return;
+      }
+    }
+  }
+  
+  /**
+   * Method for checking that a variable is already declarated
+   */
+  @Check
+  public void checkVarDeclaration(final VariableRef varRef) {
+    final Variable variable = varRef.getVariable();
+    if (((variable != null) && (!CPHlclUtil.variableIsDefinedBefore(variable)))) {
+      String _name = variable.getName();
+      String _plus = ("Variables should be declared before being used: \'" + _name);
+      String _plus_1 = (_plus + "\'");
+      this.error(_plus_1, 
+        CPHLCLPackage.eINSTANCE.getVariableRef_Variable(), CPHLCLValidator.FORWARD_REFERENCE, variable.getName());
+    }
+  }
+  
+  /**
+   * To verify types in the language
+   */
+  private void checkExpectedType(final Expression exp, final ExpressionsType expectedType, final EReference reference) {
+    final ExpressionsType actualType = this.getTypeAndCheckNotNull(exp, reference);
+    boolean _notEquals = (!Objects.equal(actualType, expectedType));
+    if (_notEquals) {
+      this.error(((("expected " + expectedType) + " type, but was ") + actualType), reference, CPHLCLValidator.WRONG_TYPE);
+    }
+  }
+  
+  private ExpressionsType getTypeAndCheckNotNull(final Expression exp, final EReference reference) {
+    ExpressionsType _typeFor = null;
+    if (exp!=null) {
+      _typeFor=this._typeProvider.typeFor(exp);
+    }
+    ExpressionsType type = _typeFor;
+    if ((type == null)) {
+      this.error("null type", reference, CPHLCLValidator.WRONG_TYPE);
+    }
+    return type;
+  }
+  
+  private void checkExpectedBoolean(final Expression exp, final EReference reference) {
+    this.checkExpectedType(exp, TypeProvider.boolType, reference);
+  }
+  
+  private void checkExpectedInt(final Expression exp, final EReference reference) {
+    this.checkExpectedType(exp, TypeProvider.intType, reference);
+  }
+  
+  /**
+   * Checking the type of logic expressions
+   */
+  @Check
+  public void checkType(final Negation not) {
+    this.checkExpectedBoolean(not.getExpression(), CPHLCLValidator.packageInstance.getNegation_Expression());
+  }
+  
+  @Check
+  public void checkType(final And and) {
+    this.checkExpectedBoolean(and.getLeft(), CPHLCLValidator.packageInstance.getAnd_Left());
+    this.checkExpectedBoolean(and.getRight(), CPHLCLValidator.packageInstance.getAnd_Right());
+  }
+  
+  @Check
+  public void checkType(final Or or) {
+    this.checkExpectedBoolean(or.getLeft(), CPHLCLValidator.packageInstance.getOr_Left());
+    this.checkExpectedBoolean(or.getRight(), CPHLCLValidator.packageInstance.getOr_Right());
+  }
+  
+  @Check
+  public void checkType(final Implies imp) {
+    this.checkExpectedBoolean(imp.getLeft(), CPHLCLValidator.packageInstance.getImplies_Left());
+    this.checkExpectedBoolean(imp.getRight(), CPHLCLValidator.packageInstance.getImplies_Right());
+  }
+  
+  @Check
+  public void checkType(final Iff iff) {
+    this.checkExpectedBoolean(iff.getLeft(), CPHLCLValidator.packageInstance.getIff_Left());
+    this.checkExpectedBoolean(iff.getRight(), CPHLCLValidator.packageInstance.getIff_Right());
+  }
+  
+  @Check
+  public void checkType(final Constraint cons) {
+    this.checkExpectedBoolean(cons.getExp(), CPHLCLValidator.packageInstance.getConstraint_Exp());
+  }
 }

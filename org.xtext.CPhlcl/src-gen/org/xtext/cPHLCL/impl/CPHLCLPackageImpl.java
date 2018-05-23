@@ -10,30 +10,38 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.xtext.cPHLCL.Arithmetic;
-import org.xtext.cPHLCL.Bool;
-import org.xtext.cPHLCL.BoolExpression;
-import org.xtext.cPHLCL.BoolVar;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.BoolConstant;
+import org.xtext.cPHLCL.BoolVal;
 import org.xtext.cPHLCL.CPHLCLFactory;
 import org.xtext.cPHLCL.CPHLCLPackage;
-import org.xtext.cPHLCL.ComplexTerm;
+import org.xtext.cPHLCL.Comparison;
 import org.xtext.cPHLCL.Constraint;
-import org.xtext.cPHLCL.Control;
 import org.xtext.cPHLCL.DomainDeclaration;
 import org.xtext.cPHLCL.Enumeration;
+import org.xtext.cPHLCL.Equality;
 import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Function;
 import org.xtext.cPHLCL.Global;
-import org.xtext.cPHLCL.IntVar;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
-import org.xtext.cPHLCL.ListOfEnumerables;
 import org.xtext.cPHLCL.ListOfIDs;
 import org.xtext.cPHLCL.ListOfValues;
-import org.xtext.cPHLCL.Logic;
-import org.xtext.cPHLCL.LogicUn;
+import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.NumExpression;
+import org.xtext.cPHLCL.MulOrDiv;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.NonEnumerableValue;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Plus;
 import org.xtext.cPHLCL.Relational;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Symbol;
+import org.xtext.cPHLCL.Unary;
+import org.xtext.cPHLCL.Value;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +63,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass varDeclarationEClass = null;
+  private EClass variableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,49 +105,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass boolExpressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass complexTermEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass logicEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass logicUnEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass relationalEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass numExpressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass arithmeticEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -153,21 +119,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass controlEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass boolEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass boolVarEClass = null;
+  private EClass boolValEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -181,7 +133,21 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass intVarEClass = null;
+  private EClass symbolEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass valueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass nonEnumerableValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -195,14 +161,112 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass listOfEnumerablesEClass = null;
+  private EClass listOfIDsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass listOfIDsEClass = null;
+  private EClass iffEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass impliesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass andEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equalityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass comparisonEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass plusEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass minusEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mulOrDivEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass negationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unaryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boolConstantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass variableRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intConstantEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -292,7 +356,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Vars()
+  public EReference getModel_Variables()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
@@ -322,9 +386,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getVarDeclaration()
+  public EClass getVariable()
   {
-    return varDeclarationEClass;
+    return variableEClass;
   }
 
   /**
@@ -332,9 +396,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Type()
+  public EAttribute getVariable_Type()
   {
-    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -342,9 +406,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Name()
+  public EAttribute getVariable_Name()
   {
-    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)variableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -352,9 +416,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVarDeclaration_Domain()
+  public EReference getVariable_Domain()
   {
-    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(2);
+    return (EReference)variableEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -382,9 +446,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInterval_Start()
+  public EReference getInterval_Start()
   {
-    return (EAttribute)intervalEClass.getEStructuralFeatures().get(0);
+    return (EReference)intervalEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -392,9 +456,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInterval_End()
+  public EReference getInterval_End()
   {
-    return (EAttribute)intervalEClass.getEStructuralFeatures().get(1);
+    return (EReference)intervalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -462,179 +526,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBoolExpression()
-  {
-    return boolExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getComplexTerm()
-  {
-    return complexTermEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getLogic()
-  {
-    return logicEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getLogic_LogicLeft()
-  {
-    return (EReference)logicEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getLogic_LogicOp()
-  {
-    return (EAttribute)logicEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getLogic_LogicRight()
-  {
-    return (EReference)logicEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getLogicUn()
-  {
-    return logicUnEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getLogicUn_LogicOp()
-  {
-    return (EAttribute)logicUnEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getLogicUn_Exp()
-  {
-    return (EReference)logicUnEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getRelational()
   {
     return relationalEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getRelational_RelationalLeft()
-  {
-    return (EReference)relationalEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getRelational_RelationalOp()
-  {
-    return (EAttribute)relationalEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getRelational_RelationalRight()
-  {
-    return (EReference)relationalEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getNumExpression()
-  {
-    return numExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getArithmetic()
-  {
-    return arithmeticEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getArithmetic_Left()
-  {
-    return (EReference)arithmeticEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getArithmetic_ArithOperator()
-  {
-    return (EAttribute)arithmeticEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getArithmetic_Right()
-  {
-    return (EReference)arithmeticEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -672,79 +566,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getControl()
+  public EClass getBoolVal()
   {
-    return controlEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getControl_Cond()
-  {
-    return (EReference)controlEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getControl_TrueStatement()
-  {
-    return (EReference)controlEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getControl_ElseStatement()
-  {
-    return (EReference)controlEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBool()
-  {
-    return boolEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getBool_Val()
-  {
-    return (EAttribute)boolEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBoolVar()
-  {
-    return boolVarEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getBoolVar_Id()
-  {
-    return (EAttribute)boolVarEClass.getEStructuralFeatures().get(0);
+    return boolValEClass;
   }
 
   /**
@@ -762,7 +586,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumber_Num()
+  public EAttribute getNumber_Value()
   {
     return (EAttribute)numberEClass.getEStructuralFeatures().get(0);
   }
@@ -772,9 +596,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getIntVar()
+  public EClass getSymbol()
   {
-    return intVarEClass;
+    return symbolEClass;
   }
 
   /**
@@ -782,9 +606,29 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getIntVar_Id()
+  public EClass getValue()
   {
-    return (EAttribute)intVarEClass.getEStructuralFeatures().get(0);
+    return valueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNonEnumerableValue()
+  {
+    return nonEnumerableValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNonEnumerableValue_Value()
+  {
+    return (EAttribute)nonEnumerableValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -802,29 +646,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getListOfValues_Values()
+  public EReference getListOfValues_Values()
   {
-    return (EAttribute)listOfValuesEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getListOfEnumerables()
-  {
-    return listOfEnumerablesEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getListOfEnumerables_Values()
-  {
-    return (EAttribute)listOfEnumerablesEClass.getEStructuralFeatures().get(0);
+    return (EReference)listOfValuesEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -845,6 +669,456 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
   public EAttribute getListOfIDs_Ids()
   {
     return (EAttribute)listOfIDsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIff()
+  {
+    return iffEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIff_Left()
+  {
+    return (EReference)iffEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIff_Right()
+  {
+    return (EReference)iffEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplies()
+  {
+    return impliesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplies_Left()
+  {
+    return (EReference)impliesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplies_Right()
+  {
+    return (EReference)impliesEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOr()
+  {
+    return orEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOr_Left()
+  {
+    return (EReference)orEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOr_Right()
+  {
+    return (EReference)orEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnd()
+  {
+    return andEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnd_Left()
+  {
+    return (EReference)andEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnd_Right()
+  {
+    return (EReference)andEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEquality()
+  {
+    return equalityEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEquality_Left()
+  {
+    return (EReference)equalityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEquality_Op()
+  {
+    return (EAttribute)equalityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEquality_Right()
+  {
+    return (EReference)equalityEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getComparison()
+  {
+    return comparisonEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getComparison_Left()
+  {
+    return (EReference)comparisonEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getComparison_Op()
+  {
+    return (EAttribute)comparisonEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getComparison_Right()
+  {
+    return (EReference)comparisonEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPlus()
+  {
+    return plusEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPlus_Left()
+  {
+    return (EReference)plusEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPlus_Right()
+  {
+    return (EReference)plusEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMinus()
+  {
+    return minusEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMinus_Left()
+  {
+    return (EReference)minusEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMinus_Right()
+  {
+    return (EReference)minusEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMulOrDiv()
+  {
+    return mulOrDivEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMulOrDiv_Left()
+  {
+    return (EReference)mulOrDivEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMulOrDiv_Op()
+  {
+    return (EAttribute)mulOrDivEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMulOrDiv_Right()
+  {
+    return (EReference)mulOrDivEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNegation()
+  {
+    return negationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNegation_Expression()
+  {
+    return (EReference)negationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnary()
+  {
+    return unaryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnary_Op()
+  {
+    return (EAttribute)unaryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnary_Expression()
+  {
+    return (EReference)unaryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFunction()
+  {
+    return functionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunction_Op()
+  {
+    return (EAttribute)functionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFunction_Left()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFunction_Right()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBoolConstant()
+  {
+    return boolConstantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBoolConstant_Value()
+  {
+    return (EAttribute)boolConstantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVariableRef()
+  {
+    return variableRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getVariableRef_Variable()
+  {
+    return (EReference)variableRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIntConstant()
+  {
+    return intConstantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIntConstant_Value()
+  {
+    return (EAttribute)intConstantEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -879,20 +1153,20 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
     // Create classes and their features
     modelEClass = createEClass(MODEL);
     createEAttribute(modelEClass, MODEL__NAME);
-    createEReference(modelEClass, MODEL__VARS);
+    createEReference(modelEClass, MODEL__VARIABLES);
     createEReference(modelEClass, MODEL__CONSTRAINTS);
     createEAttribute(modelEClass, MODEL__STRATEGY);
 
-    varDeclarationEClass = createEClass(VAR_DECLARATION);
-    createEAttribute(varDeclarationEClass, VAR_DECLARATION__TYPE);
-    createEAttribute(varDeclarationEClass, VAR_DECLARATION__NAME);
-    createEReference(varDeclarationEClass, VAR_DECLARATION__DOMAIN);
+    variableEClass = createEClass(VARIABLE);
+    createEAttribute(variableEClass, VARIABLE__TYPE);
+    createEAttribute(variableEClass, VARIABLE__NAME);
+    createEReference(variableEClass, VARIABLE__DOMAIN);
 
     domainDeclarationEClass = createEClass(DOMAIN_DECLARATION);
 
     intervalEClass = createEClass(INTERVAL);
-    createEAttribute(intervalEClass, INTERVAL__START);
-    createEAttribute(intervalEClass, INTERVAL__END);
+    createEReference(intervalEClass, INTERVAL__START);
+    createEReference(intervalEClass, INTERVAL__END);
 
     enumerationEClass = createEClass(ENUMERATION);
     createEReference(enumerationEClass, ENUMERATION__LIST);
@@ -903,60 +1177,89 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
 
     expressionEClass = createEClass(EXPRESSION);
 
-    boolExpressionEClass = createEClass(BOOL_EXPRESSION);
-
-    complexTermEClass = createEClass(COMPLEX_TERM);
-
-    logicEClass = createEClass(LOGIC);
-    createEReference(logicEClass, LOGIC__LOGIC_LEFT);
-    createEAttribute(logicEClass, LOGIC__LOGIC_OP);
-    createEReference(logicEClass, LOGIC__LOGIC_RIGHT);
-
-    logicUnEClass = createEClass(LOGIC_UN);
-    createEAttribute(logicUnEClass, LOGIC_UN__LOGIC_OP);
-    createEReference(logicUnEClass, LOGIC_UN__EXP);
-
     relationalEClass = createEClass(RELATIONAL);
-    createEReference(relationalEClass, RELATIONAL__RELATIONAL_LEFT);
-    createEAttribute(relationalEClass, RELATIONAL__RELATIONAL_OP);
-    createEReference(relationalEClass, RELATIONAL__RELATIONAL_RIGHT);
-
-    numExpressionEClass = createEClass(NUM_EXPRESSION);
-
-    arithmeticEClass = createEClass(ARITHMETIC);
-    createEReference(arithmeticEClass, ARITHMETIC__LEFT);
-    createEAttribute(arithmeticEClass, ARITHMETIC__ARITH_OPERATOR);
-    createEReference(arithmeticEClass, ARITHMETIC__RIGHT);
 
     globalEClass = createEClass(GLOBAL);
     createEAttribute(globalEClass, GLOBAL__OP);
     createEReference(globalEClass, GLOBAL__VARS);
 
-    controlEClass = createEClass(CONTROL);
-    createEReference(controlEClass, CONTROL__COND);
-    createEReference(controlEClass, CONTROL__TRUE_STATEMENT);
-    createEReference(controlEClass, CONTROL__ELSE_STATEMENT);
-
-    boolEClass = createEClass(BOOL);
-    createEAttribute(boolEClass, BOOL__VAL);
-
-    boolVarEClass = createEClass(BOOL_VAR);
-    createEAttribute(boolVarEClass, BOOL_VAR__ID);
+    boolValEClass = createEClass(BOOL_VAL);
 
     numberEClass = createEClass(NUMBER);
-    createEAttribute(numberEClass, NUMBER__NUM);
+    createEAttribute(numberEClass, NUMBER__VALUE);
 
-    intVarEClass = createEClass(INT_VAR);
-    createEAttribute(intVarEClass, INT_VAR__ID);
+    symbolEClass = createEClass(SYMBOL);
+
+    valueEClass = createEClass(VALUE);
+
+    nonEnumerableValueEClass = createEClass(NON_ENUMERABLE_VALUE);
+    createEAttribute(nonEnumerableValueEClass, NON_ENUMERABLE_VALUE__VALUE);
 
     listOfValuesEClass = createEClass(LIST_OF_VALUES);
-    createEAttribute(listOfValuesEClass, LIST_OF_VALUES__VALUES);
-
-    listOfEnumerablesEClass = createEClass(LIST_OF_ENUMERABLES);
-    createEAttribute(listOfEnumerablesEClass, LIST_OF_ENUMERABLES__VALUES);
+    createEReference(listOfValuesEClass, LIST_OF_VALUES__VALUES);
 
     listOfIDsEClass = createEClass(LIST_OF_IDS);
     createEAttribute(listOfIDsEClass, LIST_OF_IDS__IDS);
+
+    iffEClass = createEClass(IFF);
+    createEReference(iffEClass, IFF__LEFT);
+    createEReference(iffEClass, IFF__RIGHT);
+
+    impliesEClass = createEClass(IMPLIES);
+    createEReference(impliesEClass, IMPLIES__LEFT);
+    createEReference(impliesEClass, IMPLIES__RIGHT);
+
+    orEClass = createEClass(OR);
+    createEReference(orEClass, OR__LEFT);
+    createEReference(orEClass, OR__RIGHT);
+
+    andEClass = createEClass(AND);
+    createEReference(andEClass, AND__LEFT);
+    createEReference(andEClass, AND__RIGHT);
+
+    equalityEClass = createEClass(EQUALITY);
+    createEReference(equalityEClass, EQUALITY__LEFT);
+    createEAttribute(equalityEClass, EQUALITY__OP);
+    createEReference(equalityEClass, EQUALITY__RIGHT);
+
+    comparisonEClass = createEClass(COMPARISON);
+    createEReference(comparisonEClass, COMPARISON__LEFT);
+    createEAttribute(comparisonEClass, COMPARISON__OP);
+    createEReference(comparisonEClass, COMPARISON__RIGHT);
+
+    plusEClass = createEClass(PLUS);
+    createEReference(plusEClass, PLUS__LEFT);
+    createEReference(plusEClass, PLUS__RIGHT);
+
+    minusEClass = createEClass(MINUS);
+    createEReference(minusEClass, MINUS__LEFT);
+    createEReference(minusEClass, MINUS__RIGHT);
+
+    mulOrDivEClass = createEClass(MUL_OR_DIV);
+    createEReference(mulOrDivEClass, MUL_OR_DIV__LEFT);
+    createEAttribute(mulOrDivEClass, MUL_OR_DIV__OP);
+    createEReference(mulOrDivEClass, MUL_OR_DIV__RIGHT);
+
+    negationEClass = createEClass(NEGATION);
+    createEReference(negationEClass, NEGATION__EXPRESSION);
+
+    unaryEClass = createEClass(UNARY);
+    createEAttribute(unaryEClass, UNARY__OP);
+    createEReference(unaryEClass, UNARY__EXPRESSION);
+
+    functionEClass = createEClass(FUNCTION);
+    createEAttribute(functionEClass, FUNCTION__OP);
+    createEReference(functionEClass, FUNCTION__LEFT);
+    createEReference(functionEClass, FUNCTION__RIGHT);
+
+    boolConstantEClass = createEClass(BOOL_CONSTANT);
+    createEAttribute(boolConstantEClass, BOOL_CONSTANT__VALUE);
+
+    variableRefEClass = createEClass(VARIABLE_REF);
+    createEReference(variableRefEClass, VARIABLE_REF__VARIABLE);
+
+    intConstantEClass = createEClass(INT_CONSTANT);
+    createEAttribute(intConstantEClass, INT_CONSTANT__VALUE);
   }
 
   /**
@@ -990,36 +1293,45 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
     // Add supertypes to classes
     intervalEClass.getESuperTypes().add(this.getDomainDeclaration());
     enumerationEClass.getESuperTypes().add(this.getDomainDeclaration());
-    complexTermEClass.getESuperTypes().add(this.getBoolExpression());
-    logicEClass.getESuperTypes().add(this.getExpression());
-    logicEClass.getESuperTypes().add(this.getComplexTerm());
-    logicUnEClass.getESuperTypes().add(this.getComplexTerm());
     relationalEClass.getESuperTypes().add(this.getExpression());
-    relationalEClass.getESuperTypes().add(this.getComplexTerm());
-    arithmeticEClass.getESuperTypes().add(this.getNumExpression());
     globalEClass.getESuperTypes().add(this.getExpression());
-    controlEClass.getESuperTypes().add(this.getExpression());
-    boolVarEClass.getESuperTypes().add(this.getBoolExpression());
-    numberEClass.getESuperTypes().add(this.getNumExpression());
-    intVarEClass.getESuperTypes().add(this.getNumExpression());
+    boolValEClass.getESuperTypes().add(this.getNonEnumerableValue());
+    numberEClass.getESuperTypes().add(this.getValue());
+    symbolEClass.getESuperTypes().add(this.getNonEnumerableValue());
+    nonEnumerableValueEClass.getESuperTypes().add(this.getValue());
+    iffEClass.getESuperTypes().add(this.getRelational());
+    impliesEClass.getESuperTypes().add(this.getRelational());
+    orEClass.getESuperTypes().add(this.getRelational());
+    andEClass.getESuperTypes().add(this.getRelational());
+    equalityEClass.getESuperTypes().add(this.getRelational());
+    comparisonEClass.getESuperTypes().add(this.getRelational());
+    plusEClass.getESuperTypes().add(this.getRelational());
+    minusEClass.getESuperTypes().add(this.getRelational());
+    mulOrDivEClass.getESuperTypes().add(this.getRelational());
+    negationEClass.getESuperTypes().add(this.getRelational());
+    unaryEClass.getESuperTypes().add(this.getRelational());
+    functionEClass.getESuperTypes().add(this.getRelational());
+    boolConstantEClass.getESuperTypes().add(this.getRelational());
+    variableRefEClass.getESuperTypes().add(this.getRelational());
+    intConstantEClass.getESuperTypes().add(this.getRelational());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Vars(), this.getVarDeclaration(), null, "vars", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Variables(), this.getVariable(), null, "variables", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModel_Strategy(), ecorePackage.getEString(), "strategy", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(varDeclarationEClass, VarDeclaration.class, "VarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVarDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVarDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVarDeclaration_Domain(), this.getDomainDeclaration(), null, "domain", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariable_Type(), ecorePackage.getEString(), "type", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariable_Domain(), this.getDomainDeclaration(), null, "domain", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(domainDeclarationEClass, DomainDeclaration.class, "DomainDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intervalEClass, Interval.class, "Interval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInterval_Start(), ecorePackage.getEString(), "start", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getInterval_End(), ecorePackage.getEString(), "end", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInterval_Start(), this.getNumber(), null, "start", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInterval_End(), this.getNumber(), null, "end", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumerationEClass, Enumeration.class, "Enumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumeration_List(), this.getListOfValues(), null, "list", null, 0, 1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1030,60 +1342,89 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(boolExpressionEClass, BoolExpression.class, "BoolExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(complexTermEClass, ComplexTerm.class, "ComplexTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(logicEClass, Logic.class, "Logic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLogic_LogicLeft(), this.getBoolExpression(), null, "logicLeft", null, 0, 1, Logic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLogic_LogicOp(), ecorePackage.getEString(), "logicOp", null, 0, 1, Logic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLogic_LogicRight(), this.getBoolExpression(), null, "logicRight", null, 0, 1, Logic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(logicUnEClass, LogicUn.class, "LogicUn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLogicUn_LogicOp(), ecorePackage.getEString(), "logicOp", null, 0, 1, LogicUn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLogicUn_Exp(), this.getBoolExpression(), null, "exp", null, 0, 1, LogicUn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(relationalEClass, Relational.class, "Relational", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelational_RelationalLeft(), this.getNumExpression(), null, "relationalLeft", null, 0, 1, Relational.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelational_RelationalOp(), ecorePackage.getEString(), "relationalOp", null, 0, 1, Relational.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelational_RelationalRight(), this.getNumExpression(), null, "relationalRight", null, 0, 1, Relational.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(numExpressionEClass, NumExpression.class, "NumExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(arithmeticEClass, Arithmetic.class, "Arithmetic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArithmetic_Left(), this.getNumExpression(), null, "left", null, 0, 1, Arithmetic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getArithmetic_ArithOperator(), ecorePackage.getEString(), "arithOperator", null, 0, 1, Arithmetic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArithmetic_Right(), this.getNumExpression(), null, "right", null, 0, 1, Arithmetic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(globalEClass, Global.class, "Global", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGlobal_Op(), ecorePackage.getEString(), "op", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGlobal_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(controlEClass, Control.class, "Control", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getControl_Cond(), this.getBoolExpression(), null, "cond", null, 0, 1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getControl_TrueStatement(), this.getExpression(), null, "trueStatement", null, 0, 1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getControl_ElseStatement(), this.getExpression(), null, "elseStatement", null, 0, 1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(boolEClass, Bool.class, "Bool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBool_Val(), ecorePackage.getEString(), "val", null, 0, 1, Bool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(boolVarEClass, BoolVar.class, "BoolVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBoolVar_Id(), ecorePackage.getEString(), "id", null, 0, 1, BoolVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(boolValEClass, BoolVal.class, "BoolVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(numberEClass, org.xtext.cPHLCL.Number.class, "Number", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumber_Num(), ecorePackage.getEInt(), "num", null, 0, 1, org.xtext.cPHLCL.Number.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNumber_Value(), ecorePackage.getEInt(), "value", null, 0, 1, org.xtext.cPHLCL.Number.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(intVarEClass, IntVar.class, "IntVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIntVar_Id(), ecorePackage.getEString(), "id", null, 0, 1, IntVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(symbolEClass, Symbol.class, "Symbol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(nonEnumerableValueEClass, NonEnumerableValue.class, "NonEnumerableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNonEnumerableValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, NonEnumerableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getListOfValues_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(listOfEnumerablesEClass, ListOfEnumerables.class, "ListOfEnumerables", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getListOfEnumerables_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfEnumerables.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getListOfValues_Values(), this.getValue(), null, "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfIDsEClass, ListOfIDs.class, "ListOfIDs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getListOfIDs_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, ListOfIDs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(iffEClass, Iff.class, "Iff", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIff_Left(), this.getRelational(), null, "left", null, 0, 1, Iff.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIff_Right(), this.getRelational(), null, "right", null, 0, 1, Iff.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(impliesEClass, Implies.class, "Implies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplies_Left(), this.getRelational(), null, "left", null, 0, 1, Implies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplies_Right(), this.getRelational(), null, "right", null, 0, 1, Implies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOr_Left(), this.getRelational(), null, "left", null, 0, 1, Or.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOr_Right(), this.getRelational(), null, "right", null, 0, 1, Or.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(andEClass, And.class, "And", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAnd_Left(), this.getRelational(), null, "left", null, 0, 1, And.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnd_Right(), this.getRelational(), null, "right", null, 0, 1, And.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equalityEClass, Equality.class, "Equality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEquality_Left(), this.getRelational(), null, "left", null, 0, 1, Equality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEquality_Op(), ecorePackage.getEString(), "op", null, 0, 1, Equality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEquality_Right(), this.getRelational(), null, "right", null, 0, 1, Equality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(comparisonEClass, Comparison.class, "Comparison", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getComparison_Left(), this.getRelational(), null, "left", null, 0, 1, Comparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getComparison_Op(), ecorePackage.getEString(), "op", null, 0, 1, Comparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComparison_Right(), this.getRelational(), null, "right", null, 0, 1, Comparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(plusEClass, Plus.class, "Plus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPlus_Left(), this.getRelational(), null, "left", null, 0, 1, Plus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPlus_Right(), this.getRelational(), null, "right", null, 0, 1, Plus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(minusEClass, Minus.class, "Minus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMinus_Left(), this.getRelational(), null, "left", null, 0, 1, Minus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMinus_Right(), this.getRelational(), null, "right", null, 0, 1, Minus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mulOrDivEClass, MulOrDiv.class, "MulOrDiv", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMulOrDiv_Left(), this.getRelational(), null, "left", null, 0, 1, MulOrDiv.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMulOrDiv_Op(), ecorePackage.getEString(), "op", null, 0, 1, MulOrDiv.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMulOrDiv_Right(), this.getRelational(), null, "right", null, 0, 1, MulOrDiv.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(negationEClass, Negation.class, "Negation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNegation_Expression(), this.getRelational(), null, "expression", null, 0, 1, Negation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unaryEClass, Unary.class, "Unary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnary_Op(), ecorePackage.getEString(), "op", null, 0, 1, Unary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnary_Expression(), this.getRelational(), null, "expression", null, 0, 1, Unary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFunction_Op(), ecorePackage.getEString(), "op", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_Left(), this.getRelational(), null, "left", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_Right(), this.getRelational(), null, "right", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(boolConstantEClass, BoolConstant.class, "BoolConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBoolConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, BoolConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variableRefEClass, VariableRef.class, "VariableRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getVariableRef_Variable(), this.getVariable(), null, "variable", null, 0, 1, VariableRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intConstantEClass, IntConstant.class, "IntConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntConstant_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

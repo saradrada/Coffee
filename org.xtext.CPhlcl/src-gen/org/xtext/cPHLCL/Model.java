@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.cPHLCL.Model#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.cPHLCL.Model#getVars <em>Vars</em>}</li>
+ *   <li>{@link org.xtext.cPHLCL.Model#getVariables <em>Variables</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.Model#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.Model#getStrategy <em>Strategy</em>}</li>
  * </ul>
@@ -55,20 +55,20 @@ public interface Model extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Vars</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.cPHLCL.VarDeclaration}.
+   * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.cPHLCL.Variable}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Vars</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Vars</em>' containment reference list.
-   * @see org.xtext.cPHLCL.CPHLCLPackage#getModel_Vars()
+   * @return the value of the '<em>Variables</em>' containment reference list.
+   * @see org.xtext.cPHLCL.CPHLCLPackage#getModel_Variables()
    * @model containment="true"
    * @generated
    */
-  EList<VarDeclaration> getVars();
+  EList<Variable> getVariables();
 
   /**
    * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.

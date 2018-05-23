@@ -10,29 +10,37 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.xtext.cPHLCL.Arithmetic;
-import org.xtext.cPHLCL.Bool;
-import org.xtext.cPHLCL.BoolExpression;
-import org.xtext.cPHLCL.BoolVar;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.BoolConstant;
+import org.xtext.cPHLCL.BoolVal;
 import org.xtext.cPHLCL.CPHLCLPackage;
-import org.xtext.cPHLCL.ComplexTerm;
+import org.xtext.cPHLCL.Comparison;
 import org.xtext.cPHLCL.Constraint;
-import org.xtext.cPHLCL.Control;
 import org.xtext.cPHLCL.DomainDeclaration;
 import org.xtext.cPHLCL.Enumeration;
+import org.xtext.cPHLCL.Equality;
 import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Function;
 import org.xtext.cPHLCL.Global;
-import org.xtext.cPHLCL.IntVar;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
-import org.xtext.cPHLCL.ListOfEnumerables;
 import org.xtext.cPHLCL.ListOfIDs;
 import org.xtext.cPHLCL.ListOfValues;
-import org.xtext.cPHLCL.Logic;
-import org.xtext.cPHLCL.LogicUn;
+import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.NumExpression;
+import org.xtext.cPHLCL.MulOrDiv;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.NonEnumerableValue;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Plus;
 import org.xtext.cPHLCL.Relational;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Symbol;
+import org.xtext.cPHLCL.Unary;
+import org.xtext.cPHLCL.Value;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,9 +111,9 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseVarDeclaration(VarDeclaration object)
+      public Adapter caseVariable(Variable object)
       {
-        return createVarDeclarationAdapter();
+        return createVariableAdapter();
       }
       @Override
       public Adapter caseDomainDeclaration(DomainDeclaration object)
@@ -133,39 +141,9 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseBoolExpression(BoolExpression object)
-      {
-        return createBoolExpressionAdapter();
-      }
-      @Override
-      public Adapter caseComplexTerm(ComplexTerm object)
-      {
-        return createComplexTermAdapter();
-      }
-      @Override
-      public Adapter caseLogic(Logic object)
-      {
-        return createLogicAdapter();
-      }
-      @Override
-      public Adapter caseLogicUn(LogicUn object)
-      {
-        return createLogicUnAdapter();
-      }
-      @Override
       public Adapter caseRelational(Relational object)
       {
         return createRelationalAdapter();
-      }
-      @Override
-      public Adapter caseNumExpression(NumExpression object)
-      {
-        return createNumExpressionAdapter();
-      }
-      @Override
-      public Adapter caseArithmetic(Arithmetic object)
-      {
-        return createArithmeticAdapter();
       }
       @Override
       public Adapter caseGlobal(Global object)
@@ -173,19 +151,9 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
         return createGlobalAdapter();
       }
       @Override
-      public Adapter caseControl(Control object)
+      public Adapter caseBoolVal(BoolVal object)
       {
-        return createControlAdapter();
-      }
-      @Override
-      public Adapter caseBool(Bool object)
-      {
-        return createBoolAdapter();
-      }
-      @Override
-      public Adapter caseBoolVar(BoolVar object)
-      {
-        return createBoolVarAdapter();
+        return createBoolValAdapter();
       }
       @Override
       public Adapter caseNumber(org.xtext.cPHLCL.Number object)
@@ -193,9 +161,19 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
         return createNumberAdapter();
       }
       @Override
-      public Adapter caseIntVar(IntVar object)
+      public Adapter caseSymbol(Symbol object)
       {
-        return createIntVarAdapter();
+        return createSymbolAdapter();
+      }
+      @Override
+      public Adapter caseValue(Value object)
+      {
+        return createValueAdapter();
+      }
+      @Override
+      public Adapter caseNonEnumerableValue(NonEnumerableValue object)
+      {
+        return createNonEnumerableValueAdapter();
       }
       @Override
       public Adapter caseListOfValues(ListOfValues object)
@@ -203,14 +181,84 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
         return createListOfValuesAdapter();
       }
       @Override
-      public Adapter caseListOfEnumerables(ListOfEnumerables object)
-      {
-        return createListOfEnumerablesAdapter();
-      }
-      @Override
       public Adapter caseListOfIDs(ListOfIDs object)
       {
         return createListOfIDsAdapter();
+      }
+      @Override
+      public Adapter caseIff(Iff object)
+      {
+        return createIffAdapter();
+      }
+      @Override
+      public Adapter caseImplies(Implies object)
+      {
+        return createImpliesAdapter();
+      }
+      @Override
+      public Adapter caseOr(Or object)
+      {
+        return createOrAdapter();
+      }
+      @Override
+      public Adapter caseAnd(And object)
+      {
+        return createAndAdapter();
+      }
+      @Override
+      public Adapter caseEquality(Equality object)
+      {
+        return createEqualityAdapter();
+      }
+      @Override
+      public Adapter caseComparison(Comparison object)
+      {
+        return createComparisonAdapter();
+      }
+      @Override
+      public Adapter casePlus(Plus object)
+      {
+        return createPlusAdapter();
+      }
+      @Override
+      public Adapter caseMinus(Minus object)
+      {
+        return createMinusAdapter();
+      }
+      @Override
+      public Adapter caseMulOrDiv(MulOrDiv object)
+      {
+        return createMulOrDivAdapter();
+      }
+      @Override
+      public Adapter caseNegation(Negation object)
+      {
+        return createNegationAdapter();
+      }
+      @Override
+      public Adapter caseUnary(Unary object)
+      {
+        return createUnaryAdapter();
+      }
+      @Override
+      public Adapter caseFunction(Function object)
+      {
+        return createFunctionAdapter();
+      }
+      @Override
+      public Adapter caseBoolConstant(BoolConstant object)
+      {
+        return createBoolConstantAdapter();
+      }
+      @Override
+      public Adapter caseVariableRef(VariableRef object)
+      {
+        return createVariableRefAdapter();
+      }
+      @Override
+      public Adapter caseIntConstant(IntConstant object)
+      {
+        return createIntConstantAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -250,16 +298,16 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.VarDeclaration <em>Var Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.cPHLCL.VarDeclaration
+   * @see org.xtext.cPHLCL.Variable
    * @generated
    */
-  public Adapter createVarDeclarationAdapter()
+  public Adapter createVariableAdapter()
   {
     return null;
   }
@@ -340,66 +388,6 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.BoolExpression <em>Bool Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.BoolExpression
-   * @generated
-   */
-  public Adapter createBoolExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.ComplexTerm <em>Complex Term</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.ComplexTerm
-   * @generated
-   */
-  public Adapter createComplexTermAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Logic <em>Logic</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.Logic
-   * @generated
-   */
-  public Adapter createLogicAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.LogicUn <em>Logic Un</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.LogicUn
-   * @generated
-   */
-  public Adapter createLogicUnAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Relational <em>Relational</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -410,36 +398,6 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRelationalAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.NumExpression <em>Num Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.NumExpression
-   * @generated
-   */
-  public Adapter createNumExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Arithmetic <em>Arithmetic</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.Arithmetic
-   * @generated
-   */
-  public Adapter createArithmeticAdapter()
   {
     return null;
   }
@@ -460,46 +418,16 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Control <em>Control</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.BoolVal <em>Bool Val</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.cPHLCL.Control
+   * @see org.xtext.cPHLCL.BoolVal
    * @generated
    */
-  public Adapter createControlAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Bool <em>Bool</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.Bool
-   * @generated
-   */
-  public Adapter createBoolAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.BoolVar <em>Bool Var</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.BoolVar
-   * @generated
-   */
-  public Adapter createBoolVarAdapter()
+  public Adapter createBoolValAdapter()
   {
     return null;
   }
@@ -520,16 +448,46 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.IntVar <em>Int Var</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Symbol <em>Symbol</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.cPHLCL.IntVar
+   * @see org.xtext.cPHLCL.Symbol
    * @generated
    */
-  public Adapter createIntVarAdapter()
+  public Adapter createSymbolAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Value <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Value
+   * @generated
+   */
+  public Adapter createValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.NonEnumerableValue <em>Non Enumerable Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.NonEnumerableValue
+   * @generated
+   */
+  public Adapter createNonEnumerableValueAdapter()
   {
     return null;
   }
@@ -550,21 +508,6 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.ListOfEnumerables <em>List Of Enumerables</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.cPHLCL.ListOfEnumerables
-   * @generated
-   */
-  public Adapter createListOfEnumerablesAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.ListOfIDs <em>List Of IDs</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -575,6 +518,231 @@ public class CPHLCLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfIDsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Iff <em>Iff</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Iff
+   * @generated
+   */
+  public Adapter createIffAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Implies <em>Implies</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Implies
+   * @generated
+   */
+  public Adapter createImpliesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Or <em>Or</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Or
+   * @generated
+   */
+  public Adapter createOrAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.And <em>And</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.And
+   * @generated
+   */
+  public Adapter createAndAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Equality <em>Equality</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Equality
+   * @generated
+   */
+  public Adapter createEqualityAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Comparison <em>Comparison</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Comparison
+   * @generated
+   */
+  public Adapter createComparisonAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Plus <em>Plus</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Plus
+   * @generated
+   */
+  public Adapter createPlusAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Minus <em>Minus</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Minus
+   * @generated
+   */
+  public Adapter createMinusAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.MulOrDiv <em>Mul Or Div</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.MulOrDiv
+   * @generated
+   */
+  public Adapter createMulOrDivAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Negation <em>Negation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Negation
+   * @generated
+   */
+  public Adapter createNegationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Unary <em>Unary</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Unary
+   * @generated
+   */
+  public Adapter createUnaryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.Function <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.Function
+   * @generated
+   */
+  public Adapter createFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.BoolConstant <em>Bool Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.BoolConstant
+   * @generated
+   */
+  public Adapter createBoolConstantAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.VariableRef <em>Variable Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.VariableRef
+   * @generated
+   */
+  public Adapter createVariableRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.cPHLCL.IntConstant <em>Int Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.cPHLCL.IntConstant
+   * @generated
+   */
+  public Adapter createIntConstantAdapter()
   {
     return null;
   }

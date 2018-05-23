@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="org.xtext.cPHLCL.Enumeration" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Enumeration.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="162" x="283" y="1468"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="org.xtext.cPHLCL.Interval" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Interval.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="196" x="485" y="1468"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="org.xtext.cPHLCL.Relational" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Relational.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="229" x="543" y="619"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="org.xtext.cPHLCL.Number" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Number.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="118" x="772" y="2032"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="org.xtext.cPHLCL.Model" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Model.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="211" x="574" y="124"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="org.xtext.cPHLCL.Value" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Value.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="114" x="283" y="1768"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="7" language="java" name="org.xtext.cPHLCL.ListOfValues" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/ListOfValues.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="161" x="283" y="1645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" language="java" name="org.xtext.cPHLCL.Variable" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Variable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="219" x="532" y="1150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" name="org.xtext.cPHLCL.Constraint" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Constraint.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="156" x="563" y="337"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="10" language="java" name="org.xtext.cPHLCL.Symbol" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Symbol.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="114" x="206" y="2032"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="11" language="java" name="org.xtext.cPHLCL.DomainDeclaration" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/DomainDeclaration.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="152" x="485" y="1363"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="12" language="java" name="org.xtext.cPHLCL.ListOfIDs" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/ListOfIDs.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="324" y="432"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="13" language="java" name="org.xtext.cPHLCL.Expression" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Expression.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="114" x="553" y="514"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="14" language="java" name="org.xtext.cPHLCL.BoolVal" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/BoolVal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="114" x="360" y="2032"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="org.xtext.cPHLCL.NonEnumerableValue" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/NonEnumerableValue.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="168" x="283" y="1891"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="org.xtext.cPHLCL.Global" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Global.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="442" y="666"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="org.xtext.cPHLCL.Comparison" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Comparison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="706" y="922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="org.xtext.cPHLCL.Equality" project="org.xtext.CPhlcl" 
+    file="/org.xtext.CPhlcl/src-gen/org/xtext/cPHLCL/Equality.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="487" y="895"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="23">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="33">    
+    <bendpoint x="802" y="337"/>    
+    <bendpoint x="802" y="514"/>    
+    <bendpoint x="802" y="619"/>    
+    <bendpoint x="802" y="832"/>    
+    <bendpoint x="802" y="937"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

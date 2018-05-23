@@ -4,13 +4,13 @@ generate cPHLCL "http://www.xtext.org/CPHLCL"
 
 // A CSP is composed by a set of variables with their domains, a set of constraints and a series of search strategies
 Model:
-	'model' name=ID 'variables:' vars+=(VarDeclaration)+  'constraints:'constraints+=(Constraint)+
-	'strategy:' strategy= Strategy
+	'model' name=ID 'variables:' variables+=(Variable)*  'constraints:'constraints+=(Constraint)*
+	('strategy:' strategy= Strategy)?
 	;
 	
-//VAriables and domains declarations	
-VarDeclaration:
-	type=VarType name=ID  'domain:' domain= DomainDeclaration
+//Variables and domains declarations	
+Variable:
+	type=VarType name=ID  ('domain:' domain= DomainDeclaration)?
 ;
 	
 DomainDeclaration: 
@@ -18,86 +18,78 @@ DomainDeclaration:
 	;
 
 Interval:
-	(start=EnumerableValue) ('..') (end=EnumerableValue)
-	;
-	
+	(start=Number) ('..') (end=Number)
+	;	
 	
 Enumeration:
 	('[') list =  ListOfValues  (']')
 	;
-
-
-
 /**
  * Constraints and constraints declarations
  */
 Constraint:
 	   name=ID ':' exp=Expression 
-	   //|BoolExpression//|Relational|Global
 	   ;
 Expression:
-	//Global|Logic|Relational|Arithmetic|Control
-	Global|Logic|Relational|Control
-	//Global|Logic|Relational|IntegerExp|Arithmetic|Control
-;
-
-//BooleanExpression:
-//	Logic|Relational
-//;
-
-BoolTerm returns BoolExpression:
-	//'('Logic')'|Bool
-	'('ComplexTerm')'| BoolVar 
-;
-ComplexTerm:
-	Logic|Relational|LogicUn
-;
-
-Logic:
-	=> logicLeft=BoolTerm 
-	logicOp=LogicOpBin
-	=> logicRight=BoolTerm
-;
-
-LogicUn:
-	logicOp= LogicOpUn '(' exp=BoolTerm ')' 
-;
-
-
-Relational:
-	 => relationalLeft=NumericTerm 
-	  relationalOp= RelationalOp 
-	  => relationalRight= NumericTerm
-;
+	Relational|Global
+//Global|Logic|Relational|Control
 	
+;
 
+Relational: Iff;
 
-//
-//NumericExpression:
-//	 IntegerExp |Arithmetic
-//	 
-//;
+Iff returns Relational:
+	Implies ({Iff.left = current} "<=>" right=Implies)*
+;
+Implies returns Relational:
+	Or ({Implies.left = current} "=>" right=Or)*
+;
+Or returns Relational:
+	And ({Or.left = current} "OR" right=And)*
+;
 
-NumericTerm returns NumExpression:
-	 //'(' Arithmetic ')' | Number
-	 //'('Arithmetic')' |'(' IntegerExp ')' | Number |IntVar
-	 '('Arithmetic')' | Number |IntVar
-	
-;	
+And returns Relational:
+	Equality ({And.left=current} "AND" right=Equality)*
+;
 
-Arithmetic:
-	 left=NumericTerm
-	arithOperator=ArithmeticOp 
-	 right=NumericTerm
+Equality returns Relational:
+	 Comparison ( {Equality.left=current} op=("="|"!=") right=Comparison)* 
+;
+
+Comparison returns Relational: 
+	PlusOrMinus ( {Comparison.left=current} op=(">="|"<="|">"|"<") right=PlusOrMinus)* 
+;
+
+PlusOrMinus returns Relational:
+	MulOrDiv (
+		({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv
+	)*
 	;
 
-//ArithmeticUn:
-//	
-//;
+MulOrDiv returns Relational: 
+	Primary ( {MulOrDiv.left=current} op=('*'|'/'|'mod') right=Primary)* 
+;
 
-//IntegerExp:
-//	intOperator=IntegerOp '(' values=ListOfEnumerables ')'  
-//	;
+Primary returns Relational:
+	 '(' Relational ')' | 
+	 {Negation} "~"expression=Primary | 
+	 {Unary} op=UnaryOp expression=Primary | 
+	 {Function} op=FunctionOp '('left=Primary ',' right=Primary ')' |
+	 Atomic
+;
+
+//Function returns Relational:
+//	op=FunctionOp '('left=Primary ',' right=Primary ')' 
+//;
+Atomic returns Relational: 
+	{BoolConstant} value=('true'|'false') | 
+	{VariableRef} variable=[Variable]|
+	{IntConstant} value=INT 
+;
+
+
+
+
 	
 /**
  * Global constraints
@@ -109,85 +101,45 @@ Global:
 /*
  * Control statement if-then-else
  */
-Control:
-	'if''('cond=BoolTerm ')' 'then' trueStatement= Expression 'else' elseStatement= Expression 'end_if'
-;
+//Control:
+//	'if''('cond=BoolTerm ')' 'then' trueStatement= Expression 'else' elseStatement= Expression 'end_if'
+//;
 //Strategies
 Strategy:
 	'one'|'two'
 ;
 
-//Terminals and categories
-Bool:
-	val=BoolVal
-;
 
-BoolVal:
-	'true'|'false'
-	;
-BoolVar:
-	id = ID
-;
-Number:
-	num = INT
-;
-IntVar:
-	id = ID
-;
+//Values
+BoolVal: value=('true'|'false');
+Number: value = INT ;
 
-LogicOpBin:
-	'AND'|'OR'|'XOR'|'=>' |'<=>'
-;
-LogicOpUn:
-'NOT'
-;
+Symbol: value= ID;
 
+Value: Number|NonEnumerableValue;	
+//EnumerableValue: Number ;
+NonEnumerableValue:BoolVal|Symbol;
 
-RelationalOp:
-	'>'|'<'|'>='|'<='|'='|'!='
-;
+//Variables
+VarType:
+	 'boolean' |'integer'|'symbolic' ;
 
 GlobalOp:
 	'at_most'|'all_different'
 ;
 
-ArithmeticOp:
-	'+'|'-'|'*'|'/'|'mod'|'pow'|'dist'
+FunctionOp:
+	'pow'|'dist'|'min'|'max'
 ;
-IntegerOp:
-	'abs'|'min'|'max'|'sqrt'
+UnaryOp:
+	'abs'|'sqrt'
 ;
 
-Value:
-	EnumerableValue|NonEnumerableValue
-;	
-EnumerableValue:
-	INT 
-;
-NonEnumerableValue:
-	BoolVal|ID
-;
-//
-
-//Double:
-//	INT'.'INT
-//;
-//
-
-VarType:
-	 'bool' |'integer'|'symbolic' 
-;
-//	
 ListOfValues:
 	values+= Value (',' + values+= Value)*
 	;
-ListOfEnumerables:
-	values+= EnumerableValue (',' + values+= EnumerableValue)*
-	;
-//ListOfNonEnumerables:
-//	values+= NonEnumerableValue (',' + values+= NonEnumerableValue)*
-//	;
+
 ListOfIDs:
 	ids+= (ID)+
 ;
-//	
+

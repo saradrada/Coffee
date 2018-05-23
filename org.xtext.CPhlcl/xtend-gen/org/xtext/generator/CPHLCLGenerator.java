@@ -3,6 +3,7 @@
  */
 package org.xtext.generator;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,24 +14,32 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.xtext.cPHLCL.Arithmetic;
-import org.xtext.cPHLCL.BoolExpression;
-import org.xtext.cPHLCL.BoolVar;
-import org.xtext.cPHLCL.ComplexTerm;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.BoolConstant;
+import org.xtext.cPHLCL.Comparison;
 import org.xtext.cPHLCL.Constraint;
 import org.xtext.cPHLCL.DomainDeclaration;
 import org.xtext.cPHLCL.Enumeration;
+import org.xtext.cPHLCL.Equality;
 import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Function;
 import org.xtext.cPHLCL.Global;
-import org.xtext.cPHLCL.IntVar;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
 import org.xtext.cPHLCL.ListOfIDs;
-import org.xtext.cPHLCL.Logic;
-import org.xtext.cPHLCL.LogicUn;
+import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.NumExpression;
+import org.xtext.cPHLCL.MulOrDiv;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Plus;
 import org.xtext.cPHLCL.Relational;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Unary;
+import org.xtext.cPHLCL.Value;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
 import org.xtext.generator.JavaCodeStrings;
 
 /**
@@ -67,7 +76,6 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.newLine();
     _builder.append(JavaCodeStrings.JAVA_IMPORTS);
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
     _builder.append("//imports for hlcl ");
     _builder.newLine();
     _builder.append(JavaCodeStrings.HLCL_IMPORTS);
@@ -84,7 +92,7 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.append(" ");
     _builder.append(this.modelName);
     _builder.append(" { ");
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append(JavaCodeStrings.CLASS_ATTRIBUTES, "\t");
@@ -96,14 +104,14 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.append("public ");
     _builder.append(this.modelName, "\t");
     _builder.append("(String modelName){ ");
-    _builder.append("\t\t\t\t\t");
+    _builder.append("\t\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append(JavaCodeStrings.CONSTRUCTOR_CODE, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("} ");
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public static void main(String[] args) {");
@@ -157,8 +165,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.append("Var); //including the variable in the map");
     _builder.newLineIfNotEmpty();
     {
-      EList<VarDeclaration> _vars = model.getVars();
-      for(final VarDeclaration c : _vars) {
+      EList<Variable> _variables = model.getVariables();
+      for(final Variable c : _variables) {
         _builder.append("\t\t");
         CharSequence _declareVars = this.declareVars(c);
         _builder.append(_declareVars, "\t\t");
@@ -222,7 +230,7 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     return _builder;
   }
   
-  public CharSequence declareVars(final VarDeclaration variable) {
+  public CharSequence declareVars(final Variable variable) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("//declaring variable ");
     String _name = variable.getName();
@@ -255,7 +263,7 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
   public CharSequence declareDomain(final DomainDeclaration domain, final String type, final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _equals = type.equals("bool");
+      boolean _equals = Objects.equal(type, "boolean");
       if (_equals) {
         _builder.append("  ");
         _builder.append("\t\t\tBinaryDomain ");
@@ -269,11 +277,11 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
             _builder.append("\t\t\t\tRangeDomain ");
             _builder.append(name);
             _builder.append("Dom= new RangeDomain(");
-            String _start = ((Interval)domain).getStart();
-            _builder.append(_start);
+            int _value = ((Interval)domain).getStart().getValue();
+            _builder.append(_value);
             _builder.append(", ");
-            String _end = ((Interval)domain).getEnd();
-            _builder.append(_end);
+            int _value_1 = ((Interval)domain).getEnd().getValue();
+            _builder.append(_value_1);
             _builder.append(");");
             _builder.newLineIfNotEmpty();
           } else {
@@ -290,8 +298,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
                     _builder.append("Dom= new StringDomain();");
                     _builder.newLineIfNotEmpty();
                     {
-                      EList<String> _values = ((Enumeration)domain).getList().getValues();
-                      for(final String e : _values) {
+                      EList<Value> _values = ((Enumeration)domain).getList().getValues();
+                      for(final Value e : _values) {
                         _builder.append("\t\t");
                         _builder.append(name, "\t\t");
                         _builder.append("Dom.add(\"");
@@ -309,12 +317,13 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
                     _builder.append("Dom= new IntervalDomain(); ");
                     _builder.newLineIfNotEmpty();
                     {
-                      EList<String> _values_1 = ((Enumeration)domain).getList().getValues();
-                      for(final String e_1 : _values_1) {
+                      EList<Value> _values_1 = ((Enumeration)domain).getList().getValues();
+                      for(final Value e_1 : _values_1) {
                         _builder.append("\t\t");
                         _builder.append(name, "\t\t");
                         _builder.append("Dom.add(");
-                        _builder.append(e_1, "\t\t");
+                        int _value_2 = ((org.xtext.cPHLCL.Number) e_1).getValue();
+                        _builder.append(_value_2, "\t\t");
                         _builder.append("); ");
                         _builder.append("\t\t\t\t\t\t");
                       }
@@ -350,18 +359,10 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
         _builder.newLineIfNotEmpty();
       } else {
         {
-          if ((exp instanceof Logic)) {
-            CharSequence _declareLogic = this.declareLogic(((Logic)exp), name);
-            _builder.append(_declareLogic);
+          if ((exp instanceof Relational)) {
+            CharSequence _declareRelational = this.declareRelational(((Relational)exp), name);
+            _builder.append(_declareRelational);
             _builder.newLineIfNotEmpty();
-          } else {
-            {
-              if ((exp instanceof Relational)) {
-                CharSequence _declareRelational = this.declareRelational(((Relational)exp), name);
-                _builder.append(_declareRelational);
-                _builder.newLineIfNotEmpty();
-              }
-            }
           }
         }
       }
@@ -411,18 +412,335 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
   
   public CharSequence declareRelational(final Relational exp, final String name) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _declareNumericTerm = this.declareNumericTerm(exp.getRelationalLeft(), (name + "_left"));
-    _builder.append(_declareNumericTerm);
+    _builder.newLine();
+    {
+      if ((exp instanceof BoolConstant)) {
+        {
+          String _value = ((BoolConstant)exp).getValue();
+          boolean _equals = Objects.equal(_value, "true");
+          if (_equals) {
+            _builder.append("NumericIdentifier ");
+            _builder.append(name);
+            _builder.append("=getValue(\"1\");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("NumericIdentifier ");
+            _builder.append(name);
+            _builder.append("=getValue(\"0\");");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      } else {
+        {
+          if ((exp instanceof IntConstant)) {
+            _builder.append("NumericIdentifier ");
+            _builder.append(name);
+            _builder.append(" = getValue(\"");
+            int _value_1 = ((IntConstant)exp).getValue();
+            _builder.append(_value_1);
+            _builder.append("\");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              if ((exp instanceof VariableRef)) {
+                _builder.append("Identifier ");
+                _builder.append(name);
+                _builder.append(" = variables.get(\"");
+                String _name = ((VariableRef)exp).getVariable().getName();
+                _builder.append(_name);
+                _builder.append("\");");
+                _builder.newLineIfNotEmpty();
+              } else {
+                {
+                  if ((exp instanceof Function)) {
+                    CharSequence _declareFunction = this.declareFunction(((Function)exp), name);
+                    _builder.append(_declareFunction);
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    {
+                      if ((exp instanceof Unary)) {
+                        CharSequence _declareUnary = this.declareUnary(((Unary)exp), name);
+                        _builder.append(_declareUnary);
+                        _builder.newLineIfNotEmpty();
+                      } else {
+                        {
+                          if ((exp instanceof Negation)) {
+                            CharSequence _declareNegation = this.declareNegation(((Negation)exp), name);
+                            _builder.append(_declareNegation);
+                            _builder.newLineIfNotEmpty();
+                          } else {
+                            {
+                              if ((exp instanceof MulOrDiv)) {
+                                CharSequence _declareMulOrDiv = this.declareMulOrDiv(((MulOrDiv)exp), name);
+                                _builder.append(_declareMulOrDiv);
+                                _builder.newLineIfNotEmpty();
+                              } else {
+                                {
+                                  if ((exp instanceof Plus)) {
+                                    CharSequence _declarePlus = this.declarePlus(((Plus)exp), name);
+                                    _builder.append(_declarePlus);
+                                    _builder.newLineIfNotEmpty();
+                                  } else {
+                                    {
+                                      if ((exp instanceof Minus)) {
+                                        CharSequence _declareMinus = this.declareMinus(((Minus)exp), name);
+                                        _builder.append(_declareMinus);
+                                        _builder.newLineIfNotEmpty();
+                                      } else {
+                                        {
+                                          if ((exp instanceof Comparison)) {
+                                            CharSequence _declareComparison = this.declareComparison(((Comparison)exp), name);
+                                            _builder.append(_declareComparison);
+                                            _builder.newLineIfNotEmpty();
+                                          } else {
+                                            {
+                                              if ((exp instanceof Equality)) {
+                                                CharSequence _declareEquality = this.declareEquality(((Equality)exp), name);
+                                                _builder.append(_declareEquality);
+                                                _builder.newLineIfNotEmpty();
+                                              } else {
+                                                {
+                                                  if ((exp instanceof And)) {
+                                                    CharSequence _declareAnd = this.declareAnd(((And)exp), name);
+                                                    _builder.append(_declareAnd);
+                                                    _builder.newLineIfNotEmpty();
+                                                  } else {
+                                                    {
+                                                      if ((exp instanceof Or)) {
+                                                        CharSequence _declareOr = this.declareOr(((Or)exp), name);
+                                                        _builder.append(_declareOr);
+                                                        _builder.newLineIfNotEmpty();
+                                                      } else {
+                                                        {
+                                                          if ((exp instanceof Implies)) {
+                                                            CharSequence _declareImplies = this.declareImplies(((Implies)exp), name);
+                                                            _builder.append(_declareImplies);
+                                                            _builder.newLineIfNotEmpty();
+                                                          } else {
+                                                            {
+                                                              if ((exp instanceof Iff)) {
+                                                                CharSequence _declareIff = this.declareIff(((Iff)exp), name);
+                                                                _builder.append(_declareIff);
+                                                                _builder.newLineIfNotEmpty();
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence declareFunction(final Function exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    _builder.append(name);
+    _builder.append(" to be implemented in Variamos HLCL");
     _builder.newLineIfNotEmpty();
-    CharSequence _declareNumericTerm_1 = this.declareNumericTerm(exp.getRelationalRight(), (name + "_right"));
-    _builder.append(_declareNumericTerm_1);
+    return _builder;
+  }
+  
+  public CharSequence declareUnary(final Unary exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// ");
+    _builder.append(name);
+    _builder.append(" to be implemented in Variamos HLCL");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareNegation(final Negation exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getExpression(), (name + "_negation"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=factory.not(");
+    _builder.append(name);
+    _builder.append("_negation);");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareMulOrDiv(final MulOrDiv exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntNumericExpression ");
+    _builder.append(name);
+    _builder.append("=");
+    _builder.newLineIfNotEmpty();
+    {
+      String _op = exp.getOp();
+      boolean _equals = Objects.equal(_op, "*");
+      if (_equals) {
+        _builder.append("factory.prod(");
+        _builder.append(name);
+        _builder.append("_left, ");
+        _builder.append(name);
+        _builder.append("_right);");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          String _op_1 = exp.getOp();
+          boolean _equals_1 = Objects.equal(_op_1, "/");
+          if (_equals_1) {
+            _builder.append("// ");
+            _builder.append(name);
+            _builder.append(" to be implemented in Variamos HLCL");
+            _builder.newLineIfNotEmpty();
+            _builder.append("//factory.div(");
+            _builder.append(name);
+            _builder.append("_left, ");
+            _builder.append(name);
+            _builder.append("_right);");
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              String _op_2 = exp.getOp();
+              boolean _equals_2 = Objects.equal(_op_2, "mod");
+              if (_equals_2) {
+                _builder.append("// ");
+                _builder.append(name);
+                _builder.append(" to be implemented in Variamos HLCL");
+                _builder.newLineIfNotEmpty();
+                _builder.append("//factory.div(");
+                _builder.append(name);
+                _builder.append("_left, ");
+                _builder.append(name);
+                _builder.append("_right);");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence declarePlus(final Plus exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntNumericExpression ");
+    _builder.append(name);
+    _builder.append("=factory.sum(");
+    _builder.append(name);
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareMinus(final Minus exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntNumericExpression ");
+    _builder.append(name);
+    _builder.append("=factory.diff(");
+    _builder.append(name);
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareEquality(final Equality exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
     _builder.newLineIfNotEmpty();
     _builder.append("IntBooleanExpression ");
     _builder.append(name);
     _builder.append("=");
     _builder.newLineIfNotEmpty();
     {
-      boolean _equals = exp.getRelationalOp().equals(">");
+      String _op = exp.getOp();
+      boolean _equals = Objects.equal(_op, "=");
+      if (_equals) {
+        _builder.append("factory.equals(");
+        _builder.append(name);
+        _builder.append("_left, ");
+        _builder.append(name);
+        _builder.append("_right);");
+        _builder.newLineIfNotEmpty();
+      } else {
+        {
+          String _op_1 = exp.getOp();
+          boolean _equals_1 = Objects.equal(_op_1, "!=");
+          if (_equals_1) {
+            _builder.append("factory.notEquals(");
+            _builder.append(name);
+            _builder.append("_left, ");
+            _builder.append(name);
+            _builder.append("_right);");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence declareComparison(final Comparison exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=");
+    _builder.newLineIfNotEmpty();
+    {
+      String _op = exp.getOp();
+      boolean _equals = Objects.equal(_op, ">");
       if (_equals) {
         _builder.append("factory.greaterThan(");
         _builder.append(name);
@@ -432,7 +750,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
         _builder.newLineIfNotEmpty();
       } else {
         {
-          boolean _equals_1 = exp.getRelationalOp().equals(">=");
+          String _op_1 = exp.getOp();
+          boolean _equals_1 = Objects.equal(_op_1, ">=");
           if (_equals_1) {
             _builder.append("factory.greaterOrEqualsThan(");
             _builder.append(name);
@@ -442,7 +761,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
             _builder.newLineIfNotEmpty();
           } else {
             {
-              boolean _equals_2 = exp.getRelationalOp().equals("<");
+              String _op_2 = exp.getOp();
+              boolean _equals_2 = Objects.equal(_op_2, "<");
               if (_equals_2) {
                 _builder.append("factory.lessThan(");
                 _builder.append(name);
@@ -452,7 +772,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
                 _builder.newLineIfNotEmpty();
               } else {
                 {
-                  boolean _equals_3 = exp.getRelationalOp().equals("<=");
+                  String _op_3 = exp.getOp();
+                  boolean _equals_3 = Objects.equal(_op_3, "<=");
                   if (_equals_3) {
                     _builder.append("factory.lessOrEqualsThan(");
                     _builder.append(name);
@@ -462,7 +783,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
                     _builder.newLineIfNotEmpty();
                   } else {
                     {
-                      boolean _equals_4 = exp.getRelationalOp().equals("=");
+                      String _op_4 = exp.getOp();
+                      boolean _equals_4 = Objects.equal(_op_4, "=");
                       if (_equals_4) {
                         _builder.append("factory.equals(");
                         _builder.append(name);
@@ -472,7 +794,8 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
                         _builder.newLineIfNotEmpty();
                       } else {
                         {
-                          boolean _equals_5 = exp.getRelationalOp().equals("!=");
+                          String _op_5 = exp.getOp();
+                          boolean _equals_5 = Objects.equal(_op_5, "!=");
                           if (_equals_5) {
                             _builder.append("factory.notEquals(");
                             _builder.append(name);
@@ -492,212 +815,82 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
         }
       }
     }
-    _builder.newLine();
     return _builder;
   }
   
-  public CharSequence declareLogic(final Logic exp, final String name) {
+  public CharSequence declareAnd(final And exp, final String name) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _declareBoolTerm = this.declareBoolTerm(exp.getLogicLeft(), (name + "_left"));
-    _builder.append(_declareBoolTerm);
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
     _builder.newLineIfNotEmpty();
-    CharSequence _declareBoolTerm_1 = this.declareBoolTerm(exp.getLogicRight(), (name + "_right"));
-    _builder.append(_declareBoolTerm_1);
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
     _builder.newLineIfNotEmpty();
     _builder.append("IntBooleanExpression ");
     _builder.append(name);
-    _builder.append("=");
-    _builder.newLineIfNotEmpty();
-    {
-      boolean _equals = exp.getLogicOp().equals("AND");
-      if (_equals) {
-        _builder.append("factory.and(");
-        _builder.append(name);
-        _builder.append("_left, ");
-        _builder.append(name);
-        _builder.append("_right);");
-        _builder.newLineIfNotEmpty();
-      } else {
-        {
-          boolean _equals_1 = exp.getLogicOp().equals("OR");
-          if (_equals_1) {
-            _builder.append("factory.or(");
-            _builder.append(name);
-            _builder.append("_left, ");
-            _builder.append(name);
-            _builder.append("_right);");
-            _builder.newLineIfNotEmpty();
-          } else {
-            {
-              boolean _equals_2 = exp.getLogicOp().equals("XOR");
-              if (_equals_2) {
-                _builder.append("factory.xor(");
-                _builder.append(name);
-                _builder.append("_left, ");
-                _builder.append(name);
-                _builder.append("_right);");
-                _builder.newLineIfNotEmpty();
-              } else {
-                {
-                  boolean _equals_3 = exp.getLogicOp().equals("=>");
-                  if (_equals_3) {
-                    _builder.append("factory.implies(");
-                    _builder.append(name);
-                    _builder.append("_left, ");
-                    _builder.append(name);
-                    _builder.append("_right);");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    {
-                      boolean _equals_4 = exp.getLogicOp().equals("<=>");
-                      if (_equals_4) {
-                        _builder.append("factory.doubleImplies(");
-                        _builder.append(name);
-                        _builder.append("_left, ");
-                        _builder.append(name);
-                        _builder.append("_right);");
-                        _builder.newLineIfNotEmpty();
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence declareBoolTerm(final BoolExpression exp, final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((exp instanceof BoolVar)) {
-        _builder.append("Identifier ");
-        _builder.append(name);
-        _builder.append(" = variables.get(\"");
-        String _id = ((BoolVar)exp).getId();
-        _builder.append(_id);
-        _builder.append("\");");
-        _builder.newLineIfNotEmpty();
-      } else {
-        {
-          if ((exp instanceof ComplexTerm)) {
-            {
-              if ((exp instanceof Logic)) {
-                Object _declareLogic = this.declareLogic(((Logic)exp), name);
-                _builder.append(_declareLogic);
-                _builder.newLineIfNotEmpty();
-              } else {
-                {
-                  if ((exp instanceof LogicUn)) {
-                    Object _declareBoolTerm = this.declareBoolTerm(((LogicUn)exp).getExp(), (name + "_int"));
-                    _builder.append(_declareBoolTerm);
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("IntBooleanExpression ");
-                    _builder.append(name);
-                    _builder.append("=factory.not(");
-                    _builder.append(name);
-                    _builder.append("_int);");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence declareNumericTerm(final NumExpression exp, final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((exp instanceof Number)) {
-        _builder.append("// there is a number in the parser");
-        _builder.newLine();
-        _builder.append("NumericIdentifier ");
-        _builder.append(name);
-        _builder.append(" = getValue(\"");
-        _builder.append(((Number)exp));
-        _builder.append("\");");
-        _builder.newLineIfNotEmpty();
-      } else {
-        {
-          if ((exp instanceof IntVar)) {
-            _builder.append("Identifier ");
-            _builder.append(name);
-            _builder.append(" = variables.get(\"");
-            String _id = ((IntVar)exp).getId();
-            _builder.append(_id);
-            _builder.append("\");\t");
-            _builder.newLineIfNotEmpty();
-          } else {
-            {
-              if ((exp instanceof Arithmetic)) {
-                CharSequence _declareArithmetic = this.declareArithmetic(((Arithmetic)exp), name);
-                _builder.append(_declareArithmetic);
-                _builder.newLineIfNotEmpty();
-              } else {
-              }
-            }
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence declareArithmetic(final Arithmetic exp, final String name) {
-    StringConcatenation _builder = new StringConcatenation();
-    Object _declareNumericTerm = this.declareNumericTerm(exp.getLeft(), (name + "_left"));
-    _builder.append(_declareNumericTerm);
-    _builder.newLineIfNotEmpty();
-    Object _declareNumericTerm_1 = this.declareNumericTerm(exp.getRight(), (name + "_right"));
-    _builder.append(_declareNumericTerm_1);
-    _builder.newLineIfNotEmpty();
-    _builder.append("IntNumericExpression ");
+    _builder.append("=factory.and(");
     _builder.append(name);
-    _builder.append("=");
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t\t");
     _builder.newLineIfNotEmpty();
-    {
-      boolean _equals = exp.getArithOperator().equals("+");
-      if (_equals) {
-        _builder.append("factory.sum(");
-        _builder.append(name);
-        _builder.append("_left, ");
-        _builder.append(name);
-        _builder.append("_right);");
-        _builder.newLineIfNotEmpty();
-      } else {
-        {
-          boolean _equals_1 = exp.getArithOperator().equals("-");
-          if (_equals_1) {
-            _builder.append("factory.diff(");
-            _builder.append(name);
-            _builder.append("_left, ");
-            _builder.append(name);
-            _builder.append("_right);");
-            _builder.newLineIfNotEmpty();
-          } else {
-            {
-              boolean _equals_2 = exp.getArithOperator().equals("*");
-              if (_equals_2) {
-                _builder.append("factory.prod(");
-                _builder.append(name);
-                _builder.append("_left, ");
-                _builder.append(name);
-                _builder.append("_right);");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-          }
-        }
-      }
-    }
+    return _builder;
+  }
+  
+  public CharSequence declareOr(final Or exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=factory.or(");
+    _builder.append(name);
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareImplies(final Implies exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=factory.implies(");
+    _builder.append(name);
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence declareIff(final Iff exp, final String name) {
+    StringConcatenation _builder = new StringConcatenation();
+    Object _declareRelational = this.declareRelational(exp.getLeft(), (name + "_left"));
+    _builder.append(_declareRelational);
+    _builder.newLineIfNotEmpty();
+    Object _declareRelational_1 = this.declareRelational(exp.getRight(), (name + "_right"));
+    _builder.append(_declareRelational_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("IntBooleanExpression ");
+    _builder.append(name);
+    _builder.append("=factory.doubleImplies(");
+    _builder.append(name);
+    _builder.append("_left, ");
+    _builder.append(name);
+    _builder.append("_right);\t\t");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
 }

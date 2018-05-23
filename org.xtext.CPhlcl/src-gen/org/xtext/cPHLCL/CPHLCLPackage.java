@@ -77,13 +77,13 @@ public interface CPHLCLPackage extends EPackage
   int MODEL__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Vars</b></em>' containment reference list.
+   * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__VARS = 1;
+  int MODEL__VARIABLES = 1;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -113,14 +113,14 @@ public interface CPHLCLPackage extends EPackage
   int MODEL_FEATURE_COUNT = 4;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.VarDeclarationImpl <em>Var Declaration</em>}' class.
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.VariableImpl <em>Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.VarDeclarationImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVarDeclaration()
+   * @see org.xtext.cPHLCL.impl.VariableImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVariable()
    * @generated
    */
-  int VAR_DECLARATION = 1;
+  int VARIABLE = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -129,7 +129,7 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__TYPE = 0;
+  int VARIABLE__TYPE = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -138,7 +138,7 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__NAME = 1;
+  int VARIABLE__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -147,16 +147,16 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__DOMAIN = 2;
+  int VARIABLE__DOMAIN = 2;
 
   /**
-   * The number of structural features of the '<em>Var Declaration</em>' class.
+   * The number of structural features of the '<em>Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION_FEATURE_COUNT = 3;
+  int VARIABLE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.DomainDeclarationImpl <em>Domain Declaration</em>}' class.
@@ -188,7 +188,7 @@ public interface CPHLCLPackage extends EPackage
   int INTERVAL = 3;
 
   /**
-   * The feature id for the '<em><b>Start</b></em>' attribute.
+   * The feature id for the '<em><b>Start</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -197,7 +197,7 @@ public interface CPHLCLPackage extends EPackage
   int INTERVAL__START = DOMAIN_DECLARATION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>End</b></em>' attribute.
+   * The feature id for the '<em><b>End</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -299,127 +299,6 @@ public interface CPHLCLPackage extends EPackage
   int EXPRESSION_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.BoolExpressionImpl <em>Bool Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.BoolExpressionImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolExpression()
-   * @generated
-   */
-  int BOOL_EXPRESSION = 7;
-
-  /**
-   * The number of structural features of the '<em>Bool Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOL_EXPRESSION_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ComplexTermImpl <em>Complex Term</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.ComplexTermImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getComplexTerm()
-   * @generated
-   */
-  int COMPLEX_TERM = 8;
-
-  /**
-   * The number of structural features of the '<em>Complex Term</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPLEX_TERM_FEATURE_COUNT = BOOL_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.LogicImpl <em>Logic</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.LogicImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getLogic()
-   * @generated
-   */
-  int LOGIC = 9;
-
-  /**
-   * The feature id for the '<em><b>Logic Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC__LOGIC_LEFT = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Logic Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC__LOGIC_OP = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Logic Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC__LOGIC_RIGHT = EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Logic</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.LogicUnImpl <em>Logic Un</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.LogicUnImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getLogicUn()
-   * @generated
-   */
-  int LOGIC_UN = 10;
-
-  /**
-   * The feature id for the '<em><b>Logic Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC_UN__LOGIC_OP = COMPLEX_TERM_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Exp</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC_UN__EXP = COMPLEX_TERM_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Logic Un</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGIC_UN_FEATURE_COUNT = COMPLEX_TERM_FEATURE_COUNT + 2;
-
-  /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.RelationalImpl <em>Relational</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -427,34 +306,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getRelational()
    * @generated
    */
-  int RELATIONAL = 11;
-
-  /**
-   * The feature id for the '<em><b>Relational Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONAL__RELATIONAL_LEFT = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Relational Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONAL__RELATIONAL_OP = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Relational Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONAL__RELATIONAL_RIGHT = EXPRESSION_FEATURE_COUNT + 2;
+  int RELATIONAL = 7;
 
   /**
    * The number of structural features of the '<em>Relational</em>' class.
@@ -463,72 +315,7 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.NumExpressionImpl <em>Num Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.NumExpressionImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNumExpression()
-   * @generated
-   */
-  int NUM_EXPRESSION = 12;
-
-  /**
-   * The number of structural features of the '<em>Num Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUM_EXPRESSION_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ArithmeticImpl <em>Arithmetic</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.ArithmeticImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getArithmetic()
-   * @generated
-   */
-  int ARITHMETIC = 13;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARITHMETIC__LEFT = NUM_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Arith Operator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARITHMETIC__ARITH_OPERATOR = NUM_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARITHMETIC__RIGHT = NUM_EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Arithmetic</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARITHMETIC_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 3;
+  int RELATIONAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.GlobalImpl <em>Global</em>}' class.
@@ -538,7 +325,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getGlobal()
    * @generated
    */
-  int GLOBAL = 14;
+  int GLOBAL = 8;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -568,106 +355,79 @@ public interface CPHLCLPackage extends EPackage
   int GLOBAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ControlImpl <em>Control</em>}' class.
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ValueImpl <em>Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.ControlImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getControl()
+   * @see org.xtext.cPHLCL.impl.ValueImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getValue()
    * @generated
    */
-  int CONTROL = 15;
+  int VALUE = 12;
 
   /**
-   * The feature id for the '<em><b>Cond</b></em>' containment reference.
+   * The number of structural features of the '<em>Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROL__COND = EXPRESSION_FEATURE_COUNT + 0;
+  int VALUE_FEATURE_COUNT = 0;
 
   /**
-   * The feature id for the '<em><b>True Statement</b></em>' containment reference.
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.NonEnumerableValueImpl <em>Non Enumerable Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.NonEnumerableValueImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNonEnumerableValue()
+   * @generated
+   */
+  int NON_ENUMERABLE_VALUE = 13;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROL__TRUE_STATEMENT = EXPRESSION_FEATURE_COUNT + 1;
+  int NON_ENUMERABLE_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Else Statement</b></em>' containment reference.
+   * The number of structural features of the '<em>Non Enumerable Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROL__ELSE_STATEMENT = EXPRESSION_FEATURE_COUNT + 2;
+  int NON_ENUMERABLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Control</em>' class.
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.BoolValImpl <em>Bool Val</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.BoolValImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolVal()
+   * @generated
+   */
+  int BOOL_VAL = 9;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+  int BOOL_VAL__VALUE = NON_ENUMERABLE_VALUE__VALUE;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.BoolImpl <em>Bool</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.BoolImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBool()
-   * @generated
-   */
-  int BOOL = 16;
-
-  /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * The number of structural features of the '<em>Bool Val</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BOOL__VAL = 0;
-
-  /**
-   * The number of structural features of the '<em>Bool</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOL_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.BoolVarImpl <em>Bool Var</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.BoolVarImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolVar()
-   * @generated
-   */
-  int BOOL_VAR = 17;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOL_VAR__ID = BOOL_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Bool Var</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOL_VAR_FEATURE_COUNT = BOOL_EXPRESSION_FEATURE_COUNT + 1;
+  int BOOL_VAL_FEATURE_COUNT = NON_ENUMERABLE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.NumberImpl <em>Number</em>}' class.
@@ -677,16 +437,16 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNumber()
    * @generated
    */
-  int NUMBER = 18;
+  int NUMBER = 10;
 
   /**
-   * The feature id for the '<em><b>Num</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUMBER__NUM = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int NUMBER__VALUE = VALUE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Number</em>' class.
@@ -695,35 +455,35 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMBER_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int NUMBER_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.IntVarImpl <em>Int Var</em>}' class.
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.SymbolImpl <em>Symbol</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.IntVarImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIntVar()
+   * @see org.xtext.cPHLCL.impl.SymbolImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getSymbol()
    * @generated
    */
-  int INT_VAR = 19;
+  int SYMBOL = 11;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_VAR__ID = NUM_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Int Var</em>' class.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_VAR_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int SYMBOL__VALUE = NON_ENUMERABLE_VALUE__VALUE;
+
+  /**
+   * The number of structural features of the '<em>Symbol</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SYMBOL_FEATURE_COUNT = NON_ENUMERABLE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
@@ -733,10 +493,10 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 20;
+  int LIST_OF_VALUES = 14;
 
   /**
-   * The feature id for the '<em><b>Values</b></em>' attribute list.
+   * The feature id for the '<em><b>Values</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -754,34 +514,6 @@ public interface CPHLCLPackage extends EPackage
   int LIST_OF_VALUES_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ListOfEnumerablesImpl <em>List Of Enumerables</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.cPHLCL.impl.ListOfEnumerablesImpl
-   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfEnumerables()
-   * @generated
-   */
-  int LIST_OF_ENUMERABLES = 21;
-
-  /**
-   * The feature id for the '<em><b>Values</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LIST_OF_ENUMERABLES__VALUES = 0;
-
-  /**
-   * The number of structural features of the '<em>List Of Enumerables</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LIST_OF_ENUMERABLES_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -789,7 +521,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 22;
+  int LIST_OF_IDS = 15;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' attribute list.
@@ -808,6 +540,561 @@ public interface CPHLCLPackage extends EPackage
    * @ordered
    */
   int LIST_OF_IDS_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.IffImpl <em>Iff</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.IffImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIff()
+   * @generated
+   */
+  int IFF = 16;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IFF__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IFF__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Iff</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IFF_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ImpliesImpl <em>Implies</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.ImpliesImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getImplies()
+   * @generated
+   */
+  int IMPLIES = 17;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Implies</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLIES_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.OrImpl <em>Or</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.OrImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getOr()
+   * @generated
+   */
+  int OR = 18;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Or</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.AndImpl <em>And</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.AndImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getAnd()
+   * @generated
+   */
+  int AND = 19;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>And</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.EqualityImpl <em>Equality</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.EqualityImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getEquality()
+   * @generated
+   */
+  int EQUALITY = 20;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALITY__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALITY__OP = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALITY__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Equality</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALITY_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ComparisonImpl <em>Comparison</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.ComparisonImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getComparison()
+   * @generated
+   */
+  int COMPARISON = 21;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON__OP = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Comparison</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.PlusImpl <em>Plus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.PlusImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getPlus()
+   * @generated
+   */
+  int PLUS = 22;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Plus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.MinusImpl <em>Minus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.MinusImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMinus()
+   * @generated
+   */
+  int MINUS = 23;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__RIGHT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Minus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.MulOrDivImpl <em>Mul Or Div</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.MulOrDivImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMulOrDiv()
+   * @generated
+   */
+  int MUL_OR_DIV = 24;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUL_OR_DIV__LEFT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUL_OR_DIV__OP = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUL_OR_DIV__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Mul Or Div</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUL_OR_DIV_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.NegationImpl <em>Negation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.NegationImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNegation()
+   * @generated
+   */
+  int NEGATION = 25;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATION__EXPRESSION = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Negation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.UnaryImpl <em>Unary</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.UnaryImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getUnary()
+   * @generated
+   */
+  int UNARY = 26;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY__OP = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY__EXPRESSION = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Unary</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.FunctionImpl <em>Function</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.FunctionImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getFunction()
+   * @generated
+   */
+  int FUNCTION = 27;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__OP = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__LEFT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Function</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.BoolConstantImpl <em>Bool Constant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.BoolConstantImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolConstant()
+   * @generated
+   */
+  int BOOL_CONSTANT = 28;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL_CONSTANT__VALUE = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Bool Constant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL_CONSTANT_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.VariableRefImpl <em>Variable Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.VariableRefImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVariableRef()
+   * @generated
+   */
+  int VARIABLE_REF = 29;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_REF__VARIABLE = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Variable Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_REF_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.IntConstantImpl <em>Int Constant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.IntConstantImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIntConstant()
+   * @generated
+   */
+  int INT_CONSTANT = 30;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_CONSTANT__VALUE = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Int Constant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_CONSTANT_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
 
 
   /**
@@ -832,15 +1119,15 @@ public interface CPHLCLPackage extends EPackage
   EAttribute getModel_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.cPHLCL.Model#getVars <em>Vars</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.cPHLCL.Model#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Vars</em>'.
-   * @see org.xtext.cPHLCL.Model#getVars()
+   * @return the meta object for the containment reference list '<em>Variables</em>'.
+   * @see org.xtext.cPHLCL.Model#getVariables()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Vars();
+  EReference getModel_Variables();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.cPHLCL.Model#getConstraints <em>Constraints</em>}'.
@@ -865,47 +1152,47 @@ public interface CPHLCLPackage extends EPackage
   EAttribute getModel_Strategy();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.VarDeclaration <em>Var Declaration</em>}'.
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Var Declaration</em>'.
-   * @see org.xtext.cPHLCL.VarDeclaration
+   * @return the meta object for class '<em>Variable</em>'.
+   * @see org.xtext.cPHLCL.Variable
    * @generated
    */
-  EClass getVarDeclaration();
+  EClass getVariable();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.VarDeclaration#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Variable#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.xtext.cPHLCL.VarDeclaration#getType()
-   * @see #getVarDeclaration()
+   * @see org.xtext.cPHLCL.Variable#getType()
+   * @see #getVariable()
    * @generated
    */
-  EAttribute getVarDeclaration_Type();
+  EAttribute getVariable_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.VarDeclaration#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Variable#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.cPHLCL.VarDeclaration#getName()
-   * @see #getVarDeclaration()
+   * @see org.xtext.cPHLCL.Variable#getName()
+   * @see #getVariable()
    * @generated
    */
-  EAttribute getVarDeclaration_Name();
+  EAttribute getVariable_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.VarDeclaration#getDomain <em>Domain</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Variable#getDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Domain</em>'.
-   * @see org.xtext.cPHLCL.VarDeclaration#getDomain()
-   * @see #getVarDeclaration()
+   * @see org.xtext.cPHLCL.Variable#getDomain()
+   * @see #getVariable()
    * @generated
    */
-  EReference getVarDeclaration_Domain();
+  EReference getVariable_Domain();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.DomainDeclaration <em>Domain Declaration</em>}'.
@@ -928,26 +1215,26 @@ public interface CPHLCLPackage extends EPackage
   EClass getInterval();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Interval#getStart <em>Start</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Interval#getStart <em>Start</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Start</em>'.
+   * @return the meta object for the containment reference '<em>Start</em>'.
    * @see org.xtext.cPHLCL.Interval#getStart()
    * @see #getInterval()
    * @generated
    */
-  EAttribute getInterval_Start();
+  EReference getInterval_Start();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Interval#getEnd <em>End</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Interval#getEnd <em>End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>End</em>'.
+   * @return the meta object for the containment reference '<em>End</em>'.
    * @see org.xtext.cPHLCL.Interval#getEnd()
    * @see #getInterval()
    * @generated
    */
-  EAttribute getInterval_End();
+  EReference getInterval_End();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.Enumeration <em>Enumeration</em>}'.
@@ -1013,101 +1300,6 @@ public interface CPHLCLPackage extends EPackage
   EClass getExpression();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.BoolExpression <em>Bool Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Bool Expression</em>'.
-   * @see org.xtext.cPHLCL.BoolExpression
-   * @generated
-   */
-  EClass getBoolExpression();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.ComplexTerm <em>Complex Term</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Complex Term</em>'.
-   * @see org.xtext.cPHLCL.ComplexTerm
-   * @generated
-   */
-  EClass getComplexTerm();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.Logic <em>Logic</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Logic</em>'.
-   * @see org.xtext.cPHLCL.Logic
-   * @generated
-   */
-  EClass getLogic();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Logic#getLogicLeft <em>Logic Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Logic Left</em>'.
-   * @see org.xtext.cPHLCL.Logic#getLogicLeft()
-   * @see #getLogic()
-   * @generated
-   */
-  EReference getLogic_LogicLeft();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Logic#getLogicOp <em>Logic Op</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Logic Op</em>'.
-   * @see org.xtext.cPHLCL.Logic#getLogicOp()
-   * @see #getLogic()
-   * @generated
-   */
-  EAttribute getLogic_LogicOp();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Logic#getLogicRight <em>Logic Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Logic Right</em>'.
-   * @see org.xtext.cPHLCL.Logic#getLogicRight()
-   * @see #getLogic()
-   * @generated
-   */
-  EReference getLogic_LogicRight();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.LogicUn <em>Logic Un</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Logic Un</em>'.
-   * @see org.xtext.cPHLCL.LogicUn
-   * @generated
-   */
-  EClass getLogicUn();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.LogicUn#getLogicOp <em>Logic Op</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Logic Op</em>'.
-   * @see org.xtext.cPHLCL.LogicUn#getLogicOp()
-   * @see #getLogicUn()
-   * @generated
-   */
-  EAttribute getLogicUn_LogicOp();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.LogicUn#getExp <em>Exp</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exp</em>'.
-   * @see org.xtext.cPHLCL.LogicUn#getExp()
-   * @see #getLogicUn()
-   * @generated
-   */
-  EReference getLogicUn_Exp();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.Relational <em>Relational</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1116,92 +1308,6 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    */
   EClass getRelational();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Relational#getRelationalLeft <em>Relational Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Relational Left</em>'.
-   * @see org.xtext.cPHLCL.Relational#getRelationalLeft()
-   * @see #getRelational()
-   * @generated
-   */
-  EReference getRelational_RelationalLeft();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Relational#getRelationalOp <em>Relational Op</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Relational Op</em>'.
-   * @see org.xtext.cPHLCL.Relational#getRelationalOp()
-   * @see #getRelational()
-   * @generated
-   */
-  EAttribute getRelational_RelationalOp();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Relational#getRelationalRight <em>Relational Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Relational Right</em>'.
-   * @see org.xtext.cPHLCL.Relational#getRelationalRight()
-   * @see #getRelational()
-   * @generated
-   */
-  EReference getRelational_RelationalRight();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.NumExpression <em>Num Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Num Expression</em>'.
-   * @see org.xtext.cPHLCL.NumExpression
-   * @generated
-   */
-  EClass getNumExpression();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.Arithmetic <em>Arithmetic</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Arithmetic</em>'.
-   * @see org.xtext.cPHLCL.Arithmetic
-   * @generated
-   */
-  EClass getArithmetic();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Arithmetic#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see org.xtext.cPHLCL.Arithmetic#getLeft()
-   * @see #getArithmetic()
-   * @generated
-   */
-  EReference getArithmetic_Left();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Arithmetic#getArithOperator <em>Arith Operator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Arith Operator</em>'.
-   * @see org.xtext.cPHLCL.Arithmetic#getArithOperator()
-   * @see #getArithmetic()
-   * @generated
-   */
-  EAttribute getArithmetic_ArithOperator();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Arithmetic#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see org.xtext.cPHLCL.Arithmetic#getRight()
-   * @see #getArithmetic()
-   * @generated
-   */
-  EReference getArithmetic_Right();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.Global <em>Global</em>}'.
@@ -1236,89 +1342,14 @@ public interface CPHLCLPackage extends EPackage
   EReference getGlobal_Vars();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.Control <em>Control</em>}'.
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.BoolVal <em>Bool Val</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Control</em>'.
-   * @see org.xtext.cPHLCL.Control
+   * @return the meta object for class '<em>Bool Val</em>'.
+   * @see org.xtext.cPHLCL.BoolVal
    * @generated
    */
-  EClass getControl();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Control#getCond <em>Cond</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Cond</em>'.
-   * @see org.xtext.cPHLCL.Control#getCond()
-   * @see #getControl()
-   * @generated
-   */
-  EReference getControl_Cond();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Control#getTrueStatement <em>True Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>True Statement</em>'.
-   * @see org.xtext.cPHLCL.Control#getTrueStatement()
-   * @see #getControl()
-   * @generated
-   */
-  EReference getControl_TrueStatement();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Control#getElseStatement <em>Else Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Else Statement</em>'.
-   * @see org.xtext.cPHLCL.Control#getElseStatement()
-   * @see #getControl()
-   * @generated
-   */
-  EReference getControl_ElseStatement();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.Bool <em>Bool</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Bool</em>'.
-   * @see org.xtext.cPHLCL.Bool
-   * @generated
-   */
-  EClass getBool();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Bool#getVal <em>Val</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Val</em>'.
-   * @see org.xtext.cPHLCL.Bool#getVal()
-   * @see #getBool()
-   * @generated
-   */
-  EAttribute getBool_Val();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.BoolVar <em>Bool Var</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Bool Var</em>'.
-   * @see org.xtext.cPHLCL.BoolVar
-   * @generated
-   */
-  EClass getBoolVar();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.BoolVar#getId <em>Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.xtext.cPHLCL.BoolVar#getId()
-   * @see #getBoolVar()
-   * @generated
-   */
-  EAttribute getBoolVar_Id();
+  EClass getBoolVal();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.Number <em>Number</em>}'.
@@ -1331,36 +1362,56 @@ public interface CPHLCLPackage extends EPackage
   EClass getNumber();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Number#getNum <em>Num</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Number#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Num</em>'.
-   * @see org.xtext.cPHLCL.Number#getNum()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.cPHLCL.Number#getValue()
    * @see #getNumber()
    * @generated
    */
-  EAttribute getNumber_Num();
+  EAttribute getNumber_Value();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.IntVar <em>Int Var</em>}'.
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Symbol <em>Symbol</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int Var</em>'.
-   * @see org.xtext.cPHLCL.IntVar
+   * @return the meta object for class '<em>Symbol</em>'.
+   * @see org.xtext.cPHLCL.Symbol
    * @generated
    */
-  EClass getIntVar();
+  EClass getSymbol();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.IntVar#getId <em>Id</em>}'.
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Value <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.xtext.cPHLCL.IntVar#getId()
-   * @see #getIntVar()
+   * @return the meta object for class '<em>Value</em>'.
+   * @see org.xtext.cPHLCL.Value
    * @generated
    */
-  EAttribute getIntVar_Id();
+  EClass getValue();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.NonEnumerableValue <em>Non Enumerable Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Non Enumerable Value</em>'.
+   * @see org.xtext.cPHLCL.NonEnumerableValue
+   * @generated
+   */
+  EClass getNonEnumerableValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.NonEnumerableValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.cPHLCL.NonEnumerableValue#getValue()
+   * @see #getNonEnumerableValue()
+   * @generated
+   */
+  EAttribute getNonEnumerableValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.ListOfValues <em>List Of Values</em>}'.
@@ -1373,36 +1424,15 @@ public interface CPHLCLPackage extends EPackage
   EClass getListOfValues();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.cPHLCL.ListOfValues#getValues <em>Values</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.cPHLCL.ListOfValues#getValues <em>Values</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Values</em>'.
+   * @return the meta object for the containment reference list '<em>Values</em>'.
    * @see org.xtext.cPHLCL.ListOfValues#getValues()
    * @see #getListOfValues()
    * @generated
    */
-  EAttribute getListOfValues_Values();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.cPHLCL.ListOfEnumerables <em>List Of Enumerables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>List Of Enumerables</em>'.
-   * @see org.xtext.cPHLCL.ListOfEnumerables
-   * @generated
-   */
-  EClass getListOfEnumerables();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.xtext.cPHLCL.ListOfEnumerables#getValues <em>Values</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Values</em>'.
-   * @see org.xtext.cPHLCL.ListOfEnumerables#getValues()
-   * @see #getListOfEnumerables()
-   * @generated
-   */
-  EAttribute getListOfEnumerables_Values();
+  EReference getListOfValues_Values();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.ListOfIDs <em>List Of IDs</em>}'.
@@ -1424,6 +1454,486 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    */
   EAttribute getListOfIDs_Ids();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Iff <em>Iff</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Iff</em>'.
+   * @see org.xtext.cPHLCL.Iff
+   * @generated
+   */
+  EClass getIff();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Iff#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Iff#getLeft()
+   * @see #getIff()
+   * @generated
+   */
+  EReference getIff_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Iff#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Iff#getRight()
+   * @see #getIff()
+   * @generated
+   */
+  EReference getIff_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Implies <em>Implies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implies</em>'.
+   * @see org.xtext.cPHLCL.Implies
+   * @generated
+   */
+  EClass getImplies();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Implies#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Implies#getLeft()
+   * @see #getImplies()
+   * @generated
+   */
+  EReference getImplies_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Implies#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Implies#getRight()
+   * @see #getImplies()
+   * @generated
+   */
+  EReference getImplies_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Or <em>Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or</em>'.
+   * @see org.xtext.cPHLCL.Or
+   * @generated
+   */
+  EClass getOr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Or#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Or#getLeft()
+   * @see #getOr()
+   * @generated
+   */
+  EReference getOr_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Or#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Or#getRight()
+   * @see #getOr()
+   * @generated
+   */
+  EReference getOr_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.And <em>And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>And</em>'.
+   * @see org.xtext.cPHLCL.And
+   * @generated
+   */
+  EClass getAnd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.And#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.And#getLeft()
+   * @see #getAnd()
+   * @generated
+   */
+  EReference getAnd_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.And#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.And#getRight()
+   * @see #getAnd()
+   * @generated
+   */
+  EReference getAnd_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Equality <em>Equality</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Equality</em>'.
+   * @see org.xtext.cPHLCL.Equality
+   * @generated
+   */
+  EClass getEquality();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Equality#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Equality#getLeft()
+   * @see #getEquality()
+   * @generated
+   */
+  EReference getEquality_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Equality#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.cPHLCL.Equality#getOp()
+   * @see #getEquality()
+   * @generated
+   */
+  EAttribute getEquality_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Equality#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Equality#getRight()
+   * @see #getEquality()
+   * @generated
+   */
+  EReference getEquality_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Comparison <em>Comparison</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comparison</em>'.
+   * @see org.xtext.cPHLCL.Comparison
+   * @generated
+   */
+  EClass getComparison();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Comparison#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Comparison#getLeft()
+   * @see #getComparison()
+   * @generated
+   */
+  EReference getComparison_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Comparison#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.cPHLCL.Comparison#getOp()
+   * @see #getComparison()
+   * @generated
+   */
+  EAttribute getComparison_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Comparison#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Comparison#getRight()
+   * @see #getComparison()
+   * @generated
+   */
+  EReference getComparison_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Plus <em>Plus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Plus</em>'.
+   * @see org.xtext.cPHLCL.Plus
+   * @generated
+   */
+  EClass getPlus();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Plus#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Plus#getLeft()
+   * @see #getPlus()
+   * @generated
+   */
+  EReference getPlus_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Plus#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Plus#getRight()
+   * @see #getPlus()
+   * @generated
+   */
+  EReference getPlus_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Minus <em>Minus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minus</em>'.
+   * @see org.xtext.cPHLCL.Minus
+   * @generated
+   */
+  EClass getMinus();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Minus#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Minus#getLeft()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Minus#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Minus#getRight()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.MulOrDiv <em>Mul Or Div</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mul Or Div</em>'.
+   * @see org.xtext.cPHLCL.MulOrDiv
+   * @generated
+   */
+  EClass getMulOrDiv();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.MulOrDiv#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.MulOrDiv#getLeft()
+   * @see #getMulOrDiv()
+   * @generated
+   */
+  EReference getMulOrDiv_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.MulOrDiv#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.cPHLCL.MulOrDiv#getOp()
+   * @see #getMulOrDiv()
+   * @generated
+   */
+  EAttribute getMulOrDiv_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.MulOrDiv#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.MulOrDiv#getRight()
+   * @see #getMulOrDiv()
+   * @generated
+   */
+  EReference getMulOrDiv_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Negation <em>Negation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Negation</em>'.
+   * @see org.xtext.cPHLCL.Negation
+   * @generated
+   */
+  EClass getNegation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Negation#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.xtext.cPHLCL.Negation#getExpression()
+   * @see #getNegation()
+   * @generated
+   */
+  EReference getNegation_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Unary <em>Unary</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unary</em>'.
+   * @see org.xtext.cPHLCL.Unary
+   * @generated
+   */
+  EClass getUnary();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Unary#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.cPHLCL.Unary#getOp()
+   * @see #getUnary()
+   * @generated
+   */
+  EAttribute getUnary_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Unary#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.xtext.cPHLCL.Unary#getExpression()
+   * @see #getUnary()
+   * @generated
+   */
+  EReference getUnary_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.Function <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function</em>'.
+   * @see org.xtext.cPHLCL.Function
+   * @generated
+   */
+  EClass getFunction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.Function#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.cPHLCL.Function#getOp()
+   * @see #getFunction()
+   * @generated
+   */
+  EAttribute getFunction_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Function#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.cPHLCL.Function#getLeft()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Function#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.cPHLCL.Function#getRight()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.BoolConstant <em>Bool Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Bool Constant</em>'.
+   * @see org.xtext.cPHLCL.BoolConstant
+   * @generated
+   */
+  EClass getBoolConstant();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.BoolConstant#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.cPHLCL.BoolConstant#getValue()
+   * @see #getBoolConstant()
+   * @generated
+   */
+  EAttribute getBoolConstant_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.VariableRef <em>Variable Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variable Ref</em>'.
+   * @see org.xtext.cPHLCL.VariableRef
+   * @generated
+   */
+  EClass getVariableRef();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.cPHLCL.VariableRef#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see org.xtext.cPHLCL.VariableRef#getVariable()
+   * @see #getVariableRef()
+   * @generated
+   */
+  EReference getVariableRef_Variable();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.IntConstant <em>Int Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Constant</em>'.
+   * @see org.xtext.cPHLCL.IntConstant
+   * @generated
+   */
+  EClass getIntConstant();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.cPHLCL.IntConstant#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.cPHLCL.IntConstant#getValue()
+   * @see #getIntConstant()
+   * @generated
+   */
+  EAttribute getIntConstant_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1467,12 +1977,12 @@ public interface CPHLCLPackage extends EPackage
     EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
 
     /**
-     * The meta object literal for the '<em><b>Vars</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__VARS = eINSTANCE.getModel_Vars();
+    EReference MODEL__VARIABLES = eINSTANCE.getModel_Variables();
 
     /**
      * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -1491,14 +2001,14 @@ public interface CPHLCLPackage extends EPackage
     EAttribute MODEL__STRATEGY = eINSTANCE.getModel_Strategy();
 
     /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.VarDeclarationImpl <em>Var Declaration</em>}' class.
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.VariableImpl <em>Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.VarDeclarationImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVarDeclaration()
+     * @see org.xtext.cPHLCL.impl.VariableImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVariable()
      * @generated
      */
-    EClass VAR_DECLARATION = eINSTANCE.getVarDeclaration();
+    EClass VARIABLE = eINSTANCE.getVariable();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1506,7 +2016,7 @@ public interface CPHLCLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_DECLARATION__TYPE = eINSTANCE.getVarDeclaration_Type();
+    EAttribute VARIABLE__TYPE = eINSTANCE.getVariable_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1514,7 +2024,7 @@ public interface CPHLCLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_DECLARATION__NAME = eINSTANCE.getVarDeclaration_Name();
+    EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
 
     /**
      * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
@@ -1522,7 +2032,7 @@ public interface CPHLCLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VAR_DECLARATION__DOMAIN = eINSTANCE.getVarDeclaration_Domain();
+    EReference VARIABLE__DOMAIN = eINSTANCE.getVariable_Domain();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.DomainDeclarationImpl <em>Domain Declaration</em>}' class.
@@ -1545,20 +2055,20 @@ public interface CPHLCLPackage extends EPackage
     EClass INTERVAL = eINSTANCE.getInterval();
 
     /**
-     * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Start</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INTERVAL__START = eINSTANCE.getInterval_Start();
+    EReference INTERVAL__START = eINSTANCE.getInterval_Start();
 
     /**
-     * The meta object literal for the '<em><b>End</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>End</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INTERVAL__END = eINSTANCE.getInterval_End();
+    EReference INTERVAL__END = eINSTANCE.getInterval_End();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.EnumerationImpl <em>Enumeration</em>}' class.
@@ -1615,86 +2125,6 @@ public interface CPHLCLPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolExpressionImpl <em>Bool Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.BoolExpressionImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolExpression()
-     * @generated
-     */
-    EClass BOOL_EXPRESSION = eINSTANCE.getBoolExpression();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ComplexTermImpl <em>Complex Term</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.ComplexTermImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getComplexTerm()
-     * @generated
-     */
-    EClass COMPLEX_TERM = eINSTANCE.getComplexTerm();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.LogicImpl <em>Logic</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.LogicImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getLogic()
-     * @generated
-     */
-    EClass LOGIC = eINSTANCE.getLogic();
-
-    /**
-     * The meta object literal for the '<em><b>Logic Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LOGIC__LOGIC_LEFT = eINSTANCE.getLogic_LogicLeft();
-
-    /**
-     * The meta object literal for the '<em><b>Logic Op</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LOGIC__LOGIC_OP = eINSTANCE.getLogic_LogicOp();
-
-    /**
-     * The meta object literal for the '<em><b>Logic Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LOGIC__LOGIC_RIGHT = eINSTANCE.getLogic_LogicRight();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.LogicUnImpl <em>Logic Un</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.LogicUnImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getLogicUn()
-     * @generated
-     */
-    EClass LOGIC_UN = eINSTANCE.getLogicUn();
-
-    /**
-     * The meta object literal for the '<em><b>Logic Op</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LOGIC_UN__LOGIC_OP = eINSTANCE.getLogicUn_LogicOp();
-
-    /**
-     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LOGIC_UN__EXP = eINSTANCE.getLogicUn_Exp();
-
-    /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.RelationalImpl <em>Relational</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1703,74 +2133,6 @@ public interface CPHLCLPackage extends EPackage
      * @generated
      */
     EClass RELATIONAL = eINSTANCE.getRelational();
-
-    /**
-     * The meta object literal for the '<em><b>Relational Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIONAL__RELATIONAL_LEFT = eINSTANCE.getRelational_RelationalLeft();
-
-    /**
-     * The meta object literal for the '<em><b>Relational Op</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RELATIONAL__RELATIONAL_OP = eINSTANCE.getRelational_RelationalOp();
-
-    /**
-     * The meta object literal for the '<em><b>Relational Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIONAL__RELATIONAL_RIGHT = eINSTANCE.getRelational_RelationalRight();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.NumExpressionImpl <em>Num Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.NumExpressionImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNumExpression()
-     * @generated
-     */
-    EClass NUM_EXPRESSION = eINSTANCE.getNumExpression();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ArithmeticImpl <em>Arithmetic</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.ArithmeticImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getArithmetic()
-     * @generated
-     */
-    EClass ARITHMETIC = eINSTANCE.getArithmetic();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARITHMETIC__LEFT = eINSTANCE.getArithmetic_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Arith Operator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ARITHMETIC__ARITH_OPERATOR = eINSTANCE.getArithmetic_ArithOperator();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARITHMETIC__RIGHT = eINSTANCE.getArithmetic_Right();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.GlobalImpl <em>Global</em>}' class.
@@ -1799,74 +2161,14 @@ public interface CPHLCLPackage extends EPackage
     EReference GLOBAL__VARS = eINSTANCE.getGlobal_Vars();
 
     /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ControlImpl <em>Control</em>}' class.
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolValImpl <em>Bool Val</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.ControlImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getControl()
+     * @see org.xtext.cPHLCL.impl.BoolValImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolVal()
      * @generated
      */
-    EClass CONTROL = eINSTANCE.getControl();
-
-    /**
-     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTROL__COND = eINSTANCE.getControl_Cond();
-
-    /**
-     * The meta object literal for the '<em><b>True Statement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTROL__TRUE_STATEMENT = eINSTANCE.getControl_TrueStatement();
-
-    /**
-     * The meta object literal for the '<em><b>Else Statement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTROL__ELSE_STATEMENT = eINSTANCE.getControl_ElseStatement();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolImpl <em>Bool</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.BoolImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBool()
-     * @generated
-     */
-    EClass BOOL = eINSTANCE.getBool();
-
-    /**
-     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BOOL__VAL = eINSTANCE.getBool_Val();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolVarImpl <em>Bool Var</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.BoolVarImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolVar()
-     * @generated
-     */
-    EClass BOOL_VAR = eINSTANCE.getBoolVar();
-
-    /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BOOL_VAR__ID = eINSTANCE.getBoolVar_Id();
+    EClass BOOL_VAL = eINSTANCE.getBoolVal();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.NumberImpl <em>Number</em>}' class.
@@ -1879,30 +2181,50 @@ public interface CPHLCLPackage extends EPackage
     EClass NUMBER = eINSTANCE.getNumber();
 
     /**
-     * The meta object literal for the '<em><b>Num</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NUMBER__NUM = eINSTANCE.getNumber_Num();
+    EAttribute NUMBER__VALUE = eINSTANCE.getNumber_Value();
 
     /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.IntVarImpl <em>Int Var</em>}' class.
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.SymbolImpl <em>Symbol</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.IntVarImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIntVar()
+     * @see org.xtext.cPHLCL.impl.SymbolImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getSymbol()
      * @generated
      */
-    EClass INT_VAR = eINSTANCE.getIntVar();
+    EClass SYMBOL = eINSTANCE.getSymbol();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ValueImpl <em>Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.ValueImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getValue()
+     * @generated
+     */
+    EClass VALUE = eINSTANCE.getValue();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.NonEnumerableValueImpl <em>Non Enumerable Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.NonEnumerableValueImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNonEnumerableValue()
+     * @generated
+     */
+    EClass NON_ENUMERABLE_VALUE = eINSTANCE.getNonEnumerableValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INT_VAR__ID = eINSTANCE.getIntVar_Id();
+    EAttribute NON_ENUMERABLE_VALUE__VALUE = eINSTANCE.getNonEnumerableValue_Value();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
@@ -1915,30 +2237,12 @@ public interface CPHLCLPackage extends EPackage
     EClass LIST_OF_VALUES = eINSTANCE.getListOfValues();
 
     /**
-     * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LIST_OF_VALUES__VALUES = eINSTANCE.getListOfValues_Values();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ListOfEnumerablesImpl <em>List Of Enumerables</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.cPHLCL.impl.ListOfEnumerablesImpl
-     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfEnumerables()
-     * @generated
-     */
-    EClass LIST_OF_ENUMERABLES = eINSTANCE.getListOfEnumerables();
-
-    /**
-     * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LIST_OF_ENUMERABLES__VALUES = eINSTANCE.getListOfEnumerables_Values();
+    EReference LIST_OF_VALUES__VALUES = eINSTANCE.getListOfValues_Values();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.
@@ -1957,6 +2261,396 @@ public interface CPHLCLPackage extends EPackage
      * @generated
      */
     EAttribute LIST_OF_IDS__IDS = eINSTANCE.getListOfIDs_Ids();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.IffImpl <em>Iff</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.IffImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIff()
+     * @generated
+     */
+    EClass IFF = eINSTANCE.getIff();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IFF__LEFT = eINSTANCE.getIff_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IFF__RIGHT = eINSTANCE.getIff_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ImpliesImpl <em>Implies</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.ImpliesImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getImplies()
+     * @generated
+     */
+    EClass IMPLIES = eINSTANCE.getImplies();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLIES__LEFT = eINSTANCE.getImplies_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLIES__RIGHT = eINSTANCE.getImplies_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.OrImpl <em>Or</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.OrImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getOr()
+     * @generated
+     */
+    EClass OR = eINSTANCE.getOr();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR__LEFT = eINSTANCE.getOr_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR__RIGHT = eINSTANCE.getOr_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.AndImpl <em>And</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.AndImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getAnd()
+     * @generated
+     */
+    EClass AND = eINSTANCE.getAnd();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND__LEFT = eINSTANCE.getAnd_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND__RIGHT = eINSTANCE.getAnd_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.EqualityImpl <em>Equality</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.EqualityImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getEquality()
+     * @generated
+     */
+    EClass EQUALITY = eINSTANCE.getEquality();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EQUALITY__LEFT = eINSTANCE.getEquality_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EQUALITY__OP = eINSTANCE.getEquality_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EQUALITY__RIGHT = eINSTANCE.getEquality_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ComparisonImpl <em>Comparison</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.ComparisonImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getComparison()
+     * @generated
+     */
+    EClass COMPARISON = eINSTANCE.getComparison();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPARISON__LEFT = eINSTANCE.getComparison_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMPARISON__OP = eINSTANCE.getComparison_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPARISON__RIGHT = eINSTANCE.getComparison_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.PlusImpl <em>Plus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.PlusImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getPlus()
+     * @generated
+     */
+    EClass PLUS = eINSTANCE.getPlus();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PLUS__LEFT = eINSTANCE.getPlus_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PLUS__RIGHT = eINSTANCE.getPlus_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.MinusImpl <em>Minus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.MinusImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMinus()
+     * @generated
+     */
+    EClass MINUS = eINSTANCE.getMinus();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__LEFT = eINSTANCE.getMinus_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__RIGHT = eINSTANCE.getMinus_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.MulOrDivImpl <em>Mul Or Div</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.MulOrDivImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMulOrDiv()
+     * @generated
+     */
+    EClass MUL_OR_DIV = eINSTANCE.getMulOrDiv();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MUL_OR_DIV__LEFT = eINSTANCE.getMulOrDiv_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MUL_OR_DIV__OP = eINSTANCE.getMulOrDiv_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MUL_OR_DIV__RIGHT = eINSTANCE.getMulOrDiv_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.NegationImpl <em>Negation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.NegationImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNegation()
+     * @generated
+     */
+    EClass NEGATION = eINSTANCE.getNegation();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEGATION__EXPRESSION = eINSTANCE.getNegation_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.UnaryImpl <em>Unary</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.UnaryImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getUnary()
+     * @generated
+     */
+    EClass UNARY = eINSTANCE.getUnary();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute UNARY__OP = eINSTANCE.getUnary_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference UNARY__EXPRESSION = eINSTANCE.getUnary_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.FunctionImpl <em>Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.FunctionImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getFunction()
+     * @generated
+     */
+    EClass FUNCTION = eINSTANCE.getFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION__OP = eINSTANCE.getFunction_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__LEFT = eINSTANCE.getFunction_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__RIGHT = eINSTANCE.getFunction_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolConstantImpl <em>Bool Constant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.BoolConstantImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolConstant()
+     * @generated
+     */
+    EClass BOOL_CONSTANT = eINSTANCE.getBoolConstant();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BOOL_CONSTANT__VALUE = eINSTANCE.getBoolConstant_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.VariableRefImpl <em>Variable Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.VariableRefImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVariableRef()
+     * @generated
+     */
+    EClass VARIABLE_REF = eINSTANCE.getVariableRef();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VARIABLE_REF__VARIABLE = eINSTANCE.getVariableRef_Variable();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.IntConstantImpl <em>Int Constant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.IntConstantImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIntConstant()
+     * @generated
+     */
+    EClass INT_CONSTANT = eINSTANCE.getIntConstant();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_CONSTANT__VALUE = eINSTANCE.getIntConstant_Value();
 
   }
 

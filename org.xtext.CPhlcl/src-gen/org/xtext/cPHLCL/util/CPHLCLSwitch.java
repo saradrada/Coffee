@@ -8,29 +8,37 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.xtext.cPHLCL.Arithmetic;
-import org.xtext.cPHLCL.Bool;
-import org.xtext.cPHLCL.BoolExpression;
-import org.xtext.cPHLCL.BoolVar;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.BoolConstant;
+import org.xtext.cPHLCL.BoolVal;
 import org.xtext.cPHLCL.CPHLCLPackage;
-import org.xtext.cPHLCL.ComplexTerm;
+import org.xtext.cPHLCL.Comparison;
 import org.xtext.cPHLCL.Constraint;
-import org.xtext.cPHLCL.Control;
 import org.xtext.cPHLCL.DomainDeclaration;
 import org.xtext.cPHLCL.Enumeration;
+import org.xtext.cPHLCL.Equality;
 import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Function;
 import org.xtext.cPHLCL.Global;
-import org.xtext.cPHLCL.IntVar;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
-import org.xtext.cPHLCL.ListOfEnumerables;
 import org.xtext.cPHLCL.ListOfIDs;
 import org.xtext.cPHLCL.ListOfValues;
-import org.xtext.cPHLCL.Logic;
-import org.xtext.cPHLCL.LogicUn;
+import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.NumExpression;
+import org.xtext.cPHLCL.MulOrDiv;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.NonEnumerableValue;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Plus;
 import org.xtext.cPHLCL.Relational;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Symbol;
+import org.xtext.cPHLCL.Unary;
+import org.xtext.cPHLCL.Value;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,10 +110,10 @@ public class CPHLCLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CPHLCLPackage.VAR_DECLARATION:
+      case CPHLCLPackage.VARIABLE:
       {
-        VarDeclaration varDeclaration = (VarDeclaration)theEObject;
-        T result = caseVarDeclaration(varDeclaration);
+        Variable variable = (Variable)theEObject;
+        T result = caseVariable(variable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -146,62 +154,11 @@ public class CPHLCLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CPHLCLPackage.BOOL_EXPRESSION:
-      {
-        BoolExpression boolExpression = (BoolExpression)theEObject;
-        T result = caseBoolExpression(boolExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.COMPLEX_TERM:
-      {
-        ComplexTerm complexTerm = (ComplexTerm)theEObject;
-        T result = caseComplexTerm(complexTerm);
-        if (result == null) result = caseBoolExpression(complexTerm);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.LOGIC:
-      {
-        Logic logic = (Logic)theEObject;
-        T result = caseLogic(logic);
-        if (result == null) result = caseExpression(logic);
-        if (result == null) result = caseComplexTerm(logic);
-        if (result == null) result = caseBoolExpression(logic);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.LOGIC_UN:
-      {
-        LogicUn logicUn = (LogicUn)theEObject;
-        T result = caseLogicUn(logicUn);
-        if (result == null) result = caseComplexTerm(logicUn);
-        if (result == null) result = caseBoolExpression(logicUn);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case CPHLCLPackage.RELATIONAL:
       {
         Relational relational = (Relational)theEObject;
         T result = caseRelational(relational);
         if (result == null) result = caseExpression(relational);
-        if (result == null) result = caseComplexTerm(relational);
-        if (result == null) result = caseBoolExpression(relational);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.NUM_EXPRESSION:
-      {
-        NumExpression numExpression = (NumExpression)theEObject;
-        T result = caseNumExpression(numExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.ARITHMETIC:
-      {
-        Arithmetic arithmetic = (Arithmetic)theEObject;
-        T result = caseArithmetic(arithmetic);
-        if (result == null) result = caseNumExpression(arithmetic);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -213,26 +170,12 @@ public class CPHLCLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CPHLCLPackage.CONTROL:
+      case CPHLCLPackage.BOOL_VAL:
       {
-        Control control = (Control)theEObject;
-        T result = caseControl(control);
-        if (result == null) result = caseExpression(control);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.BOOL:
-      {
-        Bool bool = (Bool)theEObject;
-        T result = caseBool(bool);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case CPHLCLPackage.BOOL_VAR:
-      {
-        BoolVar boolVar = (BoolVar)theEObject;
-        T result = caseBoolVar(boolVar);
-        if (result == null) result = caseBoolExpression(boolVar);
+        BoolVal boolVal = (BoolVal)theEObject;
+        T result = caseBoolVal(boolVal);
+        if (result == null) result = caseNonEnumerableValue(boolVal);
+        if (result == null) result = caseValue(boolVal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -240,15 +183,31 @@ public class CPHLCLSwitch<T> extends Switch<T>
       {
         org.xtext.cPHLCL.Number number = (org.xtext.cPHLCL.Number)theEObject;
         T result = caseNumber(number);
-        if (result == null) result = caseNumExpression(number);
+        if (result == null) result = caseValue(number);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CPHLCLPackage.INT_VAR:
+      case CPHLCLPackage.SYMBOL:
       {
-        IntVar intVar = (IntVar)theEObject;
-        T result = caseIntVar(intVar);
-        if (result == null) result = caseNumExpression(intVar);
+        Symbol symbol = (Symbol)theEObject;
+        T result = caseSymbol(symbol);
+        if (result == null) result = caseNonEnumerableValue(symbol);
+        if (result == null) result = caseValue(symbol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.VALUE:
+      {
+        Value value = (Value)theEObject;
+        T result = caseValue(value);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.NON_ENUMERABLE_VALUE:
+      {
+        NonEnumerableValue nonEnumerableValue = (NonEnumerableValue)theEObject;
+        T result = caseNonEnumerableValue(nonEnumerableValue);
+        if (result == null) result = caseValue(nonEnumerableValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -259,17 +218,145 @@ public class CPHLCLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CPHLCLPackage.LIST_OF_ENUMERABLES:
-      {
-        ListOfEnumerables listOfEnumerables = (ListOfEnumerables)theEObject;
-        T result = caseListOfEnumerables(listOfEnumerables);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case CPHLCLPackage.LIST_OF_IDS:
       {
         ListOfIDs listOfIDs = (ListOfIDs)theEObject;
         T result = caseListOfIDs(listOfIDs);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.IFF:
+      {
+        Iff iff = (Iff)theEObject;
+        T result = caseIff(iff);
+        if (result == null) result = caseRelational(iff);
+        if (result == null) result = caseExpression(iff);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.IMPLIES:
+      {
+        Implies implies = (Implies)theEObject;
+        T result = caseImplies(implies);
+        if (result == null) result = caseRelational(implies);
+        if (result == null) result = caseExpression(implies);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.OR:
+      {
+        Or or = (Or)theEObject;
+        T result = caseOr(or);
+        if (result == null) result = caseRelational(or);
+        if (result == null) result = caseExpression(or);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.AND:
+      {
+        And and = (And)theEObject;
+        T result = caseAnd(and);
+        if (result == null) result = caseRelational(and);
+        if (result == null) result = caseExpression(and);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.EQUALITY:
+      {
+        Equality equality = (Equality)theEObject;
+        T result = caseEquality(equality);
+        if (result == null) result = caseRelational(equality);
+        if (result == null) result = caseExpression(equality);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.COMPARISON:
+      {
+        Comparison comparison = (Comparison)theEObject;
+        T result = caseComparison(comparison);
+        if (result == null) result = caseRelational(comparison);
+        if (result == null) result = caseExpression(comparison);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.PLUS:
+      {
+        Plus plus = (Plus)theEObject;
+        T result = casePlus(plus);
+        if (result == null) result = caseRelational(plus);
+        if (result == null) result = caseExpression(plus);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.MINUS:
+      {
+        Minus minus = (Minus)theEObject;
+        T result = caseMinus(minus);
+        if (result == null) result = caseRelational(minus);
+        if (result == null) result = caseExpression(minus);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.MUL_OR_DIV:
+      {
+        MulOrDiv mulOrDiv = (MulOrDiv)theEObject;
+        T result = caseMulOrDiv(mulOrDiv);
+        if (result == null) result = caseRelational(mulOrDiv);
+        if (result == null) result = caseExpression(mulOrDiv);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.NEGATION:
+      {
+        Negation negation = (Negation)theEObject;
+        T result = caseNegation(negation);
+        if (result == null) result = caseRelational(negation);
+        if (result == null) result = caseExpression(negation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.UNARY:
+      {
+        Unary unary = (Unary)theEObject;
+        T result = caseUnary(unary);
+        if (result == null) result = caseRelational(unary);
+        if (result == null) result = caseExpression(unary);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.FUNCTION:
+      {
+        Function function = (Function)theEObject;
+        T result = caseFunction(function);
+        if (result == null) result = caseRelational(function);
+        if (result == null) result = caseExpression(function);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.BOOL_CONSTANT:
+      {
+        BoolConstant boolConstant = (BoolConstant)theEObject;
+        T result = caseBoolConstant(boolConstant);
+        if (result == null) result = caseRelational(boolConstant);
+        if (result == null) result = caseExpression(boolConstant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.VARIABLE_REF:
+      {
+        VariableRef variableRef = (VariableRef)theEObject;
+        T result = caseVariableRef(variableRef);
+        if (result == null) result = caseRelational(variableRef);
+        if (result == null) result = caseExpression(variableRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.INT_CONSTANT:
+      {
+        IntConstant intConstant = (IntConstant)theEObject;
+        T result = caseIntConstant(intConstant);
+        if (result == null) result = caseRelational(intConstant);
+        if (result == null) result = caseExpression(intConstant);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -294,17 +381,17 @@ public class CPHLCLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Var Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Var Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVarDeclaration(VarDeclaration object)
+  public T caseVariable(Variable object)
   {
     return null;
   }
@@ -390,70 +477,6 @@ public class CPHLCLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Bool Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bool Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBoolExpression(BoolExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Complex Term</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Complex Term</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseComplexTerm(ComplexTerm object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Logic</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Logic</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLogic(Logic object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Logic Un</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Logic Un</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLogicUn(LogicUn object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Relational</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -465,38 +488,6 @@ public class CPHLCLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRelational(Relational object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Num Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Num Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNumExpression(NumExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Arithmetic</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Arithmetic</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseArithmetic(Arithmetic object)
   {
     return null;
   }
@@ -518,49 +509,17 @@ public class CPHLCLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Control</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bool Val</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Control</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bool Val</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseControl(Control object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Bool</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bool</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBool(Bool object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Bool Var</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bool Var</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBoolVar(BoolVar object)
+  public T caseBoolVal(BoolVal object)
   {
     return null;
   }
@@ -582,17 +541,49 @@ public class CPHLCLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Var</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Symbol</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Var</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Symbol</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntVar(IntVar object)
+  public T caseSymbol(Symbol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValue(Value object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNonEnumerableValue(NonEnumerableValue object)
   {
     return null;
   }
@@ -614,22 +605,6 @@ public class CPHLCLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>List Of Enumerables</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>List Of Enumerables</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseListOfEnumerables(ListOfEnumerables object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>List Of IDs</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -641,6 +616,246 @@ public class CPHLCLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfIDs(ListOfIDs object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Iff</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Iff</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIff(Iff object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implies</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implies</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplies(Implies object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Or</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Or</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOr(Or object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>And</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>And</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnd(And object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equality</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equality</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEquality(Equality object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comparison</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comparison</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComparison(Comparison object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Plus</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Plus</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePlus(Plus object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Minus</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Minus</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMinus(Minus object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mul Or Div</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mul Or Div</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMulOrDiv(MulOrDiv object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Negation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Negation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNegation(Negation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unary</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unary</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnary(Unary object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunction(Function object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bool Constant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bool Constant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBoolConstant(BoolConstant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariableRef(VariableRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Constant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Constant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntConstant(IntConstant object)
   {
     return null;
   }

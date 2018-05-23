@@ -11,30 +11,38 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.xtext.cPHLCL.Arithmetic;
-import org.xtext.cPHLCL.Bool;
-import org.xtext.cPHLCL.BoolExpression;
-import org.xtext.cPHLCL.BoolVar;
+import org.xtext.cPHLCL.And;
+import org.xtext.cPHLCL.BoolConstant;
+import org.xtext.cPHLCL.BoolVal;
 import org.xtext.cPHLCL.CPHLCLFactory;
 import org.xtext.cPHLCL.CPHLCLPackage;
-import org.xtext.cPHLCL.ComplexTerm;
+import org.xtext.cPHLCL.Comparison;
 import org.xtext.cPHLCL.Constraint;
-import org.xtext.cPHLCL.Control;
 import org.xtext.cPHLCL.DomainDeclaration;
 import org.xtext.cPHLCL.Enumeration;
+import org.xtext.cPHLCL.Equality;
 import org.xtext.cPHLCL.Expression;
+import org.xtext.cPHLCL.Function;
 import org.xtext.cPHLCL.Global;
-import org.xtext.cPHLCL.IntVar;
+import org.xtext.cPHLCL.Iff;
+import org.xtext.cPHLCL.Implies;
+import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
-import org.xtext.cPHLCL.ListOfEnumerables;
 import org.xtext.cPHLCL.ListOfIDs;
 import org.xtext.cPHLCL.ListOfValues;
-import org.xtext.cPHLCL.Logic;
-import org.xtext.cPHLCL.LogicUn;
+import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
-import org.xtext.cPHLCL.NumExpression;
+import org.xtext.cPHLCL.MulOrDiv;
+import org.xtext.cPHLCL.Negation;
+import org.xtext.cPHLCL.NonEnumerableValue;
+import org.xtext.cPHLCL.Or;
+import org.xtext.cPHLCL.Plus;
 import org.xtext.cPHLCL.Relational;
-import org.xtext.cPHLCL.VarDeclaration;
+import org.xtext.cPHLCL.Symbol;
+import org.xtext.cPHLCL.Unary;
+import org.xtext.cPHLCL.Value;
+import org.xtext.cPHLCL.Variable;
+import org.xtext.cPHLCL.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,28 +97,36 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
     switch (eClass.getClassifierID())
     {
       case CPHLCLPackage.MODEL: return createModel();
-      case CPHLCLPackage.VAR_DECLARATION: return createVarDeclaration();
+      case CPHLCLPackage.VARIABLE: return createVariable();
       case CPHLCLPackage.DOMAIN_DECLARATION: return createDomainDeclaration();
       case CPHLCLPackage.INTERVAL: return createInterval();
       case CPHLCLPackage.ENUMERATION: return createEnumeration();
       case CPHLCLPackage.CONSTRAINT: return createConstraint();
       case CPHLCLPackage.EXPRESSION: return createExpression();
-      case CPHLCLPackage.BOOL_EXPRESSION: return createBoolExpression();
-      case CPHLCLPackage.COMPLEX_TERM: return createComplexTerm();
-      case CPHLCLPackage.LOGIC: return createLogic();
-      case CPHLCLPackage.LOGIC_UN: return createLogicUn();
       case CPHLCLPackage.RELATIONAL: return createRelational();
-      case CPHLCLPackage.NUM_EXPRESSION: return createNumExpression();
-      case CPHLCLPackage.ARITHMETIC: return createArithmetic();
       case CPHLCLPackage.GLOBAL: return createGlobal();
-      case CPHLCLPackage.CONTROL: return createControl();
-      case CPHLCLPackage.BOOL: return createBool();
-      case CPHLCLPackage.BOOL_VAR: return createBoolVar();
+      case CPHLCLPackage.BOOL_VAL: return createBoolVal();
       case CPHLCLPackage.NUMBER: return createNumber();
-      case CPHLCLPackage.INT_VAR: return createIntVar();
+      case CPHLCLPackage.SYMBOL: return createSymbol();
+      case CPHLCLPackage.VALUE: return createValue();
+      case CPHLCLPackage.NON_ENUMERABLE_VALUE: return createNonEnumerableValue();
       case CPHLCLPackage.LIST_OF_VALUES: return createListOfValues();
-      case CPHLCLPackage.LIST_OF_ENUMERABLES: return createListOfEnumerables();
       case CPHLCLPackage.LIST_OF_IDS: return createListOfIDs();
+      case CPHLCLPackage.IFF: return createIff();
+      case CPHLCLPackage.IMPLIES: return createImplies();
+      case CPHLCLPackage.OR: return createOr();
+      case CPHLCLPackage.AND: return createAnd();
+      case CPHLCLPackage.EQUALITY: return createEquality();
+      case CPHLCLPackage.COMPARISON: return createComparison();
+      case CPHLCLPackage.PLUS: return createPlus();
+      case CPHLCLPackage.MINUS: return createMinus();
+      case CPHLCLPackage.MUL_OR_DIV: return createMulOrDiv();
+      case CPHLCLPackage.NEGATION: return createNegation();
+      case CPHLCLPackage.UNARY: return createUnary();
+      case CPHLCLPackage.FUNCTION: return createFunction();
+      case CPHLCLPackage.BOOL_CONSTANT: return createBoolConstant();
+      case CPHLCLPackage.VARIABLE_REF: return createVariableRef();
+      case CPHLCLPackage.INT_CONSTANT: return createIntConstant();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -132,10 +148,10 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public VarDeclaration createVarDeclaration()
+  public Variable createVariable()
   {
-    VarDeclarationImpl varDeclaration = new VarDeclarationImpl();
-    return varDeclaration;
+    VariableImpl variable = new VariableImpl();
+    return variable;
   }
 
   /**
@@ -198,76 +214,10 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BoolExpression createBoolExpression()
-  {
-    BoolExpressionImpl boolExpression = new BoolExpressionImpl();
-    return boolExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ComplexTerm createComplexTerm()
-  {
-    ComplexTermImpl complexTerm = new ComplexTermImpl();
-    return complexTerm;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Logic createLogic()
-  {
-    LogicImpl logic = new LogicImpl();
-    return logic;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public LogicUn createLogicUn()
-  {
-    LogicUnImpl logicUn = new LogicUnImpl();
-    return logicUn;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Relational createRelational()
   {
     RelationalImpl relational = new RelationalImpl();
     return relational;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NumExpression createNumExpression()
-  {
-    NumExpressionImpl numExpression = new NumExpressionImpl();
-    return numExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Arithmetic createArithmetic()
-  {
-    ArithmeticImpl arithmetic = new ArithmeticImpl();
-    return arithmetic;
   }
 
   /**
@@ -286,32 +236,10 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control createControl()
+  public BoolVal createBoolVal()
   {
-    ControlImpl control = new ControlImpl();
-    return control;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Bool createBool()
-  {
-    BoolImpl bool = new BoolImpl();
-    return bool;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BoolVar createBoolVar()
-  {
-    BoolVarImpl boolVar = new BoolVarImpl();
-    return boolVar;
+    BoolValImpl boolVal = new BoolValImpl();
+    return boolVal;
   }
 
   /**
@@ -330,10 +258,32 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public IntVar createIntVar()
+  public Symbol createSymbol()
   {
-    IntVarImpl intVar = new IntVarImpl();
-    return intVar;
+    SymbolImpl symbol = new SymbolImpl();
+    return symbol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Value createValue()
+  {
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NonEnumerableValue createNonEnumerableValue()
+  {
+    NonEnumerableValueImpl nonEnumerableValue = new NonEnumerableValueImpl();
+    return nonEnumerableValue;
   }
 
   /**
@@ -352,10 +302,10 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ListOfEnumerables createListOfEnumerables()
+  public ListOfIDs createListOfIDs()
   {
-    ListOfEnumerablesImpl listOfEnumerables = new ListOfEnumerablesImpl();
-    return listOfEnumerables;
+    ListOfIDsImpl listOfIDs = new ListOfIDsImpl();
+    return listOfIDs;
   }
 
   /**
@@ -363,10 +313,164 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ListOfIDs createListOfIDs()
+  public Iff createIff()
   {
-    ListOfIDsImpl listOfIDs = new ListOfIDsImpl();
-    return listOfIDs;
+    IffImpl iff = new IffImpl();
+    return iff;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Implies createImplies()
+  {
+    ImpliesImpl implies = new ImpliesImpl();
+    return implies;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Or createOr()
+  {
+    OrImpl or = new OrImpl();
+    return or;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public And createAnd()
+  {
+    AndImpl and = new AndImpl();
+    return and;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Equality createEquality()
+  {
+    EqualityImpl equality = new EqualityImpl();
+    return equality;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Comparison createComparison()
+  {
+    ComparisonImpl comparison = new ComparisonImpl();
+    return comparison;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Plus createPlus()
+  {
+    PlusImpl plus = new PlusImpl();
+    return plus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Minus createMinus()
+  {
+    MinusImpl minus = new MinusImpl();
+    return minus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MulOrDiv createMulOrDiv()
+  {
+    MulOrDivImpl mulOrDiv = new MulOrDivImpl();
+    return mulOrDiv;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Negation createNegation()
+  {
+    NegationImpl negation = new NegationImpl();
+    return negation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Unary createUnary()
+  {
+    UnaryImpl unary = new UnaryImpl();
+    return unary;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Function createFunction()
+  {
+    FunctionImpl function = new FunctionImpl();
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoolConstant createBoolConstant()
+  {
+    BoolConstantImpl boolConstant = new BoolConstantImpl();
+    return boolConstant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VariableRef createVariableRef()
+  {
+    VariableRefImpl variableRef = new VariableRefImpl();
+    return variableRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IntConstant createIntConstant()
+  {
+    IntConstantImpl intConstant = new IntConstantImpl();
+    return intConstant;
   }
 
   /**

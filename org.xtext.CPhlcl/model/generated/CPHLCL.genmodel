@@ -8,19 +8,19 @@
       fileExtensions="cp" ecorePackage="CPHLCL.ecore#/">
     <genClasses ecoreClass="CPHLCL.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Model/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Model/vars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Model/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Model/constraints"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Model/strategy"/>
     </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//VarDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//VarDeclaration/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//VarDeclaration/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//VarDeclaration/domain"/>
+    <genClasses ecoreClass="CPHLCL.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Variable/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Variable/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Variable/domain"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//DomainDeclaration"/>
     <genClasses ecoreClass="CPHLCL.ecore#//Interval">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Interval/start"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Interval/end"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Interval/start"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Interval/end"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//Enumeration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Enumeration/list"/>
@@ -30,57 +30,85 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Constraint/exp"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//Expression"/>
-    <genClasses ecoreClass="CPHLCL.ecore#//BoolExpression"/>
-    <genClasses ecoreClass="CPHLCL.ecore#//ComplexTerm"/>
-    <genClasses ecoreClass="CPHLCL.ecore#//Logic">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Logic/logicLeft"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Logic/logicOp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Logic/logicRight"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//LogicUn">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//LogicUn/logicOp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//LogicUn/exp"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//Relational">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Relational/relationalLeft"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Relational/relationalOp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Relational/relationalRight"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//NumExpression"/>
-    <genClasses ecoreClass="CPHLCL.ecore#//Arithmetic">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Arithmetic/left"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Arithmetic/arithOperator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Arithmetic/right"/>
-    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Relational"/>
     <genClasses ecoreClass="CPHLCL.ecore#//Global">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Global/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Global/vars"/>
     </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//Control">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Control/cond"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Control/trueStatement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Control/elseStatement"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//Bool">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Bool/val"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//BoolVar">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//BoolVar/id"/>
-    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//BoolVal"/>
     <genClasses ecoreClass="CPHLCL.ecore#//Number">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Number/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Number/value"/>
     </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//IntVar">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//IntVar/id"/>
+    <genClasses ecoreClass="CPHLCL.ecore#//Symbol"/>
+    <genClasses ecoreClass="CPHLCL.ecore#//Value"/>
+    <genClasses ecoreClass="CPHLCL.ecore#//NonEnumerableValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//NonEnumerableValue/value"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//ListOfValues">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//ListOfValues/values"/>
-    </genClasses>
-    <genClasses ecoreClass="CPHLCL.ecore#//ListOfEnumerables">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//ListOfEnumerables/values"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//ListOfValues/values"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//ListOfIDs">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//ListOfIDs/ids"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Iff">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Iff/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Iff/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Implies">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Implies/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Implies/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Or/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Or/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//And/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//And/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Equality">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Equality/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Equality/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Equality/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Comparison">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Comparison/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Comparison/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Comparison/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Plus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Plus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Minus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Minus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Minus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//MulOrDiv">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//MulOrDiv/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//MulOrDiv/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//MulOrDiv/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Negation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Negation/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Unary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Unary/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Unary/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Function/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Function/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Function/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//BoolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//BoolConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//VariableRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//VariableRef/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//IntConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//IntConstant/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -13,19 +13,33 @@ import org.xtext.cPHLCL.DomainDeclaration
 import org.xtext.cPHLCL.Interval
 import org.xtext.cPHLCL.Enumeration
 import org.xtext.cPHLCL.Expression
-import org.xtext.cPHLCL.Global
-import org.xtext.cPHLCL.ListOfIDs
-import org.xtext.cPHLCL.VarDeclaration
-import org.xtext.cPHLCL.Logic
-import org.xtext.cPHLCL.BoolExpression
+import org.xtext.cPHLCL.Number
 
-import org.xtext.cPHLCL.BoolVar
-import org.xtext.cPHLCL.ComplexTerm
-import org.xtext.cPHLCL.LogicUn
+import org.xtext.cPHLCL.ListOfIDs
+//import org.xtext.cPHLCL.ComplexTerm
+//import org.xtext.cPHLCL.LogicUn
 import org.xtext.cPHLCL.Relational
-import org.xtext.cPHLCL.NumExpression
-import org.xtext.cPHLCL.IntVar
-import org.xtext.cPHLCL.Arithmetic
+//import org.xtext.cPHLCL.NumExpression
+
+
+import org.xtext.cPHLCL.Variable
+import org.xtext.cPHLCL.Global
+import org.xtext.cPHLCL.IntConstant
+import org.xtext.cPHLCL.BoolConstant
+import org.xtext.cPHLCL.VariableRef
+import org.xtext.cPHLCL.Function
+import org.xtext.cPHLCL.Unary
+import org.xtext.cPHLCL.Negation
+import org.xtext.cPHLCL.MulOrDiv
+import org.xtext.cPHLCL.Plus
+import org.xtext.cPHLCL.Minus
+import org.xtext.cPHLCL.Comparison
+import org.xtext.cPHLCL.Equality
+import org.xtext.cPHLCL.And
+import org.xtext.cPHLCL.Or
+import org.xtext.cPHLCL.Implies
+import org.xtext.cPHLCL.Iff
+
 //import org.xtext.cPHLCL.IntegerExp
 
 /**
@@ -50,57 +64,56 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 		println(name);
 		return name.substring(0, name.indexOf('.'))
 	}
-		def toJavaCode(Model model) '''
-			//Java imports
-			«JAVA_IMPORTS»
-			
-			//imports for hlcl 
-			«HLCL_IMPORTS»
-			
-			//imports for solver
-			«SOLVER_IMPORTS»
+	def toJavaCode(Model model) '''
+		//Java imports
+		«JAVA_IMPORTS»
+		//imports for hlcl 
+		«HLCL_IMPORTS»
+		
+		//imports for solver
+		«SOLVER_IMPORTS»
 
-			«CLASS_JAVADOC»
-			«CLASS_DECLARATION» «modelName» { ««« open class
+		«CLASS_JAVADOC»
+		«CLASS_DECLARATION» «modelName» { ««« open class
+			
+			«CLASS_ATTRIBUTES»
+			«CONSTRUCTOR_JAVADOC»
+			public «modelName»(String modelName){ «««Consructor declaration
 				
-				«CLASS_ATTRIBUTES»
-				«CONSTRUCTOR_JAVADOC»
-				public «modelName»(String modelName){ «««Consructor declaration
-					
-					«CONSTRUCTOR_CODE»
-				} ««« end Consructor 
-				
-				public static void main(String[] args) {
-					«modelName» obj = new «modelName»("«modelName»");
-					obj.run();
-				}
-				«RUN_METHOD»
-				public void transformVars() {
-					//declaring the variable for the model
-					Identifier «modelName»Var = factory.newIdentifier("«modelName»");
-					BinaryDomain «modelName»Dom= new BinaryDomain();
-					«modelName»Var.setDomain(«modelName»Dom);	
-					variables.put("«modelName»Var", «modelName»Var); //including the variable in the map
-					«FOR c : model.vars»
-						«c.declareVars»
-					«ENDFOR»
-				}
-				public void transformConstraints() {
-					//declaring the constraint for the model
-					IntBooleanExpression C«modelName»= factory.equals(variables.get("«modelName»Var"), getValue("1"));
-					constraints.put("C«modelName»", C«modelName»);
-					hlclProgram.add(C«modelName»);
-					«FOR c : model.constraints»
-						«declareCons(c.exp, c.name)»
-					«ENDFOR»
-				}
-				«EVALUATE_SATISFIABILITY»
-				«GET_VALUE_JAVADOC»
-				«GET_VALUE_CODE»
-				«GETTERS_SETTERS»
-			} ««« ends Class
+				«CONSTRUCTOR_CODE»
+			} ««« end Consructor 
+			
+			public static void main(String[] args) {
+				«modelName» obj = new «modelName»("«modelName»");
+				obj.run();
+			}
+			«RUN_METHOD»
+			public void transformVars() {
+				//declaring the variable for the model
+				Identifier «modelName»Var = factory.newIdentifier("«modelName»");
+				BinaryDomain «modelName»Dom= new BinaryDomain();
+				«modelName»Var.setDomain(«modelName»Dom);	
+				variables.put("«modelName»Var", «modelName»Var); //including the variable in the map
+				«FOR c : model.variables»
+					«declareVars(c)»
+				«ENDFOR»
+			}
+			public void transformConstraints() {
+				//declaring the constraint for the model
+				IntBooleanExpression C«modelName»= factory.equals(variables.get("«modelName»Var"), getValue("1"));
+				constraints.put("C«modelName»", C«modelName»);
+				hlclProgram.add(C«modelName»);
+				«FOR c : model.constraints»
+					«declareCons(c.exp, c.name)»
+				«ENDFOR»
+			}
+			«EVALUATE_SATISFIABILITY»
+			«GET_VALUE_JAVADOC»
+			«GET_VALUE_CODE»
+			«GETTERS_SETTERS»
+		} ««« ends Class
 	'''
-	def declareVars(VarDeclaration variable) '''
+	def declareVars(Variable variable) '''
 		//declaring variable «variable.name»
 		Identifier «variable.name» = factory.newIdentifier("«variable.name»");
 		«var String myType= variable.type.toString»
@@ -109,11 +122,11 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 	'''
 	
 	def declareDomain(DomainDeclaration domain, String type, String name) '''
-		«IF type.equals("bool")»  ««« the domain is of type boolean
+		«IF type=="boolean"»  ««« the domain is of type boolean
 			BinaryDomain «name»Dom= new BinaryDomain();
 		«ELSE»	
 			«IF domain instanceof Interval» ««« the domain is numeric, and declared as an interval
-				RangeDomain «name»Dom= new RangeDomain(«domain.start», «domain.end»);
+				RangeDomain «name»Dom= new RangeDomain(«domain.start.value», «domain.end.value»);
 			«ELSE»
 				«IF domain instanceof Enumeration» ««« the domain is declared as an enumeration
 					«IF type.equals("symbolic")» ««« if the domain is an enumeration of strings (symbolic)
@@ -124,7 +137,7 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 					«ELSE» ««« if the domain is an enumeration of numbers
 						IntervalDomain «name»Dom= new IntervalDomain(); 
 						«FOR e : domain.list.values»
-							«name»Dom.add(«e»); ««« add each element in the enumeration
+							«name»Dom.add(«(e as Number).value»); ««« add each element in the enumeration
 						«ENDFOR»
 					«ENDIF»	
 				«ENDIF»
@@ -139,10 +152,7 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 		«IF exp instanceof Global»
 			«declareGlobal(exp, name)»
 		«ELSE»
-			«IF exp instanceof Logic»
-				«declareLogic(exp, name)»
-			«ELSE»
-				«IF exp instanceof Relational»
+			«IF exp instanceof Relational»
 					«declareRelational(exp, name)»
 «««					«var Rule rule= exp as Rule»
 «««					«declareRule(rule, name)»
@@ -154,7 +164,6 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 «««						«var FodaUN unary= exp as FodaUN»
 «««						«declareFodaUnary(unary, name)»
 «««					«ENDIF»
-				«ENDIF»
 			«ENDIF»
 		«ENDIF»
 		constraints.put("«name»", «name»);
@@ -170,25 +179,142 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 		«ENDFOR»
 	'''
 	def declareRelational(Relational exp, String name) '''
-		«declareNumericTerm(exp.relationalLeft, name+"_left")»
-		«declareNumericTerm(exp.relationalRight, name+"_right")»
+		
+		«IF exp instanceof BoolConstant»
+			«IF exp.value == "true"»
+				NumericIdentifier «name»=getValue("1");
+			«ELSE»
+				NumericIdentifier «name»=getValue("0");
+			«ENDIF»
+		«ELSE»
+			«IF exp instanceof IntConstant»
+				NumericIdentifier «name» = getValue("«exp.value»");
+			«ELSE»
+				«IF exp instanceof VariableRef»
+					Identifier «name» = variables.get("«exp.variable.name»");
+				«ELSE»
+					«IF  exp instanceof Function»
+						«declareFunction(exp, name)»
+					«ELSE»
+						«IF exp instanceof Unary »
+							«declareUnary(exp, name)»
+						«ELSE»
+							«IF exp instanceof Negation»
+								«declareNegation(exp, name)»
+							«ELSE»
+								«IF exp instanceof MulOrDiv»
+									«declareMulOrDiv(exp, name)»
+								«ELSE»
+									«IF exp instanceof Plus»
+										«declarePlus(exp, name)»
+									«ELSE»
+										«IF exp instanceof Minus»
+											«declareMinus(exp, name)»
+										«ELSE»
+											«IF exp instanceof Comparison»
+												«declareComparison(exp, name)»
+											«ELSE»
+												«IF exp instanceof Equality»
+													«declareEquality(exp, name)»
+												«ELSE»
+													«IF exp instanceof And»
+														«declareAnd(exp, name)»
+													«ELSE»
+														«IF exp instanceof Or»
+															«declareOr(exp, name)»
+														«ELSE»
+															«IF exp instanceof Implies»
+																«declareImplies(exp, name)»
+															«ELSE»
+																«IF exp instanceof Iff»
+																	«declareIff(exp, name)»
+																«ENDIF»
+															«ENDIF»
+														«ENDIF»
+													«ENDIF»
+												«ENDIF»
+											«ENDIF»
+										«ENDIF»		
+									«ENDIF»									
+								«ENDIF»											
+							«ENDIF»
+						«ENDIF»
+					«ENDIF»
+				«ENDIF»
+			«ENDIF»
+		«ENDIF»		
+	'''
+	def declareFunction(Function exp, String name) '''
+		// «name» to be implemented in Variamos HLCL
+	'''
+	def declareUnary(Unary exp, String name) '''
+		// «name» to be implemented in Variamos HLCL
+	'''
+	def declareNegation(Negation exp, String name) '''
+		«declareRelational(exp.expression, name+"_negation")»
+		IntBooleanExpression «name»=factory.not(«name»_negation);
+	'''
+	def declareMulOrDiv(MulOrDiv exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntNumericExpression «name»=
+		«IF exp.op =="*" »
+			factory.prod(«name»_left, «name»_right);
+		«ELSE»
+			«IF exp.op =="/" »
+			// «name» to be implemented in Variamos HLCL
+			//factory.div(«name»_left, «name»_right);
+			«ELSE»
+				«IF exp.op =="mod" »
+					// «name» to be implemented in Variamos HLCL
+					//factory.div(«name»_left, «name»_right);
+				«ENDIF»	
+			«ENDIF»
+		«ENDIF»		
+	'''
+	def declarePlus(Plus exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntNumericExpression «name»=factory.sum(«name»_left, «name»_right);	
+	'''
+	def declareMinus(Minus exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntNumericExpression «name»=factory.diff(«name»_left, «name»_right);	
+	'''
+	
+	def declareEquality(Equality exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
 		IntBooleanExpression «name»=
-		«IF exp.relationalOp.equals(">") »
+		«IF exp.op=="=" »
+			factory.equals(«name»_left, «name»_right);
+		«ELSE»
+			«IF exp.op=="!=" »
+				factory.notEquals(«name»_left, «name»_right);
+			«ENDIF»						
+		«ENDIF»		
+	'''
+	def declareComparison(Comparison exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntBooleanExpression «name»=
+		«IF exp.op==">" »
 			factory.greaterThan(«name»_left, «name»_right);
 		«ELSE»
-			«IF exp.relationalOp.equals(">=") »
+			«IF exp.op==">=" »
 				factory.greaterOrEqualsThan(«name»_left, «name»_right);
 			«ELSE»
-				«IF exp.relationalOp.equals("<") »
+				«IF exp.op=="<" »
 					factory.lessThan(«name»_left, «name»_right);
 				«ELSE»
-					«IF exp.relationalOp.equals("<=") »
+					«IF exp.op=="<=" »
 						factory.lessOrEqualsThan(«name»_left, «name»_right);
 					«ELSE»
-						«IF exp.relationalOp.equals("=") »
+						«IF exp.op=="=" »
 							factory.equals(«name»_left, «name»_right);
 						«ELSE»
-							«IF exp.relationalOp.equals("!=") »
+							«IF exp.op=="!=" »
 								factory.notEquals(«name»_left, «name»_right);
 							«ENDIF»						
 						«ENDIF»
@@ -196,91 +322,139 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 				«ENDIF»
 			«ENDIF»
 		«ENDIF»		
+	'''
+	def declareAnd(And exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntBooleanExpression «name»=factory.and(«name»_left, «name»_right);		
+	'''
+	def declareOr(Or exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntBooleanExpression «name»=factory.or(«name»_left, «name»_right);		
+	'''
+	def declareImplies(Implies exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntBooleanExpression «name»=factory.implies(«name»_left, «name»_right);		
+	'''
+	def declareIff(Iff exp, String name) '''
+		«declareRelational(exp.left, name+"_left")»
+		«declareRelational(exp.right, name+"_right")»
+		IntBooleanExpression «name»=factory.doubleImplies(«name»_left, «name»_right);		
+	'''
+//	def declareRelational(Relational exp, String name) '''
+//		«declareNumericTerm(exp.relationalLeft, name+"_left")»
+//		«declareNumericTerm(exp.relationalRight, name+"_right")»
+//		IntBooleanExpression «name»=
+//		«IF exp.relationalOp.equals(">") »
+//			factory.greaterThan(«name»_left, «name»_right);
+//		«ELSE»
+//			«IF exp.relationalOp.equals(">=") »
+//				factory.greaterOrEqualsThan(«name»_left, «name»_right);
+//			«ELSE»
+//				«IF exp.relationalOp.equals("<") »
+//					factory.lessThan(«name»_left, «name»_right);
+//				«ELSE»
+//					«IF exp.relationalOp.equals("<=") »
+//						factory.lessOrEqualsThan(«name»_left, «name»_right);
+//					«ELSE»
+//						«IF exp.relationalOp.equals("=") »
+//							factory.equals(«name»_left, «name»_right);
+//						«ELSE»
+//							«IF exp.relationalOp.equals("!=") »
+//								factory.notEquals(«name»_left, «name»_right);
+//							«ENDIF»						
+//						«ENDIF»
+//					«ENDIF»
+//				«ENDIF»
+//			«ENDIF»
+//		«ENDIF»		
+//	'''
 
-	'''
-	def declareLogic(Logic exp, String name) '''
-		«declareBoolTerm(exp.logicLeft, name+"_left")»
-		«declareBoolTerm(exp.logicRight, name+"_right")»
-		IntBooleanExpression «name»=
-		«IF exp.logicOp.equals("AND") »
-			factory.and(«name»_left, «name»_right);
-		«ELSE»
-			«IF exp.logicOp.equals("OR") »
-				factory.or(«name»_left, «name»_right);
-			«ELSE»
-				«IF exp.logicOp.equals("XOR") »
-					factory.xor(«name»_left, «name»_right);
-				«ELSE»
-					«IF exp.logicOp.equals("=>") »
-						factory.implies(«name»_left, «name»_right);
-					«ELSE»
-						«IF exp.logicOp.equals("<=>") »
-							factory.doubleImplies(«name»_left, «name»_right);
-						«ENDIF»
-					«ENDIF»
-				«ENDIF»
-			«ENDIF»
-		«ENDIF»
-	'''
-	def declareBoolTerm(BoolExpression exp, String name) '''
-		«IF exp instanceof BoolVar»
-			Identifier «name» = variables.get("«exp.id»");
-		«ELSE»
-			«IF exp instanceof ComplexTerm»
-				«IF exp instanceof Logic»
-					«declareLogic(exp, name)»
-				«ELSE»
-					«IF exp instanceof LogicUn»
-						«declareBoolTerm(exp.exp, name+"_int")»
-						IntBooleanExpression «name»=factory.not(«name»_int);
-					«ELSE»
-					«ENDIF»	
-				«ENDIF»									
-			«ENDIF»
-		«ENDIF»
-	'''
-	def declareNumericTerm(NumExpression exp, String name) '''
-		«IF exp instanceof Number»
-			// there is a number in the parser
-			NumericIdentifier «name» = getValue("«exp»");
-		«ELSE»
-			«IF exp instanceof IntVar»
-				Identifier «name» = variables.get("«exp.id»");	
-			«ELSE»
-				«IF exp instanceof Arithmetic»
-					«declareArithmetic(exp, name)»
-				«ELSE»
-«««					«IF exp instanceof IntegerExp»
-«««						«declareIntegerExp(exp, name)»
-«««					«ENDIF»
-				«ENDIF»	
-			«ENDIF»									
-		«ENDIF»
-	'''
-	def declareArithmetic(Arithmetic exp, String name) '''
-		«declareNumericTerm(exp.left, name+"_left")»
-		«declareNumericTerm(exp.right, name+"_right")»
-		IntNumericExpression «name»=
-		«IF exp.arithOperator.equals("+") »
-					factory.sum(«name»_left, «name»_right);
-				«ELSE»
-					«IF exp.arithOperator.equals("-") »
-						factory.diff(«name»_left, «name»_right);
-					«ELSE»
-						«IF exp.arithOperator.equals("*") »
-							factory.prod(«name»_left, «name»_right);
-«««						«ELSE»
-«««							«IF exp.arithOperator.equals("/") »
-«««								factory.implies(«name»_left, «name»_right);
-«««							«ELSE»
-«««								«IF exp.arithOperator.equals("<=>") »
-«««									factory.doubleImplies(«name»_left, «name»_right);
-«««								«ENDIF»
-«««							«ENDIF»
-						«ENDIF»
-					«ENDIF»
-				«ENDIF»
-	'''
+//	def declareLogic(Logic exp, String name) '''
+//		«declareBoolTerm(exp.logicLeft, name+"_left")»
+//		«declareBoolTerm(exp.logicRight, name+"_right")»
+//		IntBooleanExpression «name»=
+//		«IF exp.logicOp.equals("AND") »
+//			factory.and(«name»_left, «name»_right);
+//		«ELSE»
+//			«IF exp.logicOp.equals("OR") »
+//				factory.or(«name»_left, «name»_right);
+//			«ELSE»
+//				«IF exp.logicOp.equals("XOR") »
+//					factory.xor(«name»_left, «name»_right);
+//				«ELSE»
+//					«IF exp.logicOp.equals("=>") »
+//						factory.implies(«name»_left, «name»_right);
+//					«ELSE»
+//						«IF exp.logicOp.equals("<=>") »
+//							factory.doubleImplies(«name»_left, «name»_right);
+//						«ENDIF»
+//					«ENDIF»
+//				«ENDIF»
+//			«ENDIF»
+//		«ENDIF»
+//	'''
+//	def declareBoolTerm(BoolExpression exp, String name) '''
+//		«IF exp instanceof BoolVar»
+//			Identifier «name» = variables.get("«exp.id»");
+//		«ELSE»
+//			«IF exp instanceof ComplexTerm»
+//				«IF exp instanceof Logic»
+//					«declareLogic(exp, name)»
+//				«ELSE»
+//					«IF exp instanceof LogicUn»
+//						«declareBoolTerm(exp.exp, name+"_int")»
+//						IntBooleanExpression «name»=factory.not(«name»_int);
+//					«ELSE»
+//					«ENDIF»	
+//				«ENDIF»									
+//			«ENDIF»
+//		«ENDIF»
+//	'''
+//	def declareNumericTerm(NumExpression exp, String name) '''
+//		«IF exp instanceof Number»
+//			// there is a number in the parser
+//			NumericIdentifier «name» = getValue("«exp»");
+//		«ELSE»
+//			«IF exp instanceof IntVar»
+//				Identifier «name» = variables.get("«exp.id»");	
+//			«ELSE»
+//				«IF exp instanceof Arithmetic»
+//					«declareArithmetic(exp, name)»
+//				«ELSE»
+//«««					«IF exp instanceof IntegerExp»
+//«««						«declareIntegerExp(exp, name)»
+//«««					«ENDIF»
+//				«ENDIF»	
+//			«ENDIF»									
+//		«ENDIF»
+//	'''
+//	def declareArithmetic(Arithmetic exp, String name) '''
+//		«declareNumericTerm(exp.left, name+"_left")»
+//		«declareNumericTerm(exp.right, name+"_right")»
+//		IntNumericExpression «name»=
+//		«IF exp.arithOperator.equals("+") »
+//					factory.sum(«name»_left, «name»_right);
+//				«ELSE»
+//					«IF exp.arithOperator.equals("-") »
+//						factory.diff(«name»_left, «name»_right);
+//					«ELSE»
+//						«IF exp.arithOperator.equals("*") »
+//							factory.prod(«name»_left, «name»_right);
+//«««						«ELSE»
+//«««							«IF exp.arithOperator.equals("/") »
+//«««								factory.implies(«name»_left, «name»_right);
+//«««							«ELSE»
+//«««								«IF exp.arithOperator.equals("<=>") »
+//«««									factory.doubleImplies(«name»_left, «name»_right);
+//«««								«ENDIF»
+//«««							«ENDIF»
+//						«ENDIF»
+//					«ENDIF»
+//				«ENDIF»
+//	'''
 //	def declareIntegerExp(IntegerExp exp, String name) '''
 //
 //	'''
