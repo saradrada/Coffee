@@ -136,40 +136,11 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.append("\t");
     _builder.append("public void transformVars() {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("//declaring the variable for the model");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Identifier ");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Var = factory.newIdentifier(\"");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("BinaryDomain ");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Dom= new BinaryDomain();");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Var.setDomain(");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Dom);\t");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("variables.put(\"");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Var\", ");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Var); //including the variable in the map");
-    _builder.newLineIfNotEmpty();
     {
       EList<Variable> _variables = model.getVariables();
       for(final Variable c : _variables) {
-        _builder.append("\t\t");
         CharSequence _declareVars = this.declareVars(c);
-        _builder.append(_declareVars, "\t\t");
+        _builder.append(_declareVars);
         _builder.newLineIfNotEmpty();
       }
     }
@@ -179,34 +150,11 @@ public class CPHLCLGenerator extends AbstractGenerator implements JavaCodeString
     _builder.append("\t");
     _builder.append("public void transformConstraints() {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("//declaring the constraint for the model");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("IntBooleanExpression C");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("= factory.equals(variables.get(\"");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("Var\"), getValue(\"1\"));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("constraints.put(\"C");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append("\", C");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("hlclProgram.add(C");
-    _builder.append(this.modelName, "\t\t");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
     {
       EList<Constraint> _constraints = model.getConstraints();
       for(final Constraint c_1 : _constraints) {
-        _builder.append("\t\t");
         CharSequence _declareCons = this.declareCons(c_1.getExp(), c_1.getName());
-        _builder.append(_declareCons, "\t\t");
+        _builder.append(_declareCons);
         _builder.newLineIfNotEmpty();
       }
     }

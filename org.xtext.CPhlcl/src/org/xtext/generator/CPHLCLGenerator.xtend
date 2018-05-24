@@ -89,20 +89,20 @@ class CPHLCLGenerator extends AbstractGenerator implements JavaCodeStrings{
 			}
 			«RUN_METHOD»
 			public void transformVars() {
-				//declaring the variable for the model
-				Identifier «modelName»Var = factory.newIdentifier("«modelName»");
-				BinaryDomain «modelName»Dom= new BinaryDomain();
-				«modelName»Var.setDomain(«modelName»Dom);	
-				variables.put("«modelName»Var", «modelName»Var); //including the variable in the map
+«««				//declaring the variable for the model
+«««				Identifier «modelName»Var = factory.newIdentifier("«modelName»");
+«««				BinaryDomain «modelName»Dom= new BinaryDomain();
+«««				«modelName»Var.setDomain(«modelName»Dom);	
+«««				variables.put("«modelName»Var", «modelName»Var); //including the variable in the map
 				«FOR c : model.variables»
 					«declareVars(c)»
 				«ENDFOR»
 			}
 			public void transformConstraints() {
-				//declaring the constraint for the model
-				IntBooleanExpression C«modelName»= factory.equals(variables.get("«modelName»Var"), getValue("1"));
-				constraints.put("C«modelName»", C«modelName»);
-				hlclProgram.add(C«modelName»);
+«««				//declaring the constraint for the model
+«««				IntBooleanExpression C«modelName»= factory.equals(variables.get("«modelName»Var"), getValue("1"));
+«««				constraints.put("C«modelName»", C«modelName»);
+«««				hlclProgram.add(C«modelName»);
 				«FOR c : model.constraints»
 					«declareCons(c.exp, c.name)»
 				«ENDFOR»

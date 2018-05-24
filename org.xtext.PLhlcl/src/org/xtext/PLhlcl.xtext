@@ -1,0 +1,105 @@
+grammar org.xtext.PLhlcl with org.eclipse.xtext.common.Terminals
+
+generate pLhlcl "http://www.xtext.org/PLhlcl"
+
+Model:
+	'model' name=ID 'variables:' vars+=(VarDeclaration)+  'constraints:'constraints+=(Constraint)+
+	;
+	
+VarDeclaration:
+	instantiable?='instantiable'? & type=VarType name=ID  'variants:' variants= VariantDeclaration
+	;
+	
+//Modifier:
+//	instantiable?='instantiable'? & type=VarType
+//;
+
+
+VariantDeclaration: 
+  VariantsInterval | VariantsEnumeration //| variantsSet son los conjuntos de variables
+	;
+
+VariantsInterval:
+	{VariantsInterval}(start=Value) ('::') (end=Value)
+	;
+VariantsEnumeration:
+	{VariantsEnumeration}('[') list =  Enumeration  (']')
+	;
+Enumeration:
+	values= ListOfValues | ListOfIDs
+;
+//variantsSet:
+//		 vars=('(') list +=  ListOfIDs  (')') 
+//	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
+//;
+
+
+Constraint:
+	  name=ID ':'  exp= ConsExpression 
+;
+
+
+ConsExpression:
+	IDCons|Refinement |Rule |FodaBin |FodaNary |FodaUN
+;
+TerminalExp returns Expression:
+	'(' ConsExpression ')' | IDCons
+;
+IDCons:
+	name=ID
+;
+Refinement:
+	Assignment | VarRefinement | SetRefinement
+;
+
+Assignment:
+	var= ID 'is' value= Value
+	
+;
+VarRefinement:
+	var=ID 'in' variants= VariantDeclaration
+;
+SetRefinement:
+	'(' vars=ListOfIDs  ')'  
+	'variants'
+	'[' '('head= ListOfValues ')'  ( ',' '('tail+= ListOfValues')')+ ']'
+;
+
+Rule:
+	condition= TerminalExp '-->' consequence= TerminalExp
+;
+
+FodaUN:
+	var1=[VarDeclaration] 'is' op= UnaryOp
+;
+FodaBin:
+	var1=[VarDeclaration] op= BinOp var2= [VarDeclaration]
+;
+
+FodaNary:
+	'parent:' parent=ID  'group:'group=ListOfIDs  'card:''['min=INT ',' max=INT ']' 
+;
+
+//syntactic categories
+
+Value:
+	INT | 'selected' | 'unselected' 
+;
+VarType:
+	 'boolean' |'integer' 
+;
+ListOfValues:
+	values+= (Value)+
+;
+
+ListOfIDs:
+	ids+= ([VarDeclaration])+
+;
+
+BinOp:
+	 'requires' |'excludes'|'optional' |'mandatory'
+;
+
+UnaryOp:
+	 'optional' |'mandatory'
+;

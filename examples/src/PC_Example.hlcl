@@ -1,4 +1,4 @@
-model PC
+model Modelo1
 variables:
 boolean Mainboard variants: [selected unselected]
 boolean RAM variants: [selected unselected]
@@ -9,11 +9,11 @@ boolean OpticalDrive variants: [selected unselected]
 boolean CPUCooler variants: [selected unselected]
 boolean Socket1151Compatible variants: [selected unselected]
 boolean SocketAM4Compatible variants: [selected unselected]
-
+numeric A variants: 1::4
+numeric B variants: [1 2 3 5]
 constraints:
 C1: SocketAM4 requires SocketAM4Compatible
 C2: Socket1151 requires Socket1151Compatible
-
 C3: Mainboard is mandatory
 C4: RAM is mandatory
 C5: PowerSupplyUnit is mandatory
