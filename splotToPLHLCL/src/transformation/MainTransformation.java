@@ -16,8 +16,8 @@ public class MainTransformation {
 		// TODO Auto-generated method stub
 
 		TransformerInDTO inDTO = new TransformerInDTO();
-		inDTO.setInputPath("models/SPLOTModels/PCSplot.sxfm");
-		inDTO.setOutputPath("models/PL-HLCLModels/PCSplot.hlcl");
+		inDTO.setInputPath("models/SPLOTModels/Ecommerce.sxfm");
+		inDTO.setOutputPath("models/PL-HLCLModels/Ecommerce.hlcl");
 		inDTO.setNotationType(NotationType.PLHLCL);
 		
 		FeatureModelSPLOTransformer transformer = new FeatureModelSPLOTransformer();

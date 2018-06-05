@@ -29,4 +29,4 @@ C7: (Socket_1151_compatible => CPU_Cooler) AND
 (Socket_AM4_compatible => CPU_Cooler) AND
 (CPU_Cooler>= 1) => (Socket_1151_compatible+Socket_AM4_compatible >= 1) AND
 (CPU_Cooler>= 1) => (Socket_1151_compatible+Socket_AM4_compatible <= 3) 
-C20: A+B
+C20: A+B > 1
