@@ -24,7 +24,9 @@ import org.xtext.pLhlcl.VariantDeclaration;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#isInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getMin <em>Min</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getMax <em>Max</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.impl.VarDeclarationImpl#getVariants <em>Variants</em>}</li>
@@ -35,24 +37,64 @@ import org.xtext.pLhlcl.VariantDeclaration;
 public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements VarDeclaration
 {
   /**
-   * The default value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
+   * The default value of the '{@link #getInstantiable() <em>Instantiable</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isInstantiable()
+   * @see #getInstantiable()
    * @generated
    * @ordered
    */
-  protected static final boolean INSTANTIABLE_EDEFAULT = false;
+  protected static final String INSTANTIABLE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
+   * The cached value of the '{@link #getInstantiable() <em>Instantiable</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isInstantiable()
+   * @see #getInstantiable()
    * @generated
    * @ordered
    */
-  protected boolean instantiable = INSTANTIABLE_EDEFAULT;
+  protected String instantiable = INSTANTIABLE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected static final int MIN_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected int min = MIN_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMax()
+   * @generated
+   * @ordered
+   */
+  protected static final int MAX_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMax()
+   * @generated
+   * @ordered
+   */
+  protected int max = MAX_EDEFAULT;
 
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -130,7 +172,7 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isInstantiable()
+  public String getInstantiable()
   {
     return instantiable;
   }
@@ -140,12 +182,58 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setInstantiable(boolean newInstantiable)
+  public void setInstantiable(String newInstantiable)
   {
-    boolean oldInstantiable = instantiable;
+    String oldInstantiable = instantiable;
     instantiable = newInstantiable;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_DECLARATION__INSTANTIABLE, oldInstantiable, instantiable));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getMin()
+  {
+    return min;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMin(int newMin)
+  {
+    int oldMin = min;
+    min = newMin;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_DECLARATION__MIN, oldMin, min));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getMax()
+  {
+    return max;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMax(int newMax)
+  {
+    int oldMax = max;
+    max = newMax;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_DECLARATION__MAX, oldMax, max));
   }
 
   /**
@@ -269,7 +357,11 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case PLhlclPackage.VAR_DECLARATION__INSTANTIABLE:
-        return isInstantiable();
+        return getInstantiable();
+      case PLhlclPackage.VAR_DECLARATION__MIN:
+        return getMin();
+      case PLhlclPackage.VAR_DECLARATION__MAX:
+        return getMax();
       case PLhlclPackage.VAR_DECLARATION__TYPE:
         return getType();
       case PLhlclPackage.VAR_DECLARATION__NAME:
@@ -291,7 +383,13 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case PLhlclPackage.VAR_DECLARATION__INSTANTIABLE:
-        setInstantiable((Boolean)newValue);
+        setInstantiable((String)newValue);
+        return;
+      case PLhlclPackage.VAR_DECLARATION__MIN:
+        setMin((Integer)newValue);
+        return;
+      case PLhlclPackage.VAR_DECLARATION__MAX:
+        setMax((Integer)newValue);
         return;
       case PLhlclPackage.VAR_DECLARATION__TYPE:
         setType((String)newValue);
@@ -319,6 +417,12 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
       case PLhlclPackage.VAR_DECLARATION__INSTANTIABLE:
         setInstantiable(INSTANTIABLE_EDEFAULT);
         return;
+      case PLhlclPackage.VAR_DECLARATION__MIN:
+        setMin(MIN_EDEFAULT);
+        return;
+      case PLhlclPackage.VAR_DECLARATION__MAX:
+        setMax(MAX_EDEFAULT);
+        return;
       case PLhlclPackage.VAR_DECLARATION__TYPE:
         setType(TYPE_EDEFAULT);
         return;
@@ -343,7 +447,11 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case PLhlclPackage.VAR_DECLARATION__INSTANTIABLE:
-        return instantiable != INSTANTIABLE_EDEFAULT;
+        return INSTANTIABLE_EDEFAULT == null ? instantiable != null : !INSTANTIABLE_EDEFAULT.equals(instantiable);
+      case PLhlclPackage.VAR_DECLARATION__MIN:
+        return min != MIN_EDEFAULT;
+      case PLhlclPackage.VAR_DECLARATION__MAX:
+        return max != MAX_EDEFAULT;
       case PLhlclPackage.VAR_DECLARATION__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case PLhlclPackage.VAR_DECLARATION__NAME:
@@ -367,6 +475,10 @@ public class VarDeclarationImpl extends MinimalEObjectImpl.Container implements 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (instantiable: ");
     result.append(instantiable);
+    result.append(", min: ");
+    result.append(min);
+    result.append(", max: ");
+    result.append(max);
     result.append(", type: ");
     result.append(type);
     result.append(", name: ");

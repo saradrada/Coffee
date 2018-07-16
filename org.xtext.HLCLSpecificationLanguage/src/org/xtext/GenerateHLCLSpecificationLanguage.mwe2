@@ -31,7 +31,7 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "org.xtext.HLCLSpecificationLanguage"
-			fileExtensions = "hlcl"
+			fileExtensions = "hlclold"
 
 			serializer = {
 				generateStub = false

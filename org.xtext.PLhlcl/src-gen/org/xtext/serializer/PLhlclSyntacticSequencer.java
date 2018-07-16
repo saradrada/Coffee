@@ -10,6 +10,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -20,12 +21,20 @@ import org.xtext.services.PLhlclGrammarAccess;
 public class PLhlclSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected PLhlclGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ListOfIDs_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_ListOfValues_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_Structural___CardKeyword_4_0_LeftSquareBracketKeyword_4_1_CommaKeyword_4_3_RightSquareBracketKeyword_4_5__q;
 	protected AbstractElementAlias match_TerminalExp_LeftParenthesisKeyword_0_0_q;
+	protected AbstractElementAlias match_VarDeclaration___LeftSquareBracketKeyword_0_1_CommaKeyword_0_3_RightSquareBracketKeyword_0_5__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (PLhlclGrammarAccess) access;
+		match_ListOfIDs_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
+		match_ListOfValues_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
+		match_Structural___CardKeyword_4_0_LeftSquareBracketKeyword_4_1_CommaKeyword_4_3_RightSquareBracketKeyword_4_5__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStructuralAccess().getCardKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getStructuralAccess().getLeftSquareBracketKeyword_4_1()), new TokenAlias(false, false, grammarAccess.getStructuralAccess().getCommaKeyword_4_3()), new TokenAlias(false, false, grammarAccess.getStructuralAccess().getRightSquareBracketKeyword_4_5()));
 		match_TerminalExp_LeftParenthesisKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTerminalExpAccess().getLeftParenthesisKeyword_0_0());
+		match_VarDeclaration___LeftSquareBracketKeyword_0_1_CommaKeyword_0_3_RightSquareBracketKeyword_0_5__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getVarDeclarationAccess().getLeftSquareBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getVarDeclarationAccess().getCommaKeyword_0_3()), new TokenAlias(false, false, grammarAccess.getVarDeclarationAccess().getRightSquareBracketKeyword_0_5()));
 	}
 	
 	@Override
@@ -40,12 +49,54 @@ public class PLhlclSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_TerminalExp_LeftParenthesisKeyword_0_0_q.equals(syntax))
+			if (match_ListOfIDs_CommaKeyword_1_0_p.equals(syntax))
+				emit_ListOfIDs_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ListOfValues_CommaKeyword_1_0_p.equals(syntax))
+				emit_ListOfValues_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Structural___CardKeyword_4_0_LeftSquareBracketKeyword_4_1_CommaKeyword_4_3_RightSquareBracketKeyword_4_5__q.equals(syntax))
+				emit_Structural___CardKeyword_4_0_LeftSquareBracketKeyword_4_1_CommaKeyword_4_3_RightSquareBracketKeyword_4_5__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TerminalExp_LeftParenthesisKeyword_0_0_q.equals(syntax))
 				emit_TerminalExp_LeftParenthesisKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_VarDeclaration___LeftSquareBracketKeyword_0_1_CommaKeyword_0_3_RightSquareBracketKeyword_0_5__q.equals(syntax))
+				emit_VarDeclaration___LeftSquareBracketKeyword_0_1_CommaKeyword_0_3_RightSquareBracketKeyword_0_5__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     ids+=[VarDeclaration|ID] (ambiguity) ids+=[VarDeclaration|ID]
+	 */
+	protected void emit_ListOfIDs_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     values+=Value (ambiguity) values+=Value
+	 */
+	protected void emit_ListOfValues_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('card:' '[' ',' ']')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     group=ListOfIDs (ambiguity) ')' (rule end)
+	 *     group=ListOfIDs (ambiguity) (rule end)
+	 */
+	protected void emit_Structural___CardKeyword_4_0_LeftSquareBracketKeyword_4_1_CommaKeyword_4_3_RightSquareBracketKeyword_4_5__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     '('?
@@ -54,6 +105,17 @@ public class PLhlclSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) name=ID
 	 */
 	protected void emit_TerminalExp_LeftParenthesisKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('[' ',' ']')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) type=VarType
+	 */
+	protected void emit_VarDeclaration___LeftSquareBracketKeyword_0_1_CommaKeyword_0_3_RightSquareBracketKeyword_0_5__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

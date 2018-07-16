@@ -6,24 +6,24 @@ package org.xtext.pLhlcl;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Foda Nary</b></em>'.
+ * A representation of the model object '<em><b>Structural</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.pLhlcl.FodaNary#getParent <em>Parent</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.FodaNary#getGroup <em>Group</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.FodaNary#getMin <em>Min</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.FodaNary#getMax <em>Max</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.Structural#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.Structural#getGroup <em>Group</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.Structural#getMin <em>Min</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.Structural#getMax <em>Max</em>}</li>
  * </ul>
  *
- * @see org.xtext.pLhlcl.PLhlclPackage#getFodaNary()
+ * @see org.xtext.pLhlcl.PLhlclPackage#getStructural()
  * @model
  * @generated
  */
-public interface FodaNary extends ConsExpression
+public interface Structural extends ConsExpression
 {
   /**
    * Returns the value of the '<em><b>Parent</b></em>' attribute.
@@ -35,14 +35,14 @@ public interface FodaNary extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Parent</em>' attribute.
    * @see #setParent(String)
-   * @see org.xtext.pLhlcl.PLhlclPackage#getFodaNary_Parent()
+   * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Parent()
    * @model
    * @generated
    */
   String getParent();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.FodaNary#getParent <em>Parent</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getParent <em>Parent</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Parent</em>' attribute.
@@ -61,14 +61,14 @@ public interface FodaNary extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Group</em>' containment reference.
    * @see #setGroup(ListOfIDs)
-   * @see org.xtext.pLhlcl.PLhlclPackage#getFodaNary_Group()
+   * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Group()
    * @model containment="true"
    * @generated
    */
   ListOfIDs getGroup();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.FodaNary#getGroup <em>Group</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getGroup <em>Group</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Group</em>' containment reference.
@@ -87,14 +87,14 @@ public interface FodaNary extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Min</em>' attribute.
    * @see #setMin(int)
-   * @see org.xtext.pLhlcl.PLhlclPackage#getFodaNary_Min()
+   * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Min()
    * @model
    * @generated
    */
   int getMin();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.FodaNary#getMin <em>Min</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMin <em>Min</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Min</em>' attribute.
@@ -113,14 +113,14 @@ public interface FodaNary extends ConsExpression
    * <!-- end-user-doc -->
    * @return the value of the '<em>Max</em>' attribute.
    * @see #setMax(int)
-   * @see org.xtext.pLhlcl.PLhlclPackage#getFodaNary_Max()
+   * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Max()
    * @model
    * @generated
    */
   int getMax();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.FodaNary#getMax <em>Max</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMax <em>Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Max</em>' attribute.
@@ -129,4 +129,4 @@ public interface FodaNary extends ConsExpression
    */
   void setMax(int value);
 
-} // FodaNary
+} // Structural

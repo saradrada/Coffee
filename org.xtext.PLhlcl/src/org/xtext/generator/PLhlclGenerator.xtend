@@ -17,9 +17,11 @@ import org.eclipse.emf.common.util.EList
 import org.xtext.pLhlcl.Refinement
 import org.xtext.pLhlcl.FodaBin
 import org.xtext.pLhlcl.Rule
-import org.xtext.pLhlcl.FodaNary
 import org.xtext.pLhlcl.FodaUN
 import org.xtext.pLhlcl.IDCons
+import org.xtext.pLhlcl.Structural
+import java.util.Map
+import java.util.HashMap
 
 /**
  * Generates code from your model files on save.
@@ -31,9 +33,11 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 	 * Name of the PL model 
 	 */
 	private String modelName
+	private Map <String, String> parents;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		modelName= modelName(resource.contents.head as Model)
+		parents= new HashMap<String,String>();
 		fsa.generateFile(modelName+".cp", toCPHLCL(resource.contents.head as Model))
 
 	}
@@ -52,7 +56,14 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«CONSTRAINTS»
 		C_«modelName» : «modelName» = 1
 		«FOR c : model.constraints»
-			«c.name»: «getExpression(c.exp)»
+			«IF c.exp instanceof Structural »
+				«var exp= c.exp as Structural»
+				«IF exp.min ==0 && exp.max == 0 »
+					«getExpression(c.exp)»
+				«ENDIF»
+			«ELSE»
+				«c.name»: «getExpression(c.exp)»
+			«ENDIF»	
 		«ENDFOR»
 «««		«STRATEGY»
 	'''
@@ -69,7 +80,7 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 				domain: «variant.start»..«variant.end»
 			«ELSE»
 				«IF variant instanceof VariantsEnumeration»
-					domain: [«getList(variant.list.values.values)»]
+					domain: [«getList(variant.list.values)»]
 				«ENDIF»	
 			«ENDIF»
 		«ENDIF»
@@ -95,8 +106,8 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 				«IF exp instanceof Rule»
 					«declareRule(exp)»
 				«ELSE»
-					«IF exp instanceof FodaNary»
-						«declareNary(exp)»
+					«IF exp instanceof Structural»
+						«declareStructural(exp)»
 					«ELSE»
 						«IF exp instanceof FodaUN»
 							«declareFodaUnary(exp)»
@@ -128,21 +139,31 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 			«ENDIF»
 		«ENDIF»
 	'''
-	def declareNary(FodaNary exp) '''
-		«var String idsSum=""»
-		«FOR child : exp.group.ids»
-			(«child.name» => «exp.parent») AND
-			«{idsSum+= child.name +"+"; ""}»
-		«ENDFOR»
-		(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» >= «exp.min») AND
-		(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» <= «exp.max») 
+	def declareStructural(Structural exp)'''
+		«IF exp.min ==0 && exp.max == 0»
+			«{declareParents(exp); ""}»
+		«ELSE»
+			«var String idsSum=""»
+			«FOR child : exp.group.ids»
+				(«child.name» => «exp.parent») AND
+				«{idsSum+= child.name +"+"; ""}»
+				«{parents.put(child.name, exp.parent)+"+"; ""}»
+			«ENDFOR»
+			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» >= «exp.min») AND
+			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» <= «exp.max») 
+		«ENDIF»
 	'''
+	def declareParents(Structural exp){
+		for (element : exp.group.ids) {
+			parents.put(element.name, exp.parent)
+		}
+	}
 	def declareFodaUnary(FodaUN exp) '''
 		«IF exp.op=="optional"»
-			«modelName» >= «exp.var1.name»
+			«parents.get(exp.var1.name)» >= «exp.var1.name»
 		«ELSE»
 			«IF exp.op=="mandatory"»
-				«modelName» = «exp.var1.name»
+				«parents.get(exp.var1.name)» = «exp.var1.name»
 			«ELSE»
 			«ENDIF»
 		«ENDIF»

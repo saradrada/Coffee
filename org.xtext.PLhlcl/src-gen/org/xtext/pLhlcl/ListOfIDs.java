@@ -5,6 +5,8 @@ package org.xtext.pLhlcl;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>List Of IDs</b></em>'.
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ListOfIDs extends Enumeration
+public interface ListOfIDs extends EObject
 {
   /**
    * Returns the value of the '<em><b>Ids</b></em>' reference list.

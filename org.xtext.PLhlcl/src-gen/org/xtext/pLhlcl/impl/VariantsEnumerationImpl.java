@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.pLhlcl.Enumeration;
+import org.xtext.pLhlcl.ListOfValues;
 import org.xtext.pLhlcl.PLhlclPackage;
 import org.xtext.pLhlcl.VariantsEnumeration;
 
@@ -38,7 +38,7 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
    * @generated
    * @ordered
    */
-  protected Enumeration list;
+  protected ListOfValues list;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
    * <!-- end-user-doc -->
    * @generated
    */
-  public Enumeration getList()
+  public ListOfValues getList()
   {
     return list;
   }
@@ -76,9 +76,9 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetList(Enumeration newList, NotificationChain msgs)
+  public NotificationChain basicSetList(ListOfValues newList, NotificationChain msgs)
   {
-    Enumeration oldList = list;
+    ListOfValues oldList = list;
     list = newList;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setList(Enumeration newList)
+  public void setList(ListOfValues newList)
   {
     if (newList != list)
     {
@@ -152,7 +152,7 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
     switch (featureID)
     {
       case PLhlclPackage.VARIANTS_ENUMERATION__LIST:
-        setList((Enumeration)newValue);
+        setList((ListOfValues)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class VariantsEnumerationImpl extends VariantDeclarationImpl implements V
     switch (featureID)
     {
       case PLhlclPackage.VARIANTS_ENUMERATION__LIST:
-        setList((Enumeration)null);
+        setList((ListOfValues)null);
         return;
     }
     super.eUnset(featureID);

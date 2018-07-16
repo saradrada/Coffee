@@ -31,12 +31,12 @@ public interface VariantsEnumeration extends VariantDeclaration
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>List</em>' containment reference.
-   * @see #setList(Enumeration)
+   * @see #setList(ListOfValues)
    * @see org.xtext.pLhlcl.PLhlclPackage#getVariantsEnumeration_List()
    * @model containment="true"
    * @generated
    */
-  Enumeration getList();
+  ListOfValues getList();
 
   /**
    * Sets the value of the '{@link org.xtext.pLhlcl.VariantsEnumeration#getList <em>List</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface VariantsEnumeration extends VariantDeclaration
    * @see #getList()
    * @generated
    */
-  void setList(Enumeration value);
+  void setList(ListOfValues value);
 
 } // VariantsEnumeration

@@ -13,10 +13,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.pLhlcl.Assignment;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
-import org.xtext.pLhlcl.Enumeration;
 import org.xtext.pLhlcl.Expression;
 import org.xtext.pLhlcl.FodaBin;
-import org.xtext.pLhlcl.FodaNary;
 import org.xtext.pLhlcl.FodaUN;
 import org.xtext.pLhlcl.IDCons;
 import org.xtext.pLhlcl.ListOfIDs;
@@ -27,6 +25,7 @@ import org.xtext.pLhlcl.PLhlclPackage;
 import org.xtext.pLhlcl.Refinement;
 import org.xtext.pLhlcl.Rule;
 import org.xtext.pLhlcl.SetRefinement;
+import org.xtext.pLhlcl.Structural;
 import org.xtext.pLhlcl.VarDeclaration;
 import org.xtext.pLhlcl.VarRefinement;
 import org.xtext.pLhlcl.VariantDeclaration;
@@ -75,13 +74,6 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * @generated
    */
   private EClass variantsEnumerationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass enumerationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -165,7 +157,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass fodaNaryEClass = null;
+  private EClass structuralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -309,7 +301,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Type()
+  public EAttribute getVarDeclaration_Min()
   {
     return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(1);
   }
@@ -319,7 +311,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Name()
+  public EAttribute getVarDeclaration_Max()
   {
     return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(2);
   }
@@ -329,9 +321,29 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getVarDeclaration_Type()
+  {
+    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVarDeclaration_Name()
+  {
+    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getVarDeclaration_Variants()
   {
-    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(3);
+    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -392,26 +404,6 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
   public EReference getVariantsEnumeration_List()
   {
     return (EReference)variantsEnumerationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEnumeration()
-  {
-    return enumerationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEnumeration_Values()
-  {
-    return (EReference)enumerationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -549,7 +541,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVarRefinement_Variants()
+  public EReference getVarRefinement_Values()
   {
     return (EReference)varRefinementEClass.getEStructuralFeatures().get(1);
   }
@@ -699,9 +691,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFodaNary()
+  public EClass getStructural()
   {
-    return fodaNaryEClass;
+    return structuralEClass;
   }
 
   /**
@@ -709,9 +701,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFodaNary_Parent()
+  public EAttribute getStructural_Parent()
   {
-    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)structuralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -719,9 +711,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFodaNary_Group()
+  public EReference getStructural_Group()
   {
-    return (EReference)fodaNaryEClass.getEStructuralFeatures().get(1);
+    return (EReference)structuralEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -729,9 +721,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFodaNary_Min()
+  public EAttribute getStructural_Min()
   {
-    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)structuralEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -739,9 +731,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFodaNary_Max()
+  public EAttribute getStructural_Max()
   {
-    return (EAttribute)fodaNaryEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)structuralEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -821,6 +813,8 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     varDeclarationEClass = createEClass(VAR_DECLARATION);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__INSTANTIABLE);
+    createEAttribute(varDeclarationEClass, VAR_DECLARATION__MIN);
+    createEAttribute(varDeclarationEClass, VAR_DECLARATION__MAX);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__TYPE);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__NAME);
     createEReference(varDeclarationEClass, VAR_DECLARATION__VARIANTS);
@@ -833,9 +827,6 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     variantsEnumerationEClass = createEClass(VARIANTS_ENUMERATION);
     createEReference(variantsEnumerationEClass, VARIANTS_ENUMERATION__LIST);
-
-    enumerationEClass = createEClass(ENUMERATION);
-    createEReference(enumerationEClass, ENUMERATION__VALUES);
 
     constraintEClass = createEClass(CONSTRAINT);
     createEAttribute(constraintEClass, CONSTRAINT__NAME);
@@ -856,7 +847,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     varRefinementEClass = createEClass(VAR_REFINEMENT);
     createEAttribute(varRefinementEClass, VAR_REFINEMENT__VAR);
-    createEReference(varRefinementEClass, VAR_REFINEMENT__VARIANTS);
+    createEReference(varRefinementEClass, VAR_REFINEMENT__VALUES);
 
     setRefinementEClass = createEClass(SET_REFINEMENT);
     createEReference(setRefinementEClass, SET_REFINEMENT__VARS);
@@ -876,11 +867,11 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     createEAttribute(fodaBinEClass, FODA_BIN__OP);
     createEReference(fodaBinEClass, FODA_BIN__VAR2);
 
-    fodaNaryEClass = createEClass(FODA_NARY);
-    createEAttribute(fodaNaryEClass, FODA_NARY__PARENT);
-    createEReference(fodaNaryEClass, FODA_NARY__GROUP);
-    createEAttribute(fodaNaryEClass, FODA_NARY__MIN);
-    createEAttribute(fodaNaryEClass, FODA_NARY__MAX);
+    structuralEClass = createEClass(STRUCTURAL);
+    createEAttribute(structuralEClass, STRUCTURAL__PARENT);
+    createEReference(structuralEClass, STRUCTURAL__GROUP);
+    createEAttribute(structuralEClass, STRUCTURAL__MIN);
+    createEAttribute(structuralEClass, STRUCTURAL__MAX);
 
     listOfValuesEClass = createEClass(LIST_OF_VALUES);
     createEAttribute(listOfValuesEClass, LIST_OF_VALUES__VALUES);
@@ -929,8 +920,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     ruleEClass.getESuperTypes().add(this.getConsExpression());
     fodaUNEClass.getESuperTypes().add(this.getConsExpression());
     fodaBinEClass.getESuperTypes().add(this.getConsExpression());
-    fodaNaryEClass.getESuperTypes().add(this.getConsExpression());
-    listOfIDsEClass.getESuperTypes().add(this.getEnumeration());
+    structuralEClass.getESuperTypes().add(this.getConsExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -939,7 +929,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEReference(getModel_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varDeclarationEClass, VarDeclaration.class, "VarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVarDeclaration_Instantiable(), ecorePackage.getEBoolean(), "instantiable", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Instantiable(), ecorePackage.getEString(), "instantiable", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Min(), ecorePackage.getEInt(), "min", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDeclaration_Max(), ecorePackage.getEInt(), "max", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVarDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVarDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarDeclaration_Variants(), this.getVariantDeclaration(), null, "variants", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -951,10 +943,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEAttribute(getVariantsInterval_End(), ecorePackage.getEString(), "end", null, 0, 1, VariantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variantsEnumerationEClass, VariantsEnumeration.class, "VariantsEnumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVariantsEnumeration_List(), this.getEnumeration(), null, "list", null, 0, 1, VariantsEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(enumerationEClass, Enumeration.class, "Enumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEnumeration_Values(), this.getListOfValues(), null, "values", null, 0, 1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariantsEnumeration_List(), this.getListOfValues(), null, "list", null, 0, 1, VariantsEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -975,7 +964,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     initEClass(varRefinementEClass, VarRefinement.class, "VarRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarRefinement_Var(), ecorePackage.getEString(), "var", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVarRefinement_Variants(), this.getVariantDeclaration(), null, "variants", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarRefinement_Values(), this.getVariantDeclaration(), null, "values", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setRefinementEClass, SetRefinement.class, "SetRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSetRefinement_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -995,11 +984,11 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEAttribute(getFodaBin_Op(), ecorePackage.getEString(), "op", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFodaBin_Var2(), this.getVarDeclaration(), null, "var2", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(fodaNaryEClass, FodaNary.class, "FodaNary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFodaNary_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFodaNary_Group(), this.getListOfIDs(), null, "group", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFodaNary_Min(), ecorePackage.getEInt(), "min", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFodaNary_Max(), ecorePackage.getEInt(), "max", null, 0, 1, FodaNary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(structuralEClass, Structural.class, "Structural", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStructural_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructural_Group(), this.getListOfIDs(), null, "group", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStructural_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStructural_Max(), ecorePackage.getEInt(), "max", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getListOfValues_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -101,11 +101,6 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
         return createVariantsEnumerationAdapter();
       }
       @Override
-      public Adapter caseEnumeration(Enumeration object)
-      {
-        return createEnumerationAdapter();
-      }
-      @Override
       public Adapter caseConstraint(Constraint object)
       {
         return createConstraintAdapter();
@@ -161,9 +156,9 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
         return createFodaBinAdapter();
       }
       @Override
-      public Adapter caseFodaNary(FodaNary object)
+      public Adapter caseStructural(Structural object)
       {
-        return createFodaNaryAdapter();
+        return createStructuralAdapter();
       }
       @Override
       public Adapter caseListOfValues(ListOfValues object)
@@ -268,21 +263,6 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVariantsEnumerationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Enumeration <em>Enumeration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.pLhlcl.Enumeration
-   * @generated
-   */
-  public Adapter createEnumerationAdapter()
   {
     return null;
   }
@@ -453,16 +433,16 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.FodaNary <em>Foda Nary</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Structural <em>Structural</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.pLhlcl.FodaNary
+   * @see org.xtext.pLhlcl.Structural
    * @generated
    */
-  public Adapter createFodaNaryAdapter()
+  public Adapter createStructuralAdapter()
   {
     return null;
   }

@@ -14,7 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.pLhlcl.VarDeclaration#isInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getMin <em>Min</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getMax <em>Max</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.pLhlcl.VarDeclaration#getVariants <em>Variants</em>}</li>
@@ -35,22 +37,74 @@ public interface VarDeclaration extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Instantiable</em>' attribute.
-   * @see #setInstantiable(boolean)
+   * @see #setInstantiable(String)
    * @see org.xtext.pLhlcl.PLhlclPackage#getVarDeclaration_Instantiable()
    * @model
    * @generated
    */
-  boolean isInstantiable();
+  String getInstantiable();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.VarDeclaration#isInstantiable <em>Instantiable</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.VarDeclaration#getInstantiable <em>Instantiable</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Instantiable</em>' attribute.
-   * @see #isInstantiable()
+   * @see #getInstantiable()
    * @generated
    */
-  void setInstantiable(boolean value);
+  void setInstantiable(String value);
+
+  /**
+   * Returns the value of the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Min</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Min</em>' attribute.
+   * @see #setMin(int)
+   * @see org.xtext.pLhlcl.PLhlclPackage#getVarDeclaration_Min()
+   * @model
+   * @generated
+   */
+  int getMin();
+
+  /**
+   * Sets the value of the '{@link org.xtext.pLhlcl.VarDeclaration#getMin <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Min</em>' attribute.
+   * @see #getMin()
+   * @generated
+   */
+  void setMin(int value);
+
+  /**
+   * Returns the value of the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Max</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Max</em>' attribute.
+   * @see #setMax(int)
+   * @see org.xtext.pLhlcl.PLhlclPackage#getVarDeclaration_Max()
+   * @model
+   * @generated
+   */
+  int getMax();
+
+  /**
+   * Sets the value of the '{@link org.xtext.pLhlcl.VarDeclaration#getMax <em>Max</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Max</em>' attribute.
+   * @see #getMax()
+   * @generated
+   */
+  void setMax(int value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

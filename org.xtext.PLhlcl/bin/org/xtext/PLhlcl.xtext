@@ -7,12 +7,12 @@ Model:
 	;
 	
 VarDeclaration:
-	instantiable?='instantiable'? & type=VarType name=ID  'variants:' variants= VariantDeclaration
+	(instantiable='instantiable'? '['min=INT? ',' max=INT? ']')? 
+	type=VarType name=ID  
+	'variants:' variants= VariantDeclaration
 	;
 	
-//Modifier:
-//	instantiable?='instantiable'? & type=VarType
-//;
+
 
 
 VariantDeclaration: 
@@ -20,14 +20,12 @@ VariantDeclaration:
 	;
 
 VariantsInterval:
-	{VariantsInterval}(start=Value) ('::') (end=Value)
+	{VariantsInterval}(start=Value) ('..') (end=Value)
 	;
 VariantsEnumeration:
-	{VariantsEnumeration}('[') list =  Enumeration  (']')
+	{VariantsEnumeration}('[') list =  ListOfValues  (']')
 	;
-Enumeration:
-	values= ListOfValues | ListOfIDs
-;
+
 //variantsSet:
 //		 vars=('(') list +=  ListOfIDs  (')') 
 //	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
@@ -40,7 +38,7 @@ Constraint:
 
 
 ConsExpression:
-	IDCons|Refinement |Rule |FodaBin |FodaNary |FodaUN
+	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN 
 ;
 TerminalExp returns Expression:
 	'(' ConsExpression ')' | IDCons
@@ -57,10 +55,10 @@ Assignment:
 	
 ;
 VarRefinement:
-	var=ID 'in' variants= VariantDeclaration
+	var=ID 'in' values= VariantDeclaration
 ;
 SetRefinement:
-	'(' vars=ListOfIDs  ')'  
+	'vars:' '(' vars=ListOfIDs  ')'  
 	'variants'
 	'[' '('head= ListOfValues ')'  ( ',' '('tail+= ListOfValues')')+ ']'
 ;
@@ -76,8 +74,12 @@ FodaBin:
 	var1=[VarDeclaration] op= BinOp var2= [VarDeclaration]
 ;
 
-FodaNary:
-	'parent:' parent=ID  'group:'group=ListOfIDs  'card:''['min=INT ',' max=INT ']' 
+/**
+ * an structural relation defines a parent-children relation including a cardinality
+ * 
+ */
+Structural:
+	'structural:' parent=ID  'variants:'group=ListOfIDs  ('card:''['min=INT? ',' max=INT? ']')? 
 ;
 
 //syntactic categories
@@ -89,11 +91,11 @@ VarType:
 	 'boolean' |'integer' 
 ;
 ListOfValues:
-	values+= (Value)+
+	values+= Value (',' + values+= Value)*
 ;
 
 ListOfIDs:
-	ids+= ([VarDeclaration])+
+	ids+= ([VarDeclaration]) (',' + ids+= [VarDeclaration])*
 ;
 
 BinOp:

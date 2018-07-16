@@ -14,7 +14,7 @@ package org.xtext.pLhlcl;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.pLhlcl.VarRefinement#getVar <em>Var</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.VarRefinement#getVariants <em>Variants</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.VarRefinement#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @see org.xtext.pLhlcl.PLhlclPackage#getVarRefinement()
@@ -50,29 +50,29 @@ public interface VarRefinement extends Refinement
   void setVar(String value);
 
   /**
-   * Returns the value of the '<em><b>Variants</b></em>' containment reference.
+   * Returns the value of the '<em><b>Values</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Variants</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Values</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variants</em>' containment reference.
-   * @see #setVariants(VariantDeclaration)
-   * @see org.xtext.pLhlcl.PLhlclPackage#getVarRefinement_Variants()
+   * @return the value of the '<em>Values</em>' containment reference.
+   * @see #setValues(VariantDeclaration)
+   * @see org.xtext.pLhlcl.PLhlclPackage#getVarRefinement_Values()
    * @model containment="true"
    * @generated
    */
-  VariantDeclaration getVariants();
+  VariantDeclaration getValues();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.VarRefinement#getVariants <em>Variants</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.pLhlcl.VarRefinement#getValues <em>Values</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variants</em>' containment reference.
-   * @see #getVariants()
+   * @param value the new value of the '<em>Values</em>' containment reference.
+   * @see #getValues()
    * @generated
    */
-  void setVariants(VariantDeclaration value);
+  void setValues(VariantDeclaration value);
 
 } // VarRefinement

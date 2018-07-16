@@ -36,7 +36,7 @@ public class HLCLSpecificationLanguageStandaloneSetupGenerated implements ISetup
 		IResourceFactory resourceFactory = injector.getInstance(IResourceFactory.class);
 		IResourceServiceProvider serviceProvider = injector.getInstance(IResourceServiceProvider.class);
 		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("hlcl", resourceFactory);
-		IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("hlcl", serviceProvider);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("hlclold", resourceFactory);
+		IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("hlclold", serviceProvider);
 	}
 }

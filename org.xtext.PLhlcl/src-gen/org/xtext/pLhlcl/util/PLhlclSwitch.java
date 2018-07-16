@@ -110,13 +110,6 @@ public class PLhlclSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PLhlclPackage.ENUMERATION:
-      {
-        Enumeration enumeration = (Enumeration)theEObject;
-        T result = caseEnumeration(enumeration);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case PLhlclPackage.CONSTRAINT:
       {
         Constraint constraint = (Constraint)theEObject;
@@ -214,12 +207,12 @@ public class PLhlclSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PLhlclPackage.FODA_NARY:
+      case PLhlclPackage.STRUCTURAL:
       {
-        FodaNary fodaNary = (FodaNary)theEObject;
-        T result = caseFodaNary(fodaNary);
-        if (result == null) result = caseConsExpression(fodaNary);
-        if (result == null) result = caseExpression(fodaNary);
+        Structural structural = (Structural)theEObject;
+        T result = caseStructural(structural);
+        if (result == null) result = caseConsExpression(structural);
+        if (result == null) result = caseExpression(structural);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -234,7 +227,6 @@ public class PLhlclSwitch<T> extends Switch<T>
       {
         ListOfIDs listOfIDs = (ListOfIDs)theEObject;
         T result = caseListOfIDs(listOfIDs);
-        if (result == null) result = caseEnumeration(listOfIDs);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -318,22 +310,6 @@ public class PLhlclSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVariantsEnumeration(VariantsEnumeration object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Enumeration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enumeration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEnumeration(Enumeration object)
   {
     return null;
   }
@@ -515,17 +491,17 @@ public class PLhlclSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Foda Nary</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Structural</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Foda Nary</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Structural</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFodaNary(FodaNary object)
+  public T caseStructural(Structural object)
   {
     return null;
   }

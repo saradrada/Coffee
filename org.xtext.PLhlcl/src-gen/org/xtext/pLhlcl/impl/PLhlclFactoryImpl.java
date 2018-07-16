@@ -70,7 +70,6 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
       case PLhlclPackage.VARIANT_DECLARATION: return createVariantDeclaration();
       case PLhlclPackage.VARIANTS_INTERVAL: return createVariantsInterval();
       case PLhlclPackage.VARIANTS_ENUMERATION: return createVariantsEnumeration();
-      case PLhlclPackage.ENUMERATION: return createEnumeration();
       case PLhlclPackage.CONSTRAINT: return createConstraint();
       case PLhlclPackage.CONS_EXPRESSION: return createConsExpression();
       case PLhlclPackage.EXPRESSION: return createExpression();
@@ -82,7 +81,7 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
       case PLhlclPackage.RULE: return createRule();
       case PLhlclPackage.FODA_UN: return createFodaUN();
       case PLhlclPackage.FODA_BIN: return createFodaBin();
-      case PLhlclPackage.FODA_NARY: return createFodaNary();
+      case PLhlclPackage.STRUCTURAL: return createStructural();
       case PLhlclPackage.LIST_OF_VALUES: return createListOfValues();
       case PLhlclPackage.LIST_OF_IDS: return createListOfIDs();
       default:
@@ -143,17 +142,6 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
   {
     VariantsEnumerationImpl variantsEnumeration = new VariantsEnumerationImpl();
     return variantsEnumeration;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Enumeration createEnumeration()
-  {
-    EnumerationImpl enumeration = new EnumerationImpl();
-    return enumeration;
   }
 
   /**
@@ -282,10 +270,10 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public FodaNary createFodaNary()
+  public Structural createStructural()
   {
-    FodaNaryImpl fodaNary = new FodaNaryImpl();
-    return fodaNary;
+    StructuralImpl structural = new StructuralImpl();
+    return structural;
   }
 
   /**

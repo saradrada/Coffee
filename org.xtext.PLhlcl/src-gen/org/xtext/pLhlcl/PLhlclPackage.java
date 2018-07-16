@@ -123,13 +123,31 @@ public interface PLhlclPackage extends EPackage
   int VAR_DECLARATION__INSTANTIABLE = 0;
 
   /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR_DECLARATION__MIN = 1;
+
+  /**
+   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR_DECLARATION__MAX = 2;
+
+  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__TYPE = 1;
+  int VAR_DECLARATION__TYPE = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -138,7 +156,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__NAME = 2;
+  int VAR_DECLARATION__NAME = 4;
 
   /**
    * The feature id for the '<em><b>Variants</b></em>' containment reference.
@@ -147,7 +165,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION__VARIANTS = 3;
+  int VAR_DECLARATION__VARIANTS = 5;
 
   /**
    * The number of structural features of the '<em>Var Declaration</em>' class.
@@ -156,7 +174,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLARATION_FEATURE_COUNT = 4;
+  int VAR_DECLARATION_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.pLhlcl.impl.VariantDeclarationImpl <em>Variant Declaration</em>}' class.
@@ -243,34 +261,6 @@ public interface PLhlclPackage extends EPackage
   int VARIANTS_ENUMERATION_FEATURE_COUNT = VARIANT_DECLARATION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.pLhlcl.impl.EnumerationImpl <em>Enumeration</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.pLhlcl.impl.EnumerationImpl
-   * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getEnumeration()
-   * @generated
-   */
-  int ENUMERATION = 5;
-
-  /**
-   * The feature id for the '<em><b>Values</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUMERATION__VALUES = 0;
-
-  /**
-   * The number of structural features of the '<em>Enumeration</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUMERATION_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.pLhlcl.impl.ConstraintImpl <em>Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -278,7 +268,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 6;
+  int CONSTRAINT = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -315,7 +305,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -334,7 +324,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getConsExpression()
    * @generated
    */
-  int CONS_EXPRESSION = 7;
+  int CONS_EXPRESSION = 6;
 
   /**
    * The number of structural features of the '<em>Cons Expression</em>' class.
@@ -353,7 +343,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getIDCons()
    * @generated
    */
-  int ID_CONS = 9;
+  int ID_CONS = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -381,7 +371,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getRefinement()
    * @generated
    */
-  int REFINEMENT = 10;
+  int REFINEMENT = 9;
 
   /**
    * The number of structural features of the '<em>Refinement</em>' class.
@@ -400,7 +390,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 11;
+  int ASSIGNMENT = 10;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -437,7 +427,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getVarRefinement()
    * @generated
    */
-  int VAR_REFINEMENT = 12;
+  int VAR_REFINEMENT = 11;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -449,13 +439,13 @@ public interface PLhlclPackage extends EPackage
   int VAR_REFINEMENT__VAR = REFINEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Variants</b></em>' containment reference.
+   * The feature id for the '<em><b>Values</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_REFINEMENT__VARIANTS = REFINEMENT_FEATURE_COUNT + 1;
+  int VAR_REFINEMENT__VALUES = REFINEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Var Refinement</em>' class.
@@ -474,7 +464,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getSetRefinement()
    * @generated
    */
-  int SET_REFINEMENT = 13;
+  int SET_REFINEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference.
@@ -520,7 +510,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getRule()
    * @generated
    */
-  int RULE = 14;
+  int RULE = 13;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -557,7 +547,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaUN()
    * @generated
    */
-  int FODA_UN = 15;
+  int FODA_UN = 14;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -594,7 +584,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaBin()
    * @generated
    */
-  int FODA_BIN = 16;
+  int FODA_BIN = 15;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -633,14 +623,14 @@ public interface PLhlclPackage extends EPackage
   int FODA_BIN_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.xtext.pLhlcl.impl.FodaNaryImpl <em>Foda Nary</em>}' class.
+   * The meta object id for the '{@link org.xtext.pLhlcl.impl.StructuralImpl <em>Structural</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.pLhlcl.impl.FodaNaryImpl
-   * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaNary()
+   * @see org.xtext.pLhlcl.impl.StructuralImpl
+   * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getStructural()
    * @generated
    */
-  int FODA_NARY = 17;
+  int STRUCTURAL = 16;
 
   /**
    * The feature id for the '<em><b>Parent</b></em>' attribute.
@@ -649,7 +639,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FODA_NARY__PARENT = CONS_EXPRESSION_FEATURE_COUNT + 0;
+  int STRUCTURAL__PARENT = CONS_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Group</b></em>' containment reference.
@@ -658,7 +648,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FODA_NARY__GROUP = CONS_EXPRESSION_FEATURE_COUNT + 1;
+  int STRUCTURAL__GROUP = CONS_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -667,7 +657,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FODA_NARY__MIN = CONS_EXPRESSION_FEATURE_COUNT + 2;
+  int STRUCTURAL__MIN = CONS_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Max</b></em>' attribute.
@@ -676,16 +666,16 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FODA_NARY__MAX = CONS_EXPRESSION_FEATURE_COUNT + 3;
+  int STRUCTURAL__MAX = CONS_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The number of structural features of the '<em>Foda Nary</em>' class.
+   * The number of structural features of the '<em>Structural</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FODA_NARY_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 4;
+  int STRUCTURAL_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.pLhlcl.impl.ListOfValuesImpl <em>List Of Values</em>}' class.
@@ -695,7 +685,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 18;
+  int LIST_OF_VALUES = 17;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' attribute list.
@@ -723,16 +713,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 19;
-
-  /**
-   * The feature id for the '<em><b>Values</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LIST_OF_IDS__VALUES = ENUMERATION__VALUES;
+  int LIST_OF_IDS = 18;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -741,7 +722,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST_OF_IDS__IDS = ENUMERATION_FEATURE_COUNT + 0;
+  int LIST_OF_IDS__IDS = 0;
 
   /**
    * The number of structural features of the '<em>List Of IDs</em>' class.
@@ -750,7 +731,7 @@ public interface PLhlclPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST_OF_IDS_FEATURE_COUNT = ENUMERATION_FEATURE_COUNT + 1;
+  int LIST_OF_IDS_FEATURE_COUNT = 1;
 
 
   /**
@@ -807,15 +788,37 @@ public interface PLhlclPackage extends EPackage
   EClass getVarDeclaration();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#isInstantiable <em>Instantiable</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getInstantiable <em>Instantiable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Instantiable</em>'.
-   * @see org.xtext.pLhlcl.VarDeclaration#isInstantiable()
+   * @see org.xtext.pLhlcl.VarDeclaration#getInstantiable()
    * @see #getVarDeclaration()
    * @generated
    */
   EAttribute getVarDeclaration_Instantiable();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getMin <em>Min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min</em>'.
+   * @see org.xtext.pLhlcl.VarDeclaration#getMin()
+   * @see #getVarDeclaration()
+   * @generated
+   */
+  EAttribute getVarDeclaration_Min();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getMax <em>Max</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max</em>'.
+   * @see org.xtext.pLhlcl.VarDeclaration#getMax()
+   * @see #getVarDeclaration()
+   * @generated
+   */
+  EAttribute getVarDeclaration_Max();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getType <em>Type</em>}'.
@@ -912,27 +915,6 @@ public interface PLhlclPackage extends EPackage
    * @generated
    */
   EReference getVariantsEnumeration_List();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.pLhlcl.Enumeration <em>Enumeration</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Enumeration</em>'.
-   * @see org.xtext.pLhlcl.Enumeration
-   * @generated
-   */
-  EClass getEnumeration();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.Enumeration#getValues <em>Values</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Values</em>'.
-   * @see org.xtext.pLhlcl.Enumeration#getValues()
-   * @see #getEnumeration()
-   * @generated
-   */
-  EReference getEnumeration_Values();
 
   /**
    * Returns the meta object for class '{@link org.xtext.pLhlcl.Constraint <em>Constraint</em>}'.
@@ -1071,15 +1053,15 @@ public interface PLhlclPackage extends EPackage
   EAttribute getVarRefinement_Var();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.VarRefinement#getVariants <em>Variants</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.VarRefinement#getValues <em>Values</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Variants</em>'.
-   * @see org.xtext.pLhlcl.VarRefinement#getVariants()
+   * @return the meta object for the containment reference '<em>Values</em>'.
+   * @see org.xtext.pLhlcl.VarRefinement#getValues()
    * @see #getVarRefinement()
    * @generated
    */
-  EReference getVarRefinement_Variants();
+  EReference getVarRefinement_Values();
 
   /**
    * Returns the meta object for class '{@link org.xtext.pLhlcl.SetRefinement <em>Set Refinement</em>}'.
@@ -1232,58 +1214,58 @@ public interface PLhlclPackage extends EPackage
   EReference getFodaBin_Var2();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.pLhlcl.FodaNary <em>Foda Nary</em>}'.
+   * Returns the meta object for class '{@link org.xtext.pLhlcl.Structural <em>Structural</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Foda Nary</em>'.
-   * @see org.xtext.pLhlcl.FodaNary
+   * @return the meta object for class '<em>Structural</em>'.
+   * @see org.xtext.pLhlcl.Structural
    * @generated
    */
-  EClass getFodaNary();
+  EClass getStructural();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.FodaNary#getParent <em>Parent</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.Structural#getParent <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Parent</em>'.
-   * @see org.xtext.pLhlcl.FodaNary#getParent()
-   * @see #getFodaNary()
+   * @see org.xtext.pLhlcl.Structural#getParent()
+   * @see #getStructural()
    * @generated
    */
-  EAttribute getFodaNary_Parent();
+  EAttribute getStructural_Parent();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.FodaNary#getGroup <em>Group</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.Structural#getGroup <em>Group</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Group</em>'.
-   * @see org.xtext.pLhlcl.FodaNary#getGroup()
-   * @see #getFodaNary()
+   * @see org.xtext.pLhlcl.Structural#getGroup()
+   * @see #getStructural()
    * @generated
    */
-  EReference getFodaNary_Group();
+  EReference getStructural_Group();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.FodaNary#getMin <em>Min</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.Structural#getMin <em>Min</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Min</em>'.
-   * @see org.xtext.pLhlcl.FodaNary#getMin()
-   * @see #getFodaNary()
+   * @see org.xtext.pLhlcl.Structural#getMin()
+   * @see #getStructural()
    * @generated
    */
-  EAttribute getFodaNary_Min();
+  EAttribute getStructural_Min();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.FodaNary#getMax <em>Max</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.Structural#getMax <em>Max</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Max</em>'.
-   * @see org.xtext.pLhlcl.FodaNary#getMax()
-   * @see #getFodaNary()
+   * @see org.xtext.pLhlcl.Structural#getMax()
+   * @see #getStructural()
    * @generated
    */
-  EAttribute getFodaNary_Max();
+  EAttribute getStructural_Max();
 
   /**
    * Returns the meta object for class '{@link org.xtext.pLhlcl.ListOfValues <em>List Of Values</em>}'.
@@ -1403,6 +1385,22 @@ public interface PLhlclPackage extends EPackage
     EAttribute VAR_DECLARATION__INSTANTIABLE = eINSTANCE.getVarDeclaration_Instantiable();
 
     /**
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VAR_DECLARATION__MIN = eINSTANCE.getVarDeclaration_Min();
+
+    /**
+     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VAR_DECLARATION__MAX = eINSTANCE.getVarDeclaration_Max();
+
+    /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1479,24 +1477,6 @@ public interface PLhlclPackage extends EPackage
      * @generated
      */
     EReference VARIANTS_ENUMERATION__LIST = eINSTANCE.getVariantsEnumeration_List();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.pLhlcl.impl.EnumerationImpl <em>Enumeration</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.pLhlcl.impl.EnumerationImpl
-     * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getEnumeration()
-     * @generated
-     */
-    EClass ENUMERATION = eINSTANCE.getEnumeration();
-
-    /**
-     * The meta object literal for the '<em><b>Values</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUMERATION__VALUES = eINSTANCE.getEnumeration_Values();
 
     /**
      * The meta object literal for the '{@link org.xtext.pLhlcl.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -1617,12 +1597,12 @@ public interface PLhlclPackage extends EPackage
     EAttribute VAR_REFINEMENT__VAR = eINSTANCE.getVarRefinement_Var();
 
     /**
-     * The meta object literal for the '<em><b>Variants</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VAR_REFINEMENT__VARIANTS = eINSTANCE.getVarRefinement_Variants();
+    EReference VAR_REFINEMENT__VALUES = eINSTANCE.getVarRefinement_Values();
 
     /**
      * The meta object literal for the '{@link org.xtext.pLhlcl.impl.SetRefinementImpl <em>Set Refinement</em>}' class.
@@ -1745,14 +1725,14 @@ public interface PLhlclPackage extends EPackage
     EReference FODA_BIN__VAR2 = eINSTANCE.getFodaBin_Var2();
 
     /**
-     * The meta object literal for the '{@link org.xtext.pLhlcl.impl.FodaNaryImpl <em>Foda Nary</em>}' class.
+     * The meta object literal for the '{@link org.xtext.pLhlcl.impl.StructuralImpl <em>Structural</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.pLhlcl.impl.FodaNaryImpl
-     * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaNary()
+     * @see org.xtext.pLhlcl.impl.StructuralImpl
+     * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getStructural()
      * @generated
      */
-    EClass FODA_NARY = eINSTANCE.getFodaNary();
+    EClass STRUCTURAL = eINSTANCE.getStructural();
 
     /**
      * The meta object literal for the '<em><b>Parent</b></em>' attribute feature.
@@ -1760,7 +1740,7 @@ public interface PLhlclPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FODA_NARY__PARENT = eINSTANCE.getFodaNary_Parent();
+    EAttribute STRUCTURAL__PARENT = eINSTANCE.getStructural_Parent();
 
     /**
      * The meta object literal for the '<em><b>Group</b></em>' containment reference feature.
@@ -1768,7 +1748,7 @@ public interface PLhlclPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FODA_NARY__GROUP = eINSTANCE.getFodaNary_Group();
+    EReference STRUCTURAL__GROUP = eINSTANCE.getStructural_Group();
 
     /**
      * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
@@ -1776,7 +1756,7 @@ public interface PLhlclPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FODA_NARY__MIN = eINSTANCE.getFodaNary_Min();
+    EAttribute STRUCTURAL__MIN = eINSTANCE.getStructural_Min();
 
     /**
      * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
@@ -1784,7 +1764,7 @@ public interface PLhlclPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FODA_NARY__MAX = eINSTANCE.getFodaNary_Max();
+    EAttribute STRUCTURAL__MAX = eINSTANCE.getStructural_Max();
 
     /**
      * The meta object literal for the '{@link org.xtext.pLhlcl.impl.ListOfValuesImpl <em>List Of Values</em>}' class.

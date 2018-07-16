@@ -69,15 +69,6 @@ public interface PLhlclFactory extends EFactory
   VariantsEnumeration createVariantsEnumeration();
 
   /**
-   * Returns a new object of class '<em>Enumeration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enumeration</em>'.
-   * @generated
-   */
-  Enumeration createEnumeration();
-
-  /**
    * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -177,13 +168,13 @@ public interface PLhlclFactory extends EFactory
   FodaBin createFodaBin();
 
   /**
-   * Returns a new object of class '<em>Foda Nary</em>'.
+   * Returns a new object of class '<em>Structural</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Foda Nary</em>'.
+   * @return a new object of class '<em>Structural</em>'.
    * @generated
    */
-  FodaNary createFodaNary();
+  Structural createStructural();
 
   /**
    * Returns a new object of class '<em>List Of Values</em>'.

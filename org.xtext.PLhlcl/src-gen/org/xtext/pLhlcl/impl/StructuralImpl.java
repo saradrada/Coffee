@@ -11,27 +11,27 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.pLhlcl.FodaNary;
 import org.xtext.pLhlcl.ListOfIDs;
 import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Structural;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Foda Nary</b></em>'.
+ * An implementation of the model object '<em><b>Structural</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.pLhlcl.impl.FodaNaryImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.impl.FodaNaryImpl#getGroup <em>Group</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.impl.FodaNaryImpl#getMin <em>Min</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.impl.FodaNaryImpl#getMax <em>Max</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.StructuralImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.StructuralImpl#getGroup <em>Group</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.StructuralImpl#getMin <em>Min</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.StructuralImpl#getMax <em>Max</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
+public class StructuralImpl extends ConsExpressionImpl implements Structural
 {
   /**
    * The default value of the '{@link #getParent() <em>Parent</em>}' attribute.
@@ -108,7 +108,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FodaNaryImpl()
+  protected StructuralImpl()
   {
     super();
   }
@@ -121,7 +121,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   @Override
   protected EClass eStaticClass()
   {
-    return PLhlclPackage.Literals.FODA_NARY;
+    return PLhlclPackage.Literals.STRUCTURAL;
   }
 
   /**
@@ -144,7 +144,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     String oldParent = parent;
     parent = newParent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.FODA_NARY__PARENT, oldParent, parent));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__PARENT, oldParent, parent));
   }
 
   /**
@@ -168,7 +168,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     group = newGroup;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.FODA_NARY__GROUP, oldGroup, newGroup);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__GROUP, oldGroup, newGroup);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -185,14 +185,14 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     {
       NotificationChain msgs = null;
       if (group != null)
-        msgs = ((InternalEObject)group).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.FODA_NARY__GROUP, null, msgs);
+        msgs = ((InternalEObject)group).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__GROUP, null, msgs);
       if (newGroup != null)
-        msgs = ((InternalEObject)newGroup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.FODA_NARY__GROUP, null, msgs);
+        msgs = ((InternalEObject)newGroup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__GROUP, null, msgs);
       msgs = basicSetGroup(newGroup, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.FODA_NARY__GROUP, newGroup, newGroup));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__GROUP, newGroup, newGroup));
   }
 
   /**
@@ -215,7 +215,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     int oldMin = min;
     min = newMin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.FODA_NARY__MIN, oldMin, min));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MIN, oldMin, min));
   }
 
   /**
@@ -238,7 +238,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     int oldMax = max;
     max = newMax;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.FODA_NARY__MAX, oldMax, max));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MAX, oldMax, max));
   }
 
   /**
@@ -251,7 +251,7 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   {
     switch (featureID)
     {
-      case PLhlclPackage.FODA_NARY__GROUP:
+      case PLhlclPackage.STRUCTURAL__GROUP:
         return basicSetGroup(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -267,13 +267,13 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   {
     switch (featureID)
     {
-      case PLhlclPackage.FODA_NARY__PARENT:
+      case PLhlclPackage.STRUCTURAL__PARENT:
         return getParent();
-      case PLhlclPackage.FODA_NARY__GROUP:
+      case PLhlclPackage.STRUCTURAL__GROUP:
         return getGroup();
-      case PLhlclPackage.FODA_NARY__MIN:
+      case PLhlclPackage.STRUCTURAL__MIN:
         return getMin();
-      case PLhlclPackage.FODA_NARY__MAX:
+      case PLhlclPackage.STRUCTURAL__MAX:
         return getMax();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -289,16 +289,16 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   {
     switch (featureID)
     {
-      case PLhlclPackage.FODA_NARY__PARENT:
+      case PLhlclPackage.STRUCTURAL__PARENT:
         setParent((String)newValue);
         return;
-      case PLhlclPackage.FODA_NARY__GROUP:
+      case PLhlclPackage.STRUCTURAL__GROUP:
         setGroup((ListOfIDs)newValue);
         return;
-      case PLhlclPackage.FODA_NARY__MIN:
+      case PLhlclPackage.STRUCTURAL__MIN:
         setMin((Integer)newValue);
         return;
-      case PLhlclPackage.FODA_NARY__MAX:
+      case PLhlclPackage.STRUCTURAL__MAX:
         setMax((Integer)newValue);
         return;
     }
@@ -315,16 +315,16 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   {
     switch (featureID)
     {
-      case PLhlclPackage.FODA_NARY__PARENT:
+      case PLhlclPackage.STRUCTURAL__PARENT:
         setParent(PARENT_EDEFAULT);
         return;
-      case PLhlclPackage.FODA_NARY__GROUP:
+      case PLhlclPackage.STRUCTURAL__GROUP:
         setGroup((ListOfIDs)null);
         return;
-      case PLhlclPackage.FODA_NARY__MIN:
+      case PLhlclPackage.STRUCTURAL__MIN:
         setMin(MIN_EDEFAULT);
         return;
-      case PLhlclPackage.FODA_NARY__MAX:
+      case PLhlclPackage.STRUCTURAL__MAX:
         setMax(MAX_EDEFAULT);
         return;
     }
@@ -341,13 +341,13 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
   {
     switch (featureID)
     {
-      case PLhlclPackage.FODA_NARY__PARENT:
+      case PLhlclPackage.STRUCTURAL__PARENT:
         return PARENT_EDEFAULT == null ? parent != null : !PARENT_EDEFAULT.equals(parent);
-      case PLhlclPackage.FODA_NARY__GROUP:
+      case PLhlclPackage.STRUCTURAL__GROUP:
         return group != null;
-      case PLhlclPackage.FODA_NARY__MIN:
+      case PLhlclPackage.STRUCTURAL__MIN:
         return min != MIN_EDEFAULT;
-      case PLhlclPackage.FODA_NARY__MAX:
+      case PLhlclPackage.STRUCTURAL__MAX:
         return max != MAX_EDEFAULT;
     }
     return super.eIsSet(featureID);
@@ -374,4 +374,4 @@ public class FodaNaryImpl extends ConsExpressionImpl implements FodaNary
     return result.toString();
   }
 
-} //FodaNaryImpl
+} //StructuralImpl

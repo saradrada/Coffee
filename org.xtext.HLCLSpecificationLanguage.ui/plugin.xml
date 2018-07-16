@@ -7,7 +7,7 @@
 			class="org.xtext.ui.HLCLSpecificationLanguageExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
-			extensions="hlcl"
+			extensions="hlclold"
 			id="org.xtext.HLCLSpecificationLanguage"
 			name="HLCLSpecificationLanguage Editor">
 		</editor>

@@ -5,7 +5,7 @@
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="HLCLSpecificationLanguage" basePackage="org.xtext" disposableProviderFactory="true"
-      fileExtensions="hlcl" ecorePackage="HLCLSpecificationLanguage.ecore#/">
+      fileExtensions="hlclold" ecorePackage="HLCLSpecificationLanguage.ecore#/">
     <genClasses ecoreClass="HLCLSpecificationLanguage.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute HLCLSpecificationLanguage.ecore#//Model/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference HLCLSpecificationLanguage.ecore#//Model/vars"/>

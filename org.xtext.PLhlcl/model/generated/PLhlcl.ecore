@@ -9,7 +9,9 @@
         eType="#//Constraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instantiable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instantiable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variants" eType="#//VariantDeclaration"
@@ -21,11 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariantsEnumeration" eSuperTypes="#//VariantDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//Enumeration"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Enumeration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//ListOfValues"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfValues"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
@@ -45,7 +43,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarRefinement" eSuperTypes="#//Refinement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variants" eType="#//VariantDeclaration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//VariantDeclaration"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SetRefinement" eSuperTypes="#//Refinement">
@@ -71,7 +69,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="var2" eType="#//VarDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FodaNary" eSuperTypes="#//ConsExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="Structural" eSuperTypes="#//ConsExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//ListOfIDs"
         containment="true"/>
@@ -82,7 +80,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListOfIDs" eSuperTypes="#//Enumeration">
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfIDs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
         eType="#//VarDeclaration"/>
   </eClassifiers>

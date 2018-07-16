@@ -16,15 +16,15 @@ C2:
 C3: 
 C4: 
 C5: 
-C6: Example1 >= T
-C7: Example1 = Y
+C6:  >= T
+C7:  = Y
 C8: (C1
 ) => (C2
 )
 C9: () => (C6
 )
-C10: (B => A) AND
-(T => A) AND
-(X => A) AND
-(A>= 1) => (B+T+X >= 0) AND
-(A>= 1) => (B+T+X <= 2) 
+C10: 	(B => A) AND
+	(T => A) AND
+	(X => A) AND
+	(A>= 1) => (B+T+X >= 0) AND
+	(A>= 1) => (B+T+X <= 2) 

@@ -24,7 +24,7 @@ import org.xtext.pLhlcl.VariantDeclaration;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.pLhlcl.impl.VarRefinementImpl#getVar <em>Var</em>}</li>
- *   <li>{@link org.xtext.pLhlcl.impl.VarRefinementImpl#getVariants <em>Variants</em>}</li>
+ *   <li>{@link org.xtext.pLhlcl.impl.VarRefinementImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,14 +52,14 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
   protected String var = VAR_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getVariants() <em>Variants</em>}' containment reference.
+   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariants()
+   * @see #getValues()
    * @generated
    * @ordered
    */
-  protected VariantDeclaration variants;
+  protected VariantDeclaration values;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,9 +110,9 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public VariantDeclaration getVariants()
+  public VariantDeclaration getValues()
   {
-    return variants;
+    return values;
   }
 
   /**
@@ -120,13 +120,13 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariants(VariantDeclaration newVariants, NotificationChain msgs)
+  public NotificationChain basicSetValues(VariantDeclaration newValues, NotificationChain msgs)
   {
-    VariantDeclaration oldVariants = variants;
-    variants = newVariants;
+    VariantDeclaration oldValues = values;
+    values = newValues;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_REFINEMENT__VARIANTS, oldVariants, newVariants);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_REFINEMENT__VALUES, oldValues, newValues);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -137,20 +137,20 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVariants(VariantDeclaration newVariants)
+  public void setValues(VariantDeclaration newValues)
   {
-    if (newVariants != variants)
+    if (newValues != values)
     {
       NotificationChain msgs = null;
-      if (variants != null)
-        msgs = ((InternalEObject)variants).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VAR_REFINEMENT__VARIANTS, null, msgs);
-      if (newVariants != null)
-        msgs = ((InternalEObject)newVariants).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VAR_REFINEMENT__VARIANTS, null, msgs);
-      msgs = basicSetVariants(newVariants, msgs);
+      if (values != null)
+        msgs = ((InternalEObject)values).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VAR_REFINEMENT__VALUES, null, msgs);
+      if (newValues != null)
+        msgs = ((InternalEObject)newValues).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VAR_REFINEMENT__VALUES, null, msgs);
+      msgs = basicSetValues(newValues, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_REFINEMENT__VARIANTS, newVariants, newVariants));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VAR_REFINEMENT__VALUES, newValues, newValues));
   }
 
   /**
@@ -163,8 +163,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
   {
     switch (featureID)
     {
-      case PLhlclPackage.VAR_REFINEMENT__VARIANTS:
-        return basicSetVariants(null, msgs);
+      case PLhlclPackage.VAR_REFINEMENT__VALUES:
+        return basicSetValues(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -181,8 +181,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     {
       case PLhlclPackage.VAR_REFINEMENT__VAR:
         return getVar();
-      case PLhlclPackage.VAR_REFINEMENT__VARIANTS:
-        return getVariants();
+      case PLhlclPackage.VAR_REFINEMENT__VALUES:
+        return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,8 +200,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
       case PLhlclPackage.VAR_REFINEMENT__VAR:
         setVar((String)newValue);
         return;
-      case PLhlclPackage.VAR_REFINEMENT__VARIANTS:
-        setVariants((VariantDeclaration)newValue);
+      case PLhlclPackage.VAR_REFINEMENT__VALUES:
+        setValues((VariantDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -220,8 +220,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
       case PLhlclPackage.VAR_REFINEMENT__VAR:
         setVar(VAR_EDEFAULT);
         return;
-      case PLhlclPackage.VAR_REFINEMENT__VARIANTS:
-        setVariants((VariantDeclaration)null);
+      case PLhlclPackage.VAR_REFINEMENT__VALUES:
+        setValues((VariantDeclaration)null);
         return;
     }
     super.eUnset(featureID);
@@ -239,8 +239,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     {
       case PLhlclPackage.VAR_REFINEMENT__VAR:
         return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
-      case PLhlclPackage.VAR_REFINEMENT__VARIANTS:
-        return variants != null;
+      case PLhlclPackage.VAR_REFINEMENT__VALUES:
+        return values != null;
     }
     return super.eIsSet(featureID);
   }

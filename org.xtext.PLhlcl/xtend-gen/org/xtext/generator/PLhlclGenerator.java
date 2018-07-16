@@ -4,6 +4,8 @@
 package org.xtext.generator;
 
 import com.google.common.base.Objects;
+import java.util.HashMap;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -18,11 +20,11 @@ import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
 import org.xtext.pLhlcl.Expression;
 import org.xtext.pLhlcl.FodaBin;
-import org.xtext.pLhlcl.FodaNary;
 import org.xtext.pLhlcl.FodaUN;
 import org.xtext.pLhlcl.IDCons;
 import org.xtext.pLhlcl.Model;
 import org.xtext.pLhlcl.Rule;
+import org.xtext.pLhlcl.Structural;
 import org.xtext.pLhlcl.VarDeclaration;
 import org.xtext.pLhlcl.VariantDeclaration;
 import org.xtext.pLhlcl.VariantsEnumeration;
@@ -40,10 +42,14 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
    */
   private String modelName;
   
+  private Map<String, String> parents;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     this.modelName = this.modelName(((Model) _head));
+    HashMap<String, String> _hashMap = new HashMap<String, String>();
+    this.parents = _hashMap;
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
     fsa.generateFile((this.modelName + ".cp"), this.toCPHLCL(((Model) _head_1)));
   }
@@ -83,12 +89,28 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     {
       EList<Constraint> _constraints = model.getConstraints();
       for(final Constraint c : _constraints) {
-        String _name = c.getName();
-        _builder.append(_name);
-        _builder.append(": ");
-        CharSequence _expression = this.getExpression(c.getExp());
-        _builder.append(_expression);
-        _builder.newLineIfNotEmpty();
+        {
+          ConsExpression _exp = c.getExp();
+          if ((_exp instanceof Structural)) {
+            ConsExpression _exp_1 = c.getExp();
+            Structural exp = ((Structural) _exp_1);
+            _builder.newLineIfNotEmpty();
+            {
+              if (((exp.getMin() == 0) && (exp.getMax() == 0))) {
+                CharSequence _expression = this.getExpression(c.getExp());
+                _builder.append(_expression);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          } else {
+            String _name = c.getName();
+            _builder.append(_name);
+            _builder.append(": ");
+            CharSequence _expression_1 = this.getExpression(c.getExp());
+            _builder.append(_expression_1);
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     return _builder;
@@ -131,7 +153,7 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
             {
               if ((variant instanceof VariantsEnumeration)) {
                 _builder.append("domain: [");
-                Object _list = this.getList(((VariantsEnumeration)variant).getList().getValues().getValues());
+                Object _list = this.getList(((VariantsEnumeration)variant).getList().getValues());
                 _builder.append(_list);
                 _builder.append("]");
                 _builder.newLineIfNotEmpty();
@@ -176,9 +198,9 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
                 _builder.newLineIfNotEmpty();
               } else {
                 {
-                  if ((exp instanceof FodaNary)) {
-                    CharSequence _declareNary = this.declareNary(((FodaNary)exp));
-                    _builder.append(_declareNary);
+                  if ((exp instanceof Structural)) {
+                    CharSequence _declareStructural = this.declareStructural(((Structural)exp));
+                    _builder.append(_declareStructural);
                     _builder.newLineIfNotEmpty();
                   } else {
                     {
@@ -263,60 +285,87 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     return _builder;
   }
   
-  public CharSequence declareNary(final FodaNary exp) {
+  public CharSequence declareStructural(final Structural exp) {
     StringConcatenation _builder = new StringConcatenation();
-    String idsSum = "";
-    _builder.newLineIfNotEmpty();
     {
-      EList<VarDeclaration> _ids = exp.getGroup().getIds();
-      for(final VarDeclaration child : _ids) {
-        _builder.append("(");
-        String _name = child.getName();
-        _builder.append(_name);
-        _builder.append(" => ");
-        String _parent = exp.getParent();
-        _builder.append(_parent);
-        _builder.append(") AND");
-        _builder.newLineIfNotEmpty();
+      if (((exp.getMin() == 0) && (exp.getMax() == 0))) {
         String _xblockexpression = null;
         {
-          String _idsSum = idsSum;
-          String _name_1 = child.getName();
-          String _plus = (_name_1 + "+");
-          idsSum = (_idsSum + _plus);
+          this.declareParents(exp);
           _xblockexpression = "";
         }
         _builder.append(_xblockexpression);
         _builder.newLineIfNotEmpty();
+      } else {
+        String idsSum = "";
+        _builder.newLineIfNotEmpty();
+        {
+          EList<VarDeclaration> _ids = exp.getGroup().getIds();
+          for(final VarDeclaration child : _ids) {
+            _builder.append("(");
+            String _name = child.getName();
+            _builder.append(_name);
+            _builder.append(" => ");
+            String _parent = exp.getParent();
+            _builder.append(_parent);
+            _builder.append(") AND");
+            _builder.newLineIfNotEmpty();
+            String _xblockexpression_1 = null;
+            {
+              String _idsSum = idsSum;
+              String _name_1 = child.getName();
+              String _plus = (_name_1 + "+");
+              idsSum = (_idsSum + _plus);
+              _xblockexpression_1 = "";
+            }
+            _builder.append(_xblockexpression_1);
+            _builder.newLineIfNotEmpty();
+            String _xblockexpression_2 = null;
+            {
+              String _put = this.parents.put(child.getName(), exp.getParent());
+              /* (_put + "+"); */
+              _xblockexpression_2 = "";
+            }
+            _builder.append(_xblockexpression_2);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("(");
+        String _parent_1 = exp.getParent();
+        _builder.append(_parent_1);
+        _builder.append(">= 1) => (");
+        int _length = idsSum.length();
+        int _minus = (_length - 1);
+        String _substring = idsSum.substring(0, _minus);
+        _builder.append(_substring);
+        _builder.append(" >= ");
+        int _min = exp.getMin();
+        _builder.append(_min);
+        _builder.append(") AND");
+        _builder.newLineIfNotEmpty();
+        _builder.append("(");
+        String _parent_2 = exp.getParent();
+        _builder.append(_parent_2);
+        _builder.append(">= 1) => (");
+        int _length_1 = idsSum.length();
+        int _minus_1 = (_length_1 - 1);
+        String _substring_1 = idsSum.substring(0, _minus_1);
+        _builder.append(_substring_1);
+        _builder.append(" <= ");
+        int _max = exp.getMax();
+        _builder.append(_max);
+        _builder.append(") ");
+        _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("(");
-    String _parent_1 = exp.getParent();
-    _builder.append(_parent_1);
-    _builder.append(">= 1) => (");
-    int _length = idsSum.length();
-    int _minus = (_length - 1);
-    String _substring = idsSum.substring(0, _minus);
-    _builder.append(_substring);
-    _builder.append(" >= ");
-    int _min = exp.getMin();
-    _builder.append(_min);
-    _builder.append(") AND");
-    _builder.newLineIfNotEmpty();
-    _builder.append("(");
-    String _parent_2 = exp.getParent();
-    _builder.append(_parent_2);
-    _builder.append(">= 1) => (");
-    int _length_1 = idsSum.length();
-    int _minus_1 = (_length_1 - 1);
-    String _substring_1 = idsSum.substring(0, _minus_1);
-    _builder.append(_substring_1);
-    _builder.append(" <= ");
-    int _max = exp.getMax();
-    _builder.append(_max);
-    _builder.append(") ");
-    _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  public void declareParents(final Structural exp) {
+    EList<VarDeclaration> _ids = exp.getGroup().getIds();
+    for (final VarDeclaration element : _ids) {
+      this.parents.put(element.getName(), exp.getParent());
+    }
   }
   
   public CharSequence declareFodaUnary(final FodaUN exp) {
@@ -325,7 +374,8 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
       String _op = exp.getOp();
       boolean _equals = Objects.equal(_op, "optional");
       if (_equals) {
-        _builder.append(this.modelName);
+        String _get = this.parents.get(exp.getVar1().getName());
+        _builder.append(_get);
         _builder.append(" >= ");
         String _name = exp.getVar1().getName();
         _builder.append(_name);
@@ -335,7 +385,8 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
           String _op_1 = exp.getOp();
           boolean _equals_1 = Objects.equal(_op_1, "mandatory");
           if (_equals_1) {
-            _builder.append(this.modelName);
+            String _get_1 = this.parents.get(exp.getVar1().getName());
+            _builder.append(_get_1);
             _builder.append(" = ");
             String _name_1 = exp.getVar1().getName();
             _builder.append(_name_1);
