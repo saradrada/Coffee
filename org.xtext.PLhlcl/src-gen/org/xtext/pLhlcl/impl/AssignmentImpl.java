@@ -4,13 +4,16 @@
 package org.xtext.pLhlcl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.pLhlcl.Assignment;
 import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,24 +52,14 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   protected String var = VAR_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
+  protected Value value;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,7 +110,7 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  public Value getValue()
   {
     return value;
   }
@@ -127,12 +120,53 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(String newValue)
+  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
   {
-    String oldValue = value;
+    Value oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.ASSIGNMENT__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.ASSIGNMENT__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(Value newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.ASSIGNMENT__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.ASSIGNMENT__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.ASSIGNMENT__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PLhlclPackage.ASSIGNMENT__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -167,7 +201,7 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
         setVar((String)newValue);
         return;
       case PLhlclPackage.ASSIGNMENT__VALUE:
-        setValue((String)newValue);
+        setValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -187,7 +221,7 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
         setVar(VAR_EDEFAULT);
         return;
       case PLhlclPackage.ASSIGNMENT__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -206,7 +240,7 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
       case PLhlclPackage.ASSIGNMENT__VAR:
         return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
       case PLhlclPackage.ASSIGNMENT__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -224,8 +258,6 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (var: ");
     result.append(var);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }

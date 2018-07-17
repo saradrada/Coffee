@@ -117,6 +117,16 @@ Identifier Socket_AM4_compatible = factory.newIdentifier("Socket_AM4_compatible"
   			BinaryDomain Socket_AM4_compatibleDom= new BinaryDomain();
 Socket_AM4_compatible.setDomain(Socket_AM4_compatibleDom);	
 variables.put("Socket_AM4_compatible", Socket_AM4_compatible); //including the variable in the map
+//declaring variable A
+Identifier A = factory.newIdentifier("A");
+ 				RangeDomain ADom= new RangeDomain(1, 5);
+A.setDomain(ADom);	
+variables.put("A", A); //including the variable in the map
+//declaring variable B
+Identifier B = factory.newIdentifier("B");
+ 				RangeDomain BDom= new RangeDomain(5, 10);
+B.setDomain(BDom);	
+variables.put("B", B); //including the variable in the map
 	}
 	public void transformConstraints() {
 //
@@ -130,6 +140,28 @@ IntBooleanExpression C_PC3=
 factory.equals(C_PC3_left, C_PC3_right);
 constraints.put("C_PC3", C_PC3);
 hlclProgram.add(C_PC3);
+//
+//declaring constraint C1
+
+
+Identifier C1_left = variables.get("PC3");
+
+Identifier C1_right = variables.get("Mainboard");
+IntBooleanExpression C1=
+factory.equals(C1_left, C1_right);
+constraints.put("C1", C1);
+hlclProgram.add(C1);
+//
+//declaring constraint C3
+
+
+Identifier C3_left = variables.get("Mainboard");
+
+Identifier C3_right = variables.get("RAM");
+IntBooleanExpression C3=
+factory.equals(C3_left, C3_right);
+constraints.put("C3", C3);
+hlclProgram.add(C3);
 //
 //declaring constraint C4
 
@@ -164,27 +196,25 @@ factory.greaterOrEqualsThan(C5_left, C5_right);
 constraints.put("C5", C5);
 hlclProgram.add(C5);
 //
-//declaring constraint C1
+//declaring constraint C8
 
 
-Identifier C1_left = variables.get("PC3");
+Identifier C8_left = variables.get("Socket_AM4");
 
-Identifier C1_right = variables.get("Mainboard");
-IntBooleanExpression C1=
-factory.equals(C1_left, C1_right);
-constraints.put("C1", C1);
-hlclProgram.add(C1);
+Identifier C8_right = variables.get("Socket_AM4_compatible");
+IntBooleanExpression C8=factory.implies(C8_left, C8_right);		
+constraints.put("C8", C8);
+hlclProgram.add(C8);
 //
-//declaring constraint C3
+//declaring constraint C9
 
 
-Identifier C3_left = variables.get("Mainboard");
+Identifier C9_left = variables.get("Socket_1151");
 
-Identifier C3_right = variables.get("RAM");
-IntBooleanExpression C3=
-factory.equals(C3_left, C3_right);
-constraints.put("C3", C3);
-hlclProgram.add(C3);
+Identifier C9_right = variables.get("Socket_1151_compatible");
+IntBooleanExpression C9=factory.implies(C9_left, C9_right);		
+constraints.put("C9", C9);
+hlclProgram.add(C9);
 //
 //declaring constraint C2
 
@@ -248,26 +278,6 @@ IntBooleanExpression C2=factory.implies(C2_left, C2_right);
 constraints.put("C2", C2);
 hlclProgram.add(C2);
 //
-//declaring constraint C8
-
-
-Identifier C8_left = variables.get("Socket_AM4");
-
-Identifier C8_right = variables.get("Socket_AM4_compatible");
-IntBooleanExpression C8=factory.implies(C8_left, C8_right);		
-constraints.put("C8", C8);
-hlclProgram.add(C8);
-//
-//declaring constraint C9
-
-
-Identifier C9_left = variables.get("Socket_1151");
-
-Identifier C9_right = variables.get("Socket_1151_compatible");
-IntBooleanExpression C9=factory.implies(C9_left, C9_right);		
-constraints.put("C9", C9);
-hlclProgram.add(C9);
-//
 //declaring constraint C7
 
 
@@ -329,6 +339,21 @@ factory.lessOrEqualsThan(C7_right_left, C7_right_right);
 IntBooleanExpression C7=factory.implies(C7_left, C7_right);		
 constraints.put("C7", C7);
 hlclProgram.add(C7);
+//
+//declaring constraint C20
+
+
+
+Identifier C20_left_left = variables.get("A");
+
+Identifier C20_left_right = variables.get("B");
+IntNumericExpression C20_left=factory.sum(C20_left_left, C20_left_right);	
+
+NumericIdentifier C20_right = getValue("1");
+IntBooleanExpression C20=
+factory.greaterThan(C20_left, C20_right);
+constraints.put("C20", C20);
+hlclProgram.add(C20);
 	}
 	public boolean evaluateSatisfiability(){
 		// the output

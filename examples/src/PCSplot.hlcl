@@ -1,7 +1,7 @@
 model PC3
 variables:
-boolean Mainboard variants:[selected, unselected]
-boolean Socket_1151 variants:[selected, unselected]
+boolean Mainboard values:[selected, unselected]
+boolean Socket_1151 values:[selected, unselected]
 boolean Socket_AM4 variants:[selected, unselected]
 boolean RAM variants:[selected, unselected]
 boolean Power_Supply_Unit variants:[selected, unselected]

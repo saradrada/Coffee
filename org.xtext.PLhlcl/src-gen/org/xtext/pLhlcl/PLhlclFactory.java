@@ -105,6 +105,15 @@ public interface PLhlclFactory extends EFactory
   IDCons createIDCons();
 
   /**
+   * Returns a new object of class '<em>Structural</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Structural</em>'.
+   * @generated
+   */
+  Structural createStructural();
+
+  /**
    * Returns a new object of class '<em>Refinement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -168,13 +177,49 @@ public interface PLhlclFactory extends EFactory
   FodaBin createFodaBin();
 
   /**
-   * Returns a new object of class '<em>Structural</em>'.
+   * Returns a new object of class '<em>Bool Val</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Structural</em>'.
+   * @return a new object of class '<em>Bool Val</em>'.
    * @generated
    */
-  Structural createStructural();
+  BoolVal createBoolVal();
+
+  /**
+   * Returns a new object of class '<em>Number</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Number</em>'.
+   * @generated
+   */
+  Number createNumber();
+
+  /**
+   * Returns a new object of class '<em>Symbol</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Symbol</em>'.
+   * @generated
+   */
+  Symbol createSymbol();
+
+  /**
+   * Returns a new object of class '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value</em>'.
+   * @generated
+   */
+  Value createValue();
+
+  /**
+   * Returns a new object of class '<em>Non Enumerable Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Non Enumerable Value</em>'.
+   * @generated
+   */
+  NonEnumerableValue createNonEnumerableValue();
 
   /**
    * Returns a new object of class '<em>List Of Values</em>'.

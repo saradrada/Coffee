@@ -4,17 +4,30 @@
 package org.xtext.tests;
 
 import com.google.inject.Inject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
+import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xtext.pLhlcl.Model;
+import org.xtext.pLhlcl.PLhlclPackage;
 import org.xtext.tests.PLhlclInjectorProvider;
 
+/**
+ * Class to test the product lines grammar and its parsing
+ * @author Angela Villota
+ * @version CP-HLCL V2
+ * July 2018
+ */
 @RunWith(XtextRunner.class)
 @InjectWith(PLhlclInjectorProvider.class)
 @SuppressWarnings("all")
@@ -22,17 +35,369 @@ public class PLhlclParsingTest {
   @Inject
   private ParseHelper<Model> parseHelper;
   
+  @Inject
+  @Extension
+  private ParseHelper _parseHelper;
+  
+  @Inject
+  @Extension
+  private ValidationTestHelper _validationTestHelper;
+  
+  /**
+   * Method to test the interpretation of an empty program
+   */
   @Test
-  public void loadModel() {
+  public void emptyModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("model empty");
       _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring a boolean var without domain
+   */
+  @Test
+  public void booleanVar() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean A ");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring an integer var with an enumeration
+   */
+  @Test
+  public void integerVarEnum() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("integer A values: [10, 20, 30, 40]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring an integer var with an enumeration
+   */
+  @Test
+  public void integerVarInterval() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("integer A values: 1..100");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring boolean instanciable variables
+   */
+  @Test
+  public void boolInstantiable() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("instantiable [2,5] boolean A");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring integer instanciable interval variable
+   */
+  @Test
+  public void integerIntervalInstantiable() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("instantiable [2,5] integer A values: 1..100 ");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring integer instanciable enumeration variable
+   */
+  @Test
+  public void integerEnumerationInstantiable() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("instantiable [2,5] integer A values: [10, 20, 30, 40] ");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+      this.printErrors(empty);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring structural relations
+   */
+  @Test
+  public void structural() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GPL");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: structural: GPL variants: [GType, GPL, Weight, Search, Algorithms] ");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void structuralCard() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model GPL");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: structural: GPL variants: [GType, GPL, Weight, Search, Algorithms] card:[1,1]");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring requires relations
+   */
+  @Test
+  public void requires() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model GPL");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: GType requires Search");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      this.printErrors(model);
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Declaring excludes relations
+   */
+  @Test
+  public void excludes() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model GPL");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: GType excludes Search");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      this.printErrors(model);
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Testing errors and validations
+   */
+  @Test
+  public void integerNoDomainError() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("integer A ");
+      _builder.newLine();
+      _builder.append("constraints: ");
+      _builder.newLine();
+      final EObject model = this._parseHelper.parse(_builder);
+      this._validationTestHelper.assertError(model, PLhlclPackage.eINSTANCE.getVarDeclaration(), 
+        null, 
+        "A variants declaration is required for variable \'A\'");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void stringNoDomainError() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("symbolic A ");
+      _builder.newLine();
+      _builder.append("constraints: ");
+      _builder.newLine();
+      final EObject model = this._parseHelper.parse(_builder);
+      this._validationTestHelper.assertError(model, PLhlclPackage.eINSTANCE.getVarDeclaration(), 
+        null, 
+        "A variants declaration is required for variable \'A\'");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * to print the parsing errors
+   */
+  public void printErrors(final Model model) {
+    boolean _isEmpty = model.eResource().getErrors().isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<Resource.Diagnostic> _errors = model.eResource().getErrors();
+      for (final Resource.Diagnostic element : _errors) {
+        InputOutput.<String>println(element.getMessage());
+      }
     }
   }
 }

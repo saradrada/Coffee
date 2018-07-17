@@ -11,7 +11,31 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.xtext.pLhlcl.*;
+import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.BoolVal;
+import org.xtext.pLhlcl.ConsExpression;
+import org.xtext.pLhlcl.Constraint;
+import org.xtext.pLhlcl.Expression;
+import org.xtext.pLhlcl.FodaBin;
+import org.xtext.pLhlcl.FodaUN;
+import org.xtext.pLhlcl.IDCons;
+import org.xtext.pLhlcl.ListOfIDs;
+import org.xtext.pLhlcl.ListOfValues;
+import org.xtext.pLhlcl.Model;
+import org.xtext.pLhlcl.NonEnumerableValue;
+import org.xtext.pLhlcl.PLhlclFactory;
+import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Refinement;
+import org.xtext.pLhlcl.Rule;
+import org.xtext.pLhlcl.SetRefinement;
+import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Symbol;
+import org.xtext.pLhlcl.Value;
+import org.xtext.pLhlcl.VarDeclaration;
+import org.xtext.pLhlcl.VarRefinement;
+import org.xtext.pLhlcl.VariantDeclaration;
+import org.xtext.pLhlcl.VariantsEnumeration;
+import org.xtext.pLhlcl.VariantsInterval;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,6 +98,7 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
       case PLhlclPackage.CONS_EXPRESSION: return createConsExpression();
       case PLhlclPackage.EXPRESSION: return createExpression();
       case PLhlclPackage.ID_CONS: return createIDCons();
+      case PLhlclPackage.STRUCTURAL: return createStructural();
       case PLhlclPackage.REFINEMENT: return createRefinement();
       case PLhlclPackage.ASSIGNMENT: return createAssignment();
       case PLhlclPackage.VAR_REFINEMENT: return createVarRefinement();
@@ -81,7 +106,11 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
       case PLhlclPackage.RULE: return createRule();
       case PLhlclPackage.FODA_UN: return createFodaUN();
       case PLhlclPackage.FODA_BIN: return createFodaBin();
-      case PLhlclPackage.STRUCTURAL: return createStructural();
+      case PLhlclPackage.BOOL_VAL: return createBoolVal();
+      case PLhlclPackage.NUMBER: return createNumber();
+      case PLhlclPackage.SYMBOL: return createSymbol();
+      case PLhlclPackage.VALUE: return createValue();
+      case PLhlclPackage.NON_ENUMERABLE_VALUE: return createNonEnumerableValue();
       case PLhlclPackage.LIST_OF_VALUES: return createListOfValues();
       case PLhlclPackage.LIST_OF_IDS: return createListOfIDs();
       default:
@@ -193,6 +222,17 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Structural createStructural()
+  {
+    StructuralImpl structural = new StructuralImpl();
+    return structural;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Refinement createRefinement()
   {
     RefinementImpl refinement = new RefinementImpl();
@@ -270,10 +310,54 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Structural createStructural()
+  public BoolVal createBoolVal()
   {
-    StructuralImpl structural = new StructuralImpl();
-    return structural;
+    BoolValImpl boolVal = new BoolValImpl();
+    return boolVal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public org.xtext.pLhlcl.Number createNumber()
+  {
+    NumberImpl number = new NumberImpl();
+    return number;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Symbol createSymbol()
+  {
+    SymbolImpl symbol = new SymbolImpl();
+    return symbol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Value createValue()
+  {
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NonEnumerableValue createNonEnumerableValue()
+  {
+    NonEnumerableValueImpl nonEnumerableValue = new NonEnumerableValueImpl();
+    return nonEnumerableValue;
   }
 
   /**

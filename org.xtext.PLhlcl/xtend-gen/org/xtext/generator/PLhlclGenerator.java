@@ -96,15 +96,21 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
             Structural exp = ((Structural) _exp_1);
             _builder.newLineIfNotEmpty();
             {
-              if (((exp.getMin() == 0) && (exp.getMax() == 0))) {
+              if (((exp.getMin() == null) && (exp.getMax() == null))) {
+                this.declareParents(exp);
+                _builder.newLineIfNotEmpty();
+              } else {
+                String _name = c.getName();
+                _builder.append(_name);
+                _builder.append(": ");
                 CharSequence _expression = this.getExpression(c.getExp());
                 _builder.append(_expression);
                 _builder.newLineIfNotEmpty();
               }
             }
           } else {
-            String _name = c.getName();
-            _builder.append(_name);
+            String _name_1 = c.getName();
+            _builder.append(_name_1);
             _builder.append(": ");
             CharSequence _expression_1 = this.getExpression(c.getExp());
             _builder.append(_expression_1);
@@ -143,10 +149,10 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
         {
           if ((variant instanceof VariantsInterval)) {
             _builder.append("domain: ");
-            String _start = ((VariantsInterval)variant).getStart();
+            org.xtext.pLhlcl.Number _start = ((VariantsInterval)variant).getStart();
             _builder.append(_start);
             _builder.append("..");
-            String _end = ((VariantsInterval)variant).getEnd();
+            org.xtext.pLhlcl.Number _end = ((VariantsInterval)variant).getEnd();
             _builder.append(_end);
             _builder.newLineIfNotEmpty();
           } else {
@@ -288,7 +294,7 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
   public CharSequence declareStructural(final Structural exp) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      if (((exp.getMin() == 0) && (exp.getMax() == 0))) {
+      if ((Objects.equal(exp.getMin(), Integer.valueOf(0)) && Objects.equal(exp.getMax(), Integer.valueOf(0)))) {
         String _xblockexpression = null;
         {
           this.declareParents(exp);
@@ -339,8 +345,8 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
         String _substring = idsSum.substring(0, _minus);
         _builder.append(_substring);
         _builder.append(" >= ");
-        int _min = exp.getMin();
-        _builder.append(_min);
+        int _value = exp.getMin().getValue();
+        _builder.append(_value);
         _builder.append(") AND");
         _builder.newLineIfNotEmpty();
         _builder.append("(");
@@ -352,8 +358,8 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
         String _substring_1 = idsSum.substring(0, _minus_1);
         _builder.append(_substring_1);
         _builder.append(" <= ");
-        int _max = exp.getMax();
-        _builder.append(_max);
+        int _value_1 = exp.getMax().getValue();
+        _builder.append(_value_1);
         _builder.append(") ");
         _builder.newLineIfNotEmpty();
       }

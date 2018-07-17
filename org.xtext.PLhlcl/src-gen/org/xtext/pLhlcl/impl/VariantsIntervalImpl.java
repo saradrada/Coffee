@@ -4,8 +4,10 @@
 package org.xtext.pLhlcl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -29,44 +31,24 @@ import org.xtext.pLhlcl.VariantsInterval;
 public class VariantsIntervalImpl extends VariantDeclarationImpl implements VariantsInterval
 {
   /**
-   * The default value of the '{@link #getStart() <em>Start</em>}' attribute.
+   * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getStart()
    * @generated
    * @ordered
    */
-  protected static final String START_EDEFAULT = null;
+  protected org.xtext.pLhlcl.Number start;
 
   /**
-   * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStart()
-   * @generated
-   * @ordered
-   */
-  protected String start = START_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getEnd() <em>End</em>}' attribute.
+   * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getEnd()
    * @generated
    * @ordered
    */
-  protected static final String END_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getEnd() <em>End</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEnd()
-   * @generated
-   * @ordered
-   */
-  protected String end = END_EDEFAULT;
+  protected org.xtext.pLhlcl.Number end;
 
   /**
    * <!-- begin-user-doc -->
@@ -94,7 +76,7 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getStart()
+  public org.xtext.pLhlcl.Number getStart()
   {
     return start;
   }
@@ -104,12 +86,16 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setStart(String newStart)
+  public NotificationChain basicSetStart(org.xtext.pLhlcl.Number newStart, NotificationChain msgs)
   {
-    String oldStart = start;
+    org.xtext.pLhlcl.Number oldStart = start;
     start = newStart;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__START, oldStart, start));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__START, oldStart, newStart);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -117,7 +103,28 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getEnd()
+  public void setStart(org.xtext.pLhlcl.Number newStart)
+  {
+    if (newStart != start)
+    {
+      NotificationChain msgs = null;
+      if (start != null)
+        msgs = ((InternalEObject)start).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VARIANTS_INTERVAL__START, null, msgs);
+      if (newStart != null)
+        msgs = ((InternalEObject)newStart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VARIANTS_INTERVAL__START, null, msgs);
+      msgs = basicSetStart(newStart, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__START, newStart, newStart));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public org.xtext.pLhlcl.Number getEnd()
   {
     return end;
   }
@@ -127,12 +134,55 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEnd(String newEnd)
+  public NotificationChain basicSetEnd(org.xtext.pLhlcl.Number newEnd, NotificationChain msgs)
   {
-    String oldEnd = end;
+    org.xtext.pLhlcl.Number oldEnd = end;
     end = newEnd;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__END, oldEnd, end));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__END, oldEnd, newEnd);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEnd(org.xtext.pLhlcl.Number newEnd)
+  {
+    if (newEnd != end)
+    {
+      NotificationChain msgs = null;
+      if (end != null)
+        msgs = ((InternalEObject)end).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VARIANTS_INTERVAL__END, null, msgs);
+      if (newEnd != null)
+        msgs = ((InternalEObject)newEnd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.VARIANTS_INTERVAL__END, null, msgs);
+      msgs = basicSetEnd(newEnd, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.VARIANTS_INTERVAL__END, newEnd, newEnd));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PLhlclPackage.VARIANTS_INTERVAL__START:
+        return basicSetStart(null, msgs);
+      case PLhlclPackage.VARIANTS_INTERVAL__END:
+        return basicSetEnd(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -164,10 +214,10 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
     switch (featureID)
     {
       case PLhlclPackage.VARIANTS_INTERVAL__START:
-        setStart((String)newValue);
+        setStart((org.xtext.pLhlcl.Number)newValue);
         return;
       case PLhlclPackage.VARIANTS_INTERVAL__END:
-        setEnd((String)newValue);
+        setEnd((org.xtext.pLhlcl.Number)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -184,10 +234,10 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
     switch (featureID)
     {
       case PLhlclPackage.VARIANTS_INTERVAL__START:
-        setStart(START_EDEFAULT);
+        setStart((org.xtext.pLhlcl.Number)null);
         return;
       case PLhlclPackage.VARIANTS_INTERVAL__END:
-        setEnd(END_EDEFAULT);
+        setEnd((org.xtext.pLhlcl.Number)null);
         return;
     }
     super.eUnset(featureID);
@@ -204,30 +254,11 @@ public class VariantsIntervalImpl extends VariantDeclarationImpl implements Vari
     switch (featureID)
     {
       case PLhlclPackage.VARIANTS_INTERVAL__START:
-        return START_EDEFAULT == null ? start != null : !START_EDEFAULT.equals(start);
+        return start != null;
       case PLhlclPackage.VARIANTS_INTERVAL__END:
-        return END_EDEFAULT == null ? end != null : !END_EDEFAULT.equals(end);
+        return end != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (start: ");
-    result.append(start);
-    result.append(", end: ");
-    result.append(end);
-    result.append(')');
-    return result.toString();
   }
 
 } //VariantsIntervalImpl

@@ -715,7 +715,7 @@ Identifier C6_left_right_left_left_left = variables.get("Pago_Offline");
 Identifier C6_left_right_left_left_right = variables.get("Pago_Online");
 IntNumericExpression C6_left_right_left_left=factory.sum(C6_left_right_left_left_left, C6_left_right_left_left_right);	
 
-NumericIdentifier C6_left_right_left_right = getValue("1");
+NumericIdentifier C6_left_right_left_right = getValue("0");
 IntBooleanExpression C6_left_right_left=
 factory.greaterOrEqualsThan(C6_left_right_left_left, C6_left_right_left_right);
 
@@ -735,7 +735,7 @@ Identifier C6_right_left_left = variables.get("Pago_Offline");
 Identifier C6_right_left_right = variables.get("Pago_Online");
 IntNumericExpression C6_right_left=factory.sum(C6_right_left_left, C6_right_left_right);	
 
-NumericIdentifier C6_right_right = getValue("2");
+NumericIdentifier C6_right_right = getValue("0");
 IntBooleanExpression C6_right=
 factory.lessOrEqualsThan(C6_right_left, C6_right_right);
 IntBooleanExpression C6=factory.implies(C6_left, C6_right);		
@@ -777,7 +777,7 @@ Identifier C7_left_right_left_left_left = variables.get("Consignacion");
 Identifier C7_left_right_left_left_right = variables.get("Servicio_ContraMinusentrega");
 IntNumericExpression C7_left_right_left_left=factory.sum(C7_left_right_left_left_left, C7_left_right_left_left_right);	
 
-NumericIdentifier C7_left_right_left_right = getValue("1");
+NumericIdentifier C7_left_right_left_right = getValue("0");
 IntBooleanExpression C7_left_right_left=
 factory.greaterOrEqualsThan(C7_left_right_left_left, C7_left_right_left_right);
 
@@ -797,7 +797,7 @@ Identifier C7_right_left_left = variables.get("Consignacion");
 Identifier C7_right_left_right = variables.get("Servicio_ContraMinusentrega");
 IntNumericExpression C7_right_left=factory.sum(C7_right_left_left, C7_right_left_right);	
 
-NumericIdentifier C7_right_right = getValue("2");
+NumericIdentifier C7_right_right = getValue("0");
 IntBooleanExpression C7_right=
 factory.lessOrEqualsThan(C7_right_left, C7_right_right);
 IntBooleanExpression C7=factory.implies(C7_left, C7_right);		
@@ -1435,21 +1435,16 @@ hlclProgram.add(C34);
 		// //these lines are commented because they are useful for debugging 
 		Hlcl2SWIProlog swiPrologTransformer = new Hlcl2SWIProlog(); 
 		prologProgram = swiPrologTransformer.transform(hlclProgram);
-		System.out.println(prologProgram);		
+				
 		// an instance of the solver for Swiprolog 
 		swiSolver= new SWIPrologSolver();
 		swiSolver.setHLCLProgram(hlclProgram); //passing the hlcl program to the solver
 		swiSolver.solve(); // This methhod prepares the solver 
-		System.out.println("before the solution");
-		SolverSolution sol=  swiSolver.getSolution(); 
-		System.out.println(sol.toString());
-//		List<SolverSolution> solutions = swiSolver.getAllSolutions(); // Consulting if the solver has one solution
-//			evaluation= solutions.size()>0;
-//			for (SolverSolution solverSolution : solutions) {
-//				System.out.println(solverSolution.toString());
-//			}	
-			System.out.println("after the solution");
-		return evaluation;
+		List<SolverSolution> solutions = swiSolver.getAllSolutions(); // Consulting if the solver has one solution
+			evaluation= solutions.size()>0;
+			for (SolverSolution solverSolution : solutions) {
+				System.out.println(solverSolution.toString());
+			}	return evaluation;
 	}
 	/** 
 	* To obtain the NumericIdentifier representation of a value 

@@ -21,8 +21,8 @@
     </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//VariantDeclaration"/>
     <genClasses ecoreClass="PLhlcl.ecore#//VariantsInterval">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//VariantsInterval/start"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//VariantsInterval/end"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//VariantsInterval/start"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//VariantsInterval/end"/>
     </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//VariantsEnumeration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//VariantsEnumeration/list"/>
@@ -36,10 +36,16 @@
     <genClasses ecoreClass="PLhlcl.ecore#//IDCons">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//IDCons/name"/>
     </genClasses>
+    <genClasses ecoreClass="PLhlcl.ecore#//Structural">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Structural/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/group"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/min"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/max"/>
+    </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//Refinement"/>
     <genClasses ecoreClass="PLhlcl.ecore#//Assignment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Assignment/var"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Assignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Assignment/value"/>
     </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//VarRefinement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//VarRefinement/var"/>
@@ -63,14 +69,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//FodaBin/op"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//FodaBin/var2"/>
     </genClasses>
-    <genClasses ecoreClass="PLhlcl.ecore#//Structural">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Structural/parent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/group"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Structural/min"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Structural/max"/>
+    <genClasses ecoreClass="PLhlcl.ecore#//BoolVal"/>
+    <genClasses ecoreClass="PLhlcl.ecore#//Number">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Number/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PLhlcl.ecore#//Symbol"/>
+    <genClasses ecoreClass="PLhlcl.ecore#//Value"/>
+    <genClasses ecoreClass="PLhlcl.ecore#//NonEnumerableValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//NonEnumerableValue/value"/>
     </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//ListOfValues">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//ListOfValues/values"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//ListOfValues/values"/>
     </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//ListOfIDs">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//ListOfIDs/ids"/>

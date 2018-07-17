@@ -32,7 +32,7 @@ import org.xtext.validation.CPHLCLValidator
 @RunWith(XtextRunner)
 @InjectWith(CPHLCLInjectorProvider)
 /**
- * Class to test the grammar and its parsing
+ * Class to test the constraint programming grammar and its parsing
  * @author Angela Villota
  * @version CP-HLCL V2
  * May 2018

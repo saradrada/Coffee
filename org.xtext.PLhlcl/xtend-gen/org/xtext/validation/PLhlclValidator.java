@@ -3,6 +3,11 @@
  */
 package org.xtext.validation;
 
+import com.google.common.base.Objects;
+import org.eclipse.xtext.validation.Check;
+import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.VarDeclaration;
+import org.xtext.pLhlcl.VariantDeclaration;
 import org.xtext.validation.AbstractPLhlclValidator;
 
 /**
@@ -12,4 +17,28 @@ import org.xtext.validation.AbstractPLhlclValidator;
  */
 @SuppressWarnings("all")
 public class PLhlclValidator extends AbstractPLhlclValidator {
+  private final static PLhlclPackage packageInstance = PLhlclPackage.eINSTANCE;
+  
+  /**
+   * Method for checking that non boolean domains are correctly declarated
+   */
+  @Check
+  public void checkTypeForNonBooleanDomain(final VarDeclaration decl) {
+    String _type = decl.getType();
+    boolean _equals = Objects.equal(_type, "boolean");
+    if (_equals) {
+      return;
+    } else {
+      VariantDeclaration _variants = decl.getVariants();
+      boolean _tripleEquals = (_variants == null);
+      if (_tripleEquals) {
+        String _name = decl.getName();
+        String _plus = ("A variants declaration is required for variable \'" + _name);
+        String _plus_1 = (_plus + "\'");
+        this.error(_plus_1, 
+          PLhlclPackage.eINSTANCE.getVarDeclaration_Variants());
+        return;
+      }
+    }
+  }
 }

@@ -6,7 +6,6 @@ package org.xtext.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
@@ -38,10 +37,10 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConstraintsConstraintParserRuleCall_5_0 = (RuleCall)cConstraintsAssignment_5.eContents().get(0);
 		
 		//Model:
-		//	'model' name=ID 'variables:' vars+=VarDeclaration+ 'constraints:' constraints+=Constraint+;
+		//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'model' name=ID 'variables:' vars+=VarDeclaration+ 'constraints:' constraints+=Constraint+
+		//'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*
 		public Group getGroup() { return cGroup; }
 		
 		//'model'
@@ -56,7 +55,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//'variables:'
 		public Keyword getVariablesKeyword_2() { return cVariablesKeyword_2; }
 		
-		//vars+=VarDeclaration+
+		//vars+=VarDeclaration*
 		public Assignment getVarsAssignment_3() { return cVarsAssignment_3; }
 		
 		//VarDeclaration
@@ -65,7 +64,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//'constraints:'
 		public Keyword getConstraintsKeyword_4() { return cConstraintsKeyword_4; }
 		
-		//constraints+=Constraint+
+		//constraints+=Constraint*
 		public Assignment getConstraintsAssignment_5() { return cConstraintsAssignment_5; }
 		
 		//Constraint
@@ -88,24 +87,24 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeVarTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cVariantsKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cVariantsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cVariantsVariantDeclarationParserRuleCall_4_0 = (RuleCall)cVariantsAssignment_4.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cValuesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cVariantsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cVariantsVariantDeclarationParserRuleCall_3_1_0 = (RuleCall)cVariantsAssignment_3_1.eContents().get(0);
 		
+		////variable declaration
 		//VarDeclaration:
-		//	(instantiable='instantiable'? '[' min=INT? ',' max=INT? ']')?
-		//	type=VarType name=ID
-		//	'variants:' variants=VariantDeclaration;
+		//	(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
+		//	type=VarType name=ID ('values:' variants=VariantDeclaration)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(instantiable='instantiable'? '[' min=INT? ',' max=INT? ']')? type=VarType name=ID 'variants:'
-		//variants=VariantDeclaration
+		//(instantiable='instantiable' '[' min=INT ',' max=INT ']')? type=VarType name=ID ('values:' variants=VariantDeclaration)?
 		public Group getGroup() { return cGroup; }
 		
-		//(instantiable='instantiable'? '[' min=INT? ',' max=INT? ']')?
+		//(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//instantiable='instantiable'?
+		//instantiable='instantiable'
 		public Assignment getInstantiableAssignment_0_0() { return cInstantiableAssignment_0_0; }
 		
 		//'instantiable'
@@ -114,7 +113,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_0_1() { return cLeftSquareBracketKeyword_0_1; }
 		
-		//min=INT?
+		//min=INT
 		public Assignment getMinAssignment_0_2() { return cMinAssignment_0_2; }
 		
 		//INT
@@ -123,7 +122,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_0_3() { return cCommaKeyword_0_3; }
 		
-		//max=INT?
+		//max=INT
 		public Assignment getMaxAssignment_0_4() { return cMaxAssignment_0_4; }
 		
 		//INT
@@ -144,14 +143,17 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
-		//'variants:'
-		public Keyword getVariantsKeyword_3() { return cVariantsKeyword_3; }
+		//('values:' variants=VariantDeclaration)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'values:'
+		public Keyword getValuesKeyword_3_0() { return cValuesKeyword_3_0; }
 		
 		//variants=VariantDeclaration
-		public Assignment getVariantsAssignment_4() { return cVariantsAssignment_4; }
+		public Assignment getVariantsAssignment_3_1() { return cVariantsAssignment_3_1; }
 		
 		//VariantDeclaration
-		public RuleCall getVariantsVariantDeclarationParserRuleCall_4_0() { return cVariantsVariantDeclarationParserRuleCall_4_0; }
+		public RuleCall getVariantsVariantDeclarationParserRuleCall_3_1_0() { return cVariantsVariantDeclarationParserRuleCall_3_1_0; }
 	}
 	public class VariantDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.VariantDeclaration");
@@ -159,9 +161,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVariantsIntervalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cVariantsEnumerationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		////Declaration of variants
 		//VariantDeclaration:
-		//	VariantsInterval | VariantsEnumeration //| variantsSet son los conjuntos de variables
-		//;
+		//	VariantsInterval | VariantsEnumeration;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//VariantsInterval | VariantsEnumeration
@@ -176,68 +178,62 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	public class VariantsIntervalElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.VariantsInterval");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cVariantsIntervalAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cStartAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cStartValueParserRuleCall_1_0 = (RuleCall)cStartAssignment_1.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cEndAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEndValueParserRuleCall_3_0 = (RuleCall)cEndAssignment_3.eContents().get(0);
+		private final Assignment cStartAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cStartNumberParserRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEndNumberParserRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
 		
+		//// intervals (only intervals of enumerables)
 		//VariantsInterval:
-		//	{VariantsInterval} start=Value '..' end=Value;
+		//	start=Number '..' end=Number;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{VariantsInterval} start=Value '..' end=Value
+		//start=Number '..' end=Number
 		public Group getGroup() { return cGroup; }
 		
-		//{VariantsInterval}
-		public Action getVariantsIntervalAction_0() { return cVariantsIntervalAction_0; }
+		//start=Number
+		public Assignment getStartAssignment_0() { return cStartAssignment_0; }
 		
-		//start=Value
-		public Assignment getStartAssignment_1() { return cStartAssignment_1; }
-		
-		//Value
-		public RuleCall getStartValueParserRuleCall_1_0() { return cStartValueParserRuleCall_1_0; }
+		//Number
+		public RuleCall getStartNumberParserRuleCall_0_0() { return cStartNumberParserRuleCall_0_0; }
 		
 		//'..'
-		public Keyword getFullStopFullStopKeyword_2() { return cFullStopFullStopKeyword_2; }
+		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
 		
-		//end=Value
-		public Assignment getEndAssignment_3() { return cEndAssignment_3; }
+		//end=Number
+		public Assignment getEndAssignment_2() { return cEndAssignment_2; }
 		
-		//Value
-		public RuleCall getEndValueParserRuleCall_3_0() { return cEndValueParserRuleCall_3_0; }
+		//Number
+		public RuleCall getEndNumberParserRuleCall_2_0() { return cEndNumberParserRuleCall_2_0; }
 	}
 	public class VariantsEnumerationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.VariantsEnumeration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cVariantsEnumerationAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cListAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cListListOfValuesParserRuleCall_2_0 = (RuleCall)cListAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cListAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cListListOfValuesParserRuleCall_1_0 = (RuleCall)cListAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
+		//// enumeration (enumeration of booleans, integers and symbols)
 		//VariantsEnumeration:
-		//	{VariantsEnumeration} '[' list=ListOfValues ']';
+		//	'[' list=ListOfValues ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{VariantsEnumeration} '[' list=ListOfValues ']'
+		//'[' list=ListOfValues ']'
 		public Group getGroup() { return cGroup; }
 		
-		//{VariantsEnumeration}
-		public Action getVariantsEnumerationAction_0() { return cVariantsEnumerationAction_0; }
-		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 		
 		//list=ListOfValues
-		public Assignment getListAssignment_2() { return cListAssignment_2; }
+		public Assignment getListAssignment_1() { return cListAssignment_1; }
 		
 		//ListOfValues
-		public RuleCall getListListOfValuesParserRuleCall_2_0() { return cListListOfValuesParserRuleCall_2_0; }
+		public RuleCall getListListOfValuesParserRuleCall_1_0() { return cListListOfValuesParserRuleCall_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Constraint");
@@ -354,6 +350,88 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+	}
+	public class StructuralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Structural");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cStructuralKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cParentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cParentIDTerminalRuleCall_1_0 = (RuleCall)cParentAssignment_1.eContents().get(0);
+		private final Keyword cVariantsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cGroupAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cGroupListOfIDsParserRuleCall_4_0 = (RuleCall)cGroupAssignment_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCardKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Assignment cMinAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cMinNumberParserRuleCall_6_2_0 = (RuleCall)cMinAssignment_6_2.eContents().get(0);
+		private final Keyword cCommaKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
+		private final Assignment cMaxAssignment_6_4 = (Assignment)cGroup_6.eContents().get(4);
+		private final RuleCall cMaxNumberParserRuleCall_6_4_0 = (RuleCall)cMaxAssignment_6_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6_5 = (Keyword)cGroup_6.eContents().get(5);
+		
+		///**
+		// * an structural relation defines a parent-children relation including an optional cardinality
+		// * 
+		// */ Structural:
+		//	'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?
+		public Group getGroup() { return cGroup; }
+		
+		//'structural:'
+		public Keyword getStructuralKeyword_0() { return cStructuralKeyword_0; }
+		
+		//parent=ID
+		public Assignment getParentAssignment_1() { return cParentAssignment_1; }
+		
+		//ID
+		public RuleCall getParentIDTerminalRuleCall_1_0() { return cParentIDTerminalRuleCall_1_0; }
+		
+		//'variants:'
+		public Keyword getVariantsKeyword_2() { return cVariantsKeyword_2; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
+		
+		//group=ListOfIDs
+		public Assignment getGroupAssignment_4() { return cGroupAssignment_4; }
+		
+		//ListOfIDs
+		public RuleCall getGroupListOfIDsParserRuleCall_4_0() { return cGroupListOfIDsParserRuleCall_4_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		
+		//('card:' '[' min=Number ',' max=Number ']')?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//'card:'
+		public Keyword getCardKeyword_6_0() { return cCardKeyword_6_0; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_6_1() { return cLeftSquareBracketKeyword_6_1; }
+		
+		//min=Number
+		public Assignment getMinAssignment_6_2() { return cMinAssignment_6_2; }
+		
+		//Number
+		public RuleCall getMinNumberParserRuleCall_6_2_0() { return cMinNumberParserRuleCall_6_2_0; }
+		
+		//','
+		public Keyword getCommaKeyword_6_3() { return cCommaKeyword_6_3; }
+		
+		//max=Number
+		public Assignment getMaxAssignment_6_4() { return cMaxAssignment_6_4; }
+		
+		//Number
+		public RuleCall getMaxNumberParserRuleCall_6_4_0() { return cMaxNumberParserRuleCall_6_4_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_6_5() { return cRightSquareBracketKeyword_6_5; }
 	}
 	public class RefinementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Refinement");
@@ -634,115 +712,112 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getVar2VarDeclarationIDTerminalRuleCall_2_0_1() { return cVar2VarDeclarationIDTerminalRuleCall_2_0_1; }
 	}
-	public class StructuralElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Structural");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cStructuralKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cParentAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cParentIDTerminalRuleCall_1_0 = (RuleCall)cParentAssignment_1.eContents().get(0);
-		private final Keyword cVariantsKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cGroupAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cGroupListOfIDsParserRuleCall_3_0 = (RuleCall)cGroupAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCardKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Assignment cMinAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cMinINTTerminalRuleCall_4_2_0 = (RuleCall)cMinAssignment_4_2.eContents().get(0);
-		private final Keyword cCommaKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
-		private final Assignment cMaxAssignment_4_4 = (Assignment)cGroup_4.eContents().get(4);
-		private final RuleCall cMaxINTTerminalRuleCall_4_4_0 = (RuleCall)cMaxAssignment_4_4.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4_5 = (Keyword)cGroup_4.eContents().get(5);
+	public class BoolValElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.BoolVal");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cValueAlternatives_0 = (Alternatives)cValueAssignment.eContents().get(0);
+		private final Keyword cValueTrueKeyword_0_0 = (Keyword)cValueAlternatives_0.eContents().get(0);
+		private final Keyword cValueFalseKeyword_0_1 = (Keyword)cValueAlternatives_0.eContents().get(1);
 		
-		///**
-		// * an structural relation defines a parent-children relation including a cardinality
-		// * 
-		// */ Structural:
-		//	'structural:' parent=ID 'variants:' group=ListOfIDs ('card:' '[' min=INT? ',' max=INT? ']')?;
+		////syntactic categories
+		////Values
+		//BoolVal:
+		//	value=('true' | 'false');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'structural:' parent=ID 'variants:' group=ListOfIDs ('card:' '[' min=INT? ',' max=INT? ']')?
-		public Group getGroup() { return cGroup; }
+		//value=('true' | 'false')
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
-		//'structural:'
-		public Keyword getStructuralKeyword_0() { return cStructuralKeyword_0; }
+		//('true' | 'false')
+		public Alternatives getValueAlternatives_0() { return cValueAlternatives_0; }
 		
-		//parent=ID
-		public Assignment getParentAssignment_1() { return cParentAssignment_1; }
+		//'true'
+		public Keyword getValueTrueKeyword_0_0() { return cValueTrueKeyword_0_0; }
+		
+		//'false'
+		public Keyword getValueFalseKeyword_0_1() { return cValueFalseKeyword_0_1; }
+	}
+	public class NumberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Number");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//Number:
+		//	value=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+	}
+	public class SymbolElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Symbol");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueIDTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//Symbol:
+		//	value=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=ID
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
 		//ID
-		public RuleCall getParentIDTerminalRuleCall_1_0() { return cParentIDTerminalRuleCall_1_0; }
-		
-		//'variants:'
-		public Keyword getVariantsKeyword_2() { return cVariantsKeyword_2; }
-		
-		//group=ListOfIDs
-		public Assignment getGroupAssignment_3() { return cGroupAssignment_3; }
-		
-		//ListOfIDs
-		public RuleCall getGroupListOfIDsParserRuleCall_3_0() { return cGroupListOfIDsParserRuleCall_3_0; }
-		
-		//('card:' '[' min=INT? ',' max=INT? ']')?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'card:'
-		public Keyword getCardKeyword_4_0() { return cCardKeyword_4_0; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_4_1() { return cLeftSquareBracketKeyword_4_1; }
-		
-		//min=INT?
-		public Assignment getMinAssignment_4_2() { return cMinAssignment_4_2; }
-		
-		//INT
-		public RuleCall getMinINTTerminalRuleCall_4_2_0() { return cMinINTTerminalRuleCall_4_2_0; }
-		
-		//','
-		public Keyword getCommaKeyword_4_3() { return cCommaKeyword_4_3; }
-		
-		//max=INT?
-		public Assignment getMaxAssignment_4_4() { return cMaxAssignment_4_4; }
-		
-		//INT
-		public RuleCall getMaxINTTerminalRuleCall_4_4_0() { return cMaxINTTerminalRuleCall_4_4_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_4_5() { return cRightSquareBracketKeyword_4_5; }
+		public RuleCall getValueIDTerminalRuleCall_0() { return cValueIDTerminalRuleCall_0; }
 	}
 	public class ValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Keyword cSelectedKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cUnselectedKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final RuleCall cNumberParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cNonEnumerableValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		////syntactic categories
 		//Value:
-		//	INT | 'selected' | 'unselected';
+		//	Number | NonEnumerableValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//INT | 'selected' | 'unselected'
+		//Number | NonEnumerableValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		//Number
+		public RuleCall getNumberParserRuleCall_0() { return cNumberParserRuleCall_0; }
 		
-		//'selected'
-		public Keyword getSelectedKeyword_1() { return cSelectedKeyword_1; }
+		//NonEnumerableValue
+		public RuleCall getNonEnumerableValueParserRuleCall_1() { return cNonEnumerableValueParserRuleCall_1; }
+	}
+	public class NonEnumerableValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.NonEnumerableValue");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cBoolValParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSymbolParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//'unselected'
-		public Keyword getUnselectedKeyword_2() { return cUnselectedKeyword_2; }
+		////EnumerableValue: Number ;
+		//NonEnumerableValue:
+		//	BoolVal | Symbol;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BoolVal | Symbol
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//BoolVal
+		public RuleCall getBoolValParserRuleCall_0() { return cBoolValParserRuleCall_0; }
+		
+		//Symbol
+		public RuleCall getSymbolParserRuleCall_1() { return cSymbolParserRuleCall_1; }
 	}
 	public class VarTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.VarType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cBooleanKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cIntegerKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cSymbolicKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//VarType:
-		//	'boolean' | 'integer';
+		//	'boolean' | 'integer' | 'symbolic';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'boolean' | 'integer'
+		//'boolean' | 'integer' | 'symbolic'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'boolean'
@@ -750,6 +825,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'integer'
 		public Keyword getIntegerKeyword_1() { return cIntegerKeyword_1; }
+		
+		//'symbolic'
+		public Keyword getSymbolicKeyword_2() { return cSymbolicKeyword_2; }
 	}
 	public class ListOfValuesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.ListOfValues");
@@ -886,6 +964,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	private final ConsExpressionElements pConsExpression;
 	private final TerminalExpElements pTerminalExp;
 	private final IDConsElements pIDCons;
+	private final StructuralElements pStructural;
 	private final RefinementElements pRefinement;
 	private final AssignmentElements pAssignment;
 	private final VarRefinementElements pVarRefinement;
@@ -893,8 +972,11 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	private final RuleElements pRule;
 	private final FodaUNElements pFodaUN;
 	private final FodaBinElements pFodaBin;
-	private final StructuralElements pStructural;
+	private final BoolValElements pBoolVal;
+	private final NumberElements pNumber;
+	private final SymbolElements pSymbol;
 	private final ValueElements pValue;
+	private final NonEnumerableValueElements pNonEnumerableValue;
 	private final VarTypeElements pVarType;
 	private final ListOfValuesElements pListOfValues;
 	private final ListOfIDsElements pListOfIDs;
@@ -919,6 +1001,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		this.pConsExpression = new ConsExpressionElements();
 		this.pTerminalExp = new TerminalExpElements();
 		this.pIDCons = new IDConsElements();
+		this.pStructural = new StructuralElements();
 		this.pRefinement = new RefinementElements();
 		this.pAssignment = new AssignmentElements();
 		this.pVarRefinement = new VarRefinementElements();
@@ -926,8 +1009,11 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRule = new RuleElements();
 		this.pFodaUN = new FodaUNElements();
 		this.pFodaBin = new FodaBinElements();
-		this.pStructural = new StructuralElements();
+		this.pBoolVal = new BoolValElements();
+		this.pNumber = new NumberElements();
+		this.pSymbol = new SymbolElements();
 		this.pValue = new ValueElements();
+		this.pNonEnumerableValue = new NonEnumerableValueElements();
 		this.pVarType = new VarTypeElements();
 		this.pListOfValues = new ListOfValuesElements();
 		this.pListOfIDs = new ListOfIDsElements();
@@ -963,7 +1049,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	'model' name=ID 'variables:' vars+=VarDeclaration+ 'constraints:' constraints+=Constraint+;
+	//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -972,10 +1058,10 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 	
+	////variable declaration
 	//VarDeclaration:
-	//	(instantiable='instantiable'? '[' min=INT? ',' max=INT? ']')?
-	//	type=VarType name=ID
-	//	'variants:' variants=VariantDeclaration;
+	//	(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
+	//	type=VarType name=ID ('values:' variants=VariantDeclaration)?;
 	public VarDeclarationElements getVarDeclarationAccess() {
 		return pVarDeclaration;
 	}
@@ -984,9 +1070,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getVarDeclarationAccess().getRule();
 	}
 	
+	////Declaration of variants
 	//VariantDeclaration:
-	//	VariantsInterval | VariantsEnumeration //| variantsSet son los conjuntos de variables
-	//;
+	//	VariantsInterval | VariantsEnumeration;
 	public VariantDeclarationElements getVariantDeclarationAccess() {
 		return pVariantDeclaration;
 	}
@@ -995,8 +1081,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariantDeclarationAccess().getRule();
 	}
 	
+	//// intervals (only intervals of enumerables)
 	//VariantsInterval:
-	//	{VariantsInterval} start=Value '..' end=Value;
+	//	start=Number '..' end=Number;
 	public VariantsIntervalElements getVariantsIntervalAccess() {
 		return pVariantsInterval;
 	}
@@ -1005,8 +1092,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariantsIntervalAccess().getRule();
 	}
 	
+	//// enumeration (enumeration of booleans, integers and symbols)
 	//VariantsEnumeration:
-	//	{VariantsEnumeration} '[' list=ListOfValues ']';
+	//	'[' list=ListOfValues ']';
 	public VariantsEnumerationElements getVariantsEnumerationAccess() {
 		return pVariantsEnumeration;
 	}
@@ -1057,6 +1145,19 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIDConsRule() {
 		return getIDConsAccess().getRule();
+	}
+	
+	///**
+	// * an structural relation defines a parent-children relation including an optional cardinality
+	// * 
+	// */ Structural:
+	//	'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?;
+	public StructuralElements getStructuralAccess() {
+		return pStructural;
+	}
+	
+	public ParserRule getStructuralRule() {
+		return getStructuralAccess().getRule();
 	}
 	
 	//Refinement:
@@ -1131,22 +1232,40 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getFodaBinAccess().getRule();
 	}
 	
-	///**
-	// * an structural relation defines a parent-children relation including a cardinality
-	// * 
-	// */ Structural:
-	//	'structural:' parent=ID 'variants:' group=ListOfIDs ('card:' '[' min=INT? ',' max=INT? ']')?;
-	public StructuralElements getStructuralAccess() {
-		return pStructural;
-	}
-	
-	public ParserRule getStructuralRule() {
-		return getStructuralAccess().getRule();
-	}
-	
 	////syntactic categories
+	////Values
+	//BoolVal:
+	//	value=('true' | 'false');
+	public BoolValElements getBoolValAccess() {
+		return pBoolVal;
+	}
+	
+	public ParserRule getBoolValRule() {
+		return getBoolValAccess().getRule();
+	}
+	
+	//Number:
+	//	value=INT;
+	public NumberElements getNumberAccess() {
+		return pNumber;
+	}
+	
+	public ParserRule getNumberRule() {
+		return getNumberAccess().getRule();
+	}
+	
+	//Symbol:
+	//	value=ID;
+	public SymbolElements getSymbolAccess() {
+		return pSymbol;
+	}
+	
+	public ParserRule getSymbolRule() {
+		return getSymbolAccess().getRule();
+	}
+	
 	//Value:
-	//	INT | 'selected' | 'unselected';
+	//	Number | NonEnumerableValue;
 	public ValueElements getValueAccess() {
 		return pValue;
 	}
@@ -1155,8 +1274,19 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		return getValueAccess().getRule();
 	}
 	
+	////EnumerableValue: Number ;
+	//NonEnumerableValue:
+	//	BoolVal | Symbol;
+	public NonEnumerableValueElements getNonEnumerableValueAccess() {
+		return pNonEnumerableValue;
+	}
+	
+	public ParserRule getNonEnumerableValueRule() {
+		return getNonEnumerableValueAccess().getRule();
+	}
+	
 	//VarType:
-	//	'boolean' | 'integer';
+	//	'boolean' | 'integer' | 'symbolic';
 	public VarTypeElements getVarTypeAccess() {
 		return pVarType;
 	}

@@ -10,7 +10,30 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.xtext.pLhlcl.*;
+import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.BoolVal;
+import org.xtext.pLhlcl.ConsExpression;
+import org.xtext.pLhlcl.Constraint;
+import org.xtext.pLhlcl.Expression;
+import org.xtext.pLhlcl.FodaBin;
+import org.xtext.pLhlcl.FodaUN;
+import org.xtext.pLhlcl.IDCons;
+import org.xtext.pLhlcl.ListOfIDs;
+import org.xtext.pLhlcl.ListOfValues;
+import org.xtext.pLhlcl.Model;
+import org.xtext.pLhlcl.NonEnumerableValue;
+import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Refinement;
+import org.xtext.pLhlcl.Rule;
+import org.xtext.pLhlcl.SetRefinement;
+import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Symbol;
+import org.xtext.pLhlcl.Value;
+import org.xtext.pLhlcl.VarDeclaration;
+import org.xtext.pLhlcl.VarRefinement;
+import org.xtext.pLhlcl.VariantDeclaration;
+import org.xtext.pLhlcl.VariantsEnumeration;
+import org.xtext.pLhlcl.VariantsInterval;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,6 +144,11 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
         return createIDConsAdapter();
       }
       @Override
+      public Adapter caseStructural(Structural object)
+      {
+        return createStructuralAdapter();
+      }
+      @Override
       public Adapter caseRefinement(Refinement object)
       {
         return createRefinementAdapter();
@@ -156,9 +184,29 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
         return createFodaBinAdapter();
       }
       @Override
-      public Adapter caseStructural(Structural object)
+      public Adapter caseBoolVal(BoolVal object)
       {
-        return createStructuralAdapter();
+        return createBoolValAdapter();
+      }
+      @Override
+      public Adapter caseNumber(org.xtext.pLhlcl.Number object)
+      {
+        return createNumberAdapter();
+      }
+      @Override
+      public Adapter caseSymbol(Symbol object)
+      {
+        return createSymbolAdapter();
+      }
+      @Override
+      public Adapter caseValue(Value object)
+      {
+        return createValueAdapter();
+      }
+      @Override
+      public Adapter caseNonEnumerableValue(NonEnumerableValue object)
+      {
+        return createNonEnumerableValueAdapter();
       }
       @Override
       public Adapter caseListOfValues(ListOfValues object)
@@ -328,6 +376,21 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Structural <em>Structural</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.Structural
+   * @generated
+   */
+  public Adapter createStructuralAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Refinement <em>Refinement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -433,16 +496,76 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Structural <em>Structural</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.BoolVal <em>Bool Val</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.pLhlcl.Structural
+   * @see org.xtext.pLhlcl.BoolVal
    * @generated
    */
-  public Adapter createStructuralAdapter()
+  public Adapter createBoolValAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Number <em>Number</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.Number
+   * @generated
+   */
+  public Adapter createNumberAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Symbol <em>Symbol</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.Symbol
+   * @generated
+   */
+  public Adapter createSymbolAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Value <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.Value
+   * @generated
+   */
+  public Adapter createValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.NonEnumerableValue <em>Non Enumerable Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.NonEnumerableValue
+   * @generated
+   */
+  public Adapter createNonEnumerableValueAdapter()
   {
     return null;
   }

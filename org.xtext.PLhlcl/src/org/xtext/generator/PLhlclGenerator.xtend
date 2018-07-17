@@ -58,8 +58,10 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«FOR c : model.constraints»
 			«IF c.exp instanceof Structural »
 				«var exp= c.exp as Structural»
-				«IF exp.min ==0 && exp.max == 0 »
-					«getExpression(c.exp)»
+				«IF exp.min===null && exp.max===null »
+					«declareParents(exp)»
+				«ELSE»
+					«c.name»: «getExpression(c.exp)»
 				«ENDIF»
 			«ELSE»
 				«c.name»: «getExpression(c.exp)»
@@ -149,8 +151,8 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 				«{idsSum+= child.name +"+"; ""}»
 				«{parents.put(child.name, exp.parent)+"+"; ""}»
 			«ENDFOR»
-			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» >= «exp.min») AND
-			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» <= «exp.max») 
+			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» >= «exp.min.value») AND
+			(«exp.parent»>= 1) => («idsSum.substring(0, idsSum.length() - 1)» <= «exp.max.value») 
 		«ENDIF»
 	'''
 	def declareParents(Structural exp){

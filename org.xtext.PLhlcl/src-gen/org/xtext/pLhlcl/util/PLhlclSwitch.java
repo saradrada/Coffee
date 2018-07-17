@@ -8,7 +8,30 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.xtext.pLhlcl.*;
+import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.BoolVal;
+import org.xtext.pLhlcl.ConsExpression;
+import org.xtext.pLhlcl.Constraint;
+import org.xtext.pLhlcl.Expression;
+import org.xtext.pLhlcl.FodaBin;
+import org.xtext.pLhlcl.FodaUN;
+import org.xtext.pLhlcl.IDCons;
+import org.xtext.pLhlcl.ListOfIDs;
+import org.xtext.pLhlcl.ListOfValues;
+import org.xtext.pLhlcl.Model;
+import org.xtext.pLhlcl.NonEnumerableValue;
+import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Refinement;
+import org.xtext.pLhlcl.Rule;
+import org.xtext.pLhlcl.SetRefinement;
+import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Symbol;
+import org.xtext.pLhlcl.Value;
+import org.xtext.pLhlcl.VarDeclaration;
+import org.xtext.pLhlcl.VarRefinement;
+import org.xtext.pLhlcl.VariantDeclaration;
+import org.xtext.pLhlcl.VariantsEnumeration;
+import org.xtext.pLhlcl.VariantsInterval;
 
 /**
  * <!-- begin-user-doc -->
@@ -141,6 +164,15 @@ public class PLhlclSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PLhlclPackage.STRUCTURAL:
+      {
+        Structural structural = (Structural)theEObject;
+        T result = caseStructural(structural);
+        if (result == null) result = caseConsExpression(structural);
+        if (result == null) result = caseExpression(structural);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PLhlclPackage.REFINEMENT:
       {
         Refinement refinement = (Refinement)theEObject;
@@ -207,12 +239,44 @@ public class PLhlclSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PLhlclPackage.STRUCTURAL:
+      case PLhlclPackage.BOOL_VAL:
       {
-        Structural structural = (Structural)theEObject;
-        T result = caseStructural(structural);
-        if (result == null) result = caseConsExpression(structural);
-        if (result == null) result = caseExpression(structural);
+        BoolVal boolVal = (BoolVal)theEObject;
+        T result = caseBoolVal(boolVal);
+        if (result == null) result = caseNonEnumerableValue(boolVal);
+        if (result == null) result = caseValue(boolVal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLhlclPackage.NUMBER:
+      {
+        org.xtext.pLhlcl.Number number = (org.xtext.pLhlcl.Number)theEObject;
+        T result = caseNumber(number);
+        if (result == null) result = caseValue(number);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLhlclPackage.SYMBOL:
+      {
+        Symbol symbol = (Symbol)theEObject;
+        T result = caseSymbol(symbol);
+        if (result == null) result = caseNonEnumerableValue(symbol);
+        if (result == null) result = caseValue(symbol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLhlclPackage.VALUE:
+      {
+        Value value = (Value)theEObject;
+        T result = caseValue(value);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLhlclPackage.NON_ENUMERABLE_VALUE:
+      {
+        NonEnumerableValue nonEnumerableValue = (NonEnumerableValue)theEObject;
+        T result = caseNonEnumerableValue(nonEnumerableValue);
+        if (result == null) result = caseValue(nonEnumerableValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -379,6 +443,22 @@ public class PLhlclSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Structural</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Structural</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStructural(Structural object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Refinement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -491,17 +571,81 @@ public class PLhlclSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Structural</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bool Val</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Structural</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bool Val</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStructural(Structural object)
+  public T caseBoolVal(BoolVal object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Number</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Number</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumber(org.xtext.pLhlcl.Number object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Symbol</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Symbol</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSymbol(Symbol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValue(Value object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNonEnumerableValue(NonEnumerableValue object)
   {
     return null;
   }

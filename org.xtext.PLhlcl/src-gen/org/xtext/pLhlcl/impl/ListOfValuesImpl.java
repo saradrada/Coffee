@@ -5,16 +5,21 @@ package org.xtext.pLhlcl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.pLhlcl.ListOfValues;
 import org.xtext.pLhlcl.PLhlclPackage;
+import org.xtext.pLhlcl.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,14 +37,14 @@ import org.xtext.pLhlcl.PLhlclPackage;
 public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements ListOfValues
 {
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
+   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValues()
    * @generated
    * @ordered
    */
-  protected EList<String> values;
+  protected EList<Value> values;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,13 +72,29 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValues()
+  public EList<Value> getValues()
   {
     if (values == null)
     {
-      values = new EDataTypeEList<String>(String.class, this, PLhlclPackage.LIST_OF_VALUES__VALUES);
+      values = new EObjectContainmentEList<Value>(Value.class, this, PLhlclPackage.LIST_OF_VALUES__VALUES);
     }
     return values;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PLhlclPackage.LIST_OF_VALUES__VALUES:
+        return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -105,7 +126,7 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
     {
       case PLhlclPackage.LIST_OF_VALUES__VALUES:
         getValues().clear();
-        getValues().addAll((Collection<? extends String>)newValue);
+        getValues().addAll((Collection<? extends Value>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,23 +163,6 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
         return values != null && !values.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (values: ");
-    result.append(values);
-    result.append(')');
-    return result.toString();
   }
 
 } //ListOfValuesImpl

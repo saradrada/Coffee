@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
 import org.xtext.pLhlcl.Expression;
@@ -20,12 +21,15 @@ import org.xtext.pLhlcl.IDCons;
 import org.xtext.pLhlcl.ListOfIDs;
 import org.xtext.pLhlcl.ListOfValues;
 import org.xtext.pLhlcl.Model;
+import org.xtext.pLhlcl.NonEnumerableValue;
 import org.xtext.pLhlcl.PLhlclFactory;
 import org.xtext.pLhlcl.PLhlclPackage;
 import org.xtext.pLhlcl.Refinement;
 import org.xtext.pLhlcl.Rule;
 import org.xtext.pLhlcl.SetRefinement;
 import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Symbol;
+import org.xtext.pLhlcl.Value;
 import org.xtext.pLhlcl.VarDeclaration;
 import org.xtext.pLhlcl.VarRefinement;
 import org.xtext.pLhlcl.VariantDeclaration;
@@ -108,6 +112,13 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass structuralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass refinementEClass = null;
 
   /**
@@ -157,7 +168,35 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass structuralEClass = null;
+  private EClass boolValEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numberEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass symbolEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass valueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass nonEnumerableValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -371,9 +410,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariantsInterval_Start()
+  public EReference getVariantsInterval_Start()
   {
-    return (EAttribute)variantsIntervalEClass.getEStructuralFeatures().get(0);
+    return (EReference)variantsIntervalEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -381,9 +420,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariantsInterval_End()
+  public EReference getVariantsInterval_End()
   {
-    return (EAttribute)variantsIntervalEClass.getEStructuralFeatures().get(1);
+    return (EReference)variantsIntervalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -481,6 +520,56 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStructural()
+  {
+    return structuralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStructural_Parent()
+  {
+    return (EAttribute)structuralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructural_Group()
+  {
+    return (EReference)structuralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructural_Min()
+  {
+    return (EReference)structuralEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructural_Max()
+  {
+    return (EReference)structuralEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRefinement()
   {
     return refinementEClass;
@@ -511,9 +600,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssignment_Value()
+  public EReference getAssignment_Value()
   {
-    return (EAttribute)assignmentEClass.getEStructuralFeatures().get(1);
+    return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -691,9 +780,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getStructural()
+  public EClass getBoolVal()
   {
-    return structuralEClass;
+    return boolValEClass;
   }
 
   /**
@@ -701,9 +790,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStructural_Parent()
+  public EClass getNumber()
   {
-    return (EAttribute)structuralEClass.getEStructuralFeatures().get(0);
+    return numberEClass;
   }
 
   /**
@@ -711,9 +800,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getStructural_Group()
+  public EAttribute getNumber_Value()
   {
-    return (EReference)structuralEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)numberEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -721,9 +810,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStructural_Min()
+  public EClass getSymbol()
   {
-    return (EAttribute)structuralEClass.getEStructuralFeatures().get(2);
+    return symbolEClass;
   }
 
   /**
@@ -731,9 +820,29 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStructural_Max()
+  public EClass getValue()
   {
-    return (EAttribute)structuralEClass.getEStructuralFeatures().get(3);
+    return valueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNonEnumerableValue()
+  {
+    return nonEnumerableValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNonEnumerableValue_Value()
+  {
+    return (EAttribute)nonEnumerableValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -751,9 +860,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getListOfValues_Values()
+  public EReference getListOfValues_Values()
   {
-    return (EAttribute)listOfValuesEClass.getEStructuralFeatures().get(0);
+    return (EReference)listOfValuesEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -822,8 +931,8 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     variantDeclarationEClass = createEClass(VARIANT_DECLARATION);
 
     variantsIntervalEClass = createEClass(VARIANTS_INTERVAL);
-    createEAttribute(variantsIntervalEClass, VARIANTS_INTERVAL__START);
-    createEAttribute(variantsIntervalEClass, VARIANTS_INTERVAL__END);
+    createEReference(variantsIntervalEClass, VARIANTS_INTERVAL__START);
+    createEReference(variantsIntervalEClass, VARIANTS_INTERVAL__END);
 
     variantsEnumerationEClass = createEClass(VARIANTS_ENUMERATION);
     createEReference(variantsEnumerationEClass, VARIANTS_ENUMERATION__LIST);
@@ -839,11 +948,17 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     idConsEClass = createEClass(ID_CONS);
     createEAttribute(idConsEClass, ID_CONS__NAME);
 
+    structuralEClass = createEClass(STRUCTURAL);
+    createEAttribute(structuralEClass, STRUCTURAL__PARENT);
+    createEReference(structuralEClass, STRUCTURAL__GROUP);
+    createEReference(structuralEClass, STRUCTURAL__MIN);
+    createEReference(structuralEClass, STRUCTURAL__MAX);
+
     refinementEClass = createEClass(REFINEMENT);
 
     assignmentEClass = createEClass(ASSIGNMENT);
     createEAttribute(assignmentEClass, ASSIGNMENT__VAR);
-    createEAttribute(assignmentEClass, ASSIGNMENT__VALUE);
+    createEReference(assignmentEClass, ASSIGNMENT__VALUE);
 
     varRefinementEClass = createEClass(VAR_REFINEMENT);
     createEAttribute(varRefinementEClass, VAR_REFINEMENT__VAR);
@@ -867,14 +982,20 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     createEAttribute(fodaBinEClass, FODA_BIN__OP);
     createEReference(fodaBinEClass, FODA_BIN__VAR2);
 
-    structuralEClass = createEClass(STRUCTURAL);
-    createEAttribute(structuralEClass, STRUCTURAL__PARENT);
-    createEReference(structuralEClass, STRUCTURAL__GROUP);
-    createEAttribute(structuralEClass, STRUCTURAL__MIN);
-    createEAttribute(structuralEClass, STRUCTURAL__MAX);
+    boolValEClass = createEClass(BOOL_VAL);
+
+    numberEClass = createEClass(NUMBER);
+    createEAttribute(numberEClass, NUMBER__VALUE);
+
+    symbolEClass = createEClass(SYMBOL);
+
+    valueEClass = createEClass(VALUE);
+
+    nonEnumerableValueEClass = createEClass(NON_ENUMERABLE_VALUE);
+    createEAttribute(nonEnumerableValueEClass, NON_ENUMERABLE_VALUE__VALUE);
 
     listOfValuesEClass = createEClass(LIST_OF_VALUES);
-    createEAttribute(listOfValuesEClass, LIST_OF_VALUES__VALUES);
+    createEReference(listOfValuesEClass, LIST_OF_VALUES__VALUES);
 
     listOfIDsEClass = createEClass(LIST_OF_IDS);
     createEReference(listOfIDsEClass, LIST_OF_IDS__IDS);
@@ -913,6 +1034,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     variantsEnumerationEClass.getESuperTypes().add(this.getVariantDeclaration());
     consExpressionEClass.getESuperTypes().add(this.getExpression());
     idConsEClass.getESuperTypes().add(this.getConsExpression());
+    structuralEClass.getESuperTypes().add(this.getConsExpression());
     refinementEClass.getESuperTypes().add(this.getConsExpression());
     assignmentEClass.getESuperTypes().add(this.getRefinement());
     varRefinementEClass.getESuperTypes().add(this.getRefinement());
@@ -920,7 +1042,10 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     ruleEClass.getESuperTypes().add(this.getConsExpression());
     fodaUNEClass.getESuperTypes().add(this.getConsExpression());
     fodaBinEClass.getESuperTypes().add(this.getConsExpression());
-    structuralEClass.getESuperTypes().add(this.getConsExpression());
+    boolValEClass.getESuperTypes().add(this.getNonEnumerableValue());
+    numberEClass.getESuperTypes().add(this.getValue());
+    symbolEClass.getESuperTypes().add(this.getNonEnumerableValue());
+    nonEnumerableValueEClass.getESuperTypes().add(this.getValue());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -939,8 +1064,8 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEClass(variantDeclarationEClass, VariantDeclaration.class, "VariantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(variantsIntervalEClass, VariantsInterval.class, "VariantsInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVariantsInterval_Start(), ecorePackage.getEString(), "start", null, 0, 1, VariantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVariantsInterval_End(), ecorePackage.getEString(), "end", null, 0, 1, VariantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariantsInterval_Start(), this.getNumber(), null, "start", null, 0, 1, VariantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariantsInterval_End(), this.getNumber(), null, "end", null, 0, 1, VariantsInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variantsEnumerationEClass, VariantsEnumeration.class, "VariantsEnumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVariantsEnumeration_List(), this.getListOfValues(), null, "list", null, 0, 1, VariantsEnumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -956,11 +1081,17 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEClass(idConsEClass, IDCons.class, "IDCons", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIDCons_Name(), ecorePackage.getEString(), "name", null, 0, 1, IDCons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(structuralEClass, Structural.class, "Structural", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStructural_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructural_Group(), this.getListOfIDs(), null, "group", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructural_Min(), this.getNumber(), null, "min", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructural_Max(), this.getNumber(), null, "max", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(refinementEClass, Refinement.class, "Refinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAssignment_Var(), ecorePackage.getEString(), "var", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAssignment_Value(), ecorePackage.getEString(), "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varRefinementEClass, VarRefinement.class, "VarRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarRefinement_Var(), ecorePackage.getEString(), "var", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -984,14 +1115,20 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEAttribute(getFodaBin_Op(), ecorePackage.getEString(), "op", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFodaBin_Var2(), this.getVarDeclaration(), null, "var2", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(structuralEClass, Structural.class, "Structural", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStructural_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getStructural_Group(), this.getListOfIDs(), null, "group", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStructural_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStructural_Max(), ecorePackage.getEInt(), "max", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(boolValEClass, BoolVal.class, "BoolVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(numberEClass, org.xtext.pLhlcl.Number.class, "Number", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNumber_Value(), ecorePackage.getEInt(), "value", null, 0, 1, org.xtext.pLhlcl.Number.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(symbolEClass, Symbol.class, "Symbol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(nonEnumerableValueEClass, NonEnumerableValue.class, "NonEnumerableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNonEnumerableValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, NonEnumerableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getListOfValues_Values(), ecorePackage.getEString(), "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getListOfValues_Values(), this.getValue(), null, "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfIDsEClass, ListOfIDs.class, "ListOfIDs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getListOfIDs_Ids(), this.getVarDeclaration(), null, "ids", null, 0, -1, ListOfIDs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

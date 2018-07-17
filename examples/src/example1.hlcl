@@ -2,14 +2,15 @@ model Example1
 
 variables:
 
-boolean A variants: [selected, unselected]
-boolean B variants: selected..unselected
-integer C variants: 1..20
-integer D variants:[1, 2, 3, 60]
-integer E variants: [10, 20, 30]
-boolean T variants: selected..unselected
-boolean X variants: [selected, unselected]
-integer Y variants: 1..50 
+boolean A values: [selected, unselected]
+boolean B 
+integer C values: 1..20
+integer D values:[1, 2, 3, 60]
+integer E values: [10, 20, 30]
+boolean T 
+boolean X values: [selected, unselected]
+integer Y values: 1..50 
+instantiable [2,5] boolean Y1
 constraints:
 C1: A  is selected
 C2: C is 3

@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.Constraint;
 import org.xtext.pLhlcl.FodaBin;
 import org.xtext.pLhlcl.FodaUN;
@@ -26,6 +27,7 @@ import org.xtext.pLhlcl.PLhlclPackage;
 import org.xtext.pLhlcl.Rule;
 import org.xtext.pLhlcl.SetRefinement;
 import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Symbol;
 import org.xtext.pLhlcl.VarDeclaration;
 import org.xtext.pLhlcl.VarRefinement;
 import org.xtext.pLhlcl.VariantsEnumeration;
@@ -49,6 +51,9 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case PLhlclPackage.ASSIGNMENT:
 				sequence_Assignment(context, (Assignment) semanticObject); 
 				return; 
+			case PLhlclPackage.BOOL_VAL:
+				sequence_BoolVal(context, (BoolVal) semanticObject); 
+				return; 
 			case PLhlclPackage.CONSTRAINT:
 				sequence_Constraint(context, (Constraint) semanticObject); 
 				return; 
@@ -70,6 +75,9 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case PLhlclPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case PLhlclPackage.NUMBER:
+				sequence_Number(context, (org.xtext.pLhlcl.Number) semanticObject); 
+				return; 
 			case PLhlclPackage.RULE:
 				sequence_Rule(context, (Rule) semanticObject); 
 				return; 
@@ -78,6 +86,9 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case PLhlclPackage.STRUCTURAL:
 				sequence_Structural(context, (Structural) semanticObject); 
+				return; 
+			case PLhlclPackage.SYMBOL:
+				sequence_Symbol(context, (Symbol) semanticObject); 
 				return; 
 			case PLhlclPackage.VAR_DECLARATION:
 				sequence_VarDeclaration(context, (VarDeclaration) semanticObject); 
@@ -117,6 +128,20 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getAssignmentAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
 		feeder.accept(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BoolVal returns BoolVal
+	 *     Value returns BoolVal
+	 *     NonEnumerableValue returns BoolVal
+	 *
+	 * Constraint:
+	 *     (value='true' | value='false')
+	 */
+	protected void sequence_BoolVal(ISerializationContext context, BoolVal semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -239,10 +264,29 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (name=ID vars+=VarDeclaration+ constraints+=Constraint+)
+	 *     (name=ID vars+=VarDeclaration* constraints+=Constraint*)
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Number returns Number
+	 *     Value returns Number
+	 *
+	 * Constraint:
+	 *     value=INT
+	 */
+	protected void sequence_Number(ISerializationContext context, org.xtext.pLhlcl.Number semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLhlclPackage.Literals.NUMBER__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.NUMBER__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumberAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -291,7 +335,7 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Structural returns Structural
 	 *
 	 * Constraint:
-	 *     (parent=ID group=ListOfIDs min=INT? max=INT?)
+	 *     (parent=ID group=ListOfIDs (min=Number max=Number)?)
 	 */
 	protected void sequence_Structural(ISerializationContext context, Structural semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -300,17 +344,30 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Symbol returns Symbol
+	 *     Value returns Symbol
+	 *     NonEnumerableValue returns Symbol
+	 *
+	 * Constraint:
+	 *     value=ID
+	 */
+	protected void sequence_Symbol(ISerializationContext context, Symbol semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLhlclPackage.Literals.NON_ENUMERABLE_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.NON_ENUMERABLE_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSymbolAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VarDeclaration returns VarDeclaration
 	 *
 	 * Constraint:
-	 *     (
-	 *         instantiable='instantiable'? 
-	 *         min=INT? 
-	 *         max=INT? 
-	 *         type=VarType 
-	 *         name=ID 
-	 *         variants=VariantDeclaration
-	 *     )
+	 *     ((instantiable='instantiable' min=INT max=INT)? type=VarType name=ID variants=VariantDeclaration?)
 	 */
 	protected void sequence_VarDeclaration(ISerializationContext context, VarDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -355,7 +412,7 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.VARIANTS_ENUMERATION__LIST));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariantsEnumerationAccess().getListListOfValuesParserRuleCall_2_0(), semanticObject.getList());
+		feeder.accept(grammarAccess.getVariantsEnumerationAccess().getListListOfValuesParserRuleCall_1_0(), semanticObject.getList());
 		feeder.finish();
 	}
 	
@@ -366,7 +423,7 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     VariantsInterval returns VariantsInterval
 	 *
 	 * Constraint:
-	 *     (start=Value end=Value)
+	 *     (start=Number end=Number)
 	 */
 	protected void sequence_VariantsInterval(ISerializationContext context, VariantsInterval semanticObject) {
 		if (errorAcceptor != null) {
@@ -376,8 +433,8 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.VARIANTS_INTERVAL__END));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariantsIntervalAccess().getStartValueParserRuleCall_1_0(), semanticObject.getStart());
-		feeder.accept(grammarAccess.getVariantsIntervalAccess().getEndValueParserRuleCall_3_0(), semanticObject.getEnd());
+		feeder.accept(grammarAccess.getVariantsIntervalAccess().getStartNumberParserRuleCall_0_0(), semanticObject.getStart());
+		feeder.accept(grammarAccess.getVariantsIntervalAccess().getEndNumberParserRuleCall_2_0(), semanticObject.getEnd());
 		feeder.finish();
 	}
 	

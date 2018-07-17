@@ -64,44 +64,24 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
   protected ListOfIDs group;
 
   /**
-   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * The cached value of the '{@link #getMin() <em>Min</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMin()
    * @generated
    * @ordered
    */
-  protected static final int MIN_EDEFAULT = 0;
+  protected org.xtext.pLhlcl.Number min;
 
   /**
-   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMin()
-   * @generated
-   * @ordered
-   */
-  protected int min = MIN_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
+   * The cached value of the '{@link #getMax() <em>Max</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMax()
    * @generated
    * @ordered
    */
-  protected static final int MAX_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMax()
-   * @generated
-   * @ordered
-   */
-  protected int max = MAX_EDEFAULT;
+  protected org.xtext.pLhlcl.Number max;
 
   /**
    * <!-- begin-user-doc -->
@@ -200,7 +180,7 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getMin()
+  public org.xtext.pLhlcl.Number getMin()
   {
     return min;
   }
@@ -210,12 +190,16 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMin(int newMin)
+  public NotificationChain basicSetMin(org.xtext.pLhlcl.Number newMin, NotificationChain msgs)
   {
-    int oldMin = min;
+    org.xtext.pLhlcl.Number oldMin = min;
     min = newMin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MIN, oldMin, min));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MIN, oldMin, newMin);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -223,7 +207,28 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getMax()
+  public void setMin(org.xtext.pLhlcl.Number newMin)
+  {
+    if (newMin != min)
+    {
+      NotificationChain msgs = null;
+      if (min != null)
+        msgs = ((InternalEObject)min).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__MIN, null, msgs);
+      if (newMin != null)
+        msgs = ((InternalEObject)newMin).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__MIN, null, msgs);
+      msgs = basicSetMin(newMin, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MIN, newMin, newMin));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public org.xtext.pLhlcl.Number getMax()
   {
     return max;
   }
@@ -233,12 +238,37 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMax(int newMax)
+  public NotificationChain basicSetMax(org.xtext.pLhlcl.Number newMax, NotificationChain msgs)
   {
-    int oldMax = max;
+    org.xtext.pLhlcl.Number oldMax = max;
     max = newMax;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MAX, oldMax, max));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MAX, oldMax, newMax);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMax(org.xtext.pLhlcl.Number newMax)
+  {
+    if (newMax != max)
+    {
+      NotificationChain msgs = null;
+      if (max != null)
+        msgs = ((InternalEObject)max).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__MAX, null, msgs);
+      if (newMax != null)
+        msgs = ((InternalEObject)newMax).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLhlclPackage.STRUCTURAL__MAX, null, msgs);
+      msgs = basicSetMax(newMax, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PLhlclPackage.STRUCTURAL__MAX, newMax, newMax));
   }
 
   /**
@@ -253,6 +283,10 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     {
       case PLhlclPackage.STRUCTURAL__GROUP:
         return basicSetGroup(null, msgs);
+      case PLhlclPackage.STRUCTURAL__MIN:
+        return basicSetMin(null, msgs);
+      case PLhlclPackage.STRUCTURAL__MAX:
+        return basicSetMax(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -296,10 +330,10 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
         setGroup((ListOfIDs)newValue);
         return;
       case PLhlclPackage.STRUCTURAL__MIN:
-        setMin((Integer)newValue);
+        setMin((org.xtext.pLhlcl.Number)newValue);
         return;
       case PLhlclPackage.STRUCTURAL__MAX:
-        setMax((Integer)newValue);
+        setMax((org.xtext.pLhlcl.Number)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -322,10 +356,10 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
         setGroup((ListOfIDs)null);
         return;
       case PLhlclPackage.STRUCTURAL__MIN:
-        setMin(MIN_EDEFAULT);
+        setMin((org.xtext.pLhlcl.Number)null);
         return;
       case PLhlclPackage.STRUCTURAL__MAX:
-        setMax(MAX_EDEFAULT);
+        setMax((org.xtext.pLhlcl.Number)null);
         return;
     }
     super.eUnset(featureID);
@@ -346,9 +380,9 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
       case PLhlclPackage.STRUCTURAL__GROUP:
         return group != null;
       case PLhlclPackage.STRUCTURAL__MIN:
-        return min != MIN_EDEFAULT;
+        return min != null;
       case PLhlclPackage.STRUCTURAL__MAX:
-        return max != MAX_EDEFAULT;
+        return max != null;
     }
     return super.eIsSet(featureID);
   }
@@ -366,10 +400,6 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (parent: ");
     result.append(parent);
-    result.append(", min: ");
-    result.append(min);
-    result.append(", max: ");
-    result.append(max);
     result.append(')');
     return result.toString();
   }

@@ -8,12 +8,7 @@ import org.xtext.cPHLCL.Variable
 import org.eclipse.xtext.validation.Check
 import org.xtext.cPHLCL.CPHLCLPackage
 import org.xtext.cPHLCL.Constraint
-import org.xtext.cPHLCL.Relational
 import org.xtext.cPHLCL.VariableRef
-import static extension org.eclipse.emf.ecore.util.EcoreUtil.* 
-import static extension org.eclipse.xtext.EcoreUtil2.*
-import org.xtext.cPHLCL.Model
-
 import  org.xtext.util.CPHlclUtil
 import org.xtext.typing.TypeProvider
 import org.xtext.typing.ExpressionsType

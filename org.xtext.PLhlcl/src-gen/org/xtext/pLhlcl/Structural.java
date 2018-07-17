@@ -78,55 +78,55 @@ public interface Structural extends ConsExpression
   void setGroup(ListOfIDs value);
 
   /**
-   * Returns the value of the '<em><b>Min</b></em>' attribute.
+   * Returns the value of the '<em><b>Min</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Min</em>' attribute isn't clear,
+   * If the meaning of the '<em>Min</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Min</em>' attribute.
-   * @see #setMin(int)
+   * @return the value of the '<em>Min</em>' containment reference.
+   * @see #setMin(org.xtext.pLhlcl.Number)
    * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Min()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getMin();
+  org.xtext.pLhlcl.Number getMin();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMin <em>Min</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMin <em>Min</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Min</em>' attribute.
+   * @param value the new value of the '<em>Min</em>' containment reference.
    * @see #getMin()
    * @generated
    */
-  void setMin(int value);
+  void setMin(org.xtext.pLhlcl.Number value);
 
   /**
-   * Returns the value of the '<em><b>Max</b></em>' attribute.
+   * Returns the value of the '<em><b>Max</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Max</em>' attribute isn't clear,
+   * If the meaning of the '<em>Max</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Max</em>' attribute.
-   * @see #setMax(int)
+   * @return the value of the '<em>Max</em>' containment reference.
+   * @see #setMax(org.xtext.pLhlcl.Number)
    * @see org.xtext.pLhlcl.PLhlclPackage#getStructural_Max()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getMax();
+  org.xtext.pLhlcl.Number getMax();
 
   /**
-   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMax <em>Max</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.pLhlcl.Structural#getMax <em>Max</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Max</em>' attribute.
+   * @param value the new value of the '<em>Max</em>' containment reference.
    * @see #getMax()
    * @generated
    */
-  void setMax(int value);
+  void setMax(org.xtext.pLhlcl.Number value);
 
 } // Structural

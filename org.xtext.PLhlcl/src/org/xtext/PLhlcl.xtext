@@ -3,27 +3,28 @@ grammar org.xtext.PLhlcl with org.eclipse.xtext.common.Terminals
 generate pLhlcl "http://www.xtext.org/PLhlcl"
 
 Model:
-	'model' name=ID 'variables:' vars+=(VarDeclaration)+  'constraints:'constraints+=(Constraint)+
+	'model' name=ID 'variables:' vars+=(VarDeclaration)*  'constraints:'constraints+=(Constraint)*
 	;
 	
+//variable declaration
 VarDeclaration:
-	(instantiable='instantiable'? '['min=INT? ',' max=INT? ']')? 
+	(instantiable='instantiable' '['min=INT ',' max=INT ']')? 
 	type=VarType name=ID  
-	'variants:' variants= VariantDeclaration
+	('values:' variants= VariantDeclaration)?
 	;
 	
-
-
-
+//Declaration of variants
 VariantDeclaration: 
-  VariantsInterval | VariantsEnumeration //| variantsSet son los conjuntos de variables
+  VariantsInterval | VariantsEnumeration 
 	;
 
+// intervals (only intervals of enumerables)
 VariantsInterval:
-	{VariantsInterval}(start=Value) ('..') (end=Value)
+	(start=Number) ('..') (end=Number)
 	;
+// enumeration (enumeration of booleans, integers and symbols)
 VariantsEnumeration:
-	{VariantsEnumeration}('[') list =  ListOfValues  (']')
+	('[') list =  ListOfValues  (']')
 	;
 
 //variantsSet:
@@ -45,6 +46,14 @@ TerminalExp returns Expression:
 ;
 IDCons:
 	name=ID
+;
+
+/**
+ * an structural relation defines a parent-children relation including an optional cardinality
+ * 
+ */
+Structural:
+	'structural:' parent=ID  'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
 ;
 Refinement:
 	Assignment | VarRefinement | SetRefinement
@@ -74,22 +83,23 @@ FodaBin:
 	var1=[VarDeclaration] op= BinOp var2= [VarDeclaration]
 ;
 
-/**
- * an structural relation defines a parent-children relation including a cardinality
- * 
- */
-Structural:
-	'structural:' parent=ID  'variants:'group=ListOfIDs  ('card:''['min=INT? ',' max=INT? ']')? 
-;
+
 
 //syntactic categories
 
-Value:
-	INT | 'selected' | 'unselected' 
-;
+
+//Values
+BoolVal: value=('true'|'false');
+Number: value = INT ;
+
+Symbol: value= ID;
+
+Value: Number|NonEnumerableValue;	
+//EnumerableValue: Number ;
+NonEnumerableValue:BoolVal|Symbol;
 VarType:
-	 'boolean' |'integer' 
-;
+	 'boolean' |'integer'|'symbolic' ;
+
 ListOfValues:
 	values+= Value (',' + values+= Value)*
 ;
