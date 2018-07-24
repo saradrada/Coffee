@@ -1,24 +1,7 @@
 model GPL
 variables:
 boolean GPL
-boolean GType 
-boolean Weight 
-boolean Search 
-boolean Algorithms 
-boolean Directed 
-boolean Undirected 
-boolean Weighted 
-boolean Unweighted 
-boolean BFS 
-boolean DFS 
-boolean Kruskal 
-boolean CycleCheck 
-boolean StronglyCon 
-boolean VertexNum 
-boolean ConnComp 
-boolean SSP 
-boolean Prim 
-boolean MST 
+booleanSSP0booleanSSP1booleanSSP2
 constraints:
 C_GPL : GPL = 1
 c2: GPL = GType
@@ -49,17 +32,17 @@ cNew: (Kruskal => MST) AND
 (Prim => MST) AND
 (MST>= 1) => (Kruskal+Prim >= 0) AND
 (MST>= 1) => (Kruskal+Prim <= 2) 
-c10: CycleCheck => DFS
-c11: StronglyCon => Directed
-c12: StronglyCon => DFS
-c13: VertexNum => Search
-c14: ConnComp => Undirected
-c15: Kruskal => Undirected
-c16: Kruskal => Weighted
-c17: Prim => Undirected
-c18: Prim => Weighted
-c19: SSP => Directed
-c20: SSP => Weighted
+c10: (CycleCheck > 0) => (DFS > 0)
+c11: (StronglyCon > 0) => (Directed > 0)
+c12: (StronglyCon > 0) => (DFS > 0)
+c13: (VertexNum > 0) => (Search > 0)
+c14: (ConnComp > 0) => (Undirected > 0)
+c15: (Kruskal > 0) => (Undirected > 0)
+c16: (Kruskal > 0) => (Weighted > 0)
+c17: (Prim > 0) => (Undirected > 0)
+c18: (Prim > 0) => (Weighted > 0)
+c19: (SSP > 0) => (Directed > 0)
+c20: (SSP > 0) => (Weighted > 0)
 c21: StronglyCon + ConnComp<= 1
 c22: StronglyCon + Kruskal<= 1
 c23: StronglyCon + Prim<= 1
