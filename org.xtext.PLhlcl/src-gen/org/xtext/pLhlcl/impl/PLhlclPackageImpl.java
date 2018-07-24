@@ -340,9 +340,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Min()
+  public EReference getVarDeclaration_Min()
   {
-    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -350,9 +350,9 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDeclaration_Max()
+  public EReference getVarDeclaration_Max()
   {
-    return (EAttribute)varDeclarationEClass.getEStructuralFeatures().get(2);
+    return (EReference)varDeclarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -922,8 +922,8 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     varDeclarationEClass = createEClass(VAR_DECLARATION);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__INSTANTIABLE);
-    createEAttribute(varDeclarationEClass, VAR_DECLARATION__MIN);
-    createEAttribute(varDeclarationEClass, VAR_DECLARATION__MAX);
+    createEReference(varDeclarationEClass, VAR_DECLARATION__MIN);
+    createEReference(varDeclarationEClass, VAR_DECLARATION__MAX);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__TYPE);
     createEAttribute(varDeclarationEClass, VAR_DECLARATION__NAME);
     createEReference(varDeclarationEClass, VAR_DECLARATION__VARIANTS);
@@ -1055,8 +1055,8 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
 
     initEClass(varDeclarationEClass, VarDeclaration.class, "VarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarDeclaration_Instantiable(), ecorePackage.getEString(), "instantiable", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVarDeclaration_Min(), ecorePackage.getEInt(), "min", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVarDeclaration_Max(), ecorePackage.getEInt(), "max", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarDeclaration_Min(), this.getNumber(), null, "min", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarDeclaration_Max(), this.getNumber(), null, "max", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVarDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVarDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarDeclaration_Variants(), this.getVariantDeclaration(), null, "variants", null, 0, 1, VarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -4,6 +4,7 @@
 package org.xtext.generator;
 
 import com.google.common.base.Objects;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -44,12 +45,16 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
   
   private Map<String, String> parents;
   
+  private ArrayList<String> clonConstraints;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     this.modelName = this.modelName(((Model) _head));
     HashMap<String, String> _hashMap = new HashMap<String, String>();
     this.parents = _hashMap;
+    ArrayList<String> _arrayList = new ArrayList<String>();
+    this.clonConstraints = _arrayList;
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
     fsa.generateFile((this.modelName + ".cp"), this.toCPHLCL(((Model) _head_1)));
   }
@@ -85,6 +90,9 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     _builder.append(" : ");
     _builder.append(this.modelName);
     _builder.append(" = 1");
+    _builder.newLineIfNotEmpty();
+    CharSequence _declareClonConstraints = this.declareClonConstraints();
+    _builder.append(_declareClonConstraints);
     _builder.newLineIfNotEmpty();
     {
       EList<Constraint> _constraints = model.getConstraints();
@@ -124,6 +132,26 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
   
   public CharSequence declareVariable(final VarDeclaration variable) {
     StringConcatenation _builder = new StringConcatenation();
+    CharSequence _declareSingleVar = this.declareSingleVar(variable);
+    _builder.append(_declareSingleVar);
+    _builder.newLineIfNotEmpty();
+    {
+      boolean _not = (!((variable.getMin() == null) && (variable.getMax() == null)));
+      if (_not) {
+        String _declareInstances = this.declareInstances(variable);
+        _builder.append(_declareInstances);
+        _builder.append("\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Method to declare a variable without clones
+   */
+  public CharSequence declareSingleVar(final VarDeclaration variable) {
+    StringConcatenation _builder = new StringConcatenation();
     String _type = variable.getType();
     _builder.append(_type);
     _builder.append(" ");
@@ -133,6 +161,87 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     CharSequence _declareVariants = this.declareVariants(variable, variable.getVariants());
     _builder.append(_declareVariants);
     _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  /**
+   * Method to declare a variable's with clones
+   */
+  public String declareInstances(final VarDeclaration variable) {
+    String _xblockexpression = null;
+    {
+      String declaration = "";
+      int _value = variable.getMin().getValue();
+      String _plus = ("(" + Integer.valueOf(_value));
+      String left = (_plus + "<=");
+      int _value_1 = variable.getMax().getValue();
+      String _plus_1 = ("(" + Integer.valueOf(_value_1));
+      String right = (_plus_1 + ">=");
+      String sum = "";
+      for (int i = 1; (i <= variable.getMax().getValue()); i = (i + 1)) {
+        {
+          String _declaration = declaration;
+          String _name = variable.getName();
+          String _plus_2 = ("boolean " + _name);
+          String _plus_3 = (_plus_2 + Integer.valueOf(i));
+          String _plus_4 = (_plus_3 + "\n");
+          declaration = (_declaration + _plus_4);
+          String _sum = sum;
+          String _name_1 = variable.getName();
+          String _plus_5 = (_name_1 + Integer.valueOf(i));
+          String _plus_6 = (_plus_5 + " +");
+          sum = (_sum + _plus_6);
+        }
+      }
+      String _left = left;
+      int _length = sum.length();
+      int _minus = (_length - 1);
+      String _substring = sum.substring(0, _minus);
+      String _plus_2 = (_substring + ") ");
+      left = (_left + _plus_2);
+      String _right = right;
+      int _length_1 = sum.length();
+      int _minus_1 = (_length_1 - 1);
+      String _substring_1 = sum.substring(0, _minus_1);
+      String _plus_3 = (_substring_1 + ") ");
+      right = (_right + _plus_3);
+      String _name = variable.getName();
+      String _plus_4 = (_name + " => (");
+      String _plus_5 = (_plus_4 + left);
+      String _plus_6 = (_plus_5 + "AND");
+      String _plus_7 = (_plus_6 + right);
+      String constraint = (_plus_7 + ")");
+      this.clonConstraints.add(constraint);
+      _xblockexpression = declaration;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Declare clon constraints
+   */
+  public CharSequence declareClonConstraints() {
+    StringConcatenation _builder = new StringConcatenation();
+    int id = 1;
+    _builder.newLineIfNotEmpty();
+    {
+      for(final String constraint : this.clonConstraints) {
+        _builder.append("clon");
+        _builder.append(id);
+        _builder.append(": ");
+        String _string = constraint.toString();
+        _builder.append(_string);
+        _builder.newLineIfNotEmpty();
+        String _xblockexpression = null;
+        {
+          int _plusPlus = id++;
+          /* (Integer.valueOf(_plusPlus) + "+"); */
+          _xblockexpression = "";
+        }
+        _builder.append(_xblockexpression);
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -254,20 +363,49 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
       String _op = exp.getOp();
       boolean _equals = Objects.equal(_op, "requires");
       if (_equals) {
-        _builder.append(left);
-        _builder.append(" => ");
-        _builder.append(right);
-        _builder.newLineIfNotEmpty();
+        {
+          if (((exp.getVar1().getMin() == null) && (exp.getVar1().getMax() == null))) {
+            _builder.append(left);
+            _builder.append("  => ");
+            _builder.append(right);
+            _builder.append(" ");
+            _builder.newLineIfNotEmpty();
+          } else {
+            String declaration = ((((("(" + left) + "1") + " => ") + right) + ")");
+            _builder.newLineIfNotEmpty();
+            for (int i = 2; (i <= exp.getVar1().getMax().getValue()); i = (i + 1)) {
+              String _declaration = declaration;
+              declaration = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " => ") + right) + ")"));
+            }
+            _builder.newLineIfNotEmpty();
+            _builder.append(declaration);
+            _builder.newLineIfNotEmpty();
+          }
+        }
       } else {
         {
           String _op_1 = exp.getOp();
           boolean _equals_1 = Objects.equal(_op_1, "excludes");
           if (_equals_1) {
-            _builder.append(left);
-            _builder.append(" + ");
-            _builder.append(right);
-            _builder.append("<= 1");
-            _builder.newLineIfNotEmpty();
+            {
+              if (((exp.getVar1().getMin() == null) && (exp.getVar1().getMax() == null))) {
+                _builder.append(left);
+                _builder.append(" + ");
+                _builder.append(right);
+                _builder.append("<= 1 ");
+                _builder.newLineIfNotEmpty();
+              } else {
+                String declaration_1 = ((((("(" + left) + "1") + " + ") + right) + "<= 1)");
+                _builder.newLineIfNotEmpty();
+                for (int i = 2; (i <= exp.getVar1().getMax().getValue()); i = (i + 1)) {
+                  String _declaration = declaration_1;
+                  declaration_1 = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " + ") + right) + "<= 1)"));
+                }
+                _builder.newLineIfNotEmpty();
+                _builder.append(declaration_1);
+                _builder.newLineIfNotEmpty();
+              }
+            }
           } else {
             {
               String _op_2 = exp.getOp();

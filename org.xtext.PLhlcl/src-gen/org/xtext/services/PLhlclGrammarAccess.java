@@ -78,10 +78,10 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInstantiableInstantiableKeyword_0_0_0 = (Keyword)cInstantiableAssignment_0_0.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cMinAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cMinINTTerminalRuleCall_0_2_0 = (RuleCall)cMinAssignment_0_2.eContents().get(0);
+		private final RuleCall cMinNumberParserRuleCall_0_2_0 = (RuleCall)cMinAssignment_0_2.eContents().get(0);
 		private final Keyword cCommaKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Assignment cMaxAssignment_0_4 = (Assignment)cGroup_0.eContents().get(4);
-		private final RuleCall cMaxINTTerminalRuleCall_0_4_0 = (RuleCall)cMaxAssignment_0_4.eContents().get(0);
+		private final RuleCall cMaxNumberParserRuleCall_0_4_0 = (RuleCall)cMaxAssignment_0_4.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_0_5 = (Keyword)cGroup_0.eContents().get(5);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTypeVarTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
@@ -94,14 +94,15 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////variable declaration
 		//VarDeclaration:
-		//	(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
+		//	(instantiable='instantiable' '[' min=Number ',' max=Number ']')?
 		//	type=VarType name=ID ('values:' variants=VariantDeclaration)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(instantiable='instantiable' '[' min=INT ',' max=INT ']')? type=VarType name=ID ('values:' variants=VariantDeclaration)?
+		//(instantiable='instantiable' '[' min=Number ',' max=Number ']')? type=VarType name=ID ('values:'
+		//variants=VariantDeclaration)?
 		public Group getGroup() { return cGroup; }
 		
-		//(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
+		//(instantiable='instantiable' '[' min=Number ',' max=Number ']')?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//instantiable='instantiable'
@@ -113,20 +114,20 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_0_1() { return cLeftSquareBracketKeyword_0_1; }
 		
-		//min=INT
+		//min=Number
 		public Assignment getMinAssignment_0_2() { return cMinAssignment_0_2; }
 		
-		//INT
-		public RuleCall getMinINTTerminalRuleCall_0_2_0() { return cMinINTTerminalRuleCall_0_2_0; }
+		//Number
+		public RuleCall getMinNumberParserRuleCall_0_2_0() { return cMinNumberParserRuleCall_0_2_0; }
 		
 		//','
 		public Keyword getCommaKeyword_0_3() { return cCommaKeyword_0_3; }
 		
-		//max=INT
+		//max=Number
 		public Assignment getMaxAssignment_0_4() { return cMaxAssignment_0_4; }
 		
-		//INT
-		public RuleCall getMaxINTTerminalRuleCall_0_4_0() { return cMaxINTTerminalRuleCall_0_4_0; }
+		//Number
+		public RuleCall getMaxNumberParserRuleCall_0_4_0() { return cMaxNumberParserRuleCall_0_4_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_0_5() { return cRightSquareBracketKeyword_0_5; }
@@ -1060,7 +1061,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////variable declaration
 	//VarDeclaration:
-	//	(instantiable='instantiable' '[' min=INT ',' max=INT ']')?
+	//	(instantiable='instantiable' '[' min=Number ',' max=Number ']')?
 	//	type=VarType name=ID ('values:' variants=VariantDeclaration)?;
 	public VarDeclarationElements getVarDeclarationAccess() {
 		return pVarDeclaration;

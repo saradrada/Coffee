@@ -367,7 +367,7 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     VarDeclaration returns VarDeclaration
 	 *
 	 * Constraint:
-	 *     ((instantiable='instantiable' min=INT max=INT)? type=VarType name=ID variants=VariantDeclaration?)
+	 *     ((instantiable='instantiable' min=Number max=Number)? type=VarType name=ID variants=VariantDeclaration?)
 	 */
 	protected void sequence_VarDeclaration(ISerializationContext context, VarDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

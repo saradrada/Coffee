@@ -123,7 +123,7 @@ public interface PLhlclPackage extends EPackage
   int VAR_DECLARATION__INSTANTIABLE = 0;
 
   /**
-   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * The feature id for the '<em><b>Min</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -132,7 +132,7 @@ public interface PLhlclPackage extends EPackage
   int VAR_DECLARATION__MIN = 1;
 
   /**
-   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * The feature id for the '<em><b>Max</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -930,26 +930,26 @@ public interface PLhlclPackage extends EPackage
   EAttribute getVarDeclaration_Instantiable();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getMin <em>Min</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.VarDeclaration#getMin <em>Min</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Min</em>'.
+   * @return the meta object for the containment reference '<em>Min</em>'.
    * @see org.xtext.pLhlcl.VarDeclaration#getMin()
    * @see #getVarDeclaration()
    * @generated
    */
-  EAttribute getVarDeclaration_Min();
+  EReference getVarDeclaration_Min();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getMax <em>Max</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.VarDeclaration#getMax <em>Max</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Max</em>'.
+   * @return the meta object for the containment reference '<em>Max</em>'.
    * @see org.xtext.pLhlcl.VarDeclaration#getMax()
    * @see #getVarDeclaration()
    * @generated
    */
-  EAttribute getVarDeclaration_Max();
+  EReference getVarDeclaration_Max();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.pLhlcl.VarDeclaration#getType <em>Type</em>}'.
@@ -1588,20 +1588,20 @@ public interface PLhlclPackage extends EPackage
     EAttribute VAR_DECLARATION__INSTANTIABLE = eINSTANCE.getVarDeclaration_Instantiable();
 
     /**
-     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Min</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_DECLARATION__MIN = eINSTANCE.getVarDeclaration_Min();
+    EReference VAR_DECLARATION__MIN = eINSTANCE.getVarDeclaration_Min();
 
     /**
-     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Max</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_DECLARATION__MAX = eINSTANCE.getVarDeclaration_Max();
+    EReference VAR_DECLARATION__MAX = eINSTANCE.getVarDeclaration_Max();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.

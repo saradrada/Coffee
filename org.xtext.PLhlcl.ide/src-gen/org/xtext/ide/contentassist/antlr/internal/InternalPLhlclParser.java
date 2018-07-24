@@ -2573,11 +2573,11 @@ public class InternalPLhlclParser extends AbstractInternalContentAssistParser {
             if ( (LA4_0==RULE_ID) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==35) ) {
-                    alt4=2;
-                }
-                else if ( (LA4_1==34) ) {
+                if ( (LA4_1==34) ) {
                     alt4=1;
+                }
+                else if ( (LA4_1==35) ) {
+                    alt4=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -9977,21 +9977,25 @@ public class InternalPLhlclParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__MinAssignment_0_2"
-    // InternalPLhlcl.g:3257:1: rule__VarDeclaration__MinAssignment_0_2 : ( RULE_INT ) ;
+    // InternalPLhlcl.g:3257:1: rule__VarDeclaration__MinAssignment_0_2 : ( ruleNumber ) ;
     public final void rule__VarDeclaration__MinAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLhlcl.g:3261:1: ( ( RULE_INT ) )
-            // InternalPLhlcl.g:3262:2: ( RULE_INT )
+            // InternalPLhlcl.g:3261:1: ( ( ruleNumber ) )
+            // InternalPLhlcl.g:3262:2: ( ruleNumber )
             {
-            // InternalPLhlcl.g:3262:2: ( RULE_INT )
-            // InternalPLhlcl.g:3263:3: RULE_INT
+            // InternalPLhlcl.g:3262:2: ( ruleNumber )
+            // InternalPLhlcl.g:3263:3: ruleNumber
             {
-             before(grammarAccess.getVarDeclarationAccess().getMinINTTerminalRuleCall_0_2_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getVarDeclarationAccess().getMinINTTerminalRuleCall_0_2_0()); 
+             before(grammarAccess.getVarDeclarationAccess().getMinNumberParserRuleCall_0_2_0()); 
+            pushFollow(FOLLOW_2);
+            ruleNumber();
+
+            state._fsp--;
+
+             after(grammarAccess.getVarDeclarationAccess().getMinNumberParserRuleCall_0_2_0()); 
 
             }
 
@@ -10014,21 +10018,25 @@ public class InternalPLhlclParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__MaxAssignment_0_4"
-    // InternalPLhlcl.g:3272:1: rule__VarDeclaration__MaxAssignment_0_4 : ( RULE_INT ) ;
+    // InternalPLhlcl.g:3272:1: rule__VarDeclaration__MaxAssignment_0_4 : ( ruleNumber ) ;
     public final void rule__VarDeclaration__MaxAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLhlcl.g:3276:1: ( ( RULE_INT ) )
-            // InternalPLhlcl.g:3277:2: ( RULE_INT )
+            // InternalPLhlcl.g:3276:1: ( ( ruleNumber ) )
+            // InternalPLhlcl.g:3277:2: ( ruleNumber )
             {
-            // InternalPLhlcl.g:3277:2: ( RULE_INT )
-            // InternalPLhlcl.g:3278:3: RULE_INT
+            // InternalPLhlcl.g:3277:2: ( ruleNumber )
+            // InternalPLhlcl.g:3278:3: ruleNumber
             {
-             before(grammarAccess.getVarDeclarationAccess().getMaxINTTerminalRuleCall_0_4_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getVarDeclarationAccess().getMaxINTTerminalRuleCall_0_4_0()); 
+             before(grammarAccess.getVarDeclarationAccess().getMaxNumberParserRuleCall_0_4_0()); 
+            pushFollow(FOLLOW_2);
+            ruleNumber();
+
+            state._fsp--;
+
+             after(grammarAccess.getVarDeclarationAccess().getMaxNumberParserRuleCall_0_4_0()); 
 
             }
 

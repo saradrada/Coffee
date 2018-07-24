@@ -22,6 +22,8 @@ import org.xtext.pLhlcl.IDCons
 import org.xtext.pLhlcl.Structural
 import java.util.Map
 import java.util.HashMap
+import java.util.ArrayList
+
 
 /**
  * Generates code from your model files on save.
@@ -34,10 +36,12 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 	 */
 	private String modelName
 	private Map <String, String> parents;
+	private ArrayList <String> clonConstraints;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		modelName= modelName(resource.contents.head as Model)
 		parents= new HashMap<String,String>();
+		clonConstraints= new ArrayList<String>;
 		fsa.generateFile(modelName+".cp", toCPHLCL(resource.contents.head as Model))
 
 	}
@@ -55,6 +59,7 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«ENDFOR»
 		«CONSTRAINTS»
 		C_«modelName» : «modelName» = 1
+		«declareClonConstraints()»
 		«FOR c : model.constraints»
 			«IF c.exp instanceof Structural »
 				«var exp= c.exp as Structural»
@@ -69,9 +74,48 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«ENDFOR»
 «««		«STRATEGY»
 	'''
-	def declareVariable(VarDeclaration variable) '''
-			«variable.type» «variable.name» «declareVariants(variable, variable.variants)»
+	def declareVariable(VarDeclaration variable)'''
+		«declareSingleVar(variable)»
+		«IF  (!(variable.min===null && variable.max===null)) »
+			«declareInstances(variable)»	
+		«ENDIF»
 	'''
+	/**
+	 * Method to declare a variable without clones
+	 */
+	def declareSingleVar(VarDeclaration variable) '''
+		«variable.type» «variable.name» «declareVariants(variable, variable.variants)»
+	'''
+		/**
+	 * Method to declare a variable's with clones
+	 */
+	def  declareInstances(VarDeclaration variable) {
+		var String declaration=""
+		var String left= "(" + variable.min.value + "<="
+		var String right= "(" + variable.max.value + ">="
+		var String sum= ""
+		for ( var i=1; i<= variable.max.value; i= i+1) {
+			declaration+="boolean " +variable.name+i +"\n"
+			sum+= variable.name+i + " +"
+		}
+		left += sum.substring(0, sum.length() - 1) + ") "
+		right += sum.substring(0, sum.length() - 1) + ") "
+		var String constraint= variable.name+" => (" + left + "AND" + right +")"
+		clonConstraints.add(constraint)
+		declaration
+	}
+	/**
+	 * Declare clon constraints 
+	 */
+	 def  declareClonConstraints()'''
+	 	«var int id = 1»
+	 	«FOR constraint : clonConstraints»
+	 		clon«id»: «constraint.toString»
+	 		«{id++ + "+"; ""}»
+	 	«ENDFOR»
+	 '''
+
+
 	/**
 	 * Method for declare variants
 	 */
@@ -128,10 +172,26 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«val left= exp.var1.name»
 		«val right= exp.var2.name»
 		«IF exp.op=="requires"»
-			«left» => «right»
+			«IF exp.var1.min===null && exp.var1.max===null»
+				«left»  => «right» 
+			«ELSE»
+				«var String declaration="("+left+"1"+" => " + right + ")"»
+				«for ( var i=2; i<= exp.var1.max.value; i= i+1)  {
+					declaration+=" AND ("+ left+i +" => " + right + ")"
+				}»
+				«declaration»
+			«ENDIF»
 		«ELSE»
 			«IF exp.op=="excludes"»
-				«left» + «right»<= 1
+				«IF exp.var1.min===null && exp.var1.max===null»
+					«left» + «right»<= 1 
+				«ELSE»
+					«var String declaration="("+left+"1"+" + " + right + "<= 1)"»
+					«for ( var i=2; i<= exp.var1.max.value; i= i+1)  {
+						declaration+=" AND ("+ left+i +" + " + right + "<= 1)"
+					}»
+					«declaration»
+				«ENDIF»
 			«ELSE»
 				«IF exp.op=="mandatory"»
 					«left» = «right»

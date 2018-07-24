@@ -3260,9 +3260,9 @@ rule__VarDeclaration__MinAssignment_0_2
 	}
 :
 	(
-		{ before(grammarAccess.getVarDeclarationAccess().getMinINTTerminalRuleCall_0_2_0()); }
-		RULE_INT
-		{ after(grammarAccess.getVarDeclarationAccess().getMinINTTerminalRuleCall_0_2_0()); }
+		{ before(grammarAccess.getVarDeclarationAccess().getMinNumberParserRuleCall_0_2_0()); }
+		ruleNumber
+		{ after(grammarAccess.getVarDeclarationAccess().getMinNumberParserRuleCall_0_2_0()); }
 	)
 ;
 finally {
@@ -3275,9 +3275,9 @@ rule__VarDeclaration__MaxAssignment_0_4
 	}
 :
 	(
-		{ before(grammarAccess.getVarDeclarationAccess().getMaxINTTerminalRuleCall_0_4_0()); }
-		RULE_INT
-		{ after(grammarAccess.getVarDeclarationAccess().getMaxINTTerminalRuleCall_0_4_0()); }
+		{ before(grammarAccess.getVarDeclarationAccess().getMaxNumberParserRuleCall_0_4_0()); }
+		ruleNumber
+		{ after(grammarAccess.getVarDeclarationAccess().getMaxNumberParserRuleCall_0_4_0()); }
 	)
 ;
 finally {

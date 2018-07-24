@@ -8,7 +8,7 @@ Model:
 	
 //variable declaration
 VarDeclaration:
-	(instantiable='instantiable' '['min=INT ',' max=INT ']')? 
+	(instantiable='instantiable' '['min=Number ',' max=Number ']')? 
 	type=VarType name=ID  
 	('values:' variants= VariantDeclaration)?
 	;

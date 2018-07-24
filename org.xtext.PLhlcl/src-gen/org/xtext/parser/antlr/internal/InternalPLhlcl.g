@@ -184,19 +184,20 @@ ruleVarDeclaration returns [EObject current=null]
 			}
 			(
 				(
-					lv_min_2_0=RULE_INT
 					{
-						newLeafNode(lv_min_2_0, grammarAccess.getVarDeclarationAccess().getMinINTTerminalRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getVarDeclarationAccess().getMinNumberParserRuleCall_0_2_0());
 					}
+					lv_min_2_0=ruleNumber
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getVarDeclarationRule());
+							$current = createModelElementForParent(grammarAccess.getVarDeclarationRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"min",
 							lv_min_2_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"org.xtext.PLhlcl.Number");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -206,19 +207,20 @@ ruleVarDeclaration returns [EObject current=null]
 			}
 			(
 				(
-					lv_max_4_0=RULE_INT
 					{
-						newLeafNode(lv_max_4_0, grammarAccess.getVarDeclarationAccess().getMaxINTTerminalRuleCall_0_4_0());
+						newCompositeNode(grammarAccess.getVarDeclarationAccess().getMaxNumberParserRuleCall_0_4_0());
 					}
+					lv_max_4_0=ruleNumber
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getVarDeclarationRule());
+							$current = createModelElementForParent(grammarAccess.getVarDeclarationRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"max",
 							lv_max_4_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"org.xtext.PLhlcl.Number");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
