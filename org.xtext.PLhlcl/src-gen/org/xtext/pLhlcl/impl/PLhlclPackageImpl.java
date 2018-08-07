@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
@@ -113,6 +114,13 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * @generated
    */
   private EClass structuralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributesEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -570,6 +578,36 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAttributes()
+  {
+    return attributesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributes_Att()
+  {
+    return (EReference)attributesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributes_Var1()
+  {
+    return (EReference)attributesEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRefinement()
   {
     return refinementEClass;
@@ -954,6 +992,10 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     createEReference(structuralEClass, STRUCTURAL__MIN);
     createEReference(structuralEClass, STRUCTURAL__MAX);
 
+    attributesEClass = createEClass(ATTRIBUTES);
+    createEReference(attributesEClass, ATTRIBUTES__ATT);
+    createEReference(attributesEClass, ATTRIBUTES__VAR1);
+
     refinementEClass = createEClass(REFINEMENT);
 
     assignmentEClass = createEClass(ASSIGNMENT);
@@ -1035,6 +1077,7 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     consExpressionEClass.getESuperTypes().add(this.getExpression());
     idConsEClass.getESuperTypes().add(this.getConsExpression());
     structuralEClass.getESuperTypes().add(this.getConsExpression());
+    attributesEClass.getESuperTypes().add(this.getConsExpression());
     refinementEClass.getESuperTypes().add(this.getConsExpression());
     assignmentEClass.getESuperTypes().add(this.getRefinement());
     varRefinementEClass.getESuperTypes().add(this.getRefinement());
@@ -1086,6 +1129,10 @@ public class PLhlclPackageImpl extends EPackageImpl implements PLhlclPackage
     initEReference(getStructural_Group(), this.getListOfIDs(), null, "group", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructural_Min(), this.getNumber(), null, "min", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructural_Max(), this.getNumber(), null, "max", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributesEClass, Attributes.class, "Attributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributes_Att(), this.getListOfIDs(), null, "att", null, 0, 1, Attributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttributes_Var1(), this.getVarDeclaration(), null, "var1", null, 0, 1, Attributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(refinementEClass, Refinement.class, "Refinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

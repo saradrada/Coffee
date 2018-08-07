@@ -15,6 +15,7 @@ package org.xtext.cPHLCL;
  * <ul>
  *   <li>{@link org.xtext.cPHLCL.Global#getOp <em>Op</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.Global#getVars <em>Vars</em>}</li>
+ *   <li>{@link org.xtext.cPHLCL.Global#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @see org.xtext.cPHLCL.CPHLCLPackage#getGlobal()
@@ -74,5 +75,31 @@ public interface Global extends Expression
    * @generated
    */
   void setVars(ListOfIDs value);
+
+  /**
+   * Returns the value of the '<em><b>Values</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Values</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Values</em>' containment reference.
+   * @see #setValues(ListOfListValues)
+   * @see org.xtext.cPHLCL.CPHLCLPackage#getGlobal_Values()
+   * @model containment="true"
+   * @generated
+   */
+  ListOfListValues getValues();
+
+  /**
+   * Sets the value of the '{@link org.xtext.cPHLCL.Global#getValues <em>Values</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Values</em>' containment reference.
+   * @see #getValues()
+   * @generated
+   */
+  void setValues(ListOfListValues value);
 
 } // Global

@@ -419,6 +419,43 @@ public interface PLhlclPackage extends EPackage
   int STRUCTURAL_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
+   * The meta object id for the '{@link org.xtext.pLhlcl.impl.AttributesImpl <em>Attributes</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.pLhlcl.impl.AttributesImpl
+   * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getAttributes()
+   * @generated
+   */
+  int ATTRIBUTES = 10;
+
+  /**
+   * The feature id for the '<em><b>Att</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTES__ATT = CONS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Var1</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTES__VAR1 = CONS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Attributes</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTES_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.pLhlcl.impl.RefinementImpl <em>Refinement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -426,7 +463,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getRefinement()
    * @generated
    */
-  int REFINEMENT = 10;
+  int REFINEMENT = 11;
 
   /**
    * The number of structural features of the '<em>Refinement</em>' class.
@@ -445,7 +482,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 11;
+  int ASSIGNMENT = 12;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -482,7 +519,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getVarRefinement()
    * @generated
    */
-  int VAR_REFINEMENT = 12;
+  int VAR_REFINEMENT = 13;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -519,7 +556,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getSetRefinement()
    * @generated
    */
-  int SET_REFINEMENT = 13;
+  int SET_REFINEMENT = 14;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference.
@@ -565,7 +602,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getRule()
    * @generated
    */
-  int RULE = 14;
+  int RULE = 15;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -602,7 +639,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaUN()
    * @generated
    */
-  int FODA_UN = 15;
+  int FODA_UN = 16;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -639,7 +676,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getFodaBin()
    * @generated
    */
-  int FODA_BIN = 16;
+  int FODA_BIN = 17;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -685,7 +722,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 20;
+  int VALUE = 21;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -704,7 +741,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getNonEnumerableValue()
    * @generated
    */
-  int NON_ENUMERABLE_VALUE = 21;
+  int NON_ENUMERABLE_VALUE = 22;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -732,7 +769,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getBoolVal()
    * @generated
    */
-  int BOOL_VAL = 17;
+  int BOOL_VAL = 18;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -760,7 +797,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getNumber()
    * @generated
    */
-  int NUMBER = 18;
+  int NUMBER = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -788,7 +825,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getSymbol()
    * @generated
    */
-  int SYMBOL = 19;
+  int SYMBOL = 20;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -816,7 +853,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 22;
+  int LIST_OF_VALUES = 23;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -844,7 +881,7 @@ public interface PLhlclPackage extends EPackage
    * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 23;
+  int LIST_OF_IDS = 24;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -1173,6 +1210,38 @@ public interface PLhlclPackage extends EPackage
    * @generated
    */
   EReference getStructural_Max();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.pLhlcl.Attributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attributes</em>'.
+   * @see org.xtext.pLhlcl.Attributes
+   * @generated
+   */
+  EClass getAttributes();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.pLhlcl.Attributes#getAtt <em>Att</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Att</em>'.
+   * @see org.xtext.pLhlcl.Attributes#getAtt()
+   * @see #getAttributes()
+   * @generated
+   */
+  EReference getAttributes_Att();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.pLhlcl.Attributes#getVar1 <em>Var1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var1</em>'.
+   * @see org.xtext.pLhlcl.Attributes#getVar1()
+   * @see #getAttributes()
+   * @generated
+   */
+  EReference getAttributes_Var1();
 
   /**
    * Returns the meta object for class '{@link org.xtext.pLhlcl.Refinement <em>Refinement</em>}'.
@@ -1786,6 +1855,32 @@ public interface PLhlclPackage extends EPackage
      * @generated
      */
     EReference STRUCTURAL__MAX = eINSTANCE.getStructural_Max();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.pLhlcl.impl.AttributesImpl <em>Attributes</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.pLhlcl.impl.AttributesImpl
+     * @see org.xtext.pLhlcl.impl.PLhlclPackageImpl#getAttributes()
+     * @generated
+     */
+    EClass ATTRIBUTES = eINSTANCE.getAttributes();
+
+    /**
+     * The meta object literal for the '<em><b>Att</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTES__ATT = eINSTANCE.getAttributes_Att();
+
+    /**
+     * The meta object literal for the '<em><b>Var1</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTES__VAR1 = eINSTANCE.getAttributes_Var1();
 
     /**
      * The meta object literal for the '{@link org.xtext.pLhlcl.impl.RefinementImpl <em>Refinement</em>}' class.

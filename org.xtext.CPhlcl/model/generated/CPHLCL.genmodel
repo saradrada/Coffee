@@ -34,6 +34,7 @@
     <genClasses ecoreClass="CPHLCL.ecore#//Global">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//Global/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Global/vars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//Global/values"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//BoolVal"/>
     <genClasses ecoreClass="CPHLCL.ecore#//Number">
@@ -46,6 +47,9 @@
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//ListOfValues">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//ListOfValues/values"/>
+    </genClasses>
+    <genClasses ecoreClass="CPHLCL.ecore#//ListOfListValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPHLCL.ecore#//ListOfListValues/list"/>
     </genClasses>
     <genClasses ecoreClass="CPHLCL.ecore#//ListOfIDs">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPHLCL.ecore#//ListOfIDs/ids"/>

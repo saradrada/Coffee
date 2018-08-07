@@ -29,6 +29,7 @@ import org.xtext.cPHLCL.Implies;
 import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
 import org.xtext.cPHLCL.ListOfIDs;
+import org.xtext.cPHLCL.ListOfListValues;
 import org.xtext.cPHLCL.ListOfValues;
 import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
@@ -111,6 +112,7 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
       case CPHLCLPackage.VALUE: return createValue();
       case CPHLCLPackage.NON_ENUMERABLE_VALUE: return createNonEnumerableValue();
       case CPHLCLPackage.LIST_OF_VALUES: return createListOfValues();
+      case CPHLCLPackage.LIST_OF_LIST_VALUES: return createListOfListValues();
       case CPHLCLPackage.LIST_OF_IDS: return createListOfIDs();
       case CPHLCLPackage.IFF: return createIff();
       case CPHLCLPackage.IMPLIES: return createImplies();
@@ -295,6 +297,17 @@ public class CPHLCLFactoryImpl extends EFactoryImpl implements CPHLCLFactory
   {
     ListOfValuesImpl listOfValues = new ListOfValuesImpl();
     return listOfValues;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfListValues createListOfListValues()
+  {
+    ListOfListValuesImpl listOfListValues = new ListOfListValuesImpl();
+    return listOfListValues;
   }
 
   /**

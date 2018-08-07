@@ -17,6 +17,7 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.generator.CPCode;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
 import org.xtext.pLhlcl.Expression;
@@ -26,6 +27,7 @@ import org.xtext.pLhlcl.IDCons;
 import org.xtext.pLhlcl.Model;
 import org.xtext.pLhlcl.Rule;
 import org.xtext.pLhlcl.Structural;
+import org.xtext.pLhlcl.Value;
 import org.xtext.pLhlcl.VarDeclaration;
 import org.xtext.pLhlcl.VariantDeclaration;
 import org.xtext.pLhlcl.VariantsEnumeration;
@@ -191,6 +193,12 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
           String _plus_5 = (_name_1 + Integer.valueOf(i));
           String _plus_6 = (_plus_5 + " +");
           sum = (_sum + _plus_6);
+          String _name_2 = variable.getName();
+          String _plus_7 = (_name_2 + Integer.valueOf(i));
+          String _plus_8 = (_plus_7 + " =>");
+          String _name_3 = variable.getName();
+          String implies = (_plus_8 + _name_3);
+          this.clonConstraints.add(implies);
         }
       }
       String _left = left;
@@ -226,7 +234,7 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     _builder.newLineIfNotEmpty();
     {
       for(final String constraint : this.clonConstraints) {
-        _builder.append("clon");
+        _builder.append("cl");
         _builder.append(id);
         _builder.append(": ");
         String _string = constraint.toString();
@@ -258,17 +266,17 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
         {
           if ((variant instanceof VariantsInterval)) {
             _builder.append("domain: ");
-            org.xtext.pLhlcl.Number _start = ((VariantsInterval)variant).getStart();
-            _builder.append(_start);
+            int _value = ((VariantsInterval)variant).getStart().getValue();
+            _builder.append(_value);
             _builder.append("..");
-            org.xtext.pLhlcl.Number _end = ((VariantsInterval)variant).getEnd();
-            _builder.append(_end);
+            int _value_1 = ((VariantsInterval)variant).getEnd().getValue();
+            _builder.append(_value_1);
             _builder.newLineIfNotEmpty();
           } else {
             {
               if ((variant instanceof VariantsEnumeration)) {
                 _builder.append("domain: [");
-                Object _list = this.getList(((VariantsEnumeration)variant).getList().getValues());
+                String _list = this.getList(((VariantsEnumeration)variant).getList().getValues());
                 _builder.append(_list);
                 _builder.append("]");
                 _builder.newLineIfNotEmpty();
@@ -281,12 +289,15 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
     return _builder;
   }
   
-  public Object getList(final EList l) {
-    Object out = l.get(0);
+  public String getList(final EList<Value> l) {
+    Value _get = l.get(0);
+    int number = ((org.xtext.pLhlcl.Number) _get).getValue();
+    String out = "";
     for (int i = 1; (i < l.size()); i = (i + 1)) {
-      String _plus = (out + ", ");
-      Object _get = l.get(i);
-      String _plus_1 = (_plus + _get);
+      String _plus = (Integer.valueOf(number) + ", ");
+      Value _get_1 = l.get(i);
+      int _value = ((org.xtext.pLhlcl.Number) _get_1).getValue();
+      String _plus_1 = (_plus + Integer.valueOf(_value));
       out = _plus_1;
     }
     return out;
@@ -323,6 +334,14 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
                         CharSequence _declareFodaUnary = this.declareFodaUnary(((FodaUN)exp));
                         _builder.append(_declareFodaUnary);
                         _builder.newLineIfNotEmpty();
+                      } else {
+                        {
+                          if ((exp instanceof Attributes)) {
+                            CharSequence _declareAttributes = this.declareAttributes(((Attributes)exp));
+                            _builder.append(_declareAttributes);
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
                       }
                     }
                   }
@@ -538,6 +557,27 @@ public class PLhlclGenerator extends AbstractGenerator implements CPCode {
           } else {
           }
         }
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Falta considerar el caso cuando hay más de un atributo
+   */
+  public CharSequence declareAttributes(final Attributes exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    final String left = exp.getVar1().getName();
+    _builder.newLineIfNotEmpty();
+    {
+      EList<VarDeclaration> _ids = exp.getAtt().getIds();
+      for(final VarDeclaration att : _ids) {
+        _builder.append(left);
+        _builder.append(" <=> (");
+        String _name = att.getName();
+        _builder.append(_name);
+        _builder.append(" > 0)");
+        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;

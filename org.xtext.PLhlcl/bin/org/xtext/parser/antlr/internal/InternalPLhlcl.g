@@ -566,6 +566,15 @@ ruleConsExpression returns [EObject current=null]
 			$current = $this_FodaUN_5.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getConsExpressionAccess().getAttributesParserRuleCall_6());
+		}
+		this_Attributes_6=ruleAttributes
+		{
+			$current = $this_Attributes_6.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -775,6 +784,73 @@ ruleStructural returns [EObject current=null]
 				newLeafNode(otherlv_11, grammarAccess.getStructuralAccess().getRightSquareBracketKeyword_6_5());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleAttributes
+entryRuleAttributes returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAttributesRule()); }
+	iv_ruleAttributes=ruleAttributes
+	{ $current=$iv_ruleAttributes.current; }
+	EOF;
+
+// Rule Attributes
+ruleAttributes returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='attributes:'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAttributesAccess().getAttributesKeyword_0());
+		}
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAttributesAccess().getLeftSquareBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAttributesAccess().getAttListOfIDsParserRuleCall_2_0());
+				}
+				lv_att_2_0=ruleListOfIDs
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAttributesRule());
+					}
+					set(
+						$current,
+						"att",
+						lv_att_2_0,
+						"org.xtext.PLhlcl.ListOfIDs");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAttributesAccess().getRightSquareBracketKeyword_3());
+		}
+		otherlv_4='of'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getAttributesAccess().getOfKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAttributesRule());
+					}
+				}
+				otherlv_5=RULE_ID
+				{
+					newLeafNode(otherlv_5, grammarAccess.getAttributesAccess().getVar1VarDeclarationCrossReference_5_0());
+				}
+			)
+		)
 	)
 ;
 

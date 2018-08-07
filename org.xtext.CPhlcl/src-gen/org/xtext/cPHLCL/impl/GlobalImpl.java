@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.xtext.cPHLCL.CPHLCLPackage;
 import org.xtext.cPHLCL.Global;
 import org.xtext.cPHLCL.ListOfIDs;
+import org.xtext.cPHLCL.ListOfListValues;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,7 @@ import org.xtext.cPHLCL.ListOfIDs;
  * <ul>
  *   <li>{@link org.xtext.cPHLCL.impl.GlobalImpl#getOp <em>Op</em>}</li>
  *   <li>{@link org.xtext.cPHLCL.impl.GlobalImpl#getVars <em>Vars</em>}</li>
+ *   <li>{@link org.xtext.cPHLCL.impl.GlobalImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,6 +62,16 @@ public class GlobalImpl extends ExpressionImpl implements Global
    * @ordered
    */
   protected ListOfIDs vars;
+
+  /**
+   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValues()
+   * @generated
+   * @ordered
+   */
+  protected ListOfListValues values;
 
   /**
    * <!-- begin-user-doc -->
@@ -158,6 +170,54 @@ public class GlobalImpl extends ExpressionImpl implements Global
    * <!-- end-user-doc -->
    * @generated
    */
+  public ListOfListValues getValues()
+  {
+    return values;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValues(ListOfListValues newValues, NotificationChain msgs)
+  {
+    ListOfListValues oldValues = values;
+    values = newValues;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CPHLCLPackage.GLOBAL__VALUES, oldValues, newValues);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValues(ListOfListValues newValues)
+  {
+    if (newValues != values)
+    {
+      NotificationChain msgs = null;
+      if (values != null)
+        msgs = ((InternalEObject)values).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CPHLCLPackage.GLOBAL__VALUES, null, msgs);
+      if (newValues != null)
+        msgs = ((InternalEObject)newValues).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CPHLCLPackage.GLOBAL__VALUES, null, msgs);
+      msgs = basicSetValues(newValues, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CPHLCLPackage.GLOBAL__VALUES, newValues, newValues));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -165,6 +225,8 @@ public class GlobalImpl extends ExpressionImpl implements Global
     {
       case CPHLCLPackage.GLOBAL__VARS:
         return basicSetVars(null, msgs);
+      case CPHLCLPackage.GLOBAL__VALUES:
+        return basicSetValues(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -183,6 +245,8 @@ public class GlobalImpl extends ExpressionImpl implements Global
         return getOp();
       case CPHLCLPackage.GLOBAL__VARS:
         return getVars();
+      case CPHLCLPackage.GLOBAL__VALUES:
+        return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,6 +266,9 @@ public class GlobalImpl extends ExpressionImpl implements Global
         return;
       case CPHLCLPackage.GLOBAL__VARS:
         setVars((ListOfIDs)newValue);
+        return;
+      case CPHLCLPackage.GLOBAL__VALUES:
+        setValues((ListOfListValues)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,6 +290,9 @@ public class GlobalImpl extends ExpressionImpl implements Global
       case CPHLCLPackage.GLOBAL__VARS:
         setVars((ListOfIDs)null);
         return;
+      case CPHLCLPackage.GLOBAL__VALUES:
+        setValues((ListOfListValues)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -241,6 +311,8 @@ public class GlobalImpl extends ExpressionImpl implements Global
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
       case CPHLCLPackage.GLOBAL__VARS:
         return vars != null;
+      case CPHLCLPackage.GLOBAL__VALUES:
+        return values != null;
     }
     return super.eIsSet(featureID);
   }

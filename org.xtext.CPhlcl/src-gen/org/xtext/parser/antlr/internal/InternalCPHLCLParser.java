@@ -3696,26 +3696,30 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGlobal"
-    // InternalCPHLCL.g:1432:1: ruleGlobal returns [EObject current=null] : ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' ) ;
+    // InternalCPHLCL.g:1432:1: ruleGlobal returns [EObject current=null] : ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )? ) ;
     public final EObject ruleGlobal() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
+        Token otherlv_4=null;
+        Token otherlv_6=null;
         AntlrDatatypeRuleToken lv_op_0_0 = null;
 
         EObject lv_vars_2_0 = null;
+
+        EObject lv_values_5_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1438:2: ( ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' ) )
-            // InternalCPHLCL.g:1439:2: ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' )
+            // InternalCPHLCL.g:1438:2: ( ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )? ) )
+            // InternalCPHLCL.g:1439:2: ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )? )
             {
-            // InternalCPHLCL.g:1439:2: ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' )
-            // InternalCPHLCL.g:1440:3: ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')'
+            // InternalCPHLCL.g:1439:2: ( ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )? )
+            // InternalCPHLCL.g:1440:3: ( (lv_op_0_0= ruleGlobalOp ) ) otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )?
             {
             // InternalCPHLCL.g:1440:3: ( (lv_op_0_0= ruleGlobalOp ) )
             // InternalCPHLCL.g:1441:4: (lv_op_0_0= ruleGlobalOp )
@@ -3783,10 +3787,66 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,36,FOLLOW_2); 
+            otherlv_3=(Token)match(input,36,FOLLOW_28); 
 
             			newLeafNode(otherlv_3, grammarAccess.getGlobalAccess().getRightParenthesisKeyword_3());
             		
+            // InternalCPHLCL.g:1486:3: (otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']' )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
+
+            if ( (LA22_0==17) ) {
+                alt22=1;
+            }
+            switch (alt22) {
+                case 1 :
+                    // InternalCPHLCL.g:1487:4: otherlv_4= '[' ( (lv_values_5_0= ruleListOfListValues ) ) otherlv_6= ']'
+                    {
+                    otherlv_4=(Token)match(input,17,FOLLOW_29); 
+
+                    				newLeafNode(otherlv_4, grammarAccess.getGlobalAccess().getLeftSquareBracketKeyword_4_0());
+                    			
+                    // InternalCPHLCL.g:1491:4: ( (lv_values_5_0= ruleListOfListValues ) )
+                    // InternalCPHLCL.g:1492:5: (lv_values_5_0= ruleListOfListValues )
+                    {
+                    // InternalCPHLCL.g:1492:5: (lv_values_5_0= ruleListOfListValues )
+                    // InternalCPHLCL.g:1493:6: lv_values_5_0= ruleListOfListValues
+                    {
+
+                    						newCompositeNode(grammarAccess.getGlobalAccess().getValuesListOfListValuesParserRuleCall_4_1_0());
+                    					
+                    pushFollow(FOLLOW_13);
+                    lv_values_5_0=ruleListOfListValues();
+
+                    state._fsp--;
+
+
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getGlobalRule());
+                    						}
+                    						set(
+                    							current,
+                    							"values",
+                    							lv_values_5_0,
+                    							"org.xtext.CPHLCL.ListOfListValues");
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
+
+
+                    }
+
+                    otherlv_6=(Token)match(input,18,FOLLOW_2); 
+
+                    				newLeafNode(otherlv_6, grammarAccess.getGlobalAccess().getRightSquareBracketKeyword_4_2());
+                    			
+
+                    }
+                    break;
+
+            }
+
 
             }
 
@@ -3810,7 +3870,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStrategy"
-    // InternalCPHLCL.g:1490:1: entryRuleStrategy returns [String current=null] : iv_ruleStrategy= ruleStrategy EOF ;
+    // InternalCPHLCL.g:1519:1: entryRuleStrategy returns [String current=null] : iv_ruleStrategy= ruleStrategy EOF ;
     public final String entryRuleStrategy() throws RecognitionException {
         String current = null;
 
@@ -3818,8 +3878,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1490:48: (iv_ruleStrategy= ruleStrategy EOF )
-            // InternalCPHLCL.g:1491:2: iv_ruleStrategy= ruleStrategy EOF
+            // InternalCPHLCL.g:1519:48: (iv_ruleStrategy= ruleStrategy EOF )
+            // InternalCPHLCL.g:1520:2: iv_ruleStrategy= ruleStrategy EOF
             {
              newCompositeNode(grammarAccess.getStrategyRule()); 
             pushFollow(FOLLOW_1);
@@ -3846,7 +3906,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStrategy"
-    // InternalCPHLCL.g:1497:1: ruleStrategy returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'one' | kw= 'two' ) ;
+    // InternalCPHLCL.g:1526:1: ruleStrategy returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'one' | kw= 'two' ) ;
     public final AntlrDatatypeRuleToken ruleStrategy() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3856,28 +3916,28 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1503:2: ( (kw= 'one' | kw= 'two' ) )
-            // InternalCPHLCL.g:1504:2: (kw= 'one' | kw= 'two' )
+            // InternalCPHLCL.g:1532:2: ( (kw= 'one' | kw= 'two' ) )
+            // InternalCPHLCL.g:1533:2: (kw= 'one' | kw= 'two' )
             {
-            // InternalCPHLCL.g:1504:2: (kw= 'one' | kw= 'two' )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalCPHLCL.g:1533:2: (kw= 'one' | kw= 'two' )
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==41) ) {
-                alt22=1;
+            if ( (LA23_0==41) ) {
+                alt23=1;
             }
-            else if ( (LA22_0==42) ) {
-                alt22=2;
+            else if ( (LA23_0==42) ) {
+                alt23=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
-                    // InternalCPHLCL.g:1505:3: kw= 'one'
+                    // InternalCPHLCL.g:1534:3: kw= 'one'
                     {
                     kw=(Token)match(input,41,FOLLOW_2); 
 
@@ -3888,7 +3948,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1511:3: kw= 'two'
+                    // InternalCPHLCL.g:1540:3: kw= 'two'
                     {
                     kw=(Token)match(input,42,FOLLOW_2); 
 
@@ -3921,7 +3981,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBoolVal"
-    // InternalCPHLCL.g:1520:1: entryRuleBoolVal returns [EObject current=null] : iv_ruleBoolVal= ruleBoolVal EOF ;
+    // InternalCPHLCL.g:1549:1: entryRuleBoolVal returns [EObject current=null] : iv_ruleBoolVal= ruleBoolVal EOF ;
     public final EObject entryRuleBoolVal() throws RecognitionException {
         EObject current = null;
 
@@ -3929,8 +3989,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1520:48: (iv_ruleBoolVal= ruleBoolVal EOF )
-            // InternalCPHLCL.g:1521:2: iv_ruleBoolVal= ruleBoolVal EOF
+            // InternalCPHLCL.g:1549:48: (iv_ruleBoolVal= ruleBoolVal EOF )
+            // InternalCPHLCL.g:1550:2: iv_ruleBoolVal= ruleBoolVal EOF
             {
              newCompositeNode(grammarAccess.getBoolValRule()); 
             pushFollow(FOLLOW_1);
@@ -3957,7 +4017,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBoolVal"
-    // InternalCPHLCL.g:1527:1: ruleBoolVal returns [EObject current=null] : ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) ;
+    // InternalCPHLCL.g:1556:1: ruleBoolVal returns [EObject current=null] : ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) ;
     public final EObject ruleBoolVal() throws RecognitionException {
         EObject current = null;
 
@@ -3968,34 +4028,34 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1533:2: ( ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) )
-            // InternalCPHLCL.g:1534:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
+            // InternalCPHLCL.g:1562:2: ( ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) )
+            // InternalCPHLCL.g:1563:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
             {
-            // InternalCPHLCL.g:1534:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
-            // InternalCPHLCL.g:1535:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
+            // InternalCPHLCL.g:1563:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
+            // InternalCPHLCL.g:1564:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
             {
-            // InternalCPHLCL.g:1535:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
-            // InternalCPHLCL.g:1536:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
+            // InternalCPHLCL.g:1564:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
+            // InternalCPHLCL.g:1565:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
             {
-            // InternalCPHLCL.g:1536:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalCPHLCL.g:1565:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==39) ) {
-                alt23=1;
+            if ( (LA24_0==39) ) {
+                alt24=1;
             }
-            else if ( (LA23_0==40) ) {
-                alt23=2;
+            else if ( (LA24_0==40) ) {
+                alt24=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 24, 0, input);
 
                 throw nvae;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalCPHLCL.g:1537:5: lv_value_0_1= 'true'
+                    // InternalCPHLCL.g:1566:5: lv_value_0_1= 'true'
                     {
                     lv_value_0_1=(Token)match(input,39,FOLLOW_2); 
 
@@ -4011,7 +4071,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1548:5: lv_value_0_2= 'false'
+                    // InternalCPHLCL.g:1577:5: lv_value_0_2= 'false'
                     {
                     lv_value_0_2=(Token)match(input,40,FOLLOW_2); 
 
@@ -4055,7 +4115,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNumber"
-    // InternalCPHLCL.g:1564:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
+    // InternalCPHLCL.g:1593:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
     public final EObject entryRuleNumber() throws RecognitionException {
         EObject current = null;
 
@@ -4063,8 +4123,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1564:47: (iv_ruleNumber= ruleNumber EOF )
-            // InternalCPHLCL.g:1565:2: iv_ruleNumber= ruleNumber EOF
+            // InternalCPHLCL.g:1593:47: (iv_ruleNumber= ruleNumber EOF )
+            // InternalCPHLCL.g:1594:2: iv_ruleNumber= ruleNumber EOF
             {
              newCompositeNode(grammarAccess.getNumberRule()); 
             pushFollow(FOLLOW_1);
@@ -4091,7 +4151,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumber"
-    // InternalCPHLCL.g:1571:1: ruleNumber returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
+    // InternalCPHLCL.g:1600:1: ruleNumber returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
     public final EObject ruleNumber() throws RecognitionException {
         EObject current = null;
 
@@ -4101,14 +4161,14 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1577:2: ( ( (lv_value_0_0= RULE_INT ) ) )
-            // InternalCPHLCL.g:1578:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalCPHLCL.g:1606:2: ( ( (lv_value_0_0= RULE_INT ) ) )
+            // InternalCPHLCL.g:1607:2: ( (lv_value_0_0= RULE_INT ) )
             {
-            // InternalCPHLCL.g:1578:2: ( (lv_value_0_0= RULE_INT ) )
-            // InternalCPHLCL.g:1579:3: (lv_value_0_0= RULE_INT )
+            // InternalCPHLCL.g:1607:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalCPHLCL.g:1608:3: (lv_value_0_0= RULE_INT )
             {
-            // InternalCPHLCL.g:1579:3: (lv_value_0_0= RULE_INT )
-            // InternalCPHLCL.g:1580:4: lv_value_0_0= RULE_INT
+            // InternalCPHLCL.g:1608:3: (lv_value_0_0= RULE_INT )
+            // InternalCPHLCL.g:1609:4: lv_value_0_0= RULE_INT
             {
             lv_value_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -4150,7 +4210,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSymbol"
-    // InternalCPHLCL.g:1599:1: entryRuleSymbol returns [EObject current=null] : iv_ruleSymbol= ruleSymbol EOF ;
+    // InternalCPHLCL.g:1628:1: entryRuleSymbol returns [EObject current=null] : iv_ruleSymbol= ruleSymbol EOF ;
     public final EObject entryRuleSymbol() throws RecognitionException {
         EObject current = null;
 
@@ -4158,8 +4218,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1599:47: (iv_ruleSymbol= ruleSymbol EOF )
-            // InternalCPHLCL.g:1600:2: iv_ruleSymbol= ruleSymbol EOF
+            // InternalCPHLCL.g:1628:47: (iv_ruleSymbol= ruleSymbol EOF )
+            // InternalCPHLCL.g:1629:2: iv_ruleSymbol= ruleSymbol EOF
             {
              newCompositeNode(grammarAccess.getSymbolRule()); 
             pushFollow(FOLLOW_1);
@@ -4186,7 +4246,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSymbol"
-    // InternalCPHLCL.g:1606:1: ruleSymbol returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
+    // InternalCPHLCL.g:1635:1: ruleSymbol returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
     public final EObject ruleSymbol() throws RecognitionException {
         EObject current = null;
 
@@ -4196,14 +4256,14 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1612:2: ( ( (lv_value_0_0= RULE_ID ) ) )
-            // InternalCPHLCL.g:1613:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalCPHLCL.g:1641:2: ( ( (lv_value_0_0= RULE_ID ) ) )
+            // InternalCPHLCL.g:1642:2: ( (lv_value_0_0= RULE_ID ) )
             {
-            // InternalCPHLCL.g:1613:2: ( (lv_value_0_0= RULE_ID ) )
-            // InternalCPHLCL.g:1614:3: (lv_value_0_0= RULE_ID )
+            // InternalCPHLCL.g:1642:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalCPHLCL.g:1643:3: (lv_value_0_0= RULE_ID )
             {
-            // InternalCPHLCL.g:1614:3: (lv_value_0_0= RULE_ID )
-            // InternalCPHLCL.g:1615:4: lv_value_0_0= RULE_ID
+            // InternalCPHLCL.g:1643:3: (lv_value_0_0= RULE_ID )
+            // InternalCPHLCL.g:1644:4: lv_value_0_0= RULE_ID
             {
             lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -4245,7 +4305,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValue"
-    // InternalCPHLCL.g:1634:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
+    // InternalCPHLCL.g:1663:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
     public final EObject entryRuleValue() throws RecognitionException {
         EObject current = null;
 
@@ -4253,8 +4313,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1634:46: (iv_ruleValue= ruleValue EOF )
-            // InternalCPHLCL.g:1635:2: iv_ruleValue= ruleValue EOF
+            // InternalCPHLCL.g:1663:46: (iv_ruleValue= ruleValue EOF )
+            // InternalCPHLCL.g:1664:2: iv_ruleValue= ruleValue EOF
             {
              newCompositeNode(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4281,7 +4341,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValue"
-    // InternalCPHLCL.g:1641:1: ruleValue returns [EObject current=null] : (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) ;
+    // InternalCPHLCL.g:1670:1: ruleValue returns [EObject current=null] : (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
@@ -4294,28 +4354,28 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1647:2: ( (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) )
-            // InternalCPHLCL.g:1648:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
+            // InternalCPHLCL.g:1676:2: ( (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) )
+            // InternalCPHLCL.g:1677:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
             {
-            // InternalCPHLCL.g:1648:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalCPHLCL.g:1677:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==RULE_INT) ) {
-                alt24=1;
+            if ( (LA25_0==RULE_INT) ) {
+                alt25=1;
             }
-            else if ( (LA24_0==RULE_ID||(LA24_0>=39 && LA24_0<=40)) ) {
-                alt24=2;
+            else if ( (LA25_0==RULE_ID||(LA25_0>=39 && LA25_0<=40)) ) {
+                alt25=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // InternalCPHLCL.g:1649:3: this_Number_0= ruleNumber
+                    // InternalCPHLCL.g:1678:3: this_Number_0= ruleNumber
                     {
 
                     			newCompositeNode(grammarAccess.getValueAccess().getNumberParserRuleCall_0());
@@ -4333,7 +4393,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1658:3: this_NonEnumerableValue_1= ruleNonEnumerableValue
+                    // InternalCPHLCL.g:1687:3: this_NonEnumerableValue_1= ruleNonEnumerableValue
                     {
 
                     			newCompositeNode(grammarAccess.getValueAccess().getNonEnumerableValueParserRuleCall_1());
@@ -4373,7 +4433,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNonEnumerableValue"
-    // InternalCPHLCL.g:1670:1: entryRuleNonEnumerableValue returns [EObject current=null] : iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF ;
+    // InternalCPHLCL.g:1699:1: entryRuleNonEnumerableValue returns [EObject current=null] : iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF ;
     public final EObject entryRuleNonEnumerableValue() throws RecognitionException {
         EObject current = null;
 
@@ -4381,8 +4441,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1670:59: (iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF )
-            // InternalCPHLCL.g:1671:2: iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF
+            // InternalCPHLCL.g:1699:59: (iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF )
+            // InternalCPHLCL.g:1700:2: iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF
             {
              newCompositeNode(grammarAccess.getNonEnumerableValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4409,7 +4469,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNonEnumerableValue"
-    // InternalCPHLCL.g:1677:1: ruleNonEnumerableValue returns [EObject current=null] : (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) ;
+    // InternalCPHLCL.g:1706:1: ruleNonEnumerableValue returns [EObject current=null] : (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) ;
     public final EObject ruleNonEnumerableValue() throws RecognitionException {
         EObject current = null;
 
@@ -4422,28 +4482,28 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1683:2: ( (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) )
-            // InternalCPHLCL.g:1684:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
+            // InternalCPHLCL.g:1712:2: ( (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) )
+            // InternalCPHLCL.g:1713:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
             {
-            // InternalCPHLCL.g:1684:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // InternalCPHLCL.g:1713:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( ((LA25_0>=39 && LA25_0<=40)) ) {
-                alt25=1;
+            if ( ((LA26_0>=39 && LA26_0<=40)) ) {
+                alt26=1;
             }
-            else if ( (LA25_0==RULE_ID) ) {
-                alt25=2;
+            else if ( (LA26_0==RULE_ID) ) {
+                alt26=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // InternalCPHLCL.g:1685:3: this_BoolVal_0= ruleBoolVal
+                    // InternalCPHLCL.g:1714:3: this_BoolVal_0= ruleBoolVal
                     {
 
                     			newCompositeNode(grammarAccess.getNonEnumerableValueAccess().getBoolValParserRuleCall_0());
@@ -4461,7 +4521,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1694:3: this_Symbol_1= ruleSymbol
+                    // InternalCPHLCL.g:1723:3: this_Symbol_1= ruleSymbol
                     {
 
                     			newCompositeNode(grammarAccess.getNonEnumerableValueAccess().getSymbolParserRuleCall_1());
@@ -4501,7 +4561,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVarType"
-    // InternalCPHLCL.g:1706:1: entryRuleVarType returns [String current=null] : iv_ruleVarType= ruleVarType EOF ;
+    // InternalCPHLCL.g:1735:1: entryRuleVarType returns [String current=null] : iv_ruleVarType= ruleVarType EOF ;
     public final String entryRuleVarType() throws RecognitionException {
         String current = null;
 
@@ -4509,8 +4569,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1706:47: (iv_ruleVarType= ruleVarType EOF )
-            // InternalCPHLCL.g:1707:2: iv_ruleVarType= ruleVarType EOF
+            // InternalCPHLCL.g:1735:47: (iv_ruleVarType= ruleVarType EOF )
+            // InternalCPHLCL.g:1736:2: iv_ruleVarType= ruleVarType EOF
             {
              newCompositeNode(grammarAccess.getVarTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -4537,7 +4597,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVarType"
-    // InternalCPHLCL.g:1713:1: ruleVarType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) ;
+    // InternalCPHLCL.g:1742:1: ruleVarType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) ;
     public final AntlrDatatypeRuleToken ruleVarType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4547,37 +4607,37 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1719:2: ( (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) )
-            // InternalCPHLCL.g:1720:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
+            // InternalCPHLCL.g:1748:2: ( (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) )
+            // InternalCPHLCL.g:1749:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
             {
-            // InternalCPHLCL.g:1720:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
-            int alt26=3;
+            // InternalCPHLCL.g:1749:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
+            int alt27=3;
             switch ( input.LA(1) ) {
             case 43:
                 {
-                alt26=1;
+                alt27=1;
                 }
                 break;
             case 44:
                 {
-                alt26=2;
+                alt27=2;
                 }
                 break;
             case 45:
                 {
-                alt26=3;
+                alt27=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
-                    // InternalCPHLCL.g:1721:3: kw= 'boolean'
+                    // InternalCPHLCL.g:1750:3: kw= 'boolean'
                     {
                     kw=(Token)match(input,43,FOLLOW_2); 
 
@@ -4588,7 +4648,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1727:3: kw= 'integer'
+                    // InternalCPHLCL.g:1756:3: kw= 'integer'
                     {
                     kw=(Token)match(input,44,FOLLOW_2); 
 
@@ -4599,7 +4659,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalCPHLCL.g:1733:3: kw= 'symbolic'
+                    // InternalCPHLCL.g:1762:3: kw= 'symbolic'
                     {
                     kw=(Token)match(input,45,FOLLOW_2); 
 
@@ -4632,7 +4692,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGlobalOp"
-    // InternalCPHLCL.g:1742:1: entryRuleGlobalOp returns [String current=null] : iv_ruleGlobalOp= ruleGlobalOp EOF ;
+    // InternalCPHLCL.g:1771:1: entryRuleGlobalOp returns [String current=null] : iv_ruleGlobalOp= ruleGlobalOp EOF ;
     public final String entryRuleGlobalOp() throws RecognitionException {
         String current = null;
 
@@ -4640,8 +4700,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1742:48: (iv_ruleGlobalOp= ruleGlobalOp EOF )
-            // InternalCPHLCL.g:1743:2: iv_ruleGlobalOp= ruleGlobalOp EOF
+            // InternalCPHLCL.g:1771:48: (iv_ruleGlobalOp= ruleGlobalOp EOF )
+            // InternalCPHLCL.g:1772:2: iv_ruleGlobalOp= ruleGlobalOp EOF
             {
              newCompositeNode(grammarAccess.getGlobalOpRule()); 
             pushFollow(FOLLOW_1);
@@ -4668,7 +4728,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGlobalOp"
-    // InternalCPHLCL.g:1749:1: ruleGlobalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'at_most' | kw= 'all_different' ) ;
+    // InternalCPHLCL.g:1778:1: ruleGlobalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'at_most' | kw= 'all_different' ) ;
     public final AntlrDatatypeRuleToken ruleGlobalOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4678,28 +4738,28 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1755:2: ( (kw= 'at_most' | kw= 'all_different' ) )
-            // InternalCPHLCL.g:1756:2: (kw= 'at_most' | kw= 'all_different' )
+            // InternalCPHLCL.g:1784:2: ( (kw= 'at_most' | kw= 'all_different' ) )
+            // InternalCPHLCL.g:1785:2: (kw= 'at_most' | kw= 'all_different' )
             {
-            // InternalCPHLCL.g:1756:2: (kw= 'at_most' | kw= 'all_different' )
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // InternalCPHLCL.g:1785:2: (kw= 'at_most' | kw= 'all_different' )
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==46) ) {
-                alt27=1;
+            if ( (LA28_0==46) ) {
+                alt28=1;
             }
-            else if ( (LA27_0==47) ) {
-                alt27=2;
+            else if ( (LA28_0==47) ) {
+                alt28=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // InternalCPHLCL.g:1757:3: kw= 'at_most'
+                    // InternalCPHLCL.g:1786:3: kw= 'at_most'
                     {
                     kw=(Token)match(input,46,FOLLOW_2); 
 
@@ -4710,7 +4770,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1763:3: kw= 'all_different'
+                    // InternalCPHLCL.g:1792:3: kw= 'all_different'
                     {
                     kw=(Token)match(input,47,FOLLOW_2); 
 
@@ -4743,7 +4803,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFunctionOp"
-    // InternalCPHLCL.g:1772:1: entryRuleFunctionOp returns [String current=null] : iv_ruleFunctionOp= ruleFunctionOp EOF ;
+    // InternalCPHLCL.g:1801:1: entryRuleFunctionOp returns [String current=null] : iv_ruleFunctionOp= ruleFunctionOp EOF ;
     public final String entryRuleFunctionOp() throws RecognitionException {
         String current = null;
 
@@ -4751,8 +4811,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1772:50: (iv_ruleFunctionOp= ruleFunctionOp EOF )
-            // InternalCPHLCL.g:1773:2: iv_ruleFunctionOp= ruleFunctionOp EOF
+            // InternalCPHLCL.g:1801:50: (iv_ruleFunctionOp= ruleFunctionOp EOF )
+            // InternalCPHLCL.g:1802:2: iv_ruleFunctionOp= ruleFunctionOp EOF
             {
              newCompositeNode(grammarAccess.getFunctionOpRule()); 
             pushFollow(FOLLOW_1);
@@ -4779,7 +4839,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFunctionOp"
-    // InternalCPHLCL.g:1779:1: ruleFunctionOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' ) ;
+    // InternalCPHLCL.g:1808:1: ruleFunctionOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' ) ;
     public final AntlrDatatypeRuleToken ruleFunctionOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4789,42 +4849,42 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1785:2: ( (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' ) )
-            // InternalCPHLCL.g:1786:2: (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' )
+            // InternalCPHLCL.g:1814:2: ( (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' ) )
+            // InternalCPHLCL.g:1815:2: (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' )
             {
-            // InternalCPHLCL.g:1786:2: (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' )
-            int alt28=4;
+            // InternalCPHLCL.g:1815:2: (kw= 'pow' | kw= 'dist' | kw= 'min' | kw= 'max' )
+            int alt29=4;
             switch ( input.LA(1) ) {
             case 48:
                 {
-                alt28=1;
+                alt29=1;
                 }
                 break;
             case 49:
                 {
-                alt28=2;
+                alt29=2;
                 }
                 break;
             case 50:
                 {
-                alt28=3;
+                alt29=3;
                 }
                 break;
             case 51:
                 {
-                alt28=4;
+                alt29=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // InternalCPHLCL.g:1787:3: kw= 'pow'
+                    // InternalCPHLCL.g:1816:3: kw= 'pow'
                     {
                     kw=(Token)match(input,48,FOLLOW_2); 
 
@@ -4835,7 +4895,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1793:3: kw= 'dist'
+                    // InternalCPHLCL.g:1822:3: kw= 'dist'
                     {
                     kw=(Token)match(input,49,FOLLOW_2); 
 
@@ -4846,7 +4906,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalCPHLCL.g:1799:3: kw= 'min'
+                    // InternalCPHLCL.g:1828:3: kw= 'min'
                     {
                     kw=(Token)match(input,50,FOLLOW_2); 
 
@@ -4857,7 +4917,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalCPHLCL.g:1805:3: kw= 'max'
+                    // InternalCPHLCL.g:1834:3: kw= 'max'
                     {
                     kw=(Token)match(input,51,FOLLOW_2); 
 
@@ -4890,7 +4950,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryOp"
-    // InternalCPHLCL.g:1814:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
+    // InternalCPHLCL.g:1843:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
     public final String entryRuleUnaryOp() throws RecognitionException {
         String current = null;
 
@@ -4898,8 +4958,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1814:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
-            // InternalCPHLCL.g:1815:2: iv_ruleUnaryOp= ruleUnaryOp EOF
+            // InternalCPHLCL.g:1843:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
+            // InternalCPHLCL.g:1844:2: iv_ruleUnaryOp= ruleUnaryOp EOF
             {
              newCompositeNode(grammarAccess.getUnaryOpRule()); 
             pushFollow(FOLLOW_1);
@@ -4926,7 +4986,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryOp"
-    // InternalCPHLCL.g:1821:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'abs' | kw= 'sqrt' ) ;
+    // InternalCPHLCL.g:1850:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'abs' | kw= 'sqrt' ) ;
     public final AntlrDatatypeRuleToken ruleUnaryOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4936,28 +4996,28 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1827:2: ( (kw= 'abs' | kw= 'sqrt' ) )
-            // InternalCPHLCL.g:1828:2: (kw= 'abs' | kw= 'sqrt' )
+            // InternalCPHLCL.g:1856:2: ( (kw= 'abs' | kw= 'sqrt' ) )
+            // InternalCPHLCL.g:1857:2: (kw= 'abs' | kw= 'sqrt' )
             {
-            // InternalCPHLCL.g:1828:2: (kw= 'abs' | kw= 'sqrt' )
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // InternalCPHLCL.g:1857:2: (kw= 'abs' | kw= 'sqrt' )
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==52) ) {
-                alt29=1;
+            if ( (LA30_0==52) ) {
+                alt30=1;
             }
-            else if ( (LA29_0==53) ) {
-                alt29=2;
+            else if ( (LA30_0==53) ) {
+                alt30=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // InternalCPHLCL.g:1829:3: kw= 'abs'
+                    // InternalCPHLCL.g:1858:3: kw= 'abs'
                     {
                     kw=(Token)match(input,52,FOLLOW_2); 
 
@@ -4968,7 +5028,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalCPHLCL.g:1835:3: kw= 'sqrt'
+                    // InternalCPHLCL.g:1864:3: kw= 'sqrt'
                     {
                     kw=(Token)match(input,53,FOLLOW_2); 
 
@@ -5001,7 +5061,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleListOfValues"
-    // InternalCPHLCL.g:1844:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
+    // InternalCPHLCL.g:1873:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
     public final EObject entryRuleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -5009,8 +5069,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1844:53: (iv_ruleListOfValues= ruleListOfValues EOF )
-            // InternalCPHLCL.g:1845:2: iv_ruleListOfValues= ruleListOfValues EOF
+            // InternalCPHLCL.g:1873:53: (iv_ruleListOfValues= ruleListOfValues EOF )
+            // InternalCPHLCL.g:1874:2: iv_ruleListOfValues= ruleListOfValues EOF
             {
              newCompositeNode(grammarAccess.getListOfValuesRule()); 
             pushFollow(FOLLOW_1);
@@ -5037,7 +5097,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListOfValues"
-    // InternalCPHLCL.g:1851:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) ;
+    // InternalCPHLCL.g:1880:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) ;
     public final EObject ruleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -5051,22 +5111,22 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1857:2: ( ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) )
-            // InternalCPHLCL.g:1858:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
+            // InternalCPHLCL.g:1886:2: ( ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) )
+            // InternalCPHLCL.g:1887:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
             {
-            // InternalCPHLCL.g:1858:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
-            // InternalCPHLCL.g:1859:3: ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
+            // InternalCPHLCL.g:1887:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
+            // InternalCPHLCL.g:1888:3: ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
             {
-            // InternalCPHLCL.g:1859:3: ( (lv_values_0_0= ruleValue ) )
-            // InternalCPHLCL.g:1860:4: (lv_values_0_0= ruleValue )
+            // InternalCPHLCL.g:1888:3: ( (lv_values_0_0= ruleValue ) )
+            // InternalCPHLCL.g:1889:4: (lv_values_0_0= ruleValue )
             {
-            // InternalCPHLCL.g:1860:4: (lv_values_0_0= ruleValue )
-            // InternalCPHLCL.g:1861:5: lv_values_0_0= ruleValue
+            // InternalCPHLCL.g:1889:4: (lv_values_0_0= ruleValue )
+            // InternalCPHLCL.g:1890:5: lv_values_0_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_30);
             lv_values_0_0=ruleValue();
 
             state._fsp--;
@@ -5088,38 +5148,38 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCPHLCL.g:1878:3: ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
-            loop31:
+            // InternalCPHLCL.g:1907:3: ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
+            loop32:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA31_0==38) ) {
-                    alt31=1;
+                if ( (LA32_0==38) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt32) {
             	case 1 :
-            	    // InternalCPHLCL.g:1879:4: (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) )
+            	    // InternalCPHLCL.g:1908:4: (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) )
             	    {
-            	    // InternalCPHLCL.g:1879:4: (otherlv_1= ',' )+
-            	    int cnt30=0;
-            	    loop30:
+            	    // InternalCPHLCL.g:1908:4: (otherlv_1= ',' )+
+            	    int cnt31=0;
+            	    loop31:
             	    do {
-            	        int alt30=2;
-            	        int LA30_0 = input.LA(1);
+            	        int alt31=2;
+            	        int LA31_0 = input.LA(1);
 
-            	        if ( (LA30_0==38) ) {
-            	            alt30=1;
+            	        if ( (LA31_0==38) ) {
+            	            alt31=1;
             	        }
 
 
-            	        switch (alt30) {
+            	        switch (alt31) {
             	    	case 1 :
-            	    	    // InternalCPHLCL.g:1880:5: otherlv_1= ','
+            	    	    // InternalCPHLCL.g:1909:5: otherlv_1= ','
             	    	    {
-            	    	    otherlv_1=(Token)match(input,38,FOLLOW_29); 
+            	    	    otherlv_1=(Token)match(input,38,FOLLOW_31); 
 
             	    	    					newLeafNode(otherlv_1, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
             	    	    				
@@ -5128,24 +5188,24 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    if ( cnt30 >= 1 ) break loop30;
+            	    	    if ( cnt31 >= 1 ) break loop31;
             	                EarlyExitException eee =
-            	                    new EarlyExitException(30, input);
+            	                    new EarlyExitException(31, input);
             	                throw eee;
             	        }
-            	        cnt30++;
+            	        cnt31++;
             	    } while (true);
 
-            	    // InternalCPHLCL.g:1885:4: ( (lv_values_2_0= ruleValue ) )
-            	    // InternalCPHLCL.g:1886:5: (lv_values_2_0= ruleValue )
+            	    // InternalCPHLCL.g:1914:4: ( (lv_values_2_0= ruleValue ) )
+            	    // InternalCPHLCL.g:1915:5: (lv_values_2_0= ruleValue )
             	    {
-            	    // InternalCPHLCL.g:1886:5: (lv_values_2_0= ruleValue )
-            	    // InternalCPHLCL.g:1887:6: lv_values_2_0= ruleValue
+            	    // InternalCPHLCL.g:1915:5: (lv_values_2_0= ruleValue )
+            	    // InternalCPHLCL.g:1916:6: lv_values_2_0= ruleValue
             	    {
 
             	    						newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_1_1_0());
             	    					
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_30);
             	    lv_values_2_0=ruleValue();
 
             	    state._fsp--;
@@ -5172,7 +5232,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop32;
                 }
             } while (true);
 
@@ -5198,8 +5258,226 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleListOfValues"
 
 
+    // $ANTLR start "entryRuleListOfListValues"
+    // InternalCPHLCL.g:1938:1: entryRuleListOfListValues returns [EObject current=null] : iv_ruleListOfListValues= ruleListOfListValues EOF ;
+    public final EObject entryRuleListOfListValues() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleListOfListValues = null;
+
+
+        try {
+            // InternalCPHLCL.g:1938:57: (iv_ruleListOfListValues= ruleListOfListValues EOF )
+            // InternalCPHLCL.g:1939:2: iv_ruleListOfListValues= ruleListOfListValues EOF
+            {
+             newCompositeNode(grammarAccess.getListOfListValuesRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleListOfListValues=ruleListOfListValues();
+
+            state._fsp--;
+
+             current =iv_ruleListOfListValues; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleListOfListValues"
+
+
+    // $ANTLR start "ruleListOfListValues"
+    // InternalCPHLCL.g:1945:1: ruleListOfListValues returns [EObject current=null] : (otherlv_0= '[' ( (lv_list_1_0= ruleListOfValues ) ) otherlv_2= ']' ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )* ) ;
+    public final EObject ruleListOfListValues() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_4=null;
+        Token otherlv_6=null;
+        EObject lv_list_1_0 = null;
+
+        EObject lv_list_5_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalCPHLCL.g:1951:2: ( (otherlv_0= '[' ( (lv_list_1_0= ruleListOfValues ) ) otherlv_2= ']' ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )* ) )
+            // InternalCPHLCL.g:1952:2: (otherlv_0= '[' ( (lv_list_1_0= ruleListOfValues ) ) otherlv_2= ']' ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )* )
+            {
+            // InternalCPHLCL.g:1952:2: (otherlv_0= '[' ( (lv_list_1_0= ruleListOfValues ) ) otherlv_2= ']' ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )* )
+            // InternalCPHLCL.g:1953:3: otherlv_0= '[' ( (lv_list_1_0= ruleListOfValues ) ) otherlv_2= ']' ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )*
+            {
+            otherlv_0=(Token)match(input,17,FOLLOW_12); 
+
+            			newLeafNode(otherlv_0, grammarAccess.getListOfListValuesAccess().getLeftSquareBracketKeyword_0());
+            		
+            // InternalCPHLCL.g:1957:3: ( (lv_list_1_0= ruleListOfValues ) )
+            // InternalCPHLCL.g:1958:4: (lv_list_1_0= ruleListOfValues )
+            {
+            // InternalCPHLCL.g:1958:4: (lv_list_1_0= ruleListOfValues )
+            // InternalCPHLCL.g:1959:5: lv_list_1_0= ruleListOfValues
+            {
+
+            					newCompositeNode(grammarAccess.getListOfListValuesAccess().getListListOfValuesParserRuleCall_1_0());
+            				
+            pushFollow(FOLLOW_13);
+            lv_list_1_0=ruleListOfValues();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getListOfListValuesRule());
+            					}
+            					add(
+            						current,
+            						"list",
+            						lv_list_1_0,
+            						"org.xtext.CPHLCL.ListOfValues");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_2=(Token)match(input,18,FOLLOW_30); 
+
+            			newLeafNode(otherlv_2, grammarAccess.getListOfListValuesAccess().getRightSquareBracketKeyword_2());
+            		
+            // InternalCPHLCL.g:1980:3: ( (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']' )*
+            loop34:
+            do {
+                int alt34=2;
+                int LA34_0 = input.LA(1);
+
+                if ( (LA34_0==38) ) {
+                    alt34=1;
+                }
+
+
+                switch (alt34) {
+            	case 1 :
+            	    // InternalCPHLCL.g:1981:4: (otherlv_3= ',' )+ otherlv_4= '[' ( (lv_list_5_0= ruleListOfValues ) ) otherlv_6= ']'
+            	    {
+            	    // InternalCPHLCL.g:1981:4: (otherlv_3= ',' )+
+            	    int cnt33=0;
+            	    loop33:
+            	    do {
+            	        int alt33=2;
+            	        int LA33_0 = input.LA(1);
+
+            	        if ( (LA33_0==38) ) {
+            	            alt33=1;
+            	        }
+
+
+            	        switch (alt33) {
+            	    	case 1 :
+            	    	    // InternalCPHLCL.g:1982:5: otherlv_3= ','
+            	    	    {
+            	    	    otherlv_3=(Token)match(input,38,FOLLOW_32); 
+
+            	    	    					newLeafNode(otherlv_3, grammarAccess.getListOfListValuesAccess().getCommaKeyword_3_0());
+            	    	    				
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    if ( cnt33 >= 1 ) break loop33;
+            	                EarlyExitException eee =
+            	                    new EarlyExitException(33, input);
+            	                throw eee;
+            	        }
+            	        cnt33++;
+            	    } while (true);
+
+            	    otherlv_4=(Token)match(input,17,FOLLOW_12); 
+
+            	    				newLeafNode(otherlv_4, grammarAccess.getListOfListValuesAccess().getLeftSquareBracketKeyword_3_1());
+            	    			
+            	    // InternalCPHLCL.g:1991:4: ( (lv_list_5_0= ruleListOfValues ) )
+            	    // InternalCPHLCL.g:1992:5: (lv_list_5_0= ruleListOfValues )
+            	    {
+            	    // InternalCPHLCL.g:1992:5: (lv_list_5_0= ruleListOfValues )
+            	    // InternalCPHLCL.g:1993:6: lv_list_5_0= ruleListOfValues
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getListOfListValuesAccess().getListListOfValuesParserRuleCall_3_2_0());
+            	    					
+            	    pushFollow(FOLLOW_13);
+            	    lv_list_5_0=ruleListOfValues();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getListOfListValuesRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"list",
+            	    							lv_list_5_0,
+            	    							"org.xtext.CPHLCL.ListOfValues");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+            	    otherlv_6=(Token)match(input,18,FOLLOW_30); 
+
+            	    				newLeafNode(otherlv_6, grammarAccess.getListOfListValuesAccess().getRightSquareBracketKeyword_3_3());
+            	    			
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop34;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleListOfListValues"
+
+
     // $ANTLR start "entryRuleListOfIDs"
-    // InternalCPHLCL.g:1909:1: entryRuleListOfIDs returns [EObject current=null] : iv_ruleListOfIDs= ruleListOfIDs EOF ;
+    // InternalCPHLCL.g:2019:1: entryRuleListOfIDs returns [EObject current=null] : iv_ruleListOfIDs= ruleListOfIDs EOF ;
     public final EObject entryRuleListOfIDs() throws RecognitionException {
         EObject current = null;
 
@@ -5207,8 +5485,8 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCPHLCL.g:1909:50: (iv_ruleListOfIDs= ruleListOfIDs EOF )
-            // InternalCPHLCL.g:1910:2: iv_ruleListOfIDs= ruleListOfIDs EOF
+            // InternalCPHLCL.g:2019:50: (iv_ruleListOfIDs= ruleListOfIDs EOF )
+            // InternalCPHLCL.g:2020:2: iv_ruleListOfIDs= ruleListOfIDs EOF
             {
              newCompositeNode(grammarAccess.getListOfIDsRule()); 
             pushFollow(FOLLOW_1);
@@ -5235,7 +5513,7 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListOfIDs"
-    // InternalCPHLCL.g:1916:1: ruleListOfIDs returns [EObject current=null] : ( (lv_ids_0_0= RULE_ID ) )+ ;
+    // InternalCPHLCL.g:2026:1: ruleListOfIDs returns [EObject current=null] : ( (lv_ids_0_0= RULE_ID ) )+ ;
     public final EObject ruleListOfIDs() throws RecognitionException {
         EObject current = null;
 
@@ -5245,29 +5523,29 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCPHLCL.g:1922:2: ( ( (lv_ids_0_0= RULE_ID ) )+ )
-            // InternalCPHLCL.g:1923:2: ( (lv_ids_0_0= RULE_ID ) )+
+            // InternalCPHLCL.g:2032:2: ( ( (lv_ids_0_0= RULE_ID ) )+ )
+            // InternalCPHLCL.g:2033:2: ( (lv_ids_0_0= RULE_ID ) )+
             {
-            // InternalCPHLCL.g:1923:2: ( (lv_ids_0_0= RULE_ID ) )+
-            int cnt32=0;
-            loop32:
+            // InternalCPHLCL.g:2033:2: ( (lv_ids_0_0= RULE_ID ) )+
+            int cnt35=0;
+            loop35:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( (LA32_0==RULE_ID) ) {
-                    alt32=1;
+                if ( (LA35_0==RULE_ID) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt35) {
             	case 1 :
-            	    // InternalCPHLCL.g:1924:3: (lv_ids_0_0= RULE_ID )
+            	    // InternalCPHLCL.g:2034:3: (lv_ids_0_0= RULE_ID )
             	    {
-            	    // InternalCPHLCL.g:1924:3: (lv_ids_0_0= RULE_ID )
-            	    // InternalCPHLCL.g:1925:4: lv_ids_0_0= RULE_ID
+            	    // InternalCPHLCL.g:2034:3: (lv_ids_0_0= RULE_ID )
+            	    // InternalCPHLCL.g:2035:4: lv_ids_0_0= RULE_ID
             	    {
-            	    lv_ids_0_0=(Token)match(input,RULE_ID,FOLLOW_30); 
+            	    lv_ids_0_0=(Token)match(input,RULE_ID,FOLLOW_33); 
 
             	    				newLeafNode(lv_ids_0_0, grammarAccess.getListOfIDsAccess().getIdsIDTerminalRuleCall_0());
             	    			
@@ -5289,12 +5567,12 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt32 >= 1 ) break loop32;
+            	    if ( cnt35 >= 1 ) break loop35;
                         EarlyExitException eee =
-                            new EarlyExitException(32, input);
+                            new EarlyExitException(35, input);
                         throw eee;
                 }
-                cnt32++;
+                cnt35++;
             } while (true);
 
 
@@ -5347,8 +5625,11 @@ public class InternalCPHLCLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x000001C000000030L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x000001C000000030L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000004000020000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000012L});
 
 }

@@ -42,6 +42,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/min"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Structural/max"/>
     </genClasses>
+    <genClasses ecoreClass="PLhlcl.ecore#//Attributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Attributes/att"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLhlcl.ecore#//Attributes/var1"/>
+    </genClasses>
     <genClasses ecoreClass="PLhlcl.ecore#//Refinement"/>
     <genClasses ecoreClass="PLhlcl.ecore#//Assignment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLhlcl.ecore#//Assignment/var"/>

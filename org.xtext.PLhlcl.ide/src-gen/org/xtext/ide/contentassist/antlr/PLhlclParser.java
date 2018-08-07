@@ -51,6 +51,7 @@ public class PLhlclParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTerminalExpAccess().getGroup_0(), "rule__TerminalExp__Group_0__0");
 					put(grammarAccess.getStructuralAccess().getGroup(), "rule__Structural__Group__0");
 					put(grammarAccess.getStructuralAccess().getGroup_6(), "rule__Structural__Group_6__0");
+					put(grammarAccess.getAttributesAccess().getGroup(), "rule__Attributes__Group__0");
 					put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
 					put(grammarAccess.getVarRefinementAccess().getGroup(), "rule__VarRefinement__Group__0");
 					put(grammarAccess.getSetRefinementAccess().getGroup(), "rule__SetRefinement__Group__0");
@@ -81,6 +82,8 @@ public class PLhlclParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructuralAccess().getGroupAssignment_4(), "rule__Structural__GroupAssignment_4");
 					put(grammarAccess.getStructuralAccess().getMinAssignment_6_2(), "rule__Structural__MinAssignment_6_2");
 					put(grammarAccess.getStructuralAccess().getMaxAssignment_6_4(), "rule__Structural__MaxAssignment_6_4");
+					put(grammarAccess.getAttributesAccess().getAttAssignment_2(), "rule__Attributes__AttAssignment_2");
+					put(grammarAccess.getAttributesAccess().getVar1Assignment_5(), "rule__Attributes__Var1Assignment_5");
 					put(grammarAccess.getAssignmentAccess().getVarAssignment_0(), "rule__Assignment__VarAssignment_0");
 					put(grammarAccess.getAssignmentAccess().getValueAssignment_2(), "rule__Assignment__ValueAssignment_2");
 					put(grammarAccess.getVarRefinementAccess().getVarAssignment_0(), "rule__VarRefinement__VarAssignment_0");

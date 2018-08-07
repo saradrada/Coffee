@@ -81,8 +81,11 @@ public class CPHLCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicAccess().getGroup_1(), "rule__Atomic__Group_1__0");
 					put(grammarAccess.getAtomicAccess().getGroup_2(), "rule__Atomic__Group_2__0");
 					put(grammarAccess.getGlobalAccess().getGroup(), "rule__Global__Group__0");
+					put(grammarAccess.getGlobalAccess().getGroup_4(), "rule__Global__Group_4__0");
 					put(grammarAccess.getListOfValuesAccess().getGroup(), "rule__ListOfValues__Group__0");
 					put(grammarAccess.getListOfValuesAccess().getGroup_1(), "rule__ListOfValues__Group_1__0");
+					put(grammarAccess.getListOfListValuesAccess().getGroup(), "rule__ListOfListValues__Group__0");
+					put(grammarAccess.getListOfListValuesAccess().getGroup_3(), "rule__ListOfListValues__Group_3__0");
 					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
 					put(grammarAccess.getModelAccess().getVariablesAssignment_3(), "rule__Model__VariablesAssignment_3");
 					put(grammarAccess.getModelAccess().getConstraintsAssignment_5(), "rule__Model__ConstraintsAssignment_5");
@@ -117,11 +120,14 @@ public class CPHLCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicAccess().getValueAssignment_2_1(), "rule__Atomic__ValueAssignment_2_1");
 					put(grammarAccess.getGlobalAccess().getOpAssignment_0(), "rule__Global__OpAssignment_0");
 					put(grammarAccess.getGlobalAccess().getVarsAssignment_2(), "rule__Global__VarsAssignment_2");
+					put(grammarAccess.getGlobalAccess().getValuesAssignment_4_1(), "rule__Global__ValuesAssignment_4_1");
 					put(grammarAccess.getBoolValAccess().getValueAssignment(), "rule__BoolVal__ValueAssignment");
 					put(grammarAccess.getNumberAccess().getValueAssignment(), "rule__Number__ValueAssignment");
 					put(grammarAccess.getSymbolAccess().getValueAssignment(), "rule__Symbol__ValueAssignment");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_0(), "rule__ListOfValues__ValuesAssignment_0");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_1_1(), "rule__ListOfValues__ValuesAssignment_1_1");
+					put(grammarAccess.getListOfListValuesAccess().getListAssignment_1(), "rule__ListOfListValues__ListAssignment_1");
+					put(grammarAccess.getListOfListValuesAccess().getListAssignment_3_2(), "rule__ListOfListValues__ListAssignment_3_2");
 					put(grammarAccess.getListOfIDsAccess().getIdsAssignment(), "rule__ListOfIDs__IdsAssignment");
 				}
 			};

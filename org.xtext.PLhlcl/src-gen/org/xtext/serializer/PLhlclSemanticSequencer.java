@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.Constraint;
 import org.xtext.pLhlcl.FodaBin;
@@ -50,6 +51,9 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			switch (semanticObject.eClass().getClassifierID()) {
 			case PLhlclPackage.ASSIGNMENT:
 				sequence_Assignment(context, (Assignment) semanticObject); 
+				return; 
+			case PLhlclPackage.ATTRIBUTES:
+				sequence_Attributes(context, (Attributes) semanticObject); 
 				return; 
 			case PLhlclPackage.BOOL_VAL:
 				sequence_BoolVal(context, (BoolVal) semanticObject); 
@@ -127,6 +131,29 @@ public class PLhlclSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAssignmentAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
 		feeder.accept(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConsExpression returns Attributes
+	 *     TerminalExp returns Attributes
+	 *     Attributes returns Attributes
+	 *
+	 * Constraint:
+	 *     (att=ListOfIDs var1=[VarDeclaration|ID])
+	 */
+	protected void sequence_Attributes(ISerializationContext context, Attributes semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLhlclPackage.Literals.ATTRIBUTES__ATT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.ATTRIBUTES__ATT));
+			if (transientValues.isValueTransient(semanticObject, PLhlclPackage.Literals.ATTRIBUTES__VAR1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLhlclPackage.Literals.ATTRIBUTES__VAR1));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAttributesAccess().getAttListOfIDsParserRuleCall_2_0(), semanticObject.getAtt());
+		feeder.accept(grammarAccess.getAttributesAccess().getVar1VarDeclarationIDTerminalRuleCall_5_0_1(), semanticObject.eGet(PLhlclPackage.Literals.ATTRIBUTES__VAR1, false));
 		feeder.finish();
 	}
 	

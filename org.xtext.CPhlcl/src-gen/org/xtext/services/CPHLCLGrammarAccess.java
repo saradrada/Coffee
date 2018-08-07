@@ -829,14 +829,19 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVarsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cVarsListOfIDsParserRuleCall_2_0 = (RuleCall)cVarsAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cValuesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cValuesListOfListValuesParserRuleCall_4_1_0 = (RuleCall)cValuesAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		///**
 		// * Global constraints
 		// */ Global:
-		//	op=GlobalOp '(' vars=ListOfIDs ')';
+		//	op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//op=GlobalOp '(' vars=ListOfIDs ')'
+		//op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//op=GlobalOp
@@ -856,6 +861,21 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		
+		//('[' values=ListOfListValues ']')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
+		
+		//values=ListOfListValues
+		public Assignment getValuesAssignment_4_1() { return cValuesAssignment_4_1; }
+		
+		//ListOfListValues
+		public RuleCall getValuesListOfListValuesParserRuleCall_4_1_0() { return cValuesListOfListValuesParserRuleCall_4_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
 	}
 	public class StrategyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.CPHLCL.Strategy");
@@ -1099,6 +1119,57 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 		//Value
 		public RuleCall getValuesValueParserRuleCall_1_1_0() { return cValuesValueParserRuleCall_1_1_0; }
 	}
+	public class ListOfListValuesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.CPHLCL.ListOfListValues");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cListAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cListListOfValuesParserRuleCall_1_0 = (RuleCall)cListAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cListAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cListListOfValuesParserRuleCall_3_2_0 = (RuleCall)cListAssignment_3_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		
+		//ListOfListValues:
+		//	'[' list+=ListOfValues ']' (','+ '[' list+=ListOfValues ']')*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'[' list+=ListOfValues ']' (','+ '[' list+=ListOfValues ']')*
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//list+=ListOfValues
+		public Assignment getListAssignment_1() { return cListAssignment_1; }
+		
+		//ListOfValues
+		public RuleCall getListListOfValuesParserRuleCall_1_0() { return cListListOfValuesParserRuleCall_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		
+		//(','+ '[' list+=ListOfValues ']')*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//','+
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_3_1() { return cLeftSquareBracketKeyword_3_1; }
+		
+		//list+=ListOfValues
+		public Assignment getListAssignment_3_2() { return cListAssignment_3_2; }
+		
+		//ListOfValues
+		public RuleCall getListListOfValuesParserRuleCall_3_2_0() { return cListListOfValuesParserRuleCall_3_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3_3() { return cRightSquareBracketKeyword_3_3; }
+	}
 	public class ListOfIDsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.CPHLCL.ListOfIDs");
 		private final Assignment cIdsAssignment = (Assignment)rule.eContents().get(1);
@@ -1146,6 +1217,7 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final FunctionOpElements pFunctionOp;
 	private final UnaryOpElements pUnaryOp;
 	private final ListOfValuesElements pListOfValues;
+	private final ListOfListValuesElements pListOfListValues;
 	private final ListOfIDsElements pListOfIDs;
 	
 	private final Grammar grammar;
@@ -1187,6 +1259,7 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFunctionOp = new FunctionOpElements();
 		this.pUnaryOp = new UnaryOpElements();
 		this.pListOfValues = new ListOfValuesElements();
+		this.pListOfListValues = new ListOfListValuesElements();
 		this.pListOfIDs = new ListOfIDsElements();
 	}
 	
@@ -1412,7 +1485,7 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 	///**
 	// * Global constraints
 	// */ Global:
-	//	op=GlobalOp '(' vars=ListOfIDs ')';
+	//	op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?;
 	public GlobalElements getGlobalAccess() {
 		return pGlobal;
 	}
@@ -1538,6 +1611,16 @@ public class CPHLCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getListOfValuesRule() {
 		return getListOfValuesAccess().getRule();
+	}
+	
+	//ListOfListValues:
+	//	'[' list+=ListOfValues ']' (','+ '[' list+=ListOfValues ']')*;
+	public ListOfListValuesElements getListOfListValuesAccess() {
+		return pListOfListValues;
+	}
+	
+	public ParserRule getListOfListValuesRule() {
+		return getListOfListValuesAccess().getRule();
 	}
 	
 	//ListOfIDs:

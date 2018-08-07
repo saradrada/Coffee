@@ -212,6 +212,33 @@ class PLhlclParsingTest {
 		Assert.assertTrue(empty.eResource.errors.isEmpty)
 	}
 /**
+ * Declaring attributes
+ */
+	@Test
+	def void attributes() {
+		// model is a program in PLEC
+		val model = 
+		'''
+		model m1
+		variables:
+		boolean GPL
+		boolean GType
+		boolean Weight
+		boolean Search
+		boolean Algorithms
+		integer Memory values: [2, 4, 8, 16, 32]
+		constraints:
+		c1: attributes: [Memory] of Search 
+		'''
+		//empty is an empty model
+		val empty = parseHelper.parse(model)
+		Assert.assertNotNull(empty)
+		printErrors( empty)
+		Assert.assertTrue(empty.eResource.errors.isEmpty)
+	}
+
+
+/**
  * Declaring requires relations
  */
  	@Test

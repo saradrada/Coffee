@@ -277,6 +277,43 @@ public class PLhlclParsingTest {
   }
   
   /**
+   * Declaring attributes
+   */
+  @Test
+  public void attributes() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GPL");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("integer Memory values: [2, 4, 8, 16, 32]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: attributes: [Memory] of Search ");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
    * Declaring requires relations
    */
   @Test

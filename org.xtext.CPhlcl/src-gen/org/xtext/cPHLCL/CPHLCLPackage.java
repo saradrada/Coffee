@@ -346,13 +346,22 @@ public interface CPHLCLPackage extends EPackage
   int GLOBAL__VARS = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Values</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GLOBAL__VALUES = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Global</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GLOBAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+  int GLOBAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.ValueImpl <em>Value</em>}' class.
@@ -514,6 +523,34 @@ public interface CPHLCLPackage extends EPackage
   int LIST_OF_VALUES_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.cPHLCL.impl.ListOfListValuesImpl <em>List Of List Values</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.cPHLCL.impl.ListOfListValuesImpl
+   * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfListValues()
+   * @generated
+   */
+  int LIST_OF_LIST_VALUES = 15;
+
+  /**
+   * The feature id for the '<em><b>List</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_LIST_VALUES__LIST = 0;
+
+  /**
+   * The number of structural features of the '<em>List Of List Values</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_LIST_VALUES_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.cPHLCL.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -521,7 +558,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 15;
+  int LIST_OF_IDS = 16;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' attribute list.
@@ -549,7 +586,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIff()
    * @generated
    */
-  int IFF = 16;
+  int IFF = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -586,7 +623,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getImplies()
    * @generated
    */
-  int IMPLIES = 17;
+  int IMPLIES = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -623,7 +660,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getOr()
    * @generated
    */
-  int OR = 18;
+  int OR = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -660,7 +697,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getAnd()
    * @generated
    */
-  int AND = 19;
+  int AND = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -697,7 +734,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getEquality()
    * @generated
    */
-  int EQUALITY = 20;
+  int EQUALITY = 21;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -743,7 +780,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getComparison()
    * @generated
    */
-  int COMPARISON = 21;
+  int COMPARISON = 22;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -789,7 +826,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 22;
+  int PLUS = 23;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -826,7 +863,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 23;
+  int MINUS = 24;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -863,7 +900,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getMulOrDiv()
    * @generated
    */
-  int MUL_OR_DIV = 24;
+  int MUL_OR_DIV = 25;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -909,7 +946,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getNegation()
    * @generated
    */
-  int NEGATION = 25;
+  int NEGATION = 26;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -937,7 +974,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getUnary()
    * @generated
    */
-  int UNARY = 26;
+  int UNARY = 27;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -974,7 +1011,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getFunction()
    * @generated
    */
-  int FUNCTION = 27;
+  int FUNCTION = 28;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1020,7 +1057,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getBoolConstant()
    * @generated
    */
-  int BOOL_CONSTANT = 28;
+  int BOOL_CONSTANT = 29;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1048,7 +1085,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getVariableRef()
    * @generated
    */
-  int VARIABLE_REF = 29;
+  int VARIABLE_REF = 30;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1076,7 +1113,7 @@ public interface CPHLCLPackage extends EPackage
    * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getIntConstant()
    * @generated
    */
-  int INT_CONSTANT = 30;
+  int INT_CONSTANT = 31;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1342,6 +1379,17 @@ public interface CPHLCLPackage extends EPackage
   EReference getGlobal_Vars();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.cPHLCL.Global#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Values</em>'.
+   * @see org.xtext.cPHLCL.Global#getValues()
+   * @see #getGlobal()
+   * @generated
+   */
+  EReference getGlobal_Values();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.BoolVal <em>Bool Val</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1433,6 +1481,27 @@ public interface CPHLCLPackage extends EPackage
    * @generated
    */
   EReference getListOfValues_Values();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.cPHLCL.ListOfListValues <em>List Of List Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Of List Values</em>'.
+   * @see org.xtext.cPHLCL.ListOfListValues
+   * @generated
+   */
+  EClass getListOfListValues();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.cPHLCL.ListOfListValues#getList <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>List</em>'.
+   * @see org.xtext.cPHLCL.ListOfListValues#getList()
+   * @see #getListOfListValues()
+   * @generated
+   */
+  EReference getListOfListValues_List();
 
   /**
    * Returns the meta object for class '{@link org.xtext.cPHLCL.ListOfIDs <em>List Of IDs</em>}'.
@@ -2161,6 +2230,14 @@ public interface CPHLCLPackage extends EPackage
     EReference GLOBAL__VARS = eINSTANCE.getGlobal_Vars();
 
     /**
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GLOBAL__VALUES = eINSTANCE.getGlobal_Values();
+
+    /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.BoolValImpl <em>Bool Val</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2243,6 +2320,24 @@ public interface CPHLCLPackage extends EPackage
      * @generated
      */
     EReference LIST_OF_VALUES__VALUES = eINSTANCE.getListOfValues_Values();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ListOfListValuesImpl <em>List Of List Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.cPHLCL.impl.ListOfListValuesImpl
+     * @see org.xtext.cPHLCL.impl.CPHLCLPackageImpl#getListOfListValues()
+     * @generated
+     */
+    EClass LIST_OF_LIST_VALUES = eINSTANCE.getListOfListValues();
+
+    /**
+     * The meta object literal for the '<em><b>List</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LIST_OF_LIST_VALUES__LIST = eINSTANCE.getListOfListValues_List();
 
     /**
      * The meta object literal for the '{@link org.xtext.cPHLCL.impl.ListOfIDsImpl <em>List Of IDs</em>}' class.

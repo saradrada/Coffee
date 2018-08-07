@@ -280,12 +280,13 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFodaBinParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cStructuralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cFodaUNParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cAttributesParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//ConsExpression:
-		//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN;
+		//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IDCons | Refinement | Rule | FodaBin | Structural | FodaUN
+		//IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IDCons
@@ -305,6 +306,9 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FodaUN
 		public RuleCall getFodaUNParserRuleCall_5() { return cFodaUNParserRuleCall_5; }
+		
+		//Attributes
+		public RuleCall getAttributesParserRuleCall_6() { return cAttributesParserRuleCall_6; }
 	}
 	public class TerminalExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.TerminalExp");
@@ -433,6 +437,55 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_6_5() { return cRightSquareBracketKeyword_6_5; }
+	}
+	public class AttributesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Attributes");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAttributesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cAttAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cAttListOfIDsParserRuleCall_2_0 = (RuleCall)cAttAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cOfKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cVar1Assignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cVar1VarDeclarationCrossReference_5_0 = (CrossReference)cVar1Assignment_5.eContents().get(0);
+		private final RuleCall cVar1VarDeclarationIDTerminalRuleCall_5_0_1 = (RuleCall)cVar1VarDeclarationCrossReference_5_0.eContents().get(1);
+		
+		///**
+		// * is a relation between an element and its attributes
+		// */ Attributes:
+		//	'attributes:' '[' att=ListOfIDs ']' 'of' var1=[VarDeclaration];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'attributes:' '[' att=ListOfIDs ']' 'of' var1=[VarDeclaration]
+		public Group getGroup() { return cGroup; }
+		
+		//'attributes:'
+		public Keyword getAttributesKeyword_0() { return cAttributesKeyword_0; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		
+		//att=ListOfIDs
+		public Assignment getAttAssignment_2() { return cAttAssignment_2; }
+		
+		//ListOfIDs
+		public RuleCall getAttListOfIDsParserRuleCall_2_0() { return cAttListOfIDsParserRuleCall_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		
+		//'of'
+		public Keyword getOfKeyword_4() { return cOfKeyword_4; }
+		
+		//var1=[VarDeclaration]
+		public Assignment getVar1Assignment_5() { return cVar1Assignment_5; }
+		
+		//[VarDeclaration]
+		public CrossReference getVar1VarDeclarationCrossReference_5_0() { return cVar1VarDeclarationCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getVar1VarDeclarationIDTerminalRuleCall_5_0_1() { return cVar1VarDeclarationIDTerminalRuleCall_5_0_1; }
 	}
 	public class RefinementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.PLhlcl.Refinement");
@@ -966,6 +1019,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalExpElements pTerminalExp;
 	private final IDConsElements pIDCons;
 	private final StructuralElements pStructural;
+	private final AttributesElements pAttributes;
 	private final RefinementElements pRefinement;
 	private final AssignmentElements pAssignment;
 	private final VarRefinementElements pVarRefinement;
@@ -1003,6 +1057,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTerminalExp = new TerminalExpElements();
 		this.pIDCons = new IDConsElements();
 		this.pStructural = new StructuralElements();
+		this.pAttributes = new AttributesElements();
 		this.pRefinement = new RefinementElements();
 		this.pAssignment = new AssignmentElements();
 		this.pVarRefinement = new VarRefinementElements();
@@ -1119,7 +1174,7 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConsExpression:
-	//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN;
+	//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes;
 	public ConsExpressionElements getConsExpressionAccess() {
 		return pConsExpression;
 	}
@@ -1159,6 +1214,18 @@ public class PLhlclGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStructuralRule() {
 		return getStructuralAccess().getRule();
+	}
+	
+	///**
+	// * is a relation between an element and its attributes
+	// */ Attributes:
+	//	'attributes:' '[' att=ListOfIDs ']' 'of' var1=[VarDeclaration];
+	public AttributesElements getAttributesAccess() {
+		return pAttributes;
+	}
+	
+	public ParserRule getAttributesRule() {
+		return getAttributesAccess().getRule();
 	}
 	
 	//Refinement:

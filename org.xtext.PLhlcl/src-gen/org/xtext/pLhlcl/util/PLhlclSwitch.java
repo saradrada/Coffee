@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
@@ -170,6 +171,15 @@ public class PLhlclSwitch<T> extends Switch<T>
         T result = caseStructural(structural);
         if (result == null) result = caseConsExpression(structural);
         if (result == null) result = caseExpression(structural);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLhlclPackage.ATTRIBUTES:
+      {
+        Attributes attributes = (Attributes)theEObject;
+        T result = caseAttributes(attributes);
+        if (result == null) result = caseConsExpression(attributes);
+        if (result == null) result = caseExpression(attributes);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -454,6 +464,22 @@ public class PLhlclSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStructural(Structural object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Attributes</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attributes</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttributes(Attributes object)
   {
     return null;
   }

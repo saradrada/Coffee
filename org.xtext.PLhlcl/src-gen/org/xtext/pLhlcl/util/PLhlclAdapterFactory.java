@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
@@ -147,6 +148,11 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
       public Adapter caseStructural(Structural object)
       {
         return createStructuralAdapter();
+      }
+      @Override
+      public Adapter caseAttributes(Attributes object)
+      {
+        return createAttributesAdapter();
       }
       @Override
       public Adapter caseRefinement(Refinement object)
@@ -386,6 +392,21 @@ public class PLhlclAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStructuralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.pLhlcl.Attributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.pLhlcl.Attributes
+   * @generated
+   */
+  public Adapter createAttributesAdapter()
   {
     return null;
   }

@@ -114,6 +114,15 @@ public interface PLhlclFactory extends EFactory
   Structural createStructural();
 
   /**
+   * Returns a new object of class '<em>Attributes</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attributes</em>'.
+   * @generated
+   */
+  Attributes createAttributes();
+
+  /**
    * Returns a new object of class '<em>Refinement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

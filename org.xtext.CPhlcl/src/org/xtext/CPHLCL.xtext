@@ -95,7 +95,7 @@ Atomic returns Relational:
  * Global constraints
  */
 Global:
-	op=GlobalOp '(' vars=ListOfIDs ')'   
+	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
 	;
 
 /*
@@ -139,6 +139,9 @@ ListOfValues:
 	values+= Value (',' + values+= Value)*
 	;
 
+ListOfListValues:
+	'['list+= ListOfValues']' (',' + '[' list+= ListOfValues ']')*
+	;
 ListOfIDs:
 	ids+= (ID)+
 ;

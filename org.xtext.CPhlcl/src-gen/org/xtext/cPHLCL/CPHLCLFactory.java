@@ -159,6 +159,15 @@ public interface CPHLCLFactory extends EFactory
   ListOfValues createListOfValues();
 
   /**
+   * Returns a new object of class '<em>List Of List Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of List Values</em>'.
+   * @generated
+   */
+  ListOfListValues createListOfListValues();
+
+  /**
    * Returns a new object of class '<em>List Of IDs</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

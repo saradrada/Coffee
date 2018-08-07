@@ -29,6 +29,7 @@ import org.xtext.cPHLCL.Implies;
 import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
 import org.xtext.cPHLCL.ListOfIDs;
+import org.xtext.cPHLCL.ListOfListValues;
 import org.xtext.cPHLCL.ListOfValues;
 import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
@@ -97,6 +98,9 @@ public class CPHLCLSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case CPHLCLPackage.LIST_OF_IDS:
 				sequence_ListOfIDs(context, (ListOfIDs) semanticObject); 
+				return; 
+			case CPHLCLPackage.LIST_OF_LIST_VALUES:
+				sequence_ListOfListValues(context, (ListOfListValues) semanticObject); 
 				return; 
 			case CPHLCLPackage.LIST_OF_VALUES:
 				sequence_ListOfValues(context, (ListOfValues) semanticObject); 
@@ -409,19 +413,10 @@ public class CPHLCLSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Global returns Global
 	 *
 	 * Constraint:
-	 *     (op=GlobalOp vars=ListOfIDs)
+	 *     (op=GlobalOp vars=ListOfIDs values=ListOfListValues?)
 	 */
 	protected void sequence_Global(ISerializationContext context, Global semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CPHLCLPackage.Literals.GLOBAL__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CPHLCLPackage.Literals.GLOBAL__OP));
-			if (transientValues.isValueTransient(semanticObject, CPHLCLPackage.Literals.GLOBAL__VARS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CPHLCLPackage.Literals.GLOBAL__VARS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGlobalAccess().getOpGlobalOpParserRuleCall_0_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getGlobalAccess().getVarsListOfIDsParserRuleCall_2_0(), semanticObject.getVars());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -535,6 +530,18 @@ public class CPHLCLSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ids+=ID+
 	 */
 	protected void sequence_ListOfIDs(ISerializationContext context, ListOfIDs semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ListOfListValues returns ListOfListValues
+	 *
+	 * Constraint:
+	 *     (list+=ListOfValues list+=ListOfValues*)
+	 */
+	protected void sequence_ListOfListValues(ISerializationContext context, ListOfListValues semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

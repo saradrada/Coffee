@@ -49,6 +49,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Number"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attributes" eSuperTypes="#//ConsExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="att" eType="#//ListOfIDs"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var1" eType="#//VarDeclaration"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Refinement" eSuperTypes="#//ConsExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//Refinement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

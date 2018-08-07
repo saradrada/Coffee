@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.pLhlcl.Assignment;
+import org.xtext.pLhlcl.Attributes;
 import org.xtext.pLhlcl.BoolVal;
 import org.xtext.pLhlcl.ConsExpression;
 import org.xtext.pLhlcl.Constraint;
@@ -99,6 +100,7 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
       case PLhlclPackage.EXPRESSION: return createExpression();
       case PLhlclPackage.ID_CONS: return createIDCons();
       case PLhlclPackage.STRUCTURAL: return createStructural();
+      case PLhlclPackage.ATTRIBUTES: return createAttributes();
       case PLhlclPackage.REFINEMENT: return createRefinement();
       case PLhlclPackage.ASSIGNMENT: return createAssignment();
       case PLhlclPackage.VAR_REFINEMENT: return createVarRefinement();
@@ -226,6 +228,17 @@ public class PLhlclFactoryImpl extends EFactoryImpl implements PLhlclFactory
   {
     StructuralImpl structural = new StructuralImpl();
     return structural;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Attributes createAttributes()
+  {
+    AttributesImpl attributes = new AttributesImpl();
+    return attributes;
   }
 
   /**

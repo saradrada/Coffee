@@ -39,7 +39,7 @@ Constraint:
 
 
 ConsExpression:
-	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN 
+	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN|Attributes
 ;
 TerminalExp returns Expression:
 	'(' ConsExpression ')' | IDCons
@@ -54,6 +54,13 @@ IDCons:
  */
 Structural:
 	'structural:' parent=ID  'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
+;
+
+/**
+ * is a relation between an element and its attributes
+ */
+Attributes:
+	'attributes:' ('[') att=ListOfIDs (']') 'of' var1=[VarDeclaration]
 ;
 Refinement:
 	Assignment | VarRefinement | SetRefinement

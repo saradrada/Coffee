@@ -37,6 +37,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" eType="#//ListOfIDs"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//ListOfListValues"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoolVal" eSuperTypes="#//NonEnumerableValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Value">
@@ -50,6 +52,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="ListOfValues">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//Value" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfListValues">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" upperBound="-1" eType="#//ListOfValues"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfIDs">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ids" unique="false" upperBound="-1"

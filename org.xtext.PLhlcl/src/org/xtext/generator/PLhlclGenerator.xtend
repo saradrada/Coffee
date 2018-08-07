@@ -20,10 +20,12 @@ import org.xtext.pLhlcl.Rule
 import org.xtext.pLhlcl.FodaUN
 import org.xtext.pLhlcl.IDCons
 import org.xtext.pLhlcl.Structural
+import org.xtext.pLhlcl.Number
 import java.util.Map
 import java.util.HashMap
 import java.util.ArrayList
-
+import org.xtext.pLhlcl.Attributes
+import org.xtext.pLhlcl.Value
 
 /**
  * Generates code from your model files on save.
@@ -97,6 +99,8 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		for ( var i=1; i<= variable.max.value; i= i+1) {
 			declaration+="boolean " +variable.name+i +"\n"
 			sum+= variable.name+i + " +"
+			var  implies=  variable.name+i + " =>" + variable.name
+			clonConstraints.add(implies)
 		}
 		left += sum.substring(0, sum.length() - 1) + ") "
 		right += sum.substring(0, sum.length() - 1) + ") "
@@ -110,7 +114,7 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 	 def  declareClonConstraints()'''
 	 	«var int id = 1»
 	 	«FOR constraint : clonConstraints»
-	 		clon«id»: «constraint.toString»
+	 		cl«id»: «constraint.toString»
 	 		«{id++ + "+"; ""}»
 	 	«ENDFOR»
 	 '''
@@ -123,7 +127,7 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 		«IF variable.type=="boolean"»
 		«ELSE»	
 			«IF variant instanceof VariantsInterval»
-				domain: «variant.start»..«variant.end»
+				domain: «variant.start.value»..«variant.end.value»
 			«ELSE»
 				«IF variant instanceof VariantsEnumeration»
 					domain: [«getList(variant.list.values)»]
@@ -131,10 +135,11 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 			«ENDIF»
 		«ENDIF»
 	'''
-	def  getList(EList l){
-		var out= l.get(0) ;
+	def  getList(EList<Value> l){
+		var number= (l.get(0) as Number).value ;
+		var out= "" ;
 		for(var i=1; i<l.size(); i= i+1 ){
-			out= out +", " + l.get(i) ;
+			out= number +", "+ (l.get(i) as Number).value ;
 		}
 		return out;
 	}
@@ -157,6 +162,10 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 					«ELSE»
 						«IF exp instanceof FodaUN»
 							«declareFodaUnary(exp)»
+						«ELSE»
+							«IF exp instanceof Attributes»
+								«declareAttributes(exp)»
+							«ENDIF»
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
@@ -229,5 +238,14 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 			«ELSE»
 			«ENDIF»
 		«ENDIF»
+	'''
+	/**
+	 * Falta considerar el caso cuando hay más de un atributo
+	 */
+	def declareAttributes(Attributes exp)'''
+		«val left= exp.var1.name»
+		«FOR att : exp.att.ids»
+			«left» <=> («att.name» > 0)
+		«ENDFOR»
 	'''
 }

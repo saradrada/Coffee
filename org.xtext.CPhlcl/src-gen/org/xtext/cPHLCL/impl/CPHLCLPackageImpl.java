@@ -28,6 +28,7 @@ import org.xtext.cPHLCL.Implies;
 import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
 import org.xtext.cPHLCL.ListOfIDs;
+import org.xtext.cPHLCL.ListOfListValues;
 import org.xtext.cPHLCL.ListOfValues;
 import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
@@ -155,6 +156,13 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * @generated
    */
   private EClass listOfValuesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfListValuesEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -566,6 +574,16 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getGlobal_Values()
+  {
+    return (EReference)globalEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBoolVal()
   {
     return boolValEClass;
@@ -649,6 +667,26 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
   public EReference getListOfValues_Values()
   {
     return (EReference)listOfValuesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getListOfListValues()
+  {
+    return listOfListValuesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getListOfListValues_List()
+  {
+    return (EReference)listOfListValuesEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1182,6 +1220,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
     globalEClass = createEClass(GLOBAL);
     createEAttribute(globalEClass, GLOBAL__OP);
     createEReference(globalEClass, GLOBAL__VARS);
+    createEReference(globalEClass, GLOBAL__VALUES);
 
     boolValEClass = createEClass(BOOL_VAL);
 
@@ -1197,6 +1236,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
 
     listOfValuesEClass = createEClass(LIST_OF_VALUES);
     createEReference(listOfValuesEClass, LIST_OF_VALUES__VALUES);
+
+    listOfListValuesEClass = createEClass(LIST_OF_LIST_VALUES);
+    createEReference(listOfListValuesEClass, LIST_OF_LIST_VALUES__LIST);
 
     listOfIDsEClass = createEClass(LIST_OF_IDS);
     createEAttribute(listOfIDsEClass, LIST_OF_IDS__IDS);
@@ -1347,6 +1389,7 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
     initEClass(globalEClass, Global.class, "Global", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGlobal_Op(), ecorePackage.getEString(), "op", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGlobal_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGlobal_Values(), this.getListOfListValues(), null, "values", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolValEClass, BoolVal.class, "BoolVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1362,6 +1405,9 @@ public class CPHLCLPackageImpl extends EPackageImpl implements CPHLCLPackage
 
     initEClass(listOfValuesEClass, ListOfValues.class, "ListOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getListOfValues_Values(), this.getValue(), null, "values", null, 0, -1, ListOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listOfListValuesEClass, ListOfListValues.class, "ListOfListValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getListOfListValues_List(), this.getListOfValues(), null, "list", null, 0, -1, ListOfListValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfIDsEClass, ListOfIDs.class, "ListOfIDs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getListOfIDs_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, ListOfIDs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

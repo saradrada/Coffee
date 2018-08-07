@@ -20,6 +20,7 @@ import org.xtext.services.CPHLCLGrammarAccess;
 public class CPHLCLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected CPHLCLGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ListOfListValues_CommaKeyword_3_0_p;
 	protected AbstractElementAlias match_ListOfValues_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_0_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_0_0_p;
@@ -27,6 +28,7 @@ public class CPHLCLSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (CPHLCLGrammarAccess) access;
+		match_ListOfListValues_CommaKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getListOfListValuesAccess().getCommaKeyword_3_0());
 		match_ListOfValues_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
 		match_Primary_LeftParenthesisKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_0_0());
 		match_Primary_LeftParenthesisKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_0_0());
@@ -44,7 +46,9 @@ public class CPHLCLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ListOfValues_CommaKeyword_1_0_p.equals(syntax))
+			if (match_ListOfListValues_CommaKeyword_3_0_p.equals(syntax))
+				emit_ListOfListValues_CommaKeyword_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ListOfValues_CommaKeyword_1_0_p.equals(syntax))
 				emit_ListOfValues_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_0_0_a.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -54,6 +58,17 @@ public class CPHLCLSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     list+=ListOfValues ']' (ambiguity) '[' list+=ListOfValues
+	 */
+	protected void emit_ListOfListValues_CommaKeyword_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     ','+

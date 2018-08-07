@@ -25,6 +25,7 @@ import org.xtext.cPHLCL.Implies;
 import org.xtext.cPHLCL.IntConstant;
 import org.xtext.cPHLCL.Interval;
 import org.xtext.cPHLCL.ListOfIDs;
+import org.xtext.cPHLCL.ListOfListValues;
 import org.xtext.cPHLCL.ListOfValues;
 import org.xtext.cPHLCL.Minus;
 import org.xtext.cPHLCL.Model;
@@ -215,6 +216,13 @@ public class CPHLCLSwitch<T> extends Switch<T>
       {
         ListOfValues listOfValues = (ListOfValues)theEObject;
         T result = caseListOfValues(listOfValues);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CPHLCLPackage.LIST_OF_LIST_VALUES:
+      {
+        ListOfListValues listOfListValues = (ListOfListValues)theEObject;
+        T result = caseListOfListValues(listOfListValues);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -600,6 +608,22 @@ public class CPHLCLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfValues(ListOfValues object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of List Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of List Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfListValues(ListOfListValues object)
   {
     return null;
   }
