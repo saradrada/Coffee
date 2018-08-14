@@ -14,7 +14,6 @@ import org.xtext.pLhlcl.VariantDeclaration
 import org.xtext.pLhlcl.VariantsInterval
 import org.xtext.pLhlcl.VariantsEnumeration
 import org.eclipse.emf.common.util.EList
-import org.xtext.pLhlcl.Refinement
 import org.xtext.pLhlcl.FodaBin
 import org.xtext.pLhlcl.Rule
 import org.xtext.pLhlcl.FodaUN
@@ -88,7 +87,7 @@ class PLhlclGenerator extends AbstractGenerator implements CPCode {
 	def declareSingleVar(VarDeclaration variable) '''
 		«variable.type» «variable.name» «declareVariants(variable, variable.variants)»
 	'''
-		/**
+	/**
 	 * Method to declare a variable's with clones
 	 */
 	def  declareInstances(VarDeclaration variable) {

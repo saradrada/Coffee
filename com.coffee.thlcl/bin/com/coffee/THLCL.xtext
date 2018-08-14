@@ -1,0 +1,148 @@
+grammar com.coffee.THLCL with org.eclipse.xtext.common.Terminals
+
+generate tHLCL "http://www.coffee.com/THLCL"
+
+// A CSP is composed by a set of variables with their domains, a set of constraints and a series of search strategies
+Model:
+	'model' name=ID 'variables:' variables+=(Variable)*  'constraints:'constraints+=(Constraint)*
+	('strategy:' strategy= Strategy)?
+	;
+	
+//Variables and domains declarations	
+Variable:
+	type=VarType name=ID  ('domain:' domain= DomainDeclaration)?
+;
+	
+DomainDeclaration: 
+  Interval | Enumeration //| Mixed //domains
+	;
+
+Interval:
+	(start=Number) ('..') (end=Number)
+	;	
+	
+Enumeration:
+	('[') list =  ListOfValues  (']')
+	;
+/**
+ * Constraints and constraints declarations
+ */
+Constraint:
+	   name=ID ':' exp=Expression 
+	   ;
+Expression:
+	Relational|Global
+//Global|Logic|Relational|Control
+	
+;
+
+Relational: Iff;
+
+Iff returns Relational:
+	Implies ({Iff.left = current} "<=>" right=Implies)*
+;
+Implies returns Relational:
+	Or ({Implies.left = current} "=>" right=Or)*
+;
+Or returns Relational:
+	And ({Or.left = current} "OR" right=And)*
+;
+
+And returns Relational:
+	Equality ({And.left=current} "AND" right=Equality)*
+;
+
+Equality returns Relational:
+	 Comparison ( {Equality.left=current} op=("="|"!=") right=Comparison)* 
+;
+
+Comparison returns Relational: 
+	PlusOrMinus ( {Comparison.left=current} op=(">="|"<="|">"|"<") right=PlusOrMinus)* 
+;
+
+PlusOrMinus returns Relational:
+	MulOrDiv (
+		({Plus.left=current} '+' | {Minus.left=current} '-') right=MulOrDiv
+	)*
+	;
+
+MulOrDiv returns Relational: 
+	Primary ( {MulOrDiv.left=current} op=('*'|'/'|'mod') right=Primary)* 
+;
+
+Primary returns Relational:
+	 '(' Relational ')' | 
+	 {Negation} "~"expression=Primary | 
+	 {Unary} op=UnaryOp expression=Primary | 
+	 {Function} op=FunctionOp '('left=Primary ',' right=Primary ')' |
+	 Atomic
+;
+
+//Function returns Relational:
+//	op=FunctionOp '('left=Primary ',' right=Primary ')' 
+//;
+Atomic returns Relational: 
+	{BoolConstant} value=('true'|'false') | 
+	{VariableRef} variable=[Variable]|
+	{IntConstant} value=INT 
+;
+
+
+
+
+	
+/**
+ * Global constraints
+ */
+Global:
+	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
+	;
+
+/*
+ * Control statement if-then-else
+ */
+//Control:
+//	'if''('cond=BoolTerm ')' 'then' trueStatement= Expression 'else' elseStatement= Expression 'end_if'
+//;
+//Strategies
+Strategy:
+	'one'|'two'
+;
+
+
+//Values
+BoolVal: value=('true'|'false');
+Number: value = INT ;
+
+Symbol: value= ID;
+
+Value: Number|NonEnumerableValue;	
+//EnumerableValue: Number ;
+NonEnumerableValue:BoolVal|Symbol;
+
+//Variables
+VarType:
+	 'boolean' |'integer'|'symbolic' ;
+
+GlobalOp:
+	'at_most'|'all_different'
+;
+
+FunctionOp:
+	'pow'|'dist'|'min'|'max'
+;
+UnaryOp:
+	'abs'|'sqrt'
+;
+
+ListOfValues:
+	values+= Value (',' + values+= Value)*
+	;
+
+ListOfListValues:
+	'['list+= ListOfValues']' (',' + '[' list+= ListOfValues ']')*
+	;
+ListOfIDs:
+	ids+= (ID)+
+;
+

@@ -14,7 +14,7 @@ import org.xtext.pLhlcl.PLhlclPackage
  */
 class PLhlclValidator extends AbstractPLhlclValidator {
 		static val packageInstance = PLhlclPackage.eINSTANCE
-		/**
+	/**
 	 * Method for checking that non boolean domains are correctly declarated 
 	 */
 	@Check
