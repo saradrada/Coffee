@@ -2,6 +2,13 @@ grammar com.coffee.PLEC with org.eclipse.xtext.common.Terminals
 
 generate pLEC "http://www.coffee.com/PLEC"
 
+/**
+ * Grammar specification of PLEC, the Product Line Engineering Constraints Language
+ * @author Angela Villota
+ * @version PLEC V3
+ * August 2018
+ */
+
 Model:
 	'model' name=ID 'variables:' vars+=(VarDeclaration)*  'constraints:'constraints+=(Constraint)*
 	;
