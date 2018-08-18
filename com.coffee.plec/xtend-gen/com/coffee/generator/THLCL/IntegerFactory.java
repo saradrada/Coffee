@@ -1,6 +1,7 @@
 package com.coffee.generator.THLCL;
 
 import com.coffee.generator.THLCL.BooleanFactory;
+import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VariantDeclaration;
@@ -8,6 +9,7 @@ import com.coffee.pLEC.VariantsEnumeration;
 import com.coffee.pLEC.VariantsInterval;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
@@ -141,15 +143,140 @@ public class IntegerFactory extends BooleanFactory {
   
   public String getList(final EList<Value> l) {
     Value _get = l.get(0);
-    int number = ((com.coffee.pLEC.Number) _get).getValue();
-    String out = "";
+    int _value = ((com.coffee.pLEC.Number) _get).getValue();
+    String out = (Integer.valueOf(_value) + "");
     for (int i = 1; (i < l.size()); i = (i + 1)) {
-      String _plus = (Integer.valueOf(number) + ", ");
+      String _out = out;
       Value _get_1 = l.get(i);
-      int _value = ((com.coffee.pLEC.Number) _get_1).getValue();
-      String _plus_1 = (_plus + Integer.valueOf(_value));
-      out = _plus_1;
+      int _value_1 = ((com.coffee.pLEC.Number) _get_1).getValue();
+      String _plus = (", " + Integer.valueOf(_value_1));
+      out = (_out + _plus);
     }
     return out;
+  }
+  
+  @Override
+  public CharSequence getGroupCardinality(final Structural exp, final Map<String, VarDeclaration> parents) {
+    String _xblockexpression = null;
+    {
+      String idsSum = "";
+      String output = "";
+      EList<VarDeclaration> _ids = exp.getGroup().getIds();
+      for (final VarDeclaration child : _ids) {
+        {
+          String _output = output;
+          String _name = child.getName();
+          String _plus = ("(" + _name);
+          String _plus_1 = (_plus + " => ");
+          VarDeclaration _parent = exp.getParent();
+          String _plus_2 = (_plus_1 + _parent);
+          String _plus_3 = (_plus_2 + ") AND \n");
+          output = (_output + _plus_3);
+          String _idsSum = idsSum;
+          String _name_1 = child.getName();
+          String _plus_4 = (_name_1 + " + ");
+          idsSum = (_idsSum + _plus_4);
+          parents.put(child.getName(), exp.getParent());
+        }
+      }
+      String _output = output;
+      VarDeclaration _parent = exp.getParent();
+      String _plus = ("(" + _parent);
+      String _plus_1 = (_plus + " >= 1) => (");
+      int _length = idsSum.length();
+      int _minus = (_length - 2);
+      String _substring = idsSum.substring(0, _minus);
+      String _plus_2 = (_plus_1 + _substring);
+      String _plus_3 = (_plus_2 + ">= ");
+      int _value = exp.getMin().getValue();
+      String _plus_4 = (_plus_3 + Integer.valueOf(_value));
+      String _plus_5 = (_plus_4 + ") AND \n");
+      output = (_output + _plus_5);
+      String _output_1 = output;
+      VarDeclaration _parent_1 = exp.getParent();
+      String _plus_6 = ("(" + _parent_1);
+      String _plus_7 = (_plus_6 + " >= 1) => (");
+      int _length_1 = idsSum.length();
+      int _minus_1 = (_length_1 - 2);
+      String _substring_1 = idsSum.substring(0, _minus_1);
+      String _plus_8 = (_plus_7 + _substring_1);
+      String _plus_9 = (_plus_8 + "<= ");
+      int _value_1 = exp.getMax().getValue();
+      String _plus_10 = (_plus_9 + Integer.valueOf(_value_1));
+      String _plus_11 = (_plus_10 + ")");
+      output = (_output_1 + _plus_11);
+      _xblockexpression = output;
+    }
+    return _xblockexpression;
+  }
+  
+  @Override
+  public CharSequence getMandatory(final VarDeclaration parent, final VarDeclaration child) {
+    String _name = parent.getName();
+    String _plus = (_name + " = ");
+    String _name_1 = child.getName();
+    return (_plus + _name_1);
+  }
+  
+  @Override
+  public CharSequence getOptional(final VarDeclaration parent, final VarDeclaration child) {
+    String _name = parent.getName();
+    String _plus = (_name + " >= ");
+    String _name_1 = child.getName();
+    return (_plus + _name_1);
+  }
+  
+  @Override
+  public CharSequence getRequires(final VarDeclaration left, final VarDeclaration right) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if (((left.getMin() == null) && (left.getMax() == null))) {
+        String _name = left.getName();
+        _builder.append(_name);
+        _builder.append("  => (");
+        String _name_1 = right.getName();
+        _builder.append(_name_1);
+        _builder.append(" > 1) ");
+        _builder.newLineIfNotEmpty();
+      } else {
+        String declaration = ((((("(" + left) + "1") + " => ") + right) + ")");
+        _builder.newLineIfNotEmpty();
+        for (int i = 2; (i <= left.getMax().getValue()); i = (i + 1)) {
+          String _declaration = declaration;
+          declaration = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " => ") + right) + ")"));
+        }
+        _builder.newLineIfNotEmpty();
+        _builder.append(declaration);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  @Override
+  public CharSequence getExcludes(final VarDeclaration left, final VarDeclaration right) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if (((left.getMin() == null) && (left.getMax() == null))) {
+        String _name = left.getName();
+        _builder.append(_name);
+        _builder.append(" + ");
+        String _name_1 = right.getName();
+        _builder.append(_name_1);
+        _builder.append("<= 1 ");
+        _builder.newLineIfNotEmpty();
+      } else {
+        String declaration = ((((("(" + left) + "1") + " + ") + right) + "<= 1)");
+        _builder.newLineIfNotEmpty();
+        for (int i = 2; (i <= left.getMax().getValue()); i = (i + 1)) {
+          String _declaration = declaration;
+          declaration = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " + ") + right) + "<= 1)"));
+        }
+        _builder.newLineIfNotEmpty();
+        _builder.append(declaration);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
 }

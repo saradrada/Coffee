@@ -2,6 +2,8 @@ package com.coffee.generator.THLCL
 
 import com.coffee.generator.CodeFactory
 import com.coffee.pLEC.VarDeclaration
+import com.coffee.pLEC.Structural
+import java.util.Map
 
 class BooleanFactory extends CodeFactory{
 	public static val HEADER="model"
@@ -21,32 +23,43 @@ class BooleanFactory extends CodeFactory{
 		return CONSTRAINTS
 	}
 	
-	override getOptional() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getOptional(VarDeclaration parent, VarDeclaration child) {
+		'''«child.name» => «parent.name»''' 
 	}
 	
-	override getMandatory() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getMandatory(VarDeclaration parent, VarDeclaration child) {
+		'''«parent.name» <=> «child.name»'''
 	}
 	
-	override getExcludes() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getExcludes(VarDeclaration left, VarDeclaration right) {
+		''' NOT («left.name» AND «right.name»)''' 
 	}
 	
-	override getIncludes() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getRequires(VarDeclaration left, VarDeclaration right) {
+		'''«left.name» => «right.name»''' 
 	}
 	
-	override getGroup() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents) {
+		var idsSum=""
+		var output =""
+		for (child : exp.group.ids) {
+			output += "(" + child.name + " => "+ exp.parent + ") AND \n"
+			idsSum+= child.name +" + "
+			parents.put(child.name, exp.parent)
+		}
+		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) +">= " 
+					+ exp.min.value + ") AND \n" 
+		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) + "<= "
+					+ exp.max.value+ ")" 
+		output
 	}
 	
-	override getRule() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
+
+	/**
+	 * All variables are boolean variables, there is no need to declare variants
+	 */
 	override getVariable(VarDeclaration variable) '''
-		«variable.type» «variable.name» 
+		«variable.type» «variable.name»
 	'''
 	
 

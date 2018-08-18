@@ -6,6 +6,7 @@ package com.coffee.pLEC.impl;
 import com.coffee.pLEC.ListOfIDs;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Structural;
+import com.coffee.pLEC.VarDeclaration;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -34,24 +35,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class StructuralImpl extends ConsExpressionImpl implements Structural
 {
   /**
-   * The default value of the '{@link #getParent() <em>Parent</em>}' attribute.
+   * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getParent()
    * @generated
    * @ordered
    */
-  protected static final String PARENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getParent() <em>Parent</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getParent()
-   * @generated
-   * @ordered
-   */
-  protected String parent = PARENT_EDEFAULT;
+  protected VarDeclaration parent;
 
   /**
    * The cached value of the '{@link #getGroup() <em>Group</em>}' containment reference.
@@ -109,7 +100,27 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getParent()
+  public VarDeclaration getParent()
+  {
+    if (parent != null && parent.eIsProxy())
+    {
+      InternalEObject oldParent = (InternalEObject)parent;
+      parent = (VarDeclaration)eResolveProxy(oldParent);
+      if (parent != oldParent)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLECPackage.STRUCTURAL__PARENT, oldParent, parent));
+      }
+    }
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VarDeclaration basicGetParent()
   {
     return parent;
   }
@@ -119,9 +130,9 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setParent(String newParent)
+  public void setParent(VarDeclaration newParent)
   {
-    String oldParent = parent;
+    VarDeclaration oldParent = parent;
     parent = newParent;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.STRUCTURAL__PARENT, oldParent, parent));
@@ -302,7 +313,8 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     switch (featureID)
     {
       case PLECPackage.STRUCTURAL__PARENT:
-        return getParent();
+        if (resolve) return getParent();
+        return basicGetParent();
       case PLECPackage.STRUCTURAL__GROUP:
         return getGroup();
       case PLECPackage.STRUCTURAL__MIN:
@@ -324,7 +336,7 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     switch (featureID)
     {
       case PLECPackage.STRUCTURAL__PARENT:
-        setParent((String)newValue);
+        setParent((VarDeclaration)newValue);
         return;
       case PLECPackage.STRUCTURAL__GROUP:
         setGroup((ListOfIDs)newValue);
@@ -350,7 +362,7 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     switch (featureID)
     {
       case PLECPackage.STRUCTURAL__PARENT:
-        setParent(PARENT_EDEFAULT);
+        setParent((VarDeclaration)null);
         return;
       case PLECPackage.STRUCTURAL__GROUP:
         setGroup((ListOfIDs)null);
@@ -376,7 +388,7 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
     switch (featureID)
     {
       case PLECPackage.STRUCTURAL__PARENT:
-        return PARENT_EDEFAULT == null ? parent != null : !PARENT_EDEFAULT.equals(parent);
+        return parent != null;
       case PLECPackage.STRUCTURAL__GROUP:
         return group != null;
       case PLECPackage.STRUCTURAL__MIN:
@@ -385,23 +397,6 @@ public class StructuralImpl extends ConsExpressionImpl implements Structural
         return max != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (parent: ");
-    result.append(parent);
-    result.append(')');
-    return result.toString();
   }
 
 } //StructuralImpl

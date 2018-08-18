@@ -1650,12 +1650,12 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStructural"
-    // InternalPLEC.g:670:1: ruleStructural returns [EObject current=null] : (otherlv_0= 'structural:' ( (lv_parent_1_0= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? ) ;
+    // InternalPLEC.g:670:1: ruleStructural returns [EObject current=null] : (otherlv_0= 'structural:' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? ) ;
     public final EObject ruleStructural() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_parent_1_0=null;
+        Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
@@ -1674,35 +1674,30 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:676:2: ( (otherlv_0= 'structural:' ( (lv_parent_1_0= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? ) )
-            // InternalPLEC.g:677:2: (otherlv_0= 'structural:' ( (lv_parent_1_0= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? )
+            // InternalPLEC.g:676:2: ( (otherlv_0= 'structural:' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? ) )
+            // InternalPLEC.g:677:2: (otherlv_0= 'structural:' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? )
             {
-            // InternalPLEC.g:677:2: (otherlv_0= 'structural:' ( (lv_parent_1_0= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? )
-            // InternalPLEC.g:678:3: otherlv_0= 'structural:' ( (lv_parent_1_0= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )?
+            // InternalPLEC.g:677:2: (otherlv_0= 'structural:' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )? )
+            // InternalPLEC.g:678:3: otherlv_0= 'structural:' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'variants:' otherlv_3= '[' ( (lv_group_4_0= ruleListOfIDs ) ) otherlv_5= ']' (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )?
             {
             otherlv_0=(Token)match(input,23,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getStructuralAccess().getStructuralKeyword_0());
             		
-            // InternalPLEC.g:682:3: ( (lv_parent_1_0= RULE_ID ) )
-            // InternalPLEC.g:683:4: (lv_parent_1_0= RULE_ID )
+            // InternalPLEC.g:682:3: ( (otherlv_1= RULE_ID ) )
+            // InternalPLEC.g:683:4: (otherlv_1= RULE_ID )
             {
-            // InternalPLEC.g:683:4: (lv_parent_1_0= RULE_ID )
-            // InternalPLEC.g:684:5: lv_parent_1_0= RULE_ID
+            // InternalPLEC.g:683:4: (otherlv_1= RULE_ID )
+            // InternalPLEC.g:684:5: otherlv_1= RULE_ID
             {
-            lv_parent_1_0=(Token)match(input,RULE_ID,FOLLOW_19); 
-
-            					newLeafNode(lv_parent_1_0, grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0());
-            				
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getStructuralRule());
             					}
-            					setWithLastConsumed(
-            						current,
-            						"parent",
-            						lv_parent_1_0,
-            						"org.eclipse.xtext.common.Terminals.ID");
+            				
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_19); 
+
+            					newLeafNode(otherlv_1, grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0());
             				
 
             }
@@ -1718,11 +1713,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getStructuralAccess().getLeftSquareBracketKeyword_3());
             		
-            // InternalPLEC.g:708:3: ( (lv_group_4_0= ruleListOfIDs ) )
-            // InternalPLEC.g:709:4: (lv_group_4_0= ruleListOfIDs )
+            // InternalPLEC.g:703:3: ( (lv_group_4_0= ruleListOfIDs ) )
+            // InternalPLEC.g:704:4: (lv_group_4_0= ruleListOfIDs )
             {
-            // InternalPLEC.g:709:4: (lv_group_4_0= ruleListOfIDs )
-            // InternalPLEC.g:710:5: lv_group_4_0= ruleListOfIDs
+            // InternalPLEC.g:704:4: (lv_group_4_0= ruleListOfIDs )
+            // InternalPLEC.g:705:5: lv_group_4_0= ruleListOfIDs
             {
 
             					newCompositeNode(grammarAccess.getStructuralAccess().getGroupListOfIDsParserRuleCall_4_0());
@@ -1753,7 +1748,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getStructuralAccess().getRightSquareBracketKeyword_5());
             		
-            // InternalPLEC.g:731:3: (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )?
+            // InternalPLEC.g:726:3: (otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1762,7 +1757,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalPLEC.g:732:4: otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']'
+                    // InternalPLEC.g:727:4: otherlv_6= 'card:' otherlv_7= '[' ( (lv_min_8_0= ruleNumber ) ) otherlv_9= ',' ( (lv_max_10_0= ruleNumber ) ) otherlv_11= ']'
                     {
                     otherlv_6=(Token)match(input,25,FOLLOW_7); 
 
@@ -1772,11 +1767,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_7, grammarAccess.getStructuralAccess().getLeftSquareBracketKeyword_6_1());
                     			
-                    // InternalPLEC.g:740:4: ( (lv_min_8_0= ruleNumber ) )
-                    // InternalPLEC.g:741:5: (lv_min_8_0= ruleNumber )
+                    // InternalPLEC.g:735:4: ( (lv_min_8_0= ruleNumber ) )
+                    // InternalPLEC.g:736:5: (lv_min_8_0= ruleNumber )
                     {
-                    // InternalPLEC.g:741:5: (lv_min_8_0= ruleNumber )
-                    // InternalPLEC.g:742:6: lv_min_8_0= ruleNumber
+                    // InternalPLEC.g:736:5: (lv_min_8_0= ruleNumber )
+                    // InternalPLEC.g:737:6: lv_min_8_0= ruleNumber
                     {
 
                     						newCompositeNode(grammarAccess.getStructuralAccess().getMinNumberParserRuleCall_6_2_0());
@@ -1807,11 +1802,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_9, grammarAccess.getStructuralAccess().getCommaKeyword_6_3());
                     			
-                    // InternalPLEC.g:763:4: ( (lv_max_10_0= ruleNumber ) )
-                    // InternalPLEC.g:764:5: (lv_max_10_0= ruleNumber )
+                    // InternalPLEC.g:758:4: ( (lv_max_10_0= ruleNumber ) )
+                    // InternalPLEC.g:759:5: (lv_max_10_0= ruleNumber )
                     {
-                    // InternalPLEC.g:764:5: (lv_max_10_0= ruleNumber )
-                    // InternalPLEC.g:765:6: lv_max_10_0= ruleNumber
+                    // InternalPLEC.g:759:5: (lv_max_10_0= ruleNumber )
+                    // InternalPLEC.g:760:6: lv_max_10_0= ruleNumber
                     {
 
                     						newCompositeNode(grammarAccess.getStructuralAccess().getMaxNumberParserRuleCall_6_4_0());
@@ -1871,7 +1866,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAttributes"
-    // InternalPLEC.g:791:1: entryRuleAttributes returns [EObject current=null] : iv_ruleAttributes= ruleAttributes EOF ;
+    // InternalPLEC.g:786:1: entryRuleAttributes returns [EObject current=null] : iv_ruleAttributes= ruleAttributes EOF ;
     public final EObject entryRuleAttributes() throws RecognitionException {
         EObject current = null;
 
@@ -1879,8 +1874,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:791:51: (iv_ruleAttributes= ruleAttributes EOF )
-            // InternalPLEC.g:792:2: iv_ruleAttributes= ruleAttributes EOF
+            // InternalPLEC.g:786:51: (iv_ruleAttributes= ruleAttributes EOF )
+            // InternalPLEC.g:787:2: iv_ruleAttributes= ruleAttributes EOF
             {
              newCompositeNode(grammarAccess.getAttributesRule()); 
             pushFollow(FOLLOW_1);
@@ -1907,7 +1902,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAttributes"
-    // InternalPLEC.g:798:1: ruleAttributes returns [EObject current=null] : (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) ) ;
+    // InternalPLEC.g:793:1: ruleAttributes returns [EObject current=null] : (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) ) ;
     public final EObject ruleAttributes() throws RecognitionException {
         EObject current = null;
 
@@ -1923,11 +1918,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:804:2: ( (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) ) )
-            // InternalPLEC.g:805:2: (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) )
+            // InternalPLEC.g:799:2: ( (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) ) )
+            // InternalPLEC.g:800:2: (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) )
             {
-            // InternalPLEC.g:805:2: (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) )
-            // InternalPLEC.g:806:3: otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) )
+            // InternalPLEC.g:800:2: (otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) ) )
+            // InternalPLEC.g:801:3: otherlv_0= 'attributes:' otherlv_1= '[' ( (lv_att_2_0= ruleListOfIDs ) ) otherlv_3= ']' otherlv_4= 'of' ( (otherlv_5= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,26,FOLLOW_7); 
 
@@ -1937,11 +1932,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getAttributesAccess().getLeftSquareBracketKeyword_1());
             		
-            // InternalPLEC.g:814:3: ( (lv_att_2_0= ruleListOfIDs ) )
-            // InternalPLEC.g:815:4: (lv_att_2_0= ruleListOfIDs )
+            // InternalPLEC.g:809:3: ( (lv_att_2_0= ruleListOfIDs ) )
+            // InternalPLEC.g:810:4: (lv_att_2_0= ruleListOfIDs )
             {
-            // InternalPLEC.g:815:4: (lv_att_2_0= ruleListOfIDs )
-            // InternalPLEC.g:816:5: lv_att_2_0= ruleListOfIDs
+            // InternalPLEC.g:810:4: (lv_att_2_0= ruleListOfIDs )
+            // InternalPLEC.g:811:5: lv_att_2_0= ruleListOfIDs
             {
 
             					newCompositeNode(grammarAccess.getAttributesAccess().getAttListOfIDsParserRuleCall_2_0());
@@ -1976,11 +1971,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getAttributesAccess().getOfKeyword_4());
             		
-            // InternalPLEC.g:841:3: ( (otherlv_5= RULE_ID ) )
-            // InternalPLEC.g:842:4: (otherlv_5= RULE_ID )
+            // InternalPLEC.g:836:3: ( (otherlv_5= RULE_ID ) )
+            // InternalPLEC.g:837:4: (otherlv_5= RULE_ID )
             {
-            // InternalPLEC.g:842:4: (otherlv_5= RULE_ID )
-            // InternalPLEC.g:843:5: otherlv_5= RULE_ID
+            // InternalPLEC.g:837:4: (otherlv_5= RULE_ID )
+            // InternalPLEC.g:838:5: otherlv_5= RULE_ID
             {
 
             					if (current==null) {
@@ -2020,7 +2015,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRefinement"
-    // InternalPLEC.g:858:1: entryRuleRefinement returns [EObject current=null] : iv_ruleRefinement= ruleRefinement EOF ;
+    // InternalPLEC.g:853:1: entryRuleRefinement returns [EObject current=null] : iv_ruleRefinement= ruleRefinement EOF ;
     public final EObject entryRuleRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2028,8 +2023,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:858:51: (iv_ruleRefinement= ruleRefinement EOF )
-            // InternalPLEC.g:859:2: iv_ruleRefinement= ruleRefinement EOF
+            // InternalPLEC.g:853:51: (iv_ruleRefinement= ruleRefinement EOF )
+            // InternalPLEC.g:854:2: iv_ruleRefinement= ruleRefinement EOF
             {
              newCompositeNode(grammarAccess.getRefinementRule()); 
             pushFollow(FOLLOW_1);
@@ -2056,7 +2051,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRefinement"
-    // InternalPLEC.g:865:1: ruleRefinement returns [EObject current=null] : (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement ) ;
+    // InternalPLEC.g:860:1: ruleRefinement returns [EObject current=null] : (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement ) ;
     public final EObject ruleRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2071,10 +2066,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:871:2: ( (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement ) )
-            // InternalPLEC.g:872:2: (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement )
+            // InternalPLEC.g:866:2: ( (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement ) )
+            // InternalPLEC.g:867:2: (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement )
             {
-            // InternalPLEC.g:872:2: (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement )
+            // InternalPLEC.g:867:2: (this_Assignment_0= ruleAssignment | this_VarRefinement_1= ruleVarRefinement | this_SetRefinement_2= ruleSetRefinement )
             int alt9=3;
             int LA9_0 = input.LA(1);
 
@@ -2105,7 +2100,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalPLEC.g:873:3: this_Assignment_0= ruleAssignment
+                    // InternalPLEC.g:868:3: this_Assignment_0= ruleAssignment
                     {
 
                     			newCompositeNode(grammarAccess.getRefinementAccess().getAssignmentParserRuleCall_0());
@@ -2123,7 +2118,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:882:3: this_VarRefinement_1= ruleVarRefinement
+                    // InternalPLEC.g:877:3: this_VarRefinement_1= ruleVarRefinement
                     {
 
                     			newCompositeNode(grammarAccess.getRefinementAccess().getVarRefinementParserRuleCall_1());
@@ -2141,7 +2136,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalPLEC.g:891:3: this_SetRefinement_2= ruleSetRefinement
+                    // InternalPLEC.g:886:3: this_SetRefinement_2= ruleSetRefinement
                     {
 
                     			newCompositeNode(grammarAccess.getRefinementAccess().getSetRefinementParserRuleCall_2());
@@ -2181,7 +2176,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAssignment"
-    // InternalPLEC.g:903:1: entryRuleAssignment returns [EObject current=null] : iv_ruleAssignment= ruleAssignment EOF ;
+    // InternalPLEC.g:898:1: entryRuleAssignment returns [EObject current=null] : iv_ruleAssignment= ruleAssignment EOF ;
     public final EObject entryRuleAssignment() throws RecognitionException {
         EObject current = null;
 
@@ -2189,8 +2184,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:903:51: (iv_ruleAssignment= ruleAssignment EOF )
-            // InternalPLEC.g:904:2: iv_ruleAssignment= ruleAssignment EOF
+            // InternalPLEC.g:898:51: (iv_ruleAssignment= ruleAssignment EOF )
+            // InternalPLEC.g:899:2: iv_ruleAssignment= ruleAssignment EOF
             {
              newCompositeNode(grammarAccess.getAssignmentRule()); 
             pushFollow(FOLLOW_1);
@@ -2217,7 +2212,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssignment"
-    // InternalPLEC.g:910:1: ruleAssignment returns [EObject current=null] : ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) ) ;
+    // InternalPLEC.g:905:1: ruleAssignment returns [EObject current=null] : ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) ) ;
     public final EObject ruleAssignment() throws RecognitionException {
         EObject current = null;
 
@@ -2230,17 +2225,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:916:2: ( ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) ) )
-            // InternalPLEC.g:917:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) )
+            // InternalPLEC.g:911:2: ( ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) ) )
+            // InternalPLEC.g:912:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) )
             {
-            // InternalPLEC.g:917:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) )
-            // InternalPLEC.g:918:3: ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) )
+            // InternalPLEC.g:912:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) ) )
+            // InternalPLEC.g:913:3: ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_value_2_0= ruleValue ) )
             {
-            // InternalPLEC.g:918:3: ( (lv_var_0_0= RULE_ID ) )
-            // InternalPLEC.g:919:4: (lv_var_0_0= RULE_ID )
+            // InternalPLEC.g:913:3: ( (lv_var_0_0= RULE_ID ) )
+            // InternalPLEC.g:914:4: (lv_var_0_0= RULE_ID )
             {
-            // InternalPLEC.g:919:4: (lv_var_0_0= RULE_ID )
-            // InternalPLEC.g:920:5: lv_var_0_0= RULE_ID
+            // InternalPLEC.g:914:4: (lv_var_0_0= RULE_ID )
+            // InternalPLEC.g:915:5: lv_var_0_0= RULE_ID
             {
             lv_var_0_0=(Token)match(input,RULE_ID,FOLLOW_22); 
 
@@ -2266,11 +2261,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getAssignmentAccess().getIsKeyword_1());
             		
-            // InternalPLEC.g:940:3: ( (lv_value_2_0= ruleValue ) )
-            // InternalPLEC.g:941:4: (lv_value_2_0= ruleValue )
+            // InternalPLEC.g:935:3: ( (lv_value_2_0= ruleValue ) )
+            // InternalPLEC.g:936:4: (lv_value_2_0= ruleValue )
             {
-            // InternalPLEC.g:941:4: (lv_value_2_0= ruleValue )
-            // InternalPLEC.g:942:5: lv_value_2_0= ruleValue
+            // InternalPLEC.g:936:4: (lv_value_2_0= ruleValue )
+            // InternalPLEC.g:937:5: lv_value_2_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0());
@@ -2320,7 +2315,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVarRefinement"
-    // InternalPLEC.g:963:1: entryRuleVarRefinement returns [EObject current=null] : iv_ruleVarRefinement= ruleVarRefinement EOF ;
+    // InternalPLEC.g:958:1: entryRuleVarRefinement returns [EObject current=null] : iv_ruleVarRefinement= ruleVarRefinement EOF ;
     public final EObject entryRuleVarRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2328,8 +2323,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:963:54: (iv_ruleVarRefinement= ruleVarRefinement EOF )
-            // InternalPLEC.g:964:2: iv_ruleVarRefinement= ruleVarRefinement EOF
+            // InternalPLEC.g:958:54: (iv_ruleVarRefinement= ruleVarRefinement EOF )
+            // InternalPLEC.g:959:2: iv_ruleVarRefinement= ruleVarRefinement EOF
             {
              newCompositeNode(grammarAccess.getVarRefinementRule()); 
             pushFollow(FOLLOW_1);
@@ -2356,7 +2351,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVarRefinement"
-    // InternalPLEC.g:970:1: ruleVarRefinement returns [EObject current=null] : ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) ) ;
+    // InternalPLEC.g:965:1: ruleVarRefinement returns [EObject current=null] : ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) ) ;
     public final EObject ruleVarRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2369,17 +2364,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:976:2: ( ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) ) )
-            // InternalPLEC.g:977:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) )
+            // InternalPLEC.g:971:2: ( ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) ) )
+            // InternalPLEC.g:972:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) )
             {
-            // InternalPLEC.g:977:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) )
-            // InternalPLEC.g:978:3: ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) )
+            // InternalPLEC.g:972:2: ( ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) ) )
+            // InternalPLEC.g:973:3: ( (lv_var_0_0= RULE_ID ) ) otherlv_1= 'in' ( (lv_values_2_0= ruleVariantDeclaration ) )
             {
-            // InternalPLEC.g:978:3: ( (lv_var_0_0= RULE_ID ) )
-            // InternalPLEC.g:979:4: (lv_var_0_0= RULE_ID )
+            // InternalPLEC.g:973:3: ( (lv_var_0_0= RULE_ID ) )
+            // InternalPLEC.g:974:4: (lv_var_0_0= RULE_ID )
             {
-            // InternalPLEC.g:979:4: (lv_var_0_0= RULE_ID )
-            // InternalPLEC.g:980:5: lv_var_0_0= RULE_ID
+            // InternalPLEC.g:974:4: (lv_var_0_0= RULE_ID )
+            // InternalPLEC.g:975:5: lv_var_0_0= RULE_ID
             {
             lv_var_0_0=(Token)match(input,RULE_ID,FOLLOW_23); 
 
@@ -2405,11 +2400,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getVarRefinementAccess().getInKeyword_1());
             		
-            // InternalPLEC.g:1000:3: ( (lv_values_2_0= ruleVariantDeclaration ) )
-            // InternalPLEC.g:1001:4: (lv_values_2_0= ruleVariantDeclaration )
+            // InternalPLEC.g:995:3: ( (lv_values_2_0= ruleVariantDeclaration ) )
+            // InternalPLEC.g:996:4: (lv_values_2_0= ruleVariantDeclaration )
             {
-            // InternalPLEC.g:1001:4: (lv_values_2_0= ruleVariantDeclaration )
-            // InternalPLEC.g:1002:5: lv_values_2_0= ruleVariantDeclaration
+            // InternalPLEC.g:996:4: (lv_values_2_0= ruleVariantDeclaration )
+            // InternalPLEC.g:997:5: lv_values_2_0= ruleVariantDeclaration
             {
 
             					newCompositeNode(grammarAccess.getVarRefinementAccess().getValuesVariantDeclarationParserRuleCall_2_0());
@@ -2459,7 +2454,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSetRefinement"
-    // InternalPLEC.g:1023:1: entryRuleSetRefinement returns [EObject current=null] : iv_ruleSetRefinement= ruleSetRefinement EOF ;
+    // InternalPLEC.g:1018:1: entryRuleSetRefinement returns [EObject current=null] : iv_ruleSetRefinement= ruleSetRefinement EOF ;
     public final EObject entryRuleSetRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2467,8 +2462,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1023:54: (iv_ruleSetRefinement= ruleSetRefinement EOF )
-            // InternalPLEC.g:1024:2: iv_ruleSetRefinement= ruleSetRefinement EOF
+            // InternalPLEC.g:1018:54: (iv_ruleSetRefinement= ruleSetRefinement EOF )
+            // InternalPLEC.g:1019:2: iv_ruleSetRefinement= ruleSetRefinement EOF
             {
              newCompositeNode(grammarAccess.getSetRefinementRule()); 
             pushFollow(FOLLOW_1);
@@ -2495,7 +2490,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSetRefinement"
-    // InternalPLEC.g:1030:1: ruleSetRefinement returns [EObject current=null] : (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' ) ;
+    // InternalPLEC.g:1025:1: ruleSetRefinement returns [EObject current=null] : (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' ) ;
     public final EObject ruleSetRefinement() throws RecognitionException {
         EObject current = null;
 
@@ -2521,11 +2516,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1036:2: ( (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' ) )
-            // InternalPLEC.g:1037:2: (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' )
+            // InternalPLEC.g:1031:2: ( (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' ) )
+            // InternalPLEC.g:1032:2: (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' )
             {
-            // InternalPLEC.g:1037:2: (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' )
-            // InternalPLEC.g:1038:3: otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']'
+            // InternalPLEC.g:1032:2: (otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']' )
+            // InternalPLEC.g:1033:3: otherlv_0= 'vars:' otherlv_1= '(' ( (lv_vars_2_0= ruleListOfIDs ) ) otherlv_3= ')' otherlv_4= 'variants' otherlv_5= '[' otherlv_6= '(' ( (lv_head_7_0= ruleListOfValues ) ) otherlv_8= ')' (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+ otherlv_13= ']'
             {
             otherlv_0=(Token)match(input,30,FOLLOW_24); 
 
@@ -2535,11 +2530,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getSetRefinementAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalPLEC.g:1046:3: ( (lv_vars_2_0= ruleListOfIDs ) )
-            // InternalPLEC.g:1047:4: (lv_vars_2_0= ruleListOfIDs )
+            // InternalPLEC.g:1041:3: ( (lv_vars_2_0= ruleListOfIDs ) )
+            // InternalPLEC.g:1042:4: (lv_vars_2_0= ruleListOfIDs )
             {
-            // InternalPLEC.g:1047:4: (lv_vars_2_0= ruleListOfIDs )
-            // InternalPLEC.g:1048:5: lv_vars_2_0= ruleListOfIDs
+            // InternalPLEC.g:1042:4: (lv_vars_2_0= ruleListOfIDs )
+            // InternalPLEC.g:1043:5: lv_vars_2_0= ruleListOfIDs
             {
 
             					newCompositeNode(grammarAccess.getSetRefinementAccess().getVarsListOfIDsParserRuleCall_2_0());
@@ -2582,11 +2577,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_6, grammarAccess.getSetRefinementAccess().getLeftParenthesisKeyword_6());
             		
-            // InternalPLEC.g:1081:3: ( (lv_head_7_0= ruleListOfValues ) )
-            // InternalPLEC.g:1082:4: (lv_head_7_0= ruleListOfValues )
+            // InternalPLEC.g:1076:3: ( (lv_head_7_0= ruleListOfValues ) )
+            // InternalPLEC.g:1077:4: (lv_head_7_0= ruleListOfValues )
             {
-            // InternalPLEC.g:1082:4: (lv_head_7_0= ruleListOfValues )
-            // InternalPLEC.g:1083:5: lv_head_7_0= ruleListOfValues
+            // InternalPLEC.g:1077:4: (lv_head_7_0= ruleListOfValues )
+            // InternalPLEC.g:1078:5: lv_head_7_0= ruleListOfValues
             {
 
             					newCompositeNode(grammarAccess.getSetRefinementAccess().getHeadListOfValuesParserRuleCall_7_0());
@@ -2617,7 +2612,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_8, grammarAccess.getSetRefinementAccess().getRightParenthesisKeyword_8());
             		
-            // InternalPLEC.g:1104:3: (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+
+            // InternalPLEC.g:1099:3: (otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')' )+
             int cnt10=0;
             loop10:
             do {
@@ -2631,7 +2626,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalPLEC.g:1105:4: otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')'
+            	    // InternalPLEC.g:1100:4: otherlv_9= ',' otherlv_10= '(' ( (lv_tail_11_0= ruleListOfValues ) ) otherlv_12= ')'
             	    {
             	    otherlv_9=(Token)match(input,16,FOLLOW_24); 
 
@@ -2641,11 +2636,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             	    				newLeafNode(otherlv_10, grammarAccess.getSetRefinementAccess().getLeftParenthesisKeyword_9_1());
             	    			
-            	    // InternalPLEC.g:1113:4: ( (lv_tail_11_0= ruleListOfValues ) )
-            	    // InternalPLEC.g:1114:5: (lv_tail_11_0= ruleListOfValues )
+            	    // InternalPLEC.g:1108:4: ( (lv_tail_11_0= ruleListOfValues ) )
+            	    // InternalPLEC.g:1109:5: (lv_tail_11_0= ruleListOfValues )
             	    {
-            	    // InternalPLEC.g:1114:5: (lv_tail_11_0= ruleListOfValues )
-            	    // InternalPLEC.g:1115:6: lv_tail_11_0= ruleListOfValues
+            	    // InternalPLEC.g:1109:5: (lv_tail_11_0= ruleListOfValues )
+            	    // InternalPLEC.g:1110:6: lv_tail_11_0= ruleListOfValues
             	    {
 
             	    						newCompositeNode(grammarAccess.getSetRefinementAccess().getTailListOfValuesParserRuleCall_9_2_0());
@@ -2716,7 +2711,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRule"
-    // InternalPLEC.g:1145:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
+    // InternalPLEC.g:1140:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
     public final EObject entryRuleRule() throws RecognitionException {
         EObject current = null;
 
@@ -2724,8 +2719,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1145:45: (iv_ruleRule= ruleRule EOF )
-            // InternalPLEC.g:1146:2: iv_ruleRule= ruleRule EOF
+            // InternalPLEC.g:1140:45: (iv_ruleRule= ruleRule EOF )
+            // InternalPLEC.g:1141:2: iv_ruleRule= ruleRule EOF
             {
              newCompositeNode(grammarAccess.getRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -2752,7 +2747,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRule"
-    // InternalPLEC.g:1152:1: ruleRule returns [EObject current=null] : ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) ) ;
+    // InternalPLEC.g:1147:1: ruleRule returns [EObject current=null] : ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) ) ;
     public final EObject ruleRule() throws RecognitionException {
         EObject current = null;
 
@@ -2766,17 +2761,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1158:2: ( ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) ) )
-            // InternalPLEC.g:1159:2: ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) )
+            // InternalPLEC.g:1153:2: ( ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) ) )
+            // InternalPLEC.g:1154:2: ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) )
             {
-            // InternalPLEC.g:1159:2: ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) )
-            // InternalPLEC.g:1160:3: ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) )
+            // InternalPLEC.g:1154:2: ( ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) ) )
+            // InternalPLEC.g:1155:3: ( (lv_condition_0_0= ruleTerminalExp ) ) otherlv_1= '-->' ( (lv_consequence_2_0= ruleTerminalExp ) )
             {
-            // InternalPLEC.g:1160:3: ( (lv_condition_0_0= ruleTerminalExp ) )
-            // InternalPLEC.g:1161:4: (lv_condition_0_0= ruleTerminalExp )
+            // InternalPLEC.g:1155:3: ( (lv_condition_0_0= ruleTerminalExp ) )
+            // InternalPLEC.g:1156:4: (lv_condition_0_0= ruleTerminalExp )
             {
-            // InternalPLEC.g:1161:4: (lv_condition_0_0= ruleTerminalExp )
-            // InternalPLEC.g:1162:5: lv_condition_0_0= ruleTerminalExp
+            // InternalPLEC.g:1156:4: (lv_condition_0_0= ruleTerminalExp )
+            // InternalPLEC.g:1157:5: lv_condition_0_0= ruleTerminalExp
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getConditionTerminalExpParserRuleCall_0_0());
@@ -2807,11 +2802,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getRuleAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_1());
             		
-            // InternalPLEC.g:1183:3: ( (lv_consequence_2_0= ruleTerminalExp ) )
-            // InternalPLEC.g:1184:4: (lv_consequence_2_0= ruleTerminalExp )
+            // InternalPLEC.g:1178:3: ( (lv_consequence_2_0= ruleTerminalExp ) )
+            // InternalPLEC.g:1179:4: (lv_consequence_2_0= ruleTerminalExp )
             {
-            // InternalPLEC.g:1184:4: (lv_consequence_2_0= ruleTerminalExp )
-            // InternalPLEC.g:1185:5: lv_consequence_2_0= ruleTerminalExp
+            // InternalPLEC.g:1179:4: (lv_consequence_2_0= ruleTerminalExp )
+            // InternalPLEC.g:1180:5: lv_consequence_2_0= ruleTerminalExp
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getConsequenceTerminalExpParserRuleCall_2_0());
@@ -2861,7 +2856,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFodaUN"
-    // InternalPLEC.g:1206:1: entryRuleFodaUN returns [EObject current=null] : iv_ruleFodaUN= ruleFodaUN EOF ;
+    // InternalPLEC.g:1201:1: entryRuleFodaUN returns [EObject current=null] : iv_ruleFodaUN= ruleFodaUN EOF ;
     public final EObject entryRuleFodaUN() throws RecognitionException {
         EObject current = null;
 
@@ -2869,8 +2864,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1206:47: (iv_ruleFodaUN= ruleFodaUN EOF )
-            // InternalPLEC.g:1207:2: iv_ruleFodaUN= ruleFodaUN EOF
+            // InternalPLEC.g:1201:47: (iv_ruleFodaUN= ruleFodaUN EOF )
+            // InternalPLEC.g:1202:2: iv_ruleFodaUN= ruleFodaUN EOF
             {
              newCompositeNode(grammarAccess.getFodaUNRule()); 
             pushFollow(FOLLOW_1);
@@ -2897,7 +2892,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFodaUN"
-    // InternalPLEC.g:1213:1: ruleFodaUN returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) ) ;
+    // InternalPLEC.g:1208:1: ruleFodaUN returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) ) ;
     public final EObject ruleFodaUN() throws RecognitionException {
         EObject current = null;
 
@@ -2910,17 +2905,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1219:2: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) ) )
-            // InternalPLEC.g:1220:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) )
+            // InternalPLEC.g:1214:2: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) ) )
+            // InternalPLEC.g:1215:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) )
             {
-            // InternalPLEC.g:1220:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) )
-            // InternalPLEC.g:1221:3: ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) )
+            // InternalPLEC.g:1215:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) ) )
+            // InternalPLEC.g:1216:3: ( (otherlv_0= RULE_ID ) ) otherlv_1= 'is' ( (lv_op_2_0= ruleUnaryOp ) )
             {
-            // InternalPLEC.g:1221:3: ( (otherlv_0= RULE_ID ) )
-            // InternalPLEC.g:1222:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1216:3: ( (otherlv_0= RULE_ID ) )
+            // InternalPLEC.g:1217:4: (otherlv_0= RULE_ID )
             {
-            // InternalPLEC.g:1222:4: (otherlv_0= RULE_ID )
-            // InternalPLEC.g:1223:5: otherlv_0= RULE_ID
+            // InternalPLEC.g:1217:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1218:5: otherlv_0= RULE_ID
             {
 
             					if (current==null) {
@@ -2941,11 +2936,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getFodaUNAccess().getIsKeyword_1());
             		
-            // InternalPLEC.g:1238:3: ( (lv_op_2_0= ruleUnaryOp ) )
-            // InternalPLEC.g:1239:4: (lv_op_2_0= ruleUnaryOp )
+            // InternalPLEC.g:1233:3: ( (lv_op_2_0= ruleUnaryOp ) )
+            // InternalPLEC.g:1234:4: (lv_op_2_0= ruleUnaryOp )
             {
-            // InternalPLEC.g:1239:4: (lv_op_2_0= ruleUnaryOp )
-            // InternalPLEC.g:1240:5: lv_op_2_0= ruleUnaryOp
+            // InternalPLEC.g:1234:4: (lv_op_2_0= ruleUnaryOp )
+            // InternalPLEC.g:1235:5: lv_op_2_0= ruleUnaryOp
             {
 
             					newCompositeNode(grammarAccess.getFodaUNAccess().getOpUnaryOpParserRuleCall_2_0());
@@ -2995,7 +2990,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFodaBin"
-    // InternalPLEC.g:1261:1: entryRuleFodaBin returns [EObject current=null] : iv_ruleFodaBin= ruleFodaBin EOF ;
+    // InternalPLEC.g:1256:1: entryRuleFodaBin returns [EObject current=null] : iv_ruleFodaBin= ruleFodaBin EOF ;
     public final EObject entryRuleFodaBin() throws RecognitionException {
         EObject current = null;
 
@@ -3003,8 +2998,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1261:48: (iv_ruleFodaBin= ruleFodaBin EOF )
-            // InternalPLEC.g:1262:2: iv_ruleFodaBin= ruleFodaBin EOF
+            // InternalPLEC.g:1256:48: (iv_ruleFodaBin= ruleFodaBin EOF )
+            // InternalPLEC.g:1257:2: iv_ruleFodaBin= ruleFodaBin EOF
             {
              newCompositeNode(grammarAccess.getFodaBinRule()); 
             pushFollow(FOLLOW_1);
@@ -3031,7 +3026,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFodaBin"
-    // InternalPLEC.g:1268:1: ruleFodaBin returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) ) ;
+    // InternalPLEC.g:1263:1: ruleFodaBin returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) ) ;
     public final EObject ruleFodaBin() throws RecognitionException {
         EObject current = null;
 
@@ -3044,17 +3039,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1274:2: ( ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) ) )
-            // InternalPLEC.g:1275:2: ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) )
+            // InternalPLEC.g:1269:2: ( ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) ) )
+            // InternalPLEC.g:1270:2: ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) )
             {
-            // InternalPLEC.g:1275:2: ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) )
-            // InternalPLEC.g:1276:3: ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) )
+            // InternalPLEC.g:1270:2: ( ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) ) )
+            // InternalPLEC.g:1271:3: ( (otherlv_0= RULE_ID ) ) ( (lv_op_1_0= ruleBinOp ) ) ( (otherlv_2= RULE_ID ) )
             {
-            // InternalPLEC.g:1276:3: ( (otherlv_0= RULE_ID ) )
-            // InternalPLEC.g:1277:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1271:3: ( (otherlv_0= RULE_ID ) )
+            // InternalPLEC.g:1272:4: (otherlv_0= RULE_ID )
             {
-            // InternalPLEC.g:1277:4: (otherlv_0= RULE_ID )
-            // InternalPLEC.g:1278:5: otherlv_0= RULE_ID
+            // InternalPLEC.g:1272:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1273:5: otherlv_0= RULE_ID
             {
 
             					if (current==null) {
@@ -3071,11 +3066,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPLEC.g:1289:3: ( (lv_op_1_0= ruleBinOp ) )
-            // InternalPLEC.g:1290:4: (lv_op_1_0= ruleBinOp )
+            // InternalPLEC.g:1284:3: ( (lv_op_1_0= ruleBinOp ) )
+            // InternalPLEC.g:1285:4: (lv_op_1_0= ruleBinOp )
             {
-            // InternalPLEC.g:1290:4: (lv_op_1_0= ruleBinOp )
-            // InternalPLEC.g:1291:5: lv_op_1_0= ruleBinOp
+            // InternalPLEC.g:1285:4: (lv_op_1_0= ruleBinOp )
+            // InternalPLEC.g:1286:5: lv_op_1_0= ruleBinOp
             {
 
             					newCompositeNode(grammarAccess.getFodaBinAccess().getOpBinOpParserRuleCall_1_0());
@@ -3102,11 +3097,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPLEC.g:1308:3: ( (otherlv_2= RULE_ID ) )
-            // InternalPLEC.g:1309:4: (otherlv_2= RULE_ID )
+            // InternalPLEC.g:1303:3: ( (otherlv_2= RULE_ID ) )
+            // InternalPLEC.g:1304:4: (otherlv_2= RULE_ID )
             {
-            // InternalPLEC.g:1309:4: (otherlv_2= RULE_ID )
-            // InternalPLEC.g:1310:5: otherlv_2= RULE_ID
+            // InternalPLEC.g:1304:4: (otherlv_2= RULE_ID )
+            // InternalPLEC.g:1305:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
@@ -3146,7 +3141,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBoolVal"
-    // InternalPLEC.g:1325:1: entryRuleBoolVal returns [EObject current=null] : iv_ruleBoolVal= ruleBoolVal EOF ;
+    // InternalPLEC.g:1320:1: entryRuleBoolVal returns [EObject current=null] : iv_ruleBoolVal= ruleBoolVal EOF ;
     public final EObject entryRuleBoolVal() throws RecognitionException {
         EObject current = null;
 
@@ -3154,8 +3149,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1325:48: (iv_ruleBoolVal= ruleBoolVal EOF )
-            // InternalPLEC.g:1326:2: iv_ruleBoolVal= ruleBoolVal EOF
+            // InternalPLEC.g:1320:48: (iv_ruleBoolVal= ruleBoolVal EOF )
+            // InternalPLEC.g:1321:2: iv_ruleBoolVal= ruleBoolVal EOF
             {
              newCompositeNode(grammarAccess.getBoolValRule()); 
             pushFollow(FOLLOW_1);
@@ -3182,7 +3177,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBoolVal"
-    // InternalPLEC.g:1332:1: ruleBoolVal returns [EObject current=null] : ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) ;
+    // InternalPLEC.g:1327:1: ruleBoolVal returns [EObject current=null] : ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) ;
     public final EObject ruleBoolVal() throws RecognitionException {
         EObject current = null;
 
@@ -3193,16 +3188,16 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1338:2: ( ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) )
-            // InternalPLEC.g:1339:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
+            // InternalPLEC.g:1333:2: ( ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) ) )
+            // InternalPLEC.g:1334:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
             {
-            // InternalPLEC.g:1339:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
-            // InternalPLEC.g:1340:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
+            // InternalPLEC.g:1334:2: ( ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) ) )
+            // InternalPLEC.g:1335:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
             {
-            // InternalPLEC.g:1340:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
-            // InternalPLEC.g:1341:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
+            // InternalPLEC.g:1335:3: ( (lv_value_0_1= 'true' | lv_value_0_2= 'false' ) )
+            // InternalPLEC.g:1336:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
             {
-            // InternalPLEC.g:1341:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
+            // InternalPLEC.g:1336:4: (lv_value_0_1= 'true' | lv_value_0_2= 'false' )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -3220,7 +3215,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalPLEC.g:1342:5: lv_value_0_1= 'true'
+                    // InternalPLEC.g:1337:5: lv_value_0_1= 'true'
                     {
                     lv_value_0_1=(Token)match(input,33,FOLLOW_2); 
 
@@ -3236,7 +3231,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1353:5: lv_value_0_2= 'false'
+                    // InternalPLEC.g:1348:5: lv_value_0_2= 'false'
                     {
                     lv_value_0_2=(Token)match(input,34,FOLLOW_2); 
 
@@ -3280,7 +3275,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNumber"
-    // InternalPLEC.g:1369:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
+    // InternalPLEC.g:1364:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
     public final EObject entryRuleNumber() throws RecognitionException {
         EObject current = null;
 
@@ -3288,8 +3283,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1369:47: (iv_ruleNumber= ruleNumber EOF )
-            // InternalPLEC.g:1370:2: iv_ruleNumber= ruleNumber EOF
+            // InternalPLEC.g:1364:47: (iv_ruleNumber= ruleNumber EOF )
+            // InternalPLEC.g:1365:2: iv_ruleNumber= ruleNumber EOF
             {
              newCompositeNode(grammarAccess.getNumberRule()); 
             pushFollow(FOLLOW_1);
@@ -3316,7 +3311,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumber"
-    // InternalPLEC.g:1376:1: ruleNumber returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
+    // InternalPLEC.g:1371:1: ruleNumber returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
     public final EObject ruleNumber() throws RecognitionException {
         EObject current = null;
 
@@ -3326,14 +3321,14 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1382:2: ( ( (lv_value_0_0= RULE_INT ) ) )
-            // InternalPLEC.g:1383:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalPLEC.g:1377:2: ( ( (lv_value_0_0= RULE_INT ) ) )
+            // InternalPLEC.g:1378:2: ( (lv_value_0_0= RULE_INT ) )
             {
-            // InternalPLEC.g:1383:2: ( (lv_value_0_0= RULE_INT ) )
-            // InternalPLEC.g:1384:3: (lv_value_0_0= RULE_INT )
+            // InternalPLEC.g:1378:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalPLEC.g:1379:3: (lv_value_0_0= RULE_INT )
             {
-            // InternalPLEC.g:1384:3: (lv_value_0_0= RULE_INT )
-            // InternalPLEC.g:1385:4: lv_value_0_0= RULE_INT
+            // InternalPLEC.g:1379:3: (lv_value_0_0= RULE_INT )
+            // InternalPLEC.g:1380:4: lv_value_0_0= RULE_INT
             {
             lv_value_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -3375,7 +3370,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSymbol"
-    // InternalPLEC.g:1404:1: entryRuleSymbol returns [EObject current=null] : iv_ruleSymbol= ruleSymbol EOF ;
+    // InternalPLEC.g:1399:1: entryRuleSymbol returns [EObject current=null] : iv_ruleSymbol= ruleSymbol EOF ;
     public final EObject entryRuleSymbol() throws RecognitionException {
         EObject current = null;
 
@@ -3383,8 +3378,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1404:47: (iv_ruleSymbol= ruleSymbol EOF )
-            // InternalPLEC.g:1405:2: iv_ruleSymbol= ruleSymbol EOF
+            // InternalPLEC.g:1399:47: (iv_ruleSymbol= ruleSymbol EOF )
+            // InternalPLEC.g:1400:2: iv_ruleSymbol= ruleSymbol EOF
             {
              newCompositeNode(grammarAccess.getSymbolRule()); 
             pushFollow(FOLLOW_1);
@@ -3411,7 +3406,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSymbol"
-    // InternalPLEC.g:1411:1: ruleSymbol returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
+    // InternalPLEC.g:1406:1: ruleSymbol returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
     public final EObject ruleSymbol() throws RecognitionException {
         EObject current = null;
 
@@ -3421,14 +3416,14 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1417:2: ( ( (lv_value_0_0= RULE_ID ) ) )
-            // InternalPLEC.g:1418:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalPLEC.g:1412:2: ( ( (lv_value_0_0= RULE_ID ) ) )
+            // InternalPLEC.g:1413:2: ( (lv_value_0_0= RULE_ID ) )
             {
-            // InternalPLEC.g:1418:2: ( (lv_value_0_0= RULE_ID ) )
-            // InternalPLEC.g:1419:3: (lv_value_0_0= RULE_ID )
+            // InternalPLEC.g:1413:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalPLEC.g:1414:3: (lv_value_0_0= RULE_ID )
             {
-            // InternalPLEC.g:1419:3: (lv_value_0_0= RULE_ID )
-            // InternalPLEC.g:1420:4: lv_value_0_0= RULE_ID
+            // InternalPLEC.g:1414:3: (lv_value_0_0= RULE_ID )
+            // InternalPLEC.g:1415:4: lv_value_0_0= RULE_ID
             {
             lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -3470,7 +3465,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValue"
-    // InternalPLEC.g:1439:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
+    // InternalPLEC.g:1434:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
     public final EObject entryRuleValue() throws RecognitionException {
         EObject current = null;
 
@@ -3478,8 +3473,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1439:46: (iv_ruleValue= ruleValue EOF )
-            // InternalPLEC.g:1440:2: iv_ruleValue= ruleValue EOF
+            // InternalPLEC.g:1434:46: (iv_ruleValue= ruleValue EOF )
+            // InternalPLEC.g:1435:2: iv_ruleValue= ruleValue EOF
             {
              newCompositeNode(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_1);
@@ -3506,7 +3501,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValue"
-    // InternalPLEC.g:1446:1: ruleValue returns [EObject current=null] : (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) ;
+    // InternalPLEC.g:1441:1: ruleValue returns [EObject current=null] : (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
@@ -3519,10 +3514,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1452:2: ( (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) )
-            // InternalPLEC.g:1453:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
+            // InternalPLEC.g:1447:2: ( (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue ) )
+            // InternalPLEC.g:1448:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
             {
-            // InternalPLEC.g:1453:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
+            // InternalPLEC.g:1448:2: (this_Number_0= ruleNumber | this_NonEnumerableValue_1= ruleNonEnumerableValue )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -3540,7 +3535,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalPLEC.g:1454:3: this_Number_0= ruleNumber
+                    // InternalPLEC.g:1449:3: this_Number_0= ruleNumber
                     {
 
                     			newCompositeNode(grammarAccess.getValueAccess().getNumberParserRuleCall_0());
@@ -3558,7 +3553,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1463:3: this_NonEnumerableValue_1= ruleNonEnumerableValue
+                    // InternalPLEC.g:1458:3: this_NonEnumerableValue_1= ruleNonEnumerableValue
                     {
 
                     			newCompositeNode(grammarAccess.getValueAccess().getNonEnumerableValueParserRuleCall_1());
@@ -3598,7 +3593,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNonEnumerableValue"
-    // InternalPLEC.g:1475:1: entryRuleNonEnumerableValue returns [EObject current=null] : iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF ;
+    // InternalPLEC.g:1470:1: entryRuleNonEnumerableValue returns [EObject current=null] : iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF ;
     public final EObject entryRuleNonEnumerableValue() throws RecognitionException {
         EObject current = null;
 
@@ -3606,8 +3601,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1475:59: (iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF )
-            // InternalPLEC.g:1476:2: iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF
+            // InternalPLEC.g:1470:59: (iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF )
+            // InternalPLEC.g:1471:2: iv_ruleNonEnumerableValue= ruleNonEnumerableValue EOF
             {
              newCompositeNode(grammarAccess.getNonEnumerableValueRule()); 
             pushFollow(FOLLOW_1);
@@ -3634,7 +3629,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNonEnumerableValue"
-    // InternalPLEC.g:1482:1: ruleNonEnumerableValue returns [EObject current=null] : (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) ;
+    // InternalPLEC.g:1477:1: ruleNonEnumerableValue returns [EObject current=null] : (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) ;
     public final EObject ruleNonEnumerableValue() throws RecognitionException {
         EObject current = null;
 
@@ -3647,10 +3642,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1488:2: ( (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) )
-            // InternalPLEC.g:1489:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
+            // InternalPLEC.g:1483:2: ( (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol ) )
+            // InternalPLEC.g:1484:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
             {
-            // InternalPLEC.g:1489:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
+            // InternalPLEC.g:1484:2: (this_BoolVal_0= ruleBoolVal | this_Symbol_1= ruleSymbol )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -3668,7 +3663,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalPLEC.g:1490:3: this_BoolVal_0= ruleBoolVal
+                    // InternalPLEC.g:1485:3: this_BoolVal_0= ruleBoolVal
                     {
 
                     			newCompositeNode(grammarAccess.getNonEnumerableValueAccess().getBoolValParserRuleCall_0());
@@ -3686,7 +3681,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1499:3: this_Symbol_1= ruleSymbol
+                    // InternalPLEC.g:1494:3: this_Symbol_1= ruleSymbol
                     {
 
                     			newCompositeNode(grammarAccess.getNonEnumerableValueAccess().getSymbolParserRuleCall_1());
@@ -3726,7 +3721,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVarType"
-    // InternalPLEC.g:1511:1: entryRuleVarType returns [String current=null] : iv_ruleVarType= ruleVarType EOF ;
+    // InternalPLEC.g:1506:1: entryRuleVarType returns [String current=null] : iv_ruleVarType= ruleVarType EOF ;
     public final String entryRuleVarType() throws RecognitionException {
         String current = null;
 
@@ -3734,8 +3729,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1511:47: (iv_ruleVarType= ruleVarType EOF )
-            // InternalPLEC.g:1512:2: iv_ruleVarType= ruleVarType EOF
+            // InternalPLEC.g:1506:47: (iv_ruleVarType= ruleVarType EOF )
+            // InternalPLEC.g:1507:2: iv_ruleVarType= ruleVarType EOF
             {
              newCompositeNode(grammarAccess.getVarTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -3762,7 +3757,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVarType"
-    // InternalPLEC.g:1518:1: ruleVarType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) ;
+    // InternalPLEC.g:1513:1: ruleVarType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) ;
     public final AntlrDatatypeRuleToken ruleVarType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3772,10 +3767,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1524:2: ( (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) )
-            // InternalPLEC.g:1525:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
+            // InternalPLEC.g:1519:2: ( (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' ) )
+            // InternalPLEC.g:1520:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
             {
-            // InternalPLEC.g:1525:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
+            // InternalPLEC.g:1520:2: (kw= 'boolean' | kw= 'integer' | kw= 'symbolic' )
             int alt14=3;
             switch ( input.LA(1) ) {
             case 35:
@@ -3802,7 +3797,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             switch (alt14) {
                 case 1 :
-                    // InternalPLEC.g:1526:3: kw= 'boolean'
+                    // InternalPLEC.g:1521:3: kw= 'boolean'
                     {
                     kw=(Token)match(input,35,FOLLOW_2); 
 
@@ -3813,7 +3808,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1532:3: kw= 'integer'
+                    // InternalPLEC.g:1527:3: kw= 'integer'
                     {
                     kw=(Token)match(input,36,FOLLOW_2); 
 
@@ -3824,7 +3819,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalPLEC.g:1538:3: kw= 'symbolic'
+                    // InternalPLEC.g:1533:3: kw= 'symbolic'
                     {
                     kw=(Token)match(input,37,FOLLOW_2); 
 
@@ -3857,7 +3852,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleListOfValues"
-    // InternalPLEC.g:1547:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
+    // InternalPLEC.g:1542:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
     public final EObject entryRuleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -3865,8 +3860,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1547:53: (iv_ruleListOfValues= ruleListOfValues EOF )
-            // InternalPLEC.g:1548:2: iv_ruleListOfValues= ruleListOfValues EOF
+            // InternalPLEC.g:1542:53: (iv_ruleListOfValues= ruleListOfValues EOF )
+            // InternalPLEC.g:1543:2: iv_ruleListOfValues= ruleListOfValues EOF
             {
              newCompositeNode(grammarAccess.getListOfValuesRule()); 
             pushFollow(FOLLOW_1);
@@ -3893,7 +3888,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListOfValues"
-    // InternalPLEC.g:1554:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) ;
+    // InternalPLEC.g:1549:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) ;
     public final EObject ruleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -3907,17 +3902,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1560:2: ( ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) )
-            // InternalPLEC.g:1561:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
+            // InternalPLEC.g:1555:2: ( ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* ) )
+            // InternalPLEC.g:1556:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
             {
-            // InternalPLEC.g:1561:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
-            // InternalPLEC.g:1562:3: ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
+            // InternalPLEC.g:1556:2: ( ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )* )
+            // InternalPLEC.g:1557:3: ( (lv_values_0_0= ruleValue ) ) ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
             {
-            // InternalPLEC.g:1562:3: ( (lv_values_0_0= ruleValue ) )
-            // InternalPLEC.g:1563:4: (lv_values_0_0= ruleValue )
+            // InternalPLEC.g:1557:3: ( (lv_values_0_0= ruleValue ) )
+            // InternalPLEC.g:1558:4: (lv_values_0_0= ruleValue )
             {
-            // InternalPLEC.g:1563:4: (lv_values_0_0= ruleValue )
-            // InternalPLEC.g:1564:5: lv_values_0_0= ruleValue
+            // InternalPLEC.g:1558:4: (lv_values_0_0= ruleValue )
+            // InternalPLEC.g:1559:5: lv_values_0_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_0_0());
@@ -3944,7 +3939,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPLEC.g:1581:3: ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
+            // InternalPLEC.g:1576:3: ( (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) ) )*
             loop16:
             do {
                 int alt16=2;
@@ -3957,9 +3952,9 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
                 switch (alt16) {
             	case 1 :
-            	    // InternalPLEC.g:1582:4: (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) )
+            	    // InternalPLEC.g:1577:4: (otherlv_1= ',' )+ ( (lv_values_2_0= ruleValue ) )
             	    {
-            	    // InternalPLEC.g:1582:4: (otherlv_1= ',' )+
+            	    // InternalPLEC.g:1577:4: (otherlv_1= ',' )+
             	    int cnt15=0;
             	    loop15:
             	    do {
@@ -3973,7 +3968,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             	        switch (alt15) {
             	    	case 1 :
-            	    	    // InternalPLEC.g:1583:5: otherlv_1= ','
+            	    	    // InternalPLEC.g:1578:5: otherlv_1= ','
             	    	    {
             	    	    otherlv_1=(Token)match(input,16,FOLLOW_32); 
 
@@ -3992,11 +3987,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             	        cnt15++;
             	    } while (true);
 
-            	    // InternalPLEC.g:1588:4: ( (lv_values_2_0= ruleValue ) )
-            	    // InternalPLEC.g:1589:5: (lv_values_2_0= ruleValue )
+            	    // InternalPLEC.g:1583:4: ( (lv_values_2_0= ruleValue ) )
+            	    // InternalPLEC.g:1584:5: (lv_values_2_0= ruleValue )
             	    {
-            	    // InternalPLEC.g:1589:5: (lv_values_2_0= ruleValue )
-            	    // InternalPLEC.g:1590:6: lv_values_2_0= ruleValue
+            	    // InternalPLEC.g:1584:5: (lv_values_2_0= ruleValue )
+            	    // InternalPLEC.g:1585:6: lv_values_2_0= ruleValue
             	    {
 
             	    						newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_1_1_0());
@@ -4055,7 +4050,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleListOfIDs"
-    // InternalPLEC.g:1612:1: entryRuleListOfIDs returns [EObject current=null] : iv_ruleListOfIDs= ruleListOfIDs EOF ;
+    // InternalPLEC.g:1607:1: entryRuleListOfIDs returns [EObject current=null] : iv_ruleListOfIDs= ruleListOfIDs EOF ;
     public final EObject entryRuleListOfIDs() throws RecognitionException {
         EObject current = null;
 
@@ -4063,8 +4058,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1612:50: (iv_ruleListOfIDs= ruleListOfIDs EOF )
-            // InternalPLEC.g:1613:2: iv_ruleListOfIDs= ruleListOfIDs EOF
+            // InternalPLEC.g:1607:50: (iv_ruleListOfIDs= ruleListOfIDs EOF )
+            // InternalPLEC.g:1608:2: iv_ruleListOfIDs= ruleListOfIDs EOF
             {
              newCompositeNode(grammarAccess.getListOfIDsRule()); 
             pushFollow(FOLLOW_1);
@@ -4091,7 +4086,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListOfIDs"
-    // InternalPLEC.g:1619:1: ruleListOfIDs returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* ) ;
+    // InternalPLEC.g:1614:1: ruleListOfIDs returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* ) ;
     public final EObject ruleListOfIDs() throws RecognitionException {
         EObject current = null;
 
@@ -4103,17 +4098,17 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1625:2: ( ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* ) )
-            // InternalPLEC.g:1626:2: ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* )
+            // InternalPLEC.g:1620:2: ( ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* ) )
+            // InternalPLEC.g:1621:2: ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* )
             {
-            // InternalPLEC.g:1626:2: ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* )
-            // InternalPLEC.g:1627:3: ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )*
+            // InternalPLEC.g:1621:2: ( ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )* )
+            // InternalPLEC.g:1622:3: ( (otherlv_0= RULE_ID ) ) ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )*
             {
-            // InternalPLEC.g:1627:3: ( (otherlv_0= RULE_ID ) )
-            // InternalPLEC.g:1628:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1622:3: ( (otherlv_0= RULE_ID ) )
+            // InternalPLEC.g:1623:4: (otherlv_0= RULE_ID )
             {
-            // InternalPLEC.g:1628:4: (otherlv_0= RULE_ID )
-            // InternalPLEC.g:1629:5: otherlv_0= RULE_ID
+            // InternalPLEC.g:1623:4: (otherlv_0= RULE_ID )
+            // InternalPLEC.g:1624:5: otherlv_0= RULE_ID
             {
 
             					if (current==null) {
@@ -4130,7 +4125,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPLEC.g:1640:3: ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )*
+            // InternalPLEC.g:1635:3: ( (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) ) )*
             loop18:
             do {
                 int alt18=2;
@@ -4143,9 +4138,9 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
                 switch (alt18) {
             	case 1 :
-            	    // InternalPLEC.g:1641:4: (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) )
+            	    // InternalPLEC.g:1636:4: (otherlv_1= ',' )+ ( (otherlv_2= RULE_ID ) )
             	    {
-            	    // InternalPLEC.g:1641:4: (otherlv_1= ',' )+
+            	    // InternalPLEC.g:1636:4: (otherlv_1= ',' )+
             	    int cnt17=0;
             	    loop17:
             	    do {
@@ -4159,7 +4154,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             	        switch (alt17) {
             	    	case 1 :
-            	    	    // InternalPLEC.g:1642:5: otherlv_1= ','
+            	    	    // InternalPLEC.g:1637:5: otherlv_1= ','
             	    	    {
             	    	    otherlv_1=(Token)match(input,16,FOLLOW_33); 
 
@@ -4178,11 +4173,11 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             	        cnt17++;
             	    } while (true);
 
-            	    // InternalPLEC.g:1647:4: ( (otherlv_2= RULE_ID ) )
-            	    // InternalPLEC.g:1648:5: (otherlv_2= RULE_ID )
+            	    // InternalPLEC.g:1642:4: ( (otherlv_2= RULE_ID ) )
+            	    // InternalPLEC.g:1643:5: (otherlv_2= RULE_ID )
             	    {
-            	    // InternalPLEC.g:1648:5: (otherlv_2= RULE_ID )
-            	    // InternalPLEC.g:1649:6: otherlv_2= RULE_ID
+            	    // InternalPLEC.g:1643:5: (otherlv_2= RULE_ID )
+            	    // InternalPLEC.g:1644:6: otherlv_2= RULE_ID
             	    {
 
             	    						if (current==null) {
@@ -4231,7 +4226,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBinOp"
-    // InternalPLEC.g:1665:1: entryRuleBinOp returns [String current=null] : iv_ruleBinOp= ruleBinOp EOF ;
+    // InternalPLEC.g:1660:1: entryRuleBinOp returns [String current=null] : iv_ruleBinOp= ruleBinOp EOF ;
     public final String entryRuleBinOp() throws RecognitionException {
         String current = null;
 
@@ -4239,8 +4234,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1665:45: (iv_ruleBinOp= ruleBinOp EOF )
-            // InternalPLEC.g:1666:2: iv_ruleBinOp= ruleBinOp EOF
+            // InternalPLEC.g:1660:45: (iv_ruleBinOp= ruleBinOp EOF )
+            // InternalPLEC.g:1661:2: iv_ruleBinOp= ruleBinOp EOF
             {
              newCompositeNode(grammarAccess.getBinOpRule()); 
             pushFollow(FOLLOW_1);
@@ -4267,7 +4262,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinOp"
-    // InternalPLEC.g:1672:1: ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) ;
+    // InternalPLEC.g:1667:1: ruleBinOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) ;
     public final AntlrDatatypeRuleToken ruleBinOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4277,10 +4272,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1678:2: ( (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) )
-            // InternalPLEC.g:1679:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
+            // InternalPLEC.g:1673:2: ( (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' ) )
+            // InternalPLEC.g:1674:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
             {
-            // InternalPLEC.g:1679:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
+            // InternalPLEC.g:1674:2: (kw= 'requires' | kw= 'excludes' | kw= 'optional' | kw= 'mandatory' )
             int alt19=4;
             switch ( input.LA(1) ) {
             case 38:
@@ -4312,7 +4307,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
             switch (alt19) {
                 case 1 :
-                    // InternalPLEC.g:1680:3: kw= 'requires'
+                    // InternalPLEC.g:1675:3: kw= 'requires'
                     {
                     kw=(Token)match(input,38,FOLLOW_2); 
 
@@ -4323,7 +4318,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1686:3: kw= 'excludes'
+                    // InternalPLEC.g:1681:3: kw= 'excludes'
                     {
                     kw=(Token)match(input,39,FOLLOW_2); 
 
@@ -4334,7 +4329,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalPLEC.g:1692:3: kw= 'optional'
+                    // InternalPLEC.g:1687:3: kw= 'optional'
                     {
                     kw=(Token)match(input,40,FOLLOW_2); 
 
@@ -4345,7 +4340,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalPLEC.g:1698:3: kw= 'mandatory'
+                    // InternalPLEC.g:1693:3: kw= 'mandatory'
                     {
                     kw=(Token)match(input,41,FOLLOW_2); 
 
@@ -4378,7 +4373,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryOp"
-    // InternalPLEC.g:1707:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
+    // InternalPLEC.g:1702:1: entryRuleUnaryOp returns [String current=null] : iv_ruleUnaryOp= ruleUnaryOp EOF ;
     public final String entryRuleUnaryOp() throws RecognitionException {
         String current = null;
 
@@ -4386,8 +4381,8 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPLEC.g:1707:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
-            // InternalPLEC.g:1708:2: iv_ruleUnaryOp= ruleUnaryOp EOF
+            // InternalPLEC.g:1702:47: (iv_ruleUnaryOp= ruleUnaryOp EOF )
+            // InternalPLEC.g:1703:2: iv_ruleUnaryOp= ruleUnaryOp EOF
             {
              newCompositeNode(grammarAccess.getUnaryOpRule()); 
             pushFollow(FOLLOW_1);
@@ -4414,7 +4409,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryOp"
-    // InternalPLEC.g:1714:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'optional' | kw= 'mandatory' ) ;
+    // InternalPLEC.g:1709:1: ruleUnaryOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'optional' | kw= 'mandatory' ) ;
     public final AntlrDatatypeRuleToken ruleUnaryOp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4424,10 +4419,10 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPLEC.g:1720:2: ( (kw= 'optional' | kw= 'mandatory' ) )
-            // InternalPLEC.g:1721:2: (kw= 'optional' | kw= 'mandatory' )
+            // InternalPLEC.g:1715:2: ( (kw= 'optional' | kw= 'mandatory' ) )
+            // InternalPLEC.g:1716:2: (kw= 'optional' | kw= 'mandatory' )
             {
-            // InternalPLEC.g:1721:2: (kw= 'optional' | kw= 'mandatory' )
+            // InternalPLEC.g:1716:2: (kw= 'optional' | kw= 'mandatory' )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -4445,7 +4440,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
             }
             switch (alt20) {
                 case 1 :
-                    // InternalPLEC.g:1722:3: kw= 'optional'
+                    // InternalPLEC.g:1717:3: kw= 'optional'
                     {
                     kw=(Token)match(input,40,FOLLOW_2); 
 
@@ -4456,7 +4451,7 @@ public class InternalPLECParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalPLEC.g:1728:3: kw= 'mandatory'
+                    // InternalPLEC.g:1723:3: kw= 'mandatory'
                     {
                     kw=(Token)match(input,41,FOLLOW_2); 
 

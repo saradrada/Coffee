@@ -41,7 +41,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Structural" eSuperTypes="#//ConsExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//VarDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//ListOfIDs"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="min" eType="#//Number"

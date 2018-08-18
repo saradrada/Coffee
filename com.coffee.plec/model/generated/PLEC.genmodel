@@ -37,7 +37,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//IDCons/name"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//Structural">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//Structural/parent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//Structural/parent"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Structural/group"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Structural/min"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Structural/max"/>

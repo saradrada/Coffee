@@ -2594,11 +2594,11 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
             if ( (LA4_0==RULE_ID) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==37) ) {
-                    alt4=2;
-                }
-                else if ( (LA4_1==36) ) {
+                if ( (LA4_1==36) ) {
                     alt4=1;
+                }
+                else if ( (LA4_1==37) ) {
+                    alt4=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -10902,21 +10902,29 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Structural__ParentAssignment_1"
-    // InternalPLEC.g:3615:1: rule__Structural__ParentAssignment_1 : ( RULE_ID ) ;
+    // InternalPLEC.g:3615:1: rule__Structural__ParentAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__Structural__ParentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3619:1: ( ( RULE_ID ) )
-            // InternalPLEC.g:3620:2: ( RULE_ID )
+            // InternalPLEC.g:3619:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:3620:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:3620:2: ( RULE_ID )
-            // InternalPLEC.g:3621:3: RULE_ID
+            // InternalPLEC.g:3620:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3621:3: ( RULE_ID )
             {
-             before(grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); 
+            // InternalPLEC.g:3622:3: ( RULE_ID )
+            // InternalPLEC.g:3623:4: RULE_ID
+            {
+             before(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); 
 
             }
 
@@ -10939,17 +10947,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Structural__GroupAssignment_4"
-    // InternalPLEC.g:3630:1: rule__Structural__GroupAssignment_4 : ( ruleListOfIDs ) ;
+    // InternalPLEC.g:3634:1: rule__Structural__GroupAssignment_4 : ( ruleListOfIDs ) ;
     public final void rule__Structural__GroupAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3634:1: ( ( ruleListOfIDs ) )
-            // InternalPLEC.g:3635:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3638:1: ( ( ruleListOfIDs ) )
+            // InternalPLEC.g:3639:2: ( ruleListOfIDs )
             {
-            // InternalPLEC.g:3635:2: ( ruleListOfIDs )
-            // InternalPLEC.g:3636:3: ruleListOfIDs
+            // InternalPLEC.g:3639:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3640:3: ruleListOfIDs
             {
              before(grammarAccess.getStructuralAccess().getGroupListOfIDsParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -10980,17 +10988,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Structural__MinAssignment_6_2"
-    // InternalPLEC.g:3645:1: rule__Structural__MinAssignment_6_2 : ( ruleNumber ) ;
+    // InternalPLEC.g:3649:1: rule__Structural__MinAssignment_6_2 : ( ruleNumber ) ;
     public final void rule__Structural__MinAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3649:1: ( ( ruleNumber ) )
-            // InternalPLEC.g:3650:2: ( ruleNumber )
+            // InternalPLEC.g:3653:1: ( ( ruleNumber ) )
+            // InternalPLEC.g:3654:2: ( ruleNumber )
             {
-            // InternalPLEC.g:3650:2: ( ruleNumber )
-            // InternalPLEC.g:3651:3: ruleNumber
+            // InternalPLEC.g:3654:2: ( ruleNumber )
+            // InternalPLEC.g:3655:3: ruleNumber
             {
              before(grammarAccess.getStructuralAccess().getMinNumberParserRuleCall_6_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11021,17 +11029,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Structural__MaxAssignment_6_4"
-    // InternalPLEC.g:3660:1: rule__Structural__MaxAssignment_6_4 : ( ruleNumber ) ;
+    // InternalPLEC.g:3664:1: rule__Structural__MaxAssignment_6_4 : ( ruleNumber ) ;
     public final void rule__Structural__MaxAssignment_6_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3664:1: ( ( ruleNumber ) )
-            // InternalPLEC.g:3665:2: ( ruleNumber )
+            // InternalPLEC.g:3668:1: ( ( ruleNumber ) )
+            // InternalPLEC.g:3669:2: ( ruleNumber )
             {
-            // InternalPLEC.g:3665:2: ( ruleNumber )
-            // InternalPLEC.g:3666:3: ruleNumber
+            // InternalPLEC.g:3669:2: ( ruleNumber )
+            // InternalPLEC.g:3670:3: ruleNumber
             {
              before(grammarAccess.getStructuralAccess().getMaxNumberParserRuleCall_6_4_0()); 
             pushFollow(FOLLOW_2);
@@ -11062,17 +11070,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attributes__AttAssignment_2"
-    // InternalPLEC.g:3675:1: rule__Attributes__AttAssignment_2 : ( ruleListOfIDs ) ;
+    // InternalPLEC.g:3679:1: rule__Attributes__AttAssignment_2 : ( ruleListOfIDs ) ;
     public final void rule__Attributes__AttAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3679:1: ( ( ruleListOfIDs ) )
-            // InternalPLEC.g:3680:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3683:1: ( ( ruleListOfIDs ) )
+            // InternalPLEC.g:3684:2: ( ruleListOfIDs )
             {
-            // InternalPLEC.g:3680:2: ( ruleListOfIDs )
-            // InternalPLEC.g:3681:3: ruleListOfIDs
+            // InternalPLEC.g:3684:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3685:3: ruleListOfIDs
             {
              before(grammarAccess.getAttributesAccess().getAttListOfIDsParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11103,21 +11111,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attributes__Var1Assignment_5"
-    // InternalPLEC.g:3690:1: rule__Attributes__Var1Assignment_5 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:3694:1: rule__Attributes__Var1Assignment_5 : ( ( RULE_ID ) ) ;
     public final void rule__Attributes__Var1Assignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3694:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:3695:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3698:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:3699:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:3695:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:3696:3: ( RULE_ID )
+            // InternalPLEC.g:3699:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3700:3: ( RULE_ID )
             {
              before(grammarAccess.getAttributesAccess().getVar1VarDeclarationCrossReference_5_0()); 
-            // InternalPLEC.g:3697:3: ( RULE_ID )
-            // InternalPLEC.g:3698:4: RULE_ID
+            // InternalPLEC.g:3701:3: ( RULE_ID )
+            // InternalPLEC.g:3702:4: RULE_ID
             {
              before(grammarAccess.getAttributesAccess().getVar1VarDeclarationIDTerminalRuleCall_5_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11148,17 +11156,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment__VarAssignment_0"
-    // InternalPLEC.g:3709:1: rule__Assignment__VarAssignment_0 : ( RULE_ID ) ;
+    // InternalPLEC.g:3713:1: rule__Assignment__VarAssignment_0 : ( RULE_ID ) ;
     public final void rule__Assignment__VarAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3713:1: ( ( RULE_ID ) )
-            // InternalPLEC.g:3714:2: ( RULE_ID )
+            // InternalPLEC.g:3717:1: ( ( RULE_ID ) )
+            // InternalPLEC.g:3718:2: ( RULE_ID )
             {
-            // InternalPLEC.g:3714:2: ( RULE_ID )
-            // InternalPLEC.g:3715:3: RULE_ID
+            // InternalPLEC.g:3718:2: ( RULE_ID )
+            // InternalPLEC.g:3719:3: RULE_ID
             {
              before(grammarAccess.getAssignmentAccess().getVarIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11185,17 +11193,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment__ValueAssignment_2"
-    // InternalPLEC.g:3724:1: rule__Assignment__ValueAssignment_2 : ( ruleValue ) ;
+    // InternalPLEC.g:3728:1: rule__Assignment__ValueAssignment_2 : ( ruleValue ) ;
     public final void rule__Assignment__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3728:1: ( ( ruleValue ) )
-            // InternalPLEC.g:3729:2: ( ruleValue )
+            // InternalPLEC.g:3732:1: ( ( ruleValue ) )
+            // InternalPLEC.g:3733:2: ( ruleValue )
             {
-            // InternalPLEC.g:3729:2: ( ruleValue )
-            // InternalPLEC.g:3730:3: ruleValue
+            // InternalPLEC.g:3733:2: ( ruleValue )
+            // InternalPLEC.g:3734:3: ruleValue
             {
              before(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11226,17 +11234,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarRefinement__VarAssignment_0"
-    // InternalPLEC.g:3739:1: rule__VarRefinement__VarAssignment_0 : ( RULE_ID ) ;
+    // InternalPLEC.g:3743:1: rule__VarRefinement__VarAssignment_0 : ( RULE_ID ) ;
     public final void rule__VarRefinement__VarAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3743:1: ( ( RULE_ID ) )
-            // InternalPLEC.g:3744:2: ( RULE_ID )
+            // InternalPLEC.g:3747:1: ( ( RULE_ID ) )
+            // InternalPLEC.g:3748:2: ( RULE_ID )
             {
-            // InternalPLEC.g:3744:2: ( RULE_ID )
-            // InternalPLEC.g:3745:3: RULE_ID
+            // InternalPLEC.g:3748:2: ( RULE_ID )
+            // InternalPLEC.g:3749:3: RULE_ID
             {
              before(grammarAccess.getVarRefinementAccess().getVarIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11263,17 +11271,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarRefinement__ValuesAssignment_2"
-    // InternalPLEC.g:3754:1: rule__VarRefinement__ValuesAssignment_2 : ( ruleVariantDeclaration ) ;
+    // InternalPLEC.g:3758:1: rule__VarRefinement__ValuesAssignment_2 : ( ruleVariantDeclaration ) ;
     public final void rule__VarRefinement__ValuesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3758:1: ( ( ruleVariantDeclaration ) )
-            // InternalPLEC.g:3759:2: ( ruleVariantDeclaration )
+            // InternalPLEC.g:3762:1: ( ( ruleVariantDeclaration ) )
+            // InternalPLEC.g:3763:2: ( ruleVariantDeclaration )
             {
-            // InternalPLEC.g:3759:2: ( ruleVariantDeclaration )
-            // InternalPLEC.g:3760:3: ruleVariantDeclaration
+            // InternalPLEC.g:3763:2: ( ruleVariantDeclaration )
+            // InternalPLEC.g:3764:3: ruleVariantDeclaration
             {
              before(grammarAccess.getVarRefinementAccess().getValuesVariantDeclarationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11304,17 +11312,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SetRefinement__VarsAssignment_2"
-    // InternalPLEC.g:3769:1: rule__SetRefinement__VarsAssignment_2 : ( ruleListOfIDs ) ;
+    // InternalPLEC.g:3773:1: rule__SetRefinement__VarsAssignment_2 : ( ruleListOfIDs ) ;
     public final void rule__SetRefinement__VarsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3773:1: ( ( ruleListOfIDs ) )
-            // InternalPLEC.g:3774:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3777:1: ( ( ruleListOfIDs ) )
+            // InternalPLEC.g:3778:2: ( ruleListOfIDs )
             {
-            // InternalPLEC.g:3774:2: ( ruleListOfIDs )
-            // InternalPLEC.g:3775:3: ruleListOfIDs
+            // InternalPLEC.g:3778:2: ( ruleListOfIDs )
+            // InternalPLEC.g:3779:3: ruleListOfIDs
             {
              before(grammarAccess.getSetRefinementAccess().getVarsListOfIDsParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11345,17 +11353,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SetRefinement__HeadAssignment_7"
-    // InternalPLEC.g:3784:1: rule__SetRefinement__HeadAssignment_7 : ( ruleListOfValues ) ;
+    // InternalPLEC.g:3788:1: rule__SetRefinement__HeadAssignment_7 : ( ruleListOfValues ) ;
     public final void rule__SetRefinement__HeadAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3788:1: ( ( ruleListOfValues ) )
-            // InternalPLEC.g:3789:2: ( ruleListOfValues )
+            // InternalPLEC.g:3792:1: ( ( ruleListOfValues ) )
+            // InternalPLEC.g:3793:2: ( ruleListOfValues )
             {
-            // InternalPLEC.g:3789:2: ( ruleListOfValues )
-            // InternalPLEC.g:3790:3: ruleListOfValues
+            // InternalPLEC.g:3793:2: ( ruleListOfValues )
+            // InternalPLEC.g:3794:3: ruleListOfValues
             {
              before(grammarAccess.getSetRefinementAccess().getHeadListOfValuesParserRuleCall_7_0()); 
             pushFollow(FOLLOW_2);
@@ -11386,17 +11394,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SetRefinement__TailAssignment_9_2"
-    // InternalPLEC.g:3799:1: rule__SetRefinement__TailAssignment_9_2 : ( ruleListOfValues ) ;
+    // InternalPLEC.g:3803:1: rule__SetRefinement__TailAssignment_9_2 : ( ruleListOfValues ) ;
     public final void rule__SetRefinement__TailAssignment_9_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3803:1: ( ( ruleListOfValues ) )
-            // InternalPLEC.g:3804:2: ( ruleListOfValues )
+            // InternalPLEC.g:3807:1: ( ( ruleListOfValues ) )
+            // InternalPLEC.g:3808:2: ( ruleListOfValues )
             {
-            // InternalPLEC.g:3804:2: ( ruleListOfValues )
-            // InternalPLEC.g:3805:3: ruleListOfValues
+            // InternalPLEC.g:3808:2: ( ruleListOfValues )
+            // InternalPLEC.g:3809:3: ruleListOfValues
             {
              before(grammarAccess.getSetRefinementAccess().getTailListOfValuesParserRuleCall_9_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11427,17 +11435,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Rule__ConditionAssignment_0"
-    // InternalPLEC.g:3814:1: rule__Rule__ConditionAssignment_0 : ( ruleTerminalExp ) ;
+    // InternalPLEC.g:3818:1: rule__Rule__ConditionAssignment_0 : ( ruleTerminalExp ) ;
     public final void rule__Rule__ConditionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3818:1: ( ( ruleTerminalExp ) )
-            // InternalPLEC.g:3819:2: ( ruleTerminalExp )
+            // InternalPLEC.g:3822:1: ( ( ruleTerminalExp ) )
+            // InternalPLEC.g:3823:2: ( ruleTerminalExp )
             {
-            // InternalPLEC.g:3819:2: ( ruleTerminalExp )
-            // InternalPLEC.g:3820:3: ruleTerminalExp
+            // InternalPLEC.g:3823:2: ( ruleTerminalExp )
+            // InternalPLEC.g:3824:3: ruleTerminalExp
             {
              before(grammarAccess.getRuleAccess().getConditionTerminalExpParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11468,17 +11476,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Rule__ConsequenceAssignment_2"
-    // InternalPLEC.g:3829:1: rule__Rule__ConsequenceAssignment_2 : ( ruleTerminalExp ) ;
+    // InternalPLEC.g:3833:1: rule__Rule__ConsequenceAssignment_2 : ( ruleTerminalExp ) ;
     public final void rule__Rule__ConsequenceAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3833:1: ( ( ruleTerminalExp ) )
-            // InternalPLEC.g:3834:2: ( ruleTerminalExp )
+            // InternalPLEC.g:3837:1: ( ( ruleTerminalExp ) )
+            // InternalPLEC.g:3838:2: ( ruleTerminalExp )
             {
-            // InternalPLEC.g:3834:2: ( ruleTerminalExp )
-            // InternalPLEC.g:3835:3: ruleTerminalExp
+            // InternalPLEC.g:3838:2: ( ruleTerminalExp )
+            // InternalPLEC.g:3839:3: ruleTerminalExp
             {
              before(grammarAccess.getRuleAccess().getConsequenceTerminalExpParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11509,21 +11517,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FodaUN__Var1Assignment_0"
-    // InternalPLEC.g:3844:1: rule__FodaUN__Var1Assignment_0 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:3848:1: rule__FodaUN__Var1Assignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__FodaUN__Var1Assignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3848:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:3849:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3852:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:3853:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:3849:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:3850:3: ( RULE_ID )
+            // InternalPLEC.g:3853:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3854:3: ( RULE_ID )
             {
              before(grammarAccess.getFodaUNAccess().getVar1VarDeclarationCrossReference_0_0()); 
-            // InternalPLEC.g:3851:3: ( RULE_ID )
-            // InternalPLEC.g:3852:4: RULE_ID
+            // InternalPLEC.g:3855:3: ( RULE_ID )
+            // InternalPLEC.g:3856:4: RULE_ID
             {
              before(grammarAccess.getFodaUNAccess().getVar1VarDeclarationIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11554,17 +11562,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FodaUN__OpAssignment_2"
-    // InternalPLEC.g:3863:1: rule__FodaUN__OpAssignment_2 : ( ruleUnaryOp ) ;
+    // InternalPLEC.g:3867:1: rule__FodaUN__OpAssignment_2 : ( ruleUnaryOp ) ;
     public final void rule__FodaUN__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3867:1: ( ( ruleUnaryOp ) )
-            // InternalPLEC.g:3868:2: ( ruleUnaryOp )
+            // InternalPLEC.g:3871:1: ( ( ruleUnaryOp ) )
+            // InternalPLEC.g:3872:2: ( ruleUnaryOp )
             {
-            // InternalPLEC.g:3868:2: ( ruleUnaryOp )
-            // InternalPLEC.g:3869:3: ruleUnaryOp
+            // InternalPLEC.g:3872:2: ( ruleUnaryOp )
+            // InternalPLEC.g:3873:3: ruleUnaryOp
             {
              before(grammarAccess.getFodaUNAccess().getOpUnaryOpParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11595,21 +11603,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FodaBin__Var1Assignment_0"
-    // InternalPLEC.g:3878:1: rule__FodaBin__Var1Assignment_0 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:3882:1: rule__FodaBin__Var1Assignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__FodaBin__Var1Assignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3882:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:3883:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3886:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:3887:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:3883:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:3884:3: ( RULE_ID )
+            // InternalPLEC.g:3887:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3888:3: ( RULE_ID )
             {
              before(grammarAccess.getFodaBinAccess().getVar1VarDeclarationCrossReference_0_0()); 
-            // InternalPLEC.g:3885:3: ( RULE_ID )
-            // InternalPLEC.g:3886:4: RULE_ID
+            // InternalPLEC.g:3889:3: ( RULE_ID )
+            // InternalPLEC.g:3890:4: RULE_ID
             {
              before(grammarAccess.getFodaBinAccess().getVar1VarDeclarationIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11640,17 +11648,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FodaBin__OpAssignment_1"
-    // InternalPLEC.g:3897:1: rule__FodaBin__OpAssignment_1 : ( ruleBinOp ) ;
+    // InternalPLEC.g:3901:1: rule__FodaBin__OpAssignment_1 : ( ruleBinOp ) ;
     public final void rule__FodaBin__OpAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3901:1: ( ( ruleBinOp ) )
-            // InternalPLEC.g:3902:2: ( ruleBinOp )
+            // InternalPLEC.g:3905:1: ( ( ruleBinOp ) )
+            // InternalPLEC.g:3906:2: ( ruleBinOp )
             {
-            // InternalPLEC.g:3902:2: ( ruleBinOp )
-            // InternalPLEC.g:3903:3: ruleBinOp
+            // InternalPLEC.g:3906:2: ( ruleBinOp )
+            // InternalPLEC.g:3907:3: ruleBinOp
             {
              before(grammarAccess.getFodaBinAccess().getOpBinOpParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11681,21 +11689,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FodaBin__Var2Assignment_2"
-    // InternalPLEC.g:3912:1: rule__FodaBin__Var2Assignment_2 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:3916:1: rule__FodaBin__Var2Assignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__FodaBin__Var2Assignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3916:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:3917:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3920:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:3921:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:3917:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:3918:3: ( RULE_ID )
+            // InternalPLEC.g:3921:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:3922:3: ( RULE_ID )
             {
              before(grammarAccess.getFodaBinAccess().getVar2VarDeclarationCrossReference_2_0()); 
-            // InternalPLEC.g:3919:3: ( RULE_ID )
-            // InternalPLEC.g:3920:4: RULE_ID
+            // InternalPLEC.g:3923:3: ( RULE_ID )
+            // InternalPLEC.g:3924:4: RULE_ID
             {
              before(grammarAccess.getFodaBinAccess().getVar2VarDeclarationIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11726,21 +11734,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BoolVal__ValueAssignment"
-    // InternalPLEC.g:3931:1: rule__BoolVal__ValueAssignment : ( ( rule__BoolVal__ValueAlternatives_0 ) ) ;
+    // InternalPLEC.g:3935:1: rule__BoolVal__ValueAssignment : ( ( rule__BoolVal__ValueAlternatives_0 ) ) ;
     public final void rule__BoolVal__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3935:1: ( ( ( rule__BoolVal__ValueAlternatives_0 ) ) )
-            // InternalPLEC.g:3936:2: ( ( rule__BoolVal__ValueAlternatives_0 ) )
+            // InternalPLEC.g:3939:1: ( ( ( rule__BoolVal__ValueAlternatives_0 ) ) )
+            // InternalPLEC.g:3940:2: ( ( rule__BoolVal__ValueAlternatives_0 ) )
             {
-            // InternalPLEC.g:3936:2: ( ( rule__BoolVal__ValueAlternatives_0 ) )
-            // InternalPLEC.g:3937:3: ( rule__BoolVal__ValueAlternatives_0 )
+            // InternalPLEC.g:3940:2: ( ( rule__BoolVal__ValueAlternatives_0 ) )
+            // InternalPLEC.g:3941:3: ( rule__BoolVal__ValueAlternatives_0 )
             {
              before(grammarAccess.getBoolValAccess().getValueAlternatives_0()); 
-            // InternalPLEC.g:3938:3: ( rule__BoolVal__ValueAlternatives_0 )
-            // InternalPLEC.g:3938:4: rule__BoolVal__ValueAlternatives_0
+            // InternalPLEC.g:3942:3: ( rule__BoolVal__ValueAlternatives_0 )
+            // InternalPLEC.g:3942:4: rule__BoolVal__ValueAlternatives_0
             {
             pushFollow(FOLLOW_2);
             rule__BoolVal__ValueAlternatives_0();
@@ -11773,17 +11781,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Number__ValueAssignment"
-    // InternalPLEC.g:3946:1: rule__Number__ValueAssignment : ( RULE_INT ) ;
+    // InternalPLEC.g:3950:1: rule__Number__ValueAssignment : ( RULE_INT ) ;
     public final void rule__Number__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3950:1: ( ( RULE_INT ) )
-            // InternalPLEC.g:3951:2: ( RULE_INT )
+            // InternalPLEC.g:3954:1: ( ( RULE_INT ) )
+            // InternalPLEC.g:3955:2: ( RULE_INT )
             {
-            // InternalPLEC.g:3951:2: ( RULE_INT )
-            // InternalPLEC.g:3952:3: RULE_INT
+            // InternalPLEC.g:3955:2: ( RULE_INT )
+            // InternalPLEC.g:3956:3: RULE_INT
             {
              before(grammarAccess.getNumberAccess().getValueINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -11810,17 +11818,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Symbol__ValueAssignment"
-    // InternalPLEC.g:3961:1: rule__Symbol__ValueAssignment : ( RULE_ID ) ;
+    // InternalPLEC.g:3965:1: rule__Symbol__ValueAssignment : ( RULE_ID ) ;
     public final void rule__Symbol__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3965:1: ( ( RULE_ID ) )
-            // InternalPLEC.g:3966:2: ( RULE_ID )
+            // InternalPLEC.g:3969:1: ( ( RULE_ID ) )
+            // InternalPLEC.g:3970:2: ( RULE_ID )
             {
-            // InternalPLEC.g:3966:2: ( RULE_ID )
-            // InternalPLEC.g:3967:3: RULE_ID
+            // InternalPLEC.g:3970:2: ( RULE_ID )
+            // InternalPLEC.g:3971:3: RULE_ID
             {
              before(grammarAccess.getSymbolAccess().getValueIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11847,17 +11855,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListOfValues__ValuesAssignment_0"
-    // InternalPLEC.g:3976:1: rule__ListOfValues__ValuesAssignment_0 : ( ruleValue ) ;
+    // InternalPLEC.g:3980:1: rule__ListOfValues__ValuesAssignment_0 : ( ruleValue ) ;
     public final void rule__ListOfValues__ValuesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3980:1: ( ( ruleValue ) )
-            // InternalPLEC.g:3981:2: ( ruleValue )
+            // InternalPLEC.g:3984:1: ( ( ruleValue ) )
+            // InternalPLEC.g:3985:2: ( ruleValue )
             {
-            // InternalPLEC.g:3981:2: ( ruleValue )
-            // InternalPLEC.g:3982:3: ruleValue
+            // InternalPLEC.g:3985:2: ( ruleValue )
+            // InternalPLEC.g:3986:3: ruleValue
             {
              before(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11888,17 +11896,17 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListOfValues__ValuesAssignment_1_1"
-    // InternalPLEC.g:3991:1: rule__ListOfValues__ValuesAssignment_1_1 : ( ruleValue ) ;
+    // InternalPLEC.g:3995:1: rule__ListOfValues__ValuesAssignment_1_1 : ( ruleValue ) ;
     public final void rule__ListOfValues__ValuesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:3995:1: ( ( ruleValue ) )
-            // InternalPLEC.g:3996:2: ( ruleValue )
+            // InternalPLEC.g:3999:1: ( ( ruleValue ) )
+            // InternalPLEC.g:4000:2: ( ruleValue )
             {
-            // InternalPLEC.g:3996:2: ( ruleValue )
-            // InternalPLEC.g:3997:3: ruleValue
+            // InternalPLEC.g:4000:2: ( ruleValue )
+            // InternalPLEC.g:4001:3: ruleValue
             {
              before(grammarAccess.getListOfValuesAccess().getValuesValueParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11929,21 +11937,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListOfIDs__IdsAssignment_0"
-    // InternalPLEC.g:4006:1: rule__ListOfIDs__IdsAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:4010:1: rule__ListOfIDs__IdsAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ListOfIDs__IdsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:4010:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:4011:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:4014:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:4015:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:4011:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:4012:3: ( RULE_ID )
+            // InternalPLEC.g:4015:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:4016:3: ( RULE_ID )
             {
              before(grammarAccess.getListOfIDsAccess().getIdsVarDeclarationCrossReference_0_0()); 
-            // InternalPLEC.g:4013:3: ( RULE_ID )
-            // InternalPLEC.g:4014:4: RULE_ID
+            // InternalPLEC.g:4017:3: ( RULE_ID )
+            // InternalPLEC.g:4018:4: RULE_ID
             {
              before(grammarAccess.getListOfIDsAccess().getIdsVarDeclarationIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -11974,21 +11982,21 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListOfIDs__IdsAssignment_1_1"
-    // InternalPLEC.g:4025:1: rule__ListOfIDs__IdsAssignment_1_1 : ( ( RULE_ID ) ) ;
+    // InternalPLEC.g:4029:1: rule__ListOfIDs__IdsAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__ListOfIDs__IdsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPLEC.g:4029:1: ( ( ( RULE_ID ) ) )
-            // InternalPLEC.g:4030:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:4033:1: ( ( ( RULE_ID ) ) )
+            // InternalPLEC.g:4034:2: ( ( RULE_ID ) )
             {
-            // InternalPLEC.g:4030:2: ( ( RULE_ID ) )
-            // InternalPLEC.g:4031:3: ( RULE_ID )
+            // InternalPLEC.g:4034:2: ( ( RULE_ID ) )
+            // InternalPLEC.g:4035:3: ( RULE_ID )
             {
              before(grammarAccess.getListOfIDsAccess().getIdsVarDeclarationCrossReference_1_1_0()); 
-            // InternalPLEC.g:4032:3: ( RULE_ID )
-            // InternalPLEC.g:4033:4: RULE_ID
+            // InternalPLEC.g:4036:3: ( RULE_ID )
+            // InternalPLEC.g:4037:4: RULE_ID
             {
              before(grammarAccess.getListOfIDsAccess().getIdsVarDeclarationIDTerminalRuleCall_1_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -12022,20 +12030,20 @@ public class InternalPLECParser extends AbstractInternalContentAssistParser {
 
     protected DFA2 dfa2 = new DFA2(this);
     static final String dfa_1s = "\12\uffff";
-    static final String dfa_2s = "\1\uffff\1\6\10\uffff";
-    static final String dfa_3s = "\2\4\5\uffff\1\4\2\uffff";
-    static final String dfa_4s = "\1\46\1\50\5\uffff\1\23\2\uffff";
-    static final String dfa_5s = "\2\uffff\1\2\1\3\1\5\1\7\1\1\1\uffff\1\4\1\6";
+    static final String dfa_2s = "\1\uffff\1\10\10\uffff";
+    static final String dfa_3s = "\2\4\4\uffff\1\4\3\uffff";
+    static final String dfa_4s = "\1\46\1\50\4\uffff\1\23\3\uffff";
+    static final String dfa_5s = "\2\uffff\1\2\1\3\1\5\1\7\1\uffff\1\4\1\1\1\6";
     static final String dfa_6s = "\12\uffff}>";
     static final String[] dfa_7s = {
             "\1\1\30\uffff\1\3\1\uffff\1\4\2\uffff\1\5\3\uffff\1\2",
-            "\1\6\13\uffff\4\10\12\uffff\1\6\5\uffff\1\7\1\2\2\uffff\1\3",
-            "",
+            "\1\10\13\uffff\4\7\12\uffff\1\10\5\uffff\1\6\1\2\2\uffff\1\3",
             "",
             "",
             "",
             "",
             "\2\2\5\uffff\2\2\5\uffff\2\11",
+            "",
             "",
             ""
     };

@@ -362,7 +362,7 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Structural returns Structural
 	 *
 	 * Constraint:
-	 *     (parent=ID group=ListOfIDs (min=Number max=Number)?)
+	 *     (parent=[VarDeclaration|ID] group=ListOfIDs (min=Number max=Number)?)
 	 */
 	protected void sequence_Structural(ISerializationContext context, Structural semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

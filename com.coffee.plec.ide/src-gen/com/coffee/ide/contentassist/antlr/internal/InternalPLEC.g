@@ -3618,9 +3618,13 @@ rule__Structural__ParentAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0()); }
-		RULE_ID
-		{ after(grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0()); }
+		{ before(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); }
+		(
+			{ before(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); }
+			RULE_ID
+			{ after(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); }
+		)
+		{ after(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); }
 	)
 ;
 finally {

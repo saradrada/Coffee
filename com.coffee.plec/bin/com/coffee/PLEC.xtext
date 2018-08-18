@@ -60,7 +60,7 @@ IDCons:
  * 
  */
 Structural:
-	'structural:' parent=ID  'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
+	'structural:' parent=[VarDeclaration]  'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
 ;
 
 /**

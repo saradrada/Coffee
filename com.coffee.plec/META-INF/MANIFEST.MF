@@ -16,14 +16,16 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.coffee,
- com.coffee.parser.antlr.internal,
- com.coffee.pLEC,
- com.coffee.parser.antlr,
- com.coffee.pLEC.util,
- com.coffee.services,
- com.coffee.validation,
  com.coffee.generator,
- com.coffee.serializer,
+ com.coffee.generator.THLCL,
+ com.coffee.generator.XCSP3,
+ com.coffee.pLEC,
  com.coffee.pLEC.impl,
- com.coffee.scoping
+ com.coffee.pLEC.util,
+ com.coffee.parser.antlr,
+ com.coffee.parser.antlr.internal,
+ com.coffee.scoping,
+ com.coffee.serializer,
+ com.coffee.services,
+ com.coffee.validation
 Import-Package: org.apache.log4j

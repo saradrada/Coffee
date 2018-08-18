@@ -681,19 +681,14 @@ ruleStructural returns [EObject current=null]
 		}
 		(
 			(
-				lv_parent_1_0=RULE_ID
-				{
-					newLeafNode(lv_parent_1_0, grammarAccess.getStructuralAccess().getParentIDTerminalRuleCall_1_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getStructuralRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"parent",
-						lv_parent_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0());
 				}
 			)
 		)

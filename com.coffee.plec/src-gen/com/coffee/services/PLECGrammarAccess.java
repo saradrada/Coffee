@@ -36,7 +36,12 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cConstraintsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cConstraintsConstraintParserRuleCall_5_0 = (RuleCall)cConstraintsAssignment_5.eContents().get(0);
 		
-		//Model:
+		///**
+		// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
+		// * @author Angela Villota
+		// * @version PLEC V3
+		// * August 2018
+		// */ Model:
 		//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -361,7 +366,8 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cStructuralKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cParentAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cParentIDTerminalRuleCall_1_0 = (RuleCall)cParentAssignment_1.eContents().get(0);
+		private final CrossReference cParentVarDeclarationCrossReference_1_0 = (CrossReference)cParentAssignment_1.eContents().get(0);
+		private final RuleCall cParentVarDeclarationIDTerminalRuleCall_1_0_1 = (RuleCall)cParentVarDeclarationCrossReference_1_0.eContents().get(1);
 		private final Keyword cVariantsKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cGroupAssignment_4 = (Assignment)cGroup.eContents().get(4);
@@ -381,20 +387,24 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		// * an structural relation defines a parent-children relation including an optional cardinality
 		// * 
 		// */ Structural:
-		//	'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?;
+		//	'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number
+		//	']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?
+		//'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'structural:'
 		public Keyword getStructuralKeyword_0() { return cStructuralKeyword_0; }
 		
-		//parent=ID
+		//parent=[VarDeclaration]
 		public Assignment getParentAssignment_1() { return cParentAssignment_1; }
 		
+		//[VarDeclaration]
+		public CrossReference getParentVarDeclarationCrossReference_1_0() { return cParentVarDeclarationCrossReference_1_0; }
+		
 		//ID
-		public RuleCall getParentIDTerminalRuleCall_1_0() { return cParentIDTerminalRuleCall_1_0; }
+		public RuleCall getParentVarDeclarationIDTerminalRuleCall_1_0_1() { return cParentVarDeclarationIDTerminalRuleCall_1_0_1; }
 		
 		//'variants:'
 		public Keyword getVariantsKeyword_2() { return cVariantsKeyword_2; }
@@ -1104,7 +1114,12 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//Model:
+	///**
+	// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
+	// * @author Angela Villota
+	// * @version PLEC V3
+	// * August 2018
+	// */ Model:
 	//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
 	public ModelElements getModelAccess() {
 		return pModel;
@@ -1207,7 +1222,8 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	// * an structural relation defines a parent-children relation including an optional cardinality
 	// * 
 	// */ Structural:
-	//	'structural:' parent=ID 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?;
+	//	'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number
+	//	']')?;
 	public StructuralElements getStructuralAccess() {
 		return pStructural;
 	}

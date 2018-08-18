@@ -8,6 +8,8 @@ import com.coffee.pLEC.VariantsEnumeration
 import org.eclipse.emf.common.util.EList
 import com.coffee.pLEC.Value
 import com.coffee.pLEC.Number
+import com.coffee.pLEC.Structural
+import java.util.Map
 
 class IntegerFactory extends BooleanFactory{
 	/**
@@ -58,14 +60,64 @@ class IntegerFactory extends BooleanFactory{
 		«ENDIF»
 	'''
 	def  getList(EList<Value> l){
-		var number= (l.get(0) as Number).value ;
-		var out= "" ;
+		var out= (l.get(0) as Number).value +"";
 		for(var i=1; i<l.size(); i= i+1 ){
-			out= number +", "+ (l.get(i) as Number).value ;
+			out += ", "+ (l.get(i) as Number).value ;
 		}
 		return out;
 	}
 	
+	override getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents){
+		var idsSum=""
+		var output =""
+		for (child : exp.group.ids) {
+			output += "(" + child.name + " => "+ exp.parent + ") AND \n"
+			idsSum+= child.name +" + "
+			parents.put(child.name, exp.parent)
+		}
+		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) +">= " 
+					+ exp.min.value + ") AND \n" 
+		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) + "<= "
+					+ exp.max.value+ ")" 
+		output
+	 }
+	 
+	override getMandatory(VarDeclaration parent, VarDeclaration child) {
+		return parent.name + " = " + child.name
+	}
+	
+	override getOptional(VarDeclaration parent, VarDeclaration child) {
+		return parent.name + " >= " + child.name
+	}
+	
+	override getRequires(VarDeclaration left, VarDeclaration right) {
+	'''
+		«IF left.min===null && left.max===null»
+				«left.name»  => («right.name» > 1) 
+		«ELSE»
+			«var String declaration="("+left+"1"+" => " + right + ")"»
+			«for ( var i=2; i<= left.max.value; i= i+1)  {
+			declaration+=" AND ("+ left+i +" => " + right + ")"
+			}»
+			«declaration»
+		«ENDIF»
+		'''
+	}
+	
+	override getExcludes (VarDeclaration left, VarDeclaration right){
+		'''
+		«IF left.min===null && left.max===null»
+			«left.name» + «right.name»<= 1 
+		«ELSE»
+			«var String declaration="("+left+"1"+" + " + right + "<= 1)"»
+			«for ( var i=2; i<= left.max.value; i= i+1)  {
+					declaration+=" AND ("+ left+i +" + " + right + "<= 1)"
+			}»
+			«declaration»
+		«ENDIF»	
+		'''
+	}
+							
 	
 	
 }

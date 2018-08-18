@@ -26,30 +26,30 @@ package com.coffee.pLEC;
 public interface Structural extends ConsExpression
 {
   /**
-   * Returns the value of the '<em><b>Parent</b></em>' attribute.
+   * Returns the value of the '<em><b>Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Parent</em>' attribute isn't clear,
+   * If the meaning of the '<em>Parent</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Parent</em>' attribute.
-   * @see #setParent(String)
+   * @return the value of the '<em>Parent</em>' reference.
+   * @see #setParent(VarDeclaration)
    * @see com.coffee.pLEC.PLECPackage#getStructural_Parent()
    * @model
    * @generated
    */
-  String getParent();
+  VarDeclaration getParent();
 
   /**
-   * Sets the value of the '{@link com.coffee.pLEC.Structural#getParent <em>Parent</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.pLEC.Structural#getParent <em>Parent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parent</em>' attribute.
+   * @param value the new value of the '<em>Parent</em>' reference.
    * @see #getParent()
    * @generated
    */
-  void setParent(String value);
+  void setParent(VarDeclaration value);
 
   /**
    * Returns the value of the '<em><b>Group</b></em>' containment reference.

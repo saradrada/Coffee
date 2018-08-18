@@ -374,7 +374,7 @@ public interface PLECPackage extends EPackage
   int STRUCTURAL = 9;
 
   /**
-   * The feature id for the '<em><b>Parent</b></em>' attribute.
+   * The feature id for the '<em><b>Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1168,15 +1168,15 @@ public interface PLECPackage extends EPackage
   EClass getStructural();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.pLEC.Structural#getParent <em>Parent</em>}'.
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.Structural#getParent <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Parent</em>'.
+   * @return the meta object for the reference '<em>Parent</em>'.
    * @see com.coffee.pLEC.Structural#getParent()
    * @see #getStructural()
    * @generated
    */
-  EAttribute getStructural_Parent();
+  EReference getStructural_Parent();
 
   /**
    * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Structural#getGroup <em>Group</em>}'.
@@ -1825,12 +1825,12 @@ public interface PLECPackage extends EPackage
     EClass STRUCTURAL = eINSTANCE.getStructural();
 
     /**
-     * The meta object literal for the '<em><b>Parent</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STRUCTURAL__PARENT = eINSTANCE.getStructural_Parent();
+    EReference STRUCTURAL__PARENT = eINSTANCE.getStructural_Parent();
 
     /**
      * The meta object literal for the '<em><b>Group</b></em>' containment reference feature.

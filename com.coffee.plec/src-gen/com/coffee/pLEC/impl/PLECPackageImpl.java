@@ -538,9 +538,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStructural_Parent()
+  public EReference getStructural_Parent()
   {
-    return (EAttribute)structuralEClass.getEStructuralFeatures().get(0);
+    return (EReference)structuralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -987,7 +987,7 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     createEAttribute(idConsEClass, ID_CONS__NAME);
 
     structuralEClass = createEClass(STRUCTURAL);
-    createEAttribute(structuralEClass, STRUCTURAL__PARENT);
+    createEReference(structuralEClass, STRUCTURAL__PARENT);
     createEReference(structuralEClass, STRUCTURAL__GROUP);
     createEReference(structuralEClass, STRUCTURAL__MIN);
     createEReference(structuralEClass, STRUCTURAL__MAX);
@@ -1125,7 +1125,7 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     initEAttribute(getIDCons_Name(), ecorePackage.getEString(), "name", null, 0, 1, IDCons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(structuralEClass, Structural.class, "Structural", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStructural_Parent(), ecorePackage.getEString(), "parent", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructural_Parent(), this.getVarDeclaration(), null, "parent", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructural_Group(), this.getListOfIDs(), null, "group", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructural_Min(), this.getNumber(), null, "min", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructural_Max(), this.getNumber(), null, "max", null, 0, 1, Structural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

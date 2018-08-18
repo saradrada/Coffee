@@ -3,6 +3,8 @@
  */
 package com.coffee.generator;
 
+import com.coffee.generator.THLCL.THLCLGenerator;
+import com.coffee.generator.TypeOfProblem;
 import com.coffee.pLEC.Model;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,12 +27,17 @@ public class PLECGenerator extends AbstractGenerator {
    */
   private String modelName;
   
+  private TypeOfProblem typeOfProblem;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     this.modelName = this.modelName(((Model) _head));
+    this.setTypeOfProblem();
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
-    fsa.generateFile((this.modelName + ".cp"), this.toTHLCL(((Model) _head_1)));
+    fsa.generateFile((this.modelName + ".hlcl"), this.toTHLCL(((Model) _head_1)));
+    EObject _head_2 = IterableExtensions.<EObject>head(resource.getContents());
+    fsa.generateFile((this.modelName + ".xcsp3"), this.toXCSP3(((Model) _head_2)));
   }
   
   /**
@@ -43,9 +50,38 @@ public class PLECGenerator extends AbstractGenerator {
     return name;
   }
   
-  public CharSequence toTHLCL(final Model model) {
+  public CharSequence setTypeOfProblem() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t");
+    _builder.append("en este metodo se debe identificar el tipo de problema");
+    _builder.newLine();
+    _builder.append("el problema es boolean si:");
+    _builder.newLine();
+    _builder.append("1. no existen variables instanciables");
+    _builder.newLine();
+    _builder.append("2. no existen variables enteras");
+    _builder.newLine();
+    _builder.append("3. no existen relaciones estucturales con cardinalidades distintas a: 0..1 y 1..1");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence toTHLCL(final Model model) {
+    CharSequence _xblockexpression = null;
+    {
+      THLCLGenerator thlcl = new THLCLGenerator(this.modelName, this.typeOfProblem);
+      _xblockexpression = thlcl.parseModel(model);
+    }
+    return _xblockexpression;
+  }
+  
+  public CharSequence toXCSP3(final Model model) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("en este metodo se debe identificar el tipo de problema");
+    _builder.newLine();
+    _builder.append("luego instanciar el generador de THLCL y el generador de XCSP3");
+    _builder.newLine();
+    _builder.append("a ambos objetos se les manda como parámetro el tipo de problema. ");
+    _builder.newLine();
     _builder.newLine();
     return _builder;
   }
