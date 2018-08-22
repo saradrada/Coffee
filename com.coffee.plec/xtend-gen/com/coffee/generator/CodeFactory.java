@@ -8,11 +8,11 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public abstract class CodeFactory {
-  public final static String HEADER = "language header";
+  private final static String HEADER = "language header";
   
-  public final static String VARIABLES = "language variable\'s separator";
+  private final static String VARIABLES = "language variable\'s separator";
   
-  public final static String CONSTRAINTS = "language constraint\'s separator";
+  private final static String CONSTRAINTS = "language constraint\'s separator";
   
   private ArrayList<String> clonConstraints;
   

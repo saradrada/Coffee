@@ -5,13 +5,20 @@ package com.coffee.generator;
 
 import com.coffee.generator.THLCL.THLCLGenerator;
 import com.coffee.generator.TypeOfProblem;
+import com.coffee.generator.XCSP3.XCSP3Generator;
+import com.coffee.pLEC.ConsExpression;
+import com.coffee.pLEC.Constraint;
 import com.coffee.pLEC.Model;
+import com.coffee.pLEC.Structural;
+import com.coffee.pLEC.VarDeclaration;
+import com.google.common.base.Objects;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -33,11 +40,11 @@ public class PLECGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     this.modelName = this.modelName(((Model) _head));
-    this.setTypeOfProblem();
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
-    fsa.generateFile((this.modelName + ".hlcl"), this.toTHLCL(((Model) _head_1)));
-    EObject _head_2 = IterableExtensions.<EObject>head(resource.getContents());
-    fsa.generateFile((this.modelName + ".xcsp3"), this.toXCSP3(((Model) _head_2)));
+    final Model model = ((Model) _head_1);
+    this.setTypeOfProblem(model);
+    fsa.generateFile((this.modelName + ".hlcl"), this.toTHLCL(model));
+    fsa.generateFile((this.modelName + ".xml"), this.toXCSP3(model));
   }
   
   /**
@@ -50,21 +57,25 @@ public class PLECGenerator extends AbstractGenerator {
     return name;
   }
   
-  public CharSequence setTypeOfProblem() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("en este metodo se debe identificar el tipo de problema");
-    _builder.newLine();
-    _builder.append("el problema es boolean si:");
-    _builder.newLine();
-    _builder.append("1. no existen variables instanciables");
-    _builder.newLine();
-    _builder.append("2. no existen variables enteras");
-    _builder.newLine();
-    _builder.append("3. no existen relaciones estucturales con cardinalidades distintas a: 0..1 y 1..1");
-    _builder.newLine();
-    return _builder;
+  /**
+   * Method that determines the type of the problem regarding the types of the variables and
+   * type of the constraints
+   * @param model is an abstract representation of the model
+   */
+  public void setTypeOfProblem(final Model model) {
+    if ((Objects.equal(this.typeOfVariables(model), TypeOfProblem.SAT) && 
+      Objects.equal(this.typeOfConstraints(model), TypeOfProblem.SAT))) {
+      this.typeOfProblem = TypeOfProblem.SAT;
+    } else {
+      this.typeOfProblem = TypeOfProblem.CSP;
+    }
   }
   
+  /**
+   * Method to obtain a Textual HLCL representation of the model
+   * @param the model
+   * @return a sequence of characters to create a .hlcl file
+   */
   public CharSequence toTHLCL(final Model model) {
     CharSequence _xblockexpression = null;
     {
@@ -74,15 +85,79 @@ public class PLECGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
+  /**
+   * Method to obtain a XCSP3 representation of the model
+   * @param the model
+   * @return a sequence of characters to create a .xcsp3 file
+   */
   public CharSequence toXCSP3(final Model model) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("en este metodo se debe identificar el tipo de problema");
-    _builder.newLine();
-    _builder.append("luego instanciar el generador de THLCL y el generador de XCSP3");
-    _builder.newLine();
-    _builder.append("a ambos objetos se les manda como parámetro el tipo de problema. ");
-    _builder.newLine();
-    _builder.newLine();
-    return _builder;
+    CharSequence _xblockexpression = null;
+    {
+      XCSP3Generator xcsp3 = new XCSP3Generator(this.modelName, this.typeOfProblem);
+      _xblockexpression = xcsp3.parseModel(model);
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Method to determine the type of the constraints
+   * If there are one constraint that cannot be mapped into a boolean
+   * constraint, then the method returns CSP.
+   * @param model
+   * @return TypeOfProblem (CSP, SAT)
+   */
+  public TypeOfProblem typeOfConstraints(final Model model) {
+    EList<Constraint> _constraints = model.getConstraints();
+    for (final Constraint cons : _constraints) {
+      ConsExpression _exp = cons.getExp();
+      if ((_exp instanceof Structural)) {
+        ConsExpression _exp_1 = cons.getExp();
+        final com.coffee.pLEC.Number min = ((Structural) _exp_1).getMin();
+        ConsExpression _exp_2 = cons.getExp();
+        final com.coffee.pLEC.Number max = ((Structural) _exp_2).getMax();
+        if (((min != null) && (max != null))) {
+          if (((!((min.getValue() == 0) && (max.getValue() >= 1))) && (!((min.getValue() == 1) && (max.getValue() == 1))))) {
+            InputOutput.<String>println("en el if");
+            int _value = min.getValue();
+            String _plus = ("con min: " + Integer.valueOf(_value));
+            String _plus_1 = (_plus + " y max := ");
+            int _value_1 = max.getValue();
+            String _plus_2 = (_plus_1 + Integer.valueOf(_value_1));
+            InputOutput.<String>print(_plus_2);
+            return TypeOfProblem.CSP;
+          }
+        }
+      }
+    }
+    return TypeOfProblem.SAT;
+  }
+  
+  /**
+   * Method to determine the type of the variables
+   * If there are one variable that cannot be mapped into a boolean
+   * variable, then the method returns CSP.
+   * @param model
+   * @return TypeOfProblem (CSP, SAT)
+   */
+  public TypeOfProblem typeOfVariables(final Model model) {
+    boolean isInstanciable = false;
+    boolean isInteger = false;
+    EList<VarDeclaration> _vars = model.getVars();
+    for (final VarDeclaration variable : _vars) {
+      {
+        if (((variable.getMin() != null) && (variable.getMax() != null))) {
+          isInstanciable = true;
+        }
+        String _type = variable.getType();
+        boolean _equals = Objects.equal(_type, "integer");
+        if (_equals) {
+          isInteger = true;
+        }
+        if ((isInstanciable || isInteger)) {
+          return TypeOfProblem.CSP;
+        }
+      }
+    }
+    return TypeOfProblem.SAT;
   }
 }

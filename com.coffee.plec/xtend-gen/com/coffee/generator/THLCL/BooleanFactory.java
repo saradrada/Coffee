@@ -3,17 +3,18 @@ package com.coffee.generator.THLCL;
 import com.coffee.generator.CodeFactory;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
+import com.google.common.base.Objects;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class BooleanFactory extends CodeFactory {
-  public final static String HEADER = "model";
+  private final static String HEADER = "model";
   
-  public final static String VARIABLES = "variables:";
+  private final static String VARIABLES = "variables:";
   
-  public final static String CONSTRAINTS = "constraints:";
+  private final static String CONSTRAINTS = "constraints:";
   
   @Override
   public CharSequence getHeader() {
@@ -56,7 +57,7 @@ public class BooleanFactory extends CodeFactory {
   public CharSequence getExcludes(final VarDeclaration left, final VarDeclaration right) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(" ");
-    _builder.append("NOT (");
+    _builder.append("~ (");
     String _name = left.getName();
     _builder.append(_name, " ");
     _builder.append(" AND ");
@@ -81,59 +82,102 @@ public class BooleanFactory extends CodeFactory {
   public CharSequence getGroupCardinality(final Structural exp, final Map<String, VarDeclaration> parents) {
     String _xblockexpression = null;
     {
-      String idsSum = "";
       String output = "";
-      EList<VarDeclaration> _ids = exp.getGroup().getIds();
-      for (final VarDeclaration child : _ids) {
-        {
-          String _output = output;
-          String _name = child.getName();
-          String _plus = ("(" + _name);
-          String _plus_1 = (_plus + " => ");
-          VarDeclaration _parent = exp.getParent();
-          String _plus_2 = (_plus_1 + _parent);
-          String _plus_3 = (_plus_2 + ") AND \n");
-          output = (_output + _plus_3);
-          String _idsSum = idsSum;
-          String _name_1 = child.getName();
-          String _plus_4 = (_name_1 + " + ");
-          idsSum = (_idsSum + _plus_4);
-          parents.put(child.getName(), exp.getParent());
+      if (((exp.getMin().getValue() == 1) && (exp.getMax().getValue() == 1))) {
+        EList<VarDeclaration> _ids = exp.getGroup().getIds();
+        for (final VarDeclaration child : _ids) {
+          {
+            parents.put(child.getName(), exp.getParent());
+            String childrenIds = "";
+            EList<VarDeclaration> _ids_1 = exp.getGroup().getIds();
+            for (final VarDeclaration inChild : _ids_1) {
+              String _name = child.getName();
+              String _name_1 = inChild.getName();
+              boolean _equals = Objects.equal(_name, _name_1);
+              boolean _not = (!_equals);
+              if (_not) {
+                String _childrenIds = childrenIds;
+                StringConcatenation _builder = new StringConcatenation();
+                _builder.append("~");
+                String _name_2 = inChild.getName();
+                _builder.append(_name_2);
+                _builder.append(" AND");
+                childrenIds = (_childrenIds + _builder);
+              }
+            }
+            String _output = output;
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("(");
+            String _name_3 = child.getName();
+            _builder_1.append(_name_3);
+            _builder_1.append(" <=> (");
+            _builder_1.append(childrenIds);
+            _builder_1.append(" ");
+            String _name_4 = exp.getParent().getName();
+            _builder_1.append(_name_4);
+            _builder_1.append(")) AND ");
+            output = (_output + _builder_1);
+          }
+        }
+        int _length = output.length();
+        int _minus = (_length - 4);
+        output = output.substring(0, _minus);
+      } else {
+        if (((exp.getMin().getValue() == 0) && (exp.getMax().getValue() == 1))) {
+          String childrenIds = "";
+          EList<VarDeclaration> _ids_1 = exp.getGroup().getIds();
+          for (final VarDeclaration child_1 : _ids_1) {
+            {
+              String _childrenIds = childrenIds;
+              String _name = child_1.getName();
+              String _plus = (_name + " AND ");
+              childrenIds = (_childrenIds + _plus);
+              parents.put(child_1.getName(), exp.getParent());
+            }
+          }
+          StringConcatenation _builder = new StringConcatenation();
+          String _name = exp.getParent().getName();
+          _builder.append(_name);
+          _builder.append(" <=> (");
+          int _length_1 = childrenIds.length();
+          int _minus_1 = (_length_1 - 4);
+          String _substring = childrenIds.substring(0, _minus_1);
+          _builder.append(_substring);
+          _builder.append(" )");
+          output = _builder.toString();
+        } else {
+          if (((exp.getMin().getValue() == 0) && (exp.getMax().getValue() > 1))) {
+            String childrenIds_1 = "";
+            EList<VarDeclaration> _ids_2 = exp.getGroup().getIds();
+            for (final VarDeclaration child_2 : _ids_2) {
+              {
+                String _childrenIds = childrenIds_1;
+                String _name_1 = child_2.getName();
+                String _plus = (_name_1 + " OR ");
+                childrenIds_1 = (_childrenIds + _plus);
+                parents.put(child_2.getName(), exp.getParent());
+              }
+            }
+            StringConcatenation _builder_1 = new StringConcatenation();
+            String _name_1 = exp.getParent().getName();
+            _builder_1.append(_name_1);
+            _builder_1.append(" <=> (");
+            int _length_2 = childrenIds_1.length();
+            int _minus_2 = (_length_2 - 3);
+            String _substring_1 = childrenIds_1.substring(0, _minus_2);
+            _builder_1.append(_substring_1);
+            _builder_1.append(")");
+            output = _builder_1.toString();
+          }
         }
       }
-      String _output = output;
-      VarDeclaration _parent = exp.getParent();
-      String _plus = ("(" + _parent);
-      String _plus_1 = (_plus + " >= 1) => (");
-      int _length = idsSum.length();
-      int _minus = (_length - 2);
-      String _substring = idsSum.substring(0, _minus);
-      String _plus_2 = (_plus_1 + _substring);
-      String _plus_3 = (_plus_2 + ">= ");
-      int _value = exp.getMin().getValue();
-      String _plus_4 = (_plus_3 + Integer.valueOf(_value));
-      String _plus_5 = (_plus_4 + ") AND \n");
-      output = (_output + _plus_5);
-      String _output_1 = output;
-      VarDeclaration _parent_1 = exp.getParent();
-      String _plus_6 = ("(" + _parent_1);
-      String _plus_7 = (_plus_6 + " >= 1) => (");
-      int _length_1 = idsSum.length();
-      int _minus_1 = (_length_1 - 2);
-      String _substring_1 = idsSum.substring(0, _minus_1);
-      String _plus_8 = (_plus_7 + _substring_1);
-      String _plus_9 = (_plus_8 + "<= ");
-      int _value_1 = exp.getMax().getValue();
-      String _plus_10 = (_plus_9 + Integer.valueOf(_value_1));
-      String _plus_11 = (_plus_10 + ")");
-      output = (_output_1 + _plus_11);
       _xblockexpression = output;
     }
     return _xblockexpression;
   }
   
   /**
-   * All variables are boolean variables, there is no need to declare variants
+   * All variables are boolean variables, there is no need to declare the domains
    */
   @Override
   public CharSequence getVariable(final VarDeclaration variable) {

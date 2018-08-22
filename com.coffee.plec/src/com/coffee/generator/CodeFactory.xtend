@@ -6,9 +6,9 @@ import com.coffee.pLEC.Structural
 import java.util.ArrayList
 
 abstract class CodeFactory {
-	public static val HEADER="language header"
-	public static val VARIABLES="language variable's separator"
-	public static val CONSTRAINTS="language constraint's separator"
+	private static final String HEADER="language header"
+	private static final String VARIABLES="language variable's separator"
+	private static final String CONSTRAINTS="language constraint's separator"
 	private ArrayList <String> clonConstraints;
 
 

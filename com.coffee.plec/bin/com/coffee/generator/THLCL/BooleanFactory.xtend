@@ -6,9 +6,9 @@ import com.coffee.pLEC.Structural
 import java.util.Map
 
 class BooleanFactory extends CodeFactory{
-	public static val HEADER="model"
-	public static val VARIABLES="variables:"
-	public static val CONSTRAINTS="constraints:"
+	private static final String HEADER="model"
+	private static final String VARIABLES="variables:"
+	private static final String CONSTRAINTS="constraints:"
 	
 	
 	override getHeader() {
@@ -32,7 +32,7 @@ class BooleanFactory extends CodeFactory{
 	}
 	
 	override getExcludes(VarDeclaration left, VarDeclaration right) {
-		''' NOT («left.name» AND «right.name»)''' 
+		''' ~ («left.name» AND «right.name»)''' 
 	}
 	
 	override getRequires(VarDeclaration left, VarDeclaration right) {
@@ -40,23 +40,46 @@ class BooleanFactory extends CodeFactory{
 	}
 	
 	override getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents) {
-		var idsSum=""
+		
 		var output =""
-		for (child : exp.group.ids) {
-			output += "(" + child.name + " => "+ exp.parent + ") AND \n"
-			idsSum+= child.name +" + "
-			parents.put(child.name, exp.parent)
+		// an alternative relation
+		if (exp.min.value==1 && exp.max.value==1){
+			for (child : exp.group.ids) {
+				parents.put(child.name, exp.parent)
+				var childrenIds=""
+				for (inChild : exp.group.ids) {
+					if(!(child.name == inChild.name)){
+						childrenIds+= '''~«inChild.name» AND'''
+					}
+				}
+				output+= '''(«child.name» <=> («childrenIds» «exp.parent.name»)) AND '''
+			}
+			output=output.substring(0, output.length() - 4)
 		}
-		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) +">= " 
-					+ exp.min.value + ") AND \n" 
-		output += "("+ exp.parent +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) + "<= "
-					+ exp.max.value+ ")" 
+		// and AND relation   
+		else if (exp.min.value==0 && exp.max.value==1){
+			var childrenIds=""
+			for (child : exp.group.ids) {
+				childrenIds+= child.name +" AND "
+				parents.put(child.name, exp.parent)
+			}
+			output= '''«exp.parent.name» <=> («childrenIds.substring(0, childrenIds.length() - 4)» )'''
+		}
+		// an OR relation
+		else if (exp.min.value==0 && exp.max.value >1){
+			var childrenIds=""
+			for (child : exp.group.ids) {
+				childrenIds+= child.name +" OR "
+				parents.put(child.name, exp.parent)
+			}
+			output= '''«exp.parent.name» <=> («childrenIds.substring(0, childrenIds.length() - 3)»)'''
+		}
 		output
 	}
 	
 
 	/**
-	 * All variables are boolean variables, there is no need to declare variants
+	 * All variables are boolean variables, there is no need to declare the domains
 	 */
 	override getVariable(VarDeclaration variable) '''
 		«variable.type» «variable.name»

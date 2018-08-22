@@ -250,10 +250,6 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cExpConsExpressionParserRuleCall_2_0 = (RuleCall)cExpAssignment_2.eContents().get(0);
 		
-		////variantsSet:
-		////		 vars=('(') list +=  ListOfIDs  (')') 
-		////	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
-		////;
 		//Constraint:
 		//	name=ID ':' exp=ConsExpression;
 		@Override public ParserRule getRule() { return rule; }
@@ -367,7 +363,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStructuralKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cParentAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cParentVarDeclarationCrossReference_1_0 = (CrossReference)cParentAssignment_1.eContents().get(0);
-		private final RuleCall cParentVarDeclarationIDTerminalRuleCall_1_0_1 = (RuleCall)cParentVarDeclarationCrossReference_1_0.eContents().get(1);
+		private final RuleCall cParentVarDeclarationParentParserRuleCall_1_0_1 = (RuleCall)cParentVarDeclarationCrossReference_1_0.eContents().get(1);
 		private final Keyword cVariantsKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cGroupAssignment_4 = (Assignment)cGroup.eContents().get(4);
@@ -387,24 +383,25 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		// * an structural relation defines a parent-children relation including an optional cardinality
 		// * 
 		// */ Structural:
-		//	'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number
-		//	']')?;
+		//	'structural:' parent=[VarDeclaration|Parent] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ','
+		//	max=Number ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number ']')?
+		//'structural:' parent=[VarDeclaration|Parent] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number
+		//']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'structural:'
 		public Keyword getStructuralKeyword_0() { return cStructuralKeyword_0; }
 		
-		//parent=[VarDeclaration]
+		//parent=[VarDeclaration|Parent]
 		public Assignment getParentAssignment_1() { return cParentAssignment_1; }
 		
-		//[VarDeclaration]
+		//[VarDeclaration|Parent]
 		public CrossReference getParentVarDeclarationCrossReference_1_0() { return cParentVarDeclarationCrossReference_1_0; }
 		
-		//ID
-		public RuleCall getParentVarDeclarationIDTerminalRuleCall_1_0_1() { return cParentVarDeclarationIDTerminalRuleCall_1_0_1; }
+		//Parent
+		public RuleCall getParentVarDeclarationParentParserRuleCall_1_0_1() { return cParentVarDeclarationParentParserRuleCall_1_0_1; }
 		
 		//'variants:'
 		public Keyword getVariantsKeyword_2() { return cVariantsKeyword_2; }
@@ -447,6 +444,17 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_6_5() { return cRightSquareBracketKeyword_6_5; }
+	}
+	public class ParentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Parent");
+		private final RuleCall cIDTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Parent:
+		//	ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall() { return cIDTerminalRuleCall; }
 	}
 	public class AttributesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Attributes");
@@ -1029,6 +1037,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalExpElements pTerminalExp;
 	private final IDConsElements pIDCons;
 	private final StructuralElements pStructural;
+	private final ParentElements pParent;
 	private final AttributesElements pAttributes;
 	private final RefinementElements pRefinement;
 	private final AssignmentElements pAssignment;
@@ -1067,6 +1076,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTerminalExp = new TerminalExpElements();
 		this.pIDCons = new IDConsElements();
 		this.pStructural = new StructuralElements();
+		this.pParent = new ParentElements();
 		this.pAttributes = new AttributesElements();
 		this.pRefinement = new RefinementElements();
 		this.pAssignment = new AssignmentElements();
@@ -1174,10 +1184,6 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariantsEnumerationAccess().getRule();
 	}
 	
-	////variantsSet:
-	////		 vars=('(') list +=  ListOfIDs  (')') 
-	////	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
-	////;
 	//Constraint:
 	//	name=ID ':' exp=ConsExpression;
 	public ConstraintElements getConstraintAccess() {
@@ -1222,14 +1228,24 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	// * an structural relation defines a parent-children relation including an optional cardinality
 	// * 
 	// */ Structural:
-	//	'structural:' parent=[VarDeclaration] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ',' max=Number
-	//	']')?;
+	//	'structural:' parent=[VarDeclaration|Parent] 'variants:' '[' group=ListOfIDs ']' ('card:' '[' min=Number ','
+	//	max=Number ']')?;
 	public StructuralElements getStructuralAccess() {
 		return pStructural;
 	}
 	
 	public ParserRule getStructuralRule() {
 		return getStructuralAccess().getRule();
+	}
+	
+	//Parent:
+	//	ID;
+	public ParentElements getParentAccess() {
+		return pParent;
+	}
+	
+	public ParserRule getParentRule() {
+		return getParentAccess().getRule();
 	}
 	
 	///**

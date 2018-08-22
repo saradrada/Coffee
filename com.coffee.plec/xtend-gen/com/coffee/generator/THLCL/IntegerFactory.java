@@ -20,9 +20,9 @@ public class IntegerFactory extends BooleanFactory {
    */
   private ArrayList<String> clonConstraints;
   
-  public ArrayList<String> IntegerFactory() {
+  public IntegerFactory() {
     ArrayList<String> _arrayList = new ArrayList<String>();
-    return this.clonConstraints = _arrayList;
+    this.clonConstraints = _arrayList;
   }
   
   @Override
@@ -168,20 +168,20 @@ public class IntegerFactory extends BooleanFactory {
           String _name = child.getName();
           String _plus = ("(" + _name);
           String _plus_1 = (_plus + " => ");
-          VarDeclaration _parent = exp.getParent();
-          String _plus_2 = (_plus_1 + _parent);
+          String _name_1 = exp.getParent().getName();
+          String _plus_2 = (_plus_1 + _name_1);
           String _plus_3 = (_plus_2 + ") AND \n");
           output = (_output + _plus_3);
           String _idsSum = idsSum;
-          String _name_1 = child.getName();
-          String _plus_4 = (_name_1 + " + ");
+          String _name_2 = child.getName();
+          String _plus_4 = (_name_2 + " + ");
           idsSum = (_idsSum + _plus_4);
           parents.put(child.getName(), exp.getParent());
         }
       }
       String _output = output;
-      VarDeclaration _parent = exp.getParent();
-      String _plus = ("(" + _parent);
+      String _name = exp.getParent().getName();
+      String _plus = ("(" + _name);
       String _plus_1 = (_plus + " >= 1) => (");
       int _length = idsSum.length();
       int _minus = (_length - 2);
@@ -193,8 +193,8 @@ public class IntegerFactory extends BooleanFactory {
       String _plus_5 = (_plus_4 + ") AND \n");
       output = (_output + _plus_5);
       String _output_1 = output;
-      VarDeclaration _parent_1 = exp.getParent();
-      String _plus_6 = ("(" + _parent_1);
+      String _name_1 = exp.getParent().getName();
+      String _plus_6 = ("(" + _name_1);
       String _plus_7 = (_plus_6 + " >= 1) => (");
       int _length_1 = idsSum.length();
       int _minus_1 = (_length_1 - 2);
@@ -239,11 +239,24 @@ public class IntegerFactory extends BooleanFactory {
         _builder.append(" > 1) ");
         _builder.newLineIfNotEmpty();
       } else {
-        String declaration = ((((("(" + left) + "1") + " => ") + right) + ")");
+        String _name_2 = left.getName();
+        String _plus = ("(" + _name_2);
+        String _plus_1 = (_plus + "1");
+        String _plus_2 = (_plus_1 + " => ");
+        String _name_3 = right.getName();
+        String _plus_3 = (_plus_2 + _name_3);
+        String declaration = (_plus_3 + ")");
         _builder.newLineIfNotEmpty();
         for (int i = 2; (i <= left.getMax().getValue()); i = (i + 1)) {
           String _declaration = declaration;
-          declaration = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " => ") + right) + ")"));
+          String _name_4 = left.getName();
+          String _plus_4 = (" AND (" + _name_4);
+          String _plus_5 = (_plus_4 + Integer.valueOf(i));
+          String _plus_6 = (_plus_5 + " => ");
+          String _name_5 = right.getName();
+          String _plus_7 = (_plus_6 + _name_5);
+          String _plus_8 = (_plus_7 + ")");
+          declaration = (_declaration + _plus_8);
         }
         _builder.newLineIfNotEmpty();
         _builder.append(declaration);
@@ -266,11 +279,24 @@ public class IntegerFactory extends BooleanFactory {
         _builder.append("<= 1 ");
         _builder.newLineIfNotEmpty();
       } else {
-        String declaration = ((((("(" + left) + "1") + " + ") + right) + "<= 1)");
+        String _name_2 = left.getName();
+        String _plus = ("(" + _name_2);
+        String _plus_1 = (_plus + "1");
+        String _plus_2 = (_plus_1 + " + ");
+        String _name_3 = right.getName();
+        String _plus_3 = (_plus_2 + _name_3);
+        String declaration = (_plus_3 + "<= 1)");
         _builder.newLineIfNotEmpty();
         for (int i = 2; (i <= left.getMax().getValue()); i = (i + 1)) {
           String _declaration = declaration;
-          declaration = (_declaration + (((((" AND (" + left) + Integer.valueOf(i)) + " + ") + right) + "<= 1)"));
+          String _name_4 = left.getName();
+          String _plus_4 = (" AND (" + _name_4);
+          String _plus_5 = (_plus_4 + Integer.valueOf(i));
+          String _plus_6 = (_plus_5 + " + ");
+          String _name_5 = right.getName();
+          String _plus_7 = (_plus_6 + _name_5);
+          String _plus_8 = (_plus_7 + "<= 1)");
+          declaration = (_declaration + _plus_8);
         }
         _builder.newLineIfNotEmpty();
         _builder.append(declaration);

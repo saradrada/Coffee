@@ -686,9 +686,12 @@ ruleStructural returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getStructuralRule());
 					}
 				}
-				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0());
+					newCompositeNode(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0());
+				}
+				ruleParent
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -780,6 +783,30 @@ ruleStructural returns [EObject current=null]
 			}
 		)?
 	)
+;
+
+// Entry rule entryRuleParent
+entryRuleParent returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getParentRule()); }
+	iv_ruleParent=ruleParent
+	{ $current=$iv_ruleParent.current.getText(); }
+	EOF;
+
+// Rule Parent
+ruleParent returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	this_ID_0=RULE_ID
+	{
+		$current.merge(this_ID_0);
+	}
+	{
+		newLeafNode(this_ID_0, grammarAccess.getParentAccess().getIDTerminalRuleCall());
+	}
 ;
 
 // Entry rule entryRuleAttributes

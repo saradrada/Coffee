@@ -29,21 +29,15 @@ VariantDeclaration:
 VariantsInterval:
 	(start=Number) ('..') (end=Number)
 	;
+	
 // enumeration (enumeration of booleans, integers and symbols)
 VariantsEnumeration:
 	('[') list =  ListOfValues  (']')
 	;
 
-//variantsSet:
-//		 vars=('(') list +=  ListOfIDs  (')') 
-//	values?=  '[' '('   ListOfValues ')' (',' '(' ListOfValues')')+ ']'
-//;
-
-
 Constraint:
 	  name=ID ':'  exp= ConsExpression 
 ;
-
 
 ConsExpression:
 	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN|Attributes
@@ -60,8 +54,10 @@ IDCons:
  * 
  */
 Structural:
-	'structural:' parent=[VarDeclaration]  'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
+	'structural:' parent= [VarDeclaration | Parent]   'variants:' ('[') group=ListOfIDs (']') ('card:''['min=Number ',' max=Number ']')? 
 ;
+
+Parent: ID;
 
 /**
  * is a relation between an element and its attributes

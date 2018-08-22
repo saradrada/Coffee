@@ -299,6 +299,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleParent
+entryRuleParent
+:
+{ before(grammarAccess.getParentRule()); }
+	 ruleParent
+{ after(grammarAccess.getParentRule()); } 
+	 EOF 
+;
+
+// Rule Parent
+ruleParent 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getParentAccess().getIDTerminalRuleCall()); }
+		RULE_ID
+		{ after(grammarAccess.getParentAccess().getIDTerminalRuleCall()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleAttributes
 entryRuleAttributes
 :
@@ -3620,9 +3645,9 @@ rule__Structural__ParentAssignment_1
 	(
 		{ before(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getStructuralAccess().getParentVarDeclarationIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getStructuralAccess().getParentVarDeclarationParentParserRuleCall_1_0_1()); }
+			ruleParent
+			{ after(grammarAccess.getStructuralAccess().getParentVarDeclarationParentParserRuleCall_1_0_1()); }
 		)
 		{ after(grammarAccess.getStructuralAccess().getParentVarDeclarationCrossReference_1_0()); }
 	)

@@ -1,24 +1,14 @@
 package com.coffee.generator.XCSP3;
 
-import com.coffee.generator.CodeFactory;
-import com.coffee.generator.Generator;
+import com.coffee.generator.AbstractGenerator;
 import com.coffee.generator.TypeOfProblem;
 import com.coffee.generator.XCSP3.CSPFactory;
 import com.coffee.generator.XCSP3.SATFactory;
+import com.coffee.generator.XCSP3.XCSP3Factory;
 import com.coffee.pLEC.Attributes;
 import com.coffee.pLEC.ConsExpression;
-import com.coffee.pLEC.Constraint;
-import com.coffee.pLEC.Expression;
-import com.coffee.pLEC.FodaBin;
-import com.coffee.pLEC.FodaUN;
-import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.Rule;
-import com.coffee.pLEC.Structural;
-import com.coffee.pLEC.VarDeclaration;
-import java.util.HashMap;
-import java.util.Map;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 /**
@@ -30,58 +20,38 @@ import org.eclipse.xtend2.lib.StringConcatenation;
  * August 2018
  */
 @SuppressWarnings("all")
-public class XCSP3Generator implements Generator {
-  /**
-   * Name of the PL model
-   */
-  private String modelName;
-  
-  /**
-   * type of problem can be
-   * - SAT, for boolean variables and constraints
-   * - CSP, for mixed boolean and integer variables and constraints
-   * - COP, for an optimization constraint problem
-   */
-  private TypeOfProblem typeOfProblem;
-  
+public class XCSP3Generator extends AbstractGenerator {
   /**
    * object to obtain the constraints regarding the type of the problem
    */
-  private CodeFactory factory;
-  
-  /**
-   * Map with the parent of each variable, for structural relations
-   */
-  private Map<String, String> parents;
+  private XCSP3Factory factory;
   
   /**
    * Constructor method
    * @param the name of the model
    */
   public XCSP3Generator(final String name, final TypeOfProblem type) {
-    this.modelName = name;
-    this.typeOfProblem = type;
-    final TypeOfProblem typeOfProblem = this.typeOfProblem;
-    if (typeOfProblem != null) {
-      switch (typeOfProblem) {
+    super(name, type);
+    TypeOfProblem _typeOfProblem = this.getTypeOfProblem();
+    if (_typeOfProblem != null) {
+      switch (_typeOfProblem) {
         case SAT:
-          SATFactory _sATFactory = new SATFactory();
+          SATFactory _sATFactory = new SATFactory(type);
           this.factory = _sATFactory;
           break;
         case CSP:
-          CSPFactory _cSPFactory = new CSPFactory();
+          CSPFactory _cSPFactory = new CSPFactory(type);
           this.factory = _cSPFactory;
           break;
         case COP:
-          SATFactory _sATFactory_1 = new SATFactory();
+          SATFactory _sATFactory_1 = new SATFactory(type);
           this.factory = _sATFactory_1;
           break;
         default:
           break;
       }
     }
-    HashMap<String, String> _hashMap = new HashMap<String, String>();
-    this.parents = _hashMap;
+    this.setFactory(this.factory);
   }
   
   @Override
@@ -90,7 +60,6 @@ public class XCSP3Generator implements Generator {
     CharSequence _header = this.factory.getHeader();
     _builder.append(_header);
     _builder.append(" ");
-    _builder.append(this.modelName);
     _builder.newLineIfNotEmpty();
     CharSequence _varLabel = this.factory.getVarLabel();
     _builder.append(_varLabel);
@@ -101,6 +70,9 @@ public class XCSP3Generator implements Generator {
     CharSequence _parseVariables = this.parseVariables(model);
     _builder.append(_parseVariables);
     _builder.newLineIfNotEmpty();
+    String _varLabelClose = this.factory.getVarLabelClose();
+    _builder.append(_varLabelClose);
+    _builder.newLineIfNotEmpty();
     CharSequence _consLabel = this.factory.getConsLabel();
     _builder.append(_consLabel);
     _builder.newLineIfNotEmpty();
@@ -110,208 +82,59 @@ public class XCSP3Generator implements Generator {
     CharSequence _parseConstraints = this.parseConstraints(model);
     _builder.append(_parseConstraints);
     _builder.newLineIfNotEmpty();
+    String _consLabelClose = this.factory.getConsLabelClose();
+    _builder.append(_consLabelClose);
+    _builder.newLineIfNotEmpty();
     CharSequence _strategy = this.factory.getStrategy();
     _builder.append(_strategy);
     _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseConstraints(final Model model) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<Constraint> _constraints = model.getConstraints();
-      for(final Constraint c : _constraints) {
-        {
-          ConsExpression _exp = c.getExp();
-          if ((_exp instanceof Structural)) {
-            ConsExpression _exp_1 = c.getExp();
-            Structural exp = ((Structural) _exp_1);
-            _builder.newLineIfNotEmpty();
-            {
-              if (((exp.getMin() == null) && (exp.getMax() == null))) {
-                CharSequence _parseStructuralNoCard = this.parseStructuralNoCard(exp);
-                _builder.append(_parseStructuralNoCard);
-                _builder.newLineIfNotEmpty();
-              } else {
-                String _name = c.getName();
-                _builder.append(_name);
-                _builder.append(": ");
-                CharSequence _parseExpression = this.parseExpression(c.getExp());
-                _builder.append(_parseExpression);
-                _builder.newLineIfNotEmpty();
-              }
-            }
-          } else {
-            String _name_1 = c.getName();
-            _builder.append(_name_1);
-            _builder.append(": ");
-            CharSequence _parseExpression_1 = this.parseExpression(c.getExp());
-            _builder.append(_parseExpression_1);
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseVariables(final Model model) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<VarDeclaration> _vars = model.getVars();
-      for(final VarDeclaration variable : _vars) {
-        CharSequence _variable = this.factory.getVariable(variable);
-        _builder.append(_variable);
-        _builder.append(" ");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseExpression(final ConsExpression exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((exp instanceof IDCons)) {
-        String _name = ((IDCons)exp).getName();
-        _builder.append(_name);
-        _builder.newLineIfNotEmpty();
-      } else {
-        {
-          if ((exp instanceof FodaBin)) {
-            CharSequence _parseFodaBinary = this.parseFodaBinary(((FodaBin)exp));
-            _builder.append(_parseFodaBinary);
-            _builder.newLineIfNotEmpty();
-          } else {
-            {
-              if ((exp instanceof Rule)) {
-                CharSequence _parseRule = this.parseRule(((Rule)exp));
-                _builder.append(_parseRule);
-                _builder.newLineIfNotEmpty();
-              } else {
-                {
-                  if ((exp instanceof Structural)) {
-                    CharSequence _parseStructuralCard = this.parseStructuralCard(((Structural)exp));
-                    _builder.append(_parseStructuralCard);
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    {
-                      if ((exp instanceof FodaUN)) {
-                        CharSequence _parseFodaUnary = this.parseFodaUnary(((FodaUN)exp));
-                        _builder.append(_parseFodaUnary);
-                        _builder.newLineIfNotEmpty();
-                      } else {
-                        {
-                          if ((exp instanceof Attributes)) {
-                            CharSequence _parseAttributes = this.parseAttributes(((Attributes)exp));
-                            _builder.append(_parseAttributes);
-                            _builder.newLineIfNotEmpty();
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    String _footer = this.factory.getFooter();
+    _builder.append(_footer);
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
   @Override
   public CharSequence parseRule(final Rule rule) {
     StringConcatenation _builder = new StringConcatenation();
-    Expression _condition = rule.getCondition();
-    final CharSequence left = this.parseExpression(((ConsExpression) _condition));
-    _builder.newLineIfNotEmpty();
-    Expression _consequence = rule.getConsequence();
-    final CharSequence right = this.parseExpression(((ConsExpression) _consequence));
-    _builder.newLineIfNotEmpty();
-    _builder.append("(");
-    _builder.append(left);
-    _builder.append(") => (");
-    _builder.append(right);
-    _builder.append(")");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseStructuralNoCard(final Structural exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    this.setParents(exp);
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseStructuralCard(final Structural exp) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Map<String, String> to Map<String, VarDeclaration>");
-  }
-  
-  @Override
-  public CharSequence parseFodaBinary(final FodaBin exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence parseFodaUnary(final FodaUN exp) {
-    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(" ");
     return _builder;
   }
   
   @Override
   public CharSequence parseAttributes(final Attributes exp) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append(" ");
     return _builder;
-  }
-  
-  @Override
-  public CharSequence getClonConstraints() {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
-  }
-  
-  @Override
-  public void setParents(final Structural exp) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from VarDeclaration to String");
-  }
-  
-  @Override
-  public String getModelName() {
-    return this.modelName;
   }
   
   @Override
   public CharSequence putAutogeneratedVars() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("boolean ");
-    _builder.append(this.modelName);
-    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
     return _builder;
   }
   
   @Override
   public CharSequence putAutogeneratedCons() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("C_");
-    _builder.append(this.modelName);
-    _builder.append(" : ");
-    _builder.append(this.modelName);
-    _builder.append(" = 1");
+    _builder.append(" ");
+    return _builder;
+  }
+  
+  @Override
+  public CharSequence parseConstraint(final String id, final ConsExpression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<intension id= \"");
+    _builder.append(id);
+    _builder.append("\" >");
     _builder.newLineIfNotEmpty();
-    CharSequence _clonConstraints = this.getClonConstraints();
-    _builder.append(_clonConstraints);
+    _builder.append("\t");
+    CharSequence _parseExpression = this.parseExpression(exp);
+    _builder.append(_parseExpression, "\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("</intension>");
+    _builder.newLine();
     return _builder;
   }
 }

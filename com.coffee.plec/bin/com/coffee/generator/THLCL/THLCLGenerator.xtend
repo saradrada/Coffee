@@ -1,21 +1,14 @@
 package com.coffee.generator.THLCL
 
 import com.coffee.pLEC.Model
-import com.coffee.generator.Generator
-import com.coffee.pLEC.Structural
 import com.coffee.pLEC.ConsExpression
 import com.coffee.pLEC.Rule
-import com.coffee.pLEC.FodaBin
-import com.coffee.pLEC.FodaUN
 import com.coffee.pLEC.Attributes
 import com.coffee.generator.TypeOfProblem
-import com.coffee.pLEC.IDCons
 import com.coffee.generator.CodeFactory
 
 //data structure imports
-import java.util.Map
-import java.util.HashMap
-import com.coffee.pLEC.VarDeclaration
+import com.coffee.generator.AbstractGenerator
 
 /**
  * Code generator for parse from the PLEC language to the Textual High Level Constraint
@@ -26,48 +19,33 @@ import com.coffee.pLEC.VarDeclaration
  * August 2018
  */
 
-class THLCLGenerator implements Generator{
+class THLCLGenerator extends AbstractGenerator{
 	/**
-	 * Name of the PL model 
-	 */
-	private String modelName
-	
-	/**
-	 * type of problem can be 
-	 * - SAT, for boolean variables and constraints 
-	 * - CSP, for mixed boolean and integer variables and constraints
-	 * - COP, for an optimization constraint problem
-	 */
-	private TypeOfProblem typeOfProblem
-	/**
-	 * object to obtain the constraints regarding the type of the problem
+	 * object to obtain the program sentences regarding the type of the problem
 	 */
 	private CodeFactory factory;
 	
-	/**
-	 * Map with the parent of each variable, for structural relations
-	 */
-	private Map <String, VarDeclaration> parents;
 	
-		/**
+	/**
 	 * Constructor method 
 	 * @param the name of the model
 	 */
 	new(String name, TypeOfProblem type) {
-		modelName= name
-		typeOfProblem= type
+		super(name, type)
 		switch typeOfProblem{
 			 case SAT: factory= new BooleanFactory()
 			 case CSP: factory= new IntegerFactory()
 			 case COP: factory= new OptimizationFactory()
 		}
-		//initializing the data sctucture with the map of parents
-		parents= new HashMap<String,VarDeclaration>();
+		setFactory(factory)
 	}
 
-	
-
-
+	/**
+	 * Method to obtain a sequence of characters containing the 
+	 * constraint program in the Textual HLCL language
+	 * @param model is an ECORE syntax tree with the program
+	 * this syntax tree should be traversed. 
+	 */
 	override parseModel(Model model) {
 		'''
 		«factory.getHeader» «modelName»
@@ -80,105 +58,21 @@ class THLCLGenerator implements Generator{
 		«factory.getStrategy()»
 		'''
 	}
-		
-	override parseConstraints(Model model) {
+	
+	override parseConstraint(String id, ConsExpression exp){
 		'''
-		«FOR c : model.constraints»
-			«IF c.exp instanceof Structural »
-				«var exp= c.exp as Structural»
-				«IF exp.min===null && exp.max===null »
-					«parseStructuralNoCard( exp)»
-				«ELSE»
-					«c.name»: «parseExpression(c.exp)»
-				«ENDIF»
-			«ELSE»
-				«c.name»: «parseExpression(c.exp)»
-			«ENDIF»	
-		«ENDFOR»
-		'''
-	}
-	override parseVariables(Model model) {
-		'''
-		«FOR variable : model.vars»
-			«factory.getVariable(variable)» 
-		«ENDFOR»
-		'''
+		«id»: «parseExpression(exp)»
+		'''	
 	}
 	
-	override parseExpression(ConsExpression exp) {
-		'''
-		«IF exp instanceof IDCons»
-					«exp.name»
-				«ELSE»
-					«IF exp instanceof FodaBin»
-						«parseFodaBinary(exp)»
-					«ELSE»
-						«IF exp instanceof Rule»
-							«parseRule(exp)»
-						«ELSE»
-							«IF exp instanceof Structural»
-								«parseStructuralCard(exp)»
-							«ELSE»
-								«IF exp instanceof FodaUN»
-									«parseFodaUnary(exp)»
-								«ELSE»
-									«IF exp instanceof Attributes»
-										«parseAttributes(exp)»
-									«ENDIF»
-								«ENDIF»
-							«ENDIF»
-						«ENDIF»
-					«ENDIF»
-				«ENDIF»
-		'''
-	}
-	
+	/**
+	 * @param rule is an expression of type rule
+	 */
 	override parseRule(Rule rule) {
 		'''
 		«val left= parseExpression(rule.condition as ConsExpression)»
 		«val right= parseExpression (rule.consequence as ConsExpression)»
 		(«left») => («right»)
-		'''
-	}
-	
-	override parseStructuralNoCard(Structural exp) {
-		'''
-		«setParents(exp)»
-		'''
-	}
-	
-	override parseStructuralCard(Structural exp) {
-		factory.getGroupCardinality(exp, parents)
-	}
-	
-	override parseFodaBinary(FodaBin exp) {
-		'''
-		«IF exp.op=="requires"»
-			«factory.getRequires(exp.var1, exp.var2)»
-		«ELSE»
-			«IF exp.op=="excludes"»
-				«factory.getRequires(exp.var1, exp.var2)»
-			«ELSE»
-				«IF exp.op=="mandatory"»
-					«factory.getMandatory(exp.var1, exp.var2)»
-				«ELSE»
-					«factory.getOptional(exp.var1, exp.var2)»
-				«ENDIF»
-			«ENDIF»
-		«ENDIF»
-		'''
-	}
-	
-	override parseFodaUnary(FodaUN exp) {
-		'''
-		«IF exp.op=="optional"»
-			«factory.getOptional(parents.get(exp.var1.name),exp.var1)»
-		«ELSE»
-			«IF exp.op=="mandatory"»
-				«factory.getOptional(parents.get(exp.var1.name),exp.var1)»
-			«ELSE»
-			«ENDIF»
-		«ENDIF»
 		'''
 	}
 	
@@ -195,17 +89,6 @@ class THLCLGenerator implements Generator{
 		'''
 	}
 	
-
-	
-	override setParents(Structural exp) {
-		for (element : exp.group.ids) {
-			parents.put(element.name, exp.parent)
-		}
-	}
-	
-	override getModelName() {
-		return  modelName
-	}
 	
 	override putAutogeneratedVars() {
 		'''
