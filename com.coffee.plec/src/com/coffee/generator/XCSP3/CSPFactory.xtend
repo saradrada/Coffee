@@ -30,26 +30,16 @@ class CSPFactory  extends XCSP3Factory{
 	
 	override getGroupCardinality(Structural exp, Map<String, VarDeclaration> parents) {
 		var idsSum="add("
-		var output =
-		'''and(
-		'''
+		var implies=""
+		var output ='''and('''
 		for (child : exp.group.ids) {
-			output += "imp(" + child.name + ", "+ exp.parent.name + "), \n"
+			implies += '''imp(«child.name», «exp.parent.name»),'''
 			idsSum+= child.name +", "
 			parents.put(child.name, exp.parent)
 		}
-		output += 
-		'''
-		imp(ge( «exp.parent.name», 1), 
-		    ge(«idsSum.substring(0, idsSum.length() - 2)»), «exp.min.value»)
-		    ),''' 
-		output +=
-		'''
-		 imp(ge(«exp.parent.name», 1),
-		     ge(«idsSum.substring(0, idsSum.length() - 2)», «exp.max.value»)
-		     )
-		 ) '''
-		output
+		val sumLessThan = '''le(«idsSum.substring(0, idsSum.length() - 2)»), «exp.min.value»)''' 
+		val sumGreaterThan ='''ge(«idsSum.substring(0, idsSum.length() - 2)»), «exp.max.value»)'''
+		output+= '''«implies» imp(ge(«exp.parent.name», 1), and(«sumLessThan», «sumGreaterThan»)) )'''
 
 	}
 	

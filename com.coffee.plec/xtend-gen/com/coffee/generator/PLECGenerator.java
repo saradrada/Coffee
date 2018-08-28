@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -29,22 +28,15 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class PLECGenerator extends AbstractGenerator {
-  /**
-   * Name of the PL model
-   */
-  private String modelName;
-  
-  private TypeOfProblem typeOfProblem;
-  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
-    this.modelName = this.modelName(((Model) _head));
+    final String modelName = this.modelName(((Model) _head));
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
     final Model model = ((Model) _head_1);
-    this.setTypeOfProblem(model);
-    fsa.generateFile((this.modelName + ".hlcl"), this.toTHLCL(model));
-    fsa.generateFile((this.modelName + ".xml"), this.toXCSP3(model));
+    final TypeOfProblem typeOfProblem = this.setTypeOfProblem(model);
+    fsa.generateFile((modelName + ".hlcl"), this.toTHLCL(model, modelName, typeOfProblem));
+    fsa.generateFile((modelName + ".xml"), this.toXCSP3(model, modelName, typeOfProblem));
   }
   
   /**
@@ -62,12 +54,12 @@ public class PLECGenerator extends AbstractGenerator {
    * type of the constraints
    * @param model is an abstract representation of the model
    */
-  public void setTypeOfProblem(final Model model) {
+  public TypeOfProblem setTypeOfProblem(final Model model) {
     if ((Objects.equal(this.typeOfVariables(model), TypeOfProblem.SAT) && 
       Objects.equal(this.typeOfConstraints(model), TypeOfProblem.SAT))) {
-      this.typeOfProblem = TypeOfProblem.SAT;
+      return TypeOfProblem.SAT;
     } else {
-      this.typeOfProblem = TypeOfProblem.CSP;
+      return TypeOfProblem.CSP;
     }
   }
   
@@ -76,10 +68,10 @@ public class PLECGenerator extends AbstractGenerator {
    * @param the model
    * @return a sequence of characters to create a .hlcl file
    */
-  public CharSequence toTHLCL(final Model model) {
+  public CharSequence toTHLCL(final Model model, final String modelName, final TypeOfProblem typeOfProblem) {
     CharSequence _xblockexpression = null;
     {
-      THLCLGenerator thlcl = new THLCLGenerator(this.modelName, this.typeOfProblem);
+      THLCLGenerator thlcl = new THLCLGenerator(modelName, typeOfProblem);
       _xblockexpression = thlcl.parseModel(model);
     }
     return _xblockexpression;
@@ -90,10 +82,10 @@ public class PLECGenerator extends AbstractGenerator {
    * @param the model
    * @return a sequence of characters to create a .xcsp3 file
    */
-  public CharSequence toXCSP3(final Model model) {
+  public CharSequence toXCSP3(final Model model, final String modelName, final TypeOfProblem typeOfProblem) {
     CharSequence _xblockexpression = null;
     {
-      XCSP3Generator xcsp3 = new XCSP3Generator(this.modelName, this.typeOfProblem);
+      XCSP3Generator xcsp3 = new XCSP3Generator(modelName, typeOfProblem);
       _xblockexpression = xcsp3.parseModel(model);
     }
     return _xblockexpression;
@@ -117,13 +109,6 @@ public class PLECGenerator extends AbstractGenerator {
         final com.coffee.pLEC.Number max = ((Structural) _exp_2).getMax();
         if (((min != null) && (max != null))) {
           if (((!((min.getValue() == 0) && (max.getValue() >= 1))) && (!((min.getValue() == 1) && (max.getValue() == 1))))) {
-            InputOutput.<String>println("en el if");
-            int _value = min.getValue();
-            String _plus = ("con min: " + Integer.valueOf(_value));
-            String _plus_1 = (_plus + " y max := ");
-            int _value_1 = max.getValue();
-            String _plus_2 = (_plus_1 + Integer.valueOf(_value_1));
-            InputOutput.<String>print(_plus_2);
             return TypeOfProblem.CSP;
           }
         }

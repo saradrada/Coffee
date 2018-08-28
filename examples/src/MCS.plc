@@ -1,5 +1,6 @@
 model MCS
 variables:
+boolean MCS
 boolean SpeedSensor
 instantiable [0,2] boolean PosSensor
 boolean Processor

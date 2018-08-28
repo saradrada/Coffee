@@ -69,16 +69,15 @@ class IntegerFactory extends BooleanFactory{
 	
 	override getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents){
 		var idsSum=""
-		var output =""
+		var implies =""
 		for (child : exp.group.ids) {
-			output += "(" + child.name + " => "+ exp.parent.name + ") AND \n"
-			idsSum+= child.name +" + "
+			implies += '''(«child.name» => «exp.parent.name») AND '''
+			idsSum+= '''«child.name» + '''
 			parents.put(child.name, exp.parent)
 		}
-		output += "("+ exp.parent.name +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) +">= " 
-					+ exp.min.value + ") AND \n" 
-		output += "("+ exp.parent.name +" >= 1) => ("+ idsSum.substring(0, idsSum.length() - 2) + "<= "
-					+ exp.max.value+ ")" 
+		var sumLesThan = '''(«idsSum.substring(0, idsSum.length() - 2)» <= «exp.min.value» )'''
+		var sumGreaterThan = '''(«idsSum.substring(0, idsSum.length() - 2)» >= «exp.max.value»)''' 
+		var output= '''«implies»(«exp.parent.name» >= 1) => («sumLesThan» AND «sumGreaterThan»)'''
 		output
 	 }
 	 

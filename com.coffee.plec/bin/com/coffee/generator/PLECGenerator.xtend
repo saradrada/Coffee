@@ -32,28 +32,23 @@ import com.coffee.pLEC.Structural
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PLECGenerator extends AbstractGenerator {
-	
-	/**
-	 * Name of the PL model 
-	 */
-	private String modelName
-	private TypeOfProblem typeOfProblem
+
 
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		// obtaining the name of the model from the source code
-		modelName= modelName(resource.contents.head as Model)
+		val modelName= modelName(resource.contents.head as Model)
 		// obtaining the model
 		val model= resource.contents.head as Model
 		
 		//obtaining the type of problem
-		setTypeOfProblem(model)
+		val typeOfProblem= setTypeOfProblem(model)
 		
 		//generating an intermediate file with the textual HLCL representation
-		fsa.generateFile(modelName+".hlcl", toTHLCL(model))
+		fsa.generateFile(modelName+".hlcl", toTHLCL(model, modelName, typeOfProblem))
 		
 //		//generating an intermediate file with the textual XCSP3 representation
-		fsa.generateFile(modelName+".xml", toXCSP3(model))
+		fsa.generateFile(modelName+".xml", toXCSP3(model, modelName, typeOfProblem))
 	}
 	
 	/**
@@ -71,18 +66,19 @@ class PLECGenerator extends AbstractGenerator {
 	 * type of the constraints
 	 * @param model is an abstract representation of the model
 	 */
-	def void setTypeOfProblem(Model model){
+	def TypeOfProblem setTypeOfProblem(Model model){
 		/*
 		 * if all variables and constraints can be translated into a sat problem
 		 * the the problem is a SAT
 		 * otherwise is a CSP
 		 */ 
+		 
 		if (typeOfVariables(model)== TypeOfProblem.SAT 
 			&& 
 			typeOfConstraints(model)== TypeOfProblem.SAT){
-			typeOfProblem= TypeOfProblem.SAT
+			return TypeOfProblem.SAT
 		}else{
-			typeOfProblem= TypeOfProblem.CSP
+			return TypeOfProblem.CSP
 		}
 	}
 	
@@ -91,7 +87,7 @@ class PLECGenerator extends AbstractGenerator {
 	 * @param the model
 	 * @return a sequence of characters to create a .hlcl file
 	 */
-	def toTHLCL(Model model) {
+	def toTHLCL(Model model, String modelName, TypeOfProblem typeOfProblem) {
 		//en este metodo se debe  instanciar el generador de THLCL 
 		//se les manda como parámetro el tipo de problema. 
 		var THLCLGenerator thlcl= new THLCLGenerator (modelName,  typeOfProblem)
@@ -103,7 +99,7 @@ class PLECGenerator extends AbstractGenerator {
 	 * @param the model
 	 * @return a sequence of characters to create a .xcsp3 file
 	 */
-	def toXCSP3(Model model) {
+	def toXCSP3(Model model, String modelName,TypeOfProblem typeOfProblem) {
 		//en este metodo se debe  instanciar el generador de XCSP3 
 		//se les manda como parámetro el tipo de problema. 
 		var XCSP3Generator xcsp3= new XCSP3Generator (modelName,  typeOfProblem)
@@ -127,8 +123,6 @@ class PLECGenerator extends AbstractGenerator {
 				// the constraint has a cardinality
 				if (min !==null && max !==null){
 					if  (!(min.value==0 && max.value >=1) && !(min.value ==1 && max.value==1)) {
-						println("en el if")
-						print("con min: " + min.value + " y max := " + max.value)
 						return TypeOfProblem.CSP		
 					}
 				}
