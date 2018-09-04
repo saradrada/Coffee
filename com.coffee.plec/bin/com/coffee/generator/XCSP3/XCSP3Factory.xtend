@@ -29,7 +29,8 @@ abstract class XCSP3Factory extends CodeFactory {
 	}
 	
 	override getHeader() {
-		return HEADER + '''"«frameworkType»">'''
+		//return HEADER + '''"«frameworkType»">'''
+		return HEADER + '''"CSP">'''
 	}
 	
 	override getVarLabel() {

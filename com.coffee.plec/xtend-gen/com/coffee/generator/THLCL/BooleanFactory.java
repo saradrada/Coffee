@@ -1,6 +1,6 @@
 package com.coffee.generator.THLCL;
 
-import com.coffee.generator.CodeFactory;
+import com.coffee.generator.THLCL.THLCLFactory;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
 import com.google.common.base.Objects;
@@ -9,26 +9,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class BooleanFactory extends CodeFactory {
-  private final static String HEADER = "model";
-  
-  private final static String VARIABLES = "variables:";
-  
-  private final static String CONSTRAINTS = "constraints:";
-  
+public class BooleanFactory extends THLCLFactory {
+  /**
+   * All variables are boolean variables, there is no need to declare the domains
+   */
   @Override
-  public CharSequence getHeader() {
-    return BooleanFactory.HEADER;
-  }
-  
-  @Override
-  public CharSequence getVarLabel() {
-    return BooleanFactory.VARIABLES;
-  }
-  
-  @Override
-  public CharSequence getConsLabel() {
-    return BooleanFactory.CONSTRAINTS;
+  public CharSequence getVariable(final VarDeclaration variable) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _type = variable.getType();
+    _builder.append(_type);
+    _builder.append(" ");
+    String _name = variable.getName();
+    _builder.append(_name);
+    _builder.newLineIfNotEmpty();
+    return _builder;
   }
   
   @Override
@@ -174,20 +168,5 @@ public class BooleanFactory extends CodeFactory {
       _xblockexpression = output;
     }
     return _xblockexpression;
-  }
-  
-  /**
-   * All variables are boolean variables, there is no need to declare the domains
-   */
-  @Override
-  public CharSequence getVariable(final VarDeclaration variable) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _type = variable.getType();
-    _builder.append(_type);
-    _builder.append(" ");
-    String _name = variable.getName();
-    _builder.append(_name);
-    _builder.newLineIfNotEmpty();
-    return _builder;
   }
 }

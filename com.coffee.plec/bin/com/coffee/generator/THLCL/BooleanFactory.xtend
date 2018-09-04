@@ -1,27 +1,18 @@
 package com.coffee.generator.THLCL
 
-import com.coffee.generator.CodeFactory
+
 import com.coffee.pLEC.VarDeclaration
 import com.coffee.pLEC.Structural
 import java.util.Map
 
-class BooleanFactory extends CodeFactory{
-	private static final String HEADER="model"
-	private static final String VARIABLES="variables:"
-	private static final String CONSTRAINTS="constraints:"
-	
-	
-	override getHeader() {
-		return HEADER
-	}
-	
-	override getVarLabel() {
-		return VARIABLES
-	}
-	
-	override getConsLabel() {
-		return CONSTRAINTS
-	}
+class BooleanFactory extends THLCLFactory{
+
+	/**
+	 * All variables are boolean variables, there is no need to declare the domains
+	 */
+	override getVariable(VarDeclaration variable) '''
+		«variable.type» «variable.name»
+	'''
 	
 	override getOptional(VarDeclaration parent, VarDeclaration child) {
 		'''«child.name» => «parent.name»''' 
@@ -78,12 +69,7 @@ class BooleanFactory extends CodeFactory{
 	}
 	
 
-	/**
-	 * All variables are boolean variables, there is no need to declare the domains
-	 */
-	override getVariable(VarDeclaration variable) '''
-		«variable.type» «variable.name»
-	'''
+
 	
 
 	

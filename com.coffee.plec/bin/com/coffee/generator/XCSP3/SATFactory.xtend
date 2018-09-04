@@ -12,19 +12,20 @@ class SATFactory  extends XCSP3Factory{
 	}
 	
 	override getOptional(VarDeclaration parent, VarDeclaration child) {
-		'''imp(«child.name», «parent.name»)'''
+		'''or(not(«child.name»), «parent.name»)'''
 	}
 	
 	override getMandatory(VarDeclaration parent, VarDeclaration child) {
-		'''iff(«parent.name», «child.name»)'''
+		// these should be two different constraints
+		'''and(or(«parent.name», not(«child.name»)), or(not(«parent.name»,«child.name»)))'''
 	}
 	
 	override getExcludes(VarDeclaration left, VarDeclaration right) {
-		'''not( and(«left.name», «right.name»))'''
+		''' or(not(«left.name»), not(«right.name»))'''
 	}
 	
 	override getRequires(VarDeclaration left, VarDeclaration right) {
-		'''imp(«left.name», «right.name»)'''
+		'''or(not(«left.name»), «right.name»)'''
 	}
 	
 	override getGroupCardinality(Structural exp, Map<String, VarDeclaration> parents) {

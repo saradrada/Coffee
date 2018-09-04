@@ -18,10 +18,10 @@ public class SATFactory extends XCSP3Factory {
   @Override
   public CharSequence getOptional(final VarDeclaration parent, final VarDeclaration child) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("imp(");
+    _builder.append("or(not(");
     String _name = child.getName();
     _builder.append(_name);
-    _builder.append(", ");
+    _builder.append("), ");
     String _name_1 = parent.getName();
     _builder.append(_name_1);
     _builder.append(")");
@@ -31,25 +31,32 @@ public class SATFactory extends XCSP3Factory {
   @Override
   public CharSequence getMandatory(final VarDeclaration parent, final VarDeclaration child) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("iff(");
+    _builder.append("and(or(");
     String _name = parent.getName();
     _builder.append(_name);
-    _builder.append(", ");
+    _builder.append(", not(");
     String _name_1 = child.getName();
     _builder.append(_name_1);
-    _builder.append(")");
+    _builder.append(")), or(not(");
+    String _name_2 = parent.getName();
+    _builder.append(_name_2);
+    _builder.append(",");
+    String _name_3 = child.getName();
+    _builder.append(_name_3);
+    _builder.append(")))");
     return _builder;
   }
   
   @Override
   public CharSequence getExcludes(final VarDeclaration left, final VarDeclaration right) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("not( and(");
+    _builder.append(" ");
+    _builder.append("or(not(");
     String _name = left.getName();
-    _builder.append(_name);
-    _builder.append(", ");
+    _builder.append(_name, " ");
+    _builder.append("), not(");
     String _name_1 = right.getName();
-    _builder.append(_name_1);
+    _builder.append(_name_1, " ");
     _builder.append("))");
     return _builder;
   }
@@ -57,10 +64,10 @@ public class SATFactory extends XCSP3Factory {
   @Override
   public CharSequence getRequires(final VarDeclaration left, final VarDeclaration right) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("imp(");
+    _builder.append("or(not(");
     String _name = left.getName();
     _builder.append(_name);
-    _builder.append(", ");
+    _builder.append("), ");
     String _name_1 = right.getName();
     _builder.append(_name_1);
     _builder.append(")");

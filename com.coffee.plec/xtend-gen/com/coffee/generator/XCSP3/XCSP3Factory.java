@@ -71,9 +71,7 @@ public abstract class XCSP3Factory extends CodeFactory {
   @Override
   public CharSequence getHeader() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\"");
-    _builder.append(this.frameworkType);
-    _builder.append("\">");
+    _builder.append("\"CSP\">");
     return (this.HEADER + _builder);
   }
   
