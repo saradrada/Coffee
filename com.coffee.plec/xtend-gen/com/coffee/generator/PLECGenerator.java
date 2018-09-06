@@ -3,6 +3,7 @@
  */
 package com.coffee.generator;
 
+import com.coffee.generator.DIMACS.DIMACSGenerator;
 import com.coffee.generator.THLCL.THLCLGenerator;
 import com.coffee.generator.TypeOfProblem;
 import com.coffee.generator.XCSP3.XCSP3Generator;
@@ -36,7 +37,12 @@ public class PLECGenerator extends AbstractGenerator {
     final Model model = ((Model) _head_1);
     final TypeOfProblem typeOfProblem = this.setTypeOfProblem(model);
     fsa.generateFile((modelName + ".hlcl"), this.toTHLCL(model, modelName, typeOfProblem));
-    fsa.generateFile((modelName + ".xml"), this.toXCSP3(model, modelName, typeOfProblem));
+    boolean _equals = Objects.equal(typeOfProblem, TypeOfProblem.SAT);
+    if (_equals) {
+      fsa.generateFile((modelName + ".cnf"), this.toDIMACS(model, modelName, typeOfProblem));
+    } else {
+      fsa.generateFile((modelName + ".xml"), this.toXCSP3(model, modelName, typeOfProblem));
+    }
   }
   
   /**
@@ -87,6 +93,21 @@ public class PLECGenerator extends AbstractGenerator {
     {
       XCSP3Generator xcsp3 = new XCSP3Generator(modelName, typeOfProblem);
       _xblockexpression = xcsp3.parseModel(model);
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Method to obtain a Dimacs representation of the model
+   * @param the model
+   * @return a sequence of characters to create a textual file
+   * with the sat problem in DIMACS format file
+   */
+  public CharSequence toDIMACS(final Model model, final String modelName, final TypeOfProblem typeOfProblem) {
+    CharSequence _xblockexpression = null;
+    {
+      DIMACSGenerator dimacs = new DIMACSGenerator(modelName, typeOfProblem);
+      _xblockexpression = dimacs.parseModel(model);
     }
     return _xblockexpression;
   }

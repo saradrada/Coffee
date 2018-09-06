@@ -31,7 +31,6 @@ class BooleanFactory extends THLCLFactory{
 	}
 	
 	override getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents) {
-		
 		var output =""
 		// an alternative relation
 		if (exp.min.value==1 && exp.max.value==1){
