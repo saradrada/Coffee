@@ -1,0 +1,47 @@
+model satExample_GPL_from_splot
+variables:
+boolean Gpl
+boolean Weight
+boolean weighted
+boolean unweighted
+boolean Gtp
+boolean directed
+boolean undirected
+boolean Search
+boolean DFS
+boolean BFS
+boolean Algorithms
+boolean connected
+boolean stronglyc
+boolean cycle
+boolean mstprim
+boolean mstkruskal
+boolean shortest
+constraints:
+c0: Gpl is root
+c1: structural: Gpl variants:[Gtp, Search, Algorithms, Weight]
+// mandatory
+c2: Algorithms is mandatory
+c4: Gtp is mandatory
+// optional
+C3: Weight is optional
+c5: Search is optional
+// excludes
+c6: stronglyc excludes shortest
+c7: mstprim excludes mstkruskal
+c8: connected excludes stronglyc
+c9: mstkruskal excludes shortest
+c10: mstprim excludes shortest
+// requires
+c11: mstprim requires unweighted
+c12: mstprim requires undirected
+c13: shortest requires directed
+c14: mstkruskal requires unweighted
+c15: stronglyc requires undirected
+c16: connected requires Search
+c17: mstkruskal requires undirected
+c18: cycle requires DFS
+c19: structural: Gtp variants: [directed, undirected] card:[1,1]
+c20: structural: Algorithms variants: [connected, stronglyc, cycle, mstprim, mstkruskal, shortest] card: [0,6]
+c21: structural: Weight variants: [weighted, unweighted] card: [1,1]
+c22: structural: Search variants: [BFS, DFS] card: [1,1]

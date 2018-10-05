@@ -1,0 +1,11 @@
+model Ex4_MCS
+variables:
+boolean MCS
+instantiable [1,2] boolean Processor
+instantiable [1,2] boolean Memory
+constraints:
+c0: MCS is root
+c1: structural: MCS variants:[Processor]
+c2: Processor is optional
+c3: structural: Processor variants: [Memory]
+c4: Memory is optional
