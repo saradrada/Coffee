@@ -159,6 +159,15 @@ public interface PLECFactory extends EFactory
   SetRefinement createSetRefinement();
 
   /**
+   * Returns a new object of class '<em>Root Refinement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Root Refinement</em>'.
+   * @generated
+   */
+  RootRefinement createRootRefinement();
+
+  /**
    * Returns a new object of class '<em>Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

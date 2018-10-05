@@ -918,6 +918,15 @@ ruleRefinement returns [EObject current=null]
 			$current = $this_SetRefinement_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getRefinementAccess().getRootRefinementParserRuleCall_3());
+		}
+		this_RootRefinement_3=ruleRootRefinement
+		{
+			$current = $this_RootRefinement_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1159,6 +1168,46 @@ ruleSetRefinement returns [EObject current=null]
 		otherlv_13=']'
 		{
 			newLeafNode(otherlv_13, grammarAccess.getSetRefinementAccess().getRightSquareBracketKeyword_10());
+		}
+	)
+;
+
+// Entry rule entryRuleRootRefinement
+entryRuleRootRefinement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRootRefinementRule()); }
+	iv_ruleRootRefinement=ruleRootRefinement
+	{ $current=$iv_ruleRootRefinement.current; }
+	EOF;
+
+// Rule RootRefinement
+ruleRootRefinement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRootRefinementRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getRootRefinementAccess().getVarVarDeclarationCrossReference_0_0());
+				}
+			)
+		)
+		otherlv_1='is'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRootRefinementAccess().getIsKeyword_1());
+		}
+		otherlv_2='root'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRootRefinementAccess().getRootKeyword_2());
 		}
 	)
 ;

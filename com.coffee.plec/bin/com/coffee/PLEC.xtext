@@ -5,7 +5,7 @@ generate pLEC "http://www.coffee.com/PLEC"
 /**
  * Grammar specification of PLEC, the Product Line Engineering Constraints Language
  * @author Angela Villota
- * @version PLEC V3
+ * @version PLEC V3 modified in october 4 for including the root constraint
  * August 2018
  */
 
@@ -66,7 +66,7 @@ Attributes:
 	'attributes:' ('[') att=ListOfIDs (']') 'of' var1=[VarDeclaration]
 ;
 Refinement:
-	Assignment | VarRefinement | SetRefinement
+	Assignment | VarRefinement | SetRefinement | RootRefinement
 ;
 
 Assignment:
@@ -81,6 +81,10 @@ SetRefinement:
 	'variants'
 	'[' '('head= ListOfValues ')'  ( ',' '('tail+= ListOfValues')')+ ']'
 ;
+RootRefinement:
+	var=[VarDeclaration] 'is' 'root' 
+;
+
 
 Rule:
 	condition= TerminalExp '-->' consequence= TerminalExp

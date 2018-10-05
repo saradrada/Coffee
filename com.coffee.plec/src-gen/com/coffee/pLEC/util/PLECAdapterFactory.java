@@ -18,6 +18,7 @@ import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Refinement;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
@@ -173,6 +174,11 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSetRefinement(SetRefinement object)
       {
         return createSetRefinementAdapter();
+      }
+      @Override
+      public Adapter caseRootRefinement(RootRefinement object)
+      {
+        return createRootRefinementAdapter();
       }
       @Override
       public Adapter caseRule(Rule object)
@@ -467,6 +473,21 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSetRefinementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.pLEC.RootRefinement <em>Root Refinement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.pLEC.RootRefinement
+   * @generated
+   */
+  public Adapter createRootRefinementAdapter()
   {
     return null;
   }

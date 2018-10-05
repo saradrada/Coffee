@@ -18,6 +18,7 @@ import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Refinement;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
@@ -219,6 +220,16 @@ public class PLECSwitch<T> extends Switch<T>
         if (result == null) result = caseRefinement(setRefinement);
         if (result == null) result = caseConsExpression(setRefinement);
         if (result == null) result = caseExpression(setRefinement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLECPackage.ROOT_REFINEMENT:
+      {
+        RootRefinement rootRefinement = (RootRefinement)theEObject;
+        T result = caseRootRefinement(rootRefinement);
+        if (result == null) result = caseRefinement(rootRefinement);
+        if (result == null) result = caseConsExpression(rootRefinement);
+        if (result == null) result = caseExpression(rootRefinement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -544,6 +555,22 @@ public class PLECSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSetRefinement(SetRefinement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Root Refinement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Root Refinement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRootRefinement(RootRefinement object)
   {
     return null;
   }

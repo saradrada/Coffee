@@ -5,42 +5,64 @@ import com.coffee.pLEC.VarDeclaration
 import com.coffee.pLEC.Structural
 import java.util.Map
 import java.util.HashMap
+import com.coffee.generator.FODAFactory
+import com.coffee.pLEC.VariantDeclaration
+import com.coffee.pLEC.RootRefinement
 
-class DIMACSFactory extends CodeFactory {
+class DIMACSFactory extends CodeFactory implements FODAFactory {
 	/**
-	 * number of clauses in the problem
+	 * Strings in the Textual DIMACS format
 	 */
-	protected int numClauses
-	
-	protected Map<String, Integer> variables
-	
-	new(){
-		numClauses=0
-		variables= new HashMap<String, Integer>()
-	}
-	
-	override getHeader() {
+	private static final String HEADER=
 		'''
 		c
 		c DIMACS code generated using the Coffee framework
 		c
 		'''
+	/**
+	 * number of clauses in the problem
+	 */
+	protected int numClauses
+	
+	/**
+	 * Map of variables to obtain the numeric Id using the name of 
+	 * the variable as key
+	 */
+	protected Map<String, Integer> variables
+	
+	/**
+	 * Constructor 
+	 */
+	new(){
+		numClauses=0
+		variables= new HashMap<String, Integer>()
 	}
 	
-	override getVarLabel() {
-		''''''
+	/**
+	 * @returns returns the code generated for the 
+	 * header of a CNF file in the DIMACS format
+	 */
+	def getHeader() {
+		return HEADER
 	}
 	
-	override getConsLabel() {
-		''''''
-	}
-	
+	/**
+	 * This method includes the variable name in a variables map to obtain an
+	 * integer for the DIMACS transformation
+	 * @param variable is a VarDeclaration
+	 * @return the empty String, variables are not translated in the DIMCAS code
+	 */
 	override getVariable(VarDeclaration variable) {
 		val id= variables.keySet.size + 1
 		variables.put(variable.name, id)
 		''''''
 	}
 	
+	/**
+	 * @param
+	 * @param 
+	 * @returns the CNF representation of an optional relation
+	 */
 	override getOptional(VarDeclaration parent, VarDeclaration child) {
 		addNumClauses(1)
 		'''
@@ -122,15 +144,49 @@ class DIMACSFactory extends CodeFactory {
 		output
 	}
 	
-	def void addNumClauses(int amount){
+	override getRootConstraint(RootRefinement exp) {
+		addNumClauses(1)
+		'''«variables.get(exp.getVar.name)»'''
+		
+	}
+	
+	/*===================================================================
+	 *===================================================================
+	 * Methods used just in this notation
+	 * */
+	
+	/** 
+	 * Increased the count of clauses by the number in amount
+	 * @param number of clauses to add
+	 */
+	 def void addNumClauses(int amount){
 		numClauses+= amount
 	}
+	
+	/**
+	 * @return returns the number of variables in the problem
+	 */
 	def getNumVars(){
 		return variables.keySet.size
 	}
-	
+	/**
+	 * @return returns the number of generated clauses
+	 */
 	def getNumClauses(){
 		return numClauses
 	}
+	
+	
+	/*===================================================================
+	 *===================================================================
+	 * Unsupported methods for this notation
+	 * */
+	override getValuesDeclaration(VarDeclaration variable, VariantDeclaration variant) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+
+	
+
 	
 }

@@ -56,6 +56,7 @@ public class PLECParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVarRefinementAccess().getGroup(), "rule__VarRefinement__Group__0");
 					put(grammarAccess.getSetRefinementAccess().getGroup(), "rule__SetRefinement__Group__0");
 					put(grammarAccess.getSetRefinementAccess().getGroup_9(), "rule__SetRefinement__Group_9__0");
+					put(grammarAccess.getRootRefinementAccess().getGroup(), "rule__RootRefinement__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getFodaUNAccess().getGroup(), "rule__FodaUN__Group__0");
 					put(grammarAccess.getFodaBinAccess().getGroup(), "rule__FodaBin__Group__0");
@@ -91,6 +92,7 @@ public class PLECParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSetRefinementAccess().getVarsAssignment_2(), "rule__SetRefinement__VarsAssignment_2");
 					put(grammarAccess.getSetRefinementAccess().getHeadAssignment_7(), "rule__SetRefinement__HeadAssignment_7");
 					put(grammarAccess.getSetRefinementAccess().getTailAssignment_9_2(), "rule__SetRefinement__TailAssignment_9_2");
+					put(grammarAccess.getRootRefinementAccess().getVarAssignment_0(), "rule__RootRefinement__VarAssignment_0");
 					put(grammarAccess.getRuleAccess().getConditionAssignment_0(), "rule__Rule__ConditionAssignment_0");
 					put(grammarAccess.getRuleAccess().getConsequenceAssignment_2(), "rule__Rule__ConsequenceAssignment_2");
 					put(grammarAccess.getFodaUNAccess().getVar1Assignment_0(), "rule__FodaUN__Var1Assignment_0");

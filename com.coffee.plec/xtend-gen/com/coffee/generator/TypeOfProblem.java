@@ -12,5 +12,7 @@ public enum TypeOfProblem {
   
   CSP,
   
-  COP;
+  COP,
+  
+  CSP_INST;
 }

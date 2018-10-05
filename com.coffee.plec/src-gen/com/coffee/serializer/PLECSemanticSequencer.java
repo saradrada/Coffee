@@ -14,6 +14,7 @@ import com.coffee.pLEC.ListOfIDs;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
@@ -81,6 +82,9 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PLECPackage.NUMBER:
 				sequence_Number(context, (com.coffee.pLEC.Number) semanticObject); 
+				return; 
+			case PLECPackage.ROOT_REFINEMENT:
+				sequence_RootRefinement(context, (RootRefinement) semanticObject); 
 				return; 
 			case PLECPackage.RULE:
 				sequence_Rule(context, (Rule) semanticObject); 
@@ -313,6 +317,27 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNumberAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConsExpression returns RootRefinement
+	 *     TerminalExp returns RootRefinement
+	 *     Refinement returns RootRefinement
+	 *     RootRefinement returns RootRefinement
+	 *
+	 * Constraint:
+	 *     var=[VarDeclaration|ID]
+	 */
+	protected void sequence_RootRefinement(ISerializationContext context, RootRefinement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.ROOT_REFINEMENT__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.ROOT_REFINEMENT__VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRootRefinementAccess().getVarVarDeclarationIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PLECPackage.Literals.ROOT_REFINEMENT__VAR, false));
 		feeder.finish();
 	}
 	

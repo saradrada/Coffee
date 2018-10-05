@@ -39,7 +39,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		///**
 		// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
 		// * @author Angela Villota
-		// * @version PLEC V3
+		// * @version PLEC V3 modified in october 4 for including the root constraint
 		// * August 2018
 		// */ Model:
 		//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
@@ -511,12 +511,13 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssignmentParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cVarRefinementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cSetRefinementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cRootRefinementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Refinement:
-		//	Assignment | VarRefinement | SetRefinement;
+		//	Assignment | VarRefinement | SetRefinement | RootRefinement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Assignment | VarRefinement | SetRefinement
+		//Assignment | VarRefinement | SetRefinement | RootRefinement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Assignment
@@ -527,6 +528,9 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SetRefinement
 		public RuleCall getSetRefinementParserRuleCall_2() { return cSetRefinementParserRuleCall_2; }
+		
+		//RootRefinement
+		public RuleCall getRootRefinementParserRuleCall_3() { return cRootRefinementParserRuleCall_3; }
 	}
 	public class AssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Assignment");
@@ -674,6 +678,37 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_10() { return cRightSquareBracketKeyword_10; }
+	}
+	public class RootRefinementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.RootRefinement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cVarVarDeclarationCrossReference_0_0 = (CrossReference)cVarAssignment_0.eContents().get(0);
+		private final RuleCall cVarVarDeclarationIDTerminalRuleCall_0_0_1 = (RuleCall)cVarVarDeclarationCrossReference_0_0.eContents().get(1);
+		private final Keyword cIsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cRootKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//RootRefinement:
+		//	var=[VarDeclaration] 'is' 'root';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//var=[VarDeclaration] 'is' 'root'
+		public Group getGroup() { return cGroup; }
+		
+		//var=[VarDeclaration]
+		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
+		
+		//[VarDeclaration]
+		public CrossReference getVarVarDeclarationCrossReference_0_0() { return cVarVarDeclarationCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getVarVarDeclarationIDTerminalRuleCall_0_0_1() { return cVarVarDeclarationIDTerminalRuleCall_0_0_1; }
+		
+		//'is'
+		public Keyword getIsKeyword_1() { return cIsKeyword_1; }
+		
+		//'root'
+		public Keyword getRootKeyword_2() { return cRootKeyword_2; }
 	}
 	public class RuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Rule");
@@ -1043,6 +1078,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	private final AssignmentElements pAssignment;
 	private final VarRefinementElements pVarRefinement;
 	private final SetRefinementElements pSetRefinement;
+	private final RootRefinementElements pRootRefinement;
 	private final RuleElements pRule;
 	private final FodaUNElements pFodaUN;
 	private final FodaBinElements pFodaBin;
@@ -1082,6 +1118,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAssignment = new AssignmentElements();
 		this.pVarRefinement = new VarRefinementElements();
 		this.pSetRefinement = new SetRefinementElements();
+		this.pRootRefinement = new RootRefinementElements();
 		this.pRule = new RuleElements();
 		this.pFodaUN = new FodaUNElements();
 		this.pFodaBin = new FodaBinElements();
@@ -1127,7 +1164,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	///**
 	// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
 	// * @author Angela Villota
-	// * @version PLEC V3
+	// * @version PLEC V3 modified in october 4 for including the root constraint
 	// * August 2018
 	// */ Model:
 	//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
@@ -1261,7 +1298,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Refinement:
-	//	Assignment | VarRefinement | SetRefinement;
+	//	Assignment | VarRefinement | SetRefinement | RootRefinement;
 	public RefinementElements getRefinementAccess() {
 		return pRefinement;
 	}
@@ -1300,6 +1337,16 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSetRefinementRule() {
 		return getSetRefinementAccess().getRule();
+	}
+	
+	//RootRefinement:
+	//	var=[VarDeclaration] 'is' 'root';
+	public RootRefinementElements getRootRefinementAccess() {
+		return pRootRefinement;
+	}
+	
+	public ParserRule getRootRefinementRule() {
+		return getRootRefinementAccess().getRule();
 	}
 	
 	//Rule:

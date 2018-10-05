@@ -595,6 +595,34 @@ public interface PLECPackage extends EPackage
   int SET_REFINEMENT_FEATURE_COUNT = REFINEMENT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link com.coffee.pLEC.impl.RootRefinementImpl <em>Root Refinement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.pLEC.impl.RootRefinementImpl
+   * @see com.coffee.pLEC.impl.PLECPackageImpl#getRootRefinement()
+   * @generated
+   */
+  int ROOT_REFINEMENT = 15;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROOT_REFINEMENT__VAR = REFINEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Root Refinement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROOT_REFINEMENT_FEATURE_COUNT = REFINEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.coffee.pLEC.impl.RuleImpl <em>Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -602,7 +630,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getRule()
    * @generated
    */
-  int RULE = 15;
+  int RULE = 16;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -639,7 +667,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getFodaUN()
    * @generated
    */
-  int FODA_UN = 16;
+  int FODA_UN = 17;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -676,7 +704,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getFodaBin()
    * @generated
    */
-  int FODA_BIN = 17;
+  int FODA_BIN = 18;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -722,7 +750,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 21;
+  int VALUE = 22;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -741,7 +769,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getNonEnumerableValue()
    * @generated
    */
-  int NON_ENUMERABLE_VALUE = 22;
+  int NON_ENUMERABLE_VALUE = 23;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -769,7 +797,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getBoolVal()
    * @generated
    */
-  int BOOL_VAL = 18;
+  int BOOL_VAL = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -797,7 +825,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getNumber()
    * @generated
    */
-  int NUMBER = 19;
+  int NUMBER = 20;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -825,7 +853,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getSymbol()
    * @generated
    */
-  int SYMBOL = 20;
+  int SYMBOL = 21;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -853,7 +881,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 23;
+  int LIST_OF_VALUES = 24;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -881,7 +909,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 24;
+  int LIST_OF_IDS = 25;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -1359,6 +1387,27 @@ public interface PLECPackage extends EPackage
    * @generated
    */
   EReference getSetRefinement_Tail();
+
+  /**
+   * Returns the meta object for class '{@link com.coffee.pLEC.RootRefinement <em>Root Refinement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Root Refinement</em>'.
+   * @see com.coffee.pLEC.RootRefinement
+   * @generated
+   */
+  EClass getRootRefinement();
+
+  /**
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.RootRefinement#getVar <em>Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var</em>'.
+   * @see com.coffee.pLEC.RootRefinement#getVar()
+   * @see #getRootRefinement()
+   * @generated
+   */
+  EReference getRootRefinement_Var();
 
   /**
    * Returns the meta object for class '{@link com.coffee.pLEC.Rule <em>Rule</em>}'.
@@ -1977,6 +2026,24 @@ public interface PLECPackage extends EPackage
      * @generated
      */
     EReference SET_REFINEMENT__TAIL = eINSTANCE.getSetRefinement_Tail();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.pLEC.impl.RootRefinementImpl <em>Root Refinement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.pLEC.impl.RootRefinementImpl
+     * @see com.coffee.pLEC.impl.PLECPackageImpl#getRootRefinement()
+     * @generated
+     */
+    EClass ROOT_REFINEMENT = eINSTANCE.getRootRefinement();
+
+    /**
+     * The meta object literal for the '<em><b>Var</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ROOT_REFINEMENT__VAR = eINSTANCE.getRootRefinement_Var();
 
     /**
      * The meta object literal for the '{@link com.coffee.pLEC.impl.RuleImpl <em>Rule</em>}' class.

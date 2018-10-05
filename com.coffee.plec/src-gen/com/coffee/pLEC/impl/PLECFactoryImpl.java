@@ -19,6 +19,7 @@ import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECFactory;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Refinement;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
@@ -105,6 +106,7 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
       case PLECPackage.ASSIGNMENT: return createAssignment();
       case PLECPackage.VAR_REFINEMENT: return createVarRefinement();
       case PLECPackage.SET_REFINEMENT: return createSetRefinement();
+      case PLECPackage.ROOT_REFINEMENT: return createRootRefinement();
       case PLECPackage.RULE: return createRule();
       case PLECPackage.FODA_UN: return createFodaUN();
       case PLECPackage.FODA_BIN: return createFodaBin();
@@ -283,6 +285,17 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
   {
     SetRefinementImpl setRefinement = new SetRefinementImpl();
     return setRefinement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RootRefinement createRootRefinement()
+  {
+    RootRefinementImpl rootRefinement = new RootRefinementImpl();
+    return rootRefinement;
   }
 
   /**

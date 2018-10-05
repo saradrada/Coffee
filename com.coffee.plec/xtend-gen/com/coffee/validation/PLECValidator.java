@@ -4,6 +4,7 @@
 package com.coffee.validation;
 
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VariantDeclaration;
 import com.coffee.validation.AbstractPLECValidator;
@@ -22,6 +23,8 @@ public class PLECValidator extends AbstractPLECValidator {
   /**
    * Method for checking that non boolean domains are correctly declarated
    */
+  private String root = "";
+  
   @Check
   public void checkTypeForNonBooleanDomain(final VarDeclaration decl) {
     String _type = decl.getType();
@@ -37,6 +40,21 @@ public class PLECValidator extends AbstractPLECValidator {
         String _plus_1 = (_plus + "\'");
         this.error(_plus_1, 
           PLECValidator.packageInstance.getVarDeclaration_Variants());
+        return;
+      }
+    }
+  }
+  
+  public void checkForOneRoot(final RootRefinement exp) {
+    if ((this.root == "")) {
+      this.root = exp.getVar().getName();
+      return;
+    } else {
+      String _name = exp.getVar().getName();
+      boolean _notEquals = (!Objects.equal(this.root, _name));
+      if (_notEquals) {
+        this.error((("The model cannot contain more than one root, the root already declared is \'" + this.root) + "\'"), 
+          PLECValidator.packageInstance.getRootRefinement_Var());
         return;
       }
     }

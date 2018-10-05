@@ -9,5 +9,6 @@ package com.coffee.generator
 enum TypeOfProblem {
 	SAT,
 	CSP,
-	COP
-}
+	COP, 
+	CSP_INST
+	}

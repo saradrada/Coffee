@@ -2,6 +2,8 @@ package com.coffee.generator.XCSP3;
 
 import com.coffee.generator.TypeOfProblem;
 import com.coffee.generator.XCSP3.XCSP3Factory;
+import com.coffee.pLEC.Attributes;
+import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
 import com.google.common.base.Objects;
@@ -9,6 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
+@Deprecated
 @SuppressWarnings("all")
 public class SATFactory extends XCSP3Factory {
   public SATFactory(final TypeOfProblem type) {
@@ -177,5 +180,45 @@ public class SATFactory extends XCSP3Factory {
       _xblockexpression = output;
     }
     return _xblockexpression;
+  }
+  
+  @Override
+  public CharSequence getClonConstraints() {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getStrategy() {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence optimizationConstraints() {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getObjectives() {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getClonVariables(final VarDeclaration variable) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getAttributes(final Attributes exp) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getRule(final CharSequence left, final CharSequence right) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getRefinement(final Refinement exp) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

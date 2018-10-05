@@ -1,53 +1,70 @@
 package com.coffee.generator.DIMACS;
 
 import com.coffee.generator.CodeFactory;
+import com.coffee.generator.FODAFactory;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
+import com.coffee.pLEC.VariantDeclaration;
 import com.google.common.base.Objects;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
-public class DIMACSFactory extends CodeFactory {
+public class DIMACSFactory extends CodeFactory implements FODAFactory {
+  /**
+   * Strings in the Textual DIMACS format
+   */
+  private final static String HEADER = new Function0<String>() {
+    public String apply() {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("c");
+      _builder.newLine();
+      _builder.append("c DIMACS code generated using the Coffee framework");
+      _builder.newLine();
+      _builder.append("c");
+      _builder.newLine();
+      return _builder.toString();
+    }
+  }.apply();
+  
   /**
    * number of clauses in the problem
    */
   protected int numClauses;
   
+  /**
+   * Map of variables to obtain the numeric Id using the name of
+   * the variable as key
+   */
   protected Map<String, Integer> variables;
   
+  /**
+   * Constructor
+   */
   public DIMACSFactory() {
     this.numClauses = 0;
     HashMap<String, Integer> _hashMap = new HashMap<String, Integer>();
     this.variables = _hashMap;
   }
   
-  @Override
-  public CharSequence getHeader() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("c");
-    _builder.newLine();
-    _builder.append("c DIMACS code generated using the Coffee framework");
-    _builder.newLine();
-    _builder.append("c");
-    _builder.newLine();
-    return _builder;
+  /**
+   * @returns returns the code generated for the
+   * header of a CNF file in the DIMACS format
+   */
+  public String getHeader() {
+    return DIMACSFactory.HEADER;
   }
   
-  @Override
-  public CharSequence getVarLabel() {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
-  }
-  
-  @Override
-  public CharSequence getConsLabel() {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
-  }
-  
+  /**
+   * This method includes the variable name in a variables map to obtain an
+   * integer for the DIMACS transformation
+   * @param variable is a VarDeclaration
+   * @return the empty String, variables are not translated in the DIMCAS code
+   */
   @Override
   public CharSequence getVariable(final VarDeclaration variable) {
     CharSequence _xblockexpression = null;
@@ -61,6 +78,11 @@ public class DIMACSFactory extends CodeFactory {
     return _xblockexpression;
   }
   
+  /**
+   * @param
+   * @param
+   * @returns the CNF representation of an optional relation
+   */
   @Override
   public CharSequence getOptional(final VarDeclaration parent, final VarDeclaration child) {
     CharSequence _xblockexpression = null;
@@ -248,16 +270,49 @@ public class DIMACSFactory extends CodeFactory {
     return _xblockexpression;
   }
   
+  @Override
+  public CharSequence getRootConstraint(final RootRefinement exp) {
+    CharSequence _xblockexpression = null;
+    {
+      this.addNumClauses(1);
+      StringConcatenation _builder = new StringConcatenation();
+      Integer _get = this.variables.get(exp.getVar().getName());
+      _builder.append(_get);
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Increased the count of clauses by the number in amount
+   * @param number of clauses to add
+   */
   public void addNumClauses(final int amount) {
     int _numClauses = this.numClauses;
     this.numClauses = (_numClauses + amount);
   }
   
+  /**
+   * @return returns the number of variables in the problem
+   */
   public int getNumVars() {
     return this.variables.keySet().size();
   }
   
+  /**
+   * @return returns the number of generated clauses
+   */
   public int getNumClauses() {
     return this.numClauses;
+  }
+  
+  /**
+   * ===================================================================
+   * ===================================================================
+   * Unsupported methods for this notation
+   */
+  @Override
+  public CharSequence getValuesDeclaration(final VarDeclaration variable, final VariantDeclaration variant) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

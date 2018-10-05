@@ -4,8 +4,13 @@ package com.coffee.generator.THLCL
 import com.coffee.pLEC.VarDeclaration
 import com.coffee.pLEC.Structural
 import java.util.Map
+import com.coffee.pLEC.VariantDeclaration
+import com.coffee.generator.FODAFactory
+import com.coffee.pLEC.Attributes
+import com.coffee.pLEC.Rule
+import com.coffee.pLEC.Refinement
 
-class BooleanFactory extends THLCLFactory{
+class BooleanFactory extends THLCLFactory implements FODAFactory{
 
 	/**
 	 * All variables are boolean variables, there is no need to declare the domains
@@ -66,6 +71,26 @@ class BooleanFactory extends THLCLFactory{
 		}
 		output
 	}
+	
+
+	
+	/*===================================================================
+	 *===================================================================
+	 * Unsupported methods for this notation
+	 * */
+	 	override getValuesDeclaration(VarDeclaration variable, VariantDeclaration variant) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+
+	
+
+	
+
+	
+
+	
+	
 	
 
 

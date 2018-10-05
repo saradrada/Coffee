@@ -58,10 +58,8 @@ class THLCLCodeGenerationTests {
 		val expected='''
 		model m1
 		variables:
-		boolean m1
 		boolean A
 		constraints:
-		C_m1 : m1 = 1
 		'''
 		Assert.assertEquals(expected.toString, actual.toString)
 		Assert.assertTrue(model.eResource.errors.isEmpty)	
@@ -98,13 +96,11 @@ class THLCLCodeGenerationTests {
 		val expected='''
 		model m1
 		variables:
-		boolean m1
 		boolean A
 		boolean B
 		boolean C
 		boolean D
 		constraints:
-		C_m1 : m1 = 1
 		'''
 
 		Assert.assertEquals(expected.toString, actual.toString)
@@ -147,13 +143,11 @@ class THLCLCodeGenerationTests {
 		val expected='''
 		model m1
 		variables:
-		boolean m1
 		integer A domain: 1..3
 		integer B domain: [2, 4, 6, 8, 10]
 		boolean C 
 		boolean D 
 		constraints:
-		C_m1 : m1 = 1
 		'''
 		Assert.assertEquals(expected.toString, actual.toString)
 		Assert.assertTrue(model.eResource.errors.isEmpty)	
@@ -190,13 +184,11 @@ class THLCLCodeGenerationTests {
 		val expected='''
 		model m1
 		variables:
-		boolean m1
 		boolean A 
 		boolean B 
 		boolean C 
 		boolean D 
 		constraints:
-		C_m1 : m1 = 1
 		'''
 		//print(actual)
 		//printErrors(model)
@@ -240,7 +232,6 @@ class THLCLCodeGenerationTests {
 		val expected='''
 		model m1
 		variables:
-		boolean m1
 		boolean A 
 		boolean B 
 		boolean C 
@@ -249,16 +240,8 @@ class THLCLCodeGenerationTests {
 		boolean F 
 		boolean G 
 		constraints:
-		C_m1 : m1 = 1
-		c1: (B => A) AND 
-		(C => A) AND 
-		(A >= 1) => (B + C >= 0) AND 
-		(A >= 1) => (B + C <= 0)
-		c2: (E => D) AND 
-		(F => D) AND 
-		(G => D) AND 
-		(D >= 1) => (E + F + G >= 1) AND 
-		(D >= 1) => (E + F + G <= 3)
+		c1: (B => A) AND (C => A) AND (A >= 1) => ((B + C  <= 0 ) AND (B + C  >= 0))
+		c2: (E => D) AND (F => D) AND (G => D) AND (D >= 1) => ((E + F + G  <= 1 ) AND (E + F + G  >= 3))
 		'''
 		print(actual)
 		printErrors(model)

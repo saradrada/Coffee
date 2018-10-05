@@ -19,6 +19,7 @@ import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECFactory;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Refinement;
+import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
@@ -149,6 +150,13 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * @generated
    */
   private EClass setRefinementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rootRefinementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -718,6 +726,26 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getRootRefinement()
+  {
+    return rootRefinementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRootRefinement_Var()
+  {
+    return (EReference)rootRefinementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRule()
   {
     return ruleEClass;
@@ -1011,6 +1039,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     createEReference(setRefinementEClass, SET_REFINEMENT__HEAD);
     createEReference(setRefinementEClass, SET_REFINEMENT__TAIL);
 
+    rootRefinementEClass = createEClass(ROOT_REFINEMENT);
+    createEReference(rootRefinementEClass, ROOT_REFINEMENT__VAR);
+
     ruleEClass = createEClass(RULE);
     createEReference(ruleEClass, RULE__CONDITION);
     createEReference(ruleEClass, RULE__CONSEQUENCE);
@@ -1082,6 +1113,7 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     assignmentEClass.getESuperTypes().add(this.getRefinement());
     varRefinementEClass.getESuperTypes().add(this.getRefinement());
     setRefinementEClass.getESuperTypes().add(this.getRefinement());
+    rootRefinementEClass.getESuperTypes().add(this.getRefinement());
     ruleEClass.getESuperTypes().add(this.getConsExpression());
     fodaUNEClass.getESuperTypes().add(this.getConsExpression());
     fodaBinEClass.getESuperTypes().add(this.getConsExpression());
@@ -1148,6 +1180,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     initEReference(getSetRefinement_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSetRefinement_Head(), this.getListOfValues(), null, "head", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSetRefinement_Tail(), this.getListOfValues(), null, "tail", null, 0, -1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rootRefinementEClass, RootRefinement.class, "RootRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRootRefinement_Var(), this.getVarDeclaration(), null, "var", null, 0, 1, RootRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRule_Condition(), this.getExpression(), null, "condition", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -60,6 +60,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/head"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/tail"/>
     </genClasses>
+    <genClasses ecoreClass="PLEC.ecore#//RootRefinement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//RootRefinement/var"/>
+    </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Rule/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Rule/consequence"/>

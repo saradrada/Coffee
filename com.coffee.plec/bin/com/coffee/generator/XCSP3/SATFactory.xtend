@@ -5,7 +5,11 @@ import com.coffee.pLEC.VarDeclaration
 import com.coffee.pLEC.Structural
 import java.util.Map
 import com.coffee.generator.TypeOfProblem
+import com.coffee.pLEC.Attributes
+import com.coffee.pLEC.Rule
+import com.coffee.pLEC.Refinement
 
+@Deprecated
 class SATFactory  extends XCSP3Factory{
 	new (TypeOfProblem type){
 		super(type)
@@ -63,6 +67,38 @@ class SATFactory  extends XCSP3Factory{
 			output= '''imp(«exp.parent.name», or(«childrenIds.substring(0, childrenIds.length() - 2)»))'''
 		}
 		output
+	}
+	
+	override getClonConstraints() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getStrategy() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override optimizationConstraints() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getObjectives() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getClonVariables(VarDeclaration variable) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getAttributes(Attributes exp) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getRule(CharSequence left, CharSequence right) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getRefinement(Refinement exp) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 

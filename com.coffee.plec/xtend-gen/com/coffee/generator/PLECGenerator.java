@@ -4,6 +4,7 @@
 package com.coffee.generator;
 
 import com.coffee.generator.DIMACS.DIMACSGenerator;
+import com.coffee.generator.THLCL.THLCLCardinalityGenerator;
 import com.coffee.generator.THLCL.THLCLGenerator;
 import com.coffee.generator.TypeOfProblem;
 import com.coffee.generator.XCSP3.XCSP3Generator;
@@ -61,11 +62,17 @@ public class PLECGenerator extends AbstractGenerator {
    * @param model is an abstract representation of the model
    */
   public TypeOfProblem setTypeOfProblem(final Model model) {
-    if ((Objects.equal(this.typeOfVariables(model), TypeOfProblem.SAT) && 
-      Objects.equal(this.typeOfConstraints(model), TypeOfProblem.SAT))) {
-      return TypeOfProblem.SAT;
+    TypeOfProblem _typeOfVariables = this.typeOfVariables(model);
+    boolean _equals = Objects.equal(_typeOfVariables, TypeOfProblem.CSP_INST);
+    if (_equals) {
+      return TypeOfProblem.CSP_INST;
     } else {
-      return TypeOfProblem.CSP;
+      if ((Objects.equal(this.typeOfVariables(model), TypeOfProblem.SAT) && 
+        Objects.equal(this.typeOfConstraints(model), TypeOfProblem.SAT))) {
+        return TypeOfProblem.SAT;
+      } else {
+        return TypeOfProblem.CSP;
+      }
     }
   }
   
@@ -78,6 +85,21 @@ public class PLECGenerator extends AbstractGenerator {
     CharSequence _xblockexpression = null;
     {
       THLCLGenerator thlcl = new THLCLGenerator(modelName, typeOfProblem);
+      if (typeOfProblem != null) {
+        switch (typeOfProblem) {
+          case CSP_INST:
+            THLCLCardinalityGenerator _tHLCLCardinalityGenerator = new THLCLCardinalityGenerator(modelName, typeOfProblem);
+            thlcl = _tHLCLCardinalityGenerator;
+            break;
+          default:
+            THLCLGenerator _tHLCLGenerator = new THLCLGenerator(modelName, typeOfProblem);
+            thlcl = _tHLCLGenerator;
+            break;
+        }
+      } else {
+        THLCLGenerator _tHLCLGenerator = new THLCLGenerator(modelName, typeOfProblem);
+        thlcl = _tHLCLGenerator;
+      }
       _xblockexpression = thlcl.parseModel(model);
     }
     return _xblockexpression;
@@ -91,7 +113,22 @@ public class PLECGenerator extends AbstractGenerator {
   public CharSequence toXCSP3(final Model model, final String modelName, final TypeOfProblem typeOfProblem) {
     CharSequence _xblockexpression = null;
     {
-      XCSP3Generator xcsp3 = new XCSP3Generator(modelName, typeOfProblem);
+      XCSP3Generator xcsp3 = null;
+      if (typeOfProblem != null) {
+        switch (typeOfProblem) {
+          case CSP_INST:
+            XCSP3Generator _xCSP3Generator = new XCSP3Generator(modelName, typeOfProblem);
+            xcsp3 = _xCSP3Generator;
+            break;
+          default:
+            XCSP3Generator _xCSP3Generator_1 = new XCSP3Generator(modelName, typeOfProblem);
+            xcsp3 = _xCSP3Generator_1;
+            break;
+        }
+      } else {
+        XCSP3Generator _xCSP3Generator_1 = new XCSP3Generator(modelName, typeOfProblem);
+        xcsp3 = _xCSP3Generator_1;
+      }
       _xblockexpression = xcsp3.parseModel(model);
     }
     return _xblockexpression;
@@ -143,7 +180,7 @@ public class PLECGenerator extends AbstractGenerator {
    * If there are one variable that cannot be mapped into a boolean
    * variable, then the method returns CSP.
    * @param model
-   * @return TypeOfProblem (CSP, SAT)
+   * @return TypeOfProblem (CSP, SAT, CSP_INST)
    */
   public TypeOfProblem typeOfVariables(final Model model) {
     boolean isInstanciable = false;
@@ -153,17 +190,19 @@ public class PLECGenerator extends AbstractGenerator {
       {
         if (((variable.getMin() != null) && (variable.getMax() != null))) {
           isInstanciable = true;
+          return TypeOfProblem.CSP_INST;
         }
         String _type = variable.getType();
         boolean _equals = Objects.equal(_type, "integer");
         if (_equals) {
           isInteger = true;
         }
-        if ((isInstanciable || isInteger)) {
-          return TypeOfProblem.CSP;
-        }
       }
     }
-    return TypeOfProblem.SAT;
+    if (isInteger) {
+      return TypeOfProblem.CSP;
+    } else {
+      return TypeOfProblem.SAT;
+    }
   }
 }

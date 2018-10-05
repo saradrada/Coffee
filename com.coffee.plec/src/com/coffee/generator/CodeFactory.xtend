@@ -1,53 +1,22 @@
 package com.coffee.generator
 
 import com.coffee.pLEC.VarDeclaration
-import java.util.Map
-import com.coffee.pLEC.Structural
-import java.util.ArrayList
+import com.coffee.pLEC.VariantDeclaration
 
-abstract class CodeFactory {
-	private static final String HEADER="language header"
-	private static final String VARIABLES="language variable's separator"
-	private static final String CONSTRAINTS="language constraint's separator"
-	private ArrayList <String> clonConstraints;
+/**
+ * Interface to define the methods a codeFactory for the PLEC language
+ * should implement, all Factories implement this interface
+ * implemented by (THLCLFactory, XCSP3Factory, DIMASFactory)
+ * @author Angela Villota
+ * @version PLEC V3
+ * August 2018
+ */
+abstract class CodeFactory implements FODAFactory{
+	
 
-
-	
-	// template related methods
-	def abstract CharSequence getHeader()
-	def abstract CharSequence getVarLabel()
-	def abstract CharSequence getConsLabel()
-	
-	/**
-	 * @return by default the strategy is the empty string
-	 */
-	def CharSequence getStrategy(){
-		""
-	}
-	
-	def getClonConstraints() {
-		var out =""
-		if (clonConstraints===null){
-			out=""
-		}
-		else{
-			var int id = 1
-			for( constraint : clonConstraints){
-			 	out += '''cl«id»: «constraint.toString»'''
-			 	id++
-			}
-		}
-		out
-	}
-	
 	// Variables related methods
-	def abstract CharSequence getVariable(VarDeclaration variable);
+	def  CharSequence getVariable(VarDeclaration variable);
+	def  CharSequence getValuesDeclaration(VarDeclaration variable, VariantDeclaration variant);
 	
-	// Constraint related methods
-	def abstract CharSequence getOptional(VarDeclaration parent, VarDeclaration child)
-	def abstract CharSequence getMandatory(VarDeclaration parent, VarDeclaration child)
-	def abstract CharSequence getExcludes(VarDeclaration left, VarDeclaration right)
-	def abstract CharSequence getRequires(VarDeclaration left, VarDeclaration right)
-	def abstract CharSequence getGroupCardinality(Structural exp, Map <String, VarDeclaration> parents)
-
+	
 }

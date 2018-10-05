@@ -1,15 +1,17 @@
 package com.coffee.generator.THLCL;
 
+import com.coffee.generator.FODAFactory;
 import com.coffee.generator.THLCL.THLCLFactory;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
+import com.coffee.pLEC.VariantDeclaration;
 import com.google.common.base.Objects;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class BooleanFactory extends THLCLFactory {
+public class BooleanFactory extends THLCLFactory implements FODAFactory {
   /**
    * All variables are boolean variables, there is no need to declare the domains
    */
@@ -168,5 +170,15 @@ public class BooleanFactory extends THLCLFactory {
       _xblockexpression = output;
     }
     return _xblockexpression;
+  }
+  
+  /**
+   * ===================================================================
+   * ===================================================================
+   * Unsupported methods for this notation
+   */
+  @Override
+  public CharSequence getValuesDeclaration(final VarDeclaration variable, final VariantDeclaration variant) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

@@ -1,7 +1,7 @@
 '('=29
 ')'=30
 ','=24
-'-->'=40
+'-->'=41
 '..'=27
 ':'=28
 '['=23
@@ -13,7 +13,7 @@
 'excludes'=17
 'false'=12
 'in'=37
-'instantiable'=41
+'instantiable'=42
 'integer'=14
 'is'=36
 'mandatory'=19
@@ -21,6 +21,7 @@
 'of'=35
 'optional'=18
 'requires'=16
+'root'=40
 'structural:'=31
 'symbolic'=15
 'true'=11
@@ -67,3 +68,4 @@ T__38=38
 T__39=39
 T__40=40
 T__41=41
+T__42=42
