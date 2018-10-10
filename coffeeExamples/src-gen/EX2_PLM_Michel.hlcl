@@ -1,0 +1,190 @@
+model EX2_PLM_Michel
+variables:
+boolean Binding
+boolean Booklet
+boolean Left
+boolean Landscape
+integer Landscape_card domain:1..4
+boolean Document_Sheet1_Page1_Orientation1_Landscape1
+boolean Document_Sheet1_Page2_Orientation1_Landscape1
+boolean Document_Sheet2_Page1_Orientation1_Landscape1
+boolean Document_Sheet2_Page2_Orientation1_Landscape1
+boolean Front
+integer Front_card domain:1..4
+boolean Document_Sheet1_Page1_Side1_Front1
+boolean Document_Sheet1_Page2_Side1_Front1
+boolean Document_Sheet2_Page1_Side1_Front1
+boolean Document_Sheet2_Page2_Side1_Front1
+boolean Right
+boolean Portrait
+integer Portrait_card domain:1..4
+boolean Document_Sheet1_Page1_Orientation1_Portrait1
+boolean Document_Sheet1_Page2_Orientation1_Portrait1
+boolean Document_Sheet2_Page1_Orientation1_Portrait1
+boolean Document_Sheet2_Page2_Orientation1_Portrait1
+boolean Page
+integer Page_card domain:0..4
+boolean Document_Sheet1_Page1
+boolean Document_Sheet1_Page2
+boolean Document_Sheet2_Page1
+boolean Document_Sheet2_Page2
+boolean Document
+boolean Normal
+boolean Orientation
+integer Orientation_card domain:1..4
+boolean Document_Sheet1_Page1_Orientation1
+boolean Document_Sheet1_Page2_Orientation1
+boolean Document_Sheet2_Page1_Orientation1
+boolean Document_Sheet2_Page2_Orientation1
+boolean Side
+integer Side_card domain:1..4
+boolean Document_Sheet1_Page1_Side1
+boolean Document_Sheet1_Page2_Side1
+boolean Document_Sheet2_Page1_Side1
+boolean Document_Sheet2_Page2_Side1
+boolean Type
+boolean Top
+boolean Back
+integer Back_card domain:1..4
+boolean Document_Sheet1_Page1_Side1_Back1
+boolean Document_Sheet1_Page2_Side1_Back1
+boolean Document_Sheet2_Page1_Side1_Back1
+boolean Document_Sheet2_Page2_Side1_Back1
+boolean Sheet
+integer Sheet_card domain:1..2
+boolean Document_Sheet1
+boolean Document_Sheet2
+boolean Folding
+integer Folding_card domain:1..2
+boolean Document_Sheet1_Folding1
+boolean Document_Sheet2_Folding1
+constraints:
+C0: Document = 1
+ac_0: Sheet_card =  Document_Sheet1 + Document_Sheet2  
+ac_1: 1<=  Document_Sheet1 + Document_Sheet2  
+ac_2: 2 >=  Document_Sheet1 + Document_Sheet2  
+ac_3: Sheet <=> Sheet_card >0
+c1_1: Document = Type
+c1_2: Document >= Binding
+c2: (Normal => Type) AND (Booklet => Type) AND (Type >= 1) => ((Normal + Booklet  <= 1 ) AND (Normal + Booklet  >= 1))
+c3: (Top => Binding) AND (Left => Binding) AND (Right => Binding) AND (Binding >= 1) => ((Top + Left + Right  <= 1 ) AND (Top + Left + Right  >= 1))
+ac_4: Document_Sheet1 <=> 
+		((0 <=  Document_Sheet1_Page1 + Document_Sheet1_Page2 ) AND
+		(2 >=  Document_Sheet1_Page1 + Document_Sheet1_Page2 ))
+ac_5: Document_Sheet2 <=> 
+		((0 <=  Document_Sheet2_Page1 + Document_Sheet2_Page2 ) AND
+		(2 >=  Document_Sheet2_Page1 + Document_Sheet2_Page2 ))
+ac_6: Page_card =  Document_Sheet1_Page1 + Document_Sheet1_Page2  + Document_Sheet2_Page1 + Document_Sheet2_Page2  
+ac_7: 0<=  Document_Sheet1_Page1 + Document_Sheet1_Page2  + Document_Sheet2_Page1 + Document_Sheet2_Page2  
+ac_8: 4 >=  Document_Sheet1_Page1 + Document_Sheet1_Page2  + Document_Sheet2_Page1 + Document_Sheet2_Page2  
+ac_9: Page <=> Page_card >0
+ac_10: Document_Sheet1 <=> 
+		((1 <=  Document_Sheet1_Folding1 ) AND
+		(1 >=  Document_Sheet1_Folding1 ))
+ac_11: Document_Sheet2 <=> 
+		((1 <=  Document_Sheet2_Folding1 ) AND
+		(1 >=  Document_Sheet2_Folding1 ))
+ac_12: Folding_card =  Document_Sheet1_Folding1  + Document_Sheet2_Folding1  
+ac_13: 1<=  Document_Sheet1_Folding1  + Document_Sheet2_Folding1  
+ac_14: 2 >=  Document_Sheet1_Folding1  + Document_Sheet2_Folding1  
+ac_15: Folding <=> Folding_card >0
+c4_1: Sheet >= Folding
+c4_2: Sheet >= Page
+ac_16: Document_Sheet1_Page1 <=> 
+		((1 <=  Document_Sheet1_Page1_Orientation1 ) AND
+		(1 >=  Document_Sheet1_Page1_Orientation1 ))
+ac_17: Document_Sheet1_Page2 <=> 
+		((1 <=  Document_Sheet1_Page2_Orientation1 ) AND
+		(1 >=  Document_Sheet1_Page2_Orientation1 ))
+ac_18: Document_Sheet2_Page1 <=> 
+		((1 <=  Document_Sheet2_Page1_Orientation1 ) AND
+		(1 >=  Document_Sheet2_Page1_Orientation1 ))
+ac_19: Document_Sheet2_Page2 <=> 
+		((1 <=  Document_Sheet2_Page2_Orientation1 ) AND
+		(1 >=  Document_Sheet2_Page2_Orientation1 ))
+ac_20: Orientation_card =  Document_Sheet1_Page1_Orientation1  + Document_Sheet1_Page2_Orientation1  + Document_Sheet2_Page1_Orientation1  + Document_Sheet2_Page2_Orientation1  
+ac_21: 1<=  Document_Sheet1_Page1_Orientation1  + Document_Sheet1_Page2_Orientation1  + Document_Sheet2_Page1_Orientation1  + Document_Sheet2_Page2_Orientation1  
+ac_22: 4 >=  Document_Sheet1_Page1_Orientation1  + Document_Sheet1_Page2_Orientation1  + Document_Sheet2_Page1_Orientation1  + Document_Sheet2_Page2_Orientation1  
+ac_23: Orientation <=> Orientation_card >0
+ac_24: Document_Sheet1_Page1 <=> 
+		((1 <=  Document_Sheet1_Page1_Side1 ) AND
+		(1 >=  Document_Sheet1_Page1_Side1 ))
+ac_25: Document_Sheet1_Page2 <=> 
+		((1 <=  Document_Sheet1_Page2_Side1 ) AND
+		(1 >=  Document_Sheet1_Page2_Side1 ))
+ac_26: Document_Sheet2_Page1 <=> 
+		((1 <=  Document_Sheet2_Page1_Side1 ) AND
+		(1 >=  Document_Sheet2_Page1_Side1 ))
+ac_27: Document_Sheet2_Page2 <=> 
+		((1 <=  Document_Sheet2_Page2_Side1 ) AND
+		(1 >=  Document_Sheet2_Page2_Side1 ))
+ac_28: Side_card =  Document_Sheet1_Page1_Side1  + Document_Sheet1_Page2_Side1  + Document_Sheet2_Page1_Side1  + Document_Sheet2_Page2_Side1  
+ac_29: 1<=  Document_Sheet1_Page1_Side1  + Document_Sheet1_Page2_Side1  + Document_Sheet2_Page1_Side1  + Document_Sheet2_Page2_Side1  
+ac_30: 4 >=  Document_Sheet1_Page1_Side1  + Document_Sheet1_Page2_Side1  + Document_Sheet2_Page1_Side1  + Document_Sheet2_Page2_Side1  
+ac_31: Side <=> Side_card >0
+c5_1: Page = Orientation
+c5_2: Page >= Side
+ac_32: Document_Sheet1_Page1_Orientation1 <=> 
+		((1 <=  Document_Sheet1_Page1_Orientation1_Landscape1 ) AND
+		(1 >=  Document_Sheet1_Page1_Orientation1_Landscape1 ))
+ac_33: Document_Sheet1_Page2_Orientation1 <=> 
+		((1 <=  Document_Sheet1_Page2_Orientation1_Landscape1 ) AND
+		(1 >=  Document_Sheet1_Page2_Orientation1_Landscape1 ))
+ac_34: Document_Sheet2_Page1_Orientation1 <=> 
+		((1 <=  Document_Sheet2_Page1_Orientation1_Landscape1 ) AND
+		(1 >=  Document_Sheet2_Page1_Orientation1_Landscape1 ))
+ac_35: Document_Sheet2_Page2_Orientation1 <=> 
+		((1 <=  Document_Sheet2_Page2_Orientation1_Landscape1 ) AND
+		(1 >=  Document_Sheet2_Page2_Orientation1_Landscape1 ))
+ac_36: Landscape_card =  Document_Sheet1_Page1_Orientation1_Landscape1  + Document_Sheet1_Page2_Orientation1_Landscape1  + Document_Sheet2_Page1_Orientation1_Landscape1  + Document_Sheet2_Page2_Orientation1_Landscape1  
+ac_37: 1<=  Document_Sheet1_Page1_Orientation1_Landscape1  + Document_Sheet1_Page2_Orientation1_Landscape1  + Document_Sheet2_Page1_Orientation1_Landscape1  + Document_Sheet2_Page2_Orientation1_Landscape1  
+ac_38: 4 >=  Document_Sheet1_Page1_Orientation1_Landscape1  + Document_Sheet1_Page2_Orientation1_Landscape1  + Document_Sheet2_Page1_Orientation1_Landscape1  + Document_Sheet2_Page2_Orientation1_Landscape1  
+ac_39: Landscape <=> Landscape_card >0
+ac_40: Document_Sheet1_Page1_Orientation1 <=> 
+		((1 <=  Document_Sheet1_Page1_Orientation1_Portrait1 ) AND
+		(1 >=  Document_Sheet1_Page1_Orientation1_Portrait1 ))
+ac_41: Document_Sheet1_Page2_Orientation1 <=> 
+		((1 <=  Document_Sheet1_Page2_Orientation1_Portrait1 ) AND
+		(1 >=  Document_Sheet1_Page2_Orientation1_Portrait1 ))
+ac_42: Document_Sheet2_Page1_Orientation1 <=> 
+		((1 <=  Document_Sheet2_Page1_Orientation1_Portrait1 ) AND
+		(1 >=  Document_Sheet2_Page1_Orientation1_Portrait1 ))
+ac_43: Document_Sheet2_Page2_Orientation1 <=> 
+		((1 <=  Document_Sheet2_Page2_Orientation1_Portrait1 ) AND
+		(1 >=  Document_Sheet2_Page2_Orientation1_Portrait1 ))
+ac_44: Portrait_card =  Document_Sheet1_Page1_Orientation1_Portrait1  + Document_Sheet1_Page2_Orientation1_Portrait1  + Document_Sheet2_Page1_Orientation1_Portrait1  + Document_Sheet2_Page2_Orientation1_Portrait1  
+ac_45: 1<=  Document_Sheet1_Page1_Orientation1_Portrait1  + Document_Sheet1_Page2_Orientation1_Portrait1  + Document_Sheet2_Page1_Orientation1_Portrait1  + Document_Sheet2_Page2_Orientation1_Portrait1  
+ac_46: 4 >=  Document_Sheet1_Page1_Orientation1_Portrait1  + Document_Sheet1_Page2_Orientation1_Portrait1  + Document_Sheet2_Page1_Orientation1_Portrait1  + Document_Sheet2_Page2_Orientation1_Portrait1  
+ac_47: Portrait <=> Portrait_card >0
+ac_48: Document_Sheet1_Page1_Side1 <=> 
+		((1 <=  Document_Sheet1_Page1_Side1_Front1 ) AND
+		(1 >=  Document_Sheet1_Page1_Side1_Front1 ))
+ac_49: Document_Sheet1_Page2_Side1 <=> 
+		((1 <=  Document_Sheet1_Page2_Side1_Front1 ) AND
+		(1 >=  Document_Sheet1_Page2_Side1_Front1 ))
+ac_50: Document_Sheet2_Page1_Side1 <=> 
+		((1 <=  Document_Sheet2_Page1_Side1_Front1 ) AND
+		(1 >=  Document_Sheet2_Page1_Side1_Front1 ))
+ac_51: Document_Sheet2_Page2_Side1 <=> 
+		((1 <=  Document_Sheet2_Page2_Side1_Front1 ) AND
+		(1 >=  Document_Sheet2_Page2_Side1_Front1 ))
+ac_52: Front_card =  Document_Sheet1_Page1_Side1_Front1  + Document_Sheet1_Page2_Side1_Front1  + Document_Sheet2_Page1_Side1_Front1  + Document_Sheet2_Page2_Side1_Front1  
+ac_53: 1<=  Document_Sheet1_Page1_Side1_Front1  + Document_Sheet1_Page2_Side1_Front1  + Document_Sheet2_Page1_Side1_Front1  + Document_Sheet2_Page2_Side1_Front1  
+ac_54: 4 >=  Document_Sheet1_Page1_Side1_Front1  + Document_Sheet1_Page2_Side1_Front1  + Document_Sheet2_Page1_Side1_Front1  + Document_Sheet2_Page2_Side1_Front1  
+ac_55: Front <=> Front_card >0
+ac_56: Document_Sheet1_Page1_Side1 <=> 
+		((1 <=  Document_Sheet1_Page1_Side1_Back1 ) AND
+		(1 >=  Document_Sheet1_Page1_Side1_Back1 ))
+ac_57: Document_Sheet1_Page2_Side1 <=> 
+		((1 <=  Document_Sheet1_Page2_Side1_Back1 ) AND
+		(1 >=  Document_Sheet1_Page2_Side1_Back1 ))
+ac_58: Document_Sheet2_Page1_Side1 <=> 
+		((1 <=  Document_Sheet2_Page1_Side1_Back1 ) AND
+		(1 >=  Document_Sheet2_Page1_Side1_Back1 ))
+ac_59: Document_Sheet2_Page2_Side1 <=> 
+		((1 <=  Document_Sheet2_Page2_Side1_Back1 ) AND
+		(1 >=  Document_Sheet2_Page2_Side1_Back1 ))
+ac_60: Back_card =  Document_Sheet1_Page1_Side1_Back1  + Document_Sheet1_Page2_Side1_Back1  + Document_Sheet2_Page1_Side1_Back1  + Document_Sheet2_Page2_Side1_Back1  
+ac_61: 1<=  Document_Sheet1_Page1_Side1_Back1  + Document_Sheet1_Page2_Side1_Back1  + Document_Sheet2_Page1_Side1_Back1  + Document_Sheet2_Page2_Side1_Back1  
+ac_62: 4 >=  Document_Sheet1_Page1_Side1_Back1  + Document_Sheet1_Page2_Side1_Back1  + Document_Sheet2_Page1_Side1_Back1  + Document_Sheet2_Page2_Side1_Back1  
+ac_63: Back <=> Back_card >0

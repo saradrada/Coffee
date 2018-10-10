@@ -1,0 +1,61 @@
+<instance format="XCSP3" type="CSP"> Ex4_MCS_card_att
+<variables>
+<var id="Processor">0 1</var>
+<var id="Processor_card"> 1..2</var>
+boolean MCS_Processor1
+boolean MCS_Processor2
+<var id="Memory">0 1</var>
+<var id="Memory_card"> 1..4</var>
+boolean MCS_Processor1_Memory1
+boolean MCS_Processor1_Memory2
+boolean MCS_Processor2_Memory1
+boolean MCS_Processor2_Memory2
+<var id="Size">0..32</var>
+<var id="MCS">0 1</var>
+<constraints>
+<intension id= "c0""> 
+	eq(MCS, 1)
+</intension>
+<intension id= "ac_0"> 
+	eq(Processor_card,  MCS_Processor1 + MCS_Processor2  ) 
+</intension>
+<intension id= "ac_1">
+	lq(1,  MCS_Processor1 + MCS_Processor2  )
+</intension>
+<intension id= "ac_2">
+	gq(2,  MCS_Processor1 + MCS_Processor2  )
+</intension>
+<intension id= "ac_3">
+	iff(Processor, Processor_card >0)
+</intension>
+<intension id= "c2" >
+	ge(MCS, Processor)
+</intension>
+<intension id= "ac_4">
+	imp(MCS_Processor1, 
+	and(le(1,  MCS_Processor1_Memory1 + MCS_Processor1_Memory2 ),
+	ge(2,  MCS_Processor1_Memory1 + MCS_Processor1_Memory2 )))
+</intension>
+<intension id= "ac_5">
+	imp(MCS_Processor2, 
+	and(le(1,  MCS_Processor2_Memory1 + MCS_Processor2_Memory2 ),
+	ge(2,  MCS_Processor2_Memory1 + MCS_Processor2_Memory2 )))
+</intension>
+<intension id= "ac_6"> 
+	eq(Memory_card,  MCS_Processor1_Memory1 + MCS_Processor1_Memory2  + MCS_Processor2_Memory1 + MCS_Processor2_Memory2  ) 
+</intension>
+<intension id= "ac_7">
+	lq(1,  MCS_Processor1_Memory1 + MCS_Processor1_Memory2  + MCS_Processor2_Memory1 + MCS_Processor2_Memory2  )
+</intension>
+<intension id= "ac_8">
+	gq(4,  MCS_Processor1_Memory1 + MCS_Processor1_Memory2  + MCS_Processor2_Memory1 + MCS_Processor2_Memory2  )
+</intension>
+<intension id= "ac_9">
+	iff(Memory, Memory_card >0)
+</intension>
+<intension id= "c4" >
+	ge(Processor, Memory)
+</intension>
+<intension id= "c8" >
+	imp(Memory, gt(Size, 0))
+</intension>

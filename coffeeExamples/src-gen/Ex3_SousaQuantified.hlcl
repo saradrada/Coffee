@@ -1,0 +1,90 @@
+model Ex3_SousaQuantified
+variables:
+boolean A 
+boolean B 
+integer B_card domain:1..2
+boolean A_B1
+boolean A_B2
+boolean C 
+integer C_card domain:1..20
+boolean A_B1_C1
+boolean A_B1_C2
+boolean A_B1_C3
+boolean A_B1_C4
+boolean A_B1_C5
+boolean A_B1_C6
+boolean A_B1_C7
+boolean A_B1_C8
+boolean A_B1_C9
+boolean A_B1_C10
+boolean A_B2_C1
+boolean A_B2_C2
+boolean A_B2_C3
+boolean A_B2_C4
+boolean A_B2_C5
+boolean A_B2_C6
+boolean A_B2_C7
+boolean A_B2_C8
+boolean A_B2_C9
+boolean A_B2_C10
+boolean D 
+integer D_card domain:1..4
+boolean A_B1_D1
+boolean A_B1_D2
+boolean A_B2_D1
+boolean A_B2_D2
+boolean E 
+integer E_card domain:1..8
+boolean A_B1_D1_E1
+boolean A_B1_D1_E2
+boolean A_B1_D2_E1
+boolean A_B1_D2_E2
+boolean A_B2_D1_E1
+boolean A_B2_D1_E2
+boolean A_B2_D2_E1
+boolean A_B2_D2_E2
+constraints:
+c0: A = 1
+ac_0: B_card =  A_B1 + A_B2  
+ac_1: 1<=  A_B1 + A_B2  
+ac_2: 2 >=  A_B1 + A_B2  
+ac_3: B <=> B_card >0
+ac_4: A_B1 <=> 
+		((1 <=  A_B1_D1 + A_B1_D2 ) AND
+		(2 >=  A_B1_D1 + A_B1_D2 ))
+ac_5: A_B2 <=> 
+		((1 <=  A_B2_D1 + A_B2_D2 ) AND
+		(2 >=  A_B2_D1 + A_B2_D2 ))
+ac_6: D_card =  A_B1_D1 + A_B1_D2  + A_B2_D1 + A_B2_D2  
+ac_7: 1<=  A_B1_D1 + A_B1_D2  + A_B2_D1 + A_B2_D2  
+ac_8: 4 >=  A_B1_D1 + A_B1_D2  + A_B2_D1 + A_B2_D2  
+ac_9: D <=> D_card >0
+ac_10: A_B1 <=> 
+		((1 <=  A_B1_C1 + A_B1_C2 + A_B1_C3 + A_B1_C4 + A_B1_C5 + A_B1_C6 + A_B1_C7 + A_B1_C8 + A_B1_C9 + A_B1_C10 ) AND
+		(10 >=  A_B1_C1 + A_B1_C2 + A_B1_C3 + A_B1_C4 + A_B1_C5 + A_B1_C6 + A_B1_C7 + A_B1_C8 + A_B1_C9 + A_B1_C10 ))
+ac_11: A_B2 <=> 
+		((1 <=  A_B2_C1 + A_B2_C2 + A_B2_C3 + A_B2_C4 + A_B2_C5 + A_B2_C6 + A_B2_C7 + A_B2_C8 + A_B2_C9 + A_B2_C10 ) AND
+		(10 >=  A_B2_C1 + A_B2_C2 + A_B2_C3 + A_B2_C4 + A_B2_C5 + A_B2_C6 + A_B2_C7 + A_B2_C8 + A_B2_C9 + A_B2_C10 ))
+ac_12: C_card =  A_B1_C1 + A_B1_C2 + A_B1_C3 + A_B1_C4 + A_B1_C5 + A_B1_C6 + A_B1_C7 + A_B1_C8 + A_B1_C9 + A_B1_C10  + A_B2_C1 + A_B2_C2 + A_B2_C3 + A_B2_C4 + A_B2_C5 + A_B2_C6 + A_B2_C7 + A_B2_C8 + A_B2_C9 + A_B2_C10  
+ac_13: 1<=  A_B1_C1 + A_B1_C2 + A_B1_C3 + A_B1_C4 + A_B1_C5 + A_B1_C6 + A_B1_C7 + A_B1_C8 + A_B1_C9 + A_B1_C10  + A_B2_C1 + A_B2_C2 + A_B2_C3 + A_B2_C4 + A_B2_C5 + A_B2_C6 + A_B2_C7 + A_B2_C8 + A_B2_C9 + A_B2_C10  
+ac_14: 20 >=  A_B1_C1 + A_B1_C2 + A_B1_C3 + A_B1_C4 + A_B1_C5 + A_B1_C6 + A_B1_C7 + A_B1_C8 + A_B1_C9 + A_B1_C10  + A_B2_C1 + A_B2_C2 + A_B2_C3 + A_B2_C4 + A_B2_C5 + A_B2_C6 + A_B2_C7 + A_B2_C8 + A_B2_C9 + A_B2_C10  
+ac_15: C <=> C_card >0
+ac_16: A_B1_D1 <=> 
+		((1 <=  A_B1_D1_E1 + A_B1_D1_E2 ) AND
+		(2 >=  A_B1_D1_E1 + A_B1_D1_E2 ))
+ac_17: A_B1_D2 <=> 
+		((1 <=  A_B1_D2_E1 + A_B1_D2_E2 ) AND
+		(2 >=  A_B1_D2_E1 + A_B1_D2_E2 ))
+ac_18: A_B2_D1 <=> 
+		((1 <=  A_B2_D1_E1 + A_B2_D1_E2 ) AND
+		(2 >=  A_B2_D1_E1 + A_B2_D1_E2 ))
+ac_19: A_B2_D2 <=> 
+		((1 <=  A_B2_D2_E1 + A_B2_D2_E2 ) AND
+		(2 >=  A_B2_D2_E1 + A_B2_D2_E2 ))
+ac_20: E_card =  A_B1_D1_E1 + A_B1_D1_E2  + A_B1_D2_E1 + A_B1_D2_E2  + A_B2_D1_E1 + A_B2_D1_E2  + A_B2_D2_E1 + A_B2_D2_E2  
+ac_21: 1<=  A_B1_D1_E1 + A_B1_D1_E2  + A_B1_D2_E1 + A_B1_D2_E2  + A_B2_D1_E1 + A_B2_D1_E2  + A_B2_D2_E1 + A_B2_D2_E2  
+ac_22: 8 >=  A_B1_D1_E1 + A_B1_D1_E2  + A_B1_D2_E1 + A_B1_D2_E2  + A_B2_D1_E1 + A_B2_D1_E2  + A_B2_D2_E1 + A_B2_D2_E2  
+ac_23: E <=> E_card >0
+c4: ((5 <= C_card) AND (C_card <= 10))
+=> 
+((2 <= E_card) AND (E_card <= 2))

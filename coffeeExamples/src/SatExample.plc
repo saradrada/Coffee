@@ -42,6 +42,6 @@ c16: connected requires Search
 c17: mstkruskal requires undirected
 c18: cycle requires DFS
 c19: structural: Gtp variants: [directed, undirected] card:[1,1]
-c20: structural: Algorithms variants: [connected, stronglyc, cycle, mstprim, mstkruskal, shortest] card: [0,6]
+c20: structural: Algorithms variants: [connected, stronglyc, cycle, mstprim, mstkruskal, shortest] card: [0,7]
 c21: structural: Weight variants: [weighted, unweighted] card: [1,1]
 c22: structural: Search variants: [BFS, DFS] card: [1,1]

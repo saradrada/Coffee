@@ -1,0 +1,65 @@
+<instance format="XCSP3" type="CSP"> 
+<variables>
+<var id="Document">0 1</var>
+<var id="Type">0 1</var>
+<var id="Binding">0 1</var>
+<var id="Normal">0 1</var>
+<var id="Booklet">0 1</var>
+<var id="Top">0 1</var>
+<var id="Left">0 1</var>
+<var id="Right">0 1</var>
+<var id="Sheet">0 1</var>
+<var id= "Sheet1">" 0 1 </var><var id= "Sheet2">" 0 1 </var>	
+<var id="Folding">0 1</var>
+<var id="Page">0 1</var>
+<var id= "Page1">" 0 1 </var><var id= "Page2">" 0 1 </var>	
+<var id="Orientation">0 1</var>
+<var id="Side">0 1</var>
+<var id="Landscape">0 1</var>
+<var id="Portrait">0 1</var>
+<var id="Front">0 1</var>
+<var id="Back">0 1</var>
+</variables>
+<constraints>
+<intension id= "cl_1" >
+			 	 imp(Sheet1, Sheet)
+			 	 </intension><intension id= "cl_2" >
+			 	 imp(Sheet2, Sheet)
+			 	 </intension><intension id= "cl_3" >
+			 	 imp(Sheet, and(le(1, add( Sheet1,  Sheet2), ge(2,add( Sheet1,  Sheet2)))
+			 	 </intension><intension id= "cl_4" >
+			 	 imp(Page1, Page)
+			 	 </intension><intension id= "cl_5" >
+			 	 imp(Page2, Page)
+			 	 </intension><intension id= "cl_6" >
+			 	 imp(Page, and(le(0, add( Page1,  Page2), ge(2,add( Page1,  Page2)))
+			 	 </intension>
+<intension id= "C0" >
+	eq(Document, 1)
+</intension>
+<intension id= "c1_1" >
+	eq(Document, Type)
+</intension>
+<intension id= "c1_2" >
+	ge(Document, Binding)
+</intension>
+<intension id= "c2" >
+	and(imp(Normal, Type),imp(Booklet, Type), imp(ge(Type, 1), and(le(add(Normal, Booklet), 1), ge(add(Normal, Booklet), 1))) )
+</intension>
+<intension id= "c3" >
+	and(imp(Top, Binding),imp(Left, Binding),imp(Right, Binding), imp(ge(Binding, 1), and(le(add(Top, Left, Right), 1), ge(add(Top, Left, Right), 1))) )
+</intension>
+<intension id= "c4_1" >
+	ge(Sheet, Folding)
+</intension>
+<intension id= "c4_2" >
+	eq(Sheet, Page)
+</intension>
+<intension id= "c5_1" >
+	eq(Page, Orientation)
+</intension>
+<intension id= "c5_2" >
+	ge(Page, Side)
+</intension>
+</constraints>
+</instance>

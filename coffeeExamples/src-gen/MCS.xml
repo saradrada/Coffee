@@ -1,0 +1,15 @@
+<instance format="XCSP3" type="CSP"> 
+<variables>
+<var id="GType">0 1</var>
+<var id="Weight">0 1</var>
+<var id="Search">0 1</var>
+<var id="Cores">0..7</var>
+<var id="Memory">02481632</var>
+</variables>
+<constraints>
+<intension id= "c1" >
+</intension>
+<intension id= "c2" >
+</intension>
+</constraints>
+</instance>

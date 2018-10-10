@@ -1,0 +1,46 @@
+model Model18
+variables:
+boolean GPL
+boolean GType
+boolean Weight
+boolean Search
+boolean Algorithms
+boolean Directed
+boolean Undirected
+boolean Weighted
+boolean Unweighted
+boolean BFS
+boolean DFS
+boolean Kruskal
+boolean CycleCheck
+boolean StronglyCon
+boolean VertexNum
+boolean ConnComp
+boolean SSP
+boolean Prim
+constraints:
+c2: GPL <=> GType
+c3: GPL <=> Algorithms
+c4: Weight => GPL
+c5: Search => GPL
+c6: (Directed <=> (~Undirected AND GType)) AND (Undirected <=> (~Directed AND GType)) 
+c7: (Weighted <=> (~Unweighted AND Weight)) AND (Unweighted <=> (~Weighted AND Weight)) 
+c8: (BFS <=> (~DFS AND Search)) AND (DFS <=> (~BFS AND Search)) 
+c9: Algorithms <=> (Kruskal OR CycleCheck OR StronglyCon OR VertexNum OR ConnComp OR SSP OR Prim )
+c10: CycleCheck => DFS
+C11: StronglyCon => Directed
+C12: StronglyCon => DFS
+C13: VertexNum => Search
+C14: ConnComp => Undirected
+C15: Kruskal => Undirected
+C16: Kruskal => Weighted
+C17: Prim => Undirected
+C18: Prim => Weighted
+C19: SSP => Directed
+C20: SSP => Weighted
+C21:  ~ (StronglyCon AND ConnComp)
+C22:  ~ (StronglyCon AND Kruskal)
+C23:  ~ (StronglyCon AND Prim)
+C24:  ~ (SSP AND ConnComp)
+C25:  ~ (SSP AND Kruskal)
+C26:  ~ (SSP AND Prim)
