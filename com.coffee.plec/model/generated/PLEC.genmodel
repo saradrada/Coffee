@@ -48,20 +48,23 @@
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//Refinement"/>
     <genClasses ecoreClass="PLEC.ecore#//Assignment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//Assignment/var"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Assignment/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//Assignment/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Assignment/valu"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//VarRefinement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//VarRefinement/var"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//VarRefinement/var"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//VarRefinement/values"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//SetRefinement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/vars"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/head"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/tail"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//SetRefinement/list"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//RootRefinement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//RootRefinement/var"/>
+    </genClasses>
+    <genClasses ecoreClass="PLEC.ecore#//Temporal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//Temporal/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Temporal/cons"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Rule/condition"/>
@@ -75,6 +78,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//FodaBin/var1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PLEC.ecore#//FodaBin/op"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//FodaBin/var2"/>
+    </genClasses>
+    <genClasses ecoreClass="PLEC.ecore#//Quantifiable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/minV1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/maxV1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/var1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/minV2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/maxV2"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//Quantifiable/var2"/>
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//BoolVal"/>
     <genClasses ecoreClass="PLEC.ecore#//Number">
@@ -90,6 +101,9 @@
     </genClasses>
     <genClasses ecoreClass="PLEC.ecore#//ListOfIDs">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PLEC.ecore#//ListOfIDs/ids"/>
+    </genClasses>
+    <genClasses ecoreClass="PLEC.ecore#//ListOfListsOfValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PLEC.ecore#//ListOfListsOfValues/values"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -10,6 +10,7 @@ import com.coffee.pLEC.Attributes
 import com.coffee.pLEC.FodaUN
 import com.coffee.pLEC.FodaBin
 import com.coffee.pLEC.RootRefinement
+import com.coffee.pLEC.Quantifiable
 
 class THLCLCardinalityGenerator extends THLCLGenerator  {
 	
@@ -23,7 +24,7 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 	/**
 	 * String for including the declaration of the variables
 	 */
-	private StringBuilder variablesDeclarations;
+	//private StringBuilder variablesDeclarations;
 	
 	/**
 	 * String for including the declaration of the variables
@@ -39,7 +40,7 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 	new(String name, TypeOfProblem type) {
 		super(name, type)
 		setFactory(factory)
-		variablesDeclarations= new StringBuilder();
+		//variablesDeclarations= new StringBuilder();
 		constraintsDeclarations= new StringBuilder();
 		//initializing the data sctucture with the map of parents
 		tree= new HashMap<String, Node>();
@@ -53,20 +54,30 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 	override parseVariables(Model model) {
 		'''
 		«FOR node: tree.values»
-			 boolean «node.id»
+			 «factory.getVariable(node.variable)»
 			 «IF node.id!=root && node.numInstances!=1 »
-			 	integer «node.id»_card domain:«node.min»..«node.numInstances»
+			 	«factory.declareVaribleNumInstances(node)»
 			 	«FOR instance: node.varsIds»
-			 		boolean «instance»
+			 		«factory.declareInstance(instance) »
 			 	«ENDFOR»
 			 «ENDIF»
 		«ENDFOR»
 		'''
 	}
 	
+	override  CharSequence parseQuantifiable(Quantifiable exp){
+	 	factory.getQuantifiableRequires(exp)
+
+	 }
+	
+	/**
+	 * 
+	 * @param model is the model 
+	 */
 	def createTree(Model model){
 		for( variable : model.vars){
 			val Node node = new Node(variable.name)
+			node.setVariable(variable)
 			// puede no tener cardinalidad y ser null
 			if(variable.min===null&& variable.max===null){
 				node.setMin(1)
@@ -103,17 +114,9 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 							sufixInstances=sufixInstances.substring(0,sufixInstances.length -1)
 							if (childNode.parent.id!=root && childNode.numInstances>1){
 								generateInstanceCardinalityConstraint(sufixInstances, childNode, nameV)
-//								constraintsDeclarations.append(
-//								'''ac_«cardConstraints++»: «nameV» <=> ((«childNode.min» <= «sufixInstances») AND
-//								(«childNode.max» >= «sufixInstances»))
-//								''') // quitar el ultimo +
-//								
-//
 							}
 							// acumulando la suma de todas las instancias
 							allInstances+= '''«sufixInstances» +'''
-							
-							
 						}				
 						padre.addChild(childNode)
 						parents.put(childVar.name, exp.parent)
@@ -122,21 +125,6 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 							// cardinalidad de la feature
 							allInstances=allInstances.substring(0,allInstances.length -1)
 							generateFeatureCardinalityconstraints(allInstances, childNode)
-//							constraintsDeclarations.append(
-//								'''ac_«cardConstraints++»: «childVar.name»_card = «allInstances»
-//								''')
-//							//cantidad de instancias part1
-//							constraintsDeclarations.append(
-//								'''ac_«cardConstraints++»: «childNode.min»<= «allInstances»
-//								''')
-//							//cantidad de instancias part2
-//							constraintsDeclarations.append(
-//								'''ac_«cardConstraints++»: «childNode.numInstances» >= «allInstances»
-//								''')
-//							//feature=> card
-//							constraintsDeclarations.append(
-//								'''ac_«cardConstraints++»: «childNode.id» <=> «childVar.name»_card >0
-//								''')
 							}	
 					}
 				}else{ //group cardinalities
@@ -159,24 +147,28 @@ class THLCLCardinalityGenerator extends THLCLGenerator  {
 			else{	
 				if(c.exp instanceof Attributes){
 					val exp= c.exp as Attributes
-					val padre= tree.get(exp.var1)
+					val padre= tree.get(exp.var1.name)
+					println(exp.var1.name + " " + padre)
 					for (att : exp.att.ids) {
 						val childNode= tree.get(att.name)
+						print(att.name + " " + childNode)
 						childNode.setParent(padre)
-						childNode.numInstances = padre.numInstances * 1 // an attribute has one cardinality
+						//childNode.numInstances = padre.numInstances * 1 // an attribute has one cardinality
+						childNode.numInstances = 1
 						padre.addChild(childNode)
-						for (nameV: padre.varsIds){
-							for (var i=1; i<= childNode.max; i++){
-								childNode.addVarId('''«nameV»_«att.name»_«i»''')
-							}
-						}
+						// esto esta comentado porque no se ha definido bien la semantica de los atributos
+//						for (nameV: padre.varsIds){
+//							for (var i=1; i<= childNode.max; i++){
+//								childNode.addVarId('''«nameV»_«att.name»_«i»''')
+//							}
+//						}
 					}
-					
+					constraintsDeclarations.append(parseConstraint(c.name, c.exp))
 				}
 				else{
 					if(c.exp instanceof RootRefinement){
 						root= (c.exp as RootRefinement).getVar.name
-						constraintsDeclarations.append(
+						constraintsDeclarations.append(//parseConstraint(c.name, c.exp)
 						'''«c.name»: «root» = 1
 						'''
 						)

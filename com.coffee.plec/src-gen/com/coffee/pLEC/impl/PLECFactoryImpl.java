@@ -13,17 +13,20 @@ import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.ListOfIDs;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECFactory;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Symbol;
+import com.coffee.pLEC.Temporal;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
@@ -107,9 +110,11 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
       case PLECPackage.VAR_REFINEMENT: return createVarRefinement();
       case PLECPackage.SET_REFINEMENT: return createSetRefinement();
       case PLECPackage.ROOT_REFINEMENT: return createRootRefinement();
+      case PLECPackage.TEMPORAL: return createTemporal();
       case PLECPackage.RULE: return createRule();
       case PLECPackage.FODA_UN: return createFodaUN();
       case PLECPackage.FODA_BIN: return createFodaBin();
+      case PLECPackage.QUANTIFIABLE: return createQuantifiable();
       case PLECPackage.BOOL_VAL: return createBoolVal();
       case PLECPackage.NUMBER: return createNumber();
       case PLECPackage.SYMBOL: return createSymbol();
@@ -117,6 +122,7 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
       case PLECPackage.NON_ENUMERABLE_VALUE: return createNonEnumerableValue();
       case PLECPackage.LIST_OF_VALUES: return createListOfValues();
       case PLECPackage.LIST_OF_IDS: return createListOfIDs();
+      case PLECPackage.LIST_OF_LISTS_OF_VALUES: return createListOfListsOfValues();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -303,6 +309,17 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Temporal createTemporal()
+  {
+    TemporalImpl temporal = new TemporalImpl();
+    return temporal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Rule createRule()
   {
     RuleImpl rule = new RuleImpl();
@@ -329,6 +346,17 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
   {
     FodaBinImpl fodaBin = new FodaBinImpl();
     return fodaBin;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Quantifiable createQuantifiable()
+  {
+    QuantifiableImpl quantifiable = new QuantifiableImpl();
+    return quantifiable;
   }
 
   /**
@@ -406,6 +434,17 @@ public class PLECFactoryImpl extends EFactoryImpl implements PLECFactory
   {
     ListOfIDsImpl listOfIDs = new ListOfIDsImpl();
     return listOfIDs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfListsOfValues createListOfListsOfValues()
+  {
+    ListOfListsOfValuesImpl listOfListsOfValues = new ListOfListsOfValuesImpl();
+    return listOfListsOfValues;
   }
 
   /**

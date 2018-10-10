@@ -8,6 +8,7 @@ import com.coffee.generator.TypeOfProblem
 import com.coffee.pLEC.Attributes
 import com.coffee.pLEC.Rule
 import com.coffee.pLEC.Refinement
+import com.coffee.pLEC.Assignment
 
 @Deprecated
 class SATFactory  extends XCSP3Factory{
@@ -69,9 +70,9 @@ class SATFactory  extends XCSP3Factory{
 		output
 	}
 	
-	override getClonConstraints() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
+//	override getClonConstraints() {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}
 	
 	override getStrategy() {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
@@ -85,9 +86,9 @@ class SATFactory  extends XCSP3Factory{
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getClonVariables(VarDeclaration variable) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
+//	override getClonVariables(VarDeclaration variable) {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}
 	
 	override getAttributes(Attributes exp) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
@@ -98,6 +99,10 @@ class SATFactory  extends XCSP3Factory{
 	}
 	
 	override getRefinement(Refinement exp) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getAssignement(Assignment exp) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	

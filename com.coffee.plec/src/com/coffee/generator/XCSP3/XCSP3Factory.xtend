@@ -24,7 +24,7 @@ import com.coffee.pLEC.RootRefinement
  * August 2018
  */
 
-  abstract class XCSP3Factory extends CodeFactory implements OptimizationFactory, CardinalityFactory, AttributesFactory, CoffeeFactory {
+  abstract class XCSP3Factory extends CodeFactory implements OptimizationFactory,  AttributesFactory, CoffeeFactory {
 	/**
 	 * Strings in the XCSP format
 	 */

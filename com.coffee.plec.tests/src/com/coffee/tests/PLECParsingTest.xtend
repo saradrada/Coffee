@@ -131,7 +131,7 @@ class PLECParsingTest {
 		
 	}
 /**
- * Declaring integer instanciable interval variable
+ * Declaring integer instantiable  variable with an interval domain
  */
 	@Test
 	def void integerIntervalInstantiable() {
@@ -150,7 +150,7 @@ class PLECParsingTest {
 	}
 
 /**
- * Declaring integer instanciable enumeration variable
+ * Declaring integer instantiable variable with an enumeration domain
  */
 	@Test
 	def void integerEnumerationInstantiable() {
@@ -214,12 +214,63 @@ class PLECParsingTest {
 		printErrors( empty)
 		Assert.assertTrue(empty.eResource.errors.isEmpty)
 	}
+		
+	/**
+	 * Testing mandatory and optional in a parent-child relation
+	 */
+	@Test
+	def void parentChildOperations() {
+		// model is a program in HLVL
+		val model = 
+		'''
+		model GPL
+		variables:
+		boolean GType
+		boolean Weight
+		boolean Search
+		boolean Algorithms
+		constraints:
+		c1: structural: GPL variants: [GType, GPL, Weight, Search, Algorithms] card:[1,1]
+		c2: GType is optional
+		C3: Weight is mandatory
+		'''
+		//empty is an empty model
+		val empty = parseHelper.parse(model)
+		Assert.assertNotNull(empty)
+		printErrors( empty)
+		Assert.assertTrue(empty.eResource.errors.isEmpty)
+	}
+	/**
+	 * Refinement - root
+	 */
+	 	@Test
+	def void refinementRoot() {
+		// model is a program in HLVL
+		val model = 
+		'''
+		model GPL
+		variables:
+		boolean GType
+		boolean Weight
+		boolean Search
+		boolean Algorithms
+		constraints:
+		c1: GPL is root
+		'''
+		//empty is an empty model
+		val empty = parseHelper.parse(model)
+		Assert.assertNotNull(empty)
+		printErrors( empty)
+		Assert.assertTrue(empty.eResource.errors.isEmpty)
+	}
+	
+
 /**
  * Declaring attributes
  */
 	@Test
 	def void attributes() {
-		// model is a program in PLEC
+		// model is a program in HLVL
 		val model = 
 		'''
 		model m1
@@ -233,12 +284,12 @@ class PLECParsingTest {
 		constraints:
 		c1: attributes: [Memory] of Search 
 		'''
-		//empty is an empty model
+		
 		val empty = parseHelper.parse(model)
 		Assert.assertNotNull(empty)
 		printErrors( empty)
-		Assert.assertTrue(empty.eResource.errors.isEmpty)
-	}
+		assertNoErrors(empty)
+			}
 
 
 /**
@@ -246,7 +297,7 @@ class PLECParsingTest {
  */
  	@Test
 	def void requires() {
-		// model is a program in PLEC
+		// model is a program in HLVL
 		val program = 
 		'''
 		model GPL
@@ -269,7 +320,7 @@ class PLECParsingTest {
  */
  	 	@Test
 	def void excludes() {
-		// model is a program in PLEC
+		// model is a program in HLVL
 		val program = 
 		'''
 		model GPL
@@ -285,9 +336,135 @@ class PLECParsingTest {
 		val model = parseHelper.parse(program)
 		Assert.assertNotNull(model)
 		printErrors(model)
-		Assert.assertTrue(model.eResource.errors.isEmpty)
+		assertNoErrors(model)
+		//Assert.assertTrue(model.eResource.errors.isEmpty)
 	}
 	
+	/** Quantifiable requires */
+	 @Test
+	def void quantifiableRequires() {
+		// model is a program in HLVL
+		val program = 
+		'''
+		model Modelo
+		variables: 
+		boolean GPL
+		instantiable[1,10] boolean GType
+		instantiable[0,5] boolean Algorithms
+		constraints:
+		c1: GPL is root
+		c2: structural: GPL variants: [GType, Algorithms] card:[1,2]
+		c3: [5,8] GType requires [2,4] Algorithms
+		'''
+		val m1 = parseHelper.parse(program)
+		Assert.assertNotNull(m1)
+		assertNoErrors(m1)
+	}
+	
+	/**
+	 * Refinement - value
+	 */
+	 
+	 @Test
+	def void refinementValue() {
+		// model is a program in HLVL
+		val program = 
+		'''
+		model Modelo
+		variables:
+		boolean GPL
+		integer Memory values: [2, 4, 8, 16, 32]
+		constraints:
+		c1: GPL is selected
+		c2: Memory is 16
+		'''
+		val m1 = parseHelper.parse(program)
+		Assert.assertNotNull(m1)
+		assertNoErrors(m1)
+	}
+	
+	/**
+	 * Refinement - value
+	 */
+	 @Test
+	def void refinementSet() {
+		// model is a program in HLVL
+		val model = 
+		'''
+		model MCS
+		variables:
+		boolean GType
+		boolean Weight
+		boolean Search
+		integer Cores values: 0..7
+		integer Memory values: [0, 2, 4, 8, 16, 32]
+		constraints:
+		c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]
+		c2: Memory is 16
+		'''
+		val m1 = parseHelper.parse(model)
+		Assert.assertNotNull(m1)
+		assertNoErrors(m1)
+		printErrors(m1)
+		//Assert.assertTrue(m1.eResource.errors.isEmpty)
+	}
+	/**
+	 * Rule - value
+	 */
+	 @Test
+	def void rule() {
+		// model is a program in HLVL
+		val model = 
+		'''
+		model MCS
+		variables:
+		boolean GType
+		boolean Weight
+		boolean Search
+		integer Cores values: 0..7
+		integer Memory values: [0, 2, 4, 8, 16, 32]
+		constraints:
+		c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]
+		c2: Memory is 16
+		rule1: c1--> c2
+		rule2: (GType is selected) --> (Weight is selected)
+		'''
+		val m1 = parseHelper.parse(model)
+		Assert.assertNotNull(m1)
+		assertNoErrors(m1)
+		printErrors(m1)
+		//Assert.assertTrue(m1.eResource.errors.isEmpty)
+	}
+	/**
+	 * Rule - value
+	 */
+	@Test
+	def void temporal() {
+		// model is a program in HLVL
+		val model = 
+		'''
+		model MCS
+		variables:
+		boolean GType
+		boolean Weight
+		boolean Search
+		integer Cores values: 0..7
+		integer Memory values: [0, 2, 4, 8, 16, 32]
+		constraints:
+		c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]
+		c2: Memory is 16
+		rule1: c1--> c2
+		rule2: (GType is selected) --> (Weight is selected)
+		tmp1: always c1
+		tmp2: next c2
+		tmp3: eventually(Memory is 16) 
+		'''
+		val m1 = parseHelper.parse(model)
+		Assert.assertNotNull(m1)
+		assertNoErrors(m1)
+		printErrors(m1)
+		//Assert.assertTrue(m1.eResource.errors.isEmpty)
+	}
 /*****************************************************************************************************
  * Testing errors and validations
  */

@@ -2,6 +2,7 @@ package com.coffee.generator.XCSP3;
 
 import com.coffee.generator.TypeOfProblem;
 import com.coffee.generator.XCSP3.XCSP3Factory;
+import com.coffee.pLEC.Assignment;
 import com.coffee.pLEC.Attributes;
 import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.Structural;
@@ -183,11 +184,6 @@ public class SATFactory extends XCSP3Factory {
   }
   
   @Override
-  public CharSequence getClonConstraints() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  @Override
   public CharSequence getStrategy() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
@@ -203,11 +199,6 @@ public class SATFactory extends XCSP3Factory {
   }
   
   @Override
-  public CharSequence getClonVariables(final VarDeclaration variable) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  @Override
   public CharSequence getAttributes(final Attributes exp) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
@@ -219,6 +210,11 @@ public class SATFactory extends XCSP3Factory {
   
   @Override
   public CharSequence getRefinement(final Refinement exp) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  @Override
+  public CharSequence getAssignement(final Assignment exp) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

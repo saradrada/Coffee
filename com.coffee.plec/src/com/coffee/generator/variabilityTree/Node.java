@@ -3,6 +3,8 @@ package com.coffee.generator.variabilityTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.coffee.pLEC.VarDeclaration;
+
 /**
  * Class representing a tree used for specifying variability models using 
  * structural relations
@@ -11,14 +13,15 @@ import java.util.List;
  * September 2018
  */
 public class Node {
+	private VarDeclaration variable;
+
 	private String id;
 	private Node parent;
 	private int minCard;
 	private int maxCard;
-
 	private int numInstances;
 	//private List <RelativeCard> relativeCardinalities
-	private List<String> varIds;
+	private List<String> varIds; // name of the instances
 	private List<Node> children;
 	
 	public Node(String id) {
@@ -81,5 +84,12 @@ public class Node {
 	}
 	public void addChild(Node child) {
 		children.add(child);
+	}
+	public VarDeclaration getVariable() {
+		return variable;
+	}
+
+	public void setVariable(VarDeclaration variable) {
+		this.variable = variable;
 	}
 }

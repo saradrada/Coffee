@@ -11,14 +11,17 @@ import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.ListOfIDs;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Symbol;
+import com.coffee.pLEC.Temporal;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
 import com.coffee.pLEC.VariantsEnumeration;
@@ -74,6 +77,9 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case PLECPackage.LIST_OF_IDS:
 				sequence_ListOfIDs(context, (ListOfIDs) semanticObject); 
 				return; 
+			case PLECPackage.LIST_OF_LISTS_OF_VALUES:
+				sequence_ListOfListsOfValues(context, (ListOfListsOfValues) semanticObject); 
+				return; 
 			case PLECPackage.LIST_OF_VALUES:
 				sequence_ListOfValues(context, (ListOfValues) semanticObject); 
 				return; 
@@ -82,6 +88,9 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PLECPackage.NUMBER:
 				sequence_Number(context, (com.coffee.pLEC.Number) semanticObject); 
+				return; 
+			case PLECPackage.QUANTIFIABLE:
+				sequence_Quantifiable(context, (Quantifiable) semanticObject); 
 				return; 
 			case PLECPackage.ROOT_REFINEMENT:
 				sequence_RootRefinement(context, (RootRefinement) semanticObject); 
@@ -97,6 +106,9 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PLECPackage.SYMBOL:
 				sequence_Symbol(context, (Symbol) semanticObject); 
+				return; 
+			case PLECPackage.TEMPORAL:
+				sequence_Temporal(context, (Temporal) semanticObject); 
 				return; 
 			case PLECPackage.VAR_DECLARATION:
 				sequence_VarDeclaration(context, (VarDeclaration) semanticObject); 
@@ -123,18 +135,18 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Assignment returns Assignment
 	 *
 	 * Constraint:
-	 *     (var=ID value=Value)
+	 *     (variable=[VarDeclaration|ID] valu=Value)
 	 */
 	protected void sequence_Assignment(ISerializationContext context, Assignment semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.ASSIGNMENT__VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.ASSIGNMENT__VAR));
-			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.ASSIGNMENT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.ASSIGNMENT__VALUE));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.ASSIGNMENT__VARIABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.ASSIGNMENT__VARIABLE));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.ASSIGNMENT__VALU) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.ASSIGNMENT__VALU));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssignmentAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
-		feeder.accept(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAssignmentAccess().getVariableVarDeclarationIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PLECPackage.Literals.ASSIGNMENT__VARIABLE, false));
+		feeder.accept(grammarAccess.getAssignmentAccess().getValuValueParserRuleCall_2_0(), semanticObject.getValu());
 		feeder.finish();
 	}
 	
@@ -169,7 +181,7 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     NonEnumerableValue returns BoolVal
 	 *
 	 * Constraint:
-	 *     (value='true' | value='false')
+	 *     (value='selected' | value='unselected')
 	 */
 	protected void sequence_BoolVal(ISerializationContext context, BoolVal semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -280,6 +292,18 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ListOfListsOfValues returns ListOfListsOfValues
+	 *
+	 * Constraint:
+	 *     (values+=ListOfValues values+=ListOfValues*)
+	 */
+	protected void sequence_ListOfListsOfValues(ISerializationContext context, ListOfListsOfValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ListOfValues returns ListOfValues
 	 *
 	 * Constraint:
@@ -317,6 +341,48 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNumberAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConsExpression returns Quantifiable
+	 *     TerminalExp returns Quantifiable
+	 *     Quantifiable returns Quantifiable
+	 *
+	 * Constraint:
+	 *     (
+	 *         minV1=Number 
+	 *         maxV1=Number 
+	 *         var1=[VarDeclaration|ID] 
+	 *         minV2=Number 
+	 *         maxV2=Number 
+	 *         var2=[VarDeclaration|ID]
+	 *     )
+	 */
+	protected void sequence_Quantifiable(ISerializationContext context, Quantifiable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MIN_V1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MIN_V1));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MAX_V1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MAX_V1));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__VAR1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__VAR1));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MIN_V2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MIN_V2));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MAX_V2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__MAX_V2));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.QUANTIFIABLE__VAR2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.QUANTIFIABLE__VAR2));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getQuantifiableAccess().getMinV1NumberParserRuleCall_1_0(), semanticObject.getMinV1());
+		feeder.accept(grammarAccess.getQuantifiableAccess().getMaxV1NumberParserRuleCall_3_0(), semanticObject.getMaxV1());
+		feeder.accept(grammarAccess.getQuantifiableAccess().getVar1VarDeclarationIDTerminalRuleCall_5_0_1(), semanticObject.eGet(PLECPackage.Literals.QUANTIFIABLE__VAR1, false));
+		feeder.accept(grammarAccess.getQuantifiableAccess().getMinV2NumberParserRuleCall_8_0(), semanticObject.getMinV2());
+		feeder.accept(grammarAccess.getQuantifiableAccess().getMaxV2NumberParserRuleCall_10_0(), semanticObject.getMaxV2());
+		feeder.accept(grammarAccess.getQuantifiableAccess().getVar2VarDeclarationIDTerminalRuleCall_12_0_1(), semanticObject.eGet(PLECPackage.Literals.QUANTIFIABLE__VAR2, false));
 		feeder.finish();
 	}
 	
@@ -373,10 +439,19 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SetRefinement returns SetRefinement
 	 *
 	 * Constraint:
-	 *     (vars=ListOfIDs head=ListOfValues tail+=ListOfValues+)
+	 *     (vars=ListOfIDs list=ListOfListsOfValues)
 	 */
 	protected void sequence_SetRefinement(ISerializationContext context, SetRefinement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.SET_REFINEMENT__VARS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.SET_REFINEMENT__VARS));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.SET_REFINEMENT__LIST) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.SET_REFINEMENT__LIST));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSetRefinementAccess().getVarsListOfIDsParserRuleCall_2_0(), semanticObject.getVars());
+		feeder.accept(grammarAccess.getSetRefinementAccess().getListListOfListsOfValuesParserRuleCall_6_0(), semanticObject.getList());
+		feeder.finish();
 	}
 	
 	
@@ -416,6 +491,29 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ConsExpression returns Temporal
+	 *     TerminalExp returns Temporal
+	 *     Temporal returns Temporal
+	 *
+	 * Constraint:
+	 *     (operator=TempOP cons=TerminalExp)
+	 */
+	protected void sequence_Temporal(ISerializationContext context, Temporal semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.TEMPORAL__OPERATOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.TEMPORAL__OPERATOR));
+			if (transientValues.isValueTransient(semanticObject, PLECPackage.Literals.TEMPORAL__CONS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.TEMPORAL__CONS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTemporalAccess().getOperatorTempOPParserRuleCall_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getTemporalAccess().getConsTerminalExpParserRuleCall_1_0(), semanticObject.getCons());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VarDeclaration returns VarDeclaration
 	 *
 	 * Constraint:
@@ -434,7 +532,7 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     VarRefinement returns VarRefinement
 	 *
 	 * Constraint:
-	 *     (var=ID values=VariantDeclaration)
+	 *     (var=[VarDeclaration|ID] values=VariantDeclaration)
 	 */
 	protected void sequence_VarRefinement(ISerializationContext context, VarRefinement semanticObject) {
 		if (errorAcceptor != null) {
@@ -444,7 +542,7 @@ public class PLECSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PLECPackage.Literals.VAR_REFINEMENT__VALUES));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVarRefinementAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
+		feeder.accept(grammarAccess.getVarRefinementAccess().getVarVarDeclarationIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PLECPackage.Literals.VAR_REFINEMENT__VAR, false));
 		feeder.accept(grammarAccess.getVarRefinementAccess().getValuesVariantDeclarationParserRuleCall_2_0(), semanticObject.getValues());
 		feeder.finish();
 	}

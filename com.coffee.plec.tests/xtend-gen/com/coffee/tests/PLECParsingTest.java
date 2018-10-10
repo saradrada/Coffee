@@ -163,7 +163,7 @@ public class PLECParsingTest {
   }
   
   /**
-   * Declaring integer instanciable interval variable
+   * Declaring integer instantiable  variable with an interval domain
    */
   @Test
   public void integerIntervalInstantiable() {
@@ -187,7 +187,7 @@ public class PLECParsingTest {
   }
   
   /**
-   * Declaring integer instanciable enumeration variable
+   * Declaring integer instantiable variable with an enumeration domain
    */
   @Test
   public void integerEnumerationInstantiable() {
@@ -277,6 +277,76 @@ public class PLECParsingTest {
   }
   
   /**
+   * Testing mandatory and optional in a parent-child relation
+   */
+  @Test
+  public void parentChildOperations() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model GPL");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: structural: GPL variants: [GType, GPL, Weight, Search, Algorithms] card:[1,1]");
+      _builder.newLine();
+      _builder.append("c2: GType is optional");
+      _builder.newLine();
+      _builder.append("C3: Weight is mandatory");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Refinement - root
+   */
+  @Test
+  public void refinementRoot() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model GPL");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: GPL is root");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model empty = this.parseHelper.parse(model);
+      Assert.assertNotNull(empty);
+      this.printErrors(empty);
+      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
    * Declaring attributes
    */
   @Test
@@ -307,7 +377,7 @@ public class PLECParsingTest {
       final Model empty = this.parseHelper.parse(model);
       Assert.assertNotNull(empty);
       this.printErrors(empty);
-      Assert.assertTrue(empty.eResource().getErrors().isEmpty());
+      this._validationTestHelper.assertNoErrors(empty);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -373,7 +443,196 @@ public class PLECParsingTest {
       final Model model = this.parseHelper.parse(program);
       Assert.assertNotNull(model);
       this.printErrors(model);
-      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+      this._validationTestHelper.assertNoErrors(model);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Quantifiable requires
+   */
+  @Test
+  public void quantifiableRequires() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model Modelo");
+      _builder.newLine();
+      _builder.append("variables: ");
+      _builder.newLine();
+      _builder.append("boolean GPL");
+      _builder.newLine();
+      _builder.append("instantiable[1,10] boolean GType");
+      _builder.newLine();
+      _builder.append("instantiable[0,5] boolean Algorithms");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: GPL is root");
+      _builder.newLine();
+      _builder.append("c2: structural: GPL variants: [GType, Algorithms] card:[1,2]");
+      _builder.newLine();
+      _builder.append("c3: [5,8] GType requires [2,4] Algorithms");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model m1 = this.parseHelper.parse(program);
+      Assert.assertNotNull(m1);
+      this._validationTestHelper.assertNoErrors(m1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Refinement - value
+   */
+  @Test
+  public void refinementValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model Modelo");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GPL");
+      _builder.newLine();
+      _builder.append("integer Memory values: [2, 4, 8, 16, 32]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: GPL is selected");
+      _builder.newLine();
+      _builder.append("c2: Memory is 16");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model m1 = this.parseHelper.parse(program);
+      Assert.assertNotNull(m1);
+      this._validationTestHelper.assertNoErrors(m1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Refinement - value
+   */
+  @Test
+  public void refinementSet() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model MCS");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("integer Cores values: 0..7");
+      _builder.newLine();
+      _builder.append("integer Memory values: [0, 2, 4, 8, 16, 32]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]");
+      _builder.newLine();
+      _builder.append("c2: Memory is 16");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model m1 = this.parseHelper.parse(model);
+      Assert.assertNotNull(m1);
+      this._validationTestHelper.assertNoErrors(m1);
+      this.printErrors(m1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Rule - value
+   */
+  @Test
+  public void rule() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model MCS");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("integer Cores values: 0..7");
+      _builder.newLine();
+      _builder.append("integer Memory values: [0, 2, 4, 8, 16, 32]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]");
+      _builder.newLine();
+      _builder.append("c2: Memory is 16");
+      _builder.newLine();
+      _builder.append("rule1: c1--> c2");
+      _builder.newLine();
+      _builder.append("rule2: (GType is selected) --> (Weight is selected)");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model m1 = this.parseHelper.parse(model);
+      Assert.assertNotNull(m1);
+      this._validationTestHelper.assertNoErrors(m1);
+      this.printErrors(m1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Rule - value
+   */
+  @Test
+  public void temporal() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model MCS");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean GType");
+      _builder.newLine();
+      _builder.append("boolean Weight");
+      _builder.newLine();
+      _builder.append("boolean Search");
+      _builder.newLine();
+      _builder.append("integer Cores values: 0..7");
+      _builder.newLine();
+      _builder.append("integer Memory values: [0, 2, 4, 8, 16, 32]");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c1: vars: (Cores, Memory) variants: [(1,2), (2, 4), (4, 16), (5, 32)]");
+      _builder.newLine();
+      _builder.append("c2: Memory is 16");
+      _builder.newLine();
+      _builder.append("rule1: c1--> c2");
+      _builder.newLine();
+      _builder.append("rule2: (GType is selected) --> (Weight is selected)");
+      _builder.newLine();
+      _builder.append("tmp1: always c1");
+      _builder.newLine();
+      _builder.append("tmp2: next c2");
+      _builder.newLine();
+      _builder.append("tmp3: eventually(Memory is 16) ");
+      _builder.newLine();
+      final String model = _builder.toString();
+      final Model m1 = this.parseHelper.parse(model);
+      Assert.assertNotNull(m1);
+      this._validationTestHelper.assertNoErrors(m1);
+      this.printErrors(m1);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

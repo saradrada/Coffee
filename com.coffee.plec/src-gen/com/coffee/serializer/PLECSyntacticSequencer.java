@@ -21,6 +21,7 @@ public class PLECSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected PLECGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ListOfIDs_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_ListOfListsOfValues_CommaKeyword_3_0_p;
 	protected AbstractElementAlias match_ListOfValues_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_TerminalExp_LeftParenthesisKeyword_0_0_q;
 	
@@ -28,6 +29,7 @@ public class PLECSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (PLECGrammarAccess) access;
 		match_ListOfIDs_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
+		match_ListOfListsOfValues_CommaKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getListOfListsOfValuesAccess().getCommaKeyword_3_0());
 		match_ListOfValues_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
 		match_TerminalExp_LeftParenthesisKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTerminalExpAccess().getLeftParenthesisKeyword_0_0());
 	}
@@ -46,6 +48,8 @@ public class PLECSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ListOfIDs_CommaKeyword_1_0_p.equals(syntax))
 				emit_ListOfIDs_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ListOfListsOfValues_CommaKeyword_3_0_p.equals(syntax))
+				emit_ListOfListsOfValues_CommaKeyword_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ListOfValues_CommaKeyword_1_0_p.equals(syntax))
 				emit_ListOfValues_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TerminalExp_LeftParenthesisKeyword_0_0_q.equals(syntax))
@@ -62,6 +66,17 @@ public class PLECSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ids+=[VarDeclaration|ID] (ambiguity) ids+=[VarDeclaration|ID]
 	 */
 	protected void emit_ListOfIDs_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     values+=ListOfValues ')' (ambiguity) '(' values+=ListOfValues
+	 */
+	protected void emit_ListOfListsOfValues_CommaKeyword_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

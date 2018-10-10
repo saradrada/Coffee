@@ -13,16 +13,19 @@ import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.ListOfIDs;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Symbol;
+import com.coffee.pLEC.Temporal;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
@@ -181,6 +184,11 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
         return createRootRefinementAdapter();
       }
       @Override
+      public Adapter caseTemporal(Temporal object)
+      {
+        return createTemporalAdapter();
+      }
+      @Override
       public Adapter caseRule(Rule object)
       {
         return createRuleAdapter();
@@ -194,6 +202,11 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFodaBin(FodaBin object)
       {
         return createFodaBinAdapter();
+      }
+      @Override
+      public Adapter caseQuantifiable(Quantifiable object)
+      {
+        return createQuantifiableAdapter();
       }
       @Override
       public Adapter caseBoolVal(BoolVal object)
@@ -229,6 +242,11 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
       public Adapter caseListOfIDs(ListOfIDs object)
       {
         return createListOfIDsAdapter();
+      }
+      @Override
+      public Adapter caseListOfListsOfValues(ListOfListsOfValues object)
+      {
+        return createListOfListsOfValuesAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -493,6 +511,21 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.coffee.pLEC.Temporal <em>Temporal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.pLEC.Temporal
+   * @generated
+   */
+  public Adapter createTemporalAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.coffee.pLEC.Rule <em>Rule</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -533,6 +566,21 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFodaBinAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.pLEC.Quantifiable <em>Quantifiable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.pLEC.Quantifiable
+   * @generated
+   */
+  public Adapter createQuantifiableAdapter()
   {
     return null;
   }
@@ -638,6 +686,21 @@ public class PLECAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfIDsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.pLEC.ListOfListsOfValues <em>List Of Lists Of Values</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.pLEC.ListOfListsOfValues
+   * @generated
+   */
+  public Adapter createListOfListsOfValuesAdapter()
   {
     return null;
   }

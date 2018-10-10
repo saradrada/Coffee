@@ -1,7 +1,6 @@
 package com.coffee.generator.THLCL;
 
 import com.coffee.generator.AttributesFactory;
-import com.coffee.generator.CardinalityFactory;
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.CoffeeFactory;
 import com.coffee.generator.FODAFactory;
@@ -21,7 +20,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
  * August 2018
  */
 @SuppressWarnings("all")
-public abstract class THLCLFactory extends CodeFactory implements OptimizationFactory, CardinalityFactory, FODAFactory, AttributesFactory, CoffeeFactory {
+public abstract class THLCLFactory extends CodeFactory implements OptimizationFactory, FODAFactory, AttributesFactory, CoffeeFactory {
   /**
    * Strings in the Textual HLCL format
    */
@@ -93,16 +92,6 @@ public abstract class THLCLFactory extends CodeFactory implements OptimizationFa
   
   @Override
   public CharSequence getObjectives() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  @Override
-  public CharSequence getClonConstraints() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  @Override
-  public CharSequence getClonVariables(final VarDeclaration variable) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   

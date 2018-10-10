@@ -19,7 +19,7 @@ import com.coffee.pLEC.RootRefinement
  * @version PLEC V3
  * August 2018
  */
-abstract class THLCLFactory extends CodeFactory implements OptimizationFactory, CardinalityFactory, FODAFactory, AttributesFactory, CoffeeFactory{
+abstract class THLCLFactory extends CodeFactory implements OptimizationFactory, FODAFactory, AttributesFactory, CoffeeFactory{
 	/**
 	 * Strings in the Textual HLCL format
 	 */
@@ -89,13 +89,13 @@ abstract class THLCLFactory extends CodeFactory implements OptimizationFactory, 
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getClonConstraints() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	override getClonVariables(VarDeclaration variable) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
+//	override getClonConstraints() {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}
+//	
+//	override getClonVariables(VarDeclaration variable) {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}
 	
 	override getAttributes(Attributes exp) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")

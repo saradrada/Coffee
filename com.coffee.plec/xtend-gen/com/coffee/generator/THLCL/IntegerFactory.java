@@ -3,7 +3,9 @@ package com.coffee.generator.THLCL;
 import com.coffee.generator.AttributesFactory;
 import com.coffee.generator.FODAFactory;
 import com.coffee.generator.THLCL.THLCLFactory;
+import com.coffee.pLEC.Assignment;
 import com.coffee.pLEC.Attributes;
+import com.coffee.pLEC.BoolVal;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
@@ -40,15 +42,6 @@ public class IntegerFactory extends THLCLFactory implements FODAFactory, Attribu
     CharSequence _valuesDeclaration = this.getValuesDeclaration(variable, variable.getVariants());
     _builder.append(_valuesDeclaration);
     _builder.newLineIfNotEmpty();
-    {
-      boolean _not = (!((variable.getMin() == null) && (variable.getMax() == null)));
-      if (_not) {
-        CharSequence _clonVariables = this.getClonVariables(variable);
-        _builder.append(_clonVariables);
-        _builder.append("\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
     return _builder;
   }
   
@@ -296,87 +289,44 @@ public class IntegerFactory extends THLCLFactory implements FODAFactory, Attribu
    * Methods from the cardinalityFactory Interface
    */
   @Override
-  public CharSequence getClonVariables(final VarDeclaration variable) {
-    String _xblockexpression = null;
+  public CharSequence getAssignement(final Assignment exp) {
+    CharSequence _xblockexpression = null;
     {
-      String declaration = "";
-      int _value = variable.getMin().getValue();
-      String _plus = ("(" + Integer.valueOf(_value));
-      String left = (_plus + "<=");
-      int _value_1 = variable.getMax().getValue();
-      String _plus_1 = ("(" + Integer.valueOf(_value_1));
-      String right = (_plus_1 + ">=");
-      String sum = "";
-      for (int i = 1; (i <= variable.getMax().getValue()); i = (i + 1)) {
-        {
-          String _declaration = declaration;
-          String _name = variable.getName();
-          String _plus_2 = ("boolean " + _name);
-          String _plus_3 = (_plus_2 + Integer.valueOf(i));
-          String _plus_4 = (_plus_3 + "\n");
-          declaration = (_declaration + _plus_4);
-          String _sum = sum;
-          String _name_1 = variable.getName();
-          String _plus_5 = (_name_1 + Integer.valueOf(i));
-          String _plus_6 = (_plus_5 + " +");
-          sum = (_sum + _plus_6);
-          String _name_2 = variable.getName();
-          String _plus_7 = (_name_2 + Integer.valueOf(i));
-          String _plus_8 = (_plus_7 + " =>");
-          String _name_3 = variable.getName();
-          String implies = (_plus_8 + _name_3);
-          this.clonConstraints.add(implies);
-        }
-      }
-      String _left = left;
-      int _length = sum.length();
-      int _minus = (_length - 1);
-      String _substring = sum.substring(0, _minus);
-      String _plus_2 = (_substring + ") ");
-      left = (_left + _plus_2);
-      String _right = right;
-      int _length_1 = sum.length();
-      int _minus_1 = (_length_1 - 1);
-      String _substring_1 = sum.substring(0, _minus_1);
-      String _plus_3 = (_substring_1 + ") ");
-      right = (_right + _plus_3);
-      String _name = variable.getName();
-      String _plus_4 = (_name + " => (");
-      String _plus_5 = (_plus_4 + left);
-      String _plus_6 = (_plus_5 + "AND");
-      String _plus_7 = (_plus_6 + right);
-      String constraint = (_plus_7 + ")");
-      this.clonConstraints.add(constraint);
-      _xblockexpression = declaration;
-    }
-    return _xblockexpression;
-  }
-  
-  @Override
-  public CharSequence getClonConstraints() {
-    String _xblockexpression = null;
-    {
-      String out = "";
-      if ((this.clonConstraints == null)) {
-        out = "";
+      String output = "";
+      CharSequence _xifexpression = null;
+      Value _valu = exp.getValu();
+      String _value = ((BoolVal) _valu).getValue();
+      boolean _equals = Objects.equal(_value, "selected");
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        String _name = exp.getVariable().getName();
+        _builder.append(_name);
+        _builder.append(" = 1");
+        _xifexpression = output = _builder.toString();
       } else {
-        int id = 1;
-        for (final String constraint : this.clonConstraints) {
-          {
-            String _out = out;
-            StringConcatenation _builder = new StringConcatenation();
-            _builder.append("cl");
-            _builder.append(id);
-            _builder.append(": ");
-            String _string = constraint.toString();
-            _builder.append(_string);
-            _builder.newLineIfNotEmpty();
-            out = (_out + _builder);
-            id++;
-          }
+        CharSequence _xifexpression_1 = null;
+        Value _valu_1 = exp.getValu();
+        String _value_1 = ((BoolVal) _valu_1).getValue();
+        boolean _equals_1 = Objects.equal(_value_1, "unselected");
+        if (_equals_1) {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          String _name_1 = exp.getVariable().getName();
+          _builder_1.append(_name_1);
+          _builder_1.append(" = 0");
+          _xifexpression_1 = output = _builder_1.toString();
+        } else {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          String _name_2 = exp.getVariable().getName();
+          _builder_2.append(_name_2);
+          _builder_2.append(" = ");
+          Value _valu_2 = exp.getValu();
+          int _value_2 = ((com.coffee.pLEC.Number) _valu_2).getValue();
+          _builder_2.append(_value_2);
+          _xifexpression_1 = _builder_2;
         }
+        _xifexpression = _xifexpression_1;
       }
-      _xblockexpression = out;
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

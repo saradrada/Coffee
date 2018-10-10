@@ -4,6 +4,7 @@
 package com.coffee.pLEC.impl;
 
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
 import com.coffee.pLEC.VariantDeclaration;
 
@@ -32,24 +33,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class VarRefinementImpl extends RefinementImpl implements VarRefinement
 {
   /**
-   * The default value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The cached value of the '{@link #getVar() <em>Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getVar()
    * @generated
    * @ordered
    */
-  protected static final String VAR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVar()
-   * @generated
-   * @ordered
-   */
-  protected String var = VAR_EDEFAULT;
+  protected VarDeclaration var;
 
   /**
    * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference.
@@ -87,7 +78,27 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVar()
+  public VarDeclaration getVar()
+  {
+    if (var != null && var.eIsProxy())
+    {
+      InternalEObject oldVar = (InternalEObject)var;
+      var = (VarDeclaration)eResolveProxy(oldVar);
+      if (var != oldVar)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLECPackage.VAR_REFINEMENT__VAR, oldVar, var));
+      }
+    }
+    return var;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VarDeclaration basicGetVar()
   {
     return var;
   }
@@ -97,9 +108,9 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVar(String newVar)
+  public void setVar(VarDeclaration newVar)
   {
-    String oldVar = var;
+    VarDeclaration oldVar = var;
     var = newVar;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.VAR_REFINEMENT__VAR, oldVar, var));
@@ -180,7 +191,8 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     switch (featureID)
     {
       case PLECPackage.VAR_REFINEMENT__VAR:
-        return getVar();
+        if (resolve) return getVar();
+        return basicGetVar();
       case PLECPackage.VAR_REFINEMENT__VALUES:
         return getValues();
     }
@@ -198,7 +210,7 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     switch (featureID)
     {
       case PLECPackage.VAR_REFINEMENT__VAR:
-        setVar((String)newValue);
+        setVar((VarDeclaration)newValue);
         return;
       case PLECPackage.VAR_REFINEMENT__VALUES:
         setValues((VariantDeclaration)newValue);
@@ -218,7 +230,7 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     switch (featureID)
     {
       case PLECPackage.VAR_REFINEMENT__VAR:
-        setVar(VAR_EDEFAULT);
+        setVar((VarDeclaration)null);
         return;
       case PLECPackage.VAR_REFINEMENT__VALUES:
         setValues((VariantDeclaration)null);
@@ -238,28 +250,11 @@ public class VarRefinementImpl extends RefinementImpl implements VarRefinement
     switch (featureID)
     {
       case PLECPackage.VAR_REFINEMENT__VAR:
-        return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
+        return var != null;
       case PLECPackage.VAR_REFINEMENT__VALUES:
         return values != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (var: ");
-    result.append(var);
-    result.append(')');
-    return result.toString();
   }
 
 } //VarRefinementImpl

@@ -39,7 +39,9 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		///**
 		// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
 		// * @author Angela Villota
-		// * @version PLEC V3 modified in october 4 for including the root constraint
+		// * @version PLEC V3 
+		// * Modified in October 4th for including the root constraint
+		// * Modified on October 9th for fix the setRefinement
 		// * August 2018
 		// */ Model:
 		//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
@@ -282,12 +284,14 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStructuralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cFodaUNParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cAttributesParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cTemporalParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cQuantifiableParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//ConsExpression:
-		//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes;
+		//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes | Temporal | Quantifiable;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes
+		//IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes | Temporal | Quantifiable
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IDCons
@@ -310,6 +314,12 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Attributes
 		public RuleCall getAttributesParserRuleCall_6() { return cAttributesParserRuleCall_6; }
+		
+		//Temporal
+		public RuleCall getTemporalParserRuleCall_7() { return cTemporalParserRuleCall_7; }
+		
+		//Quantifiable
+		public RuleCall getQuantifiableParserRuleCall_8() { return cQuantifiableParserRuleCall_8; }
 	}
 	public class TerminalExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.TerminalExp");
@@ -535,55 +545,63 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	public class AssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Assignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVarIDTerminalRuleCall_0_0 = (RuleCall)cVarAssignment_0.eContents().get(0);
+		private final Assignment cVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cVariableVarDeclarationCrossReference_0_0 = (CrossReference)cVariableAssignment_0.eContents().get(0);
+		private final RuleCall cVariableVarDeclarationIDTerminalRuleCall_0_0_1 = (RuleCall)cVariableVarDeclarationCrossReference_0_0.eContents().get(1);
 		private final Keyword cIsKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Assignment cValuAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValuValueParserRuleCall_2_0 = (RuleCall)cValuAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//	var=ID 'is' value=Value;
+		//	variable=[VarDeclaration] 'is' valu=Value;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var=ID 'is' value=Value
+		//variable=[VarDeclaration] 'is' valu=Value
 		public Group getGroup() { return cGroup; }
 		
-		//var=ID
-		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
+		//variable=[VarDeclaration]
+		public Assignment getVariableAssignment_0() { return cVariableAssignment_0; }
+		
+		//[VarDeclaration]
+		public CrossReference getVariableVarDeclarationCrossReference_0_0() { return cVariableVarDeclarationCrossReference_0_0; }
 		
 		//ID
-		public RuleCall getVarIDTerminalRuleCall_0_0() { return cVarIDTerminalRuleCall_0_0; }
+		public RuleCall getVariableVarDeclarationIDTerminalRuleCall_0_0_1() { return cVariableVarDeclarationIDTerminalRuleCall_0_0_1; }
 		
 		//'is'
 		public Keyword getIsKeyword_1() { return cIsKeyword_1; }
 		
-		//value=Value
-		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		//valu=Value
+		public Assignment getValuAssignment_2() { return cValuAssignment_2; }
 		
 		//Value
-		public RuleCall getValueValueParserRuleCall_2_0() { return cValueValueParserRuleCall_2_0; }
+		public RuleCall getValuValueParserRuleCall_2_0() { return cValuValueParserRuleCall_2_0; }
 	}
 	public class VarRefinementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.VarRefinement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVarIDTerminalRuleCall_0_0 = (RuleCall)cVarAssignment_0.eContents().get(0);
+		private final CrossReference cVarVarDeclarationCrossReference_0_0 = (CrossReference)cVarAssignment_0.eContents().get(0);
+		private final RuleCall cVarVarDeclarationIDTerminalRuleCall_0_0_1 = (RuleCall)cVarVarDeclarationCrossReference_0_0.eContents().get(1);
 		private final Keyword cInKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValuesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValuesVariantDeclarationParserRuleCall_2_0 = (RuleCall)cValuesAssignment_2.eContents().get(0);
 		
 		//VarRefinement:
-		//	var=ID 'in' values=VariantDeclaration;
+		//	var=[VarDeclaration] 'in' values=VariantDeclaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var=ID 'in' values=VariantDeclaration
+		//var=[VarDeclaration] 'in' values=VariantDeclaration
 		public Group getGroup() { return cGroup; }
 		
-		//var=ID
+		//var=[VarDeclaration]
 		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
 		
+		//[VarDeclaration]
+		public CrossReference getVarVarDeclarationCrossReference_0_0() { return cVarVarDeclarationCrossReference_0_0; }
+		
 		//ID
-		public RuleCall getVarIDTerminalRuleCall_0_0() { return cVarIDTerminalRuleCall_0_0; }
+		public RuleCall getVarVarDeclarationIDTerminalRuleCall_0_0_1() { return cVarVarDeclarationIDTerminalRuleCall_0_0_1; }
 		
 		//'in'
 		public Keyword getInKeyword_1() { return cInKeyword_1; }
@@ -604,25 +622,17 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cVariantsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cLeftParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cHeadAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cHeadListOfValuesParserRuleCall_7_0 = (RuleCall)cHeadAssignment_7.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cCommaKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
-		private final Assignment cTailAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
-		private final RuleCall cTailListOfValuesParserRuleCall_9_2_0 = (RuleCall)cTailAssignment_9_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_9_3 = (Keyword)cGroup_9.eContents().get(3);
-		private final Keyword cRightSquareBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cListAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cListListOfListsOfValuesParserRuleCall_6_0 = (RuleCall)cListAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
+		////adjusted 
 		//SetRefinement:
-		//	'vars:' '(' vars=ListOfIDs ')'
-		//	'variants'
-		//	'[' '(' head=ListOfValues ')' (',' '(' tail+=ListOfValues ')')+ ']';
+		//	'vars:' '(' vars=ListOfIDs ')' 'variants:'
+		//	'[' list=ListOfListsOfValues ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'vars:' '(' vars=ListOfIDs ')' 'variants' '[' '(' head=ListOfValues ')' (',' '(' tail+=ListOfValues ')')+ ']'
+		//'vars:' '(' vars=ListOfIDs ')' 'variants:' '[' list=ListOfListsOfValues ']'
 		public Group getGroup() { return cGroup; }
 		
 		//'vars:'
@@ -640,44 +650,20 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 		
-		//'variants'
+		//'variants:'
 		public Keyword getVariantsKeyword_4() { return cVariantsKeyword_4; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
 		
-		//'('
-		public Keyword getLeftParenthesisKeyword_6() { return cLeftParenthesisKeyword_6; }
+		//list=ListOfListsOfValues
+		public Assignment getListAssignment_6() { return cListAssignment_6; }
 		
-		//head=ListOfValues
-		public Assignment getHeadAssignment_7() { return cHeadAssignment_7; }
-		
-		//ListOfValues
-		public RuleCall getHeadListOfValuesParserRuleCall_7_0() { return cHeadListOfValuesParserRuleCall_7_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
-		
-		//(',' '(' tail+=ListOfValues ')')+
-		public Group getGroup_9() { return cGroup_9; }
-		
-		//','
-		public Keyword getCommaKeyword_9_0() { return cCommaKeyword_9_0; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_9_1() { return cLeftParenthesisKeyword_9_1; }
-		
-		//tail+=ListOfValues
-		public Assignment getTailAssignment_9_2() { return cTailAssignment_9_2; }
-		
-		//ListOfValues
-		public RuleCall getTailListOfValuesParserRuleCall_9_2_0() { return cTailListOfValuesParserRuleCall_9_2_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_9_3() { return cRightParenthesisKeyword_9_3; }
+		//ListOfListsOfValues
+		public RuleCall getListListOfListsOfValuesParserRuleCall_6_0() { return cListListOfListsOfValuesParserRuleCall_6_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_10() { return cRightSquareBracketKeyword_10; }
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
 	}
 	public class RootRefinementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.RootRefinement");
@@ -709,6 +695,33 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'root'
 		public Keyword getRootKeyword_2() { return cRootKeyword_2; }
+	}
+	public class TemporalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Temporal");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOperatorTempOPParserRuleCall_0_0 = (RuleCall)cOperatorAssignment_0.eContents().get(0);
+		private final Assignment cConsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cConsTerminalExpParserRuleCall_1_0 = (RuleCall)cConsAssignment_1.eContents().get(0);
+		
+		//Temporal:
+		//	operator=TempOP cons=TerminalExp;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//operator=TempOP cons=TerminalExp
+		public Group getGroup() { return cGroup; }
+		
+		//operator=TempOP
+		public Assignment getOperatorAssignment_0() { return cOperatorAssignment_0; }
+		
+		//TempOP
+		public RuleCall getOperatorTempOPParserRuleCall_0_0() { return cOperatorTempOPParserRuleCall_0_0; }
+		
+		//cons=TerminalExp
+		public Assignment getConsAssignment_1() { return cConsAssignment_1; }
+		
+		//TerminalExp
+		public RuleCall getConsTerminalExpParserRuleCall_1_0() { return cConsTerminalExpParserRuleCall_1_0; }
 	}
 	public class RuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Rule");
@@ -819,30 +832,127 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getVar2VarDeclarationIDTerminalRuleCall_2_0_1() { return cVar2VarDeclarationIDTerminalRuleCall_2_0_1; }
 	}
+	public class QuantifiableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Quantifiable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cMinV1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMinV1NumberParserRuleCall_1_0 = (RuleCall)cMinV1Assignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cMaxV1Assignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMaxV1NumberParserRuleCall_3_0 = (RuleCall)cMaxV1Assignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cVar1Assignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cVar1VarDeclarationCrossReference_5_0 = (CrossReference)cVar1Assignment_5.eContents().get(0);
+		private final RuleCall cVar1VarDeclarationIDTerminalRuleCall_5_0_1 = (RuleCall)cVar1VarDeclarationCrossReference_5_0.eContents().get(1);
+		private final Keyword cRequiresKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cLeftSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cMinV2Assignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cMinV2NumberParserRuleCall_8_0 = (RuleCall)cMinV2Assignment_8.eContents().get(0);
+		private final Keyword cCommaKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cMaxV2Assignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cMaxV2NumberParserRuleCall_10_0 = (RuleCall)cMaxV2Assignment_10.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cVar2Assignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final CrossReference cVar2VarDeclarationCrossReference_12_0 = (CrossReference)cVar2Assignment_12.eContents().get(0);
+		private final RuleCall cVar2VarDeclarationIDTerminalRuleCall_12_0_1 = (RuleCall)cVar2VarDeclarationCrossReference_12_0.eContents().get(1);
+		
+		//Quantifiable:
+		//	'[' minV1=Number ',' maxV1=Number ']' var1=[VarDeclaration] 'requires' '[' minV2=Number ',' maxV2=Number ']'
+		//	var2=[VarDeclaration];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'[' minV1=Number ',' maxV1=Number ']' var1=[VarDeclaration] 'requires' '[' minV2=Number ',' maxV2=Number ']'
+		//var2=[VarDeclaration]
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//minV1=Number
+		public Assignment getMinV1Assignment_1() { return cMinV1Assignment_1; }
+		
+		//Number
+		public RuleCall getMinV1NumberParserRuleCall_1_0() { return cMinV1NumberParserRuleCall_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//maxV1=Number
+		public Assignment getMaxV1Assignment_3() { return cMaxV1Assignment_3; }
+		
+		//Number
+		public RuleCall getMaxV1NumberParserRuleCall_3_0() { return cMaxV1NumberParserRuleCall_3_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+		
+		//var1=[VarDeclaration]
+		public Assignment getVar1Assignment_5() { return cVar1Assignment_5; }
+		
+		//[VarDeclaration]
+		public CrossReference getVar1VarDeclarationCrossReference_5_0() { return cVar1VarDeclarationCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getVar1VarDeclarationIDTerminalRuleCall_5_0_1() { return cVar1VarDeclarationIDTerminalRuleCall_5_0_1; }
+		
+		//'requires'
+		public Keyword getRequiresKeyword_6() { return cRequiresKeyword_6; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_7() { return cLeftSquareBracketKeyword_7; }
+		
+		//minV2=Number
+		public Assignment getMinV2Assignment_8() { return cMinV2Assignment_8; }
+		
+		//Number
+		public RuleCall getMinV2NumberParserRuleCall_8_0() { return cMinV2NumberParserRuleCall_8_0; }
+		
+		//','
+		public Keyword getCommaKeyword_9() { return cCommaKeyword_9; }
+		
+		//maxV2=Number
+		public Assignment getMaxV2Assignment_10() { return cMaxV2Assignment_10; }
+		
+		//Number
+		public RuleCall getMaxV2NumberParserRuleCall_10_0() { return cMaxV2NumberParserRuleCall_10_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_11() { return cRightSquareBracketKeyword_11; }
+		
+		//var2=[VarDeclaration]
+		public Assignment getVar2Assignment_12() { return cVar2Assignment_12; }
+		
+		//[VarDeclaration]
+		public CrossReference getVar2VarDeclarationCrossReference_12_0() { return cVar2VarDeclarationCrossReference_12_0; }
+		
+		//ID
+		public RuleCall getVar2VarDeclarationIDTerminalRuleCall_12_0_1() { return cVar2VarDeclarationIDTerminalRuleCall_12_0_1; }
+	}
 	public class BoolValElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.BoolVal");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final Alternatives cValueAlternatives_0 = (Alternatives)cValueAssignment.eContents().get(0);
-		private final Keyword cValueTrueKeyword_0_0 = (Keyword)cValueAlternatives_0.eContents().get(0);
-		private final Keyword cValueFalseKeyword_0_1 = (Keyword)cValueAlternatives_0.eContents().get(1);
+		private final Keyword cValueSelectedKeyword_0_0 = (Keyword)cValueAlternatives_0.eContents().get(0);
+		private final Keyword cValueUnselectedKeyword_0_1 = (Keyword)cValueAlternatives_0.eContents().get(1);
 		
 		////syntactic categories
 		////Values
 		//BoolVal:
-		//	value=('true' | 'false');
+		//	value=('selected' | 'unselected');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//value=('true' | 'false')
+		//value=('selected' | 'unselected')
 		public Assignment getValueAssignment() { return cValueAssignment; }
 		
-		//('true' | 'false')
+		//('selected' | 'unselected')
 		public Alternatives getValueAlternatives_0() { return cValueAlternatives_0; }
 		
-		//'true'
-		public Keyword getValueTrueKeyword_0_0() { return cValueTrueKeyword_0_0; }
+		//'selected'
+		public Keyword getValueSelectedKeyword_0_0() { return cValueSelectedKeyword_0_0; }
 		
-		//'false'
-		public Keyword getValueFalseKeyword_0_1() { return cValueFalseKeyword_0_1; }
+		//'unselected'
+		public Keyword getValueUnselectedKeyword_0_1() { return cValueUnselectedKeyword_0_1; }
 	}
 	public class NumberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.Number");
@@ -1014,6 +1124,57 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getIdsVarDeclarationIDTerminalRuleCall_1_1_0_1() { return cIdsVarDeclarationIDTerminalRuleCall_1_1_0_1; }
 	}
+	public class ListOfListsOfValuesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.ListOfListsOfValues");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cValuesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValuesListOfValuesParserRuleCall_1_0 = (RuleCall)cValuesAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cValuesAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cValuesListOfValuesParserRuleCall_3_2_0 = (RuleCall)cValuesAssignment_3_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		
+		//ListOfListsOfValues:
+		//	'(' values+=ListOfValues ')' (','+ '(' values+=ListOfValues ')')*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' values+=ListOfValues ')' (','+ '(' values+=ListOfValues ')')*
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//values+=ListOfValues
+		public Assignment getValuesAssignment_1() { return cValuesAssignment_1; }
+		
+		//ListOfValues
+		public RuleCall getValuesListOfValuesParserRuleCall_1_0() { return cValuesListOfValuesParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		
+		//(','+ '(' values+=ListOfValues ')')*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//','+
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_3_1() { return cLeftParenthesisKeyword_3_1; }
+		
+		//values+=ListOfValues
+		public Assignment getValuesAssignment_3_2() { return cValuesAssignment_3_2; }
+		
+		//ListOfValues
+		public RuleCall getValuesListOfValuesParserRuleCall_3_2_0() { return cValuesListOfValuesParserRuleCall_3_2_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3_3() { return cRightParenthesisKeyword_3_3; }
+	}
 	public class BinOpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.BinOp");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1060,6 +1221,29 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		//'mandatory'
 		public Keyword getMandatoryKeyword_1() { return cMandatoryKeyword_1; }
 	}
+	public class TempOPElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.PLEC.TempOP");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cAlwaysKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cNextKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEventuallyKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		
+		//TempOP:
+		//	'always' | 'next' | 'eventually';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'always' | 'next' | 'eventually'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'always'
+		public Keyword getAlwaysKeyword_0() { return cAlwaysKeyword_0; }
+		
+		//'next'
+		public Keyword getNextKeyword_1() { return cNextKeyword_1; }
+		
+		//'eventually'
+		public Keyword getEventuallyKeyword_2() { return cEventuallyKeyword_2; }
+	}
 	
 	
 	private final ModelElements pModel;
@@ -1079,9 +1263,11 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	private final VarRefinementElements pVarRefinement;
 	private final SetRefinementElements pSetRefinement;
 	private final RootRefinementElements pRootRefinement;
+	private final TemporalElements pTemporal;
 	private final RuleElements pRule;
 	private final FodaUNElements pFodaUN;
 	private final FodaBinElements pFodaBin;
+	private final QuantifiableElements pQuantifiable;
 	private final BoolValElements pBoolVal;
 	private final NumberElements pNumber;
 	private final SymbolElements pSymbol;
@@ -1090,8 +1276,10 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	private final VarTypeElements pVarType;
 	private final ListOfValuesElements pListOfValues;
 	private final ListOfIDsElements pListOfIDs;
+	private final ListOfListsOfValuesElements pListOfListsOfValues;
 	private final BinOpElements pBinOp;
 	private final UnaryOpElements pUnaryOp;
+	private final TempOPElements pTempOP;
 	
 	private final Grammar grammar;
 	
@@ -1119,9 +1307,11 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		this.pVarRefinement = new VarRefinementElements();
 		this.pSetRefinement = new SetRefinementElements();
 		this.pRootRefinement = new RootRefinementElements();
+		this.pTemporal = new TemporalElements();
 		this.pRule = new RuleElements();
 		this.pFodaUN = new FodaUNElements();
 		this.pFodaBin = new FodaBinElements();
+		this.pQuantifiable = new QuantifiableElements();
 		this.pBoolVal = new BoolValElements();
 		this.pNumber = new NumberElements();
 		this.pSymbol = new SymbolElements();
@@ -1130,8 +1320,10 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		this.pVarType = new VarTypeElements();
 		this.pListOfValues = new ListOfValuesElements();
 		this.pListOfIDs = new ListOfIDsElements();
+		this.pListOfListsOfValues = new ListOfListsOfValuesElements();
 		this.pBinOp = new BinOpElements();
 		this.pUnaryOp = new UnaryOpElements();
+		this.pTempOP = new TempOPElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1164,7 +1356,9 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	///**
 	// * Grammar specification of PLEC, the Product Line Engineering Constraints Language
 	// * @author Angela Villota
-	// * @version PLEC V3 modified in october 4 for including the root constraint
+	// * @version PLEC V3 
+	// * Modified in October 4th for including the root constraint
+	// * Modified on October 9th for fix the setRefinement
 	// * August 2018
 	// */ Model:
 	//	'model' name=ID 'variables:' vars+=VarDeclaration* 'constraints:' constraints+=Constraint*;
@@ -1232,7 +1426,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConsExpression:
-	//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes;
+	//	IDCons | Refinement | Rule | FodaBin | Structural | FodaUN | Attributes | Temporal | Quantifiable;
 	public ConsExpressionElements getConsExpressionAccess() {
 		return pConsExpression;
 	}
@@ -1308,7 +1502,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Assignment:
-	//	var=ID 'is' value=Value;
+	//	variable=[VarDeclaration] 'is' valu=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -1318,7 +1512,7 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//VarRefinement:
-	//	var=ID 'in' values=VariantDeclaration;
+	//	var=[VarDeclaration] 'in' values=VariantDeclaration;
 	public VarRefinementElements getVarRefinementAccess() {
 		return pVarRefinement;
 	}
@@ -1327,10 +1521,10 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		return getVarRefinementAccess().getRule();
 	}
 	
+	////adjusted 
 	//SetRefinement:
-	//	'vars:' '(' vars=ListOfIDs ')'
-	//	'variants'
-	//	'[' '(' head=ListOfValues ')' (',' '(' tail+=ListOfValues ')')+ ']';
+	//	'vars:' '(' vars=ListOfIDs ')' 'variants:'
+	//	'[' list=ListOfListsOfValues ']';
 	public SetRefinementElements getSetRefinementAccess() {
 		return pSetRefinement;
 	}
@@ -1347,6 +1541,16 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getRootRefinementRule() {
 		return getRootRefinementAccess().getRule();
+	}
+	
+	//Temporal:
+	//	operator=TempOP cons=TerminalExp;
+	public TemporalElements getTemporalAccess() {
+		return pTemporal;
+	}
+	
+	public ParserRule getTemporalRule() {
+		return getTemporalAccess().getRule();
 	}
 	
 	//Rule:
@@ -1379,10 +1583,21 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		return getFodaBinAccess().getRule();
 	}
 	
+	//Quantifiable:
+	//	'[' minV1=Number ',' maxV1=Number ']' var1=[VarDeclaration] 'requires' '[' minV2=Number ',' maxV2=Number ']'
+	//	var2=[VarDeclaration];
+	public QuantifiableElements getQuantifiableAccess() {
+		return pQuantifiable;
+	}
+	
+	public ParserRule getQuantifiableRule() {
+		return getQuantifiableAccess().getRule();
+	}
+	
 	////syntactic categories
 	////Values
 	//BoolVal:
-	//	value=('true' | 'false');
+	//	value=('selected' | 'unselected');
 	public BoolValElements getBoolValAccess() {
 		return pBoolVal;
 	}
@@ -1462,6 +1677,16 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 		return getListOfIDsAccess().getRule();
 	}
 	
+	//ListOfListsOfValues:
+	//	'(' values+=ListOfValues ')' (','+ '(' values+=ListOfValues ')')*;
+	public ListOfListsOfValuesElements getListOfListsOfValuesAccess() {
+		return pListOfListsOfValues;
+	}
+	
+	public ParserRule getListOfListsOfValuesRule() {
+		return getListOfListsOfValuesAccess().getRule();
+	}
+	
 	//BinOp:
 	//	'requires' | 'excludes' | 'optional' | 'mandatory';
 	public BinOpElements getBinOpAccess() {
@@ -1480,6 +1705,16 @@ public class PLECGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnaryOpRule() {
 		return getUnaryOpAccess().getRule();
+	}
+	
+	//TempOP:
+	//	'always' | 'next' | 'eventually';
+	public TempOPElements getTempOPAccess() {
+		return pTempOP;
+	}
+	
+	public ParserRule getTempOPRule() {
+		return getTempOPAccess().getRule();
 	}
 	
 	//terminal ID:

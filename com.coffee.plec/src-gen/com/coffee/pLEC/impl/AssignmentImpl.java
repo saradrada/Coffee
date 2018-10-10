@@ -6,6 +6,7 @@ package com.coffee.pLEC.impl;
 import com.coffee.pLEC.Assignment;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.Value;
+import com.coffee.pLEC.VarDeclaration;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,8 +24,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.pLEC.impl.AssignmentImpl#getVar <em>Var</em>}</li>
- *   <li>{@link com.coffee.pLEC.impl.AssignmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.coffee.pLEC.impl.AssignmentImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link com.coffee.pLEC.impl.AssignmentImpl#getValu <em>Valu</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,34 +33,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class AssignmentImpl extends RefinementImpl implements Assignment
 {
   /**
-   * The default value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected static final String VAR_EDEFAULT = null;
+  protected VarDeclaration variable;
 
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The cached value of the '{@link #getValu() <em>Valu</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getValu()
    * @generated
    * @ordered
    */
-  protected String var = VAR_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected Value value;
+  protected Value valu;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,9 +78,19 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVar()
+  public VarDeclaration getVariable()
   {
-    return var;
+    if (variable != null && variable.eIsProxy())
+    {
+      InternalEObject oldVariable = (InternalEObject)variable;
+      variable = (VarDeclaration)eResolveProxy(oldVariable);
+      if (variable != oldVariable)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLECPackage.ASSIGNMENT__VARIABLE, oldVariable, variable));
+      }
+    }
+    return variable;
   }
 
   /**
@@ -97,12 +98,22 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVar(String newVar)
+  public VarDeclaration basicGetVariable()
   {
-    String oldVar = var;
-    var = newVar;
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVariable(VarDeclaration newVariable)
+  {
+    VarDeclaration oldVariable = variable;
+    variable = newVariable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VAR, oldVar, var));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VARIABLE, oldVariable, variable));
   }
 
   /**
@@ -110,9 +121,9 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public Value getValu()
   {
-    return value;
+    return valu;
   }
 
   /**
@@ -120,13 +131,13 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
+  public NotificationChain basicSetValu(Value newValu, NotificationChain msgs)
   {
-    Value oldValue = value;
-    value = newValue;
+    Value oldValu = valu;
+    valu = newValu;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VALUE, oldValue, newValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VALU, oldValu, newValu);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -137,20 +148,20 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValu(Value newValu)
   {
-    if (newValue != value)
+    if (newValu != valu)
     {
       NotificationChain msgs = null;
-      if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLECPackage.ASSIGNMENT__VALUE, null, msgs);
-      if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLECPackage.ASSIGNMENT__VALUE, null, msgs);
-      msgs = basicSetValue(newValue, msgs);
+      if (valu != null)
+        msgs = ((InternalEObject)valu).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLECPackage.ASSIGNMENT__VALU, null, msgs);
+      if (newValu != null)
+        msgs = ((InternalEObject)newValu).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLECPackage.ASSIGNMENT__VALU, null, msgs);
+      msgs = basicSetValu(newValu, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VALUE, newValue, newValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.ASSIGNMENT__VALU, newValu, newValu));
   }
 
   /**
@@ -163,8 +174,8 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   {
     switch (featureID)
     {
-      case PLECPackage.ASSIGNMENT__VALUE:
-        return basicSetValue(null, msgs);
+      case PLECPackage.ASSIGNMENT__VALU:
+        return basicSetValu(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -179,10 +190,11 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   {
     switch (featureID)
     {
-      case PLECPackage.ASSIGNMENT__VAR:
-        return getVar();
-      case PLECPackage.ASSIGNMENT__VALUE:
-        return getValue();
+      case PLECPackage.ASSIGNMENT__VARIABLE:
+        if (resolve) return getVariable();
+        return basicGetVariable();
+      case PLECPackage.ASSIGNMENT__VALU:
+        return getValu();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -197,11 +209,11 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   {
     switch (featureID)
     {
-      case PLECPackage.ASSIGNMENT__VAR:
-        setVar((String)newValue);
+      case PLECPackage.ASSIGNMENT__VARIABLE:
+        setVariable((VarDeclaration)newValue);
         return;
-      case PLECPackage.ASSIGNMENT__VALUE:
-        setValue((Value)newValue);
+      case PLECPackage.ASSIGNMENT__VALU:
+        setValu((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -217,11 +229,11 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   {
     switch (featureID)
     {
-      case PLECPackage.ASSIGNMENT__VAR:
-        setVar(VAR_EDEFAULT);
+      case PLECPackage.ASSIGNMENT__VARIABLE:
+        setVariable((VarDeclaration)null);
         return;
-      case PLECPackage.ASSIGNMENT__VALUE:
-        setValue((Value)null);
+      case PLECPackage.ASSIGNMENT__VALU:
+        setValu((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -237,29 +249,12 @@ public class AssignmentImpl extends RefinementImpl implements Assignment
   {
     switch (featureID)
     {
-      case PLECPackage.ASSIGNMENT__VAR:
-        return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
-      case PLECPackage.ASSIGNMENT__VALUE:
-        return value != null;
+      case PLECPackage.ASSIGNMENT__VARIABLE:
+        return variable != null;
+      case PLECPackage.ASSIGNMENT__VALU:
+        return valu != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (var: ");
-    result.append(var);
-    result.append(')');
-    return result.toString();
   }
 
 } //AssignmentImpl

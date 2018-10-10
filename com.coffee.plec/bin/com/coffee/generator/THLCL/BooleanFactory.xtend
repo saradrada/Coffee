@@ -9,6 +9,8 @@ import com.coffee.generator.FODAFactory
 import com.coffee.pLEC.Attributes
 import com.coffee.pLEC.Rule
 import com.coffee.pLEC.Refinement
+import com.coffee.pLEC.Assignment
+import com.coffee.pLEC.BoolVal
 
 class BooleanFactory extends THLCLFactory implements FODAFactory{
 
@@ -28,7 +30,7 @@ class BooleanFactory extends THLCLFactory implements FODAFactory{
 	}
 	
 	override getExcludes(VarDeclaration left, VarDeclaration right) {
-		''' ~ («left.name» AND «right.name»)''' 
+		'''~(«left.name» AND «right.name»)''' 
 	}
 	
 	override getRequires(VarDeclaration left, VarDeclaration right) {
@@ -44,10 +46,12 @@ class BooleanFactory extends THLCLFactory implements FODAFactory{
 				var childrenIds=""
 				for (inChild : exp.group.ids) {
 					if(!(child.name == inChild.name)){
-						childrenIds+= '''~«inChild.name» AND'''
+						childrenIds+= '''~«inChild.name» AND '''
 					}
 				}
-				output+= '''(«child.name» <=> («childrenIds» «exp.parent.name»)) AND '''
+				output+= 
+				'''(«child.name» <=> («childrenIds» «exp.parent.name»)) AND
+				'''
 			}
 			output=output.substring(0, output.length() - 4)
 		}
@@ -71,6 +75,14 @@ class BooleanFactory extends THLCLFactory implements FODAFactory{
 		}
 		output
 	}
+	override getAssignement(Assignment exp) {
+		var output=""
+		if((exp.valu as BoolVal).value == "selected")
+			output='''«exp.variable.name» = 1'''
+		else
+			output='''«exp.variable.name» = 0'''
+	}
+	
 	
 
 	
@@ -82,6 +94,7 @@ class BooleanFactory extends THLCLFactory implements FODAFactory{
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
+
 
 	
 

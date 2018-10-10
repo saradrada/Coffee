@@ -2,7 +2,10 @@ package com.coffee.generator.THLCL;
 
 import com.coffee.generator.FODAFactory;
 import com.coffee.generator.THLCL.THLCLFactory;
+import com.coffee.pLEC.Assignment;
+import com.coffee.pLEC.BoolVal;
 import com.coffee.pLEC.Structural;
+import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VariantDeclaration;
 import com.google.common.base.Objects;
@@ -52,13 +55,12 @@ public class BooleanFactory extends THLCLFactory implements FODAFactory {
   @Override
   public CharSequence getExcludes(final VarDeclaration left, final VarDeclaration right) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(" ");
-    _builder.append("~ (");
+    _builder.append("~(");
     String _name = left.getName();
-    _builder.append(_name, " ");
+    _builder.append(_name);
     _builder.append(" AND ");
     String _name_1 = right.getName();
-    _builder.append(_name_1, " ");
+    _builder.append(_name_1);
     _builder.append(")");
     return _builder;
   }
@@ -97,7 +99,7 @@ public class BooleanFactory extends THLCLFactory implements FODAFactory {
                 _builder.append("~");
                 String _name_2 = inChild.getName();
                 _builder.append(_name_2);
-                _builder.append(" AND");
+                _builder.append(" AND ");
                 childrenIds = (_childrenIds + _builder);
               }
             }
@@ -111,7 +113,8 @@ public class BooleanFactory extends THLCLFactory implements FODAFactory {
             _builder_1.append(" ");
             String _name_4 = exp.getParent().getName();
             _builder_1.append(_name_4);
-            _builder_1.append(")) AND ");
+            _builder_1.append(")) AND");
+            _builder_1.newLineIfNotEmpty();
             output = (_output + _builder_1);
           }
         }
@@ -168,6 +171,33 @@ public class BooleanFactory extends THLCLFactory implements FODAFactory {
         }
       }
       _xblockexpression = output;
+    }
+    return _xblockexpression;
+  }
+  
+  @Override
+  public CharSequence getAssignement(final Assignment exp) {
+    String _xblockexpression = null;
+    {
+      String output = "";
+      String _xifexpression = null;
+      Value _valu = exp.getValu();
+      String _value = ((BoolVal) _valu).getValue();
+      boolean _equals = Objects.equal(_value, "selected");
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        String _name = exp.getVariable().getName();
+        _builder.append(_name);
+        _builder.append(" = 1");
+        _xifexpression = output = _builder.toString();
+      } else {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        String _name_1 = exp.getVariable().getName();
+        _builder_1.append(_name_1);
+        _builder_1.append(" = 0");
+        _xifexpression = output = _builder_1.toString();
+      }
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

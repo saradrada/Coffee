@@ -13,6 +13,8 @@ import java.util.Map
 import com.coffee.generator.FODAFactory
 import com.coffee.generator.AttributesFactory
 import com.coffee.pLEC.Attributes
+import com.coffee.pLEC.Assignment
+import com.coffee.pLEC.BoolVal
 
 class IntegerFactory extends THLCLFactory implements  FODAFactory, AttributesFactory{
 	/**
@@ -27,9 +29,6 @@ class IntegerFactory extends THLCLFactory implements  FODAFactory, AttributesFac
 	//TODO quitar lo relacionado con cardinalidades
 	override getVariable(VarDeclaration variable)'''
 		«variable.type» «variable.name» «getValuesDeclaration(variable, variable.variants)»
-		«IF  (!(variable.min===null && variable.max===null)) »
-			«getClonVariables(variable)»	
-		«ENDIF»
 	'''
 
 	/**
@@ -135,39 +134,50 @@ class IntegerFactory extends THLCLFactory implements  FODAFactory, AttributesFac
 	 * Methods from the cardinalityFactory Interface
 	 * 
 	 */
-	override getClonVariables(VarDeclaration variable) {
-		var String declaration=""
-		var String left= "(" + variable.min.value + "<="
-		var String right= "(" + variable.max.value + ">="
-		var String sum= ""
-		for ( var i=1; i<= variable.max.value; i= i+1) {
-			declaration+="boolean " +variable.name+i +"\n"
-			sum+= variable.name+i + " +"
-			var  implies=  variable.name+i + " =>" + variable.name
-			clonConstraints.add(implies)
-		}
-		left += sum.substring(0, sum.length() - 1) + ") "
-		right += sum.substring(0, sum.length() - 1) + ") "
-		var String constraint= variable.name+" => (" + left + "AND" + right +")"
-		clonConstraints.add(constraint)
-		declaration
-	}
+//	override getClonVariables(VarDeclaration variable) {
+//		var String declaration=""
+//		var String left= "(" + variable.min.value + "<="
+//		var String right= "(" + variable.max.value + ">="
+//		var String sum= ""
+//		for ( var i=1; i<= variable.max.value; i= i+1) {
+//			declaration+="boolean " +variable.name+i +"\n"
+//			sum+= variable.name+i + " +"
+//			var  implies=  variable.name+i + " =>" + variable.name
+//			clonConstraints.add(implies)
+//		}
+//		left += sum.substring(0, sum.length() - 1) + ") "
+//		right += sum.substring(0, sum.length() - 1) + ") "
+//		var String constraint= variable.name+" => (" + left + "AND" + right +")"
+//		clonConstraints.add(constraint)
+//		declaration
+//	}
+//	
+//	override getClonConstraints() {
+//		var out =""
+//		if (clonConstraints===null){
+//			out=""
+//		}
+//		else{
+//			var int id = 1
+//			for( constraint : clonConstraints){
+//			 	out += 
+//			 	'''cl«id»: «constraint.toString»
+//			 	'''
+//			 	id++
+//			}
+//		}
+//		out
+//	}
 	
-	override getClonConstraints() {
-		var out =""
-		if (clonConstraints===null){
-			out=""
-		}
-		else{
-			var int id = 1
-			for( constraint : clonConstraints){
-			 	out += 
-			 	'''cl«id»: «constraint.toString»
-			 	'''
-			 	id++
-			}
-		}
-		out
+	override getAssignement(Assignment exp) {
+		var output=""
+		if((exp.valu as BoolVal).value == "selected")
+			output='''«exp.variable.name» = 1'''
+		else
+			if((exp.valu as BoolVal).value == "unselected")
+				output='''«exp.variable.name» = 0'''
+			else
+				'''«exp.variable.name» = «(exp.valu as Number).value»'''
 	}
 	
 

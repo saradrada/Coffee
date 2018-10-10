@@ -2,8 +2,11 @@ package com.coffee.generator.DIMACS;
 
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.FODAFactory;
+import com.coffee.pLEC.Assignment;
+import com.coffee.pLEC.BoolVal;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Structural;
+import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VariantDeclaration;
 import com.google.common.base.Objects;
@@ -279,6 +282,33 @@ public class DIMACSFactory extends CodeFactory implements FODAFactory {
       Integer _get = this.variables.get(exp.getVar().getName());
       _builder.append(_get);
       _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
+  @Override
+  public CharSequence getAssignement(final Assignment exp) {
+    String _xblockexpression = null;
+    {
+      String output = "";
+      this.addNumClauses(1);
+      String _xifexpression = null;
+      Value _valu = exp.getValu();
+      String _value = ((BoolVal) _valu).getValue();
+      boolean _equals = Objects.equal(_value, "selected");
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        Integer _get = this.variables.get(exp.getVariable().getName());
+        _builder.append(_get);
+        _xifexpression = output = _builder.toString();
+      } else {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("~");
+        Integer _get_1 = this.variables.get(exp.getVariable().getName());
+        _builder_1.append(_get_1);
+        _xifexpression = output = _builder_1.toString();
+      }
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

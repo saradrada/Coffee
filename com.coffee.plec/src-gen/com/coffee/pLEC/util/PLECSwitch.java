@@ -13,16 +13,19 @@ import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.ListOfIDs;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Symbol;
+import com.coffee.pLEC.Temporal;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
@@ -233,6 +236,15 @@ public class PLECSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PLECPackage.TEMPORAL:
+      {
+        Temporal temporal = (Temporal)theEObject;
+        T result = caseTemporal(temporal);
+        if (result == null) result = caseConsExpression(temporal);
+        if (result == null) result = caseExpression(temporal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PLECPackage.RULE:
       {
         Rule rule = (Rule)theEObject;
@@ -257,6 +269,15 @@ public class PLECSwitch<T> extends Switch<T>
         T result = caseFodaBin(fodaBin);
         if (result == null) result = caseConsExpression(fodaBin);
         if (result == null) result = caseExpression(fodaBin);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLECPackage.QUANTIFIABLE:
+      {
+        Quantifiable quantifiable = (Quantifiable)theEObject;
+        T result = caseQuantifiable(quantifiable);
+        if (result == null) result = caseConsExpression(quantifiable);
+        if (result == null) result = caseExpression(quantifiable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -312,6 +333,13 @@ public class PLECSwitch<T> extends Switch<T>
       {
         ListOfIDs listOfIDs = (ListOfIDs)theEObject;
         T result = caseListOfIDs(listOfIDs);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PLECPackage.LIST_OF_LISTS_OF_VALUES:
+      {
+        ListOfListsOfValues listOfListsOfValues = (ListOfListsOfValues)theEObject;
+        T result = caseListOfListsOfValues(listOfListsOfValues);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -576,6 +604,22 @@ public class PLECSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Temporal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Temporal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTemporal(Temporal object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Rule</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -619,6 +663,22 @@ public class PLECSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFodaBin(FodaBin object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Quantifiable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Quantifiable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseQuantifiable(Quantifiable object)
   {
     return null;
   }
@@ -731,6 +791,22 @@ public class PLECSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfIDs(ListOfIDs object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of Lists Of Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of Lists Of Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfListsOfValues(ListOfListsOfValues object)
   {
     return null;
   }

@@ -1,6 +1,7 @@
 package com.coffee.generator;
 
 import com.coffee.generator.FODAFactory;
+import com.coffee.pLEC.Assignment;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VariantDeclaration;
 
@@ -17,4 +18,6 @@ public abstract class CodeFactory implements FODAFactory {
   public abstract CharSequence getVariable(final VarDeclaration variable);
   
   public abstract CharSequence getValuesDeclaration(final VarDeclaration variable, final VariantDeclaration variant);
+  
+  public abstract CharSequence getAssignement(final Assignment exp);
 }

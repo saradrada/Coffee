@@ -8,6 +8,8 @@ import java.util.HashMap
 import com.coffee.generator.FODAFactory
 import com.coffee.pLEC.VariantDeclaration
 import com.coffee.pLEC.RootRefinement
+import com.coffee.pLEC.Assignment
+import com.coffee.pLEC.BoolVal
 
 class DIMACSFactory extends CodeFactory implements FODAFactory {
 	/**
@@ -150,6 +152,16 @@ class DIMACSFactory extends CodeFactory implements FODAFactory {
 		
 	}
 	
+	override getAssignement(Assignment exp) {
+		var output=""
+		addNumClauses(1)
+		if((exp.valu as BoolVal).value == "selected")
+			output='''«variables.get(exp.variable.name)»'''
+		else
+			output='''~«variables.get(exp.variable.name)»'''
+	}
+	
+	
 	/*===================================================================
 	 *===================================================================
 	 * Methods used just in this notation
@@ -176,7 +188,7 @@ class DIMACSFactory extends CodeFactory implements FODAFactory {
 		return numClauses
 	}
 	
-	
+
 	/*===================================================================
 	 *===================================================================
 	 * Unsupported methods for this notation
@@ -184,6 +196,8 @@ class DIMACSFactory extends CodeFactory implements FODAFactory {
 	override getValuesDeclaration(VarDeclaration variable, VariantDeclaration variant) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
+	
+
 	
 
 	

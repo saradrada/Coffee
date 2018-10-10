@@ -168,6 +168,15 @@ public interface PLECFactory extends EFactory
   RootRefinement createRootRefinement();
 
   /**
+   * Returns a new object of class '<em>Temporal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Temporal</em>'.
+   * @generated
+   */
+  Temporal createTemporal();
+
+  /**
    * Returns a new object of class '<em>Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -193,6 +202,15 @@ public interface PLECFactory extends EFactory
    * @generated
    */
   FodaBin createFodaBin();
+
+  /**
+   * Returns a new object of class '<em>Quantifiable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Quantifiable</em>'.
+   * @generated
+   */
+  Quantifiable createQuantifiable();
 
   /**
    * Returns a new object of class '<em>Bool Val</em>'.
@@ -256,6 +274,15 @@ public interface PLECFactory extends EFactory
    * @generated
    */
   ListOfIDs createListOfIDs();
+
+  /**
+   * Returns a new object of class '<em>List Of Lists Of Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of Lists Of Values</em>'.
+   * @generated
+   */
+  ListOfListsOfValues createListOfListsOfValues();
 
   /**
    * Returns the package supported by this factory.

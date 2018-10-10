@@ -13,17 +13,20 @@ import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.IDCons;
 import com.coffee.pLEC.ListOfIDs;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.ListOfValues;
 import com.coffee.pLEC.Model;
 import com.coffee.pLEC.NonEnumerableValue;
 import com.coffee.pLEC.PLECFactory;
 import com.coffee.pLEC.PLECPackage;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.Refinement;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Rule;
 import com.coffee.pLEC.SetRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Symbol;
+import com.coffee.pLEC.Temporal;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
 import com.coffee.pLEC.VarRefinement;
@@ -163,6 +166,13 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass temporalEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass ruleEClass = null;
 
   /**
@@ -178,6 +188,13 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * @generated
    */
   private EClass fodaBinEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass quantifiableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -227,6 +244,13 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * @generated
    */
   private EClass listOfIDsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfListsOfValuesEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -636,9 +660,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssignment_Var()
+  public EReference getAssignment_Variable()
   {
-    return (EAttribute)assignmentEClass.getEStructuralFeatures().get(0);
+    return (EReference)assignmentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -646,7 +670,7 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAssignment_Value()
+  public EReference getAssignment_Valu()
   {
     return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
   }
@@ -666,9 +690,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarRefinement_Var()
+  public EReference getVarRefinement_Var()
   {
-    return (EAttribute)varRefinementEClass.getEStructuralFeatures().get(0);
+    return (EReference)varRefinementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -706,19 +730,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSetRefinement_Head()
+  public EReference getSetRefinement_List()
   {
     return (EReference)setRefinementEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSetRefinement_Tail()
-  {
-    return (EReference)setRefinementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -739,6 +753,36 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
   public EReference getRootRefinement_Var()
   {
     return (EReference)rootRefinementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTemporal()
+  {
+    return temporalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTemporal_Operator()
+  {
+    return (EAttribute)temporalEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTemporal_Cons()
+  {
+    return (EReference)temporalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -839,6 +883,76 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
   public EReference getFodaBin_Var2()
   {
     return (EReference)fodaBinEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getQuantifiable()
+  {
+    return quantifiableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_MinV1()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_MaxV1()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_Var1()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_MinV2()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_MaxV2()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuantifiable_Var2()
+  {
+    return (EReference)quantifiableEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -956,6 +1070,26 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getListOfListsOfValues()
+  {
+    return listOfListsOfValuesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getListOfListsOfValues_Values()
+  {
+    return (EReference)listOfListsOfValuesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PLECFactory getPLECFactory()
   {
     return (PLECFactory)getEFactoryInstance();
@@ -1027,20 +1161,23 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     refinementEClass = createEClass(REFINEMENT);
 
     assignmentEClass = createEClass(ASSIGNMENT);
-    createEAttribute(assignmentEClass, ASSIGNMENT__VAR);
-    createEReference(assignmentEClass, ASSIGNMENT__VALUE);
+    createEReference(assignmentEClass, ASSIGNMENT__VARIABLE);
+    createEReference(assignmentEClass, ASSIGNMENT__VALU);
 
     varRefinementEClass = createEClass(VAR_REFINEMENT);
-    createEAttribute(varRefinementEClass, VAR_REFINEMENT__VAR);
+    createEReference(varRefinementEClass, VAR_REFINEMENT__VAR);
     createEReference(varRefinementEClass, VAR_REFINEMENT__VALUES);
 
     setRefinementEClass = createEClass(SET_REFINEMENT);
     createEReference(setRefinementEClass, SET_REFINEMENT__VARS);
-    createEReference(setRefinementEClass, SET_REFINEMENT__HEAD);
-    createEReference(setRefinementEClass, SET_REFINEMENT__TAIL);
+    createEReference(setRefinementEClass, SET_REFINEMENT__LIST);
 
     rootRefinementEClass = createEClass(ROOT_REFINEMENT);
     createEReference(rootRefinementEClass, ROOT_REFINEMENT__VAR);
+
+    temporalEClass = createEClass(TEMPORAL);
+    createEAttribute(temporalEClass, TEMPORAL__OPERATOR);
+    createEReference(temporalEClass, TEMPORAL__CONS);
 
     ruleEClass = createEClass(RULE);
     createEReference(ruleEClass, RULE__CONDITION);
@@ -1054,6 +1191,14 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     createEReference(fodaBinEClass, FODA_BIN__VAR1);
     createEAttribute(fodaBinEClass, FODA_BIN__OP);
     createEReference(fodaBinEClass, FODA_BIN__VAR2);
+
+    quantifiableEClass = createEClass(QUANTIFIABLE);
+    createEReference(quantifiableEClass, QUANTIFIABLE__MIN_V1);
+    createEReference(quantifiableEClass, QUANTIFIABLE__MAX_V1);
+    createEReference(quantifiableEClass, QUANTIFIABLE__VAR1);
+    createEReference(quantifiableEClass, QUANTIFIABLE__MIN_V2);
+    createEReference(quantifiableEClass, QUANTIFIABLE__MAX_V2);
+    createEReference(quantifiableEClass, QUANTIFIABLE__VAR2);
 
     boolValEClass = createEClass(BOOL_VAL);
 
@@ -1072,6 +1217,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
 
     listOfIDsEClass = createEClass(LIST_OF_IDS);
     createEReference(listOfIDsEClass, LIST_OF_IDS__IDS);
+
+    listOfListsOfValuesEClass = createEClass(LIST_OF_LISTS_OF_VALUES);
+    createEReference(listOfListsOfValuesEClass, LIST_OF_LISTS_OF_VALUES__VALUES);
   }
 
   /**
@@ -1114,9 +1262,11 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     varRefinementEClass.getESuperTypes().add(this.getRefinement());
     setRefinementEClass.getESuperTypes().add(this.getRefinement());
     rootRefinementEClass.getESuperTypes().add(this.getRefinement());
+    temporalEClass.getESuperTypes().add(this.getConsExpression());
     ruleEClass.getESuperTypes().add(this.getConsExpression());
     fodaUNEClass.getESuperTypes().add(this.getConsExpression());
     fodaBinEClass.getESuperTypes().add(this.getConsExpression());
+    quantifiableEClass.getESuperTypes().add(this.getConsExpression());
     boolValEClass.getESuperTypes().add(this.getNonEnumerableValue());
     numberEClass.getESuperTypes().add(this.getValue());
     symbolEClass.getESuperTypes().add(this.getNonEnumerableValue());
@@ -1169,20 +1319,23 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     initEClass(refinementEClass, Refinement.class, "Refinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAssignment_Var(), ecorePackage.getEString(), "var", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignment_Variable(), this.getVarDeclaration(), null, "variable", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignment_Valu(), this.getValue(), null, "valu", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varRefinementEClass, VarRefinement.class, "VarRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVarRefinement_Var(), ecorePackage.getEString(), "var", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarRefinement_Var(), this.getVarDeclaration(), null, "var", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarRefinement_Values(), this.getVariantDeclaration(), null, "values", null, 0, 1, VarRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setRefinementEClass, SetRefinement.class, "SetRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSetRefinement_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSetRefinement_Head(), this.getListOfValues(), null, "head", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSetRefinement_Tail(), this.getListOfValues(), null, "tail", null, 0, -1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetRefinement_List(), this.getListOfListsOfValues(), null, "list", null, 0, 1, SetRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rootRefinementEClass, RootRefinement.class, "RootRefinement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRootRefinement_Var(), this.getVarDeclaration(), null, "var", null, 0, 1, RootRefinement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(temporalEClass, Temporal.class, "Temporal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTemporal_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Temporal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTemporal_Cons(), this.getExpression(), null, "cons", null, 0, 1, Temporal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRule_Condition(), this.getExpression(), null, "condition", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1196,6 +1349,14 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
     initEReference(getFodaBin_Var1(), this.getVarDeclaration(), null, "var1", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFodaBin_Op(), ecorePackage.getEString(), "op", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFodaBin_Var2(), this.getVarDeclaration(), null, "var2", null, 0, 1, FodaBin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(quantifiableEClass, Quantifiable.class, "Quantifiable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getQuantifiable_MinV1(), this.getNumber(), null, "minV1", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuantifiable_MaxV1(), this.getNumber(), null, "maxV1", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuantifiable_Var1(), this.getVarDeclaration(), null, "var1", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuantifiable_MinV2(), this.getNumber(), null, "minV2", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuantifiable_MaxV2(), this.getNumber(), null, "maxV2", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuantifiable_Var2(), this.getVarDeclaration(), null, "var2", null, 0, 1, Quantifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolValEClass, BoolVal.class, "BoolVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1214,6 +1375,9 @@ public class PLECPackageImpl extends EPackageImpl implements PLECPackage
 
     initEClass(listOfIDsEClass, ListOfIDs.class, "ListOfIDs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getListOfIDs_Ids(), this.getVarDeclaration(), null, "ids", null, 0, -1, ListOfIDs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listOfListsOfValuesEClass, ListOfListsOfValues.class, "ListOfListsOfValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getListOfListsOfValues_Values(), this.getListOfValues(), null, "values", null, 0, -1, ListOfListsOfValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

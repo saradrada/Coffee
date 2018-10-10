@@ -10,6 +10,7 @@ import com.coffee.pLEC.Constraint;
 import com.coffee.pLEC.FodaBin;
 import com.coffee.pLEC.FodaUN;
 import com.coffee.pLEC.Model;
+import com.coffee.pLEC.Quantifiable;
 import com.coffee.pLEC.RootRefinement;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.VarDeclaration;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class THLCLCardinalityGenerator extends THLCLGenerator {
@@ -29,11 +31,6 @@ public class THLCLCardinalityGenerator extends THLCLGenerator {
    * Name of the root variable
    */
   private String root;
-  
-  /**
-   * String for including the declaration of the variables
-   */
-  private StringBuilder variablesDeclarations;
   
   /**
    * String for including the declaration of the variables
@@ -48,9 +45,7 @@ public class THLCLCardinalityGenerator extends THLCLGenerator {
     super(name, type);
     this.setFactory(this.factory);
     StringBuilder _stringBuilder = new StringBuilder();
-    this.variablesDeclarations = _stringBuilder;
-    StringBuilder _stringBuilder_1 = new StringBuilder();
-    this.constraintsDeclarations = _stringBuilder_1;
+    this.constraintsDeclarations = _stringBuilder;
     HashMap<String, Node> _hashMap = new HashMap<String, Node>();
     this.tree = _hashMap;
     THLCLCardinalityFactory _tHLCLCardinalityFactory = new THLCLCardinalityFactory(this.tree);
@@ -68,27 +63,19 @@ public class THLCLCardinalityGenerator extends THLCLGenerator {
     {
       Collection<Node> _values = this.tree.values();
       for(final Node node : _values) {
-        _builder.append("boolean ");
-        String _id = node.getId();
-        _builder.append(_id);
+        CharSequence _variable = this.factory.getVariable(node.getVariable());
+        _builder.append(_variable);
         _builder.newLineIfNotEmpty();
         {
           if (((!Objects.equal(node.getId(), this.root)) && (node.getNumInstances() != 1))) {
-            _builder.append("integer ");
-            String _id_1 = node.getId();
-            _builder.append(_id_1);
-            _builder.append("_card domain:");
-            int _min = node.getMin();
-            _builder.append(_min);
-            _builder.append("..");
-            int _numInstances = node.getNumInstances();
-            _builder.append(_numInstances);
+            CharSequence _declareVaribleNumInstances = this.factory.declareVaribleNumInstances(node);
+            _builder.append(_declareVaribleNumInstances);
             _builder.newLineIfNotEmpty();
             {
               List<String> _varsIds = node.getVarsIds();
               for(final String instance : _varsIds) {
-                _builder.append("boolean ");
-                _builder.append(instance);
+                CharSequence _declareInstance = this.factory.declareInstance(instance);
+                _builder.append(_declareInstance);
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -99,12 +86,21 @@ public class THLCLCardinalityGenerator extends THLCLGenerator {
     return _builder;
   }
   
+  @Override
+  public CharSequence parseQuantifiable(final Quantifiable exp) {
+    return this.factory.getQuantifiableRequires(exp);
+  }
+  
+  /**
+   * @param model is the model
+   */
   public void createTree(final Model model) {
     EList<VarDeclaration> _vars = model.getVars();
     for (final VarDeclaration variable : _vars) {
       {
         String _name = variable.getName();
         final Node node = new Node(_name);
+        node.setVariable(variable);
         if (((variable.getMin() == null) && (variable.getMax() == null))) {
           node.setMin(1);
           node.setMax(1);
@@ -214,39 +210,33 @@ public class THLCLCardinalityGenerator extends THLCLGenerator {
         if ((_exp_2 instanceof Attributes)) {
           ConsExpression _exp_3 = c.getExp();
           final Attributes exp_1 = ((Attributes) _exp_3);
-          final Node padre_1 = this.tree.get(exp_1.getVar1());
+          final Node padre_1 = this.tree.get(exp_1.getVar1().getName());
+          String _name = exp_1.getVar1().getName();
+          String _plus = (_name + " ");
+          String _plus_1 = (_plus + padre_1);
+          InputOutput.<String>println(_plus_1);
           EList<VarDeclaration> _ids_2 = exp_1.getAtt().getIds();
           for (final VarDeclaration att : _ids_2) {
             {
               final Node childNode = this.tree.get(att.getName());
+              String _name_1 = att.getName();
+              String _plus_2 = (_name_1 + " ");
+              String _plus_3 = (_plus_2 + childNode);
+              InputOutput.<String>print(_plus_3);
               childNode.setParent(padre_1);
-              int _numInstances = padre_1.getNumInstances();
-              int _multiply = (_numInstances * 1);
-              childNode.setNumInstances(_multiply);
+              childNode.setNumInstances(1);
               padre_1.addChild(childNode);
-              List<String> _varsIds = padre_1.getVarsIds();
-              for (final String nameV : _varsIds) {
-                for (int i = 1; (i <= childNode.getMax()); i++) {
-                  StringConcatenation _builder = new StringConcatenation();
-                  _builder.append(nameV);
-                  _builder.append("_");
-                  String _name = att.getName();
-                  _builder.append(_name);
-                  _builder.append("_");
-                  _builder.append(i);
-                  childNode.addVarId(_builder.toString());
-                }
-              }
             }
           }
+          this.constraintsDeclarations.append(this.parseConstraint(c.getName(), c.getExp()));
         } else {
           ConsExpression _exp_4 = c.getExp();
           if ((_exp_4 instanceof RootRefinement)) {
             ConsExpression _exp_5 = c.getExp();
             this.root = ((RootRefinement) _exp_5).getVar().getName();
             StringConcatenation _builder = new StringConcatenation();
-            String _name = c.getName();
-            _builder.append(_name);
+            String _name_1 = c.getName();
+            _builder.append(_name_1);
             _builder.append(": ");
             _builder.append(this.root);
             _builder.append(" = 1");

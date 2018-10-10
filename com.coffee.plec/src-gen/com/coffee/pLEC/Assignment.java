@@ -13,8 +13,8 @@ package com.coffee.pLEC;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.pLEC.Assignment#getVar <em>Var</em>}</li>
- *   <li>{@link com.coffee.pLEC.Assignment#getValue <em>Value</em>}</li>
+ *   <li>{@link com.coffee.pLEC.Assignment#getVariable <em>Variable</em>}</li>
+ *   <li>{@link com.coffee.pLEC.Assignment#getValu <em>Valu</em>}</li>
  * </ul>
  *
  * @see com.coffee.pLEC.PLECPackage#getAssignment()
@@ -24,55 +24,55 @@ package com.coffee.pLEC;
 public interface Assignment extends Refinement
 {
   /**
-   * Returns the value of the '<em><b>Var</b></em>' attribute.
+   * Returns the value of the '<em><b>Variable</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Var</em>' attribute isn't clear,
+   * If the meaning of the '<em>Variable</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var</em>' attribute.
-   * @see #setVar(String)
-   * @see com.coffee.pLEC.PLECPackage#getAssignment_Var()
+   * @return the value of the '<em>Variable</em>' reference.
+   * @see #setVariable(VarDeclaration)
+   * @see com.coffee.pLEC.PLECPackage#getAssignment_Variable()
    * @model
    * @generated
    */
-  String getVar();
+  VarDeclaration getVariable();
 
   /**
-   * Sets the value of the '{@link com.coffee.pLEC.Assignment#getVar <em>Var</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.pLEC.Assignment#getVariable <em>Variable</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var</em>' attribute.
-   * @see #getVar()
+   * @param value the new value of the '<em>Variable</em>' reference.
+   * @see #getVariable()
    * @generated
    */
-  void setVar(String value);
+  void setVariable(VarDeclaration value);
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' containment reference.
+   * Returns the value of the '<em><b>Valu</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Valu</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
-   * @see com.coffee.pLEC.PLECPackage#getAssignment_Value()
+   * @return the value of the '<em>Valu</em>' containment reference.
+   * @see #setValu(Value)
+   * @see com.coffee.pLEC.PLECPackage#getAssignment_Valu()
    * @model containment="true"
    * @generated
    */
-  Value getValue();
+  Value getValu();
 
   /**
-   * Sets the value of the '{@link com.coffee.pLEC.Assignment#getValue <em>Value</em>}' containment reference.
+   * Sets the value of the '{@link com.coffee.pLEC.Assignment#getValu <em>Valu</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' containment reference.
-   * @see #getValue()
+   * @param value the new value of the '<em>Valu</em>' containment reference.
+   * @see #getValu()
    * @generated
    */
-  void setValue(Value value);
+  void setValu(Value value);
 
 } // Assignment

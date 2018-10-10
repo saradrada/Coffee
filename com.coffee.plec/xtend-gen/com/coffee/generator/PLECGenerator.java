@@ -7,6 +7,7 @@ import com.coffee.generator.DIMACS.DIMACSGenerator;
 import com.coffee.generator.THLCL.THLCLCardinalityGenerator;
 import com.coffee.generator.THLCL.THLCLGenerator;
 import com.coffee.generator.TypeOfProblem;
+import com.coffee.generator.XCSP3.XCSP3CardinalityGenerator;
 import com.coffee.generator.XCSP3.XCSP3Generator;
 import com.coffee.pLEC.ConsExpression;
 import com.coffee.pLEC.Constraint;
@@ -117,17 +118,17 @@ public class PLECGenerator extends AbstractGenerator {
       if (typeOfProblem != null) {
         switch (typeOfProblem) {
           case CSP_INST:
+            XCSP3CardinalityGenerator _xCSP3CardinalityGenerator = new XCSP3CardinalityGenerator(modelName, typeOfProblem);
+            xcsp3 = _xCSP3CardinalityGenerator;
+            break;
+          default:
             XCSP3Generator _xCSP3Generator = new XCSP3Generator(modelName, typeOfProblem);
             xcsp3 = _xCSP3Generator;
             break;
-          default:
-            XCSP3Generator _xCSP3Generator_1 = new XCSP3Generator(modelName, typeOfProblem);
-            xcsp3 = _xCSP3Generator_1;
-            break;
         }
       } else {
-        XCSP3Generator _xCSP3Generator_1 = new XCSP3Generator(modelName, typeOfProblem);
-        xcsp3 = _xCSP3Generator_1;
+        XCSP3Generator _xCSP3Generator = new XCSP3Generator(modelName, typeOfProblem);
+        xcsp3 = _xCSP3Generator;
       }
       _xblockexpression = xcsp3.parseModel(model);
     }

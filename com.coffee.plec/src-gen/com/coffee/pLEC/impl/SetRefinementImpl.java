@@ -4,24 +4,17 @@
 package com.coffee.pLEC.impl;
 
 import com.coffee.pLEC.ListOfIDs;
-import com.coffee.pLEC.ListOfValues;
+import com.coffee.pLEC.ListOfListsOfValues;
 import com.coffee.pLEC.PLECPackage;
 import com.coffee.pLEC.SetRefinement;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,8 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.coffee.pLEC.impl.SetRefinementImpl#getVars <em>Vars</em>}</li>
- *   <li>{@link com.coffee.pLEC.impl.SetRefinementImpl#getHead <em>Head</em>}</li>
- *   <li>{@link com.coffee.pLEC.impl.SetRefinementImpl#getTail <em>Tail</em>}</li>
+ *   <li>{@link com.coffee.pLEC.impl.SetRefinementImpl#getList <em>List</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,24 +43,14 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
   protected ListOfIDs vars;
 
   /**
-   * The cached value of the '{@link #getHead() <em>Head</em>}' containment reference.
+   * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getHead()
+   * @see #getList()
    * @generated
    * @ordered
    */
-  protected ListOfValues head;
-
-  /**
-   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTail()
-   * @generated
-   * @ordered
-   */
-  protected EList<ListOfValues> tail;
+  protected ListOfListsOfValues list;
 
   /**
    * <!-- begin-user-doc -->
@@ -144,9 +126,9 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public ListOfValues getHead()
+  public ListOfListsOfValues getList()
   {
-    return head;
+    return list;
   }
 
   /**
@@ -154,13 +136,13 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetHead(ListOfValues newHead, NotificationChain msgs)
+  public NotificationChain basicSetList(ListOfListsOfValues newList, NotificationChain msgs)
   {
-    ListOfValues oldHead = head;
-    head = newHead;
+    ListOfListsOfValues oldList = list;
+    list = newList;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLECPackage.SET_REFINEMENT__HEAD, oldHead, newHead);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLECPackage.SET_REFINEMENT__LIST, oldList, newList);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -171,34 +153,20 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setHead(ListOfValues newHead)
+  public void setList(ListOfListsOfValues newList)
   {
-    if (newHead != head)
+    if (newList != list)
     {
       NotificationChain msgs = null;
-      if (head != null)
-        msgs = ((InternalEObject)head).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLECPackage.SET_REFINEMENT__HEAD, null, msgs);
-      if (newHead != null)
-        msgs = ((InternalEObject)newHead).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLECPackage.SET_REFINEMENT__HEAD, null, msgs);
-      msgs = basicSetHead(newHead, msgs);
+      if (list != null)
+        msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PLECPackage.SET_REFINEMENT__LIST, null, msgs);
+      if (newList != null)
+        msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PLECPackage.SET_REFINEMENT__LIST, null, msgs);
+      msgs = basicSetList(newList, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.SET_REFINEMENT__HEAD, newHead, newHead));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ListOfValues> getTail()
-  {
-    if (tail == null)
-    {
-      tail = new EObjectContainmentEList<ListOfValues>(ListOfValues.class, this, PLECPackage.SET_REFINEMENT__TAIL);
-    }
-    return tail;
+      eNotify(new ENotificationImpl(this, Notification.SET, PLECPackage.SET_REFINEMENT__LIST, newList, newList));
   }
 
   /**
@@ -213,10 +181,8 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     {
       case PLECPackage.SET_REFINEMENT__VARS:
         return basicSetVars(null, msgs);
-      case PLECPackage.SET_REFINEMENT__HEAD:
-        return basicSetHead(null, msgs);
-      case PLECPackage.SET_REFINEMENT__TAIL:
-        return ((InternalEList<?>)getTail()).basicRemove(otherEnd, msgs);
+      case PLECPackage.SET_REFINEMENT__LIST:
+        return basicSetList(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -233,10 +199,8 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     {
       case PLECPackage.SET_REFINEMENT__VARS:
         return getVars();
-      case PLECPackage.SET_REFINEMENT__HEAD:
-        return getHead();
-      case PLECPackage.SET_REFINEMENT__TAIL:
-        return getTail();
+      case PLECPackage.SET_REFINEMENT__LIST:
+        return getList();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -246,7 +210,6 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -255,12 +218,8 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
       case PLECPackage.SET_REFINEMENT__VARS:
         setVars((ListOfIDs)newValue);
         return;
-      case PLECPackage.SET_REFINEMENT__HEAD:
-        setHead((ListOfValues)newValue);
-        return;
-      case PLECPackage.SET_REFINEMENT__TAIL:
-        getTail().clear();
-        getTail().addAll((Collection<? extends ListOfValues>)newValue);
+      case PLECPackage.SET_REFINEMENT__LIST:
+        setList((ListOfListsOfValues)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -279,11 +238,8 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
       case PLECPackage.SET_REFINEMENT__VARS:
         setVars((ListOfIDs)null);
         return;
-      case PLECPackage.SET_REFINEMENT__HEAD:
-        setHead((ListOfValues)null);
-        return;
-      case PLECPackage.SET_REFINEMENT__TAIL:
-        getTail().clear();
+      case PLECPackage.SET_REFINEMENT__LIST:
+        setList((ListOfListsOfValues)null);
         return;
     }
     super.eUnset(featureID);
@@ -301,10 +257,8 @@ public class SetRefinementImpl extends RefinementImpl implements SetRefinement
     {
       case PLECPackage.SET_REFINEMENT__VARS:
         return vars != null;
-      case PLECPackage.SET_REFINEMENT__HEAD:
-        return head != null;
-      case PLECPackage.SET_REFINEMENT__TAIL:
-        return tail != null && !tail.isEmpty();
+      case PLECPackage.SET_REFINEMENT__LIST:
+        return list != null;
     }
     return super.eIsSet(featureID);
   }

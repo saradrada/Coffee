@@ -24,30 +24,30 @@ package com.coffee.pLEC;
 public interface VarRefinement extends Refinement
 {
   /**
-   * Returns the value of the '<em><b>Var</b></em>' attribute.
+   * Returns the value of the '<em><b>Var</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Var</em>' attribute isn't clear,
+   * If the meaning of the '<em>Var</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var</em>' attribute.
-   * @see #setVar(String)
+   * @return the value of the '<em>Var</em>' reference.
+   * @see #setVar(VarDeclaration)
    * @see com.coffee.pLEC.PLECPackage#getVarRefinement_Var()
    * @model
    * @generated
    */
-  String getVar();
+  VarDeclaration getVar();
 
   /**
-   * Sets the value of the '{@link com.coffee.pLEC.VarRefinement#getVar <em>Var</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.pLEC.VarRefinement#getVar <em>Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var</em>' attribute.
+   * @param value the new value of the '<em>Var</em>' reference.
    * @see #getVar()
    * @generated
    */
-  void setVar(String value);
+  void setVar(VarDeclaration value);
 
   /**
    * Returns the value of the '<em><b>Values</b></em>' containment reference.

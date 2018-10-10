@@ -1,7 +1,6 @@
 package com.coffee.generator.XCSP3;
 
 import com.coffee.generator.AttributesFactory;
-import com.coffee.generator.CardinalityFactory;
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.CoffeeFactory;
 import com.coffee.generator.OptimizationFactory;
@@ -26,7 +25,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0;
  * August 2018
  */
 @SuppressWarnings("all")
-public abstract class XCSP3Factory extends CodeFactory implements OptimizationFactory, CardinalityFactory, AttributesFactory, CoffeeFactory {
+public abstract class XCSP3Factory extends CodeFactory implements OptimizationFactory, AttributesFactory, CoffeeFactory {
   /**
    * Strings in the XCSP format
    */

@@ -485,22 +485,22 @@ public interface PLECPackage extends EPackage
   int ASSIGNMENT = 12;
 
   /**
-   * The feature id for the '<em><b>Var</b></em>' attribute.
+   * The feature id for the '<em><b>Variable</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSIGNMENT__VAR = REFINEMENT_FEATURE_COUNT + 0;
+  int ASSIGNMENT__VARIABLE = REFINEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * The feature id for the '<em><b>Valu</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSIGNMENT__VALUE = REFINEMENT_FEATURE_COUNT + 1;
+  int ASSIGNMENT__VALU = REFINEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Assignment</em>' class.
@@ -522,7 +522,7 @@ public interface PLECPackage extends EPackage
   int VAR_REFINEMENT = 13;
 
   /**
-   * The feature id for the '<em><b>Var</b></em>' attribute.
+   * The feature id for the '<em><b>Var</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -568,22 +568,13 @@ public interface PLECPackage extends EPackage
   int SET_REFINEMENT__VARS = REFINEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Head</b></em>' containment reference.
+   * The feature id for the '<em><b>List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SET_REFINEMENT__HEAD = REFINEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Tail</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET_REFINEMENT__TAIL = REFINEMENT_FEATURE_COUNT + 2;
+  int SET_REFINEMENT__LIST = REFINEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Set Refinement</em>' class.
@@ -592,7 +583,7 @@ public interface PLECPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_REFINEMENT_FEATURE_COUNT = REFINEMENT_FEATURE_COUNT + 3;
+  int SET_REFINEMENT_FEATURE_COUNT = REFINEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.coffee.pLEC.impl.RootRefinementImpl <em>Root Refinement</em>}' class.
@@ -623,6 +614,43 @@ public interface PLECPackage extends EPackage
   int ROOT_REFINEMENT_FEATURE_COUNT = REFINEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.coffee.pLEC.impl.TemporalImpl <em>Temporal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.pLEC.impl.TemporalImpl
+   * @see com.coffee.pLEC.impl.PLECPackageImpl#getTemporal()
+   * @generated
+   */
+  int TEMPORAL = 16;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPORAL__OPERATOR = CONS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Cons</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPORAL__CONS = CONS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Temporal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPORAL_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.coffee.pLEC.impl.RuleImpl <em>Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -630,7 +658,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getRule()
    * @generated
    */
-  int RULE = 16;
+  int RULE = 17;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -667,7 +695,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getFodaUN()
    * @generated
    */
-  int FODA_UN = 17;
+  int FODA_UN = 18;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -704,7 +732,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getFodaBin()
    * @generated
    */
-  int FODA_BIN = 18;
+  int FODA_BIN = 19;
 
   /**
    * The feature id for the '<em><b>Var1</b></em>' reference.
@@ -743,6 +771,79 @@ public interface PLECPackage extends EPackage
   int FODA_BIN_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link com.coffee.pLEC.impl.QuantifiableImpl <em>Quantifiable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.pLEC.impl.QuantifiableImpl
+   * @see com.coffee.pLEC.impl.PLECPackageImpl#getQuantifiable()
+   * @generated
+   */
+  int QUANTIFIABLE = 20;
+
+  /**
+   * The feature id for the '<em><b>Min V1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__MIN_V1 = CONS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Max V1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__MAX_V1 = CONS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Var1</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__VAR1 = CONS_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Min V2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__MIN_V2 = CONS_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Max V2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__MAX_V2 = CONS_EXPRESSION_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Var2</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE__VAR2 = CONS_EXPRESSION_FEATURE_COUNT + 5;
+
+  /**
+   * The number of structural features of the '<em>Quantifiable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANTIFIABLE_FEATURE_COUNT = CONS_EXPRESSION_FEATURE_COUNT + 6;
+
+  /**
    * The meta object id for the '{@link com.coffee.pLEC.impl.ValueImpl <em>Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -750,7 +851,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 22;
+  int VALUE = 24;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -769,7 +870,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getNonEnumerableValue()
    * @generated
    */
-  int NON_ENUMERABLE_VALUE = 23;
+  int NON_ENUMERABLE_VALUE = 25;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -797,7 +898,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getBoolVal()
    * @generated
    */
-  int BOOL_VAL = 19;
+  int BOOL_VAL = 21;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -825,7 +926,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getNumber()
    * @generated
    */
-  int NUMBER = 20;
+  int NUMBER = 22;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -853,7 +954,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getSymbol()
    * @generated
    */
-  int SYMBOL = 21;
+  int SYMBOL = 23;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -881,7 +982,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfValues()
    * @generated
    */
-  int LIST_OF_VALUES = 24;
+  int LIST_OF_VALUES = 26;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -909,7 +1010,7 @@ public interface PLECPackage extends EPackage
    * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfIDs()
    * @generated
    */
-  int LIST_OF_IDS = 25;
+  int LIST_OF_IDS = 27;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -928,6 +1029,34 @@ public interface PLECPackage extends EPackage
    * @ordered
    */
   int LIST_OF_IDS_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link com.coffee.pLEC.impl.ListOfListsOfValuesImpl <em>List Of Lists Of Values</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.pLEC.impl.ListOfListsOfValuesImpl
+   * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfListsOfValues()
+   * @generated
+   */
+  int LIST_OF_LISTS_OF_VALUES = 28;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_LISTS_OF_VALUES__VALUES = 0;
+
+  /**
+   * The number of structural features of the '<em>List Of Lists Of Values</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_LISTS_OF_VALUES_FEATURE_COUNT = 1;
 
 
   /**
@@ -1292,26 +1421,26 @@ public interface PLECPackage extends EPackage
   EClass getAssignment();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.pLEC.Assignment#getVar <em>Var</em>}'.
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.Assignment#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Var</em>'.
-   * @see com.coffee.pLEC.Assignment#getVar()
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see com.coffee.pLEC.Assignment#getVariable()
    * @see #getAssignment()
    * @generated
    */
-  EAttribute getAssignment_Var();
+  EReference getAssignment_Variable();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Assignment#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Assignment#getValu <em>Valu</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see com.coffee.pLEC.Assignment#getValue()
+   * @return the meta object for the containment reference '<em>Valu</em>'.
+   * @see com.coffee.pLEC.Assignment#getValu()
    * @see #getAssignment()
    * @generated
    */
-  EReference getAssignment_Value();
+  EReference getAssignment_Valu();
 
   /**
    * Returns the meta object for class '{@link com.coffee.pLEC.VarRefinement <em>Var Refinement</em>}'.
@@ -1324,15 +1453,15 @@ public interface PLECPackage extends EPackage
   EClass getVarRefinement();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.pLEC.VarRefinement#getVar <em>Var</em>}'.
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.VarRefinement#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Var</em>'.
+   * @return the meta object for the reference '<em>Var</em>'.
    * @see com.coffee.pLEC.VarRefinement#getVar()
    * @see #getVarRefinement()
    * @generated
    */
-  EAttribute getVarRefinement_Var();
+  EReference getVarRefinement_Var();
 
   /**
    * Returns the meta object for the containment reference '{@link com.coffee.pLEC.VarRefinement#getValues <em>Values</em>}'.
@@ -1367,26 +1496,15 @@ public interface PLECPackage extends EPackage
   EReference getSetRefinement_Vars();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.SetRefinement#getHead <em>Head</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.SetRefinement#getList <em>List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Head</em>'.
-   * @see com.coffee.pLEC.SetRefinement#getHead()
+   * @return the meta object for the containment reference '<em>List</em>'.
+   * @see com.coffee.pLEC.SetRefinement#getList()
    * @see #getSetRefinement()
    * @generated
    */
-  EReference getSetRefinement_Head();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link com.coffee.pLEC.SetRefinement#getTail <em>Tail</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Tail</em>'.
-   * @see com.coffee.pLEC.SetRefinement#getTail()
-   * @see #getSetRefinement()
-   * @generated
-   */
-  EReference getSetRefinement_Tail();
+  EReference getSetRefinement_List();
 
   /**
    * Returns the meta object for class '{@link com.coffee.pLEC.RootRefinement <em>Root Refinement</em>}'.
@@ -1408,6 +1526,38 @@ public interface PLECPackage extends EPackage
    * @generated
    */
   EReference getRootRefinement_Var();
+
+  /**
+   * Returns the meta object for class '{@link com.coffee.pLEC.Temporal <em>Temporal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Temporal</em>'.
+   * @see com.coffee.pLEC.Temporal
+   * @generated
+   */
+  EClass getTemporal();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.coffee.pLEC.Temporal#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operator</em>'.
+   * @see com.coffee.pLEC.Temporal#getOperator()
+   * @see #getTemporal()
+   * @generated
+   */
+  EAttribute getTemporal_Operator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Temporal#getCons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Cons</em>'.
+   * @see com.coffee.pLEC.Temporal#getCons()
+   * @see #getTemporal()
+   * @generated
+   */
+  EReference getTemporal_Cons();
 
   /**
    * Returns the meta object for class '{@link com.coffee.pLEC.Rule <em>Rule</em>}'.
@@ -1515,6 +1665,82 @@ public interface PLECPackage extends EPackage
    * @generated
    */
   EReference getFodaBin_Var2();
+
+  /**
+   * Returns the meta object for class '{@link com.coffee.pLEC.Quantifiable <em>Quantifiable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Quantifiable</em>'.
+   * @see com.coffee.pLEC.Quantifiable
+   * @generated
+   */
+  EClass getQuantifiable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Quantifiable#getMinV1 <em>Min V1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Min V1</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getMinV1()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_MinV1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Quantifiable#getMaxV1 <em>Max V1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Max V1</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getMaxV1()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_MaxV1();
+
+  /**
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.Quantifiable#getVar1 <em>Var1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var1</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getVar1()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_Var1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Quantifiable#getMinV2 <em>Min V2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Min V2</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getMinV2()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_MinV2();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.pLEC.Quantifiable#getMaxV2 <em>Max V2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Max V2</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getMaxV2()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_MaxV2();
+
+  /**
+   * Returns the meta object for the reference '{@link com.coffee.pLEC.Quantifiable#getVar2 <em>Var2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var2</em>'.
+   * @see com.coffee.pLEC.Quantifiable#getVar2()
+   * @see #getQuantifiable()
+   * @generated
+   */
+  EReference getQuantifiable_Var2();
 
   /**
    * Returns the meta object for class '{@link com.coffee.pLEC.BoolVal <em>Bool Val</em>}'.
@@ -1629,6 +1855,27 @@ public interface PLECPackage extends EPackage
    * @generated
    */
   EReference getListOfIDs_Ids();
+
+  /**
+   * Returns the meta object for class '{@link com.coffee.pLEC.ListOfListsOfValues <em>List Of Lists Of Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Of Lists Of Values</em>'.
+   * @see com.coffee.pLEC.ListOfListsOfValues
+   * @generated
+   */
+  EClass getListOfListsOfValues();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.coffee.pLEC.ListOfListsOfValues#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Values</em>'.
+   * @see com.coffee.pLEC.ListOfListsOfValues#getValues()
+   * @see #getListOfListsOfValues()
+   * @generated
+   */
+  EReference getListOfListsOfValues_Values();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1952,20 +2199,20 @@ public interface PLECPackage extends EPackage
     EClass ASSIGNMENT = eINSTANCE.getAssignment();
 
     /**
-     * The meta object literal for the '<em><b>Var</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASSIGNMENT__VAR = eINSTANCE.getAssignment_Var();
+    EReference ASSIGNMENT__VARIABLE = eINSTANCE.getAssignment_Variable();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Valu</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
+    EReference ASSIGNMENT__VALU = eINSTANCE.getAssignment_Valu();
 
     /**
      * The meta object literal for the '{@link com.coffee.pLEC.impl.VarRefinementImpl <em>Var Refinement</em>}' class.
@@ -1978,12 +2225,12 @@ public interface PLECPackage extends EPackage
     EClass VAR_REFINEMENT = eINSTANCE.getVarRefinement();
 
     /**
-     * The meta object literal for the '<em><b>Var</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Var</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_REFINEMENT__VAR = eINSTANCE.getVarRefinement_Var();
+    EReference VAR_REFINEMENT__VAR = eINSTANCE.getVarRefinement_Var();
 
     /**
      * The meta object literal for the '<em><b>Values</b></em>' containment reference feature.
@@ -2012,20 +2259,12 @@ public interface PLECPackage extends EPackage
     EReference SET_REFINEMENT__VARS = eINSTANCE.getSetRefinement_Vars();
 
     /**
-     * The meta object literal for the '<em><b>Head</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>List</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SET_REFINEMENT__HEAD = eINSTANCE.getSetRefinement_Head();
-
-    /**
-     * The meta object literal for the '<em><b>Tail</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SET_REFINEMENT__TAIL = eINSTANCE.getSetRefinement_Tail();
+    EReference SET_REFINEMENT__LIST = eINSTANCE.getSetRefinement_List();
 
     /**
      * The meta object literal for the '{@link com.coffee.pLEC.impl.RootRefinementImpl <em>Root Refinement</em>}' class.
@@ -2044,6 +2283,32 @@ public interface PLECPackage extends EPackage
      * @generated
      */
     EReference ROOT_REFINEMENT__VAR = eINSTANCE.getRootRefinement_Var();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.pLEC.impl.TemporalImpl <em>Temporal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.pLEC.impl.TemporalImpl
+     * @see com.coffee.pLEC.impl.PLECPackageImpl#getTemporal()
+     * @generated
+     */
+    EClass TEMPORAL = eINSTANCE.getTemporal();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEMPORAL__OPERATOR = eINSTANCE.getTemporal_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Cons</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TEMPORAL__CONS = eINSTANCE.getTemporal_Cons();
 
     /**
      * The meta object literal for the '{@link com.coffee.pLEC.impl.RuleImpl <em>Rule</em>}' class.
@@ -2130,6 +2395,64 @@ public interface PLECPackage extends EPackage
      * @generated
      */
     EReference FODA_BIN__VAR2 = eINSTANCE.getFodaBin_Var2();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.pLEC.impl.QuantifiableImpl <em>Quantifiable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.pLEC.impl.QuantifiableImpl
+     * @see com.coffee.pLEC.impl.PLECPackageImpl#getQuantifiable()
+     * @generated
+     */
+    EClass QUANTIFIABLE = eINSTANCE.getQuantifiable();
+
+    /**
+     * The meta object literal for the '<em><b>Min V1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__MIN_V1 = eINSTANCE.getQuantifiable_MinV1();
+
+    /**
+     * The meta object literal for the '<em><b>Max V1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__MAX_V1 = eINSTANCE.getQuantifiable_MaxV1();
+
+    /**
+     * The meta object literal for the '<em><b>Var1</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__VAR1 = eINSTANCE.getQuantifiable_Var1();
+
+    /**
+     * The meta object literal for the '<em><b>Min V2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__MIN_V2 = eINSTANCE.getQuantifiable_MinV2();
+
+    /**
+     * The meta object literal for the '<em><b>Max V2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__MAX_V2 = eINSTANCE.getQuantifiable_MaxV2();
+
+    /**
+     * The meta object literal for the '<em><b>Var2</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANTIFIABLE__VAR2 = eINSTANCE.getQuantifiable_Var2();
 
     /**
      * The meta object literal for the '{@link com.coffee.pLEC.impl.BoolValImpl <em>Bool Val</em>}' class.
@@ -2232,6 +2555,24 @@ public interface PLECPackage extends EPackage
      * @generated
      */
     EReference LIST_OF_IDS__IDS = eINSTANCE.getListOfIDs_Ids();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.pLEC.impl.ListOfListsOfValuesImpl <em>List Of Lists Of Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.pLEC.impl.ListOfListsOfValuesImpl
+     * @see com.coffee.pLEC.impl.PLECPackageImpl#getListOfListsOfValues()
+     * @generated
+     */
+    EClass LIST_OF_LISTS_OF_VALUES = eINSTANCE.getListOfListsOfValues();
+
+    /**
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LIST_OF_LISTS_OF_VALUES__VALUES = eINSTANCE.getListOfListsOfValues_Values();
 
   }
 

@@ -24,6 +24,8 @@ import org.junit.runner.RunWith;
  * @author Angela Villota
  * @version PLEC V3
  * August 2018
+ * Modified on October 9 2018
+ * HLVL V1
  */
 @RunWith(XtextRunner.class)
 @InjectWith(PLECInjectorProvider.class)
@@ -53,6 +55,10 @@ public class THLCLCodeGenerationTests {
       _builder.newLine();
       _builder.append("boolean A");
       _builder.newLine();
+      _builder.append("integer B values: 0..1");
+      _builder.newLine();
+      _builder.append("integer C values: [0, 1]");
+      _builder.newLine();
       _builder.append("constraints:");
       _builder.newLine();
       final String program = _builder.toString();
@@ -67,6 +73,10 @@ public class THLCLCodeGenerationTests {
       _builder_1.append("variables:");
       _builder_1.newLine();
       _builder_1.append("boolean A");
+      _builder_1.newLine();
+      _builder_1.append("//integer B domain: 0..1");
+      _builder_1.newLine();
+      _builder_1.append("//integer C domain: [0, 1]");
       _builder_1.newLine();
       _builder_1.append("constraints:");
       _builder_1.newLine();
@@ -83,7 +93,7 @@ public class THLCLCodeGenerationTests {
    * a Boolean constraint problem
    */
   @Test
-  public void structuralNoCardBoolean() {
+  public void booleanParentChild() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("model m1");
@@ -100,12 +110,19 @@ public class THLCLCodeGenerationTests {
       _builder.newLine();
       _builder.append("constraints:");
       _builder.newLine();
+      _builder.append("c0: A is root");
+      _builder.newLine();
       _builder.append("c1: structural: A variants: [B, C, D] ");
+      _builder.newLine();
+      _builder.append("c2: B is mandatory");
+      _builder.newLine();
+      _builder.append("c3: C is optional");
+      _builder.newLine();
+      _builder.append("c4: D is mandatory");
       _builder.newLine();
       final String program = _builder.toString();
       final Model model = this.parseHelper.parse(program);
       Assert.assertNotNull(model);
-      this.printErrors(model);
       final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.SAT);
       final CharSequence actual = generator.parseModel(model);
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -123,7 +140,284 @@ public class THLCLCodeGenerationTests {
       _builder_1.newLine();
       _builder_1.append("constraints:");
       _builder_1.newLine();
+      _builder_1.append("c0: A = 1");
+      _builder_1.newLine();
+      _builder_1.append("c2: A <=> B");
+      _builder_1.newLine();
+      _builder_1.append("c3: C => A");
+      _builder_1.newLine();
+      _builder_1.append("c4: A <=> D");
+      _builder_1.newLine();
       final String expected = _builder_1.toString();
+      Assert.assertEquals(expected.toString(), actual.toString());
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void structuralOR() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model satExample_GPL_from_splot");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean Gpl");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("boolean connected");
+      _builder.newLine();
+      _builder.append("boolean stronglyc");
+      _builder.newLine();
+      _builder.append("boolean cycle");
+      _builder.newLine();
+      _builder.append("boolean mstprim");
+      _builder.newLine();
+      _builder.append("boolean mstkruskal");
+      _builder.newLine();
+      _builder.append("boolean shortest");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c0: Gpl is root");
+      _builder.newLine();
+      _builder.append("c1: structural: Gpl variants:[Algorithms]");
+      _builder.newLine();
+      _builder.append("c20: structural: Algorithms variants: [connected, stronglyc, cycle, mstprim, mstkruskal, shortest] card: [0,7]");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      this.printErrors(model);
+      final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.SAT);
+      final CharSequence actual = generator.parseModel(model);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("model m1");
+      _builder_1.newLine();
+      _builder_1.append("variables:");
+      _builder_1.newLine();
+      _builder_1.append("boolean Gpl");
+      _builder_1.newLine();
+      _builder_1.append("boolean Algorithms");
+      _builder_1.newLine();
+      _builder_1.append("boolean connected");
+      _builder_1.newLine();
+      _builder_1.append("boolean stronglyc");
+      _builder_1.newLine();
+      _builder_1.append("boolean cycle");
+      _builder_1.newLine();
+      _builder_1.append("boolean mstprim");
+      _builder_1.newLine();
+      _builder_1.append("boolean mstkruskal");
+      _builder_1.newLine();
+      _builder_1.append("boolean shortest");
+      _builder_1.newLine();
+      _builder_1.append("constraints:");
+      _builder_1.newLine();
+      _builder_1.append("c0: Gpl = 1");
+      _builder_1.newLine();
+      _builder_1.append("c20: Algorithms <=> (connected OR stronglyc OR cycle OR mstprim OR mstkruskal OR shortest )");
+      _builder_1.newLine();
+      final String expected = _builder_1.toString();
+      Assert.assertEquals(expected.toString(), actual.toString());
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void structuralAlternative() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model satExample_GPL_from_splot");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean Gpl");
+      _builder.newLine();
+      _builder.append("boolean Algorithms");
+      _builder.newLine();
+      _builder.append("boolean connected");
+      _builder.newLine();
+      _builder.append("boolean stronglyc");
+      _builder.newLine();
+      _builder.append("boolean cycle");
+      _builder.newLine();
+      _builder.append("boolean mstprim");
+      _builder.newLine();
+      _builder.append("boolean mstkruskal");
+      _builder.newLine();
+      _builder.append("boolean shortest");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c0: Gpl is root");
+      _builder.newLine();
+      _builder.append("c1: structural: Gpl variants:[Algorithms]");
+      _builder.newLine();
+      _builder.append("c20: structural: Algorithms variants: [connected, stronglyc, cycle, mstprim, mstkruskal, shortest] card: [1,1]");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      this.printErrors(model);
+      final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.SAT);
+      final CharSequence actual = generator.parseModel(model);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("model m1");
+      _builder_1.newLine();
+      _builder_1.append("variables:");
+      _builder_1.newLine();
+      _builder_1.append("boolean Gpl");
+      _builder_1.newLine();
+      _builder_1.append("boolean Algorithms");
+      _builder_1.newLine();
+      _builder_1.append("boolean connected");
+      _builder_1.newLine();
+      _builder_1.append("boolean stronglyc");
+      _builder_1.newLine();
+      _builder_1.append("boolean cycle");
+      _builder_1.newLine();
+      _builder_1.append("boolean mstprim");
+      _builder_1.newLine();
+      _builder_1.append("boolean mstkruskal");
+      _builder_1.newLine();
+      _builder_1.append("boolean shortest");
+      _builder_1.newLine();
+      _builder_1.append("constraints:");
+      _builder_1.newLine();
+      _builder_1.append("c0: Gpl = 1");
+      _builder_1.newLine();
+      _builder_1.append("c20: (connected <=> (~stronglyc AND ~cycle AND ~mstprim AND ~mstkruskal AND ~shortest AND  Algorithms)) AND");
+      _builder_1.newLine();
+      _builder_1.append("(stronglyc <=> (~connected AND ~cycle AND ~mstprim AND ~mstkruskal AND ~shortest AND  Algorithms)) AND");
+      _builder_1.newLine();
+      _builder_1.append("(cycle <=> (~connected AND ~stronglyc AND ~mstprim AND ~mstkruskal AND ~shortest AND  Algorithms)) AND");
+      _builder_1.newLine();
+      _builder_1.append("(mstprim <=> (~connected AND ~stronglyc AND ~cycle AND ~mstkruskal AND ~shortest AND  Algorithms)) AND");
+      _builder_1.newLine();
+      _builder_1.append("(mstkruskal <=> (~connected AND ~stronglyc AND ~cycle AND ~mstprim AND ~shortest AND  Algorithms)) AND");
+      _builder_1.newLine();
+      _builder_1.append("(shortest <=> (~connected AND ~stronglyc AND ~cycle AND ~mstprim AND ~mstkruskal AND  Algorithms)) ");
+      _builder_1.newLine();
+      final String expected = _builder_1.toString();
+      Assert.assertEquals(expected.toString(), actual.toString());
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Method for testing the generation of requires and excludes
+   */
+  @Test
+  public void booleanRequiresExcludes() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean A");
+      _builder.newLine();
+      _builder.append("boolean B");
+      _builder.newLine();
+      _builder.append("boolean C");
+      _builder.newLine();
+      _builder.append("boolean D");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c0: A is root");
+      _builder.newLine();
+      _builder.append("c1: structural: A variants: [B, C, D]");
+      _builder.newLine();
+      _builder.append("c2: B requires C");
+      _builder.newLine();
+      _builder.append("c3: B excludes D");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.SAT);
+      final CharSequence actual = generator.parseModel(model);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("model m1");
+      _builder_1.newLine();
+      _builder_1.append("variables:");
+      _builder_1.newLine();
+      _builder_1.append("boolean A");
+      _builder_1.newLine();
+      _builder_1.append("boolean B");
+      _builder_1.newLine();
+      _builder_1.append("boolean C");
+      _builder_1.newLine();
+      _builder_1.append("boolean D");
+      _builder_1.newLine();
+      _builder_1.append("constraints:");
+      _builder_1.newLine();
+      _builder_1.append("c0: A = 1");
+      _builder_1.newLine();
+      _builder_1.append("c2: B => C");
+      _builder_1.newLine();
+      _builder_1.append("c3: ~(B AND D)");
+      _builder_1.newLine();
+      final String expected = _builder_1.toString();
+      Assert.assertEquals(expected.toString(), actual.toString());
+      Assert.assertTrue(model.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Method for testing the generation of requires and excludes
+   */
+  @Test
+  public void booleanAssignement() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("model m1");
+      _builder.newLine();
+      _builder.append("variables:");
+      _builder.newLine();
+      _builder.append("boolean A");
+      _builder.newLine();
+      _builder.append("boolean B");
+      _builder.newLine();
+      _builder.append("constraints:");
+      _builder.newLine();
+      _builder.append("c0: A is selected");
+      _builder.newLine();
+      _builder.append("c1: B is unselected");
+      _builder.newLine();
+      final String program = _builder.toString();
+      final Model model = this.parseHelper.parse(program);
+      Assert.assertNotNull(model);
+      final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.SAT);
+      final CharSequence actual = generator.parseModel(model);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("model m1");
+      _builder_1.newLine();
+      _builder_1.append("variables:");
+      _builder_1.newLine();
+      _builder_1.append("boolean A");
+      _builder_1.newLine();
+      _builder_1.append("boolean B");
+      _builder_1.newLine();
+      _builder_1.append("constraints:");
+      _builder_1.newLine();
+      _builder_1.append("c0: A = 1");
+      _builder_1.newLine();
+      _builder_1.append("c1: B = 0");
+      _builder_1.newLine();
+      final String expected = _builder_1.toString();
+      InputOutput.<CharSequence>print(actual);
       Assert.assertEquals(expected.toString(), actual.toString());
       Assert.assertTrue(model.eResource().getErrors().isEmpty());
     } catch (Throwable _e) {
@@ -208,7 +502,6 @@ public class THLCLCodeGenerationTests {
       final String program = _builder.toString();
       final Model model = this.parseHelper.parse(program);
       Assert.assertNotNull(model);
-      this.printErrors(model);
       final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.CSP);
       final CharSequence actual = generator.parseModel(model);
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -269,7 +562,6 @@ public class THLCLCodeGenerationTests {
       final String program = _builder.toString();
       final Model model = this.parseHelper.parse(program);
       Assert.assertNotNull(model);
-      this.printErrors(model);
       final THLCLGenerator generator = new THLCLGenerator("m1", TypeOfProblem.CSP);
       final CharSequence actual = generator.parseModel(model);
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -298,9 +590,8 @@ public class THLCLCodeGenerationTests {
       _builder_1.append("c2: (E => D) AND (F => D) AND (G => D) AND (D >= 1) => ((E + F + G  <= 1 ) AND (E + F + G  >= 3))");
       _builder_1.newLine();
       final String expected = _builder_1.toString();
-      InputOutput.<CharSequence>print(actual);
-      this.printErrors(model);
       Assert.assertEquals(expected.toString(), actual.toString());
+      this._validationTestHelper.assertNoErrors(model);
       Assert.assertTrue(model.eResource().getErrors().isEmpty());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

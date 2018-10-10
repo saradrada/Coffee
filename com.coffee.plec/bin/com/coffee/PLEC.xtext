@@ -5,7 +5,9 @@ generate pLEC "http://www.coffee.com/PLEC"
 /**
  * Grammar specification of PLEC, the Product Line Engineering Constraints Language
  * @author Angela Villota
- * @version PLEC V3 modified in october 4 for including the root constraint
+ * @version PLEC V3 
+ * Modified in October 4th for including the root constraint
+ * Modified on October 9th for fix the setRefinement
  * August 2018
  */
 
@@ -40,10 +42,10 @@ Constraint:
 ;
 
 ConsExpression:
-	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN|Attributes
+	IDCons|Refinement |Rule |FodaBin |Structural |FodaUN|Attributes | Temporal |Quantifiable
 ;
 TerminalExp returns Expression:
-	'(' ConsExpression ')' | IDCons
+	'(' ConsExpression ')' | IDCons 
 ;
 IDCons:
 	name=ID
@@ -70,21 +72,25 @@ Refinement:
 ;
 
 Assignment:
-	var= ID 'is' value= Value
+	variable= [VarDeclaration] 'is' valu=Value
 	
 ;
 VarRefinement:
-	var=ID 'in' values= VariantDeclaration
+	var=[VarDeclaration] 'in' values= VariantDeclaration
 ;
+//adjusted 
 SetRefinement:
-	'vars:' '(' vars=ListOfIDs  ')'  
-	'variants'
-	'[' '('head= ListOfValues ')'  ( ',' '('tail+= ListOfValues')')+ ']'
+	'vars:' ('(') vars=ListOfIDs  (')')  
+	'variants:'
+	'[' list= ListOfListsOfValues ']'  
 ;
 RootRefinement:
 	var=[VarDeclaration] 'is' 'root' 
 ;
 
+Temporal:
+	operator= TempOP  cons= TerminalExp 
+;
 
 Rule:
 	condition= TerminalExp '-->' consequence= TerminalExp
@@ -97,13 +103,16 @@ FodaBin:
 	var1=[VarDeclaration] op= BinOp var2= [VarDeclaration]
 ;
 
+Quantifiable:
+	'[' minV1=Number ',' maxV1=Number ']' var1=[VarDeclaration] 'requires'  '[' minV2=Number ',' maxV2=Number ']' var2= [VarDeclaration]
+;
 
 
 //syntactic categories
 
 
 //Values
-BoolVal: value=('true'|'false');
+BoolVal: value=('selected'|'unselected');
 Number: value = INT ;
 
 Symbol: value= ID;
@@ -122,11 +131,19 @@ ListOfIDs:
 	ids+= ([VarDeclaration]) (',' + ids+= [VarDeclaration])*
 ;
 
+ListOfListsOfValues:
+	'(' values+=ListOfValues ')' (',' + '(' values+=ListOfValues ')')*
+	
+;
 BinOp:
 	 'requires' |'excludes'|'optional' |'mandatory'
 ;
 
 UnaryOp:
 	 'optional' |'mandatory'
+;
+
+TempOP:
+	'always' |'next'|'eventually' 
 ;
 

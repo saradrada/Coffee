@@ -1,6 +1,6 @@
 package com.coffee.generator;
 
-import com.coffee.pLEC.VarDeclaration;
+import com.coffee.pLEC.Quantifiable;
 
 @SuppressWarnings("all")
 public interface CardinalityFactory {
@@ -12,7 +12,5 @@ public interface CardinalityFactory {
    * @version PLEC V3
    * August 2018
    */
-  public abstract CharSequence getClonConstraints();
-  
-  public abstract CharSequence getClonVariables(final VarDeclaration variable);
+  public abstract CharSequence getQuantifiableRequires(final Quantifiable exp);
 }
