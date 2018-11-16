@@ -82,9 +82,8 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
             {
               List<String> _varsIds = node.getVarsIds();
               for(final String instance : _varsIds) {
-                _builder.append("declareInstance(");
-                _builder.append(instance);
-                _builder.append(") ");
+                CharSequence _declareInstance = this.factory.declareInstance(instance);
+                _builder.append(_declareInstance);
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -121,8 +120,6 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
     String _header = this.factory.getHeader();
     _builder.append(_header);
     _builder.append(" ");
-    String _modelName = this.getModelName();
-    _builder.append(_modelName);
     _builder.newLineIfNotEmpty();
     String _varLabel = this.factory.getVarLabel();
     _builder.append(_varLabel);
@@ -130,11 +127,23 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
     CharSequence _parseVariables = this.parseVariables(model);
     _builder.append(_parseVariables);
     _builder.newLineIfNotEmpty();
+    String _varLabelClose = this.factory.getVarLabelClose();
+    _builder.append(_varLabelClose);
+    _builder.newLineIfNotEmpty();
     String _consLabel = this.factory.getConsLabel();
     _builder.append(_consLabel);
     _builder.newLineIfNotEmpty();
     CharSequence _parseConstraints = this.parseConstraints(model);
     _builder.append(_parseConstraints);
+    _builder.newLineIfNotEmpty();
+    String _consLabelClose = this.factory.getConsLabelClose();
+    _builder.append(_consLabelClose);
+    _builder.newLineIfNotEmpty();
+    CharSequence _strategy = this.factory.getStrategy();
+    _builder.append(_strategy);
+    _builder.newLineIfNotEmpty();
+    String _footer = this.factory.getFooter();
+    _builder.append(_footer);
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -289,10 +298,10 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
             ConsExpression _exp_5 = c.getExp();
             this.root = ((RootRefinement) _exp_5).getVar().getName();
             StringConcatenation _builder = new StringConcatenation();
-            _builder.append("<intension id= \"");
+            _builder.append("<intension id=\"");
             String _name_1 = c.getName();
             _builder.append(_name_1);
-            _builder.append("\"\"> ");
+            _builder.append("\"> ");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("eq(");
@@ -317,7 +326,7 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
     StringBuilder _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<intension id= \"ac_");
+      _builder.append("<intension id=\"ac_");
       int _plusPlus = this.cardConstraints++;
       _builder.append(_plusPlus);
       _builder.append("\"> ");
@@ -334,13 +343,13 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
       _builder.newLine();
       this.constraintsDeclarations.append(_builder);
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("<intension id= \"ac_");
+      _builder_1.append("<intension id=\"ac_");
       int _plusPlus_1 = this.cardConstraints++;
       _builder_1.append(_plusPlus_1);
       _builder_1.append("\">");
       _builder_1.newLineIfNotEmpty();
       _builder_1.append("\t");
-      _builder_1.append("lq(");
+      _builder_1.append("le(");
       int _min = node.getMin();
       _builder_1.append(_min, "\t");
       _builder_1.append(", ");
@@ -351,13 +360,13 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
       _builder_1.newLine();
       this.constraintsDeclarations.append(_builder_1);
       StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append("<intension id= \"ac_");
+      _builder_2.append("<intension id=\"ac_");
       int _plusPlus_2 = this.cardConstraints++;
       _builder_2.append(_plusPlus_2);
       _builder_2.append("\">");
       _builder_2.newLineIfNotEmpty();
       _builder_2.append("\t");
-      _builder_2.append("gq(");
+      _builder_2.append("ge(");
       int _numInstances = node.getNumInstances();
       _builder_2.append(_numInstances, "\t");
       _builder_2.append(", ");
@@ -368,7 +377,7 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
       _builder_2.newLine();
       this.constraintsDeclarations.append(_builder_2);
       StringConcatenation _builder_3 = new StringConcatenation();
-      _builder_3.append("<intension id= \"ac_");
+      _builder_3.append("<intension id=\"ac_");
       int _plusPlus_3 = this.cardConstraints++;
       _builder_3.append(_plusPlus_3);
       _builder_3.append("\">");
@@ -377,10 +386,10 @@ public class XCSP3CardinalityGenerator extends XCSP3Generator {
       _builder_3.append("iff(");
       String _id_1 = node.getId();
       _builder_3.append(_id_1, "\t");
-      _builder_3.append(", ");
+      _builder_3.append(", gt(");
       String _id_2 = node.getId();
       _builder_3.append(_id_2, "\t");
-      _builder_3.append("_card >0)");
+      _builder_3.append("_card,0))");
       _builder_3.newLineIfNotEmpty();
       _builder_3.append("</intension>");
       _builder_3.newLine();

@@ -60,7 +60,7 @@ class XCSP3CardinalityGenerator extends XCSP3Generator {
 			 «IF node.id!=root && node.numInstances!=1 »
 			 	«factory.declareVaribleNumInstances(node)»
 			 	«FOR instance: node.varsIds»
-			 		declareInstance(«instance») 
+			 		«factory.declareInstance(instance)»
 			 	«ENDFOR»
 			 «ENDIF»
 		«ENDFOR»
@@ -87,11 +87,15 @@ class XCSP3CardinalityGenerator extends XCSP3Generator {
 	override parseModel(Model model) {
 		'''
 		«createTree(model)»
-		«factory.getHeader» «modelName»
+		«factory.getHeader» 
 		«factory.getVarLabel»
 		«parseVariables(model)»
+		«factory.getVarLabelClose»
 		«factory.getConsLabel»
 		«parseConstraints(model)»
+		«factory.getConsLabelClose»
+		«factory.getStrategy()»
+		«factory.getFooter»
 		'''
 	}
 	
@@ -196,7 +200,7 @@ class XCSP3CardinalityGenerator extends XCSP3Generator {
 						root= (c.exp as RootRefinement).getVar.name
 						constraintsDeclarations.append(//parseConstraint(c.name, c.exp)
 						'''
-						<intension id= "«c.name»""> 
+						<intension id="«c.name»"> 
 							eq(«root», 1)
 						</intension>
 						'''
@@ -217,29 +221,29 @@ class XCSP3CardinalityGenerator extends XCSP3Generator {
 		
 		constraintsDeclarations.append(
 				  '''
-				  <intension id= "ac_«cardConstraints++»"> 
+				  <intension id="ac_«cardConstraints++»"> 
 				  	eq(«node.id»_card, «allInstances») 
 				  </intension>
 				  ''')
 		// cantidad de instancias part1
 		constraintsDeclarations.append(
 								'''
-								<intension id= "ac_«cardConstraints++»">
-									lq(«node.min», «allInstances»)
+								<intension id="ac_«cardConstraints++»">
+									le(«node.min», «allInstances»)
 								</intension>
 								''')
 		// cantidad de instancias part2
 		constraintsDeclarations.append(
 								'''
-								<intension id= "ac_«cardConstraints++»">
-									gq(«node.numInstances», «allInstances»)
+								<intension id="ac_«cardConstraints++»">
+									ge(«node.numInstances», «allInstances»)
 								</intension>
 								''')
 		// feature=> card
 		constraintsDeclarations.append(
 								'''
-								<intension id= "ac_«cardConstraints++»">
-									iff(«node.id», «node.id»_card >0)
+								<intension id="ac_«cardConstraints++»">
+									iff(«node.id», gt(«node.id»_card,0))
 								</intension>
 								''')
 	}

@@ -171,12 +171,12 @@ class IntegerFactory extends THLCLFactory implements  FODAFactory, AttributesFac
 	
 	override getAssignement(Assignment exp) {
 		var output=""
-		if((exp.valu as BoolVal).value == "selected")
-			output='''«exp.variable.name» = 1'''
-		else
-			if((exp.valu as BoolVal).value == "unselected")
-				output='''«exp.variable.name» = 0'''
-			else
+//		if((exp.valu as BoolVal).value == "selected")
+//			output='''«exp.variable.name» = 1'''
+//		else
+//			if((exp.valu as BoolVal).value == "unselected")
+//				output='''«exp.variable.name» = 0'''
+//			else
 				'''«exp.variable.name» = «(exp.valu as Number).value»'''
 	}
 	

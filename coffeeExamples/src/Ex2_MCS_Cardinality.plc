@@ -1,4 +1,4 @@
-model Ex4_MCS_card_att
+model Ex2_MCS_card_att
 variables:
 boolean MCS
 instantiable [1,2] boolean Processor

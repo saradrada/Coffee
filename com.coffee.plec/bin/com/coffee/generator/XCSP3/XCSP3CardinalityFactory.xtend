@@ -37,8 +37,8 @@ class XCSP3CardinalityFactory extends CSPFactory implements CardinalityFactory{
 	override getQuantifiableRequires(Quantifiable exp) {
 		'''
 		 imp(
-		 and(lq(«exp.minV1.value»,«exp.var1.name»_card), lq(«exp.var1.name»_card, «exp.maxV1.value»)), 
-		 and(lq(«exp.minV2.value»,«exp.var2.name»_card), lq(«exp.var2.name»_card, «exp.maxV2.value»)))
+		 and(le(«exp.minV1.value»,«exp.var1.name»_card), le(«exp.var1.name»_card, «exp.maxV1.value»)), 
+		 and(le(«exp.minV2.value»,«exp.var2.name»_card), le(«exp.var2.name»_card, «exp.maxV2.value»)))
 		'''
 	}
 	

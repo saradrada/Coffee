@@ -1,60 +1,60 @@
 model EX2_PLM_Michel
 variables:
-boolean Binding
-boolean Booklet
-boolean Left
-boolean Landscape
+boolean Binding 
+boolean Booklet 
+boolean Left 
+boolean Landscape 
 integer Landscape_card domain:1..4
 boolean Document_Sheet1_Page1_Orientation1_Landscape1
 boolean Document_Sheet1_Page2_Orientation1_Landscape1
 boolean Document_Sheet2_Page1_Orientation1_Landscape1
 boolean Document_Sheet2_Page2_Orientation1_Landscape1
-boolean Front
+boolean Front 
 integer Front_card domain:1..4
 boolean Document_Sheet1_Page1_Side1_Front1
 boolean Document_Sheet1_Page2_Side1_Front1
 boolean Document_Sheet2_Page1_Side1_Front1
 boolean Document_Sheet2_Page2_Side1_Front1
-boolean Right
-boolean Portrait
+boolean Right 
+boolean Portrait 
 integer Portrait_card domain:1..4
 boolean Document_Sheet1_Page1_Orientation1_Portrait1
 boolean Document_Sheet1_Page2_Orientation1_Portrait1
 boolean Document_Sheet2_Page1_Orientation1_Portrait1
 boolean Document_Sheet2_Page2_Orientation1_Portrait1
-boolean Page
+boolean Page 
 integer Page_card domain:0..4
 boolean Document_Sheet1_Page1
 boolean Document_Sheet1_Page2
 boolean Document_Sheet2_Page1
 boolean Document_Sheet2_Page2
-boolean Document
-boolean Normal
-boolean Orientation
+boolean Document 
+boolean Normal 
+boolean Orientation 
 integer Orientation_card domain:1..4
 boolean Document_Sheet1_Page1_Orientation1
 boolean Document_Sheet1_Page2_Orientation1
 boolean Document_Sheet2_Page1_Orientation1
 boolean Document_Sheet2_Page2_Orientation1
-boolean Side
+boolean Side 
 integer Side_card domain:1..4
 boolean Document_Sheet1_Page1_Side1
 boolean Document_Sheet1_Page2_Side1
 boolean Document_Sheet2_Page1_Side1
 boolean Document_Sheet2_Page2_Side1
-boolean Type
-boolean Top
-boolean Back
+boolean Type 
+boolean Top 
+boolean Back 
 integer Back_card domain:1..4
 boolean Document_Sheet1_Page1_Side1_Back1
 boolean Document_Sheet1_Page2_Side1_Back1
 boolean Document_Sheet2_Page1_Side1_Back1
 boolean Document_Sheet2_Page2_Side1_Back1
-boolean Sheet
+boolean Sheet 
 integer Sheet_card domain:1..2
 boolean Document_Sheet1
 boolean Document_Sheet2
-boolean Folding
+boolean Folding 
 integer Folding_card domain:1..2
 boolean Document_Sheet1_Folding1
 boolean Document_Sheet2_Folding1

@@ -5,7 +5,6 @@ import com.coffee.generator.FODAFactory;
 import com.coffee.generator.THLCL.THLCLFactory;
 import com.coffee.pLEC.Assignment;
 import com.coffee.pLEC.Attributes;
-import com.coffee.pLEC.BoolVal;
 import com.coffee.pLEC.Structural;
 import com.coffee.pLEC.Value;
 import com.coffee.pLEC.VarDeclaration;
@@ -293,40 +292,14 @@ public class IntegerFactory extends THLCLFactory implements FODAFactory, Attribu
     CharSequence _xblockexpression = null;
     {
       String output = "";
-      CharSequence _xifexpression = null;
+      StringConcatenation _builder = new StringConcatenation();
+      String _name = exp.getVariable().getName();
+      _builder.append(_name);
+      _builder.append(" = ");
       Value _valu = exp.getValu();
-      String _value = ((BoolVal) _valu).getValue();
-      boolean _equals = Objects.equal(_value, "selected");
-      if (_equals) {
-        StringConcatenation _builder = new StringConcatenation();
-        String _name = exp.getVariable().getName();
-        _builder.append(_name);
-        _builder.append(" = 1");
-        _xifexpression = output = _builder.toString();
-      } else {
-        CharSequence _xifexpression_1 = null;
-        Value _valu_1 = exp.getValu();
-        String _value_1 = ((BoolVal) _valu_1).getValue();
-        boolean _equals_1 = Objects.equal(_value_1, "unselected");
-        if (_equals_1) {
-          StringConcatenation _builder_1 = new StringConcatenation();
-          String _name_1 = exp.getVariable().getName();
-          _builder_1.append(_name_1);
-          _builder_1.append(" = 0");
-          _xifexpression_1 = output = _builder_1.toString();
-        } else {
-          StringConcatenation _builder_2 = new StringConcatenation();
-          String _name_2 = exp.getVariable().getName();
-          _builder_2.append(_name_2);
-          _builder_2.append(" = ");
-          Value _valu_2 = exp.getValu();
-          int _value_2 = ((com.coffee.pLEC.Number) _valu_2).getValue();
-          _builder_2.append(_value_2);
-          _xifexpression_1 = _builder_2;
-        }
-        _xifexpression = _xifexpression_1;
-      }
-      _xblockexpression = _xifexpression;
+      int _value = ((com.coffee.pLEC.Number) _valu).getValue();
+      _builder.append(_value);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }

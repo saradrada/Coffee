@@ -62,6 +62,7 @@ public class SatExample_GPL_from_splot {
 		transformVars();
 		transformConstraints(); 
 		// use the solver to solve the constraint program
+		System.out.println(prologProgram);
 		evaluateSatisfiability();
 		//show the output
 		System.out.println(prologProgram);
@@ -473,7 +474,7 @@ hlclProgram.add(c22);
 		// //these lines are commented because they are useful for debugging 
 		Hlcl2SWIProlog swiPrologTransformer = new Hlcl2SWIProlog(); 
 		prologProgram = swiPrologTransformer.transform(hlclProgram);
-				
+		System.out.println(prologProgram);
 		// an instance of the solver for Swiprolog 
 		swiSolver= new SWIPrologSolver();
 		swiSolver.setHLCLProgram(hlclProgram); //passing the hlcl program to the solver
