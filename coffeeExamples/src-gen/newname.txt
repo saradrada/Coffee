@@ -1,0 +1,4 @@
+This is an example of generated code 
+		
+		
+		This is the name of the model newname 
