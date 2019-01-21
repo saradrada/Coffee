@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ConstantDeclImpl extends ConstDeclImpl implements ConstantDecl
+public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

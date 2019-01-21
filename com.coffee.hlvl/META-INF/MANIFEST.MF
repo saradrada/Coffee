@@ -15,15 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.coffee.hlvl.util,
- com.coffee,
- com.coffee.hlvl.impl,
- com.coffee.parser.antlr.internal,
- com.coffee.parser.antlr,
- com.coffee.services,
- com.coffee.hlvl,
- com.coffee.validation,
+Export-Package: com.coffee,
  com.coffee.generator,
+ com.coffee.generator.bools,
+ com.coffee.generator.minizinc,
+ com.coffee.hlvl,
+ com.coffee.hlvl.impl,
+ com.coffee.hlvl.util,
+ com.coffee.parser.antlr,
+ com.coffee.parser.antlr.internal,
+ com.coffee.scoping,
  com.coffee.serializer,
- com.coffee.scoping
+ com.coffee.services,
+ com.coffee.validation
 Import-Package: org.apache.log4j

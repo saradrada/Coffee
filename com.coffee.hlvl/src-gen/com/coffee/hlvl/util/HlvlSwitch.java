@@ -10,10 +10,10 @@ import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConsExpression;
-import com.coffee.hlvl.ConstDecl;
 import com.coffee.hlvl.ConstantDecl;
+import com.coffee.hlvl.Core;
+import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElementDecl;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
@@ -27,7 +27,6 @@ import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.IntConstant;
 import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.List;
 import com.coffee.hlvl.ListOfIDs;
 import com.coffee.hlvl.ListOfListValues;
 import com.coffee.hlvl.ListOfRelRefs;
@@ -141,10 +140,18 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.CONST_DECL:
+      case HlvlPackage.DECLARATION:
       {
-        ConstDecl constDecl = (ConstDecl)theEObject;
-        T result = caseConstDecl(constDecl);
+        Declaration declaration = (Declaration)theEObject;
+        T result = caseDeclaration(declaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.CONSTANT_DECL:
+      {
+        ConstantDecl constantDecl = (ConstantDecl)theEObject;
+        T result = caseConstantDecl(constantDecl);
+        if (result == null) result = caseDeclaration(constantDecl);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -152,7 +159,7 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         VariableDecl variableDecl = (VariableDecl)theEObject;
         T result = caseVariableDecl(variableDecl);
-        if (result == null) result = caseElmDeclaration(variableDecl);
+        if (result == null) result = caseDeclaration(variableDecl);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -193,11 +200,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.LIST:
+      case HlvlPackage.CORE:
       {
-        List list = (List)theEObject;
-        T result = caseList(list);
-        if (result == null) result = caseRelation(list);
+        Core core = (Core)theEObject;
+        T result = caseCore(core);
+        if (result == null) result = caseRelation(core);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -411,23 +418,6 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.CONSTANT_DECL:
-      {
-        ConstantDecl constantDecl = (ConstantDecl)theEObject;
-        T result = caseConstantDecl(constantDecl);
-        if (result == null) result = caseConstDecl(constantDecl);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.ELEMENT_DECL:
-      {
-        ElementDecl elementDecl = (ElementDecl)theEObject;
-        T result = caseElementDecl(elementDecl);
-        if (result == null) result = caseVariableDecl(elementDecl);
-        if (result == null) result = caseElmDeclaration(elementDecl);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case HlvlPackage.IFF:
       {
         Iff iff = (Iff)theEObject;
@@ -609,17 +599,33 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Const Decl</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Const Decl</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Declaration</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConstDecl(ConstDecl object)
+  public T caseDeclaration(Declaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Constant Decl</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Constant Decl</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConstantDecl(ConstantDecl object)
   {
     return null;
   }
@@ -721,17 +727,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>List</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Core</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>List</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Core</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseList(List object)
+  public T caseCore(Core object)
   {
     return null;
   }
@@ -1164,38 +1170,6 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfListValues(ListOfListValues object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Constant Decl</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Constant Decl</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseConstantDecl(ConstantDecl object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Element Decl</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Element Decl</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseElementDecl(ElementDecl object)
   {
     return null;
   }

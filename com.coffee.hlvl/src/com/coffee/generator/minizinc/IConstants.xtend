@@ -1,0 +1,30 @@
+package com.coffee.generator.minizinc
+
+interface IConstants {
+	public static  final String SEMICOLON=";"
+	public static  final String COLON=":"
+	public static  final String OPEN_CALL="("
+	public static  final String CLOSE_CALL=")"
+	//
+	public static  final String VAR_DEF="var"
+	public static  final String BOOL_DOMAIN="bool"
+	public static  final String ASSIGN="="
+	
+	//Constraints
+	public static final String CONS_DEF ="constraint" 
+	
+	//Relational operators
+	public static final String EQUIV ="=" 
+	public static final String IFF="<->"
+	public static final String IMPLIES_LR="->"
+	public static final String IMPLIES_R_="<-"
+	public static final String OR="\\/"
+	public static final String AND="/\\"
+	public static final String NOT="not"
+	
+	
+	//Atoms
+	public static final String TRUE_ATOM ="true" 
+	public static final String FALSE_ATOM ="false" 
+	
+}

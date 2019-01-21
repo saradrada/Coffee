@@ -4,6 +4,7 @@
 package com.coffee.generator;
 
 import com.coffee.generator.Dialect;
+import com.coffee.generator.bools.BoolGenerator;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
@@ -146,10 +147,12 @@ public class HlvlGenerator extends AbstractGenerator {
   }
   
   public CharSequence toBoolean(final Model model, final String modelName) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("boolean model");
-    _builder.newLine();
-    return _builder;
+    CharSequence _xblockexpression = null;
+    {
+      BoolGenerator boolGen = new BoolGenerator(modelName);
+      _xblockexpression = boolGen.parseModel(model);
+    }
+    return _xblockexpression;
   }
   
   public CharSequence toInteger(final Model model, final String modelName, final Dialect dialect) {

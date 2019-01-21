@@ -99,17 +99,15 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class ElmDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.ElmDeclaration");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cAttAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final Keyword cAttAttKeyword_0_0_0 = (Keyword)cAttAssignment_0_0.eContents().get(0);
-		private final Assignment cDataTypeAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cDataTypeDataTypeParserRuleCall_0_1_0 = (RuleCall)cDataTypeAssignment_0_1.eContents().get(0);
-		private final Assignment cNameAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_0_2_0 = (RuleCall)cNameAssignment_0_2.eContents().get(0);
-		private final Assignment cDeclarationAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
-		private final RuleCall cDeclarationConstDeclParserRuleCall_0_3_0 = (RuleCall)cDeclarationAssignment_0_3.eContents().get(0);
-		private final RuleCall cVariableDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cAttAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cAttAttKeyword_0_0 = (Keyword)cAttAssignment_0.eContents().get(0);
+		private final Assignment cDataTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDataTypeDataTypeParserRuleCall_1_0 = (RuleCall)cDataTypeAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Assignment cDeclarationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDeclarationDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationAssignment_3.eContents().get(0);
 		
 		////ElmDeclaration:
 		////	Const|Variable
@@ -145,44 +143,57 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//ElmDeclaration:
 		//	att='att'?
 		//	dataType=DataType name=ID
-		//	declaration=ConstDecl | VariableDecl;
+		//	declaration=Declaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//att='att'? dataType=DataType name=ID declaration=ConstDecl | VariableDecl
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//att='att'? dataType=DataType name=ID declaration=ConstDecl
-		public Group getGroup_0() { return cGroup_0; }
+		//att='att'? dataType=DataType name=ID declaration=Declaration
+		public Group getGroup() { return cGroup; }
 		
 		//att='att'?
-		public Assignment getAttAssignment_0_0() { return cAttAssignment_0_0; }
+		public Assignment getAttAssignment_0() { return cAttAssignment_0; }
 		
 		//'att'
-		public Keyword getAttAttKeyword_0_0_0() { return cAttAttKeyword_0_0_0; }
+		public Keyword getAttAttKeyword_0_0() { return cAttAttKeyword_0_0; }
 		
 		//dataType=DataType
-		public Assignment getDataTypeAssignment_0_1() { return cDataTypeAssignment_0_1; }
+		public Assignment getDataTypeAssignment_1() { return cDataTypeAssignment_1; }
 		
 		//DataType
-		public RuleCall getDataTypeDataTypeParserRuleCall_0_1_0() { return cDataTypeDataTypeParserRuleCall_0_1_0; }
+		public RuleCall getDataTypeDataTypeParserRuleCall_1_0() { return cDataTypeDataTypeParserRuleCall_1_0; }
 		
 		//name=ID
-		public Assignment getNameAssignment_0_2() { return cNameAssignment_0_2; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_2_0() { return cNameIDTerminalRuleCall_0_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
-		//declaration=ConstDecl
-		public Assignment getDeclarationAssignment_0_3() { return cDeclarationAssignment_0_3; }
+		//declaration=Declaration
+		public Assignment getDeclarationAssignment_3() { return cDeclarationAssignment_3; }
 		
-		//ConstDecl
-		public RuleCall getDeclarationConstDeclParserRuleCall_0_3_0() { return cDeclarationConstDeclParserRuleCall_0_3_0; }
+		//Declaration
+		public RuleCall getDeclarationDeclarationParserRuleCall_3_0() { return cDeclarationDeclarationParserRuleCall_3_0; }
+	}
+	public class DeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Declaration");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cConstantDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cVariableDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Declaration:
+		//	ConstantDecl | VariableDecl;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ConstantDecl | VariableDecl
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ConstantDecl
+		public RuleCall getConstantDeclParserRuleCall_0() { return cConstantDeclParserRuleCall_0; }
 		
 		//VariableDecl
 		public RuleCall getVariableDeclParserRuleCall_1() { return cVariableDeclParserRuleCall_1; }
 	}
-	public class ConstDeclElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.ConstDecl");
+	public class ConstantDeclElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.ConstantDecl");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cConstantDeclAction_0 = (Action)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -190,7 +201,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cValueINTTerminalRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
 		
-		//ConstDecl:
+		//ConstantDecl:
 		//	{ConstantDecl} ('is' value=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -215,21 +226,21 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	public class VariableDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.VariableDecl");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cElementDeclAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cVariableDeclAction_0 = (Action)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cVariantsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cVariantsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cVariantsOptionsDeclarationParserRuleCall_1_1_0 = (RuleCall)cVariantsAssignment_1_1.eContents().get(0);
 		
 		//VariableDecl:
-		//	{ElementDecl} ('variants:' variants=OptionsDeclaration);
+		//	{VariableDecl} ('variants:' variants=OptionsDeclaration);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ElementDecl} ('variants:' variants=OptionsDeclaration)
+		//{VariableDecl} ('variants:' variants=OptionsDeclaration)
 		public Group getGroup() { return cGroup; }
 		
-		//{ElementDecl}
-		public Action getElementDeclAction_0() { return cElementDeclAction_0; }
+		//{VariableDecl}
+		public Action getVariableDeclAction_0() { return cVariableDeclAction_0; }
 		
 		//'variants:' variants=OptionsDeclaration
 		public Group getGroup_1() { return cGroup_1; }
@@ -357,10 +368,10 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	public class RelationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Relation");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cListParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPairParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cVarListParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cHierarchyParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cCoreParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cHierarchyParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPairParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cVarListParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cOrderParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cMultInstantiationParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
@@ -369,23 +380,23 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cComplexImpliesParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//Relation:
-		//	List | Pair | VarList | Hierarchy | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies;
+		//	Core | Hierarchy | Pair | VarList | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//List | Pair | VarList | Hierarchy | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies
+		//Core | Hierarchy | Pair | VarList | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//List
-		public RuleCall getListParserRuleCall_0() { return cListParserRuleCall_0; }
-		
-		//Pair
-		public RuleCall getPairParserRuleCall_1() { return cPairParserRuleCall_1; }
-		
-		//VarList
-		public RuleCall getVarListParserRuleCall_2() { return cVarListParserRuleCall_2; }
+		//Core
+		public RuleCall getCoreParserRuleCall_0() { return cCoreParserRuleCall_0; }
 		
 		//Hierarchy
-		public RuleCall getHierarchyParserRuleCall_3() { return cHierarchyParserRuleCall_3; }
+		public RuleCall getHierarchyParserRuleCall_1() { return cHierarchyParserRuleCall_1; }
+		
+		//Pair
+		public RuleCall getPairParserRuleCall_2() { return cPairParserRuleCall_2; }
+		
+		//VarList
+		public RuleCall getVarListParserRuleCall_3() { return cVarListParserRuleCall_3; }
 		
 		//Order
 		public RuleCall getOrderParserRuleCall_4() { return cOrderParserRuleCall_4; }
@@ -405,40 +416,40 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//ComplexImplies
 		public RuleCall getComplexImpliesParserRuleCall_9() { return cComplexImpliesParserRuleCall_9; }
 	}
-	public class ListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.List");
+	public class CoreElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Core");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cTypeCoreElementsKeyword_0_0 = (Keyword)cTypeAssignment_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementsListOfIDsParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Action cCoreAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cCoreElementsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementsListOfIDsParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//List:
-		//	type='coreElements' '(' elements+=ListOfIDs ')';
+		//Core:
+		//	{Core} 'coreElements' '(' elements=ListOfIDs ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type='coreElements' '(' elements+=ListOfIDs ')'
+		//{Core} 'coreElements' '(' elements=ListOfIDs ')'
 		public Group getGroup() { return cGroup; }
 		
-		//type='coreElements'
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//{Core}
+		public Action getCoreAction_0() { return cCoreAction_0; }
 		
 		//'coreElements'
-		public Keyword getTypeCoreElementsKeyword_0_0() { return cTypeCoreElementsKeyword_0_0; }
+		public Keyword getCoreElementsKeyword_1() { return cCoreElementsKeyword_1; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//elements+=ListOfIDs
-		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
+		//elements=ListOfIDs
+		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 		
 		//ListOfIDs
-		public RuleCall getElementsListOfIDsParserRuleCall_2_0() { return cElementsListOfIDsParserRuleCall_2_0; }
+		public RuleCall getElementsListOfIDsParserRuleCall_3_0() { return cElementsListOfIDsParserRuleCall_3_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class MultInstantiationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.MultInstantiation");
@@ -707,10 +718,10 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//VarList:
-		//	operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list+=ListOfIDs ']' ')';
+		//	operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list+=ListOfIDs ']' ')'
+		//operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')'
 		public Group getGroup() { return cGroup; }
 		
 		//operator=('implies' | 'mutex')
@@ -743,7 +754,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
 		
-		//list+=ListOfIDs
+		//list=ListOfIDs
 		public Assignment getListAssignment_5() { return cListAssignment_5; }
 		
 		//ListOfIDs
@@ -777,99 +788,104 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	public class DecompositionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Decomposition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDecompositionKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cParentAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cParentElmDeclarationCrossReference_2_0 = (CrossReference)cParentAssignment_2.eContents().get(0);
-		private final RuleCall cParentElmDeclarationIDTerminalRuleCall_2_0_1 = (RuleCall)cParentElmDeclarationCrossReference_2_0.eContents().get(1);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cChildrenAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cChildrenListOfIDsParserRuleCall_5_0 = (RuleCall)cChildrenAssignment_5.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Keyword cLessThanSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cCardinalityAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cCardinalityINTTerminalRuleCall_9_0 = (RuleCall)cCardinalityAssignment_9.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Action cDecompositionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cDecompositionKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cParentAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cParentElmDeclarationCrossReference_3_0 = (CrossReference)cParentAssignment_3.eContents().get(0);
+		private final RuleCall cParentElmDeclarationIDTerminalRuleCall_3_0_1 = (RuleCall)cParentElmDeclarationCrossReference_3_0.eContents().get(1);
+		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cChildrenAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cChildrenListOfIDsParserRuleCall_6_0 = (RuleCall)cChildrenAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cLessThanSignKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cCardinalityAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cCardinalityINTTerminalRuleCall_10_0 = (RuleCall)cCardinalityAssignment_10.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//Decomposition:
-		//	'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')'
+		//	{Decomposition} 'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')'
 		//	'<' cardinality=INT '>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')' '<' cardinality=INT '>'
+		//{Decomposition} 'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')' '<' cardinality=INT '>'
 		public Group getGroup() { return cGroup; }
 		
+		//{Decomposition}
+		public Action getDecompositionAction_0() { return cDecompositionAction_0; }
+		
 		//'decomposition'
-		public Keyword getDecompositionKeyword_0() { return cDecompositionKeyword_0; }
+		public Keyword getDecompositionKeyword_1() { return cDecompositionKeyword_1; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
 		//parent=[ElmDeclaration]
-		public Assignment getParentAssignment_2() { return cParentAssignment_2; }
+		public Assignment getParentAssignment_3() { return cParentAssignment_3; }
 		
 		//[ElmDeclaration]
-		public CrossReference getParentElmDeclarationCrossReference_2_0() { return cParentElmDeclarationCrossReference_2_0; }
+		public CrossReference getParentElmDeclarationCrossReference_3_0() { return cParentElmDeclarationCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getParentElmDeclarationIDTerminalRuleCall_2_0_1() { return cParentElmDeclarationIDTerminalRuleCall_2_0_1; }
+		public RuleCall getParentElmDeclarationIDTerminalRuleCall_3_0_1() { return cParentElmDeclarationIDTerminalRuleCall_3_0_1; }
 		
 		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
 		
 		//children=ListOfIDs
-		public Assignment getChildrenAssignment_5() { return cChildrenAssignment_5; }
+		public Assignment getChildrenAssignment_6() { return cChildrenAssignment_6; }
 		
 		//ListOfIDs
-		public RuleCall getChildrenListOfIDsParserRuleCall_5_0() { return cChildrenListOfIDsParserRuleCall_5_0; }
+		public RuleCall getChildrenListOfIDsParserRuleCall_6_0() { return cChildrenListOfIDsParserRuleCall_6_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
 		
 		//'<'
-		public Keyword getLessThanSignKeyword_8() { return cLessThanSignKeyword_8; }
+		public Keyword getLessThanSignKeyword_9() { return cLessThanSignKeyword_9; }
 		
 		//cardinality=INT
-		public Assignment getCardinalityAssignment_9() { return cCardinalityAssignment_9; }
+		public Assignment getCardinalityAssignment_10() { return cCardinalityAssignment_10; }
 		
 		//INT
-		public RuleCall getCardinalityINTTerminalRuleCall_9_0() { return cCardinalityINTTerminalRuleCall_9_0; }
+		public RuleCall getCardinalityINTTerminalRuleCall_10_0() { return cCardinalityINTTerminalRuleCall_10_0; }
 		
 		//'>'
-		public Keyword getGreaterThanSignKeyword_10() { return cGreaterThanSignKeyword_10; }
+		public Keyword getGreaterThanSignKeyword_11() { return cGreaterThanSignKeyword_11; }
 	}
 	public class GroupElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Group");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cGroupKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cParentAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cParentElmDeclarationCrossReference_2_0 = (CrossReference)cParentAssignment_2.eContents().get(0);
-		private final RuleCall cParentElmDeclarationIDTerminalRuleCall_2_0_1 = (RuleCall)cParentElmDeclarationCrossReference_2_0.eContents().get(1);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cChildrenAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cChildrenListOfIDsParserRuleCall_5_0 = (RuleCall)cChildrenAssignment_5.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Keyword cLeftSquareBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cMinAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cMinINTTerminalRuleCall_9_0 = (RuleCall)cMinAssignment_9.eContents().get(0);
-		private final Keyword cCommaKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cMaxAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cMaxRangeParserRuleCall_11_0 = (RuleCall)cMaxAssignment_11.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Action cGroupAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGroupKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cParentAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cParentElmDeclarationCrossReference_3_0 = (CrossReference)cParentAssignment_3.eContents().get(0);
+		private final RuleCall cParentElmDeclarationIDTerminalRuleCall_3_0_1 = (RuleCall)cParentElmDeclarationCrossReference_3_0.eContents().get(1);
+		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cChildrenAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cChildrenListOfIDsParserRuleCall_6_0 = (RuleCall)cChildrenAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cLeftSquareBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cMinAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cMinINTTerminalRuleCall_10_0 = (RuleCall)cMinAssignment_10.eContents().get(0);
+		private final Keyword cCommaKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cMaxAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cMaxRangeParserRuleCall_12_0 = (RuleCall)cMaxAssignment_12.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		
 		//Group:
-		//	'group' '('
+		//	{Group} 'group' '('
 		//	parent=[ElmDeclaration] ','
 		//	'[' children=ListOfIDs ']' ')'
 		//	'[' min=INT ','
@@ -877,62 +893,65 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//	']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'group' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')' '[' min=INT ',' max=Range ']'
+		//{Group} 'group' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')' '[' min=INT ',' max=Range ']'
 		public Group getGroup() { return cGroup; }
 		
+		//{Group}
+		public Action getGroupAction_0() { return cGroupAction_0; }
+		
 		//'group'
-		public Keyword getGroupKeyword_0() { return cGroupKeyword_0; }
+		public Keyword getGroupKeyword_1() { return cGroupKeyword_1; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
 		//parent=[ElmDeclaration]
-		public Assignment getParentAssignment_2() { return cParentAssignment_2; }
+		public Assignment getParentAssignment_3() { return cParentAssignment_3; }
 		
 		//[ElmDeclaration]
-		public CrossReference getParentElmDeclarationCrossReference_2_0() { return cParentElmDeclarationCrossReference_2_0; }
+		public CrossReference getParentElmDeclarationCrossReference_3_0() { return cParentElmDeclarationCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getParentElmDeclarationIDTerminalRuleCall_2_0_1() { return cParentElmDeclarationIDTerminalRuleCall_2_0_1; }
+		public RuleCall getParentElmDeclarationIDTerminalRuleCall_3_0_1() { return cParentElmDeclarationIDTerminalRuleCall_3_0_1; }
 		
 		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
 		
 		//children=ListOfIDs
-		public Assignment getChildrenAssignment_5() { return cChildrenAssignment_5; }
+		public Assignment getChildrenAssignment_6() { return cChildrenAssignment_6; }
 		
 		//ListOfIDs
-		public RuleCall getChildrenListOfIDsParserRuleCall_5_0() { return cChildrenListOfIDsParserRuleCall_5_0; }
+		public RuleCall getChildrenListOfIDsParserRuleCall_6_0() { return cChildrenListOfIDsParserRuleCall_6_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_8() { return cLeftSquareBracketKeyword_8; }
+		public Keyword getLeftSquareBracketKeyword_9() { return cLeftSquareBracketKeyword_9; }
 		
 		//min=INT
-		public Assignment getMinAssignment_9() { return cMinAssignment_9; }
+		public Assignment getMinAssignment_10() { return cMinAssignment_10; }
 		
 		//INT
-		public RuleCall getMinINTTerminalRuleCall_9_0() { return cMinINTTerminalRuleCall_9_0; }
+		public RuleCall getMinINTTerminalRuleCall_10_0() { return cMinINTTerminalRuleCall_10_0; }
 		
 		//','
-		public Keyword getCommaKeyword_10() { return cCommaKeyword_10; }
+		public Keyword getCommaKeyword_11() { return cCommaKeyword_11; }
 		
 		//max=Range
-		public Assignment getMaxAssignment_11() { return cMaxAssignment_11; }
+		public Assignment getMaxAssignment_12() { return cMaxAssignment_12; }
 		
 		//Range
-		public RuleCall getMaxRangeParserRuleCall_11_0() { return cMaxRangeParserRuleCall_11_0; }
+		public RuleCall getMaxRangeParserRuleCall_12_0() { return cMaxRangeParserRuleCall_12_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_12() { return cRightSquareBracketKeyword_12; }
+		public Keyword getRightSquareBracketKeyword_13() { return cRightSquareBracketKeyword_13; }
 	}
 	public class RangeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Range");
@@ -2264,14 +2283,15 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final ModelElements pModel;
 	private final ElmDeclarationElements pElmDeclaration;
-	private final ConstDeclElements pConstDecl;
+	private final DeclarationElements pDeclaration;
+	private final ConstantDeclElements pConstantDecl;
 	private final VariableDeclElements pVariableDecl;
 	private final OptionsDeclarationElements pOptionsDeclaration;
 	private final IntervalElements pInterval;
 	private final EnumerationElements pEnumeration;
 	private final RelDeclarationElements pRelDeclaration;
 	private final RelationElements pRelation;
-	private final ListElements pList;
+	private final CoreElements pCore;
 	private final MultInstantiationElements pMultInstantiation;
 	private final PairElements pPair;
 	private final ComplexImpliesElements pComplexImplies;
@@ -2326,14 +2346,15 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
 		this.pElmDeclaration = new ElmDeclarationElements();
-		this.pConstDecl = new ConstDeclElements();
+		this.pDeclaration = new DeclarationElements();
+		this.pConstantDecl = new ConstantDeclElements();
 		this.pVariableDecl = new VariableDeclElements();
 		this.pOptionsDeclaration = new OptionsDeclarationElements();
 		this.pInterval = new IntervalElements();
 		this.pEnumeration = new EnumerationElements();
 		this.pRelDeclaration = new RelDeclarationElements();
 		this.pRelation = new RelationElements();
-		this.pList = new ListElements();
+		this.pCore = new CoreElements();
 		this.pMultInstantiation = new MultInstantiationElements();
 		this.pPair = new PairElements();
 		this.pComplexImplies = new ComplexImpliesElements();
@@ -2458,7 +2479,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	//ElmDeclaration:
 	//	att='att'?
 	//	dataType=DataType name=ID
-	//	declaration=ConstDecl | VariableDecl;
+	//	declaration=Declaration;
 	public ElmDeclarationElements getElmDeclarationAccess() {
 		return pElmDeclaration;
 	}
@@ -2467,18 +2488,28 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getElmDeclarationAccess().getRule();
 	}
 	
-	//ConstDecl:
-	//	{ConstantDecl} ('is' value=INT)?;
-	public ConstDeclElements getConstDeclAccess() {
-		return pConstDecl;
+	//Declaration:
+	//	ConstantDecl | VariableDecl;
+	public DeclarationElements getDeclarationAccess() {
+		return pDeclaration;
 	}
 	
-	public ParserRule getConstDeclRule() {
-		return getConstDeclAccess().getRule();
+	public ParserRule getDeclarationRule() {
+		return getDeclarationAccess().getRule();
+	}
+	
+	//ConstantDecl:
+	//	{ConstantDecl} ('is' value=INT)?;
+	public ConstantDeclElements getConstantDeclAccess() {
+		return pConstantDecl;
+	}
+	
+	public ParserRule getConstantDeclRule() {
+		return getConstantDeclAccess().getRule();
 	}
 	
 	//VariableDecl:
-	//	{ElementDecl} ('variants:' variants=OptionsDeclaration);
+	//	{VariableDecl} ('variants:' variants=OptionsDeclaration);
 	public VariableDeclElements getVariableDeclAccess() {
 		return pVariableDecl;
 	}
@@ -2531,7 +2562,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Relation:
-	//	List | Pair | VarList | Hierarchy | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies;
+	//	Core | Hierarchy | Pair | VarList | Order | MultInstantiation | Expression | Visibility | QImplies | ComplexImplies;
 	public RelationElements getRelationAccess() {
 		return pRelation;
 	}
@@ -2540,14 +2571,14 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getRelationAccess().getRule();
 	}
 	
-	//List:
-	//	type='coreElements' '(' elements+=ListOfIDs ')';
-	public ListElements getListAccess() {
-		return pList;
+	//Core:
+	//	{Core} 'coreElements' '(' elements=ListOfIDs ')';
+	public CoreElements getCoreAccess() {
+		return pCore;
 	}
 	
-	public ParserRule getListRule() {
-		return getListAccess().getRule();
+	public ParserRule getCoreRule() {
+		return getCoreAccess().getRule();
 	}
 	
 	//MultInstantiation:
@@ -2591,7 +2622,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//VarList:
-	//	operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list+=ListOfIDs ']' ')';
+	//	operator=('implies' | 'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')';
 	public VarListElements getVarListAccess() {
 		return pVarList;
 	}
@@ -2611,7 +2642,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Decomposition:
-	//	'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')'
+	//	{Decomposition} 'decomposition' '(' parent=[ElmDeclaration] ',' '[' children=ListOfIDs ']' ')'
 	//	'<' cardinality=INT '>';
 	public DecompositionElements getDecompositionAccess() {
 		return pDecomposition;
@@ -2622,7 +2653,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Group:
-	//	'group' '('
+	//	{Group} 'group' '('
 	//	parent=[ElmDeclaration] ','
 	//	'[' children=ListOfIDs ']' ')'
 	//	'[' min=INT ','

@@ -10,10 +10,10 @@ import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConsExpression;
-import com.coffee.hlvl.ConstDecl;
 import com.coffee.hlvl.ConstantDecl;
+import com.coffee.hlvl.Core;
+import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElementDecl;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
@@ -28,7 +28,6 @@ import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.IntConstant;
 import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.List;
 import com.coffee.hlvl.ListOfIDs;
 import com.coffee.hlvl.ListOfListValues;
 import com.coffee.hlvl.ListOfRelRefs;
@@ -122,14 +121,15 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
     {
       case HlvlPackage.MODEL: return createModel();
       case HlvlPackage.ELM_DECLARATION: return createElmDeclaration();
-      case HlvlPackage.CONST_DECL: return createConstDecl();
+      case HlvlPackage.DECLARATION: return createDeclaration();
+      case HlvlPackage.CONSTANT_DECL: return createConstantDecl();
       case HlvlPackage.VARIABLE_DECL: return createVariableDecl();
       case HlvlPackage.OPTIONS_DECLARATION: return createOptionsDeclaration();
       case HlvlPackage.INTERVAL: return createInterval();
       case HlvlPackage.ENUMERATION: return createEnumeration();
       case HlvlPackage.REL_DECLARATION: return createRelDeclaration();
       case HlvlPackage.RELATION: return createRelation();
-      case HlvlPackage.LIST: return createList();
+      case HlvlPackage.CORE: return createCore();
       case HlvlPackage.MULT_INSTANTIATION: return createMultInstantiation();
       case HlvlPackage.PAIR: return createPair();
       case HlvlPackage.COMPLEX_IMPLIES: return createComplexImplies();
@@ -157,8 +157,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.VALUATION: return createValuation();
       case HlvlPackage.LIST_OF_VALUATION: return createListOfValuation();
       case HlvlPackage.LIST_OF_LIST_VALUES: return createListOfListValues();
-      case HlvlPackage.CONSTANT_DECL: return createConstantDecl();
-      case HlvlPackage.ELEMENT_DECL: return createElementDecl();
       case HlvlPackage.IFF: return createIff();
       case HlvlPackage.IMPLIES: return createImplies();
       case HlvlPackage.OR: return createOr();
@@ -207,10 +205,21 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConstDecl createConstDecl()
+  public Declaration createDeclaration()
   {
-    ConstDeclImpl constDecl = new ConstDeclImpl();
-    return constDecl;
+    DeclarationImpl declaration = new DeclarationImpl();
+    return declaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ConstantDecl createConstantDecl()
+  {
+    ConstantDeclImpl constantDecl = new ConstantDeclImpl();
+    return constantDecl;
   }
 
   /**
@@ -284,10 +293,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public List createList()
+  public Core createCore()
   {
-    ListImpl list = new ListImpl();
-    return list;
+    CoreImpl core = new CoreImpl();
+    return core;
   }
 
   /**
@@ -585,28 +594,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     ListOfListValuesImpl listOfListValues = new ListOfListValuesImpl();
     return listOfListValues;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ConstantDecl createConstantDecl()
-  {
-    ConstantDeclImpl constantDecl = new ConstantDeclImpl();
-    return constantDecl;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ElementDecl createElementDecl()
-  {
-    ElementDeclImpl elementDecl = new ElementDeclImpl();
-    return elementDecl;
   }
 
   /**

@@ -30,7 +30,7 @@ relations:
  R3b: decomposition(ram, [size])<1>
  R4: decomposition(hardware, [connector3G, gps])<0>
  R4a: decomposition(connector3G, [speed])<1>
- R5: group(games, [chess, carRace, tetris])[0,*]
+ R5: group(games, [chess, carRace, tetris])[0,6]
  R6: decomposition(processors, [gpu])<0>
  R7: instantiable cpu [1,2]
  

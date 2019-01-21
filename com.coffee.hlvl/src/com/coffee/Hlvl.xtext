@@ -52,15 +52,18 @@ ElmDeclaration:
 	(att= 'att')?
 	(dataType=DataType)
 	name= ID
-	declaration= ConstDecl |VariableDecl 
+	declaration= Declaration 
 ;
 
-ConstDecl:
+Declaration:
+	ConstantDecl |VariableDecl 
+;
+ConstantDecl:
 	{ConstantDecl}('is' value= INT)?
 ;
 
 VariableDecl:
-	{ElementDecl}('variants:' variants= OptionsDeclaration)
+	{VariableDecl}('variants:' variants= OptionsDeclaration)
 ;
 
 
@@ -84,13 +87,13 @@ RelDeclaration:
 ;
 
 Relation:
-	List | Pair |VarList|Hierarchy|Order |
+	Core | Hierarchy |Pair |VarList|Order |
 	MultInstantiation|Expression |Visibility|QImplies|
 	ComplexImplies
 ;
 
-List:
-	type=('coreElements') '(' elements+=ListOfIDs')'
+Core:
+	{Core}'coreElements' '(' elements=ListOfIDs')'
 ;
 
 MultInstantiation:
@@ -110,19 +113,19 @@ QImplies:
 ;
 
 VarList:
-	operator=('implies'|'mutex') '(' var1=[ElmDeclaration] ',' '[' list+=ListOfIDs ']' ')'
+	operator=('implies'|'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')'
 ;
 Hierarchy:
 	Decomposition|Group
 ;
 
 Decomposition:
-	'decomposition' '(' parent=[ElmDeclaration] ',' '['children=ListOfIDs ']' ')' 
+	{Decomposition}'decomposition' '(' parent=[ElmDeclaration] ',' '['children=ListOfIDs ']' ')' 
 	'<' cardinality=INT'>'
 ;
 
 Group:
-	'group' '(' 
+	{Group} 'group' '(' 
 	parent=[ElmDeclaration] ',' 
 	'['children=ListOfIDs ']' ')' 
 	'[' min= INT ',' 

@@ -1,0 +1,7 @@
+model newExample
+elements:
+  boolean E1
+  boolean E2
+  boolean E3
+relations:
+  R1: coreElements(E1, E2)

@@ -3,7 +3,7 @@
  */
 package com.coffee.hlvl.impl;
 
-import com.coffee.hlvl.ConstDecl;
+import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.HlvlPackage;
 
@@ -102,7 +102,7 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected ConstDecl declaration;
+  protected Declaration declaration;
 
   /**
    * <!-- begin-user-doc -->
@@ -199,7 +199,7 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConstDecl getDeclaration()
+  public Declaration getDeclaration()
   {
     return declaration;
   }
@@ -209,9 +209,9 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDeclaration(ConstDecl newDeclaration, NotificationChain msgs)
+  public NotificationChain basicSetDeclaration(Declaration newDeclaration, NotificationChain msgs)
   {
-    ConstDecl oldDeclaration = declaration;
+    Declaration oldDeclaration = declaration;
     declaration = newDeclaration;
     if (eNotificationRequired())
     {
@@ -226,7 +226,7 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDeclaration(ConstDecl newDeclaration)
+  public void setDeclaration(Declaration newDeclaration)
   {
     if (newDeclaration != declaration)
     {
@@ -300,7 +300,7 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         setName((String)newValue);
         return;
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
-        setDeclaration((ConstDecl)newValue);
+        setDeclaration((Declaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -326,7 +326,7 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         setName(NAME_EDEFAULT);
         return;
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
-        setDeclaration((ConstDecl)null);
+        setDeclaration((Declaration)null);
         return;
     }
     super.eUnset(featureID);

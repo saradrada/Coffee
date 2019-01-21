@@ -10,10 +10,10 @@ import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConsExpression;
-import com.coffee.hlvl.ConstDecl;
 import com.coffee.hlvl.ConstantDecl;
+import com.coffee.hlvl.Core;
+import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElementDecl;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
@@ -27,7 +27,6 @@ import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.IntConstant;
 import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.List;
 import com.coffee.hlvl.ListOfIDs;
 import com.coffee.hlvl.ListOfListValues;
 import com.coffee.hlvl.ListOfRelRefs;
@@ -140,9 +139,14 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createElmDeclarationAdapter();
       }
       @Override
-      public Adapter caseConstDecl(ConstDecl object)
+      public Adapter caseDeclaration(Declaration object)
       {
-        return createConstDeclAdapter();
+        return createDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseConstantDecl(ConstantDecl object)
+      {
+        return createConstantDeclAdapter();
       }
       @Override
       public Adapter caseVariableDecl(VariableDecl object)
@@ -175,9 +179,9 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createRelationAdapter();
       }
       @Override
-      public Adapter caseList(List object)
+      public Adapter caseCore(Core object)
       {
-        return createListAdapter();
+        return createCoreAdapter();
       }
       @Override
       public Adapter caseMultInstantiation(MultInstantiation object)
@@ -315,16 +319,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createListOfListValuesAdapter();
       }
       @Override
-      public Adapter caseConstantDecl(ConstantDecl object)
-      {
-        return createConstantDeclAdapter();
-      }
-      @Override
-      public Adapter caseElementDecl(ElementDecl object)
-      {
-        return createElementDeclAdapter();
-      }
-      @Override
       public Adapter caseIff(Iff object)
       {
         return createIffAdapter();
@@ -457,16 +451,31 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ConstDecl <em>Const Decl</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Declaration <em>Declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.ConstDecl
+   * @see com.coffee.hlvl.Declaration
    * @generated
    */
-  public Adapter createConstDeclAdapter()
+  public Adapter createDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ConstantDecl <em>Constant Decl</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.ConstantDecl
+   * @generated
+   */
+  public Adapter createConstantDeclAdapter()
   {
     return null;
   }
@@ -562,16 +571,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.List <em>List</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Core <em>Core</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.List
+   * @see com.coffee.hlvl.Core
    * @generated
    */
-  public Adapter createListAdapter()
+  public Adapter createCoreAdapter()
   {
     return null;
   }
@@ -977,36 +986,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfListValuesAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ConstantDecl <em>Constant Decl</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.ConstantDecl
-   * @generated
-   */
-  public Adapter createConstantDeclAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ElementDecl <em>Element Decl</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.ElementDecl
-   * @generated
-   */
-  public Adapter createElementDeclAdapter()
   {
     return null;
   }

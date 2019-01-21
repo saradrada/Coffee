@@ -20,7 +20,7 @@ package com.coffee.hlvl;
  * @model
  * @generated
  */
-public interface ConstantDecl extends ConstDecl
+public interface ConstantDecl extends Declaration
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

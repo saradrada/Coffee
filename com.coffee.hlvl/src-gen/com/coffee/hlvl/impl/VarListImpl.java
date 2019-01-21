@@ -8,20 +8,13 @@ import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.ListOfIDs;
 import com.coffee.hlvl.VarList;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,14 +64,14 @@ public class VarListImpl extends RelationImpl implements VarList
   protected ElmDeclaration var1;
 
   /**
-   * The cached value of the '{@link #getList() <em>List</em>}' containment reference list.
+   * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getList()
    * @generated
    * @ordered
    */
-  protected EList<ListOfIDs> list;
+  protected ListOfIDs list;
 
   /**
    * <!-- begin-user-doc -->
@@ -172,13 +165,47 @@ public class VarListImpl extends RelationImpl implements VarList
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ListOfIDs> getList()
+  public ListOfIDs getList()
   {
-    if (list == null)
-    {
-      list = new EObjectContainmentEList<ListOfIDs>(ListOfIDs.class, this, HlvlPackage.VAR_LIST__LIST);
-    }
     return list;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetList(ListOfIDs newList, NotificationChain msgs)
+  {
+    ListOfIDs oldList = list;
+    list = newList;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.VAR_LIST__LIST, oldList, newList);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setList(ListOfIDs newList)
+  {
+    if (newList != list)
+    {
+      NotificationChain msgs = null;
+      if (list != null)
+        msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VAR_LIST__LIST, null, msgs);
+      if (newList != null)
+        msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VAR_LIST__LIST, null, msgs);
+      msgs = basicSetList(newList, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.VAR_LIST__LIST, newList, newList));
   }
 
   /**
@@ -192,7 +219,7 @@ public class VarListImpl extends RelationImpl implements VarList
     switch (featureID)
     {
       case HlvlPackage.VAR_LIST__LIST:
-        return ((InternalEList<?>)getList()).basicRemove(otherEnd, msgs);
+        return basicSetList(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -223,7 +250,6 @@ public class VarListImpl extends RelationImpl implements VarList
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -236,8 +262,7 @@ public class VarListImpl extends RelationImpl implements VarList
         setVar1((ElmDeclaration)newValue);
         return;
       case HlvlPackage.VAR_LIST__LIST:
-        getList().clear();
-        getList().addAll((Collection<? extends ListOfIDs>)newValue);
+        setList((ListOfIDs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -260,7 +285,7 @@ public class VarListImpl extends RelationImpl implements VarList
         setVar1((ElmDeclaration)null);
         return;
       case HlvlPackage.VAR_LIST__LIST:
-        getList().clear();
+        setList((ListOfIDs)null);
         return;
     }
     super.eUnset(featureID);
@@ -281,7 +306,7 @@ public class VarListImpl extends RelationImpl implements VarList
       case HlvlPackage.VAR_LIST__VAR1:
         return var1 != null;
       case HlvlPackage.VAR_LIST__LIST:
-        return list != null && !list.isEmpty();
+        return list != null;
     }
     return super.eIsSet(featureID);
   }

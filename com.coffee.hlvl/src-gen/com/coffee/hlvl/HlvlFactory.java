@@ -42,13 +42,22 @@ public interface HlvlFactory extends EFactory
   ElmDeclaration createElmDeclaration();
 
   /**
-   * Returns a new object of class '<em>Const Decl</em>'.
+   * Returns a new object of class '<em>Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Const Decl</em>'.
+   * @return a new object of class '<em>Declaration</em>'.
    * @generated
    */
-  ConstDecl createConstDecl();
+  Declaration createDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Constant Decl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constant Decl</em>'.
+   * @generated
+   */
+  ConstantDecl createConstantDecl();
 
   /**
    * Returns a new object of class '<em>Variable Decl</em>'.
@@ -105,13 +114,13 @@ public interface HlvlFactory extends EFactory
   Relation createRelation();
 
   /**
-   * Returns a new object of class '<em>List</em>'.
+   * Returns a new object of class '<em>Core</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>List</em>'.
+   * @return a new object of class '<em>Core</em>'.
    * @generated
    */
-  List createList();
+  Core createCore();
 
   /**
    * Returns a new object of class '<em>Mult Instantiation</em>'.
@@ -355,24 +364,6 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   ListOfListValues createListOfListValues();
-
-  /**
-   * Returns a new object of class '<em>Constant Decl</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Constant Decl</em>'.
-   * @generated
-   */
-  ConstantDecl createConstantDecl();
-
-  /**
-   * Returns a new object of class '<em>Element Decl</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Element Decl</em>'.
-   * @generated
-   */
-  ElementDecl createElementDecl();
 
   /**
    * Returns a new object of class '<em>Iff</em>'.

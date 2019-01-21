@@ -113,12 +113,12 @@ public interface ElmDeclaration extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Declaration</em>' containment reference.
-   * @see #setDeclaration(ConstDecl)
+   * @see #setDeclaration(Declaration)
    * @see com.coffee.hlvl.HlvlPackage#getElmDeclaration_Declaration()
    * @model containment="true"
    * @generated
    */
-  ConstDecl getDeclaration();
+  Declaration getDeclaration();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.ElmDeclaration#getDeclaration <em>Declaration</em>}' containment reference.
@@ -128,6 +128,6 @@ public interface ElmDeclaration extends EObject
    * @see #getDeclaration()
    * @generated
    */
-  void setDeclaration(ConstDecl value);
+  void setDeclaration(Declaration value);
 
 } // ElmDeclaration
