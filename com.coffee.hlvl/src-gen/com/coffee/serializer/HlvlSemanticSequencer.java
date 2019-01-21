@@ -221,7 +221,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns And
 	 *     Relational returns And
 	 *     Iff returns And
 	 *     Iff.Iff_1_0 returns And
@@ -261,7 +260,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns AttributeRef
 	 *     Relational returns AttributeRef
 	 *     Iff returns AttributeRef
 	 *     Iff.Iff_1_0 returns AttributeRef
@@ -299,7 +297,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns BoolConstant
 	 *     Relational returns BoolConstant
 	 *     Iff returns BoolConstant
 	 *     Iff.Iff_1_0 returns BoolConstant
@@ -331,7 +328,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns IntConstant
 	 *     Relational returns IntConstant
 	 *     Iff returns IntConstant
 	 *     Iff.Iff_1_0 returns IntConstant
@@ -369,7 +365,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns VariableRef
 	 *     Relational returns VariableRef
 	 *     Iff returns VariableRef
 	 *     Iff.Iff_1_0 returns VariableRef
@@ -421,7 +416,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Comparison
 	 *     Relational returns Comparison
 	 *     Iff returns Comparison
 	 *     Iff.Iff_1_0 returns Comparison
@@ -563,7 +557,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Equality
 	 *     Relational returns Equality
 	 *     Iff returns Equality
 	 *     Iff.Iff_1_0 returns Equality
@@ -598,7 +591,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Expression returns Expression
 	 *
 	 * Constraint:
-	 *     exp=ConsExpression
+	 *     exp=Relational
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		if (errorAcceptor != null) {
@@ -606,14 +599,13 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.EXPRESSION__EXP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExpressionAccess().getExpConsExpressionParserRuleCall_2_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getExpressionAccess().getExpRelationalParserRuleCall_2_0(), semanticObject.getExp());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Global
 	 *     Global returns Global
 	 *
 	 * Constraint:
@@ -655,7 +647,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Iff
 	 *     Relational returns Iff
 	 *     Iff returns Iff
 	 *     Iff.Iff_1_0 returns Iff
@@ -695,7 +686,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Implies
 	 *     Relational returns Implies
 	 *     Iff returns Implies
 	 *     Iff.Iff_1_0 returns Implies
@@ -829,7 +819,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns MulOrDiv
 	 *     Relational returns MulOrDiv
 	 *     Iff returns MulOrDiv
 	 *     Iff.Iff_1_0 returns MulOrDiv
@@ -916,7 +905,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Or
 	 *     Relational returns Or
 	 *     Iff returns Or
 	 *     Iff.Iff_1_0 returns Or
@@ -982,7 +970,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Minus
 	 *     Relational returns Minus
 	 *     Iff returns Minus
 	 *     Iff.Iff_1_0 returns Minus
@@ -1022,7 +1009,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Plus
 	 *     Relational returns Plus
 	 *     Iff returns Plus
 	 *     Iff.Iff_1_0 returns Plus
@@ -1062,7 +1048,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Function
 	 *     Relational returns Function
 	 *     Iff returns Function
 	 *     Iff.Iff_1_0 returns Function
@@ -1105,7 +1090,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Negation
 	 *     Relational returns Negation
 	 *     Iff returns Negation
 	 *     Iff.Iff_1_0 returns Negation
@@ -1142,7 +1126,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ConsExpression returns Unary
 	 *     Relational returns Unary
 	 *     Iff returns Unary
 	 *     Iff.Iff_1_0 returns Unary
@@ -1329,10 +1312,19 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Visibility returns Visibility
 	 *
 	 * Constraint:
-	 *     (condition=ConsExpression children+=ListOfRelRefs)
+	 *     (condition=Relational children=ListOfRelRefs)
 	 */
 	protected void sequence_Visibility(ISerializationContext context, Visibility semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.VISIBILITY__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.VISIBILITY__CONDITION));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.VISIBILITY__CHILDREN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.VISIBILITY__CHILDREN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getVisibilityAccess().getConditionRelationalParserRuleCall_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getVisibilityAccess().getChildrenListOfRelRefsParserRuleCall_5_0(), semanticObject.getChildren());
+		feeder.finish();
 	}
 	
 	

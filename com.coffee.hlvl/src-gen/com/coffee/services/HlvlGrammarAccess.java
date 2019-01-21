@@ -983,7 +983,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVisibilityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cConditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConditionConsExpressionParserRuleCall_2_0 = (RuleCall)cConditionAssignment_2.eContents().get(0);
+		private final RuleCall cConditionRelationalParserRuleCall_2_0 = (RuleCall)cConditionAssignment_2.eContents().get(0);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cChildrenAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -992,10 +992,10 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Visibility:
-		//	'visibility' '(' condition=ConsExpression ',' '[' children+=ListOfRelRefs ']' ')';
+		//	'visibility' '(' condition=Relational ',' '[' children=ListOfRelRefs ']' ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'visibility' '(' condition=ConsExpression ',' '[' children+=ListOfRelRefs ']' ')'
+		//'visibility' '(' condition=Relational ',' '[' children=ListOfRelRefs ']' ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'visibility'
@@ -1004,11 +1004,11 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//condition=ConsExpression
+		//condition=Relational
 		public Assignment getConditionAssignment_2() { return cConditionAssignment_2; }
 		
-		//ConsExpression
-		public RuleCall getConditionConsExpressionParserRuleCall_2_0() { return cConditionConsExpressionParserRuleCall_2_0; }
+		//Relational
+		public RuleCall getConditionRelationalParserRuleCall_2_0() { return cConditionRelationalParserRuleCall_2_0; }
 		
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
@@ -1016,7 +1016,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
 		
-		//children+=ListOfRelRefs
+		//children=ListOfRelRefs
 		public Assignment getChildrenAssignment_5() { return cChildrenAssignment_5; }
 		
 		//ListOfRelRefs
@@ -1097,14 +1097,14 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cExpressionKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cExpAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cExpConsExpressionParserRuleCall_2_0 = (RuleCall)cExpAssignment_2.eContents().get(0);
+		private final RuleCall cExpRelationalParserRuleCall_2_0 = (RuleCall)cExpAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Expression:
-		//	'expression' '(' exp=ConsExpression ')';
+		//	'expression' '(' exp=Relational ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'expression' '(' exp=ConsExpression ')'
+		//'expression' '(' exp=Relational ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'expression'
@@ -1113,41 +1113,25 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//exp=ConsExpression
+		//exp=Relational
 		public Assignment getExpAssignment_2() { return cExpAssignment_2; }
 		
-		//ConsExpression
-		public RuleCall getExpConsExpressionParserRuleCall_2_0() { return cExpConsExpressionParserRuleCall_2_0; }
+		//Relational
+		public RuleCall getExpRelationalParserRuleCall_2_0() { return cExpRelationalParserRuleCall_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
-	}
-	public class ConsExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.ConsExpression");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cRelationalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cGlobalParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		////
-		//ConsExpression:
-		//	Relational | Global
-		//	//Global|Logic|Relational|Control
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Relational | Global
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Relational
-		public RuleCall getRelationalParserRuleCall_0() { return cRelationalParserRuleCall_0; }
-		
-		//Global
-		public RuleCall getGlobalParserRuleCall_1() { return cGlobalParserRuleCall_1; }
 	}
 	public class RelationalElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Relational");
 		private final RuleCall cIffParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
+		////
+		////ConsExpression:
+		////	Relational|Global
+		//////Global|Logic|Relational|Control
+		////	
+		////;
 		//Relational:
 		//	Iff;
 		@Override public ParserRule getRule() { return rule; }
@@ -2304,7 +2288,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	private final VisibilityElements pVisibility;
 	private final OrderElements pOrder;
 	private final ExpressionElements pExpression;
-	private final ConsExpressionElements pConsExpression;
 	private final RelationalElements pRelational;
 	private final IffElements pIff;
 	private final ImpliesElements pImplies;
@@ -2367,7 +2350,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pVisibility = new VisibilityElements();
 		this.pOrder = new OrderElements();
 		this.pExpression = new ExpressionElements();
-		this.pConsExpression = new ConsExpressionElements();
 		this.pRelational = new RelationalElements();
 		this.pIff = new IffElements();
 		this.pImplies = new ImpliesElements();
@@ -2679,7 +2661,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Visibility:
-	//	'visibility' '(' condition=ConsExpression ',' '[' children+=ListOfRelRefs ']' ')';
+	//	'visibility' '(' condition=Relational ',' '[' children=ListOfRelRefs ']' ')';
 	public VisibilityElements getVisibilityAccess() {
 		return pVisibility;
 	}
@@ -2703,7 +2685,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Expression:
-	//	'expression' '(' exp=ConsExpression ')';
+	//	'expression' '(' exp=Relational ')';
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
 	}
@@ -2713,18 +2695,11 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	////
-	//ConsExpression:
-	//	Relational | Global
-	//	//Global|Logic|Relational|Control
-	//;
-	public ConsExpressionElements getConsExpressionAccess() {
-		return pConsExpression;
-	}
-	
-	public ParserRule getConsExpressionRule() {
-		return getConsExpressionAccess().getRule();
-	}
-	
+	////ConsExpression:
+	////	Relational|Global
+	//////Global|Logic|Relational|Control
+	////	
+	////;
 	//Relational:
 	//	Iff;
 	public RelationalElements getRelationalAccess() {

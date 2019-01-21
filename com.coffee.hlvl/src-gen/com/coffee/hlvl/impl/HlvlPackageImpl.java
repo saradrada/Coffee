@@ -9,7 +9,6 @@ import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
@@ -234,13 +233,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * @generated
    */
   private EClass expressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass consExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1190,16 +1182,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getConsExpression()
-  {
-    return consExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getRelational()
   {
     return relationalEClass;
@@ -2055,8 +2037,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__EXP);
 
-    consExpressionEClass = createEClass(CONS_EXPRESSION);
-
     relationalEClass = createEClass(RELATIONAL);
 
     globalEClass = createEClass(GLOBAL);
@@ -2207,8 +2187,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     visibilityEClass.getESuperTypes().add(this.getRelation());
     orderEClass.getESuperTypes().add(this.getRelation());
     expressionEClass.getESuperTypes().add(this.getRelation());
-    relationalEClass.getESuperTypes().add(this.getConsExpression());
-    globalEClass.getESuperTypes().add(this.getConsExpression());
     boolValEClass.getESuperTypes().add(this.getNonEnumerableValue());
     numberEClass.getESuperTypes().add(this.getValue());
     symbolEClass.getESuperTypes().add(this.getNonEnumerableValue());
@@ -2310,8 +2288,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEAttribute(getRange_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Range.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(visibilityEClass, Visibility.class, "Visibility", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVisibility_Condition(), this.getConsExpression(), null, "condition", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVisibility_Children(), this.getListOfRelRefs(), null, "children", null, 0, -1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVisibility_Condition(), this.getRelational(), null, "condition", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVisibility_Children(), this.getListOfRelRefs(), null, "children", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrder_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2319,9 +2297,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEReference(getOrder_Right(), this.getListOfIDs(), null, "right", null, 0, -1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExpression_Exp(), this.getConsExpression(), null, "exp", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(consExpressionEClass, ConsExpression.class, "ConsExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpression_Exp(), this.getRelational(), null, "exp", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationalEClass, Relational.class, "Relational", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

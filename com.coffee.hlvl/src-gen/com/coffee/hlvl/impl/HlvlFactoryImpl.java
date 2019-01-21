@@ -9,7 +9,6 @@ import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
@@ -142,7 +141,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.VISIBILITY: return createVisibility();
       case HlvlPackage.ORDER: return createOrder();
       case HlvlPackage.EXPRESSION: return createExpression();
-      case HlvlPackage.CONS_EXPRESSION: return createConsExpression();
       case HlvlPackage.RELATIONAL: return createRelational();
       case HlvlPackage.GLOBAL: return createGlobal();
       case HlvlPackage.BOOL_VAL: return createBoolVal();
@@ -429,17 +427,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ConsExpression createConsExpression()
-  {
-    ConsExpressionImpl consExpression = new ConsExpressionImpl();
-    return consExpression;
   }
 
   /**

@@ -18,6 +18,7 @@ import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.VariableDecl;
 import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -233,11 +234,20 @@ public abstract class AbstractGenerator implements IGenerator {
             } else {
               CharSequence _xifexpression_5 = null;
               if ((rel instanceof Expression)) {
-                _xifexpression_5 = this.factory.getExpression(((Expression)rel));
+                _xifexpression_5 = this.factory.getExpression(((Expression)rel).getExp());
               } else {
                 CharSequence _xifexpression_6 = null;
                 if ((rel instanceof Visibility)) {
-                  _xifexpression_6 = this.factory.getVisibility(((Visibility)rel));
+                  CharSequence _xblockexpression_2 = null;
+                  {
+                    ArrayList<CharSequence> relations = new ArrayList<CharSequence>();
+                    EList<RelDeclaration> _ids = ((Visibility)rel).getChildren().getIds();
+                    for (final RelDeclaration r : _ids) {
+                      relations.add(this.parseRelation(r.getExp()));
+                    }
+                    _xblockexpression_2 = this.factory.getVisibility(((Visibility)rel), relations);
+                  }
+                  _xifexpression_6 = _xblockexpression_2;
                 }
                 _xifexpression_5 = _xifexpression_6;
               }

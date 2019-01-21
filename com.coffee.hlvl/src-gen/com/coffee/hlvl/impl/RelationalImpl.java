@@ -8,6 +8,8 @@ import com.coffee.hlvl.Relational;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Relational</b></em>'.
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RelationalImpl extends ConsExpressionImpl implements Relational
+public class RelationalImpl extends MinimalEObjectImpl.Container implements Relational
 {
   /**
    * <!-- begin-user-doc -->

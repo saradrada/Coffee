@@ -3,11 +3,12 @@ package com.coffee.generator;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.OptionsDeclaration;
+import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.Visibility;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,7 +41,7 @@ public abstract class CodeFactory {
   
   public abstract CharSequence getMutexList(final VarList rel);
   
-  public abstract CharSequence getExpression(final Expression rel);
+  public abstract CharSequence getExpression(final Relational rel);
   
-  public abstract CharSequence getVisibility(final Visibility rel);
+  public abstract CharSequence getVisibility(final Visibility rel, final List<CharSequence> relations);
 }

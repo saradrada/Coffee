@@ -93,7 +93,6 @@
     <genClasses ecoreClass="Hlvl.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Expression/exp"/>
     </genClasses>
-    <genClasses ecoreClass="Hlvl.ecore#//ConsExpression"/>
     <genClasses ecoreClass="Hlvl.ecore#//Relational"/>
     <genClasses ecoreClass="Hlvl.ecore#//Global">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Global/op"/>

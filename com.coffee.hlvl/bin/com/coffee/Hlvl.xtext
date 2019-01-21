@@ -138,7 +138,7 @@ Range:
 ;
 
 Visibility:
-	'visibility' '(' condition= ConsExpression ',' '['children+=ListOfRelRefs ']' ')'
+	'visibility' '(' condition= Relational ',' '['children=ListOfRelRefs ']' ')'
 ;
 //Hierarchy:
 //	type=('decomposition'|'visibility') '(' parent=[ElmDeclaration] ',' '['children+=ListOfIDs ']' ')' 
@@ -149,15 +149,15 @@ Order:
 ;
 
 Expression:
-	'expression''('exp= ConsExpression ')'
+	'expression''('exp= Relational ')'
 ;
 //
 
-ConsExpression:
-	Relational|Global
-//Global|Logic|Relational|Control
-	
-;
+//ConsExpression:
+//	Relational|Global
+////Global|Logic|Relational|Control
+//	
+//;
 
 Relational: Iff;
 

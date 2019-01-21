@@ -3,9 +3,9 @@
  */
 package com.coffee.hlvl.impl;
 
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.Relational;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,7 +38,7 @@ public class ExpressionImpl extends RelationImpl implements Expression
    * @generated
    * @ordered
    */
-  protected ConsExpression exp;
+  protected Relational exp;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class ExpressionImpl extends RelationImpl implements Expression
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConsExpression getExp()
+  public Relational getExp()
   {
     return exp;
   }
@@ -76,9 +76,9 @@ public class ExpressionImpl extends RelationImpl implements Expression
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExp(ConsExpression newExp, NotificationChain msgs)
+  public NotificationChain basicSetExp(Relational newExp, NotificationChain msgs)
   {
-    ConsExpression oldExp = exp;
+    Relational oldExp = exp;
     exp = newExp;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class ExpressionImpl extends RelationImpl implements Expression
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExp(ConsExpression newExp)
+  public void setExp(Relational newExp)
   {
     if (newExp != exp)
     {
@@ -152,7 +152,7 @@ public class ExpressionImpl extends RelationImpl implements Expression
     switch (featureID)
     {
       case HlvlPackage.EXPRESSION__EXP:
-        setExp((ConsExpression)newValue);
+        setExp((Relational)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class ExpressionImpl extends RelationImpl implements Expression
     switch (featureID)
     {
       case HlvlPackage.EXPRESSION__EXP:
-        setExp((ConsExpression)null);
+        setExp((Relational)null);
         return;
     }
     super.eUnset(featureID);

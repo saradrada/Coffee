@@ -31,12 +31,12 @@ public interface Expression extends Relation
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(ConsExpression)
+   * @see #setExp(Relational)
    * @see com.coffee.hlvl.HlvlPackage#getExpression_Exp()
    * @model containment="true"
    * @generated
    */
-  ConsExpression getExp();
+  Relational getExp();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.Expression#getExp <em>Exp</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface Expression extends Relation
    * @see #getExp()
    * @generated
    */
-  void setExp(ConsExpression value);
+  void setExp(Relational value);
 
 } // Expression

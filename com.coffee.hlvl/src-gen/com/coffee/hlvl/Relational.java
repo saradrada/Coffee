@@ -3,6 +3,7 @@
  */
 package com.coffee.hlvl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,6 @@ package com.coffee.hlvl;
  * @model
  * @generated
  */
-public interface Relational extends ConsExpression
+public interface Relational extends EObject
 {
 } // Relational

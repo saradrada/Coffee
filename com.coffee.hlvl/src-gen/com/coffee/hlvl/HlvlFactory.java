@@ -231,15 +231,6 @@ public interface HlvlFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Cons Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Cons Expression</em>'.
-   * @generated
-   */
-  ConsExpression createConsExpression();
-
-  /**
    * Returns a new object of class '<em>Relational</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

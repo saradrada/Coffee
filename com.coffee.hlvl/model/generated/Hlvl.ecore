@@ -92,10 +92,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Visibility" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ConsExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Relational"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-        eType="#//ListOfRelRefs" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfRelRefs"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -104,12 +104,11 @@
         eType="#//ListOfIDs" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//ConsExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConsExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Relational" eSuperTypes="#//ConsExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Global" eSuperTypes="#//ConsExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="Relational"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Global">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" eType="#//ListOfIDs"
         containment="true"/>

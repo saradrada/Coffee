@@ -3,7 +3,6 @@
  */
 package com.coffee.hlvl;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +32,12 @@ public interface Visibility extends Relation
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(ConsExpression)
+   * @see #setCondition(Relational)
    * @see com.coffee.hlvl.HlvlPackage#getVisibility_Condition()
    * @model containment="true"
    * @generated
    */
-  ConsExpression getCondition();
+  Relational getCondition();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.Visibility#getCondition <em>Condition</em>}' containment reference.
@@ -48,22 +47,32 @@ public interface Visibility extends Relation
    * @see #getCondition()
    * @generated
    */
-  void setCondition(ConsExpression value);
+  void setCondition(Relational value);
 
   /**
-   * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-   * The list contents are of type {@link com.coffee.hlvl.ListOfRelRefs}.
+   * Returns the value of the '<em><b>Children</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Children</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Children</em>' containment reference list.
+   * @return the value of the '<em>Children</em>' containment reference.
+   * @see #setChildren(ListOfRelRefs)
    * @see com.coffee.hlvl.HlvlPackage#getVisibility_Children()
    * @model containment="true"
    * @generated
    */
-  EList<ListOfRelRefs> getChildren();
+  ListOfRelRefs getChildren();
+
+  /**
+   * Sets the value of the '{@link com.coffee.hlvl.Visibility#getChildren <em>Children</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Children</em>' containment reference.
+   * @see #getChildren()
+   * @generated
+   */
+  void setChildren(ListOfRelRefs value);
 
 } // Visibility

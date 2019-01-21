@@ -9,7 +9,6 @@ import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
@@ -305,18 +304,10 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.CONS_EXPRESSION:
-      {
-        ConsExpression consExpression = (ConsExpression)theEObject;
-        T result = caseConsExpression(consExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case HlvlPackage.RELATIONAL:
       {
         Relational relational = (Relational)theEObject;
         T result = caseRelational(relational);
-        if (result == null) result = caseConsExpression(relational);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -324,7 +315,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Global global = (Global)theEObject;
         T result = caseGlobal(global);
-        if (result == null) result = caseConsExpression(global);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -423,7 +413,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Iff iff = (Iff)theEObject;
         T result = caseIff(iff);
         if (result == null) result = caseRelational(iff);
-        if (result == null) result = caseConsExpression(iff);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -432,7 +421,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Implies implies = (Implies)theEObject;
         T result = caseImplies(implies);
         if (result == null) result = caseRelational(implies);
-        if (result == null) result = caseConsExpression(implies);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -441,7 +429,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Or or = (Or)theEObject;
         T result = caseOr(or);
         if (result == null) result = caseRelational(or);
-        if (result == null) result = caseConsExpression(or);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -450,7 +437,6 @@ public class HlvlSwitch<T> extends Switch<T>
         And and = (And)theEObject;
         T result = caseAnd(and);
         if (result == null) result = caseRelational(and);
-        if (result == null) result = caseConsExpression(and);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -459,7 +445,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Equality equality = (Equality)theEObject;
         T result = caseEquality(equality);
         if (result == null) result = caseRelational(equality);
-        if (result == null) result = caseConsExpression(equality);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -468,7 +453,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Comparison comparison = (Comparison)theEObject;
         T result = caseComparison(comparison);
         if (result == null) result = caseRelational(comparison);
-        if (result == null) result = caseConsExpression(comparison);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -477,7 +461,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Plus plus = (Plus)theEObject;
         T result = casePlus(plus);
         if (result == null) result = caseRelational(plus);
-        if (result == null) result = caseConsExpression(plus);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -486,7 +469,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Minus minus = (Minus)theEObject;
         T result = caseMinus(minus);
         if (result == null) result = caseRelational(minus);
-        if (result == null) result = caseConsExpression(minus);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -495,7 +477,6 @@ public class HlvlSwitch<T> extends Switch<T>
         MulOrDiv mulOrDiv = (MulOrDiv)theEObject;
         T result = caseMulOrDiv(mulOrDiv);
         if (result == null) result = caseRelational(mulOrDiv);
-        if (result == null) result = caseConsExpression(mulOrDiv);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -504,7 +485,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Negation negation = (Negation)theEObject;
         T result = caseNegation(negation);
         if (result == null) result = caseRelational(negation);
-        if (result == null) result = caseConsExpression(negation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -513,7 +493,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Unary unary = (Unary)theEObject;
         T result = caseUnary(unary);
         if (result == null) result = caseRelational(unary);
-        if (result == null) result = caseConsExpression(unary);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -522,7 +501,6 @@ public class HlvlSwitch<T> extends Switch<T>
         Function function = (Function)theEObject;
         T result = caseFunction(function);
         if (result == null) result = caseRelational(function);
-        if (result == null) result = caseConsExpression(function);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -531,7 +509,6 @@ public class HlvlSwitch<T> extends Switch<T>
         BoolConstant boolConstant = (BoolConstant)theEObject;
         T result = caseBoolConstant(boolConstant);
         if (result == null) result = caseRelational(boolConstant);
-        if (result == null) result = caseConsExpression(boolConstant);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -540,7 +517,6 @@ public class HlvlSwitch<T> extends Switch<T>
         VariableRef variableRef = (VariableRef)theEObject;
         T result = caseVariableRef(variableRef);
         if (result == null) result = caseRelational(variableRef);
-        if (result == null) result = caseConsExpression(variableRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -549,7 +525,6 @@ public class HlvlSwitch<T> extends Switch<T>
         AttributeRef attributeRef = (AttributeRef)theEObject;
         T result = caseAttributeRef(attributeRef);
         if (result == null) result = caseRelational(attributeRef);
-        if (result == null) result = caseConsExpression(attributeRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -558,7 +533,6 @@ public class HlvlSwitch<T> extends Switch<T>
         IntConstant intConstant = (IntConstant)theEObject;
         T result = caseIntConstant(intConstant);
         if (result == null) result = caseRelational(intConstant);
-        if (result == null) result = caseConsExpression(intConstant);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -930,22 +904,6 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Cons Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Cons Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseConsExpression(ConsExpression object)
   {
     return null;
   }

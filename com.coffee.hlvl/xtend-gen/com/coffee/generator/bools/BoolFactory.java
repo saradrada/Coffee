@@ -1,18 +1,20 @@
 package com.coffee.generator.bools;
 
 import com.coffee.generator.CodeFactory;
+import com.coffee.generator.common.ExpressionsParser;
 import com.coffee.generator.minizinc.IConstants;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.OptionsDeclaration;
+import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -20,6 +22,8 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class BoolFactory extends CodeFactory implements IConstants {
+  private int visibility = 0;
+  
   @Override
   public CharSequence getConstant(final ElmDeclaration element) {
     CharSequence _xblockexpression = null;
@@ -326,12 +330,47 @@ public class BoolFactory extends CodeFactory implements IConstants {
   }
   
   @Override
-  public CharSequence getExpression(final Expression rel) {
-    return null;
+  public CharSequence getExpression(final Relational exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(IConstants.CONS_DEF);
+    _builder.append(" ");
+    CharSequence _parse = ExpressionsParser.parse(exp);
+    _builder.append(_parse);
+    return _builder;
   }
   
   @Override
-  public CharSequence getVisibility(final Visibility rel) {
-    return null;
+  public CharSequence getVisibility(final Visibility rel, final List<CharSequence> relations) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("var bool: B");
+      int _plusPlus = this.visibility++;
+      _builder.append(_plusPlus);
+      _builder.append(" ;");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t\t");
+      _builder.append("constraint (");
+      CharSequence _parse = ExpressionsParser.parse(rel.getCondition());
+      _builder.append(_parse, "\t\t\t");
+      _builder.append(") -> B");
+      int _plusPlus_1 = this.visibility++;
+      _builder.append(_plusPlus_1, "\t\t\t");
+      _builder.append(" ;");
+      String out = _builder.toString();
+      for (final CharSequence r : relations) {
+        String _out = out;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("constraint B");
+        int _plusPlus_2 = this.visibility++;
+        _builder_1.append(_plusPlus_2);
+        _builder_1.append("  <-> ");
+        _builder_1.append(r);
+        _builder_1.append(" ;");
+        out = (_out + _builder_1);
+      }
+      _xblockexpression = out;
+    }
+    return _xblockexpression;
   }
 }

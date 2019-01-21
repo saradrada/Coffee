@@ -9,7 +9,6 @@ import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
@@ -242,11 +241,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
-      }
-      @Override
-      public Adapter caseConsExpression(ConsExpression object)
-      {
-        return createConsExpressionAdapter();
       }
       @Override
       public Adapter caseRelational(Relational object)
@@ -761,21 +755,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ConsExpression <em>Cons Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.ConsExpression
-   * @generated
-   */
-  public Adapter createConsExpressionAdapter()
   {
     return null;
   }

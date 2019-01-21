@@ -7,10 +7,10 @@ import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
 import java.util.Map
 import com.coffee.hlvl.Group
-import com.coffee.hlvl.Pair
 import com.coffee.hlvl.VarList
-import com.coffee.hlvl.Expression
 import com.coffee.hlvl.Visibility
+import com.coffee.hlvl.Relational
+import java.util.List
 
 class IntFactory extends CodeFactory{
 	
@@ -38,13 +38,6 @@ class IntFactory extends CodeFactory{
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getImpliesPair(Pair rel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	override getMutexPair(Pair rel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
 	
 	override getImpliesList(VarList rel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
@@ -54,11 +47,20 @@ class IntFactory extends CodeFactory{
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getExpression(Expression rel) {
+	override getExpression(Relational rel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getVisibility(Visibility rel) {
+	
+	override getImpliesPair(ElmDeclaration left, ElmDeclaration right) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getMutexPair(ElmDeclaration left, ElmDeclaration right) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override getVisibility(Visibility rel, List<CharSequence> relations) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	

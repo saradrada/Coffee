@@ -7,14 +7,16 @@ import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
 import java.util.Map
 import com.coffee.hlvl.Group
-import com.coffee.hlvl.Pair
 import com.coffee.hlvl.VarList
-import com.coffee.hlvl.Expression
 import com.coffee.hlvl.Visibility
 import com.coffee.generator.minizinc.IConstants
 import com.coffee.hlvl.ConstantDecl
+import com.coffee.generator.common.ExpressionsParser
+import com.coffee.hlvl.Relational
+import java.util.List
 
 class BoolFactory extends CodeFactory implements IConstants{
+	private int visibility=0
 	
 	override getConstant(ElmDeclaration element) {
 		val value= (element.declaration as ConstantDecl).value
@@ -128,12 +130,17 @@ class BoolFactory extends CodeFactory implements IConstants{
 		out
 	}
 	
-	override getExpression(Expression rel) {
-		
+	override getExpression(Relational exp) {
+		'''«CONS_DEF» «ExpressionsParser.parse(exp)»'''
 	}
 	
-	override getVisibility(Visibility rel) {
-		
+	override getVisibility(Visibility rel, List<CharSequence> relations) {
+		var out= '''var bool: B«visibility++» ;
+			constraint («ExpressionsParser.parse(rel.condition)») -> B«visibility++» ;'''
+			for (r: relations){
+				out+= '''constraint B«visibility++»  <-> «r» ;'''
+			}
+			out
 	}
 	
 

@@ -5,11 +5,11 @@ import com.coffee.hlvl.OptionsDeclaration
 import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
 import com.coffee.hlvl.Group
-import com.coffee.hlvl.Pair
 import com.coffee.hlvl.VarList
 import java.util.Map
-import com.coffee.hlvl.Expression
 import com.coffee.hlvl.Visibility
+import com.coffee.hlvl.Relational
+import java.util.List
 
 /**
  * Interface to define the methods a codeFactory for the PLEC language
@@ -34,8 +34,8 @@ abstract class CodeFactory {
 	def CharSequence getMutexPair(ElmDeclaration left, ElmDeclaration right)
 	def CharSequence getImpliesList(VarList rel)
 	def CharSequence getMutexList(VarList rel)
-	def CharSequence getExpression(Expression rel)
-	def CharSequence getVisibility(Visibility rel)
+	def CharSequence getExpression(Relational rel)
+	def CharSequence getVisibility(Visibility rel, List<CharSequence> relations)
 	
 
 	

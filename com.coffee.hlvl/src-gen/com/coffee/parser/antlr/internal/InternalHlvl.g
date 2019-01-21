@@ -1579,9 +1579,9 @@ ruleVisibility returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVisibilityAccess().getConditionConsExpressionParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getVisibilityAccess().getConditionRelationalParserRuleCall_2_0());
 				}
-				lv_condition_2_0=ruleConsExpression
+				lv_condition_2_0=ruleRelational
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getVisibilityRule());
@@ -1590,7 +1590,7 @@ ruleVisibility returns [EObject current=null]
 						$current,
 						"condition",
 						lv_condition_2_0,
-						"com.coffee.Hlvl.ConsExpression");
+						"com.coffee.Hlvl.Relational");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1613,7 +1613,7 @@ ruleVisibility returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getVisibilityRule());
 					}
-					add(
+					set(
 						$current,
 						"children",
 						lv_children_5_0,
@@ -1744,9 +1744,9 @@ ruleExpression returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExpressionAccess().getExpConsExpressionParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getExpressionAccess().getExpRelationalParserRuleCall_2_0());
 				}
-				lv_exp_2_0=ruleConsExpression
+				lv_exp_2_0=ruleRelational
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExpressionRule());
@@ -1755,7 +1755,7 @@ ruleExpression returns [EObject current=null]
 						$current,
 						"exp",
 						lv_exp_2_0,
-						"com.coffee.Hlvl.ConsExpression");
+						"com.coffee.Hlvl.Relational");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1763,42 +1763,6 @@ ruleExpression returns [EObject current=null]
 		otherlv_3=')'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getExpressionAccess().getRightParenthesisKeyword_3());
-		}
-	)
-;
-
-// Entry rule entryRuleConsExpression
-entryRuleConsExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConsExpressionRule()); }
-	iv_ruleConsExpression=ruleConsExpression
-	{ $current=$iv_ruleConsExpression.current; }
-	EOF;
-
-// Rule ConsExpression
-ruleConsExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getConsExpressionAccess().getRelationalParserRuleCall_0());
-		}
-		this_Relational_0=ruleRelational
-		{
-			$current = $this_Relational_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getConsExpressionAccess().getGlobalParserRuleCall_1());
-		}
-		this_Global_1=ruleGlobal
-		{
-			$current = $this_Global_1.current;
-			afterParserOrEnumRuleCall();
 		}
 	)
 ;
@@ -2806,100 +2770,6 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 				newLeafNode(this_ID_2, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1());
 			}
 		)+
-	)
-;
-
-// Entry rule entryRuleGlobal
-entryRuleGlobal returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getGlobalRule()); }
-	iv_ruleGlobal=ruleGlobal
-	{ $current=$iv_ruleGlobal.current; }
-	EOF;
-
-// Rule Global
-ruleGlobal returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getGlobalAccess().getOpGlobalOpParserRuleCall_0_0());
-				}
-				lv_op_0_0=ruleGlobalOp
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getGlobalRule());
-					}
-					set(
-						$current,
-						"op",
-						lv_op_0_0,
-						"com.coffee.Hlvl.GlobalOp");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_1='('
-		{
-			newLeafNode(otherlv_1, grammarAccess.getGlobalAccess().getLeftParenthesisKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getGlobalAccess().getVarsListOfIDsParserRuleCall_2_0());
-				}
-				lv_vars_2_0=ruleListOfIDs
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getGlobalRule());
-					}
-					set(
-						$current,
-						"vars",
-						lv_vars_2_0,
-						"com.coffee.Hlvl.ListOfIDs");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3=')'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getGlobalAccess().getRightParenthesisKeyword_3());
-		}
-		(
-			otherlv_4='['
-			{
-				newLeafNode(otherlv_4, grammarAccess.getGlobalAccess().getLeftSquareBracketKeyword_4_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getGlobalAccess().getValuesListOfListValuesParserRuleCall_4_1_0());
-					}
-					lv_values_5_0=ruleListOfListValues
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getGlobalRule());
-						}
-						set(
-							$current,
-							"values",
-							lv_values_5_0,
-							"com.coffee.Hlvl.ListOfListValues");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_6=']'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getGlobalAccess().getRightSquareBracketKeyword_4_2());
-			}
-		)?
 	)
 ;
 

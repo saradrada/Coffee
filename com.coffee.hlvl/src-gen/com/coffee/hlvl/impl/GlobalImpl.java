@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class GlobalImpl extends ConsExpressionImpl implements Global
+public class GlobalImpl extends MinimalEObjectImpl.Container implements Global
 {
   /**
    * The default value of the '{@link #getOp() <em>Op</em>}' attribute.

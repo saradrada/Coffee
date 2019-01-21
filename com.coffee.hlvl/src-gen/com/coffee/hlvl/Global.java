@@ -3,6 +3,7 @@
  */
 package com.coffee.hlvl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,7 @@ package com.coffee.hlvl;
  * @model
  * @generated
  */
-public interface Global extends ConsExpression
+public interface Global extends EObject
 {
   /**
    * Returns the value of the '<em><b>Op</b></em>' attribute.

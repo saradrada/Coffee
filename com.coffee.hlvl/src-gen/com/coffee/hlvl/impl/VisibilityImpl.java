@@ -3,25 +3,18 @@
  */
 package com.coffee.hlvl.impl;
 
-import com.coffee.hlvl.ConsExpression;
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.ListOfRelRefs;
+import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Visibility;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,17 +40,17 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * @generated
    * @ordered
    */
-  protected ConsExpression condition;
+  protected Relational condition;
 
   /**
-   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
+   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getChildren()
    * @generated
    * @ordered
    */
-  protected EList<ListOfRelRefs> children;
+  protected ListOfRelRefs children;
 
   /**
    * <!-- begin-user-doc -->
@@ -85,7 +78,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConsExpression getCondition()
+  public Relational getCondition()
   {
     return condition;
   }
@@ -95,9 +88,9 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCondition(ConsExpression newCondition, NotificationChain msgs)
+  public NotificationChain basicSetCondition(Relational newCondition, NotificationChain msgs)
   {
-    ConsExpression oldCondition = condition;
+    Relational oldCondition = condition;
     condition = newCondition;
     if (eNotificationRequired())
     {
@@ -112,7 +105,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCondition(ConsExpression newCondition)
+  public void setCondition(Relational newCondition)
   {
     if (newCondition != condition)
     {
@@ -133,13 +126,47 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ListOfRelRefs> getChildren()
+  public ListOfRelRefs getChildren()
   {
-    if (children == null)
-    {
-      children = new EObjectContainmentEList<ListOfRelRefs>(ListOfRelRefs.class, this, HlvlPackage.VISIBILITY__CHILDREN);
-    }
     return children;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetChildren(ListOfRelRefs newChildren, NotificationChain msgs)
+  {
+    ListOfRelRefs oldChildren = children;
+    children = newChildren;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__CHILDREN, oldChildren, newChildren);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setChildren(ListOfRelRefs newChildren)
+  {
+    if (newChildren != children)
+    {
+      NotificationChain msgs = null;
+      if (children != null)
+        msgs = ((InternalEObject)children).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__CHILDREN, null, msgs);
+      if (newChildren != null)
+        msgs = ((InternalEObject)newChildren).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__CHILDREN, null, msgs);
+      msgs = basicSetChildren(newChildren, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__CHILDREN, newChildren, newChildren));
   }
 
   /**
@@ -155,7 +182,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
       case HlvlPackage.VISIBILITY__CONDITION:
         return basicSetCondition(null, msgs);
       case HlvlPackage.VISIBILITY__CHILDREN:
-        return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+        return basicSetChildren(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -183,18 +210,16 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case HlvlPackage.VISIBILITY__CONDITION:
-        setCondition((ConsExpression)newValue);
+        setCondition((Relational)newValue);
         return;
       case HlvlPackage.VISIBILITY__CHILDREN:
-        getChildren().clear();
-        getChildren().addAll((Collection<? extends ListOfRelRefs>)newValue);
+        setChildren((ListOfRelRefs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -211,10 +236,10 @@ public class VisibilityImpl extends RelationImpl implements Visibility
     switch (featureID)
     {
       case HlvlPackage.VISIBILITY__CONDITION:
-        setCondition((ConsExpression)null);
+        setCondition((Relational)null);
         return;
       case HlvlPackage.VISIBILITY__CHILDREN:
-        getChildren().clear();
+        setChildren((ListOfRelRefs)null);
         return;
     }
     super.eUnset(featureID);
@@ -233,7 +258,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
       case HlvlPackage.VISIBILITY__CONDITION:
         return condition != null;
       case HlvlPackage.VISIBILITY__CHILDREN:
-        return children != null && !children.isEmpty();
+        return children != null;
     }
     return super.eIsSet(featureID);
   }

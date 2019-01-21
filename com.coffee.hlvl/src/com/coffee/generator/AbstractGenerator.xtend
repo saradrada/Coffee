@@ -15,6 +15,7 @@ import com.coffee.hlvl.Expression
 import com.coffee.hlvl.Visibility
 import com.coffee.hlvl.VariableDecl
 import com.coffee.hlvl.ConstantDecl
+import java.util.ArrayList
 
 /**
  * Abstract Generator, this is the class that process the model and traverses the 
@@ -192,10 +193,14 @@ import com.coffee.hlvl.ConstantDecl
 			}
 		}
 		else if (rel instanceof Expression){
-			factory.getExpression(rel)
+			factory.getExpression(rel.exp)
 		}
 		else if (rel instanceof Visibility){
-			factory.getVisibility(rel)
+			var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
+			for(r: rel.children.ids){
+				relations.add(parseRelation(r.exp))
+			}
+			factory.getVisibility(rel, relations)
 		}
 	}
 	
