@@ -15,6 +15,13 @@ interface IConstants {
 	
 	//Relational operators
 	public static final String EQUIV ="=" 
+	public static final String NEQUIV ="!="
+	public static final String LT ="<"
+	public static final String GT =">"
+	public static final String LEQ ="<="
+	public static final String GEQ=">="
+	
+	//Logic
 	public static final String IFF="<->"
 	public static final String IMPLIES_LR="->"
 	public static final String IMPLIES_R_="<-"

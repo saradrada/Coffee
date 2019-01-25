@@ -327,19 +327,20 @@ ruleConstantDecl returns [EObject current=null]
 			}
 			(
 				(
-					lv_value_2_0=RULE_INT
 					{
-						newLeafNode(lv_value_2_0, grammarAccess.getConstantDeclAccess().getValueINTTerminalRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getConstantDeclAccess().getValueValueParserRuleCall_1_1_0());
 					}
+					lv_value_2_0=ruleValue
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getConstantDeclRule());
+							$current = createModelElementForParent(grammarAccess.getConstantDeclRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"value",
 							lv_value_2_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"com.coffee.Hlvl.Value");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -452,20 +453,19 @@ ruleInterval returns [EObject current=null]
 	(
 		(
 			(
+				lv_start_0_0=RULE_INT
 				{
-					newCompositeNode(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0());
+					newLeafNode(lv_start_0_0, grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0());
 				}
-				lv_start_0_0=ruleNumber
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getIntervalRule());
+						$current = createModelElement(grammarAccess.getIntervalRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"start",
 						lv_start_0_0,
-						"com.coffee.Hlvl.Number");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.INT");
 				}
 			)
 		)
@@ -475,20 +475,19 @@ ruleInterval returns [EObject current=null]
 		}
 		(
 			(
+				lv_end_2_0=RULE_INT
 				{
-					newCompositeNode(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0());
+					newLeafNode(lv_end_2_0, grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0());
 				}
-				lv_end_2_0=ruleNumber
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getIntervalRule());
+						$current = createModelElement(grammarAccess.getIntervalRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"end",
 						lv_end_2_0,
-						"com.coffee.Hlvl.Number");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.INT");
 				}
 			)
 		)

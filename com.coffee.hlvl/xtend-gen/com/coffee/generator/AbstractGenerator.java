@@ -3,6 +3,7 @@ package com.coffee.generator;
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
 import com.coffee.generator.IGenerator;
+import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
@@ -11,9 +12,12 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
+import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Pair;
+import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
+import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.VariableDecl;
 import com.coffee.hlvl.Visibility;
@@ -23,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 /**
  * Abstract Generator, this is the class that process the model and traverses the
@@ -122,8 +125,8 @@ public abstract class AbstractGenerator implements IGenerator {
           Declaration _declaration = element.getDeclaration();
           if ((_declaration instanceof ConstantDecl)) {
             Declaration _declaration_1 = element.getDeclaration();
-            final int value = ((ConstantDecl) _declaration_1).getValue();
-            if ((Objects.equal(element.getDataType(), "boolean") && (value == 0))) {
+            final Value value = ((ConstantDecl) _declaration_1).getValue();
+            if ((Objects.equal(element.getDataType(), "boolean") && (value == null))) {
               String _out = out;
               CharSequence _element = this.factory.getElement(element);
               out = (_out + _element);
@@ -158,22 +161,15 @@ public abstract class AbstractGenerator implements IGenerator {
     String _xblockexpression = null;
     {
       String out = "";
-      InputOutput.<String>println("call to parseRelations");
       EList<RelDeclaration> _relations = model.getRelations();
       for (final RelDeclaration e : _relations) {
         {
           this.relations.put(e.getName(), e.getExp());
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("parsing relation ");
-          String _name = e.getName();
-          _builder.append(_name);
-          InputOutput.<String>println(_builder.toString());
           String _out = out;
           CharSequence _parseRelation = this.parseRelation(e.getExp());
           out = (_out + _parseRelation);
         }
       }
-      InputOutput.<String>println(("parseRelation out " + out));
       _xblockexpression = out;
     }
     return _xblockexpression;
@@ -186,82 +182,108 @@ public abstract class AbstractGenerator implements IGenerator {
    */
   @Override
   public CharSequence parseRelation(final Relation rel) {
-    CharSequence _xifexpression = null;
-    if ((rel instanceof Core)) {
-      _xifexpression = this.factory.getCore(((Core)rel));
-    } else {
-      CharSequence _xifexpression_1 = null;
-      if ((rel instanceof Decomposition)) {
-        _xifexpression_1 = this.factory.getDecomposition(((Decomposition)rel), this.parents);
-      } else {
-        CharSequence _xifexpression_2 = null;
-        if ((rel instanceof Group)) {
-          _xifexpression_2 = this.factory.getGroup(((Group)rel), this.parents);
-        } else {
-          CharSequence _xifexpression_3 = null;
-          if ((rel instanceof Pair)) {
-            CharSequence _xblockexpression = null;
-            {
-              final Pair pair = ((Pair) rel);
-              CharSequence _xifexpression_4 = null;
-              String _operator = pair.getOperator();
-              boolean _equals = Objects.equal(_operator, "implies");
-              if (_equals) {
-                _xifexpression_4 = this.factory.getImpliesPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
-              } else {
-                _xifexpression_4 = this.factory.getMutexPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
-              }
-              _xblockexpression = _xifexpression_4;
-            }
-            _xifexpression_3 = _xblockexpression;
-          } else {
-            CharSequence _xifexpression_4 = null;
-            if ((rel instanceof VarList)) {
-              CharSequence _xblockexpression_1 = null;
-              {
-                final Pair pair = ((Pair) rel);
-                CharSequence _xifexpression_5 = null;
-                String _operator = pair.getOperator();
-                boolean _equals = Objects.equal(_operator, "implies");
-                if (_equals) {
-                  _xifexpression_5 = this.factory.getImpliesList(((VarList)rel));
-                } else {
-                  _xifexpression_5 = this.factory.getMutexList(((VarList)rel));
-                }
-                _xblockexpression_1 = _xifexpression_5;
-              }
-              _xifexpression_4 = _xblockexpression_1;
-            } else {
-              CharSequence _xifexpression_5 = null;
-              if ((rel instanceof Expression)) {
-                _xifexpression_5 = this.factory.getExpression(((Expression)rel).getExp());
-              } else {
-                CharSequence _xifexpression_6 = null;
-                if ((rel instanceof Visibility)) {
-                  CharSequence _xblockexpression_2 = null;
-                  {
-                    ArrayList<CharSequence> relations = new ArrayList<CharSequence>();
-                    EList<RelDeclaration> _ids = ((Visibility)rel).getChildren().getIds();
-                    for (final RelDeclaration r : _ids) {
-                      relations.add(this.parseRelation(r.getExp()));
-                    }
-                    _xblockexpression_2 = this.factory.getVisibility(((Visibility)rel), relations);
-                  }
-                  _xifexpression_6 = _xblockexpression_2;
-                }
-                _xifexpression_5 = _xifexpression_6;
-              }
-              _xifexpression_4 = _xifexpression_5;
-            }
-            _xifexpression_3 = _xifexpression_4;
-          }
-          _xifexpression_2 = _xifexpression_3;
-        }
-        _xifexpression_1 = _xifexpression_2;
-      }
-      _xifexpression = _xifexpression_1;
+    CharSequence _switchResult = null;
+    boolean _matched = false;
+    if (rel instanceof Core) {
+      _matched=true;
+      _switchResult = this.factory.getCore(((Core)rel));
     }
-    return _xifexpression;
+    if (!_matched) {
+      if (rel instanceof Decomposition) {
+        _matched=true;
+        _switchResult = this.factory.getDecomposition(((Decomposition)rel), this.parents);
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof Group) {
+        _matched=true;
+        _switchResult = this.factory.getGroup(((Group)rel), this.parents);
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof Pair) {
+        _matched=true;
+        CharSequence _xblockexpression = null;
+        {
+          final Pair pair = ((Pair) rel);
+          CharSequence _xifexpression = null;
+          String _operator = pair.getOperator();
+          boolean _equals = Objects.equal(_operator, "implies");
+          if (_equals) {
+            _xifexpression = this.factory.getImpliesPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
+          } else {
+            _xifexpression = this.factory.getMutexPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
+          }
+          _xblockexpression = _xifexpression;
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof VarList) {
+        _matched=true;
+        CharSequence _xblockexpression = null;
+        {
+          final VarList pair = ((VarList) rel);
+          CharSequence _xifexpression = null;
+          String _operator = pair.getOperator();
+          boolean _equals = Objects.equal(_operator, "implies");
+          if (_equals) {
+            _xifexpression = this.factory.getImpliesList(((VarList)rel));
+          } else {
+            _xifexpression = this.factory.getMutexList(((VarList)rel));
+          }
+          _xblockexpression = _xifexpression;
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof Expression) {
+        _matched=true;
+        _switchResult = this.factory.getExpression(((Expression)rel).getExp());
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof Visibility) {
+        _matched=true;
+        CharSequence _xblockexpression = null;
+        {
+          ArrayList<CharSequence> relations = new ArrayList<CharSequence>();
+          EList<RelDeclaration> _ids = ((Visibility)rel).getChildren().getIds();
+          for (final RelDeclaration r : _ids) {
+            relations.add(this.parseRelation(r.getExp()));
+          }
+          _xblockexpression = this.factory.getVisibility(((Visibility)rel), relations);
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof MultInstantiation) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("n.y.i");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof QImplies) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("n.y.i");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (rel instanceof ComplexImplies) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("n.y.i");
+        _switchResult = _builder;
+      }
+    }
+    return _switchResult;
   }
   
   /**

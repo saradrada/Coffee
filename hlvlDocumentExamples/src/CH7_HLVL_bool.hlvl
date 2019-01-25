@@ -38,6 +38,3 @@ relations:
  	R17: expression( ~mstkruskal OR ~shortest )
  	R18: expression( DFS OR ~cycle )
  	R19: expression( ~mstprim OR ~shortest)
-	
-	
-	

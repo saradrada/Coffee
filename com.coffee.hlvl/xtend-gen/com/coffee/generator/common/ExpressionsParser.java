@@ -140,7 +140,7 @@ public class ExpressionsParser {
       if (exp instanceof Iff) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Iff)exp).getLeft());
         _builder.append(_parse);
         _builder.append("  <-> ");
@@ -154,7 +154,7 @@ public class ExpressionsParser {
       if (exp instanceof Implies) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Implies)exp).getLeft());
         _builder.append(_parse);
         _builder.append("  -> ");
@@ -168,10 +168,10 @@ public class ExpressionsParser {
       if (exp instanceof Or) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Or)exp).getLeft());
         _builder.append(_parse);
-        _builder.append(" \\\\/ ");
+        _builder.append(" \\/ ");
         CharSequence _parse_1 = ExpressionsParser.parse(((Or)exp).getRight());
         _builder.append(_parse_1);
         _builder.append(")");
@@ -182,10 +182,10 @@ public class ExpressionsParser {
       if (exp instanceof And) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((And)exp).getLeft());
         _builder.append(_parse);
-        _builder.append(" /\\\\ ");
+        _builder.append(" /\\ ");
         CharSequence _parse_1 = ExpressionsParser.parse(((And)exp).getRight());
         _builder.append(_parse_1);
         _builder.append(")");
@@ -196,7 +196,7 @@ public class ExpressionsParser {
       if (exp instanceof Equality) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Equality)exp).getLeft());
         _builder.append(_parse);
         _builder.append(" = ");
@@ -214,7 +214,7 @@ public class ExpressionsParser {
         boolean _equals = Objects.equal(_op, ">=");
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("( ");
+          _builder.append("(");
           CharSequence _parse = ExpressionsParser.parse(((Comparison)exp).getLeft());
           _builder.append(_parse);
           _builder.append(" >= ");
@@ -228,7 +228,7 @@ public class ExpressionsParser {
           boolean _equals_1 = Objects.equal(_op_1, "<=");
           if (_equals_1) {
             StringConcatenation _builder_1 = new StringConcatenation();
-            _builder_1.append("( ");
+            _builder_1.append("(");
             CharSequence _parse_2 = ExpressionsParser.parse(((Comparison)exp).getLeft());
             _builder_1.append(_parse_2);
             _builder_1.append(" <= ");
@@ -242,7 +242,7 @@ public class ExpressionsParser {
             boolean _equals_2 = Objects.equal(_op_2, ">");
             if (_equals_2) {
               StringConcatenation _builder_2 = new StringConcatenation();
-              _builder_2.append("( ");
+              _builder_2.append("(");
               CharSequence _parse_4 = ExpressionsParser.parse(((Comparison)exp).getLeft());
               _builder_2.append(_parse_4);
               _builder_2.append(" > ");
@@ -256,7 +256,7 @@ public class ExpressionsParser {
               boolean _equals_3 = Objects.equal(_op_3, "<");
               if (_equals_3) {
                 StringConcatenation _builder_3 = new StringConcatenation();
-                _builder_3.append("( ");
+                _builder_3.append("(");
                 CharSequence _parse_6 = ExpressionsParser.parse(((Comparison)exp).getLeft());
                 _builder_3.append(_parse_6);
                 _builder_3.append(" < ");
@@ -278,7 +278,7 @@ public class ExpressionsParser {
       if (exp instanceof Plus) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Plus)exp).getLeft());
         _builder.append(_parse);
         _builder.append(" + ");
@@ -292,7 +292,7 @@ public class ExpressionsParser {
       if (exp instanceof Minus) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("( ");
+        _builder.append("(");
         CharSequence _parse = ExpressionsParser.parse(((Minus)exp).getLeft());
         _builder.append(_parse);
         _builder.append(" - ");

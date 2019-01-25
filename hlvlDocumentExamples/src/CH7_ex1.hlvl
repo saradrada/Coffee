@@ -1,4 +1,4 @@
-model MCS
+model MCS_CH7
 elements:
 	integer cores variants: 1..7
 	integer size variants: [2, 8, 16, 32]

@@ -14,13 +14,15 @@ import com.coffee.hlvl.ConstantDecl
 import com.coffee.generator.common.ExpressionsParser
 import com.coffee.hlvl.Relational
 import java.util.List
+import com.coffee.hlvl.Value
+import com.coffee.hlvl.BoolVal
 
 class BoolFactory extends CodeFactory implements IConstants{
 	private int visibility=0
 	
 	override getConstant(ElmDeclaration element) {
 		val value= (element.declaration as ConstantDecl).value
-		'''«BOOL_DOMAIN» «COLON» «element.name» «ASSIGN» «value»  «SEMICOLON»
+		'''«BOOL_DOMAIN» «COLON» «element.name» «ASSIGN» «(value as BoolVal).value»  «SEMICOLON»
 		'''
 	}
 	
@@ -33,26 +35,28 @@ class BoolFactory extends CodeFactory implements IConstants{
 	
 	//TODO consider to delete this method from the code generator or put it in a 
 	// more specific interface, because it is not needed for booleans
-	override getValuesDeclaration(ElmDeclaration variable, OptionsDeclaration variant) {
-		''''''
-	}
+//	override getValuesDeclaration(ElmDeclaration variable, OptionsDeclaration variant) {
+//		''''''
+//	}
+
 	
 	override getCore(Core core) {
-		println("inside getCore")
 		var  String out=""
 		for(element: core.elements.values){
-			out+=
-			'''«CONS_DEF» «element.name» «EQUIV» «TRUE_ATOM» «SEMICOLON»
-			'''
+			out+= getCoreSingle(element)
+			
 		}
-		println("getCore out "+ out)
 		out
 	}
 	
+	override getCoreSingle(ElmDeclaration element){
+		'''«CONS_DEF» «element.name» «EQUIV» «TRUE_ATOM» «SEMICOLON»
+		'''
+	}
 	override getDecomposition(Decomposition rel, Map<String, ElmDeclaration> parents) {
 		var out=""
 		for(element: rel.children.values){
-			parents.put(rel.parent.name, element)
+			parents.put(element.name, rel.parent)
 			if(rel.cardinality==1){
 				out+= '''«CONS_DEF» «rel.parent.name» «IFF» «element.name» «SEMICOLON»
 				'''
@@ -81,11 +85,11 @@ class BoolFactory extends CodeFactory implements IConstants{
 	def getXor(Group rel, Map<String, ElmDeclaration> parents){
 		var out=""
 		for(element: rel.children.values){
-			parents.put(rel.parent.name, element)
+			parents.put(element.name, rel.parent)
 			out+= '''«CONS_DEF» «element.name» «IFF» «OPEN_CALL»'''
 			for(inElement: rel.children.values){
 				if(element.name!= inElement.name){
-					out+='''«NOT»«OPEN_CALL»«inElement.name»«CLOSE_CALL» «AND»'''
+					out+='''«NOT»«OPEN_CALL»«inElement.name»«CLOSE_CALL» «AND» '''
 				}
 			}
 			out += '''«rel.parent.name»«CLOSE_CALL» «SEMICOLON»
@@ -96,10 +100,10 @@ class BoolFactory extends CodeFactory implements IConstants{
 	def getOR(Group rel, Map<String, ElmDeclaration> parents){
 		var out='''«CONS_DEF» «rel.parent.name» «IFF» «OPEN_CALL»'''
 		for(element: rel.children.values){
-			parents.put(rel.parent.name, element)
-			out+= '''«element.name» «OR»'''
+			parents.put(element.name, rel.parent)
+			out+= ''' «element.name» «OR»'''
 		}
-		out+= out.subSequence(0, out.length-2) +'''«CLOSE_CALL» «SEMICOLON»
+		out= out.subSequence(0, out.length-2) +'''«CLOSE_CALL» «SEMICOLON»
 		'''
 		out
 	}
@@ -110,7 +114,7 @@ class BoolFactory extends CodeFactory implements IConstants{
 	}
 	
 	override getMutexPair(ElmDeclaration left, ElmDeclaration right) {
-		'''«CONS_DEF» «NOT» «OPEN_CALL»«left.name» «AND» «right.name»«OPEN_CALL»«SEMICOLON»
+		'''«CONS_DEF» «NOT» «OPEN_CALL»«left.name» «AND» «right.name»«CLOSE_CALL»«SEMICOLON»
 		'''
 	}
 	
@@ -131,15 +135,22 @@ class BoolFactory extends CodeFactory implements IConstants{
 	}
 	
 	override getExpression(Relational exp) {
-		'''«CONS_DEF» «ExpressionsParser.parse(exp)»'''
+		'''«CONS_DEF» «ExpressionsParser.parse(exp)» «SEMICOLON»
+		'''
 	}
 	
 	override getVisibility(Visibility rel, List<CharSequence> relations) {
-		var out= '''var bool: B«visibility++» ;
-			constraint («ExpressionsParser.parse(rel.condition)») -> B«visibility++» ;'''
+		var out= 
+		'''
+		var bool: B«visibility» ;
+		constraint «ExpressionsParser.parse(rel.condition)» -> B«visibility»;
+		'''
 			for (r: relations){
-				out+= '''constraint B«visibility++»  <-> «r» ;'''
+				out+= 
+				'''constraint B«visibility»  <-> «r.subSequence(10, r.length)»
+				'''
 			}
+			visibility++
 			out
 	}
 	

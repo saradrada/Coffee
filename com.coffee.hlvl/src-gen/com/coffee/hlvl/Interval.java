@@ -24,55 +24,55 @@ package com.coffee.hlvl;
 public interface Interval extends OptionsDeclaration
 {
   /**
-   * Returns the value of the '<em><b>Start</b></em>' containment reference.
+   * Returns the value of the '<em><b>Start</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Start</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Start</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Start</em>' containment reference.
-   * @see #setStart(com.coffee.hlvl.Number)
+   * @return the value of the '<em>Start</em>' attribute.
+   * @see #setStart(int)
    * @see com.coffee.hlvl.HlvlPackage#getInterval_Start()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  com.coffee.hlvl.Number getStart();
+  int getStart();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Interval#getStart <em>Start</em>}' containment reference.
+   * Sets the value of the '{@link com.coffee.hlvl.Interval#getStart <em>Start</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Start</em>' containment reference.
+   * @param value the new value of the '<em>Start</em>' attribute.
    * @see #getStart()
    * @generated
    */
-  void setStart(com.coffee.hlvl.Number value);
+  void setStart(int value);
 
   /**
-   * Returns the value of the '<em><b>End</b></em>' containment reference.
+   * Returns the value of the '<em><b>End</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>End</em>' containment reference isn't clear,
+   * If the meaning of the '<em>End</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>End</em>' containment reference.
-   * @see #setEnd(com.coffee.hlvl.Number)
+   * @return the value of the '<em>End</em>' attribute.
+   * @see #setEnd(int)
    * @see com.coffee.hlvl.HlvlPackage#getInterval_End()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  com.coffee.hlvl.Number getEnd();
+  int getEnd();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Interval#getEnd <em>End</em>}' containment reference.
+   * Sets the value of the '{@link com.coffee.hlvl.Interval#getEnd <em>End</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>End</em>' containment reference.
+   * @param value the new value of the '<em>End</em>' attribute.
    * @see #getEnd()
    * @generated
    */
-  void setEnd(com.coffee.hlvl.Number value);
+  void setEnd(int value);
 
 } // Interval

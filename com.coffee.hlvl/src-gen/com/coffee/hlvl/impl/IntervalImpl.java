@@ -7,10 +7,8 @@ import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.Interval;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -31,24 +29,44 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class IntervalImpl extends OptionsDeclarationImpl implements Interval
 {
   /**
-   * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
+   * The default value of the '{@link #getStart() <em>Start</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getStart()
    * @generated
    * @ordered
    */
-  protected com.coffee.hlvl.Number start;
+  protected static final int START_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
+   * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStart()
+   * @generated
+   * @ordered
+   */
+  protected int start = START_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getEnd() <em>End</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getEnd()
    * @generated
    * @ordered
    */
-  protected com.coffee.hlvl.Number end;
+  protected static final int END_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getEnd() <em>End</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEnd()
+   * @generated
+   * @ordered
+   */
+  protected int end = END_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -76,7 +94,7 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
    * <!-- end-user-doc -->
    * @generated
    */
-  public com.coffee.hlvl.Number getStart()
+  public int getStart()
   {
     return start;
   }
@@ -86,16 +104,12 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStart(com.coffee.hlvl.Number newStart, NotificationChain msgs)
+  public void setStart(int newStart)
   {
-    com.coffee.hlvl.Number oldStart = start;
+    int oldStart = start;
     start = newStart;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__START, oldStart, newStart);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__START, oldStart, start));
   }
 
   /**
@@ -103,28 +117,7 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setStart(com.coffee.hlvl.Number newStart)
-  {
-    if (newStart != start)
-    {
-      NotificationChain msgs = null;
-      if (start != null)
-        msgs = ((InternalEObject)start).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.INTERVAL__START, null, msgs);
-      if (newStart != null)
-        msgs = ((InternalEObject)newStart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.INTERVAL__START, null, msgs);
-      msgs = basicSetStart(newStart, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__START, newStart, newStart));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public com.coffee.hlvl.Number getEnd()
+  public int getEnd()
   {
     return end;
   }
@@ -134,55 +127,12 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetEnd(com.coffee.hlvl.Number newEnd, NotificationChain msgs)
+  public void setEnd(int newEnd)
   {
-    com.coffee.hlvl.Number oldEnd = end;
+    int oldEnd = end;
     end = newEnd;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__END, oldEnd, newEnd);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setEnd(com.coffee.hlvl.Number newEnd)
-  {
-    if (newEnd != end)
-    {
-      NotificationChain msgs = null;
-      if (end != null)
-        msgs = ((InternalEObject)end).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.INTERVAL__END, null, msgs);
-      if (newEnd != null)
-        msgs = ((InternalEObject)newEnd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.INTERVAL__END, null, msgs);
-      msgs = basicSetEnd(newEnd, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__END, newEnd, newEnd));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case HlvlPackage.INTERVAL__START:
-        return basicSetStart(null, msgs);
-      case HlvlPackage.INTERVAL__END:
-        return basicSetEnd(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.INTERVAL__END, oldEnd, end));
   }
 
   /**
@@ -214,10 +164,10 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
     switch (featureID)
     {
       case HlvlPackage.INTERVAL__START:
-        setStart((com.coffee.hlvl.Number)newValue);
+        setStart((Integer)newValue);
         return;
       case HlvlPackage.INTERVAL__END:
-        setEnd((com.coffee.hlvl.Number)newValue);
+        setEnd((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,10 +184,10 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
     switch (featureID)
     {
       case HlvlPackage.INTERVAL__START:
-        setStart((com.coffee.hlvl.Number)null);
+        setStart(START_EDEFAULT);
         return;
       case HlvlPackage.INTERVAL__END:
-        setEnd((com.coffee.hlvl.Number)null);
+        setEnd(END_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -254,11 +204,30 @@ public class IntervalImpl extends OptionsDeclarationImpl implements Interval
     switch (featureID)
     {
       case HlvlPackage.INTERVAL__START:
-        return start != null;
+        return start != START_EDEFAULT;
       case HlvlPackage.INTERVAL__END:
-        return end != null;
+        return end != END_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (start: ");
+    result.append(start);
+    result.append(", end: ");
+    result.append(end);
+    result.append(')');
+    return result.toString();
   }
 
 } //IntervalImpl

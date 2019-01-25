@@ -197,7 +197,7 @@ public interface HlvlPackage extends EPackage
   int CONSTANT_DECL = 3;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -272,7 +272,7 @@ public interface HlvlPackage extends EPackage
   int INTERVAL = 6;
 
   /**
-   * The feature id for the '<em><b>Start</b></em>' containment reference.
+   * The feature id for the '<em><b>Start</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -281,7 +281,7 @@ public interface HlvlPackage extends EPackage
   int INTERVAL__START = OPTIONS_DECLARATION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>End</b></em>' containment reference.
+   * The feature id for the '<em><b>End</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2040,15 +2040,15 @@ public interface HlvlPackage extends EPackage
   EClass getConstantDecl();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.hlvl.ConstantDecl#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.ConstantDecl#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see com.coffee.hlvl.ConstantDecl#getValue()
    * @see #getConstantDecl()
    * @generated
    */
-  EAttribute getConstantDecl_Value();
+  EReference getConstantDecl_Value();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.VariableDecl <em>Variable Decl</em>}'.
@@ -2092,26 +2092,26 @@ public interface HlvlPackage extends EPackage
   EClass getInterval();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.Interval#getStart <em>Start</em>}'.
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.Interval#getStart <em>Start</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Start</em>'.
+   * @return the meta object for the attribute '<em>Start</em>'.
    * @see com.coffee.hlvl.Interval#getStart()
    * @see #getInterval()
    * @generated
    */
-  EReference getInterval_Start();
+  EAttribute getInterval_Start();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.Interval#getEnd <em>End</em>}'.
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.Interval#getEnd <em>End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>End</em>'.
+   * @return the meta object for the attribute '<em>End</em>'.
    * @see com.coffee.hlvl.Interval#getEnd()
    * @see #getInterval()
    * @generated
    */
-  EReference getInterval_End();
+  EAttribute getInterval_End();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.Enumeration <em>Enumeration</em>}'.
@@ -3537,12 +3537,12 @@ public interface HlvlPackage extends EPackage
     EClass CONSTANT_DECL = eINSTANCE.getConstantDecl();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONSTANT_DECL__VALUE = eINSTANCE.getConstantDecl_Value();
+    EReference CONSTANT_DECL__VALUE = eINSTANCE.getConstantDecl_Value();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.VariableDeclImpl <em>Variable Decl</em>}' class.
@@ -3583,20 +3583,20 @@ public interface HlvlPackage extends EPackage
     EClass INTERVAL = eINSTANCE.getInterval();
 
     /**
-     * The meta object literal for the '<em><b>Start</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INTERVAL__START = eINSTANCE.getInterval_Start();
+    EAttribute INTERVAL__START = eINSTANCE.getInterval_Start();
 
     /**
-     * The meta object literal for the '<em><b>End</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>End</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INTERVAL__END = eINSTANCE.getInterval_End();
+    EAttribute INTERVAL__END = eINSTANCE.getInterval_End();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.EnumerationImpl <em>Enumeration</em>}' class.

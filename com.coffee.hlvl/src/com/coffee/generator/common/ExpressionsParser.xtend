@@ -52,27 +52,27 @@ class ExpressionsParser {
 			}
 			Negation: '''not(«parse(exp.expression)»)'''
 			
-			Iff: '''( «parse(exp.left)»  <-> «parse(exp.right)»)'''
+			Iff: '''(«parse(exp.left)»  <-> «parse(exp.right)»)'''
 			
-			Implies: '''( «parse(exp.left)»  -> «parse(exp.right)»)'''
+			Implies: '''(«parse(exp.left)»  -> «parse(exp.right)»)'''
 			
-			Or: '''( «parse(exp.left)» \\/ «parse(exp.right)»)'''
-			And: '''( «parse(exp.left)» /\\ «parse(exp.right)»)'''
-			Equality: '''( «parse(exp.left)» = «parse(exp.right)»)'''
+			Or: '''(«parse(exp.left)» \/ «parse(exp.right)»)'''
+			And: '''(«parse(exp.left)» /\ «parse(exp.right)»)'''
+			Equality: '''(«parse(exp.left)» = «parse(exp.right)»)'''
 			Comparison:
 			{
 				if(exp.op==">="){
-					'''( «parse(exp.left)» >= «parse(exp.right)»)'''
+					'''(«parse(exp.left)» >= «parse(exp.right)»)'''
 				}else if(exp.op=="<="){
-					'''( «parse(exp.left)» <= «parse(exp.right)»)'''
+					'''(«parse(exp.left)» <= «parse(exp.right)»)'''
 				}else if(exp.op==">"){
-					'''( «parse(exp.left)» > «parse(exp.right)»)'''
+					'''(«parse(exp.left)» > «parse(exp.right)»)'''
 				}else if(exp.op=="<"){
-					'''( «parse(exp.left)» < «parse(exp.right)»)'''
+					'''(«parse(exp.left)» < «parse(exp.right)»)'''
 				}
 			}
-			Plus: '''( «parse(exp.left)» + «parse(exp.right)»)'''
-			Minus: '''( «parse(exp.left)» - «parse(exp.right)»)'''
+			Plus: '''(«parse(exp.left)» + «parse(exp.right)»)'''
+			Minus: '''(«parse(exp.left)» - «parse(exp.right)»)'''
 			MulOrDiv:
 			{
 				if (exp.op=="*"){

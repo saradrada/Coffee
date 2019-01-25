@@ -199,29 +199,29 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cIsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
+		private final RuleCall cValueValueParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
 		
 		//ConstantDecl:
-		//	{ConstantDecl} ('is' value=INT)?;
+		//	{ConstantDecl} ('is' value=Value)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ConstantDecl} ('is' value=INT)?
+		//{ConstantDecl} ('is' value=Value)?
 		public Group getGroup() { return cGroup; }
 		
 		//{ConstantDecl}
 		public Action getConstantDeclAction_0() { return cConstantDeclAction_0; }
 		
-		//('is' value=INT)?
+		//('is' value=Value)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'is'
 		public Keyword getIsKeyword_1_0() { return cIsKeyword_1_0; }
 		
-		//value=INT
+		//value=Value
 		public Assignment getValueAssignment_1_1() { return cValueAssignment_1_1; }
 		
-		//INT
-		public RuleCall getValueINTTerminalRuleCall_1_1_0() { return cValueINTTerminalRuleCall_1_1_0; }
+		//Value
+		public RuleCall getValueValueParserRuleCall_1_1_0() { return cValueValueParserRuleCall_1_1_0; }
 	}
 	public class VariableDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.VariableDecl");
@@ -278,33 +278,33 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Interval");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cStartAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cStartNumberParserRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
+		private final RuleCall cStartINTTerminalRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
 		private final Keyword cFullStopFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cEndNumberParserRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
+		private final RuleCall cEndINTTerminalRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
 		
 		//// intervals (only intervals of enumerables)
 		//Interval:
-		//	start=Number '..' end=Number;
+		//	start=INT '..' end=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//start=Number '..' end=Number
+		//start=INT '..' end=INT
 		public Group getGroup() { return cGroup; }
 		
-		//start=Number
+		//start=INT
 		public Assignment getStartAssignment_0() { return cStartAssignment_0; }
 		
-		//Number
-		public RuleCall getStartNumberParserRuleCall_0_0() { return cStartNumberParserRuleCall_0_0; }
+		//INT
+		public RuleCall getStartINTTerminalRuleCall_0_0() { return cStartINTTerminalRuleCall_0_0; }
 		
 		//'..'
 		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
 		
-		//end=Number
+		//end=INT
 		public Assignment getEndAssignment_2() { return cEndAssignment_2; }
 		
-		//Number
-		public RuleCall getEndNumberParserRuleCall_2_0() { return cEndNumberParserRuleCall_2_0; }
+		//INT
+		public RuleCall getEndINTTerminalRuleCall_2_0() { return cEndINTTerminalRuleCall_2_0; }
 	}
 	public class EnumerationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Enumeration");
@@ -2481,7 +2481,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConstantDecl:
-	//	{ConstantDecl} ('is' value=INT)?;
+	//	{ConstantDecl} ('is' value=Value)?;
 	public ConstantDeclElements getConstantDeclAccess() {
 		return pConstantDecl;
 	}
@@ -2513,7 +2513,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// intervals (only intervals of enumerables)
 	//Interval:
-	//	start=Number '..' end=Number;
+	//	start=INT '..' end=INT;
 	public IntervalElements getIntervalAccess() {
 		return pInterval;
 	}

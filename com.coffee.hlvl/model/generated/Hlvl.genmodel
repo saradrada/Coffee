@@ -20,15 +20,15 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Declaration"/>
     <genClasses ecoreClass="Hlvl.ecore#//ConstantDecl">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ConstantDecl/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ConstantDecl/value"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//VariableDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//VariableDecl/variants"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//OptionsDeclaration"/>
     <genClasses ecoreClass="Hlvl.ecore#//Interval">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Interval/start"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Interval/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Interval/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Interval/end"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Enumeration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Enumeration/list"/>

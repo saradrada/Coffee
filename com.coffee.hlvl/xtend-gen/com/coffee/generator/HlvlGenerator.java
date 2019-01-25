@@ -4,6 +4,7 @@
 package com.coffee.generator;
 
 import com.coffee.generator.Dialect;
+import com.coffee.generator.Integers.IntGenerator;
 import com.coffee.generator.bools.BoolGenerator;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
@@ -15,7 +16,6 @@ import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
@@ -156,8 +156,11 @@ public class HlvlGenerator extends AbstractGenerator {
   }
   
   public CharSequence toInteger(final Model model, final String modelName, final Dialect dialect) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("integer model");
-    return _builder;
+    CharSequence _xblockexpression = null;
+    {
+      IntGenerator generator = new IntGenerator(modelName, dialect);
+      _xblockexpression = generator.parseModel(model);
+    }
+    return _xblockexpression;
   }
 }

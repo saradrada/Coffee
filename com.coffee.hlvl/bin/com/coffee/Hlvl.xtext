@@ -59,7 +59,7 @@ Declaration:
 	ConstantDecl |VariableDecl 
 ;
 ConstantDecl:
-	{ConstantDecl}('is' value= INT)?
+	{ConstantDecl}('is' value= Value)?
 ;
 
 VariableDecl:
@@ -74,7 +74,7 @@ OptionsDeclaration:
 
 // intervals (only intervals of enumerables)
 Interval:
-	(start=Number) ('..') (end=Number)
+	(start=INT) ('..') (end=INT)
 	;
 	
 // enumeration (enumeration of booleans, integers and symbols)

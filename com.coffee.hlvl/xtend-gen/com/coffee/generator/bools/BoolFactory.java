@@ -3,14 +3,15 @@ package com.coffee.generator.bools;
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.common.ExpressionsParser;
 import com.coffee.generator.minizinc.IConstants;
+import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
-import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
@@ -18,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class BoolFactory extends CodeFactory implements IConstants {
@@ -29,7 +29,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
     CharSequence _xblockexpression = null;
     {
       Declaration _declaration = element.getDeclaration();
-      final int value = ((ConstantDecl) _declaration).getValue();
+      final Value value = ((ConstantDecl) _declaration).getValue();
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(IConstants.BOOL_DOMAIN);
       _builder.append(" ");
@@ -40,7 +40,8 @@ public class BoolFactory extends CodeFactory implements IConstants {
       _builder.append(" ");
       _builder.append(IConstants.ASSIGN);
       _builder.append(" ");
-      _builder.append(value);
+      String _value = ((BoolVal) value).getValue();
+      _builder.append(_value);
       _builder.append("  ");
       _builder.append(IConstants.SEMICOLON);
       _builder.newLineIfNotEmpty();
@@ -67,38 +68,36 @@ public class BoolFactory extends CodeFactory implements IConstants {
   }
   
   @Override
-  public CharSequence getValuesDeclaration(final ElmDeclaration variable, final OptionsDeclaration variant) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
-  }
-  
-  @Override
   public CharSequence getCore(final Core core) {
     String _xblockexpression = null;
     {
-      InputOutput.<String>println("inside getCore");
       String out = "";
       EList<ElmDeclaration> _values = core.getElements().getValues();
       for (final ElmDeclaration element : _values) {
         String _out = out;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(IConstants.CONS_DEF);
-        _builder.append(" ");
-        String _name = element.getName();
-        _builder.append(_name);
-        _builder.append(" ");
-        _builder.append(IConstants.EQUIV);
-        _builder.append(" ");
-        _builder.append(IConstants.TRUE_ATOM);
-        _builder.append(" ");
-        _builder.append(IConstants.SEMICOLON);
-        _builder.newLineIfNotEmpty();
-        out = (_out + _builder);
+        CharSequence _coreSingle = this.getCoreSingle(element);
+        out = (_out + _coreSingle);
       }
-      InputOutput.<String>println(("getCore out " + out));
       _xblockexpression = out;
     }
     return _xblockexpression;
+  }
+  
+  @Override
+  public CharSequence getCoreSingle(final ElmDeclaration element) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(IConstants.CONS_DEF);
+    _builder.append(" ");
+    String _name = element.getName();
+    _builder.append(_name);
+    _builder.append(" ");
+    _builder.append(IConstants.EQUIV);
+    _builder.append(" ");
+    _builder.append(IConstants.TRUE_ATOM);
+    _builder.append(" ");
+    _builder.append(IConstants.SEMICOLON);
+    _builder.newLineIfNotEmpty();
+    return _builder;
   }
   
   @Override
@@ -109,7 +108,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
       EList<ElmDeclaration> _values = rel.getChildren().getValues();
       for (final ElmDeclaration element : _values) {
         {
-          parents.put(rel.getParent().getName(), element);
+          parents.put(element.getName(), rel.getParent());
           int _cardinality = rel.getCardinality();
           boolean _equals = (_cardinality == 1);
           if (_equals) {
@@ -170,7 +169,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
       EList<ElmDeclaration> _values = rel.getChildren().getValues();
       for (final ElmDeclaration element : _values) {
         {
-          parents.put(rel.getParent().getName(), element);
+          parents.put(element.getName(), rel.getParent());
           String _out = out;
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(IConstants.CONS_DEF);
@@ -197,6 +196,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
               _builder_1.append(IConstants.CLOSE_CALL);
               _builder_1.append(" ");
               _builder_1.append(IConstants.AND);
+              _builder_1.append(" ");
               out = (_out_1 + _builder_1);
             }
           }
@@ -232,17 +232,17 @@ public class BoolFactory extends CodeFactory implements IConstants {
       EList<ElmDeclaration> _values = rel.getChildren().getValues();
       for (final ElmDeclaration element : _values) {
         {
-          parents.put(rel.getParent().getName(), element);
+          parents.put(element.getName(), rel.getParent());
           String _out = out;
           StringConcatenation _builder_1 = new StringConcatenation();
-          String _name_1 = element.getName();
-          _builder_1.append(_name_1);
           _builder_1.append(" ");
-          _builder_1.append(IConstants.OR);
+          String _name_1 = element.getName();
+          _builder_1.append(_name_1, " ");
+          _builder_1.append(" ");
+          _builder_1.append(IConstants.OR, " ");
           out = (_out + _builder_1);
         }
       }
-      String _out = out;
       int _length = out.length();
       int _minus = (_length - 2);
       CharSequence _subSequence = out.subSequence(0, _minus);
@@ -252,7 +252,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
       _builder_1.append(IConstants.SEMICOLON);
       _builder_1.newLineIfNotEmpty();
       String _plus = (_subSequence + _builder_1.toString());
-      out = (_out + _plus);
+      out = _plus;
       _xblockexpression = out;
     }
     return _xblockexpression;
@@ -291,7 +291,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
     _builder.append(" ");
     String _name_1 = right.getName();
     _builder.append(_name_1);
-    _builder.append(IConstants.OPEN_CALL);
+    _builder.append(IConstants.CLOSE_CALL);
     _builder.append(IConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -336,6 +336,9 @@ public class BoolFactory extends CodeFactory implements IConstants {
     _builder.append(" ");
     CharSequence _parse = ExpressionsParser.parse(exp);
     _builder.append(_parse);
+    _builder.append(" ");
+    _builder.append(IConstants.SEMICOLON);
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -345,30 +348,29 @@ public class BoolFactory extends CodeFactory implements IConstants {
     {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("var bool: B");
-      int _plusPlus = this.visibility++;
-      _builder.append(_plusPlus);
+      _builder.append(this.visibility);
       _builder.append(" ;");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t\t");
-      _builder.append("constraint (");
+      _builder.append("constraint ");
       CharSequence _parse = ExpressionsParser.parse(rel.getCondition());
-      _builder.append(_parse, "\t\t\t");
-      _builder.append(") -> B");
-      int _plusPlus_1 = this.visibility++;
-      _builder.append(_plusPlus_1, "\t\t\t");
-      _builder.append(" ;");
+      _builder.append(_parse);
+      _builder.append(" -> B");
+      _builder.append(this.visibility);
+      _builder.append(";");
+      _builder.newLineIfNotEmpty();
       String out = _builder.toString();
       for (final CharSequence r : relations) {
         String _out = out;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("constraint B");
-        int _plusPlus_2 = this.visibility++;
-        _builder_1.append(_plusPlus_2);
+        _builder_1.append(this.visibility);
         _builder_1.append("  <-> ");
-        _builder_1.append(r);
-        _builder_1.append(" ;");
+        CharSequence _subSequence = r.subSequence(10, r.length());
+        _builder_1.append(_subSequence);
+        _builder_1.newLineIfNotEmpty();
         out = (_out + _builder_1);
       }
+      this.visibility++;
       _xblockexpression = out;
     }
     return _xblockexpression;

@@ -27,7 +27,7 @@ class HlvlValidator extends AbstractHlvlValidator {
 	 * 
 	 * - en una descomposicion, el padre debe ser un booleano
 	 * - los rangos min, max (min es menor que max)
-	 * - las variables elemento.attributo: existe la descomposicion
+	 * - las variables elemento.attributo en una expresion: existe la descomposicion
 	 * 
 	 */
 	

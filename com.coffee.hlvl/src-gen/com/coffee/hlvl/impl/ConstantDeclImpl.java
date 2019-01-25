@@ -5,10 +5,13 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.Value;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -28,24 +31,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected int value = VALUE_EDEFAULT;
+  protected Value value;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getValue()
+  public Value getValue()
   {
     return value;
   }
@@ -83,12 +76,53 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(int newValue)
+  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
   {
-    int oldValue = value;
+    Value oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.CONSTANT_DECL__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.CONSTANT_DECL__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(Value newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.CONSTANT_DECL__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.CONSTANT_DECL__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.CONSTANT_DECL__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case HlvlPackage.CONSTANT_DECL__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
     switch (featureID)
     {
       case HlvlPackage.CONSTANT_DECL__VALUE:
-        setValue((Integer)newValue);
+        setValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
     switch (featureID)
     {
       case HlvlPackage.CONSTANT_DECL__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
     switch (featureID)
     {
       case HlvlPackage.CONSTANT_DECL__VALUE:
-        return value != VALUE_EDEFAULT;
+        return value != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
   }
 
 } //ConstantDeclImpl

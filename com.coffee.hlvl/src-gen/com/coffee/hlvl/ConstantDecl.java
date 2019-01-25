@@ -23,29 +23,29 @@ package com.coffee.hlvl;
 public interface ConstantDecl extends Declaration
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(Value)
    * @see com.coffee.hlvl.HlvlPackage#getConstantDecl_Value()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getValue();
+  Value getValue();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.ConstantDecl#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.hlvl.ConstantDecl#getValue <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
+   * @param value the new value of the '<em>Value</em>' containment reference.
    * @see #getValue()
    * @generated
    */
-  void setValue(int value);
+  void setValue(Value value);
 
 } // ConstantDecl

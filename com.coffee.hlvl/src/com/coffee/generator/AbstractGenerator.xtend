@@ -16,6 +16,9 @@ import com.coffee.hlvl.Visibility
 import com.coffee.hlvl.VariableDecl
 import com.coffee.hlvl.ConstantDecl
 import java.util.ArrayList
+import com.coffee.hlvl.MultInstantiation
+import com.coffee.hlvl.QImplies
+import com.coffee.hlvl.ComplexImplies
 
 /**
  * Abstract Generator, this is the class that process the model and traverses the 
@@ -122,18 +125,22 @@ import java.util.ArrayList
 			if (element.att !==null && element.att=="att"){
 				attributes.put(element.name, element)
 			}
-			else if (element.declaration instanceof ConstantDecl){
-				
-				val value= (element.declaration as ConstantDecl).value
-				if (element.dataType=="boolean" && value==0){
-					out+=factory.getElement(element)
-				}else{
-				out+= factory.getConstant(element)
-				
-				} 
-			}
+			else{ 
+				if (element.declaration instanceof ConstantDecl){
+					val value= (element.declaration as ConstantDecl).value
+					// una declaracion boolean sin dominio es considerada ConstantDecl
+					if (element.dataType=="boolean" && value ===null){ //&& (value as BoolVal).value===null){
+						
+						out+=factory.getElement(element)
+					}
+					else{
+						out+= factory.getConstant(element)
+					} 
+				}
 			else if(element.declaration instanceof VariableDecl ){
 				out+=factory.getElement(element)
+			}
+			
 			}
 		}
 		out
@@ -146,13 +153,10 @@ import java.util.ArrayList
 	 */	
 	override parseRelations(Model model) {
 		var String out=""
-		println("call to parseRelations")
 		for(e: model.relations){
 			relations.put(e.name, e.exp)
-			println('''parsing relation «e.name»''')
 			out+=parseRelation(e.exp)
 		}
-		println("parseRelation out "+ out)
 		out
 	}
 	
@@ -165,42 +169,40 @@ import java.util.ArrayList
 	 */
 	override parseRelation(Relation rel) {
 		
-		if (rel instanceof Core ){
-			factory.getCore(rel)
-		}
-		else if (rel instanceof Decomposition){
-			factory.getDecomposition(rel, parents)
-		}
-		else if(rel instanceof Group){
-			factory.getGroup(rel, parents)
-		}
-		else if (rel instanceof Pair){
-			val pair= rel as Pair
-			if (pair.operator=="implies"){
-				factory.getImpliesPair(rel.var1, rel.var2)
+		switch (rel){
+			Core: factory.getCore(rel)
+			Decomposition: factory.getDecomposition(rel, parents)
+			Group: factory.getGroup(rel, parents)
+			Pair: {
+				val pair= rel as Pair
+				if (pair.operator=="implies"){
+					factory.getImpliesPair(rel.var1, rel.var2)
+				}
+				else{
+					factory.getMutexPair(rel.var1, rel.var2)
+				}
 			}
-			else{
-				factory.getMutexPair(rel.var1, rel.var2)
+			VarList:{
+				val pair= rel as VarList
+				if (pair.operator=="implies"){
+					factory.getImpliesList(rel)
+				}
+				else{
+					factory.getMutexList(rel)
+				}
 			}
-		}
-		else if (rel instanceof VarList){
-						val pair= rel as Pair
-			if (pair.operator=="implies"){
-				factory.getImpliesList(rel)
+			Expression: factory.getExpression(rel.exp)
+			Visibility: {
+				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
+				for(r: rel.children.ids){
+					relations.add(parseRelation(r.exp))
+				}
+				factory.getVisibility(rel, relations)
 			}
-			else{
-				factory.getMutexList(rel)
-			}
-		}
-		else if (rel instanceof Expression){
-			factory.getExpression(rel.exp)
-		}
-		else if (rel instanceof Visibility){
-			var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
-			for(r: rel.children.ids){
-				relations.add(parseRelation(r.exp))
-			}
-			factory.getVisibility(rel, relations)
+			MultInstantiation: '''n.y.i'''
+			QImplies: '''n.y.i'''
+			ComplexImplies: '''n.y.i'''
+			
 		}
 	}
 	

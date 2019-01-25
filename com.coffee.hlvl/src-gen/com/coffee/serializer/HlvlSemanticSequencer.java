@@ -472,7 +472,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ConstantDecl returns ConstantDecl
 	 *
 	 * Constraint:
-	 *     value=INT?
+	 *     value=Value?
 	 */
 	protected void sequence_ConstantDecl(ISerializationContext context, ConstantDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -729,7 +729,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interval returns Interval
 	 *
 	 * Constraint:
-	 *     (start=Number end=Number)
+	 *     (start=INT end=INT)
 	 */
 	protected void sequence_Interval(ISerializationContext context, Interval semanticObject) {
 		if (errorAcceptor != null) {
@@ -739,8 +739,8 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.INTERVAL__END));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0(), semanticObject.getStart());
-		feeder.accept(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0(), semanticObject.getEnd());
+		feeder.accept(grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0(), semanticObject.getStart());
+		feeder.accept(grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0(), semanticObject.getEnd());
 		feeder.finish();
 	}
 	

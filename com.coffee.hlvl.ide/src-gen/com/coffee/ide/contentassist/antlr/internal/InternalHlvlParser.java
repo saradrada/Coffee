@@ -7895,7 +7895,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:2461:1: ( rule__Interval__Group__1__Impl rule__Interval__Group__2 )
             // InternalHlvl.g:2462:2: rule__Interval__Group__1__Impl rule__Interval__Group__2
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__Interval__Group__1__Impl();
 
             state._fsp--;
@@ -8050,7 +8050,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:2515:1: ( rule__Enumeration__Group__0__Impl rule__Enumeration__Group__1 )
             // InternalHlvl.g:2516:2: rule__Enumeration__Group__0__Impl rule__Enumeration__Group__1
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_14);
             rule__Enumeration__Group__0__Impl();
 
             state._fsp--;
@@ -9060,7 +9060,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:2866:1: ( rule__MultInstantiation__Group__2__Impl rule__MultInstantiation__Group__3 )
             // InternalHlvl.g:2867:2: rule__MultInstantiation__Group__2__Impl rule__MultInstantiation__Group__3
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__MultInstantiation__Group__2__Impl();
 
             state._fsp--;
@@ -9220,7 +9220,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:2920:1: ( rule__MultInstantiation__Group__4__Impl rule__MultInstantiation__Group__5 )
             // InternalHlvl.g:2921:2: rule__MultInstantiation__Group__4__Impl rule__MultInstantiation__Group__5
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__MultInstantiation__Group__4__Impl();
 
             state._fsp--;
@@ -10390,7 +10390,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:3325:1: ( rule__QImplies__Group__0__Impl rule__QImplies__Group__1 )
             // InternalHlvl.g:3326:2: rule__QImplies__Group__0__Impl rule__QImplies__Group__1
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__QImplies__Group__0__Impl();
 
             state._fsp--;
@@ -10550,7 +10550,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:3379:1: ( rule__QImplies__Group__2__Impl rule__QImplies__Group__3 )
             // InternalHlvl.g:3380:2: rule__QImplies__Group__2__Impl rule__QImplies__Group__3
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__QImplies__Group__2__Impl();
 
             state._fsp--;
@@ -10945,7 +10945,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:3514:1: ( rule__QImplies__Group__7__Impl rule__QImplies__Group__8 )
             // InternalHlvl.g:3515:2: rule__QImplies__Group__7__Impl rule__QImplies__Group__8
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__QImplies__Group__7__Impl();
 
             state._fsp--;
@@ -11105,7 +11105,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:3568:1: ( rule__QImplies__Group__9__Impl rule__QImplies__Group__10 )
             // InternalHlvl.g:3569:2: rule__QImplies__Group__9__Impl rule__QImplies__Group__10
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__QImplies__Group__9__Impl();
 
             state._fsp--;
@@ -12655,7 +12655,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:4108:1: ( rule__Decomposition__Group__9__Impl rule__Decomposition__Group__10 )
             // InternalHlvl.g:4109:2: rule__Decomposition__Group__9__Impl rule__Decomposition__Group__10
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__Decomposition__Group__9__Impl();
 
             state._fsp--;
@@ -13580,7 +13580,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:4432:1: ( rule__Group__Group__9__Impl rule__Group__Group__10 )
             // InternalHlvl.g:4433:2: rule__Group__Group__9__Impl rule__Group__Group__10
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__Group__Group__9__Impl();
 
             state._fsp--;
@@ -13740,7 +13740,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:4486:1: ( rule__Group__Group__11__Impl rule__Group__Group__12 )
             // InternalHlvl.g:4487:2: rule__Group__Group__11__Impl rule__Group__Group__12
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__Group__Group__11__Impl();
 
             state._fsp--;
@@ -13970,7 +13970,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:4567:1: ( rule__Range__Group__0__Impl rule__Range__Group__1 )
             // InternalHlvl.g:4568:2: rule__Range__Group__0__Impl rule__Range__Group__1
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_17);
             rule__Range__Group__0__Impl();
 
             state._fsp--;
@@ -21561,7 +21561,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:7139:1: ( rule__ListOfValues__Group_1__0__Impl rule__ListOfValues__Group_1__1 )
             // InternalHlvl.g:7140:2: rule__ListOfValues__Group_1__0__Impl rule__ListOfValues__Group_1__1
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_14);
             rule__ListOfValues__Group_1__0__Impl();
 
             state._fsp--;
@@ -22687,7 +22687,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:7484:1: ( rule__Valuation__Group__2__Impl rule__Valuation__Group__3 )
             // InternalHlvl.g:7485:2: rule__Valuation__Group__2__Impl rule__Valuation__Group__3
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_14);
             rule__Valuation__Group__2__Impl();
 
             state._fsp--;
@@ -23300,7 +23300,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:7680:1: ( rule__ListOfListValues__Group__0__Impl rule__ListOfListValues__Group__1 )
             // InternalHlvl.g:7681:2: rule__ListOfListValues__Group__0__Impl rule__ListOfListValues__Group__1
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_14);
             rule__ListOfListValues__Group__0__Impl();
 
             state._fsp--;
@@ -23753,7 +23753,7 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
             // InternalHlvl.g:7822:1: ( rule__ListOfListValues__Group_3__1__Impl rule__ListOfListValues__Group_3__2 )
             // InternalHlvl.g:7823:2: rule__ListOfListValues__Group_3__1__Impl rule__ListOfListValues__Group_3__2
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_14);
             rule__ListOfListValues__Group_3__1__Impl();
 
             state._fsp--;
@@ -24298,21 +24298,25 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstantDecl__ValueAssignment_1_1"
-    // InternalHlvl.g:8023:1: rule__ConstantDecl__ValueAssignment_1_1 : ( RULE_INT ) ;
+    // InternalHlvl.g:8023:1: rule__ConstantDecl__ValueAssignment_1_1 : ( ruleValue ) ;
     public final void rule__ConstantDecl__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalHlvl.g:8027:1: ( ( RULE_INT ) )
-            // InternalHlvl.g:8028:2: ( RULE_INT )
+            // InternalHlvl.g:8027:1: ( ( ruleValue ) )
+            // InternalHlvl.g:8028:2: ( ruleValue )
             {
-            // InternalHlvl.g:8028:2: ( RULE_INT )
-            // InternalHlvl.g:8029:3: RULE_INT
+            // InternalHlvl.g:8028:2: ( ruleValue )
+            // InternalHlvl.g:8029:3: ruleValue
             {
-             before(grammarAccess.getConstantDeclAccess().getValueINTTerminalRuleCall_1_1_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getConstantDeclAccess().getValueINTTerminalRuleCall_1_1_0()); 
+             before(grammarAccess.getConstantDeclAccess().getValueValueParserRuleCall_1_1_0()); 
+            pushFollow(FOLLOW_2);
+            ruleValue();
+
+            state._fsp--;
+
+             after(grammarAccess.getConstantDeclAccess().getValueValueParserRuleCall_1_1_0()); 
 
             }
 
@@ -24376,25 +24380,21 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Interval__StartAssignment_0"
-    // InternalHlvl.g:8053:1: rule__Interval__StartAssignment_0 : ( ruleNumber ) ;
+    // InternalHlvl.g:8053:1: rule__Interval__StartAssignment_0 : ( RULE_INT ) ;
     public final void rule__Interval__StartAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalHlvl.g:8057:1: ( ( ruleNumber ) )
-            // InternalHlvl.g:8058:2: ( ruleNumber )
+            // InternalHlvl.g:8057:1: ( ( RULE_INT ) )
+            // InternalHlvl.g:8058:2: ( RULE_INT )
             {
-            // InternalHlvl.g:8058:2: ( ruleNumber )
-            // InternalHlvl.g:8059:3: ruleNumber
+            // InternalHlvl.g:8058:2: ( RULE_INT )
+            // InternalHlvl.g:8059:3: RULE_INT
             {
-             before(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_2);
-            ruleNumber();
-
-            state._fsp--;
-
-             after(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0()); 
+             before(grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0()); 
 
             }
 
@@ -24417,25 +24417,21 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Interval__EndAssignment_2"
-    // InternalHlvl.g:8068:1: rule__Interval__EndAssignment_2 : ( ruleNumber ) ;
+    // InternalHlvl.g:8068:1: rule__Interval__EndAssignment_2 : ( RULE_INT ) ;
     public final void rule__Interval__EndAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalHlvl.g:8072:1: ( ( ruleNumber ) )
-            // InternalHlvl.g:8073:2: ( ruleNumber )
+            // InternalHlvl.g:8072:1: ( ( RULE_INT ) )
+            // InternalHlvl.g:8073:2: ( RULE_INT )
             {
-            // InternalHlvl.g:8073:2: ( ruleNumber )
-            // InternalHlvl.g:8074:3: ruleNumber
+            // InternalHlvl.g:8073:2: ( RULE_INT )
+            // InternalHlvl.g:8074:3: RULE_INT
             {
-             before(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_2);
-            ruleNumber();
-
-            state._fsp--;
-
-             after(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0()); 
+             before(grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0()); 
 
             }
 
@@ -27458,10 +27454,10 @@ public class InternalHlvlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000007000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000030000000000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000C00060L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000080000000020L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000C00060L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000200000000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x00FA480000001800L,0x0000000000000002L});

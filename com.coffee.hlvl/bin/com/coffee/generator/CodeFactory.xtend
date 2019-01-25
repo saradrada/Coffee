@@ -10,6 +10,11 @@ import java.util.Map
 import com.coffee.hlvl.Visibility
 import com.coffee.hlvl.Relational
 import java.util.List
+import com.coffee.hlvl.Value
+import com.coffee.hlvl.BoolVal
+import com.coffee.hlvl.Symbol
+import com.coffee.hlvl.Number
+
 
 /**
  * Interface to define the methods a codeFactory for the PLEC language
@@ -25,9 +30,10 @@ abstract class CodeFactory {
 	// Variables related methods
 	def  CharSequence getConstant(ElmDeclaration element);
 	def  CharSequence getElement(ElmDeclaration element);
-	def  CharSequence getValuesDeclaration(ElmDeclaration variable, OptionsDeclaration variant);
+	
 	
 	def CharSequence getCore(Core core)
+	def CharSequence getCoreSingle(ElmDeclaration element)
 	def CharSequence getDecomposition(Decomposition rel, Map<String,ElmDeclaration> parents)
 	def CharSequence getGroup(Group rel, Map<String,ElmDeclaration> parents)
 	def CharSequence getImpliesPair(ElmDeclaration left, ElmDeclaration right)
@@ -36,6 +42,8 @@ abstract class CodeFactory {
 	def CharSequence getMutexList(VarList rel)
 	def CharSequence getExpression(Relational rel)
 	def CharSequence getVisibility(Visibility rel, List<CharSequence> relations)
+	
+
 	
 
 	

@@ -8026,9 +8026,9 @@ rule__ConstantDecl__ValueAssignment_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getConstantDeclAccess().getValueINTTerminalRuleCall_1_1_0()); }
-		RULE_INT
-		{ after(grammarAccess.getConstantDeclAccess().getValueINTTerminalRuleCall_1_1_0()); }
+		{ before(grammarAccess.getConstantDeclAccess().getValueValueParserRuleCall_1_1_0()); }
+		ruleValue
+		{ after(grammarAccess.getConstantDeclAccess().getValueValueParserRuleCall_1_1_0()); }
 	)
 ;
 finally {
@@ -8056,9 +8056,9 @@ rule__Interval__StartAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0()); }
-		ruleNumber
-		{ after(grammarAccess.getIntervalAccess().getStartNumberParserRuleCall_0_0()); }
+		{ before(grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0()); }
+		RULE_INT
+		{ after(grammarAccess.getIntervalAccess().getStartINTTerminalRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -8071,9 +8071,9 @@ rule__Interval__EndAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0()); }
-		ruleNumber
-		{ after(grammarAccess.getIntervalAccess().getEndNumberParserRuleCall_2_0()); }
+		{ before(grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0()); }
+		RULE_INT
+		{ after(grammarAccess.getIntervalAccess().getEndINTTerminalRuleCall_2_0()); }
 	)
 ;
 finally {

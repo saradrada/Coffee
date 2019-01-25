@@ -632,9 +632,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getConstantDecl_Value()
+  public EReference getConstantDecl_Value()
   {
-    return (EAttribute)constantDeclEClass.getEStructuralFeatures().get(0);
+    return (EReference)constantDeclEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -682,9 +682,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInterval_Start()
+  public EAttribute getInterval_Start()
   {
-    return (EReference)intervalEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)intervalEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -692,9 +692,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInterval_End()
+  public EAttribute getInterval_End()
   {
-    return (EReference)intervalEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)intervalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1962,7 +1962,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     declarationEClass = createEClass(DECLARATION);
 
     constantDeclEClass = createEClass(CONSTANT_DECL);
-    createEAttribute(constantDeclEClass, CONSTANT_DECL__VALUE);
+    createEReference(constantDeclEClass, CONSTANT_DECL__VALUE);
 
     variableDeclEClass = createEClass(VARIABLE_DECL);
     createEReference(variableDeclEClass, VARIABLE_DECL__VARIANTS);
@@ -1970,8 +1970,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     optionsDeclarationEClass = createEClass(OPTIONS_DECLARATION);
 
     intervalEClass = createEClass(INTERVAL);
-    createEReference(intervalEClass, INTERVAL__START);
-    createEReference(intervalEClass, INTERVAL__END);
+    createEAttribute(intervalEClass, INTERVAL__START);
+    createEAttribute(intervalEClass, INTERVAL__END);
 
     enumerationEClass = createEClass(ENUMERATION);
     createEReference(enumerationEClass, ENUMERATION__LIST);
@@ -2224,7 +2224,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(constantDeclEClass, ConstantDecl.class, "ConstantDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConstantDecl_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ConstantDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstantDecl_Value(), this.getValue(), null, "value", null, 0, 1, ConstantDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableDeclEClass, VariableDecl.class, "VariableDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVariableDecl_Variants(), this.getOptionsDeclaration(), null, "variants", null, 0, 1, VariableDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2232,8 +2232,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(optionsDeclarationEClass, OptionsDeclaration.class, "OptionsDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intervalEClass, Interval.class, "Interval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInterval_Start(), this.getNumber(), null, "start", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInterval_End(), this.getNumber(), null, "end", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInterval_Start(), ecorePackage.getEInt(), "start", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInterval_End(), ecorePackage.getEInt(), "end", null, 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumerationEClass, Enumeration.class, "Enumeration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumeration_List(), this.getListOfValues(), null, "list", null, 0, 1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

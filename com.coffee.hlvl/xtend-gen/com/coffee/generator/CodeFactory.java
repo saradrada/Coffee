@@ -4,7 +4,6 @@ import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
-import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.Visibility;
@@ -25,9 +24,9 @@ public abstract class CodeFactory {
   
   public abstract CharSequence getElement(final ElmDeclaration element);
   
-  public abstract CharSequence getValuesDeclaration(final ElmDeclaration variable, final OptionsDeclaration variant);
-  
   public abstract CharSequence getCore(final Core core);
+  
+  public abstract CharSequence getCoreSingle(final ElmDeclaration element);
   
   public abstract CharSequence getDecomposition(final Decomposition rel, final Map<String, ElmDeclaration> parents);
   

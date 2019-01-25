@@ -19,7 +19,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantDecl" eSuperTypes="#//Declaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDecl" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variants" eType="#//OptionsDeclaration"
@@ -27,10 +28,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OptionsDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//OptionsDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//Number"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//Number"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//OptionsDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfValues"

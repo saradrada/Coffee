@@ -20,6 +20,16 @@ public interface IConstants {
   
   public final static String EQUIV = "=";
   
+  public final static String NEQUIV = "!=";
+  
+  public final static String LT = "<";
+  
+  public final static String GT = ">";
+  
+  public final static String LEQ = "<=";
+  
+  public final static String GEQ = ">=";
+  
   public final static String IFF = "<->";
   
   public final static String IMPLIES_LR = "->";
