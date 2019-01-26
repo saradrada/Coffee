@@ -1,5 +1,9 @@
 package splot2HLVL;
 
+import java.util.ArrayList;
+
+import basicHLVLPackage.HlvlBasicFactory;
+
 /*
  * Generative Software Development Lab (http://gsd.uwaterloo.ca/)
  * University of Waterloo
@@ -24,19 +28,41 @@ import fm.FeatureTreeNode;
 import fm.RootNode;
 import fm.SolitaireFeature;
 import fm.XMLFeatureModel;
+import utils.FileUtils;
+import utils.ParsingParameters;
 
-public class XMLFeatureModelParserSample {
+/**
+ * This class parses splot models to HLVL.
+ * We used the template provided by the splot site.
+ * @author Angela Villota
+ * @version coffee V1
+ * Jan 2019
+ */
 
-	public static void main(String args[]) {
-		new XMLFeatureModelParserSample().parse();
-	} 
+public class Splot2HLVLParser {
+	/**
+	 * params is an object with the parsing parameters
+	 */
+	public ParsingParameters params;
 	
-	public void parse() {
-		
-		try {
+	public StringBuilder hlvlProgram;
+	public HlvlBasicFactory factory;
+	
 
-			String featureModelFile = "c:\\feature_models\\my_feature_model.xml";
-			
+
+	/**
+	 * constructor
+	 * @param params
+	 */
+	public Splot2HLVLParser(ParsingParameters params) {
+		this.params = params;
+		hlvlProgram= new StringBuilder();
+		factory= new HlvlBasicFactory();
+	}
+
+	public void parse() throws Exception{
+		
+				
 			/* Creates the Feature Model Object
 			 * ********************************
 			 * - Constant USE_VARIABLE_NAME_AS_ID indicates that if an ID has not been defined for a feature node
@@ -45,45 +71,41 @@ public class XMLFeatureModelParserSample {
 			 *   without an ID specification
 			 *   Note: if an ID is specified for a feature node in the XML file it will always prevail
 			 */			
-			FeatureModel featureModel = new XMLFeatureModel(featureModelFile, XMLFeatureModel.USE_VARIABLE_NAME_AS_ID);
-			
+			FeatureModel featureModel = new XMLFeatureModel(params.getInputPath(), XMLFeatureModel.USE_VARIABLE_NAME_AS_ID);
+		
 			// Load the XML file and creates the feature model
 			featureModel.loadModel();
 			
 			// A feature model object contains a feature tree and a set of contraints			
 			// Let's traverse the feature tree first. We start at the root feature in depth first search.
-			System.out.println("FEATURE TREE --------------------------------");
+			//System.out.println("FEATURE TREE --------------------------------");
 			traverseDFS(featureModel.getRoot(), 0);
 			
 			// Now, let's traverse the extra constraints as a CNF formula
-			System.out.println("EXTRA CONSTRAINTS ---------------------------");
-			traverseConstraints(featureModel);
-
-			// Now, let's print some statistics about the feature model
-			FeatureModelStatistics stats = new FeatureModelStatistics(featureModel);
-			stats.update();
-			
-			stats.dump();
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+			//System.out.println("EXTRA CONSTRAINTS ---------------------------");
+			traverseConstraints(featureModel);	
+			writeFile();
+		
 	}
 		
 	public void traverseDFS(FeatureTreeNode node, int tab) {
 		for( int j = 0 ; j < tab ; j++ ) {
-			System.out.print("\t");
+			//System.out.print("\t");
 		}
 		// Root Feature
 		if ( node instanceof RootNode ) {
-			System.out.print("Root");
+			ArrayList<String> list= new ArrayList<String>();
+			list.add(node.getName());
+			hlvlProgram.append(factory.getCore(list));
+
 		}
 		// Solitaire Feature
 		else if ( node instanceof SolitaireFeature ) {
 			// Optional Feature
-			if ( ((SolitaireFeature)node).isOptional())
+			if ( ((SolitaireFeature)node).isOptional()) {
 				System.out.print("Optional");
+				//hlvlProgram.append(factory.getDecomposition(, node.getID(), OPTIONAL));
+			}
 			// Mandatory Feature
 			else
 				System.out.print("Mandatory");
@@ -110,4 +132,20 @@ public class XMLFeatureModelParserSample {
 		}
 	}
 	
+	public void writeFile() {
+		FileUtils.writeHLVLProgram(params.getOutputPath(),
+				hlvlProgram.toString());
+		System.out.println("Conversion complete");
+	}
+	/*
+	 * Getters and setters
+	 */
+	public ParsingParameters getParams() {
+		return params;
+	}
+
+	public void setParams(ParsingParameters params) {
+		this.params = params;
+	}
+
 }

@@ -240,13 +240,22 @@ public interface HlvlFactory extends EFactory
   Relational createRelational();
 
   /**
-   * Returns a new object of class '<em>Global</em>'.
+   * Returns a new object of class '<em>Operations</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Global</em>'.
+   * @return a new object of class '<em>Operations</em>'.
    * @generated
    */
-  Global createGlobal();
+  Operations createOperations();
+
+  /**
+   * Returns a new object of class '<em>Operation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Operation</em>'.
+   * @generated
+   */
+  Operation createOperation();
 
   /**
    * Returns a new object of class '<em>Bool Val</em>'.
@@ -499,6 +508,51 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   IntConstant createIntConstant();
+
+  /**
+   * Returns a new object of class '<em>Valid</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Valid</em>'.
+   * @generated
+   */
+  Valid createValid();
+
+  /**
+   * Returns a new object of class '<em>Num Conf</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Num Conf</em>'.
+   * @generated
+   */
+  NumConf createNumConf();
+
+  /**
+   * Returns a new object of class '<em>Find One</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Find One</em>'.
+   * @generated
+   */
+  FindOne createFindOne();
+
+  /**
+   * Returns a new object of class '<em>Find All</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Find All</em>'.
+   * @generated
+   */
+  FindAll createFindAll();
+
+  /**
+   * Returns a new object of class '<em>Valid Conf</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Valid Conf</em>'.
+   * @generated
+   */
+  ValidConf createValidConf();
 
   /**
    * Returns the package supported by this factory.

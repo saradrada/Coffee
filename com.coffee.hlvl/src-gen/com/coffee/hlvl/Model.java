@@ -88,7 +88,7 @@ public interface Model extends EObject
 
   /**
    * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
-   * The list contents are of type {@link com.coffee.hlvl.ListOfValuation}.
+   * The list contents are of type {@link com.coffee.hlvl.Operations}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
@@ -100,6 +100,6 @@ public interface Model extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<ListOfValuation> getPairs();
+  EList<Operations> getPairs();
 
 } // Model

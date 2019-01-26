@@ -13,41 +13,9 @@ generate hlvl "http://www.coffee.com/Hlvl"
  */
 Model:
 	'model' name=ID 'elements:' elements+=(ElmDeclaration)*  'relations:'relations+=(RelDeclaration)*
-	('configuration:' pairs+= ListOfValuation )*
+	('operations:' pairs+= Operations )*
 	;
 	
-//ElmDeclaration:
-//	Const|Variable
-//;
-//
-//Const:
-//	(dataType=DataType)
-//	name= ID
-//	('value:' value= Value)
-//;
-//
-//Variable:
-//	(dataType=DataType)
-//	name= ID
-//	('variants:' variants= OptionsDeclaration )
-//;
-//ElmDeclaration:
-//	
-//	(dataType=DataType)?
-//	names= Names
-//	declaration= ObservableDecl |NonObservableDecl 
-//	
-//;
-//
-//ObservableDecl:
-//	{ObservableDecl}('values:' variants= OptionsDeclaration)?
-//
-//;
-//
-//NonObservableDecl:
-//	{NonObservableDecl}('variants:' '[' variants= ListOfIDs ']')
-//;
-
 ElmDeclaration:
 	(att= 'att')?
 	(dataType=DataType)
@@ -140,10 +108,7 @@ Range:
 Visibility:
 	'visibility' '(' condition= Relational ',' '['children=ListOfRelRefs ']' ')'
 ;
-//Hierarchy:
-//	type=('decomposition'|'visibility') '(' parent=[ElmDeclaration] ',' '['children+=ListOfIDs ']' ')' 
-//	('<'min=Number ',' max=Number '>')?
-//;
+
 Order:
 	operator='before' |'after' left= [ElmDeclaration] ',' '[' right+=ListOfIDs']'
 ;
@@ -151,13 +116,7 @@ Order:
 Expression:
 	'expression''('exp= Relational ')'
 ;
-//
 
-//ConsExpression:
-//	Relational|Global
-////Global|Logic|Relational|Control
-//	
-//;
 
 Relational: Iff;
 
@@ -201,9 +160,6 @@ Primary returns Relational:
 	 Atomic
 ;
 
-//Function returns Relational:
-//	op=FunctionOp '('left=Primary ',' right=Primary ')' 
-//;
 Atomic returns Relational: 
 	{BoolConstant} value=('true'|'false') | 
 	{VariableRef} variable=[ElmDeclaration]|
@@ -215,14 +171,27 @@ QualifiedName:
 	ID ('.' ID)+
 ;
 
+Operations:
+	op+= Operation (',' + op+= Operation)*
+;
 
+Operation:Sample;
+
+Sample returns Operation:
+	{Valid} 'validModel'|
+	{NumConf} 'numberOfConfigurations'|
+	{FindOne} 'findConfiguration'|
+	{FindAll} 'findAllConfigurations'|
+	{ValidConf} 'validConfiguration' '(' valuations= ListOfValuation ')'
 	
-/**
- * Global constraints
- */
-Global:
-	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
-	;
+;
+	
+///**
+// * Global constraints
+// */
+//Global:
+//	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
+//	;
 
 
 

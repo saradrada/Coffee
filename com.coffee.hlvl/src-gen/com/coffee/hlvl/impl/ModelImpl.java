@@ -5,8 +5,8 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.ListOfValuation;
 import com.coffee.hlvl.Model;
+import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.RelDeclaration;
 
 import java.util.Collection;
@@ -91,7 +91,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    * @ordered
    */
-  protected EList<ListOfValuation> pairs;
+  protected EList<Operations> pairs;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,11 +170,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ListOfValuation> getPairs()
+  public EList<Operations> getPairs()
   {
     if (pairs == null)
     {
-      pairs = new EObjectContainmentEList<ListOfValuation>(ListOfValuation.class, this, HlvlPackage.MODEL__PAIRS);
+      pairs = new EObjectContainmentEList<Operations>(Operations.class, this, HlvlPackage.MODEL__PAIRS);
     }
     return pairs;
   }
@@ -245,7 +245,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return;
       case HlvlPackage.MODEL__PAIRS:
         getPairs().clear();
-        getPairs().addAll((Collection<? extends ListOfValuation>)newValue);
+        getPairs().addAll((Collection<? extends Operations>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

@@ -94,11 +94,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Expression/exp"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Relational"/>
-    <genClasses ecoreClass="Hlvl.ecore#//Global">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Global/op"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Global/vars"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Global/values"/>
+    <genClasses ecoreClass="Hlvl.ecore#//Operations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Operations/op"/>
     </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//Operation"/>
     <genClasses ecoreClass="Hlvl.ecore#//BoolVal"/>
     <genClasses ecoreClass="Hlvl.ecore#//Number">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Number/value"/>
@@ -192,6 +191,13 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//IntConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//IntConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//Valid"/>
+    <genClasses ecoreClass="Hlvl.ecore#//NumConf"/>
+    <genClasses ecoreClass="Hlvl.ecore#//FindOne"/>
+    <genClasses ecoreClass="Hlvl.ecore#//FindAll"/>
+    <genClasses ecoreClass="Hlvl.ecore#//ValidConf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ValidConf/valuations"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

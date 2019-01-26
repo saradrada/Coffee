@@ -17,8 +17,9 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
+import com.coffee.hlvl.FindAll;
+import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Global;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
 import com.coffee.hlvl.HlvlFactory;
@@ -39,6 +40,9 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.NonEnumerableValue;
+import com.coffee.hlvl.NumConf;
+import com.coffee.hlvl.Operation;
+import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
@@ -51,6 +55,8 @@ import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
+import com.coffee.hlvl.Valid;
+import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
@@ -142,7 +148,8 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.ORDER: return createOrder();
       case HlvlPackage.EXPRESSION: return createExpression();
       case HlvlPackage.RELATIONAL: return createRelational();
-      case HlvlPackage.GLOBAL: return createGlobal();
+      case HlvlPackage.OPERATIONS: return createOperations();
+      case HlvlPackage.OPERATION: return createOperation();
       case HlvlPackage.BOOL_VAL: return createBoolVal();
       case HlvlPackage.NUMBER: return createNumber();
       case HlvlPackage.SYMBOL: return createSymbol();
@@ -171,6 +178,11 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
       case HlvlPackage.INT_CONSTANT: return createIntConstant();
+      case HlvlPackage.VALID: return createValid();
+      case HlvlPackage.NUM_CONF: return createNumConf();
+      case HlvlPackage.FIND_ONE: return createFindOne();
+      case HlvlPackage.FIND_ALL: return createFindAll();
+      case HlvlPackage.VALID_CONF: return createValidConf();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -445,10 +457,21 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Global createGlobal()
+  public Operations createOperations()
   {
-    GlobalImpl global = new GlobalImpl();
-    return global;
+    OperationsImpl operations = new OperationsImpl();
+    return operations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Operation createOperation()
+  {
+    OperationImpl operation = new OperationImpl();
+    return operation;
   }
 
   /**
@@ -757,6 +780,61 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     IntConstantImpl intConstant = new IntConstantImpl();
     return intConstant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Valid createValid()
+  {
+    ValidImpl valid = new ValidImpl();
+    return valid;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NumConf createNumConf()
+  {
+    NumConfImpl numConf = new NumConfImpl();
+    return numConf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FindOne createFindOne()
+  {
+    FindOneImpl findOne = new FindOneImpl();
+    return findOne;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FindAll createFindAll()
+  {
+    FindAllImpl findAll = new FindAllImpl();
+    return findAll;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValidConf createValidConf()
+  {
+    ValidConfImpl validConf = new ValidConfImpl();
+    return validConf;
   }
 
   /**

@@ -17,8 +17,9 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
+import com.coffee.hlvl.FindAll;
+import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Global;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
 import com.coffee.hlvl.HlvlFactory;
@@ -39,6 +40,9 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.NonEnumerableValue;
+import com.coffee.hlvl.NumConf;
+import com.coffee.hlvl.Operation;
+import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
@@ -51,6 +55,8 @@ import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
+import com.coffee.hlvl.Valid;
+import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
@@ -246,7 +252,14 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass globalEClass = null;
+  private EClass operationsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass operationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -443,6 +456,41 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * @generated
    */
   private EClass intConstantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass validEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numConfEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass findOneEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass findAllEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass validConfEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -1192,9 +1240,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGlobal()
+  public EClass getOperations()
   {
-    return globalEClass;
+    return operationsEClass;
   }
 
   /**
@@ -1202,9 +1250,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getGlobal_Op()
+  public EReference getOperations_Op()
   {
-    return (EAttribute)globalEClass.getEStructuralFeatures().get(0);
+    return (EReference)operationsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1212,19 +1260,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getGlobal_Vars()
+  public EClass getOperation()
   {
-    return (EReference)globalEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getGlobal_Values()
-  {
-    return (EReference)globalEClass.getEStructuralFeatures().get(2);
+    return operationEClass;
   }
 
   /**
@@ -1922,6 +1960,66 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getValid()
+  {
+    return validEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNumConf()
+  {
+    return numConfEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFindOne()
+  {
+    return findOneEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFindAll()
+  {
+    return findAllEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getValidConf()
+  {
+    return validConfEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidConf_Valuations()
+  {
+    return (EReference)validConfEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public HlvlFactory getHlvlFactory()
   {
     return (HlvlFactory)getEFactoryInstance();
@@ -2039,10 +2137,10 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     relationalEClass = createEClass(RELATIONAL);
 
-    globalEClass = createEClass(GLOBAL);
-    createEAttribute(globalEClass, GLOBAL__OP);
-    createEReference(globalEClass, GLOBAL__VARS);
-    createEReference(globalEClass, GLOBAL__VALUES);
+    operationsEClass = createEClass(OPERATIONS);
+    createEReference(operationsEClass, OPERATIONS__OP);
+
+    operationEClass = createEClass(OPERATION);
 
     boolValEClass = createEClass(BOOL_VAL);
 
@@ -2140,6 +2238,17 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     intConstantEClass = createEClass(INT_CONSTANT);
     createEAttribute(intConstantEClass, INT_CONSTANT__VALUE);
+
+    validEClass = createEClass(VALID);
+
+    numConfEClass = createEClass(NUM_CONF);
+
+    findOneEClass = createEClass(FIND_ONE);
+
+    findAllEClass = createEClass(FIND_ALL);
+
+    validConfEClass = createEClass(VALID_CONF);
+    createEReference(validConfEClass, VALID_CONF__VALUATIONS);
   }
 
   /**
@@ -2207,13 +2316,18 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     variableRefEClass.getESuperTypes().add(this.getRelational());
     attributeRefEClass.getESuperTypes().add(this.getRelational());
     intConstantEClass.getESuperTypes().add(this.getRelational());
+    validEClass.getESuperTypes().add(this.getOperation());
+    numConfEClass.getESuperTypes().add(this.getOperation());
+    findOneEClass.getESuperTypes().add(this.getOperation());
+    findAllEClass.getESuperTypes().add(this.getOperation());
+    validConfEClass.getESuperTypes().add(this.getOperation());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Elements(), this.getElmDeclaration(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Relations(), this.getRelDeclaration(), null, "relations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Pairs(), this.getListOfValuation(), null, "pairs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Pairs(), this.getOperations(), null, "pairs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elmDeclarationEClass, ElmDeclaration.class, "ElmDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getElmDeclaration_Att(), ecorePackage.getEString(), "att", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2301,10 +2415,10 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(relationalEClass, Relational.class, "Relational", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(globalEClass, Global.class, "Global", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGlobal_Op(), ecorePackage.getEString(), "op", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGlobal_Vars(), this.getListOfIDs(), null, "vars", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGlobal_Values(), this.getListOfListValues(), null, "values", null, 0, 1, Global.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(operationsEClass, Operations.class, "Operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOperations_Op(), this.getOperation(), null, "op", null, 0, -1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(boolValEClass, BoolVal.class, "BoolVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2402,6 +2516,17 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(intConstantEClass, IntConstant.class, "IntConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntConstant_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(validEClass, Valid.class, "Valid", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(numConfEClass, NumConf.class, "NumConf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(findOneEClass, FindOne.class, "FindOne", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(findAllEClass, FindAll.class, "FindAll", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(validConfEClass, ValidConf.class, "ValidConf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getValidConf_Valuations(), this.getListOfValuation(), null, "valuations", null, 0, 1, ValidConf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

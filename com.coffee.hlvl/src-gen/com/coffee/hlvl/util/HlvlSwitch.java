@@ -17,8 +17,9 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
+import com.coffee.hlvl.FindAll;
+import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Global;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
 import com.coffee.hlvl.HlvlPackage;
@@ -38,6 +39,9 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.NonEnumerableValue;
+import com.coffee.hlvl.NumConf;
+import com.coffee.hlvl.Operation;
+import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
@@ -50,6 +54,8 @@ import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
+import com.coffee.hlvl.Valid;
+import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
@@ -311,10 +317,17 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.GLOBAL:
+      case HlvlPackage.OPERATIONS:
       {
-        Global global = (Global)theEObject;
-        T result = caseGlobal(global);
+        Operations operations = (Operations)theEObject;
+        T result = caseOperations(operations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.OPERATION:
+      {
+        Operation operation = (Operation)theEObject;
+        T result = caseOperation(operation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -533,6 +546,46 @@ public class HlvlSwitch<T> extends Switch<T>
         IntConstant intConstant = (IntConstant)theEObject;
         T result = caseIntConstant(intConstant);
         if (result == null) result = caseRelational(intConstant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.VALID:
+      {
+        Valid valid = (Valid)theEObject;
+        T result = caseValid(valid);
+        if (result == null) result = caseOperation(valid);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.NUM_CONF:
+      {
+        NumConf numConf = (NumConf)theEObject;
+        T result = caseNumConf(numConf);
+        if (result == null) result = caseOperation(numConf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.FIND_ONE:
+      {
+        FindOne findOne = (FindOne)theEObject;
+        T result = caseFindOne(findOne);
+        if (result == null) result = caseOperation(findOne);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.FIND_ALL:
+      {
+        FindAll findAll = (FindAll)theEObject;
+        T result = caseFindAll(findAll);
+        if (result == null) result = caseOperation(findAll);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.VALID_CONF:
+      {
+        ValidConf validConf = (ValidConf)theEObject;
+        T result = caseValidConf(validConf);
+        if (result == null) result = caseOperation(validConf);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -925,17 +978,33 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Global</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Operations</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Global</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Operations</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGlobal(Global object)
+  public T caseOperations(Operations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOperation(Operation object)
   {
     return null;
   }
@@ -1384,6 +1453,86 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIntConstant(IntConstant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Valid</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Valid</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValid(Valid object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Num Conf</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Num Conf</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumConf(NumConf object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Find One</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Find One</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFindOne(FindOne object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Find All</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Find All</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFindAll(FindAll object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Valid Conf</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Valid Conf</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValidConf(ValidConf object)
   {
     return null;
   }

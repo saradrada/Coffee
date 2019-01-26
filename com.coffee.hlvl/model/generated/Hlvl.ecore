@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
         eType="#//RelDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
-        eType="#//ListOfValuation" containment="true"/>
+        eType="#//Operations" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -107,13 +107,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relational"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Global">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" eType="#//ListOfIDs"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//ListOfListValues"
+  <eClassifiers xsi:type="ecore:EClass" name="Operations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" upperBound="-1" eType="#//Operation"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoolVal" eSuperTypes="#//NonEnumerableValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -236,5 +234,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntConstant" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Valid" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumConf" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FindOne" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FindAll" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidConf" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valuations" eType="#//ListOfValuation"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

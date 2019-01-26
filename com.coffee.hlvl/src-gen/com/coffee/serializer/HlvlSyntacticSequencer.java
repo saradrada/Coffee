@@ -26,6 +26,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ListOfValuation_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_ListOfValues_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_Names_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_Operations_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_0_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_0_0_p;
 	
@@ -38,6 +39,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ListOfValuation_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuationAccess().getCommaKeyword_1_0());
 		match_ListOfValues_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
 		match_Names_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getNamesAccess().getCommaKeyword_1_0());
+		match_Operations_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getOperationsAccess().getCommaKeyword_1_0());
 		match_Primary_LeftParenthesisKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_0_0());
 		match_Primary_LeftParenthesisKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_0_0());
 	}
@@ -66,6 +68,8 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ListOfValues_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Names_CommaKeyword_1_0_p.equals(syntax))
 				emit_Names_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Operations_CommaKeyword_1_0_p.equals(syntax))
+				emit_Operations_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_0_0_a.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_0_0_p.equals(syntax))
@@ -137,6 +141,17 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ids+=ID (ambiguity) ids+=ID
 	 */
 	protected void emit_Names_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     op+=Operation (ambiguity) op+=Operation
+	 */
+	protected void emit_Operations_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

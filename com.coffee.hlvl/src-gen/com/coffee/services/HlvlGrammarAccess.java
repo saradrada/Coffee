@@ -37,9 +37,9 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRelationsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cRelationsRelDeclarationParserRuleCall_5_0 = (RuleCall)cRelationsAssignment_5.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cConfigurationKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cOperationsKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Assignment cPairsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cPairsListOfValuationParserRuleCall_6_1_0 = (RuleCall)cPairsAssignment_6_1.eContents().get(0);
+		private final RuleCall cPairsOperationsParserRuleCall_6_1_0 = (RuleCall)cPairsAssignment_6_1.eContents().get(0);
 		
 		///**
 		// * Grammar specification of the HLVL, High Level Variability Language
@@ -50,12 +50,12 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		// * Modified on November 16th 2018
 		// * August 2018
 		// */ Model:
-		//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('configuration:'
-		//	pairs+=ListOfValuation)*;
+		//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('operations:'
+		//	pairs+=Operations)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('configuration:'
-		//pairs+=ListOfValuation)*
+		//'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('operations:'
+		//pairs+=Operations)*
 		public Group getGroup() { return cGroup; }
 		
 		//'model'
@@ -85,17 +85,17 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//RelDeclaration
 		public RuleCall getRelationsRelDeclarationParserRuleCall_5_0() { return cRelationsRelDeclarationParserRuleCall_5_0; }
 		
-		//('configuration:' pairs+=ListOfValuation)*
+		//('operations:' pairs+=Operations)*
 		public Group getGroup_6() { return cGroup_6; }
 		
-		//'configuration:'
-		public Keyword getConfigurationKeyword_6_0() { return cConfigurationKeyword_6_0; }
+		//'operations:'
+		public Keyword getOperationsKeyword_6_0() { return cOperationsKeyword_6_0; }
 		
-		//pairs+=ListOfValuation
+		//pairs+=Operations
 		public Assignment getPairsAssignment_6_1() { return cPairsAssignment_6_1; }
 		
-		//ListOfValuation
-		public RuleCall getPairsListOfValuationParserRuleCall_6_1_0() { return cPairsListOfValuationParserRuleCall_6_1_0; }
+		//Operations
+		public RuleCall getPairsOperationsParserRuleCall_6_1_0() { return cPairsOperationsParserRuleCall_6_1_0; }
 	}
 	public class ElmDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.ElmDeclaration");
@@ -109,37 +109,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDeclarationAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDeclarationDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationAssignment_3.eContents().get(0);
 		
-		////ElmDeclaration:
-		////	Const|Variable
-		////;
-		////
-		////Const:
-		////	(dataType=DataType)
-		////	name= ID
-		////	('value:' value= Value)
-		////;
-		////
-		////Variable:
-		////	(dataType=DataType)
-		////	name= ID
-		////	('variants:' variants= OptionsDeclaration )
-		////;
-		////ElmDeclaration:
-		////	
-		////	(dataType=DataType)?
-		////	names= Names
-		////	declaration= ObservableDecl |NonObservableDecl 
-		////	
-		////;
-		////
-		////ObservableDecl:
-		////	{ObservableDecl}('values:' variants= OptionsDeclaration)?
-		////
-		////;
-		////
-		////NonObservableDecl:
-		////	{NonObservableDecl}('variants:' '[' variants= ListOfIDs ']')
-		////;
 		//ElmDeclaration:
 		//	att='att'?
 		//	dataType=DataType name=ID
@@ -1044,10 +1013,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightListOfIDsParserRuleCall_1_4_0 = (RuleCall)cRightAssignment_1_4.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
 		
-		////Hierarchy:
-		////	type=('decomposition'|'visibility') '(' parent=[ElmDeclaration] ',' '['children+=ListOfIDs ']' ')' 
-		////	('<'min=Number ',' max=Number '>')?
-		////;
 		//Order:
 		//	operator='before' | 'after' left=[ElmDeclaration] ',' '[' right+=ListOfIDs ']';
 		@Override public ParserRule getRule() { return rule; }
@@ -1126,12 +1091,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Relational");
 		private final RuleCall cIffParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		////
-		////ConsExpression:
-		////	Relational|Global
-		//////Global|Logic|Relational|Control
-		////	
-		////;
 		//Relational:
 		//	Iff;
 		@Override public ParserRule getRule() { return rule; }
@@ -1639,9 +1598,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cValueINTTerminalRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
 		
-		////Function returns Relational:
-		////	op=FunctionOp '('left=Primary ',' right=Primary ')' 
-		////;
 		//Atomic Relational:
 		//	{BoolConstant} value=('true' | 'false') | {VariableRef} variable=[ElmDeclaration] | {AttributeRef}
 		//	attribute=QualifiedName | {IntConstant} value=INT;
@@ -1735,62 +1691,140 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
-	public class GlobalElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Global");
+	public class OperationsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Operations");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOpAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOpGlobalOpParserRuleCall_0_0 = (RuleCall)cOpAssignment_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cVarsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cVarsListOfIDsParserRuleCall_2_0 = (RuleCall)cVarsAssignment_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cValuesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cValuesListOfListValuesParserRuleCall_4_1_0 = (RuleCall)cValuesAssignment_4_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final RuleCall cOpOperationParserRuleCall_0_0 = (RuleCall)cOpAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpOperationParserRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
 		
-		///**
-		// * Global constraints
-		// */ Global:
-		//	op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?;
+		//Operations:
+		//	op+=Operation (','+ op+=Operation)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?
+		//op+=Operation (','+ op+=Operation)*
 		public Group getGroup() { return cGroup; }
 		
-		//op=GlobalOp
+		//op+=Operation
 		public Assignment getOpAssignment_0() { return cOpAssignment_0; }
 		
-		//GlobalOp
-		public RuleCall getOpGlobalOpParserRuleCall_0_0() { return cOpGlobalOpParserRuleCall_0_0; }
+		//Operation
+		public RuleCall getOpOperationParserRuleCall_0_0() { return cOpOperationParserRuleCall_0_0; }
 		
-		//'('
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		//(','+ op+=Operation)*
+		public Group getGroup_1() { return cGroup_1; }
 		
-		//vars=ListOfIDs
-		public Assignment getVarsAssignment_2() { return cVarsAssignment_2; }
+		//','+
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 		
-		//ListOfIDs
-		public RuleCall getVarsListOfIDsParserRuleCall_2_0() { return cVarsListOfIDsParserRuleCall_2_0; }
+		//op+=Operation
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 		
-		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		//Operation
+		public RuleCall getOpOperationParserRuleCall_1_1_0() { return cOpOperationParserRuleCall_1_1_0; }
+	}
+	public class OperationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Operation");
+		private final RuleCall cSampleParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//('[' values=ListOfListValues ']')?
+		//Operation:
+		//	Sample;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Sample
+		public RuleCall getSampleParserRuleCall() { return cSampleParserRuleCall; }
+	}
+	public class SampleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Sample");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cValidAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cValidModelKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cNumConfAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cNumberOfConfigurationsKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cFindOneAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Keyword cFindConfigurationKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Action cFindAllAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Keyword cFindAllConfigurationsKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
+		private final Action cValidConfAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Keyword cValidConfigurationKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final Assignment cValuationsAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
+		private final RuleCall cValuationsListOfValuationParserRuleCall_4_3_0 = (RuleCall)cValuationsAssignment_4_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		
+		//Sample Operation:
+		//	{Valid} 'validModel' | {NumConf} 'numberOfConfigurations' | {FindOne} 'findConfiguration' | {FindAll}
+		//	'findAllConfigurations' | {ValidConf} 'validConfiguration' '(' valuations=ListOfValuation ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Valid} 'validModel' | {NumConf} 'numberOfConfigurations' | {FindOne} 'findConfiguration' | {FindAll}
+		//'findAllConfigurations' | {ValidConf} 'validConfiguration' '(' valuations=ListOfValuation ')'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//{Valid} 'validModel'
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{Valid}
+		public Action getValidAction_0_0() { return cValidAction_0_0; }
+		
+		//'validModel'
+		public Keyword getValidModelKeyword_0_1() { return cValidModelKeyword_0_1; }
+		
+		//{NumConf} 'numberOfConfigurations'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{NumConf}
+		public Action getNumConfAction_1_0() { return cNumConfAction_1_0; }
+		
+		//'numberOfConfigurations'
+		public Keyword getNumberOfConfigurationsKeyword_1_1() { return cNumberOfConfigurationsKeyword_1_1; }
+		
+		//{FindOne} 'findConfiguration'
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//{FindOne}
+		public Action getFindOneAction_2_0() { return cFindOneAction_2_0; }
+		
+		//'findConfiguration'
+		public Keyword getFindConfigurationKeyword_2_1() { return cFindConfigurationKeyword_2_1; }
+		
+		//{FindAll} 'findAllConfigurations'
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//{FindAll}
+		public Action getFindAllAction_3_0() { return cFindAllAction_3_0; }
+		
+		//'findAllConfigurations'
+		public Keyword getFindAllConfigurationsKeyword_3_1() { return cFindAllConfigurationsKeyword_3_1; }
+		
+		//{ValidConf} 'validConfiguration' '(' valuations=ListOfValuation ')'
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
+		//{ValidConf}
+		public Action getValidConfAction_4_0() { return cValidConfAction_4_0; }
 		
-		//values=ListOfListValues
-		public Assignment getValuesAssignment_4_1() { return cValuesAssignment_4_1; }
+		//'validConfiguration'
+		public Keyword getValidConfigurationKeyword_4_1() { return cValidConfigurationKeyword_4_1; }
 		
-		//ListOfListValues
-		public RuleCall getValuesListOfListValuesParserRuleCall_4_1_0() { return cValuesListOfListValuesParserRuleCall_4_1_0; }
+		//'('
+		public Keyword getLeftParenthesisKeyword_4_2() { return cLeftParenthesisKeyword_4_2; }
 		
-		//']'
-		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
+		//valuations=ListOfValuation
+		public Assignment getValuationsAssignment_4_3() { return cValuationsAssignment_4_3; }
+		
+		//ListOfValuation
+		public RuleCall getValuationsListOfValuationParserRuleCall_4_3_0() { return cValuationsListOfValuationParserRuleCall_4_3_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4_4() { return cRightParenthesisKeyword_4_4; }
 	}
 	public class BoolValElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.BoolVal");
@@ -1799,6 +1833,12 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cValueTrueKeyword_0_0 = (Keyword)cValueAlternatives_0.eContents().get(0);
 		private final Keyword cValueFalseKeyword_0_1 = (Keyword)cValueAlternatives_0.eContents().get(1);
 		
+		/////**
+		//// * Global constraints
+		//// */
+		////Global:
+		////	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
+		////	;
 		//// syntactic categories
 		//BoolVal:
 		//	value=('true' | 'false');
@@ -2300,7 +2340,9 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	private final PrimaryElements pPrimary;
 	private final AtomicElements pAtomic;
 	private final QualifiedNameElements pQualifiedName;
-	private final GlobalElements pGlobal;
+	private final OperationsElements pOperations;
+	private final OperationElements pOperation;
+	private final SampleElements pSample;
 	private final BoolValElements pBoolVal;
 	private final NumberElements pNumber;
 	private final SymbolElements pSymbol;
@@ -2362,7 +2404,9 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrimary = new PrimaryElements();
 		this.pAtomic = new AtomicElements();
 		this.pQualifiedName = new QualifiedNameElements();
-		this.pGlobal = new GlobalElements();
+		this.pOperations = new OperationsElements();
+		this.pOperation = new OperationElements();
+		this.pSample = new SampleElements();
 		this.pBoolVal = new BoolValElements();
 		this.pNumber = new NumberElements();
 		this.pSymbol = new SymbolElements();
@@ -2417,8 +2461,8 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	// * Modified on November 16th 2018
 	// * August 2018
 	// */ Model:
-	//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('configuration:'
-	//	pairs+=ListOfValuation)*;
+	//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('operations:'
+	//	pairs+=Operations)*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -2427,37 +2471,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 	
-	////ElmDeclaration:
-	////	Const|Variable
-	////;
-	////
-	////Const:
-	////	(dataType=DataType)
-	////	name= ID
-	////	('value:' value= Value)
-	////;
-	////
-	////Variable:
-	////	(dataType=DataType)
-	////	name= ID
-	////	('variants:' variants= OptionsDeclaration )
-	////;
-	////ElmDeclaration:
-	////	
-	////	(dataType=DataType)?
-	////	names= Names
-	////	declaration= ObservableDecl |NonObservableDecl 
-	////	
-	////;
-	////
-	////ObservableDecl:
-	////	{ObservableDecl}('values:' variants= OptionsDeclaration)?
-	////
-	////;
-	////
-	////NonObservableDecl:
-	////	{NonObservableDecl}('variants:' '[' variants= ListOfIDs ']')
-	////;
 	//ElmDeclaration:
 	//	att='att'?
 	//	dataType=DataType name=ID
@@ -2670,10 +2683,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getVisibilityAccess().getRule();
 	}
 	
-	////Hierarchy:
-	////	type=('decomposition'|'visibility') '(' parent=[ElmDeclaration] ',' '['children+=ListOfIDs ']' ')' 
-	////	('<'min=Number ',' max=Number '>')?
-	////;
 	//Order:
 	//	operator='before' | 'after' left=[ElmDeclaration] ',' '[' right+=ListOfIDs ']';
 	public OrderElements getOrderAccess() {
@@ -2694,12 +2703,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 	
-	////
-	////ConsExpression:
-	////	Relational|Global
-	//////Global|Logic|Relational|Control
-	////	
-	////;
 	//Relational:
 	//	Iff;
 	public RelationalElements getRelationalAccess() {
@@ -2801,9 +2804,6 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryAccess().getRule();
 	}
 	
-	////Function returns Relational:
-	////	op=FunctionOp '('left=Primary ',' right=Primary ')' 
-	////;
 	//Atomic Relational:
 	//	{BoolConstant} value=('true' | 'false') | {VariableRef} variable=[ElmDeclaration] | {AttributeRef}
 	//	attribute=QualifiedName | {IntConstant} value=INT;
@@ -2825,18 +2825,43 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameAccess().getRule();
 	}
 	
-	///**
-	// * Global constraints
-	// */ Global:
-	//	op=GlobalOp '(' vars=ListOfIDs ')' ('[' values=ListOfListValues ']')?;
-	public GlobalElements getGlobalAccess() {
-		return pGlobal;
+	//Operations:
+	//	op+=Operation (','+ op+=Operation)*;
+	public OperationsElements getOperationsAccess() {
+		return pOperations;
 	}
 	
-	public ParserRule getGlobalRule() {
-		return getGlobalAccess().getRule();
+	public ParserRule getOperationsRule() {
+		return getOperationsAccess().getRule();
 	}
 	
+	//Operation:
+	//	Sample;
+	public OperationElements getOperationAccess() {
+		return pOperation;
+	}
+	
+	public ParserRule getOperationRule() {
+		return getOperationAccess().getRule();
+	}
+	
+	//Sample Operation:
+	//	{Valid} 'validModel' | {NumConf} 'numberOfConfigurations' | {FindOne} 'findConfiguration' | {FindAll}
+	//	'findAllConfigurations' | {ValidConf} 'validConfiguration' '(' valuations=ListOfValuation ')';
+	public SampleElements getSampleAccess() {
+		return pSample;
+	}
+	
+	public ParserRule getSampleRule() {
+		return getSampleAccess().getRule();
+	}
+	
+	/////**
+	//// * Global constraints
+	//// */
+	////Global:
+	////	op=GlobalOp '(' vars=ListOfIDs ')'   ( '[' values= ListOfListValues ']')? 
+	////	;
 	//// syntactic categories
 	//BoolVal:
 	//	value=('true' | 'false');
