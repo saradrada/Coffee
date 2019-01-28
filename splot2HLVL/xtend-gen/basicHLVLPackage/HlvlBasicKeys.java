@@ -23,7 +23,7 @@ public interface HlvlBasicKeys {
   /**
    * Elements declaration, all are boolean
    */
-  public final static String ELM_DECLARATION = "boolean ";
+  public final static String ELM_DECLARATION = "boolean";
   
   /**
    * Cardinalities for decomposition and group constructs
@@ -34,7 +34,7 @@ public interface HlvlBasicKeys {
   
   public final static String ALTERNATIVE = "[1,1]";
   
-  public final static String OR = "[0,*]";
+  public final static String OR = "[1,*]";
   
   /**
    * Syntax elements
@@ -101,4 +101,13 @@ public interface HlvlBasicKeys {
   public final static String FIND_ALL = "findAllConfigurations";
   
   public final static String VALID_CONF = "validConfiguration";
+  
+  /**
+   * Expressions
+   */
+  public final static String NEG = "~";
+  
+  public final static String L_AND = "AND";
+  
+  public final static String L_OR = "OR";
 }

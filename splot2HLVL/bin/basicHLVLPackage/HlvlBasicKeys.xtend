@@ -14,7 +14,7 @@ interface HlvlBasicKeys {
 	/**
 	 * Elements declaration, all are boolean
 	 */
-	 public static String ELM_DECLARATION ="boolean "
+	 public static String ELM_DECLARATION ="boolean"
 	
 	/**
 	 * Cardinalities for decomposition and group constructs 
@@ -22,7 +22,7 @@ interface HlvlBasicKeys {
 	 public static String MANDATORY ="<1>"
 	 public static String OPTIONAL ="<0>"
 	 public static String ALTERNATIVE ="[1,1]"
-	 public static String OR ="[0,*]"
+	 public static String OR ="[1,*]"
 	 
 	 /**
 	  * Syntax elements
@@ -56,6 +56,14 @@ interface HlvlBasicKeys {
 	    public static String FIND_ONE ="findConfiguration"
 	    public static String FIND_ALL ="findAllConfigurations"
 	    public static String VALID_CONF ="validConfiguration"
+	    
+	    /**
+	     * Expressions 
+	     */
+	     public static String NEG ="~"
+	     public static String L_AND ="AND"
+	     public static String L_OR ="OR"
+	     
 	
 	
 }

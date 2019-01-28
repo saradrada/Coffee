@@ -14,7 +14,23 @@ public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
   private String id = "r";
   
   @Override
-  public String getCore(final List<String> identifiers) {
+  public String getCore(final String element) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(this.id);
+    int _plusPlus = this.numId++;
+    _builder.append(_plusPlus);
+    _builder.append(HlvlBasicKeys.COLON);
+    _builder.append(" ");
+    _builder.append(HlvlBasicKeys.CORE);
+    _builder.append(HlvlBasicKeys.OPEN_CALL);
+    _builder.append(element);
+    _builder.append(HlvlBasicKeys.CLOSE_CALL);
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
+  }
+  
+  @Override
+  public String getCoreList(final List<String> identifiers) {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -48,7 +64,46 @@ public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
   }
   
   @Override
-  public String getDecomposition(final String parent, final List<String> children, final DecompositionType type) {
+  public String getDecomposition(final String parent, final String child, final DecompositionType type) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(this.id);
+      int _plusPlus = this.numId++;
+      _builder.append(_plusPlus);
+      _builder.append(HlvlBasicKeys.COLON);
+      _builder.append(" ");
+      _builder.append(HlvlBasicKeys.DECOMPOSITION);
+      _builder.append(HlvlBasicKeys.OPEN_CALL);
+      _builder.append(parent);
+      _builder.append(HlvlBasicKeys.COMMA);
+      _builder.append(" ");
+      _builder.append(HlvlBasicKeys.OPEN_LIST);
+      _builder.append(child);
+      _builder.append(HlvlBasicKeys.CLOSE_LIST);
+      _builder.append(HlvlBasicKeys.CLOSE_CALL);
+      String out = _builder.toString();
+      if (type != null) {
+        switch (type) {
+          case Mandatory:
+            String _out = out;
+            out = (_out + (HlvlBasicKeys.MANDATORY + "\n"));
+            break;
+          case Optional:
+            String _out_1 = out;
+            out = (_out_1 + (HlvlBasicKeys.OPTIONAL + "\n"));
+            break;
+          default:
+            break;
+        }
+      }
+      _xblockexpression = out;
+    }
+    return _xblockexpression;
+  }
+  
+  @Override
+  public String getDecompositionList(final String parent, final List<String> children, final DecompositionType type) {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -204,5 +259,49 @@ public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
     _builder.append(HlvlBasicKeys.CLOSE_CALL);
     _builder.newLineIfNotEmpty();
     return _builder.toString();
+  }
+  
+  public String parseCNF2expression(final List<String> positives, final List<String> negatives) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(this.id);
+      int _plusPlus = this.numId++;
+      _builder.append(_plusPlus);
+      _builder.append(HlvlBasicKeys.COLON);
+      _builder.append(" ");
+      _builder.append(HlvlBasicKeys.EXPRESSION);
+      _builder.append(HlvlBasicKeys.OPEN_CALL);
+      String out = _builder.toString();
+      for (final String element : negatives) {
+        String _out = out;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append(" ");
+        _builder_1.append(HlvlBasicKeys.NEG, " ");
+        _builder_1.append(element, " ");
+        _builder_1.append(" ");
+        _builder_1.append(HlvlBasicKeys.L_OR, " ");
+        out = (_out + _builder_1);
+      }
+      for (final String element_1 : positives) {
+        String _out_1 = out;
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append(" ");
+        _builder_2.append(element_1, " ");
+        _builder_2.append(" ");
+        _builder_2.append(HlvlBasicKeys.L_OR, " ");
+        out = (_out_1 + _builder_2);
+      }
+      StringConcatenation _builder_3 = new StringConcatenation();
+      int _length = out.length();
+      int _minus = (_length - 3);
+      String _substring = out.substring(0, _minus);
+      _builder_3.append(_substring);
+      _builder_3.append(HlvlBasicKeys.CLOSE_CALL);
+      _builder_3.newLineIfNotEmpty();
+      out = _builder_3.toString();
+      _xblockexpression = out;
+    }
+    return _xblockexpression;
   }
 }
