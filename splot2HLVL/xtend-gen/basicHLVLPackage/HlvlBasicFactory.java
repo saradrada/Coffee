@@ -7,6 +7,14 @@ import basicHLVLPackage.IhlvlBasicFactory;
 import java.util.List;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
+/**
+ * Class in xtend implementing the IhlvlFactory
+ * this class implements the transformation rules from basic
+ * variability models in the basic dialect of HLVL (Hlvl(basic))
+ * @author Angela Villota
+ * Coffee V1
+ * January 2019
+ */
 @SuppressWarnings("all")
 public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
   private int numId = 0;
@@ -166,11 +174,6 @@ public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
   }
   
   @Override
-  public String getExpression() {
-    return null;
-  }
-  
-  @Override
   public String getGroup(final String parent, final List<String> children, final GroupType type) {
     String _xblockexpression = null;
     {
@@ -261,6 +264,7 @@ public class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys {
     return _builder.toString();
   }
   
+  @Override
   public String parseCNF2expression(final List<String> positives, final List<String> negatives) {
     String _xblockexpression = null;
     {

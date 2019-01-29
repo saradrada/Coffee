@@ -75,8 +75,20 @@ public interface IhlvlBasicFactory {
 	 * @return an hlvl sentence in the form group(parent, [c1, c2, ..cn])[min, max]
 	 */
 	public String getGroup(String parent, List <String> children, GroupType type);
-	//TODO todavía no se como hacer el parsing d euna expresion
-	public String getExpression();
+	
+	
+	//TODO This definition may change
+	//public String getExpression();
+	
+
+	
+	/**
+	 * 
+	 * @param positives
+	 * @param negatives
+	 * @return
+	 */
+	public String parseCNF2expression(List<String> positives, List<String> negatives);
 	
 	
 	

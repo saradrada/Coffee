@@ -3,6 +3,13 @@ package basicHLVLPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
+/**
+ * Interface declaring  a set of constants used to represent HLVL constructs, and keywords
+ * in the basic dialect of HLVL (Hlvl(basic))
+ * @author Angela Villota
+ * Coffee V1
+ * January 2019
+ */
 @SuppressWarnings("all")
 public interface HlvlBasicKeys {
   /**

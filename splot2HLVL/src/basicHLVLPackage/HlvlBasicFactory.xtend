@@ -2,6 +2,15 @@ package basicHLVLPackage
 
 import java.util.List
 
+/**
+ * Class in xtend implementing the IhlvlFactory 
+ * this class implements the transformation rules from basic 
+ * variability models in the basic dialect of HLVL (Hlvl(basic))
+ * @author Angela Villota
+ * Coffee V1
+ * January 2019
+ */
+
 class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys{
 	private int numId=0;
 	private String id="r"
@@ -55,8 +64,6 @@ class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys{
 		'''
 	}
 	
-	override getExpression() {
-	}
 	
 	override getGroup(String parent, List<String> children, GroupType type) {
 		var out='''«id»«numId++»«COLON» «GROUP»«OPEN_CALL» «parent»«COMMA» «OPEN_LIST»'''
@@ -83,7 +90,7 @@ class HlvlBasicFactory implements IhlvlBasicFactory, HlvlBasicKeys{
 		'''
 	}
 	
-	def parseCNF2expression(List<String> positives, List<String> negatives){
+	override parseCNF2expression(List<String> positives, List<String> negatives){
 		var out='''«id»«numId++»«COLON» «EXPRESSION»«OPEN_CALL»'''
 		
 		for(element: negatives){

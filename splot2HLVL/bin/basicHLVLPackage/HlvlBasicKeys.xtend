@@ -1,5 +1,13 @@
 package basicHLVLPackage
 
+/**
+ * Interface declaring  a set of constants used to represent HLVL constructs, and keywords 
+ * in the basic dialect of HLVL (Hlvl(basic))
+ * @author Angela Villota
+ * Coffee V1
+ * January 2019
+ */
+
 interface HlvlBasicKeys {
 	/**
 	 * Hlvl Constructs for the dialect HLVL(basic)

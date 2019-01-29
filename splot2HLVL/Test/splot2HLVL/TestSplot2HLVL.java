@@ -20,7 +20,7 @@ class TestSplot2HLVL {
 		params.setTargetName("test"+i);
 		
 		//Now we create the parser object
-		Splot2HLVLParser parser=	new Splot2HLVLParser(params);
+		Splot2HlvlParser parser=	new Splot2HlvlParser(params);
 		
 		try {
 			parser.parse();
