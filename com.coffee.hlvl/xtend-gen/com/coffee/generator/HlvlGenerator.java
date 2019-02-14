@@ -4,6 +4,7 @@
 package com.coffee.generator;
 
 import com.coffee.generator.Dialect;
+import com.coffee.generator.IGenerator;
 import com.coffee.generator.Integers.IntGenerator;
 import com.coffee.generator.bools.BoolGenerator;
 import com.coffee.hlvl.ElmDeclaration;
@@ -13,6 +14,7 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.google.common.base.Objects;
+import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,6 +41,10 @@ public class HlvlGenerator extends AbstractGenerator {
   
   private boolean attributes = false;
   
+  private Properties operations = new Properties();
+  
+  private IGenerator generator;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
@@ -46,12 +52,17 @@ public class HlvlGenerator extends AbstractGenerator {
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
     final Model model = ((Model) _head_1);
     final Dialect dialect = this.setDialect(model);
+    final long startTime = System.currentTimeMillis();
     boolean _equals = Objects.equal(dialect, Dialect.BASIC);
     if (_equals) {
-      fsa.generateFile((modelName + "bool.mzn"), this.toBoolean(model, modelName));
+      fsa.generateFile((modelName + "_bool.mzn"), this.toBoolean(model, modelName, fsa));
     } else {
-      fsa.generateFile((modelName + ".mzn"), this.toInteger(model, modelName, dialect));
+      fsa.generateFile((modelName + "_int.mzn"), this.toInteger(model, modelName, dialect));
     }
+    fsa.generateFile((modelName + "operations.json"), this.generator.getProperties());
+    final long stopTime = System.currentTimeMillis();
+    final long elapsedTime = (stopTime - startTime);
+    System.out.println(elapsedTime);
   }
   
   /**
@@ -146,11 +157,12 @@ public class HlvlGenerator extends AbstractGenerator {
     return this.instantiable;
   }
   
-  public CharSequence toBoolean(final Model model, final String modelName) {
+  public CharSequence toBoolean(final Model model, final String modelName, final IFileSystemAccess2 fsa) {
     CharSequence _xblockexpression = null;
     {
-      BoolGenerator boolGen = new BoolGenerator(modelName);
-      _xblockexpression = boolGen.parseModel(model);
+      BoolGenerator _boolGenerator = new BoolGenerator(modelName);
+      this.generator = _boolGenerator;
+      _xblockexpression = this.generator.parseModel(model);
     }
     return _xblockexpression;
   }
@@ -158,9 +170,14 @@ public class HlvlGenerator extends AbstractGenerator {
   public CharSequence toInteger(final Model model, final String modelName, final Dialect dialect) {
     CharSequence _xblockexpression = null;
     {
-      IntGenerator generator = new IntGenerator(modelName, dialect);
-      _xblockexpression = generator.parseModel(model);
+      IntGenerator _intGenerator = new IntGenerator(modelName, dialect);
+      this.generator = _intGenerator;
+      _xblockexpression = this.generator.parseModel(model);
     }
     return _xblockexpression;
+  }
+  
+  public Object PropertieswriteOperationsFile(final Dialect dialect) {
+    return null;
   }
 }

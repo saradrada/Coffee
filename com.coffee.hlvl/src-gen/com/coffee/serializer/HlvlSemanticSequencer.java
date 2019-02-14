@@ -16,8 +16,6 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.FindAll;
-import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.HlvlPackage;
@@ -36,7 +34,6 @@ import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.NumConf;
 import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
@@ -45,9 +42,9 @@ import com.coffee.hlvl.Plus;
 import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
+import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.Valid;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.VarList;
@@ -120,12 +117,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
-			case HlvlPackage.FIND_ALL:
-				sequence_Sample(context, (FindAll) semanticObject); 
-				return; 
-			case HlvlPackage.FIND_ONE:
-				sequence_Sample(context, (FindOne) semanticObject); 
-				return; 
 			case HlvlPackage.FUNCTION:
 				sequence_Primary(context, (Function) semanticObject); 
 				return; 
@@ -177,9 +168,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.NEGATION:
 				sequence_Primary(context, (Negation) semanticObject); 
 				return; 
-			case HlvlPackage.NUM_CONF:
-				sequence_Sample(context, (NumConf) semanticObject); 
-				return; 
 			case HlvlPackage.NUMBER:
 				sequence_Number(context, (com.coffee.hlvl.Number) semanticObject); 
 				return; 
@@ -207,14 +195,14 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.REL_DECLARATION:
 				sequence_RelDeclaration(context, (RelDeclaration) semanticObject); 
 				return; 
+			case HlvlPackage.SINGLE_INSTRUCTION:
+				sequence_Sample(context, (SingleInstruction) semanticObject); 
+				return; 
 			case HlvlPackage.SYMBOL:
 				sequence_Symbol(context, (Symbol) semanticObject); 
 				return; 
 			case HlvlPackage.UNARY:
 				sequence_Primary(context, (Unary) semanticObject); 
-				return; 
-			case HlvlPackage.VALID:
-				sequence_Sample(context, (Valid) semanticObject); 
 				return; 
 			case HlvlPackage.VALID_CONF:
 				sequence_Sample(context, (ValidConf) semanticObject); 
@@ -424,7 +412,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     BoolVal returns BoolVal
 	 *     Value returns BoolVal
-	 *     NonEnumerableValue returns BoolVal
 	 *
 	 * Constraint:
 	 *     (value='true' | value='false')
@@ -794,7 +781,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ListOfValuation returns ListOfValuation
 	 *
 	 * Constraint:
-	 *     (valuations+=Valuation valuations+=Valuation*)
+	 *     (pairs+=Valuation pairs+=Valuation*)
 	 */
 	protected void sequence_ListOfValuation(ISerializationContext context, ListOfValuation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -818,7 +805,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (name=ID elements+=ElmDeclaration* relations+=RelDeclaration* pairs+=Operations*)
+	 *     (name=ID elements+=ElmDeclaration* relations+=RelDeclaration* operations=Operations?)
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1255,53 +1242,20 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Operation returns FindAll
-	 *     Sample returns FindAll
+	 *     Operation returns SingleInstruction
+	 *     Sample returns SingleInstruction
 	 *
 	 * Constraint:
-	 *     {FindAll}
+	 *     name=OperationName
 	 */
-	protected void sequence_Sample(ISerializationContext context, FindAll semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Operation returns FindOne
-	 *     Sample returns FindOne
-	 *
-	 * Constraint:
-	 *     {FindOne}
-	 */
-	protected void sequence_Sample(ISerializationContext context, FindOne semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Operation returns NumConf
-	 *     Sample returns NumConf
-	 *
-	 * Constraint:
-	 *     {NumConf}
-	 */
-	protected void sequence_Sample(ISerializationContext context, NumConf semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Operation returns Valid
-	 *     Sample returns Valid
-	 *
-	 * Constraint:
-	 *     {Valid}
-	 */
-	protected void sequence_Sample(ISerializationContext context, Valid semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Sample(ISerializationContext context, SingleInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.SINGLE_INSTRUCTION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.SINGLE_INSTRUCTION__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSampleAccess().getNameOperationNameParserRuleCall_0_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -1319,7 +1273,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.VALID_CONF__VALUATIONS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSampleAccess().getValuationsListOfValuationParserRuleCall_4_3_0(), semanticObject.getValuations());
+		feeder.accept(grammarAccess.getSampleAccess().getValuationsListOfValuationParserRuleCall_1_3_0(), semanticObject.getValuations());
 		feeder.finish();
 	}
 	
@@ -1328,18 +1282,17 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Symbol returns Symbol
 	 *     Value returns Symbol
-	 *     NonEnumerableValue returns Symbol
 	 *
 	 * Constraint:
 	 *     value=STRING
 	 */
 	protected void sequence_Symbol(ISerializationContext context, Symbol semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.NON_ENUMERABLE_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.NON_ENUMERABLE_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.SYMBOL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.SYMBOL__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSymbolAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getSymbolAccess().getValueSTRINGTerminalRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

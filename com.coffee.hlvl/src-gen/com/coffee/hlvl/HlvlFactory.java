@@ -294,15 +294,6 @@ public interface HlvlFactory extends EFactory
   Value createValue();
 
   /**
-   * Returns a new object of class '<em>Non Enumerable Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Non Enumerable Value</em>'.
-   * @generated
-   */
-  NonEnumerableValue createNonEnumerableValue();
-
-  /**
    * Returns a new object of class '<em>List Of Values</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -510,40 +501,13 @@ public interface HlvlFactory extends EFactory
   IntConstant createIntConstant();
 
   /**
-   * Returns a new object of class '<em>Valid</em>'.
+   * Returns a new object of class '<em>Single Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Valid</em>'.
+   * @return a new object of class '<em>Single Instruction</em>'.
    * @generated
    */
-  Valid createValid();
-
-  /**
-   * Returns a new object of class '<em>Num Conf</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Num Conf</em>'.
-   * @generated
-   */
-  NumConf createNumConf();
-
-  /**
-   * Returns a new object of class '<em>Find One</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Find One</em>'.
-   * @generated
-   */
-  FindOne createFindOne();
-
-  /**
-   * Returns a new object of class '<em>Find All</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Find All</em>'.
-   * @generated
-   */
-  FindAll createFindAll();
+  SingleInstruction createSingleInstruction();
 
   /**
    * Returns a new object of class '<em>Valid Conf</em>'.

@@ -1,4 +1,4 @@
-model HLVL_bool
+model GPL_constraints
 elements:
 	boolean GPL variants: [true,false]
 	boolean Gtp 

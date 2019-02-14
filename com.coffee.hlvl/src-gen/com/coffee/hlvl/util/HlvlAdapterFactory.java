@@ -17,8 +17,6 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.FindAll;
-import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
@@ -38,8 +36,6 @@ import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.NonEnumerableValue;
-import com.coffee.hlvl.NumConf;
 import com.coffee.hlvl.Operation;
 import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
@@ -52,9 +48,9 @@ import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.Valid;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
@@ -284,11 +280,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createValueAdapter();
       }
       @Override
-      public Adapter caseNonEnumerableValue(NonEnumerableValue object)
-      {
-        return createNonEnumerableValueAdapter();
-      }
-      @Override
       public Adapter caseListOfValues(ListOfValues object)
       {
         return createListOfValuesAdapter();
@@ -404,24 +395,9 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createIntConstantAdapter();
       }
       @Override
-      public Adapter caseValid(Valid object)
+      public Adapter caseSingleInstruction(SingleInstruction object)
       {
-        return createValidAdapter();
-      }
-      @Override
-      public Adapter caseNumConf(NumConf object)
-      {
-        return createNumConfAdapter();
-      }
-      @Override
-      public Adapter caseFindOne(FindOne object)
-      {
-        return createFindOneAdapter();
-      }
-      @Override
-      public Adapter caseFindAll(FindAll object)
-      {
-        return createFindAllAdapter();
+        return createSingleInstructionAdapter();
       }
       @Override
       public Adapter caseValidConf(ValidConf object)
@@ -901,21 +877,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.NonEnumerableValue <em>Non Enumerable Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.NonEnumerableValue
-   * @generated
-   */
-  public Adapter createNonEnumerableValueAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ListOfValues <em>List Of Values</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1261,61 +1222,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Valid <em>Valid</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.SingleInstruction <em>Single Instruction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.Valid
+   * @see com.coffee.hlvl.SingleInstruction
    * @generated
    */
-  public Adapter createValidAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.NumConf <em>Num Conf</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.NumConf
-   * @generated
-   */
-  public Adapter createNumConfAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.FindOne <em>Find One</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.FindOne
-   * @generated
-   */
-  public Adapter createFindOneAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.FindAll <em>Find All</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.FindAll
-   * @generated
-   */
-  public Adapter createFindAllAdapter()
+  public Adapter createSingleInstructionAdapter()
   {
     return null;
   }

@@ -35,4 +35,6 @@ public interface IGenerator {
   public abstract Map<String, ElmDeclaration> getParents();
   
   public abstract void setFactory(final CodeFactory factory);
+  
+  public abstract String getProperties();
 }

@@ -116,7 +116,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ','+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     valuations+=Valuation (ambiguity) valuations+=Valuation
+	 *     pairs+=Valuation (ambiguity) pairs+=Valuation
 	 */
 	protected void emit_ListOfValuation_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

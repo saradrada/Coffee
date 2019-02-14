@@ -17,8 +17,6 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.FindAll;
-import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
@@ -38,8 +36,6 @@ import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.NonEnumerableValue;
-import com.coffee.hlvl.NumConf;
 import com.coffee.hlvl.Operation;
 import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
@@ -52,9 +48,9 @@ import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.Valid;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
@@ -335,7 +331,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         BoolVal boolVal = (BoolVal)theEObject;
         T result = caseBoolVal(boolVal);
-        if (result == null) result = caseNonEnumerableValue(boolVal);
         if (result == null) result = caseValue(boolVal);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -352,7 +347,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Symbol symbol = (Symbol)theEObject;
         T result = caseSymbol(symbol);
-        if (result == null) result = caseNonEnumerableValue(symbol);
         if (result == null) result = caseValue(symbol);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -361,14 +355,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Value value = (Value)theEObject;
         T result = caseValue(value);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.NON_ENUMERABLE_VALUE:
-      {
-        NonEnumerableValue nonEnumerableValue = (NonEnumerableValue)theEObject;
-        T result = caseNonEnumerableValue(nonEnumerableValue);
-        if (result == null) result = caseValue(nonEnumerableValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -549,35 +535,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.VALID:
+      case HlvlPackage.SINGLE_INSTRUCTION:
       {
-        Valid valid = (Valid)theEObject;
-        T result = caseValid(valid);
-        if (result == null) result = caseOperation(valid);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.NUM_CONF:
-      {
-        NumConf numConf = (NumConf)theEObject;
-        T result = caseNumConf(numConf);
-        if (result == null) result = caseOperation(numConf);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.FIND_ONE:
-      {
-        FindOne findOne = (FindOne)theEObject;
-        T result = caseFindOne(findOne);
-        if (result == null) result = caseOperation(findOne);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.FIND_ALL:
-      {
-        FindAll findAll = (FindAll)theEObject;
-        T result = caseFindAll(findAll);
-        if (result == null) result = caseOperation(findAll);
+        SingleInstruction singleInstruction = (SingleInstruction)theEObject;
+        T result = caseSingleInstruction(singleInstruction);
+        if (result == null) result = caseOperation(singleInstruction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1074,22 +1036,6 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Non Enumerable Value</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNonEnumerableValue(NonEnumerableValue object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>List Of Values</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1458,65 +1404,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Valid</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Single Instruction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Valid</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Single Instruction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValid(Valid object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Num Conf</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Num Conf</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNumConf(NumConf object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Find One</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Find One</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFindOne(FindOne object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Find All</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Find All</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFindAll(FindAll object)
+  public T caseSingleInstruction(SingleInstruction object)
   {
     return null;
   }

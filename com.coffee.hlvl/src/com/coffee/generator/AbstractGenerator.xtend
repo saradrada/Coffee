@@ -19,6 +19,12 @@ import java.util.ArrayList
 import com.coffee.hlvl.MultInstantiation
 import com.coffee.hlvl.QImplies
 import com.coffee.hlvl.ComplexImplies
+import com.coffee.hlvl.SingleInstruction
+import com.coffee.hlvl.ValidConf
+import com.coffee.hlvl.BoolVal
+import com.coffee.hlvl.Symbol
+import com.coffee.hlvl.Number
+
 
 /**
  * Abstract Generator, this is the class that process the model and traverses the 
@@ -52,6 +58,8 @@ import com.coffee.hlvl.ComplexImplies
 	private Map <String, Relation> relations;
 	
 	private Map <String, ElmDeclaration> attributes;
+	
+	private String properties;
 	/**
 	 * Constructor method 
 	 * @param the name of the model
@@ -64,6 +72,7 @@ import com.coffee.hlvl.ComplexImplies
 		parents= new HashMap<String,ElmDeclaration>();
 		attributes= new HashMap<String,ElmDeclaration>();
 		relations= new HashMap<String, Relation>();
+		properties= "";
 	}
 
 	
@@ -88,6 +97,7 @@ import com.coffee.hlvl.ComplexImplies
 	 	% Variables and constraints from the variability relations definition
 	 	«parseRelations(model)»
 	 	% The solving parameters from the parameters files
+	 	«parseOperations(model)»
 	 	'''
 	 } 
 	
@@ -206,7 +216,50 @@ import com.coffee.hlvl.ComplexImplies
 		}
 	}
 	
-	
+	def parseOperations(Model model){
+		//creating properties file
+		properties += 
+		'''
+		{
+		 "problem" : «dialect.toString()»,
+		'''
+		
+		var  single=""
+		var  notSingle=""
+		
+		for(oper : model.operations.op){
+			switch (oper){
+				SingleInstruction:  {
+					single += oper.name + ","
+				}
+				ValidConf: {
+					//notSingle+="["
+					for( valuation : oper.valuations.pairs ){
+						var value=""
+						switch valuation.value{
+							Number: value= (valuation.value as Number).value +""
+							BoolVal: value= (valuation.value as BoolVal).value 
+							Symbol:  value= (valuation.value as Symbol).value 
+						}
+						notSingle+= 
+						'''
+						{
+							"element" : "«valuation.element.name»",
+							"value" : "«value»"
+						},
+						'''
+					}
+				}
+			}
+		}
+		//list+=list.substring(0, list.length -1 )+"]"
+		properties += 
+		'''
+		"operationSingle" : [«single.substring(0, single.length-1)»],
+		"validConfiguration" :[«notSingle»]
+		}
+		'''	
+	}
 	
 	/*===================================================================
 	 *===================================================================
@@ -232,6 +285,10 @@ import com.coffee.hlvl.ComplexImplies
 	}
 	override void setFactory( CodeFactory factory){
 		this.factory= factory
+	}
+	
+	override String getProperties(){
+		return properties
 	}
 	
 	

@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.ListOfValuationImpl#getValuations <em>Valuations</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.ListOfValuationImpl#getPairs <em>Pairs</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +37,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements ListOfValuation
 {
   /**
-   * The cached value of the '{@link #getValuations() <em>Valuations</em>}' containment reference list.
+   * The cached value of the '{@link #getPairs() <em>Pairs</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValuations()
+   * @see #getPairs()
    * @generated
    * @ordered
    */
-  protected EList<Valuation> valuations;
+  protected EList<Valuation> pairs;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,13 +72,13 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Valuation> getValuations()
+  public EList<Valuation> getPairs()
   {
-    if (valuations == null)
+    if (pairs == null)
     {
-      valuations = new EObjectContainmentEList<Valuation>(Valuation.class, this, HlvlPackage.LIST_OF_VALUATION__VALUATIONS);
+      pairs = new EObjectContainmentEList<Valuation>(Valuation.class, this, HlvlPackage.LIST_OF_VALUATION__PAIRS);
     }
-    return valuations;
+    return pairs;
   }
 
   /**
@@ -91,8 +91,8 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case HlvlPackage.LIST_OF_VALUATION__VALUATIONS:
-        return ((InternalEList<?>)getValuations()).basicRemove(otherEnd, msgs);
+      case HlvlPackage.LIST_OF_VALUATION__PAIRS:
+        return ((InternalEList<?>)getPairs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +107,8 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case HlvlPackage.LIST_OF_VALUATION__VALUATIONS:
-        return getValuations();
+      case HlvlPackage.LIST_OF_VALUATION__PAIRS:
+        return getPairs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +124,9 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case HlvlPackage.LIST_OF_VALUATION__VALUATIONS:
-        getValuations().clear();
-        getValuations().addAll((Collection<? extends Valuation>)newValue);
+      case HlvlPackage.LIST_OF_VALUATION__PAIRS:
+        getPairs().clear();
+        getPairs().addAll((Collection<? extends Valuation>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +142,8 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case HlvlPackage.LIST_OF_VALUATION__VALUATIONS:
-        getValuations().clear();
+      case HlvlPackage.LIST_OF_VALUATION__PAIRS:
+        getPairs().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,8 +159,8 @@ public class ListOfValuationImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case HlvlPackage.LIST_OF_VALUATION__VALUATIONS:
-        return valuations != null && !valuations.isEmpty();
+      case HlvlPackage.LIST_OF_VALUATION__PAIRS:
+        return pairs != null && !pairs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

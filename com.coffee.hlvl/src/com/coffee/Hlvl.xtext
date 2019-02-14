@@ -13,7 +13,7 @@ generate hlvl "http://www.coffee.com/Hlvl"
  */
 Model:
 	'model' name=ID 'elements:' elements+=(ElmDeclaration)*  'relations:'relations+=(RelDeclaration)*
-	('operations:' pairs+= Operations )*
+	('operations:' operations = Operations )?
 	;
 	
 ElmDeclaration:
@@ -178,12 +178,16 @@ Operations:
 Operation:Sample;
 
 Sample returns Operation:
-	{Valid} 'validModel'|
-	{NumConf} 'numberOfConfigurations'|
-	{FindOne} 'findConfiguration'|
-	{FindAll} 'findAllConfigurations'|
+	{SingleInstruction} name= OperationName|
+//	{NumConf} 'numberOfConfigurations'|
+//	{FindOne} 'findConfiguration'|
+//	{FindAll} 'findAllConfigurations'|
 	{ValidConf} 'validConfiguration' '(' valuations= ListOfValuation ')'
 	
+;
+
+OperationName:
+	'validModel'| 'numberOfConfigurations' |'findConfiguration'|'findAllConfigurations'
 ;
 	
 ///**
@@ -200,11 +204,13 @@ Sample returns Operation:
 BoolVal: value=('true'|'false');
 Number: value = INT ;
 
-Symbol: value= STRING;
+Symbol: '"' value= STRING '"';
 
-Value: Number|NonEnumerableValue;	
+Value: 
+	Number|BoolVal|Symbol
+;	
 //EnumerableValue: Number ;
-NonEnumerableValue:BoolVal|Symbol;
+//NonEnumerableValue:BoolVal|Symbol;
 
 DataType:
 	 'boolean' |'integer'|'symbolic' ;
@@ -230,7 +236,7 @@ Valuation:
 ;
 
 ListOfValuation:
-	valuations+= Valuation (',' + valuations+= Valuation)*
+	pairs+= Valuation (',' + pairs+= Valuation)*
 ;
 ListOfListValues:
 	'['list+= ListOfValues']' (',' + '[' list+= ListOfValues ']')*

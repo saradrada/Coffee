@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.ListOfValuation#getValuations <em>Valuations</em>}</li>
+ *   <li>{@link com.coffee.hlvl.ListOfValuation#getPairs <em>Pairs</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getListOfValuation()
@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface ListOfValuation extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Valuations</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
    * The list contents are of type {@link com.coffee.hlvl.Valuation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Valuations</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Valuations</em>' containment reference list.
-   * @see com.coffee.hlvl.HlvlPackage#getListOfValuation_Valuations()
+   * @return the value of the '<em>Pairs</em>' containment reference list.
+   * @see com.coffee.hlvl.HlvlPackage#getListOfValuation_Pairs()
    * @model containment="true"
    * @generated
    */
-  EList<Valuation> getValuations();
+  EList<Valuation> getPairs();
 
 } // ListOfValuation

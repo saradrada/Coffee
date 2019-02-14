@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.coffee.hlvl.impl.ModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ModelImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ModelImpl#getRelations <em>Relations</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.ModelImpl#getPairs <em>Pairs</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.ModelImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,14 +84,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected EList<RelDeclaration> relations;
 
   /**
-   * The cached value of the '{@link #getPairs() <em>Pairs</em>}' containment reference list.
+   * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPairs()
+   * @see #getOperations()
    * @generated
    * @ordered
    */
-  protected EList<Operations> pairs;
+  protected Operations operations;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,13 +170,47 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Operations> getPairs()
+  public Operations getOperations()
   {
-    if (pairs == null)
+    return operations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetOperations(Operations newOperations, NotificationChain msgs)
+  {
+    Operations oldOperations = operations;
+    operations = newOperations;
+    if (eNotificationRequired())
     {
-      pairs = new EObjectContainmentEList<Operations>(Operations.class, this, HlvlPackage.MODEL__PAIRS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.MODEL__OPERATIONS, oldOperations, newOperations);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return pairs;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperations(Operations newOperations)
+  {
+    if (newOperations != operations)
+    {
+      NotificationChain msgs = null;
+      if (operations != null)
+        msgs = ((InternalEObject)operations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.MODEL__OPERATIONS, null, msgs);
+      if (newOperations != null)
+        msgs = ((InternalEObject)newOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.MODEL__OPERATIONS, null, msgs);
+      msgs = basicSetOperations(newOperations, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.MODEL__OPERATIONS, newOperations, newOperations));
   }
 
   /**
@@ -193,8 +227,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
       case HlvlPackage.MODEL__RELATIONS:
         return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
-      case HlvlPackage.MODEL__PAIRS:
-        return ((InternalEList<?>)getPairs()).basicRemove(otherEnd, msgs);
+      case HlvlPackage.MODEL__OPERATIONS:
+        return basicSetOperations(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -215,8 +249,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getElements();
       case HlvlPackage.MODEL__RELATIONS:
         return getRelations();
-      case HlvlPackage.MODEL__PAIRS:
-        return getPairs();
+      case HlvlPackage.MODEL__OPERATIONS:
+        return getOperations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -243,9 +277,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         getRelations().clear();
         getRelations().addAll((Collection<? extends RelDeclaration>)newValue);
         return;
-      case HlvlPackage.MODEL__PAIRS:
-        getPairs().clear();
-        getPairs().addAll((Collection<? extends Operations>)newValue);
+      case HlvlPackage.MODEL__OPERATIONS:
+        setOperations((Operations)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -270,8 +303,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case HlvlPackage.MODEL__RELATIONS:
         getRelations().clear();
         return;
-      case HlvlPackage.MODEL__PAIRS:
-        getPairs().clear();
+      case HlvlPackage.MODEL__OPERATIONS:
+        setOperations((Operations)null);
         return;
     }
     super.eUnset(featureID);
@@ -293,8 +326,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return elements != null && !elements.isEmpty();
       case HlvlPackage.MODEL__RELATIONS:
         return relations != null && !relations.isEmpty();
-      case HlvlPackage.MODEL__PAIRS:
-        return pairs != null && !pairs.isEmpty();
+      case HlvlPackage.MODEL__OPERATIONS:
+        return operations != null;
     }
     return super.eIsSet(featureID);
   }

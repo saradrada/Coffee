@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.coffee.hlvl.Model#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.Model#getElements <em>Elements</em>}</li>
  *   <li>{@link com.coffee.hlvl.Model#getRelations <em>Relations</em>}</li>
- *   <li>{@link com.coffee.hlvl.Model#getPairs <em>Pairs</em>}</li>
+ *   <li>{@link com.coffee.hlvl.Model#getOperations <em>Operations</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getModel()
@@ -87,19 +87,29 @@ public interface Model extends EObject
   EList<RelDeclaration> getRelations();
 
   /**
-   * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
-   * The list contents are of type {@link com.coffee.hlvl.Operations}.
+   * Returns the value of the '<em><b>Operations</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Operations</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Pairs</em>' containment reference list.
-   * @see com.coffee.hlvl.HlvlPackage#getModel_Pairs()
+   * @return the value of the '<em>Operations</em>' containment reference.
+   * @see #setOperations(Operations)
+   * @see com.coffee.hlvl.HlvlPackage#getModel_Operations()
    * @model containment="true"
    * @generated
    */
-  EList<Operations> getPairs();
+  Operations getOperations();
+
+  /**
+   * Sets the value of the '{@link com.coffee.hlvl.Model#getOperations <em>Operations</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operations</em>' containment reference.
+   * @see #getOperations()
+   * @generated
+   */
+  void setOperations(Operations value);
 
 } // Model

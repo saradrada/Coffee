@@ -7,8 +7,8 @@
         eType="#//ElmDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
         eType="#//RelDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
-        eType="#//Operations" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" eType="#//Operations"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -112,15 +112,16 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolVal" eSuperTypes="#//NonEnumerableValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolVal" eSuperTypes="#//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Symbol" eSuperTypes="#//NonEnumerableValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NonEnumerableValue" eSuperTypes="#//Value">
+  <eClassifiers xsi:type="ecore:EClass" name="Symbol" eSuperTypes="#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfValues">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//Value" containment="true"/>
@@ -143,7 +144,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfValuation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valuations" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
         eType="#//Valuation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfListValues">
@@ -235,10 +236,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IntConstant" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Valid" eSuperTypes="#//Operation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NumConf" eSuperTypes="#//Operation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FindOne" eSuperTypes="#//Operation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FindAll" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleInstruction" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValidConf" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valuations" eType="#//ListOfValuation"
         containment="true"/>

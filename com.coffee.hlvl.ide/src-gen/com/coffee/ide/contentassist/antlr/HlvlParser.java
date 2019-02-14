@@ -46,9 +46,9 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicAccess().getAlternatives(), "rule__Atomic__Alternatives");
 					put(grammarAccess.getAtomicAccess().getValueAlternatives_0_1_0(), "rule__Atomic__ValueAlternatives_0_1_0");
 					put(grammarAccess.getSampleAccess().getAlternatives(), "rule__Sample__Alternatives");
+					put(grammarAccess.getOperationNameAccess().getAlternatives(), "rule__OperationName__Alternatives");
 					put(grammarAccess.getBoolValAccess().getValueAlternatives_0(), "rule__BoolVal__ValueAlternatives_0");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
-					put(grammarAccess.getNonEnumerableValueAccess().getAlternatives(), "rule__NonEnumerableValue__Alternatives");
 					put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
 					put(grammarAccess.getGlobalOpAccess().getAlternatives(), "rule__GlobalOp__Alternatives");
 					put(grammarAccess.getFunctionOpAccess().getAlternatives(), "rule__FunctionOp__Alternatives");
@@ -107,9 +107,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOperationsAccess().getGroup_1(), "rule__Operations__Group_1__0");
 					put(grammarAccess.getSampleAccess().getGroup_0(), "rule__Sample__Group_0__0");
 					put(grammarAccess.getSampleAccess().getGroup_1(), "rule__Sample__Group_1__0");
-					put(grammarAccess.getSampleAccess().getGroup_2(), "rule__Sample__Group_2__0");
-					put(grammarAccess.getSampleAccess().getGroup_3(), "rule__Sample__Group_3__0");
-					put(grammarAccess.getSampleAccess().getGroup_4(), "rule__Sample__Group_4__0");
+					put(grammarAccess.getSymbolAccess().getGroup(), "rule__Symbol__Group__0");
 					put(grammarAccess.getListOfValuesAccess().getGroup(), "rule__ListOfValues__Group__0");
 					put(grammarAccess.getListOfValuesAccess().getGroup_1(), "rule__ListOfValues__Group_1__0");
 					put(grammarAccess.getListOfIDsAccess().getGroup(), "rule__ListOfIDs__Group__0");
@@ -126,7 +124,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
 					put(grammarAccess.getModelAccess().getElementsAssignment_3(), "rule__Model__ElementsAssignment_3");
 					put(grammarAccess.getModelAccess().getRelationsAssignment_5(), "rule__Model__RelationsAssignment_5");
-					put(grammarAccess.getModelAccess().getPairsAssignment_6_1(), "rule__Model__PairsAssignment_6_1");
+					put(grammarAccess.getModelAccess().getOperationsAssignment_6_1(), "rule__Model__OperationsAssignment_6_1");
 					put(grammarAccess.getElmDeclarationAccess().getAttAssignment_0(), "rule__ElmDeclaration__AttAssignment_0");
 					put(grammarAccess.getElmDeclarationAccess().getDataTypeAssignment_1(), "rule__ElmDeclaration__DataTypeAssignment_1");
 					put(grammarAccess.getElmDeclarationAccess().getNameAssignment_2(), "rule__ElmDeclaration__NameAssignment_2");
@@ -192,10 +190,11 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicAccess().getValueAssignment_3_1(), "rule__Atomic__ValueAssignment_3_1");
 					put(grammarAccess.getOperationsAccess().getOpAssignment_0(), "rule__Operations__OpAssignment_0");
 					put(grammarAccess.getOperationsAccess().getOpAssignment_1_1(), "rule__Operations__OpAssignment_1_1");
-					put(grammarAccess.getSampleAccess().getValuationsAssignment_4_3(), "rule__Sample__ValuationsAssignment_4_3");
+					put(grammarAccess.getSampleAccess().getNameAssignment_0_1(), "rule__Sample__NameAssignment_0_1");
+					put(grammarAccess.getSampleAccess().getValuationsAssignment_1_3(), "rule__Sample__ValuationsAssignment_1_3");
 					put(grammarAccess.getBoolValAccess().getValueAssignment(), "rule__BoolVal__ValueAssignment");
 					put(grammarAccess.getNumberAccess().getValueAssignment(), "rule__Number__ValueAssignment");
-					put(grammarAccess.getSymbolAccess().getValueAssignment(), "rule__Symbol__ValueAssignment");
+					put(grammarAccess.getSymbolAccess().getValueAssignment_1(), "rule__Symbol__ValueAssignment_1");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_0(), "rule__ListOfValues__ValuesAssignment_0");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_1_1(), "rule__ListOfValues__ValuesAssignment_1_1");
 					put(grammarAccess.getListOfIDsAccess().getValuesAssignment_0(), "rule__ListOfIDs__ValuesAssignment_0");
@@ -206,8 +205,8 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNamesAccess().getIdsAssignment_1_1(), "rule__Names__IdsAssignment_1_1");
 					put(grammarAccess.getValuationAccess().getElementAssignment_1(), "rule__Valuation__ElementAssignment_1");
 					put(grammarAccess.getValuationAccess().getValueAssignment_3(), "rule__Valuation__ValueAssignment_3");
-					put(grammarAccess.getListOfValuationAccess().getValuationsAssignment_0(), "rule__ListOfValuation__ValuationsAssignment_0");
-					put(grammarAccess.getListOfValuationAccess().getValuationsAssignment_1_1(), "rule__ListOfValuation__ValuationsAssignment_1_1");
+					put(grammarAccess.getListOfValuationAccess().getPairsAssignment_0(), "rule__ListOfValuation__PairsAssignment_0");
+					put(grammarAccess.getListOfValuationAccess().getPairsAssignment_1_1(), "rule__ListOfValuation__PairsAssignment_1_1");
 					put(grammarAccess.getListOfListValuesAccess().getListAssignment_1(), "rule__ListOfListValues__ListAssignment_1");
 					put(grammarAccess.getListOfListValuesAccess().getListAssignment_3_2(), "rule__ListOfListValues__ListAssignment_3_2");
 				}

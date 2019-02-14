@@ -17,8 +17,6 @@ import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.FindAll;
-import com.coffee.hlvl.FindOne;
 import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Hierarchy;
@@ -39,8 +37,6 @@ import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.NonEnumerableValue;
-import com.coffee.hlvl.NumConf;
 import com.coffee.hlvl.Operation;
 import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.OptionsDeclaration;
@@ -53,9 +49,9 @@ import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.Valid;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
@@ -154,7 +150,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.NUMBER: return createNumber();
       case HlvlPackage.SYMBOL: return createSymbol();
       case HlvlPackage.VALUE: return createValue();
-      case HlvlPackage.NON_ENUMERABLE_VALUE: return createNonEnumerableValue();
       case HlvlPackage.LIST_OF_VALUES: return createListOfValues();
       case HlvlPackage.LIST_OF_IDS: return createListOfIDs();
       case HlvlPackage.LIST_OF_REL_REFS: return createListOfRelRefs();
@@ -178,10 +173,7 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
       case HlvlPackage.INT_CONSTANT: return createIntConstant();
-      case HlvlPackage.VALID: return createValid();
-      case HlvlPackage.NUM_CONF: return createNumConf();
-      case HlvlPackage.FIND_ONE: return createFindOne();
-      case HlvlPackage.FIND_ALL: return createFindAll();
+      case HlvlPackage.SINGLE_INSTRUCTION: return createSingleInstruction();
       case HlvlPackage.VALID_CONF: return createValidConf();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -523,17 +515,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public NonEnumerableValue createNonEnumerableValue()
-  {
-    NonEnumerableValueImpl nonEnumerableValue = new NonEnumerableValueImpl();
-    return nonEnumerableValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ListOfValues createListOfValues()
   {
     ListOfValuesImpl listOfValues = new ListOfValuesImpl();
@@ -787,43 +768,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Valid createValid()
+  public SingleInstruction createSingleInstruction()
   {
-    ValidImpl valid = new ValidImpl();
-    return valid;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NumConf createNumConf()
-  {
-    NumConfImpl numConf = new NumConfImpl();
-    return numConf;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FindOne createFindOne()
-  {
-    FindOneImpl findOne = new FindOneImpl();
-    return findOne;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FindAll createFindAll()
-  {
-    FindAllImpl findAll = new FindAllImpl();
-    return findAll;
+    SingleInstructionImpl singleInstruction = new SingleInstructionImpl();
+    return singleInstruction;
   }
 
   /**

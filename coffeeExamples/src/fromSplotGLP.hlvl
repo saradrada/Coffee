@@ -41,4 +41,4 @@ relations:
 	r20: expression( ~mstprim OR ~shortest)
 	r21: expression( ~cycle OR DFS)
 operations:
-validModel,numberOfConfigurations
+validModel,numberOfConfigurations, validConfiguration((DFS,true), (mstprim, false))
