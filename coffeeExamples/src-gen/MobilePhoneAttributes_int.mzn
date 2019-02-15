@@ -46,8 +46,10 @@ constraint connector3G > 0 <-> connector3G_speed > 0 ;
 constraint 1 * games <= chess + carRace + tetris  ;
 constraint chess + carRace + tetris  <= 6 * games ;
 constraint gpu > 0 -> processors > 0 ;
+n.y.iconstraint ((n.y.i = 2)  -> (taskScheduler = 1)) ;
 constraint ((screen_resolution = 3) /\ (connector3G_speed >= 6)) ;
 var bool: B0 ;
 constraint (videoCall_maxParConn = 4) -> B0;
 constraint B0  <->  ((screen_resolution = 3) /\ (connector3G_speed >= 6)) ;
+n.y.i
 % The solving parameters from the parameters files

@@ -15,3 +15,7 @@
 /GPL.xml
 /Model18.cnf
 /Model18.hlcl
+/GPL_constraints_bool.mzn
+/MCM_CH7_int.mzn
+/MobilePhoneAttributes_int.mzn
+/NewExample_bool.mzn

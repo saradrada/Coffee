@@ -26,7 +26,7 @@ relations:
 	r5: decomposition(GPL, [Search])<0>
 	r6: group( Search, [BFS, DFS])[1,1]
 	r7: decomposition(GPL, [Algorithms])<1>
-	r8: group( Algorithms, [connected, stronglyc, cycle, mstprim, mstkruskal, shortest])[1,*]
+	r8: group( Algorithms, [connected, stronglyc, cycle, mstprim, mstkruskal, shortest])[2,6]
 	r9: expression( ~mstprim OR unweighted)
 	r10: expression( ~stronglyc OR ~shortest)
 	r11: expression( ~mstprim OR undirected)
