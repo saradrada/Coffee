@@ -927,24 +927,42 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cRangeAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueWildcardParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//Range:
-		//	{Range} value=INT //|'*'
-		//;
+		//	{Range} value=wildcard;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Range} value=INT
+		//{Range} value=wildcard
 		public Group getGroup() { return cGroup; }
 		
 		//{Range}
 		public Action getRangeAction_0() { return cRangeAction_0; }
 		
-		//value=INT
+		//value=wildcard
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 		
+		//wildcard
+		public RuleCall getValueWildcardParserRuleCall_1_0() { return cValueWildcardParserRuleCall_1_0; }
+	}
+	public class WildcardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.wildcard");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//wildcard:
+		//	INT | '*';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//INT | '*'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//INT
-		public RuleCall getValueINTTerminalRuleCall_1_0() { return cValueINTTerminalRuleCall_1_0; }
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		
+		//'*'
+		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 	public class VisibilityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Visibility");
@@ -2316,6 +2334,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	private final DecompositionElements pDecomposition;
 	private final GroupElements pGroup;
 	private final RangeElements pRange;
+	private final WildcardElements pWildcard;
 	private final VisibilityElements pVisibility;
 	private final OrderElements pOrder;
 	private final ExpressionElements pExpression;
@@ -2380,6 +2399,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDecomposition = new DecompositionElements();
 		this.pGroup = new GroupElements();
 		this.pRange = new RangeElements();
+		this.pWildcard = new WildcardElements();
 		this.pVisibility = new VisibilityElements();
 		this.pOrder = new OrderElements();
 		this.pExpression = new ExpressionElements();
@@ -2654,14 +2674,23 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Range:
-	//	{Range} value=INT //|'*'
-	//;
+	//	{Range} value=wildcard;
 	public RangeElements getRangeAccess() {
 		return pRange;
 	}
 	
 	public ParserRule getRangeRule() {
 		return getRangeAccess().getRule();
+	}
+	
+	//wildcard:
+	//	INT | '*';
+	public WildcardElements getWildcardAccess() {
+		return pWildcard;
+	}
+	
+	public ParserRule getWildcardRule() {
+		return getWildcardAccess().getRule();
 	}
 	
 	//Visibility:

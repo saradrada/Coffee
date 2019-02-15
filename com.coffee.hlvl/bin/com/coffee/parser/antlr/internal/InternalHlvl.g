@@ -1532,22 +1532,55 @@ ruleRange returns [EObject current=null]
 		)
 		(
 			(
-				lv_value_1_0=RULE_INT
 				{
-					newLeafNode(lv_value_1_0, grammarAccess.getRangeAccess().getValueINTTerminalRuleCall_1_0());
+					newCompositeNode(grammarAccess.getRangeAccess().getValueWildcardParserRuleCall_1_0());
 				}
+				lv_value_1_0=rulewildcard
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRangeRule());
+						$current = createModelElementForParent(grammarAccess.getRangeRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"value",
 						lv_value_1_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"com.coffee.Hlvl.wildcard");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRulewildcard
+entryRulewildcard returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getWildcardRule()); }
+	iv_rulewildcard=rulewildcard
+	{ $current=$iv_rulewildcard.current.getText(); }
+	EOF;
+
+// Rule wildcard
+rulewildcard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		this_INT_0=RULE_INT
+		{
+			$current.merge(this_INT_0);
+		}
+		{
+			newLeafNode(this_INT_0, grammarAccess.getWildcardAccess().getINTTerminalRuleCall_0());
+		}
+		    |
+		kw='*'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getWildcardAccess().getAsteriskKeyword_1());
+		}
 	)
 ;
 

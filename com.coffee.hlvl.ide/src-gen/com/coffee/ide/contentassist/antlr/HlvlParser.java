@@ -37,6 +37,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPairAccess().getOperatorAlternatives_0_0(), "rule__Pair__OperatorAlternatives_0_0");
 					put(grammarAccess.getVarListAccess().getOperatorAlternatives_0_0(), "rule__VarList__OperatorAlternatives_0_0");
 					put(grammarAccess.getHierarchyAccess().getAlternatives(), "rule__Hierarchy__Alternatives");
+					put(grammarAccess.getWildcardAccess().getAlternatives(), "rule__Wildcard__Alternatives");
 					put(grammarAccess.getOrderAccess().getAlternatives(), "rule__Order__Alternatives");
 					put(grammarAccess.getEqualityAccess().getOpAlternatives_1_1_0(), "rule__Equality__OpAlternatives_1_1_0");
 					put(grammarAccess.getComparisonAccess().getOpAlternatives_1_1_0(), "rule__Comparison__OpAlternatives_1_1_0");

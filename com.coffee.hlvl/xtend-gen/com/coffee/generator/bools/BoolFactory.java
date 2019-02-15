@@ -154,7 +154,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
   @Override
   public CharSequence getGroup(final Group rel, final Map<String, ElmDeclaration> parents) {
     String _xifexpression = null;
-    if (((rel.getMin() == 1) && (rel.getMax().getValue() == 1))) {
+    if (((rel.getMin() == 1) && Objects.equal(rel.getMax().getValue(), Integer.valueOf(1)))) {
       _xifexpression = this.getXor(rel, parents);
     } else {
       _xifexpression = this.getOR(rel, parents);

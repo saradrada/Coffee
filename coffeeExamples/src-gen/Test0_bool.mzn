@@ -21,14 +21,11 @@ var bool : shortest ;
 % Variables and constraints from the variability relations definition
 constraint GPL = true ;
 constraint GPL <-> Gtp ;
-constraint directed <-> (not(undirected) /\ Gtp) ;
-constraint undirected <-> (not(directed) /\ Gtp) ;
+constraint Gtp <-> ( directed \/ undirected ) ;
 constraint Weight -> GPL ;
-constraint weighted <-> (not(unweighted) /\ Weight) ;
-constraint unweighted <-> (not(weighted) /\ Weight) ;
+constraint Weight <-> ( weighted \/ unweighted ) ;
 constraint Search -> GPL ;
-constraint BFS <-> (not(DFS) /\ Search) ;
-constraint DFS <-> (not(BFS) /\ Search) ;
+constraint Search <-> ( BFS \/ DFS ) ;
 constraint GPL <-> Algorithms ;
 constraint Algorithms <-> ( connected \/ stronglyc \/ cycle \/ mstprim \/ mstkruskal \/ shortest ) ;
 constraint (not(mstprim) \/ unweighted) ;
@@ -45,16 +42,3 @@ constraint (not(mstkruskal) \/ not(shortest)) ;
 constraint (not(mstprim) \/ not(shortest)) ;
 constraint (not(cycle) \/ DFS) ;
 % The solving parameters from the parameters files
-{
- "problem" : BASIC,
-"operationSingle" : [validModel,numberOfConfigurations],
-"validConfiguration" :[{
-	"element" : "DFS",
-	"value" : "true"
-},
-{
-	"element" : "mstprim",
-	"value" : "false"
-},
-]
-}

@@ -32,12 +32,12 @@ public interface Range extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
+   * @see #setValue(String)
    * @see com.coffee.hlvl.HlvlPackage#getRange_Value()
    * @model
    * @generated
    */
-  int getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.Range#getValue <em>Value</em>}' attribute.
@@ -47,6 +47,6 @@ public interface Range extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(int value);
+  void setValue(String value);
 
 } // Range

@@ -240,7 +240,7 @@ public class AttFactory extends BoolFactory implements AttributesFactory {
       _builder_1.append(" ");
       _builder_1.append(IConstants.LEQ);
       _builder_1.append(" ");
-      int _value = rel.getMax().getValue();
+      String _value = rel.getMax().getValue();
       _builder_1.append(_value);
       _builder_1.append(" * ");
       String _name_2 = rel.getParent().getName();

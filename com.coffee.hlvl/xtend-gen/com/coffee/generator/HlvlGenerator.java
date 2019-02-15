@@ -59,10 +59,10 @@ public class HlvlGenerator extends AbstractGenerator {
     } else {
       fsa.generateFile((modelName + "_int.mzn"), this.toInteger(model, modelName, dialect));
     }
-    fsa.generateFile((modelName + "operations.json"), this.generator.getProperties());
+    fsa.generateFile((modelName + "_Operations.json"), this.generator.getProperties());
     final long stopTime = System.currentTimeMillis();
     final long elapsedTime = (stopTime - startTime);
-    System.out.println(elapsedTime);
+    System.out.println((("time of the transformation " + Long.valueOf(elapsedTime)) + "ms"));
   }
   
   /**
@@ -141,10 +141,20 @@ public class HlvlGenerator extends AbstractGenerator {
           Relation _exp_2 = rel.getExp();
           final int min = ((Group) _exp_2).getMin();
           Relation _exp_3 = rel.getExp();
-          final int max = ((Group) _exp_3).getMax().getValue();
+          final int numChildren = ((Group) _exp_3).getChildren().getValues().size();
+          int max = 0;
           Relation _exp_4 = rel.getExp();
-          final int numChildren = ((Group) _exp_4).getChildren().getValues().size();
-          if (((!((min == 1) && (max == 1))) && (!((min == 1) && (max == numChildren))))) {
+          String _value = ((Group) _exp_4).getMax().getValue();
+          boolean _equals = Objects.equal(_value, "*");
+          if (_equals) {
+            max = numChildren;
+          } else {
+            Relation _exp_5 = rel.getExp();
+            max = Integer.parseInt(
+              ((Group) _exp_5).getMax().getValue());
+          }
+          if (((!((min == 1) && (max == 1))) && 
+            (!((min == 1) && (max == numChildren))))) {
             return false;
           }
         }

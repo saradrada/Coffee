@@ -52,10 +52,10 @@ class HlvlGenerator extends AbstractGenerator {
 			//generating an intermediate file with the xml XCSP3 representation
 			fsa.generateFile(modelName+"_int.mzn", toInteger(model, modelName, dialect))
 		}
-		fsa.generateFile(modelName+"operations.json", generator.getProperties)
+		fsa.generateFile(modelName+"_Operations.json", generator.getProperties)
 		val long stopTime = System.currentTimeMillis();
     	val long elapsedTime = stopTime - startTime;
-        System.out.println(elapsedTime);
+        System.out.println("time of the transformation "+ elapsedTime +"ms");
 	}
 	/**
 	 * Method to obtain the name of the model
@@ -136,12 +136,20 @@ class HlvlGenerator extends AbstractGenerator {
 			} else if(rel.exp instanceof Group){
 				
 				val min = (rel.exp as Group).min
-				val max=  (rel.exp as Group).max.value
-//				var int wildCard= -1
 				val numChildren= (rel.exp as Group).getChildren.values.size
+				var int max
+				if ((rel.exp as Group).max.value == "*"){
+					max=numChildren
+				}
+				else{
+					max=  Integer.parseInt(
+					(rel.exp as Group).max.value)
+				}
 				
-
-				if ( !(min==1 && max == 1) && !(min==1 && (max==numChildren))){
+				if ( !(min==1 && max == 1) &&  //[1,1] 
+					!(min==1 && (max==numChildren)) //&& //[1..n] 
+					//!(min==1 && (max==numChildren)) //[1..*]
+					) {
 					//( !(min==1 && max == 1) && !(min==1 && (max==numChildren)) && !(min==1 && (wildCard>-1)))
 					return false
 				}

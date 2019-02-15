@@ -1206,7 +1206,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Range returns Range
 	 *
 	 * Constraint:
-	 *     value=INT
+	 *     value=wildcard
 	 */
 	protected void sequence_Range(ISerializationContext context, Range semanticObject) {
 		if (errorAcceptor != null) {
@@ -1214,7 +1214,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.RANGE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRangeAccess().getValueINTTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getRangeAccess().getValueWildcardParserRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

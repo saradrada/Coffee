@@ -102,7 +102,11 @@ Group:
 ;
 
 Range:
-	 {Range} value = INT //|'*'
+	 {Range} value = wildcard 
+;
+
+wildcard:
+	INT |'*'
 ;
 
 Visibility:

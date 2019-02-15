@@ -24,12 +24,9 @@ constraint Weight -> GPL ;
 constraint Search -> GPL ;
 constraint GPL <-> Gtp ;
 constraint GPL <-> Algorithms ;
-constraint directed <-> (not(undirected) /\ Gtp) ;
-constraint undirected <-> (not(directed) /\ Gtp) ;
-constraint weighted <-> (not(unweighted) /\ Weight) ;
-constraint unweighted <-> (not(weighted) /\ Weight) ;
-constraint BFS <-> (not(DFS) /\ Search) ;
-constraint DFS <-> (not(BFS) /\ Search) ;
+constraint Gtp <-> ( directed \/ undirected ) ;
+constraint Weight <-> ( weighted \/ unweighted ) ;
+constraint Search <-> ( BFS \/ DFS ) ;
 constraint Algorithms <-> ( connected \/ stronglyc \/ cycle \/ mstprim \/ mstkruskal \/ shortest ) ;
 constraint mstprim -> unweighted ;
 constraint not (stronglyc /\ shortest);
@@ -45,7 +42,3 @@ constraint (not(mstkruskal) \/ not(shortest)) ;
 constraint (DFS \/ not(cycle)) ;
 constraint (not(mstprim) \/ not(shortest)) ;
 % The solving parameters from the parameters files
-{
-			 "problem" : BASIC,  
- operations: [ []
-		}

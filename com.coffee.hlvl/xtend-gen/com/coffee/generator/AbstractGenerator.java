@@ -15,6 +15,7 @@ import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Operation;
+import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.RelDeclaration;
@@ -113,7 +114,7 @@ public abstract class AbstractGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("% The solving parameters from the parameters files");
     _builder.newLine();
-    String _parseOperations = this.parseOperations(model);
+    CharSequence _parseOperations = this.parseOperations(model);
     _builder.append(_parseOperations);
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -298,8 +299,8 @@ public abstract class AbstractGenerator implements IGenerator {
     return _switchResult;
   }
   
-  public String parseOperations(final Model model) {
-    String _xblockexpression = null;
+  public CharSequence parseOperations(final Model model) {
+    CharSequence _xblockexpression = null;
     {
       String _properties = this.properties;
       StringConcatenation _builder = new StringConcatenation();
@@ -314,76 +315,81 @@ public abstract class AbstractGenerator implements IGenerator {
       this.properties = (_properties + _builder);
       String single = "";
       String notSingle = "";
-      EList<Operation> _op = model.getOperations().getOp();
-      for (final Operation oper : _op) {
-        boolean _matched = false;
-        if (oper instanceof SingleInstruction) {
-          _matched=true;
-          String _single = single;
-          String _name = ((SingleInstruction)oper).getName();
-          String _plus = (_name + ",");
-          single = (_single + _plus);
-        }
-        if (!_matched) {
-          if (oper instanceof ValidConf) {
+      Operations _operations = model.getOperations();
+      boolean _tripleEquals = (_operations == null);
+      boolean _not = (!_tripleEquals);
+      if (_not) {
+        EList<Operation> _op = model.getOperations().getOp();
+        for (final Operation oper : _op) {
+          boolean _matched = false;
+          if (oper instanceof SingleInstruction) {
             _matched=true;
-            EList<Valuation> _pairs = ((ValidConf)oper).getValuations().getPairs();
-            for (final Valuation valuation : _pairs) {
-              {
-                String value = "";
-                Value _value = valuation.getValue();
-                boolean _matched_1 = false;
-                if (_value instanceof com.coffee.hlvl.Number) {
-                  _matched_1=true;
-                  Value _value_1 = valuation.getValue();
-                  int _value_2 = ((com.coffee.hlvl.Number) _value_1).getValue();
-                  String _plus = (Integer.valueOf(_value_2) + "");
-                  value = _plus;
-                }
-                if (!_matched_1) {
-                  if (_value instanceof BoolVal) {
+            String _single = single;
+            String _name = ((SingleInstruction)oper).getName();
+            String _plus = (_name + ",");
+            single = (_single + _plus);
+          }
+          if (!_matched) {
+            if (oper instanceof ValidConf) {
+              _matched=true;
+              EList<Valuation> _pairs = ((ValidConf)oper).getValuations().getPairs();
+              for (final Valuation valuation : _pairs) {
+                {
+                  String value = "";
+                  Value _value = valuation.getValue();
+                  boolean _matched_1 = false;
+                  if (_value instanceof com.coffee.hlvl.Number) {
                     _matched_1=true;
                     Value _value_1 = valuation.getValue();
-                    value = ((BoolVal) _value_1).getValue();
+                    int _value_2 = ((com.coffee.hlvl.Number) _value_1).getValue();
+                    String _plus = (Integer.valueOf(_value_2) + "");
+                    value = _plus;
                   }
-                }
-                if (!_matched_1) {
-                  if (_value instanceof Symbol) {
-                    _matched_1=true;
-                    Value _value_1 = valuation.getValue();
-                    value = ((Symbol) _value_1).getValue();
+                  if (!_matched_1) {
+                    if (_value instanceof BoolVal) {
+                      _matched_1=true;
+                      Value _value_1 = valuation.getValue();
+                      value = ((BoolVal) _value_1).getValue();
+                    }
                   }
+                  if (!_matched_1) {
+                    if (_value instanceof Symbol) {
+                      _matched_1=true;
+                      Value _value_1 = valuation.getValue();
+                      value = ((Symbol) _value_1).getValue();
+                    }
+                  }
+                  String _notSingle = notSingle;
+                  StringConcatenation _builder_1 = new StringConcatenation();
+                  _builder_1.append("{");
+                  _builder_1.newLine();
+                  _builder_1.append("\t");
+                  _builder_1.append("\"element\" : \"");
+                  String _name = valuation.getElement().getName();
+                  _builder_1.append(_name, "\t");
+                  _builder_1.append("\",");
+                  _builder_1.newLineIfNotEmpty();
+                  _builder_1.append("\t");
+                  _builder_1.append("\"value\" : \"");
+                  _builder_1.append(value, "\t");
+                  _builder_1.append("\"");
+                  _builder_1.newLineIfNotEmpty();
+                  _builder_1.append("},");
+                  _builder_1.newLine();
+                  notSingle = (_notSingle + _builder_1);
                 }
-                String _notSingle = notSingle;
-                StringConcatenation _builder_1 = new StringConcatenation();
-                _builder_1.append("{");
-                _builder_1.newLine();
-                _builder_1.append("\t");
-                _builder_1.append("\"element\" : \"");
-                String _name = valuation.getElement().getName();
-                _builder_1.append(_name, "\t");
-                _builder_1.append("\",");
-                _builder_1.newLineIfNotEmpty();
-                _builder_1.append("\t");
-                _builder_1.append("\"value\" : \"");
-                _builder_1.append(value, "\t");
-                _builder_1.append("\"");
-                _builder_1.newLineIfNotEmpty();
-                _builder_1.append("},");
-                _builder_1.newLine();
-                notSingle = (_notSingle + _builder_1);
               }
             }
           }
         }
+        int _length = single.length();
+        int _minus = (_length - 1);
+        single = single.substring(0, _minus);
       }
       String _properties_1 = this.properties;
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("\"operationSingle\" : [");
-      int _length = single.length();
-      int _minus = (_length - 1);
-      String _substring = single.substring(0, _minus);
-      _builder_1.append(_substring);
+      _builder_1.append(single);
       _builder_1.append("],");
       _builder_1.newLineIfNotEmpty();
       _builder_1.append("\"validConfiguration\" :[");
@@ -392,7 +398,10 @@ public abstract class AbstractGenerator implements IGenerator {
       _builder_1.newLineIfNotEmpty();
       _builder_1.append("}");
       _builder_1.newLine();
-      _xblockexpression = this.properties = (_properties_1 + _builder_1);
+      this.properties = (_properties_1 + _builder_1);
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append(" ");
+      _xblockexpression = _builder_2;
     }
     return _xblockexpression;
   }

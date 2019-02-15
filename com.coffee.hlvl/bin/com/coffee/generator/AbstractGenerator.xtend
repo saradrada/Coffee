@@ -216,49 +216,47 @@ import com.coffee.hlvl.Number
 		}
 	}
 	
-	def parseOperations(Model model){
-		//creating properties file
-		properties += 
+	def parseOperations(Model model) {
+		// creating properties file
+		properties += '''
+			{
+			 "problem" : «dialect.toString()»,
 		'''
-		{
-		 "problem" : «dialect.toString()»,
-		'''
-		
-		var  single=""
-		var  notSingle=""
-		
-		for(oper : model.operations.op){
-			switch (oper){
-				SingleInstruction:  {
-					single += oper.name + ","
-				}
-				ValidConf: {
-					//notSingle+="["
-					for( valuation : oper.valuations.pairs ){
-						var value=""
-						switch valuation.value{
-							Number: value= (valuation.value as Number).value +""
-							BoolVal: value= (valuation.value as BoolVal).value 
-							Symbol:  value= (valuation.value as Symbol).value 
+		var single = ""
+		var notSingle = ""
+		if (!(model.operations === null)) {
+			for (oper : model.operations.op) {
+				switch (oper) {
+					SingleInstruction: {
+						single += oper.name + ","
+					}
+					ValidConf: {
+						for (valuation : oper.valuations.pairs) {
+							var value = ""
+							switch valuation.value {
+								Number: value = (valuation.value as Number).value + ""
+								BoolVal: value = (valuation.value as BoolVal).value
+								Symbol: value = (valuation.value as Symbol).value
+							}
+							notSingle += '''
+								{
+									"element" : "«valuation.element.name»",
+									"value" : "«value»"
+								},
+							'''
 						}
-						notSingle+= 
-						'''
-						{
-							"element" : "«valuation.element.name»",
-							"value" : "«value»"
-						},
-						'''
 					}
 				}
 			}
+			single= single.substring(0, single.length-1)
 		}
-		//list+=list.substring(0, list.length -1 )+"]"
-		properties += 
+
+		properties += '''
+			"operationSingle" : [«single»],
+			"validConfiguration" :[«notSingle»]
+			}
 		'''
-		"operationSingle" : [«single.substring(0, single.length-1)»],
-		"validConfiguration" :[«notSingle»]
-		}
-		'''	
+		''' '''
 	}
 	
 	/*===================================================================
