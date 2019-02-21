@@ -28,6 +28,7 @@ import java.util.Properties
 class HlvlGenerator extends AbstractGenerator {
 	private boolean instantiable =false;
 	private boolean attributes= false;
+	private Properties operations= new Properties();
 	private IGenerator generator;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {

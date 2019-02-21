@@ -14,6 +14,7 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.google.common.base.Objects;
+import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,6 +40,8 @@ public class HlvlGenerator extends AbstractGenerator {
   private boolean instantiable = false;
   
   private boolean attributes = false;
+  
+  private Properties operations = new Properties();
   
   private IGenerator generator;
   

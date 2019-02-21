@@ -24,7 +24,5 @@ public class Compiler implements ICompiler{
 	public static void compile(Properties properties, String model) {
 		
 	}
-	
-	
 
 }
