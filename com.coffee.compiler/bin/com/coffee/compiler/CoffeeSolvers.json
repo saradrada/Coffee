@@ -1,0 +1,18 @@
+{
+	"CSPSolver": [
+		{
+			"name": "Gecode",
+			"cmd": "Gecode", 
+			"parameters": "solve"
+		}
+
+	],
+	"SATSolver": [
+		{
+			"name":"picat",
+			"cmd": "picat_sat_cmd_line", 
+			"parameters": "solve"
+		}
+
+	]
+}

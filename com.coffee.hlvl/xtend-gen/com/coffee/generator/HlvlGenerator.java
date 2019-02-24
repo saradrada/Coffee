@@ -53,7 +53,7 @@ public class HlvlGenerator extends AbstractGenerator {
     final Model model = ((Model) _head_1);
     final Dialect dialect = this.setDialect(model);
     final long startTime = System.currentTimeMillis();
-    boolean _equals = Objects.equal(dialect, Dialect.BASIC);
+    boolean _equals = Objects.equal(dialect, Dialect.BOOL);
     if (_equals) {
       fsa.generateFile((modelName + "_bool.mzn"), this.toBoolean(model, modelName, fsa));
     } else {
@@ -82,7 +82,7 @@ public class HlvlGenerator extends AbstractGenerator {
    */
   public Dialect setDialect(final Model model) {
     if ((this.allBoolean(model) && this.booleanRelations(model))) {
-      return Dialect.BASIC;
+      return Dialect.BOOL;
     } else {
       boolean _existInstantiable = this.existInstantiable();
       if (_existInstantiable) {

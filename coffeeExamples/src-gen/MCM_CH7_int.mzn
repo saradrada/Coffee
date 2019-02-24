@@ -2,7 +2,7 @@
 % Author: avillota
 % Variables from elements definitions 
 var 1..7 : cores ;
-var {com.coffee.hlvl.impl.NumberImpl@4c0e8703 (value: 2) , com.coffee.hlvl.impl.NumberImpl@d0005c1 (value: 8) , com.coffee.hlvl.impl.NumberImpl@24d32855 (value: 16) , com.coffee.hlvl.impl.NumberImpl@1c6124d4 (value: 32) }  : size ;
+var {com.coffee.hlvl.impl.NumberImpl@51937c4 (value: 2) , com.coffee.hlvl.impl.NumberImpl@4d97a5e2 (value: 8) , com.coffee.hlvl.impl.NumberImpl@2bfca192 (value: 16) , com.coffee.hlvl.impl.NumberImpl@698b5272 (value: 32) }  : size ;
 var 0..1: processor ;
 var 0..1: feedback ;
 var 0..1: memory ;

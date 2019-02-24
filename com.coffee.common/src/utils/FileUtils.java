@@ -48,7 +48,7 @@ public class FileUtils {
 		}
 	}
 	
-	public static void writeJSON(String path, JSONWriter json) {
+	public static void writeJSON(String path, JsonMng json) {
 		try {
 			FileWriter fw = new FileWriter(path);
 			BufferedWriter bw = new BufferedWriter(fw);

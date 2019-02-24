@@ -307,10 +307,10 @@ public abstract class AbstractGenerator implements IGenerator {
       _builder.append("{");
       _builder.newLine();
       _builder.append(" ");
-      _builder.append("\"problem\" : ");
+      _builder.append("\"problemType\" : \"");
       String _string = this.dialect.toString();
       _builder.append(_string, " ");
-      _builder.append(",");
+      _builder.append("\",");
       _builder.newLineIfNotEmpty();
       this.properties = (_properties + _builder);
       String single = "";
@@ -326,8 +326,10 @@ public abstract class AbstractGenerator implements IGenerator {
             _matched=true;
             String _single = single;
             String _name = ((SingleInstruction)oper).getName();
-            String _plus = (_name + ",");
-            single = (_single + _plus);
+            String _plus = ("\"" + _name);
+            String _plus_1 = (_plus + "\"");
+            String _plus_2 = (_plus_1 + ",");
+            single = (_single + _plus_2);
           }
           if (!_matched) {
             if (oper instanceof ValidConf) {

@@ -6,7 +6,7 @@ import com.coffee.generator.Dialect
 class BoolGenerator extends AbstractGenerator {
 	
 	new(String name) {
-		super(name, Dialect.BASIC)
+		super(name, Dialect.BOOL)
 		setFactory(new BoolFactory())
 	}
 	

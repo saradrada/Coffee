@@ -44,7 +44,7 @@ class HlvlGenerator extends AbstractGenerator {
 		
 		
 		// Determining the type of the problem to produce the solver compatible 
-		if(dialect==Dialect.BASIC){
+		if(dialect==Dialect.BOOL){
 			//generating an intermediate file with the textual Dimacs representation
 			fsa.generateFile(modelName+"_bool.mzn", toBoolean(model, modelName, fsa))
 		}
@@ -89,7 +89,7 @@ class HlvlGenerator extends AbstractGenerator {
 		
 		if (allBoolean(model) 
 			&& booleanRelations(model)){
-			return Dialect.BASIC
+			return Dialect.BOOL
 		}else if(existInstantiable()){
 			return Dialect.INST
 		}else{

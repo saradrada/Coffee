@@ -1,8 +1,10 @@
 package com.coffee.compiler;
 
-import java.util.Properties;
+
 
 public interface ICompiler {
-	public void compileMinizinc(String modelPath, Properties operations);
+	public void compile();
+	public void setUpCompilation(String  operations, String model, SourceOfCompilation source) throws Exception ;
+
 
 }

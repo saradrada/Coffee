@@ -220,7 +220,7 @@ import com.coffee.hlvl.Number
 		// creating properties file
 		properties += '''
 			{
-			 "problem" : «dialect.toString()»,
+			 "problemType" : "«dialect.toString()»",
 		'''
 		var single = ""
 		var notSingle = ""
@@ -228,7 +228,7 @@ import com.coffee.hlvl.Number
 			for (oper : model.operations.op) {
 				switch (oper) {
 					SingleInstruction: {
-						single += oper.name + ","
+						single += "\""+ oper.name + "\"" + ","
 					}
 					ValidConf: {
 						for (valuation : oper.valuations.pairs) {

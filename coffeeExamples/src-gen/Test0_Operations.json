@@ -1,5 +1,5 @@
 {
- "problem" : ATT,
+ "problem" : BASIC,
 "operationSingle" : [validModel,numberOfConfigurations],
 "validConfiguration" :[{
 	"element" : "DFS",
