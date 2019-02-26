@@ -1,13 +1,15 @@
 {
- "problem" : BASIC,
-"operationSingle" : [validModel,numberOfConfigurations],
-"validConfiguration" :[{
+ "problem" : "BASIC",
+"operationSingle" : ["validModel","numberOfConfigurations"],
+"validConfiguration" :
+[
+	{
 	"element" : "DFS",
 	"value" : "true"
-},
-{
+	},
+	{
 	"element" : "mstprim",
 	"value" : "false"
-},
+	}
 ]
 }

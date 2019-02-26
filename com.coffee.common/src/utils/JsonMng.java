@@ -60,7 +60,6 @@ public class JsonMng{
         JsonObject jsonObject = reader.readObject();
         //closing tjhe reader
         reader.close();
-        
         return jsonObject;
         
 		

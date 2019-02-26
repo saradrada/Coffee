@@ -7,9 +7,9 @@ package com.coffee.compiler;
  * - ATT, for attribute based 
  * - Inst, for cardinality-based 
 */
-public enum Dialect {
-	BOOL,
-	ATT,
+public enum ProblemType {
+	SAT,
+	CSP,
 	INST
 
 }

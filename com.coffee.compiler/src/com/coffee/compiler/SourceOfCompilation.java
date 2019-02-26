@@ -1,6 +1,6 @@
 package com.coffee.compiler;
 
 public enum SourceOfCompilation {
-	STRING, FILE
+	STRING, FILE, JSON
 
 }
