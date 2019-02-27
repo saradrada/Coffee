@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
+import at.siemens.ct.jmz.executor.MiniZincExecutor;
 import commandExecutor.CmdExecutor;
 import utils.JsonMng;
 
@@ -185,12 +186,19 @@ public class Compiler implements ICompiler{
 		
 		//obtaing the command for calling the cmd
 		String cmd= getCommand();
-		
+		MiniZincExecutor executor = new MiniZincExecutor();
 		CmdExecutor shell= new CmdExecutor(COMPILATION_PATH);
 		ArrayList<String> params= new ArrayList<String>();
-		params.add("minizinc /Users/Angela/Coffee/compiler_path/Test0_bool.mzn --solver picat_sat_cmd_line");
+		//params.add("minizinc /Users/Angela/Coffee/compiler_path/Test0_bool.mzn --solver picat_sat_cmd_line");
+		//params.add(MINIZINC_CMD + SPACE + cmd);
+		
+		//params.add("");
+		params.add(cmd);
 		shell.setCommandInConsole(params);
 		shell.runCmd();
+		
+		System.out.println("finish call");
+		
 		
 	
 	}
@@ -220,7 +228,7 @@ public class Compiler implements ICompiler{
 	
 	private String getSolvingParametersFromOperations() {
 		//FIXME hacer bien lo de los parametros
-		return "";
+		return " -v";
 	}
 	
 	public JsonObject getOperationsInfo() {

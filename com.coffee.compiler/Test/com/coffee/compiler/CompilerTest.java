@@ -172,7 +172,7 @@ class CompilerTest {
 		CompilationParameters params= new CompilationParameters();
 		//testing the loading using files, the parameters represent paths
 		params.setSource(SourceOfCompilation.FILE);
-		params.setModel(COMPILATION_PATH + "/" + MINIZINC_FILE);
+		params.setModel(MINIZINC_FILE);
 		params.setOperationsString(COMPILATION_PATH + "/" + OPERATIONS_FILE + JSON_EXT);
 		params.setFrontEndParameters(COMPILATION_PATH + "/" + PARAMETERS_FILE+ JSON_EXT);
 		params.setType(ProblemType.SAT);
