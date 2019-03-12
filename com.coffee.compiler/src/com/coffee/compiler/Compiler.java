@@ -170,7 +170,9 @@ public class Compiler implements ICompiler{
 	    long elapsedTime= executor.waitForSolution();
 	    
 	    //obtain the output
+	    System.out.println(executor.getLastSolverOutput());
 	    return processOutput(executor, elapsedTime);
+	    //return null;
 	    
 
 	}
@@ -205,16 +207,7 @@ public class Compiler implements ICompiler{
 	}
 	
 
-	
-	
-	
-	
-	public  void compile() throws Exception {
-		
-	
 
-
-	}
 	
 	private String getCommand() {
 		StringBuilder cmd= new StringBuilder();

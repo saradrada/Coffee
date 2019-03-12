@@ -27,17 +27,7 @@ public class CoffeeMiniZincParser extends MiniZincOutputParser{
 		return executor.getLastExitCode();
 	}
 	
-	public int getSolverTime() {
-		
-		String solverOutput= executor.getLastSolverOutput();
-		String[] split= solverOutput.split("% time elapsed: ");
-		for (int s = 0; s < split.length; s++) {
-			System.out.println("parte " + s);
-			System.out.println(split[s]);
-		}
-		return 1;
-	}
-	
+
 	public JsonArray getSolutions() {
 		JsonArrayBuilder array = Json.createArrayBuilder();
 		String[] solutions= executor.getLastSolverOutput().split(SEPARATOR);
@@ -56,14 +46,11 @@ public class CoffeeMiniZincParser extends MiniZincOutputParser{
 	public JsonObject processSolution(String solution) {
 		
 		String[] parts= solution.split("\n% time elapsed: ");
-		for (int s = 0; s < parts.length; s++) {
-			System.out.println("parte " + s);
-			System.out.println("---"+ parts[s]+"---");
-		}
+
 		//solution
 		String solutionString= parts[0].replaceAll(";\n", ",\n\"").replaceAll(" = ", "\" : ");
 		solutionString= "{\""+ solutionString.replace(";", "") + "}";
-		System.out.println(solutionString);
+		
 		//time
 		
 		

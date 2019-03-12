@@ -198,8 +198,45 @@ class CompilerTest {
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
 			//compiling
-			compiler.compile();
+			System.out.println("one solution");
+			System.out.println(compiler.getOneSolution().toString());
 			
+			System.out.println("-----");
+			
+			System.out.println("5 solutions");
+			System.out.println(compiler.getNSolutions(5).toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	void testCompileBool() throws FileNotFoundException {
+		CompilationParameters params= new CompilationParameters(
+				INPUT_FILES_PATH, 
+				MZN_FILES_PATH, 
+				OUTPUT_FILES_PATH,
+				"Test0_bool",
+				SOLVERS_CONFIGURATION_FILE,
+				FRONT_END_FILE,
+				SourceOfCompilation.FILE
+				);
+		//initializing the compiler
+		Compiler compiler= new Compiler();
+		try {
+			//setting up the compiler 
+			compiler.setUpCompilation(params);
+			//compiling
+			System.out.println("one solution");
+			compiler.getOneSolution();
+			///System.out.println(compiler.getOneSolution().toString());
+			
+			System.out.println("-----");
+			
+			//System.out.println("5 solutions");
+			//System.out.println(compiler.getNSolutions(5).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
