@@ -1,10 +1,16 @@
 package com.coffee.compiler;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.json.JsonObject;
+
 public class Solver {
 	private String solverID;
 	private String command;
-	private String parameters;
-	
+	private List<String> parameters =new ArrayList<String>();
+;
+	private SolverType type;
 	private int maxSolutions;
 	private int maxTime;
 	private String allInfo;
@@ -12,6 +18,39 @@ public class Solver {
 	private String boundSolutions;
 	private String timeLimit;
 	
+	
+	
+
+	
+	public Solver(String solverID, String command, SolverType type) {
+		super();
+		this.solverID = solverID;
+		this.command = command;
+		this.type = type;
+	}
+	
+	public List<String> getOptions(){
+		parameters.clear();
+		parameters.add("--solver");
+		parameters.add(command);
+		return parameters;
+	}
+	public Solver(SolverType type) {
+		this.type = type;
+	}
+	
+	public Solver (SolverType type, JsonObject json) {
+		this.type = type;
+		this.solverID = json.getString("solverId");
+		this.command = json.getString("cmd");
+		maxSolutions = json.getInt("maxSolutions");
+		maxTime = json.getInt("maxTime");
+		allInfo = json.getString("allInfo");
+		allSolutions = json.getString("allSolutions");
+		boundSolutions = json.getString("boundSolutions");
+		timeLimit = json.getString("timeLimit");
+		
+	}
 	public String getName() {
 		return solverID;
 	}
@@ -24,10 +63,10 @@ public class Solver {
 	public void setCommand(String command) {
 		this.command = command;
 	}
-	public String getParameters() {
+	public List<String> getParameters() {
 		return parameters;
 	}
-	public void setParameters(String parameters) {
+	public void setParameters(List<String> parameters) {
 		this.parameters = parameters;
 	}
 	public int getMaxSolutions() {
@@ -35,6 +74,7 @@ public class Solver {
 	}
 	public void setMaxSolutions(int maxSolutions) {
 		this.maxSolutions = maxSolutions;
+		parameters.add(maxSolutions+"");
 	}
 	public int getMaxTime() {
 		return maxTime;
@@ -65,6 +105,13 @@ public class Solver {
 	}
 	public void setTimeLimit(String timeLimit) {
 		this.timeLimit = timeLimit;
+	}
+	
+	public SolverType getType() {
+		return type;
+	}
+	public void setType(SolverType type) {
+		this.type = type;
 	}
 
 }

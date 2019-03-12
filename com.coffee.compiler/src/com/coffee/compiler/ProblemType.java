@@ -8,8 +8,9 @@ package com.coffee.compiler;
  * - Inst, for cardinality-based 
 */
 public enum ProblemType {
-	SAT,
-	CSP,
-	INST
+	BOOL,
+	INT_ATT,
+	INT_CARD;
+	
 
 }

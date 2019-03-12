@@ -8,22 +8,40 @@ import org.junit.jupiter.api.Test;
 import utils.JsonMng;
 
 class CompilerTest {
-	private String SOLVERS_CONFIGURATION_PATH= "/Users/Angela/Coffee/compiler_path";
-	public static final String COMPILATION_PATH = "/Users/Angela/Coffee/compiler_path";
-	public static final String MINIZINC_FILE = "Test0_bool.mzn";
-	public static final String OPERATIONS_FILE = "Test0_Operations";
-	public static final String PARAMETERS_FILE = "frontEndData";
+	//private String SOLVERS_CONFIGURATION_PATH= "/Users/Angela/Coffee/compiler_path";
+	//public static final String COMPILATION_PATH = "/Users/Angela/Coffee/compiler_path/";
+	public static final String INPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/InputFiles/";
+	public static final String MZN_FILES_PATH = "/Users/Angela/Coffee/compiler_path/MZNFiles/";
+	public static final String OUTPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/OutputFiles/";
+
+
+	public static final String MODEL_NAME = "MobilePhone";
+	public static final String SOLVERS_CONFIGURATION_FILE = "CoffeeSolvers";
+	public static final String FRONT_END_FILE = "frontEndData";
+
 	public static final String JSON_EXT = ".json";
-
-
+	public static final String MZN_EXT = ".mzn";
+	CompilationParameters params;
+	
+	void createParams() throws FileNotFoundException {
+		 params= new CompilationParameters(
+				INPUT_FILES_PATH, 
+				MZN_FILES_PATH, 
+				OUTPUT_FILES_PATH,
+				MODEL_NAME,
+				SOLVERS_CONFIGURATION_FILE,
+				FRONT_END_FILE,
+				SourceOfCompilation.FILE
+				);
+	}
 
 
 	@Test
 	void testLoadSolverConfiguration() {
 		//loading the json with the configuration of the solvers
 		try {
-			System.out.println(SOLVERS_CONFIGURATION_PATH);
-			JsonObject solversInfo= JsonMng.getfromFile(SOLVERS_CONFIGURATION_PATH+ "/"+ "CoffeeSolvers.json");
+			System.out.println(INPUT_FILES_PATH);
+			JsonObject solversInfo= JsonMng.getfromFile(INPUT_FILES_PATH+ SOLVERS_CONFIGURATION_FILE + JSON_EXT);
 
 			SolverType type= SolverType.CSPSolver;
 			JsonArray solverList= solversInfo.getJsonArray(type.toString());
@@ -54,21 +72,14 @@ class CompilerTest {
 	void createSolverObject() {
 		JsonObject solversInfo;
 		try {
-			solversInfo = JsonMng.getfromFile(SOLVERS_CONFIGURATION_PATH+ "/"+ "CoffeeSolvers.json");
+			solversInfo = JsonMng.getfromFile(INPUT_FILES_PATH+ SOLVERS_CONFIGURATION_FILE + JSON_EXT);
 
 
 			JsonArray solverList= solversInfo.getJsonArray("CSPSolver");
 
 			JsonObject sol=  solverList.getJsonObject(0);
-			Solver solver= new Solver();
-			solver.setName(sol.getString("solverId"));
-			solver.setCommand(sol.getString("cmd"));
-			solver.setMaxSolutions(sol.getInt("maxSolutions"));
-			solver.setMaxTime(sol.getInt("maxTime"));
-			solver.setAllInfo(sol.getString("allInfo"));
-			solver.setAllSolutions(sol.getString("allSolutions"));
-			solver.setBoundSolutions(sol.getString("boundSolutions"));
-			solver.setTimeLimit(sol.getString("timeLimit"));
+			Solver solver= new Solver(SolverType.CSPSolver, sol);
+
 
 			assertEquals(solver.getName(), "Gecode");
 			assertEquals(solver.getCommand(), "Gecode");
@@ -87,24 +98,28 @@ class CompilerTest {
 	}
 
 		@Test
-		void setUpCompilationTestUsingFiles() {
+		void setUpCompilationTestUsingFiles() throws Exception {
 			Compiler compiler= new Compiler();
-			CompilationParameters params= new CompilationParameters();
+			params= new CompilationParameters(
+					INPUT_FILES_PATH, 
+					MZN_FILES_PATH, 
+					OUTPUT_FILES_PATH,
+					"Test0_bool",
+					SOLVERS_CONFIGURATION_FILE,
+					FRONT_END_FILE,
+					SourceOfCompilation.FILE
+					);
+			
 			//testing the loading using files, the parameters represent paths
-			params.setSource(SourceOfCompilation.FILE);
-			params.setModel(COMPILATION_PATH + "/" + MINIZINC_FILE);
-			params.setOperationsString(COMPILATION_PATH + "/" + OPERATIONS_FILE+  JSON_EXT);
-			params.setFrontEndParameters(COMPILATION_PATH + "/" + PARAMETERS_FILE+ JSON_EXT);
 
-			params.setType(ProblemType.SAT);
 			
 			try {
-				assertEquals(compiler.setUpCompilation(params), SourceOfCompilation.FILE);
+				compiler.setUpCompilation(params);
 				assertNotNull(compiler.getSolversInfo());
 				assertNotNull(compiler.getOperationsInfo());
-				assertEquals(compiler.getOperationsInfo().getString("problem"), "BASIC");
+				assertEquals(compiler.getOperationsInfo().getString("problemType"), "BOOL");
 	
-			} catch (FileNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				fail("file not found");
@@ -115,16 +130,17 @@ class CompilerTest {
 	void getSelectedSolverTest()  {
 		//initializing the compiler
 		Compiler compiler= new Compiler();
-		CompilationParameters params= new CompilationParameters();
-		//testing the loading using files, the parameters represent paths
-		params.setSource(SourceOfCompilation.FILE);
-		params.setModel(COMPILATION_PATH + "/" + MINIZINC_FILE);
-		params.setOperationsString(COMPILATION_PATH + "/" + OPERATIONS_FILE+ JSON_EXT);
-		params.setFrontEndParameters(COMPILATION_PATH + "/" + PARAMETERS_FILE+ JSON_EXT);
-
-		params.setType(ProblemType.SAT);
 		
 		try {
+			params= new CompilationParameters(
+					INPUT_FILES_PATH, 
+					MZN_FILES_PATH, 
+					OUTPUT_FILES_PATH,
+					"Test0_bool",
+					SOLVERS_CONFIGURATION_FILE,
+					FRONT_END_FILE,
+					SourceOfCompilation.FILE
+					);
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
 			//obtaining the solver
@@ -142,16 +158,16 @@ class CompilerTest {
 	void getSolverTest()  {
 		//initializing the compiler
 		Compiler compiler= new Compiler();
-		CompilationParameters params= new CompilationParameters();
-		//testing the loading using files, the parameters represent paths
-		params.setSource(SourceOfCompilation.FILE);
-		params.setModel(COMPILATION_PATH + "/" + MINIZINC_FILE);
-		params.setOperationsString(COMPILATION_PATH + "/" + OPERATIONS_FILE + JSON_EXT);
-		params.setFrontEndParameters(COMPILATION_PATH + "/" + PARAMETERS_FILE+"2"+ JSON_EXT);
-
-		params.setType(ProblemType.SAT);
-		
 		try {
+			params= new CompilationParameters(
+					INPUT_FILES_PATH, 
+					MZN_FILES_PATH, 
+					OUTPUT_FILES_PATH,
+					"Test0_bool",
+					SOLVERS_CONFIGURATION_FILE,
+					FRONT_END_FILE,
+					SourceOfCompilation.FILE
+					);
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
 			//obtaining the solver
@@ -166,17 +182,18 @@ class CompilerTest {
 	}
 	
 	@Test
-	void testCompile() {
+	void testCompile() throws FileNotFoundException {
+		CompilationParameters params= new CompilationParameters(
+				INPUT_FILES_PATH, 
+				MZN_FILES_PATH, 
+				OUTPUT_FILES_PATH,
+				MODEL_NAME,
+				SOLVERS_CONFIGURATION_FILE,
+				FRONT_END_FILE,
+				SourceOfCompilation.FILE
+				);
 		//initializing the compiler
 		Compiler compiler= new Compiler();
-		CompilationParameters params= new CompilationParameters();
-		//testing the loading using files, the parameters represent paths
-		params.setSource(SourceOfCompilation.FILE);
-		params.setModel(MINIZINC_FILE);
-		params.setOperationsString(COMPILATION_PATH + "/" + OPERATIONS_FILE + JSON_EXT);
-		params.setFrontEndParameters(COMPILATION_PATH + "/" + PARAMETERS_FILE+ JSON_EXT);
-		params.setType(ProblemType.SAT);
-		
 		try {
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
@@ -188,7 +205,6 @@ class CompilerTest {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
-		
 	}
 
 }

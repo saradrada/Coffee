@@ -1,10 +1,11 @@
 package com.coffee.compiler;
 
-
+import javax.json.JsonObject;
 
 public interface ICompiler {
-	public void compile() throws Exception;
-	public  SourceOfCompilation setUpCompilation(CompilationParameters params) throws Exception ;
+	public JsonObject getOneSolution() throws Exception;
+	public JsonObject getNSolutions(int n) throws Exception;
+	public  void setUpCompilation(CompilationParameters params) throws Exception ;
 
 
 }

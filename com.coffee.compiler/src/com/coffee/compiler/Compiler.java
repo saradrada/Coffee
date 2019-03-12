@@ -4,12 +4,19 @@ package com.coffee.compiler;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
-import at.siemens.ct.jmz.executor.MiniZincExecutor;
-import commandExecutor.CmdExecutor;
-import utils.JsonMng;
+import com.coffee.coffeeParser.CoffeeMiniZincParser;
+import com.coffee.miniZincExecutor.CoffeeMiniZincExecutor;
+import com.coffee.miniZincExecutor.CoffeePipedExecutor;
+
+import at.siemens.ct.jmz.executor.Executor;
+import at.siemens.ct.jmz.executor.IExecutor;
+import at.siemens.ct.jmz.parser.MiniZincOutputParser;
+
 
 
 
@@ -17,20 +24,11 @@ public class Compiler implements ICompiler{
 	
 	//===================================================================================================
 	// Constants
-	/**
-	 * Name of the path of the temp folder for executing the solver
-	 */
-	public static final String COMPILATION_PATH = "/Users/Angela/Coffee/compiler_path";
-	
+		
 	/**
 	 *  path of the json file with the info of the solvers installed 
 	 */
-	public static final String SOLVERS_CONFIGURATION_PATH = "/Users/Angela/Coffee/compiler_path" ;
 	
-	/**
-	 *  path of the json file with the info of the solvers installed 
-	 */
-	private static final String MINIZINC_CMD = "minizinc" ; // + file + --solver + solvercmd + params
 	
 	private static final String SOLVER_PARAM = "--solver" ; // + file + --solver + solvercmd + params
 	
@@ -54,12 +52,7 @@ public class Compiler implements ICompiler{
 	 * Json object with the information from the frontEnd (configurations)
 	 */
 	private JsonObject frontEndParameters;
-	/**
-	 * Type of the problem
-	 */
-	private ProblemType problemType;
 
-	
 	/**
 	 *  Solver used to perform the compilation
 	 */
@@ -67,46 +60,47 @@ public class Compiler implements ICompiler{
 	
 	private String modelFileName;
 	
+	CompilationParameters compilationParameters;
+	
+	/**
+	 * Executor 
+	 */
+	private CoffeeMiniZincExecutor executor;
 	
 
 
 
-	public SourceOfCompilation setUpCompilation(CompilationParameters params) throws FileNotFoundException {
+	public void setUpCompilation(CompilationParameters params) throws Exception {
 
-		
+		//
+		compilationParameters= params;
 		//loading the json with the configuration of the solvers
-		solversInfo= 
-				JsonMng.getfromFile(SOLVERS_CONFIGURATION_PATH+ "/"+ "CoffeeSolvers.json");
-		
+		solversInfo= compilationParameters. getSolversJson();
 		//Loading the json with the operations information
-		switch(params.getSource()) {
-		case STRING:
-			operationsInfo= JsonMng.getfromString(params.getOperationsString());
-			frontEndParameters= JsonMng.getfromString(params.getFrontEndParameters());
-
-			break;
-		case FILE:
-			operationsInfo= JsonMng.getfromFile(params.getOperationsString());
-			frontEndParameters= JsonMng.getfromFile(params.getFrontEndParameters());
-			modelFileName= params.getModel();
-			break;
-		case JSON:
-			operationsInfo= params.getOperationsJson();
-		}
-		// type of problem
-		problemType= params.getType();
+		operationsInfo= compilationParameters. getOperationsJson();
+		// Loading the Json with the frontEnd parameters
+		frontEndParameters= compilationParameters.getFrontEndJson();
+		// obtaining the mzn name
+		modelFileName= compilationParameters.getModelName() ;
 		
-		return params.getSource();
+
+		
+		// determining which solver should be used
+		solver=getSolver();
+		
+		//return params.getSource();
 	}
 	/**
 	 * Method tha decides wich solver should be compiled and return the compilation command
 	 * @return
 	 */
 	public Solver getSolver() throws Exception {
+		Solver solver;
 		
 		//String problemType= operationsInfo.getString("problemType"); 
-		switch(problemType){
-		case SAT:
+		// type of problem from the parameters object
+		switch(compilationParameters.getProblemType()){
+		case BOOL:
 			solver= selectSolver(SolverType.SATSolver);
 			break;
 		default:
@@ -126,7 +120,7 @@ public class Compiler implements ICompiler{
 	 * @return
 	 * @throws Exception 
 	 */
-	public Solver selectSolver(SolverType type) throws Exception {
+	private Solver selectSolver(SolverType type) throws Exception {
 		Solver solver=null;
 		String selected= frontEndParameters.getString("solverSelected");
 		
@@ -143,18 +137,11 @@ public class Compiler implements ICompiler{
 			}
 		}
 		
-		// if selected
+		// if no solver is selected
 		if (selected.equals("")) {
 			JsonObject sol=  solverList.getJsonObject(0);
-			solver= new Solver();
-			solver.setName(sol.getString("solverId"));
-			solver.setCommand(sol.getString("cmd"));
-			solver.setMaxSolutions(sol.getInt("maxSolutions"));
-			solver.setMaxTime(sol.getInt("maxTime"));
-			solver.setAllInfo(sol.getString("allInfo"));
-			solver.setAllSolutions(sol.getString("allSolutions"));
-			solver.setBoundSolutions(sol.getString("boundSolutions"));
-			solver.setTimeLimit(sol.getString("timeLimit"));
+			solver= new Solver(type, sol);
+
 		}else {
 			// FIXME it is important to take into account the right solver for the type of problem
 			boolean found=false;
@@ -162,15 +149,7 @@ public class Compiler implements ICompiler{
 				JsonObject sol=  solverList.getJsonObject(i);
 				if(sol.getString("solverId").equals(selected)) {
 					found=true;
-					solver= new Solver();
-					solver.setName(sol.getString("solverId"));
-					solver.setCommand(sol.getString("cmd"));
-					solver.setMaxSolutions(sol.getInt("maxSolutions"));
-					solver.setMaxTime(sol.getInt("maxTime"));
-					solver.setAllInfo(sol.getString("allInfo"));
-					solver.setAllSolutions(sol.getString("allSolutions"));
-					solver.setBoundSolutions(sol.getString("boundSolutions"));
-					solver.setTimeLimit(sol.getString("timeLimit"));
+					solver= new Solver(type,sol);
 				}
 			}
 			if (found == false) {
@@ -180,37 +159,71 @@ public class Compiler implements ICompiler{
 		return solver;
 	}
 	
-	public  void compile() throws Exception {
-		// determining which solver should be used
-		getSolver();
-		
-		//obtaing the command for calling the cmd
-		String cmd= getCommand();
-		MiniZincExecutor executor = new MiniZincExecutor();
-		CmdExecutor shell= new CmdExecutor(COMPILATION_PATH);
-		ArrayList<String> params= new ArrayList<String>();
-		//params.add("minizinc /Users/Angela/Coffee/compiler_path/Test0_bool.mzn --solver picat_sat_cmd_line");
-		//params.add(MINIZINC_CMD + SPACE + cmd);
-		
-		//params.add("");
-		params.add(cmd);
-		shell.setCommandInConsole(params);
-		shell.runCmd();
-		
-		System.out.println("finish call");
-		
-		
-	
+	public JsonObject getOneSolution() throws Exception{
+		///create the executor
+	    executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
+	    
+	    // use the time parameters
+	    executor.startProcess("--output-time");
+	    
+	    //execute
+	    long elapsedTime= executor.waitForSolution();
+	    
+	    //obtain the output
+	    return processOutput(executor, elapsedTime);
+	    
+
 	}
 	
-	public String getCommand() {
+	public JsonObject getNSolutions(int n) throws Exception{
+		///create the executor
+	    executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
+	    
+	 // use the time parameters and number of solutions required
+	    executor.startProcess("--output-time", "-n "+n);
+	    
+	    //execute
+	    long elapsedTime= executor.waitForSolution();
+	    
+	    //obtain the output	
+	    return processOutput(executor, elapsedTime);
+	}
+	
+	private JsonObject processOutput(IExecutor executor, long elapsedTime) {
+	    JsonObjectBuilder builder= Json.createObjectBuilder();
+	    CoffeeMiniZincParser parser = new CoffeeMiniZincParser(executor);
+	    // setting the overall answer: COMPLETE, UNBOUNDED, UNSATISFIABLE, UNKNOWN, SATISFIABLE
+	    // put the overall of the solving
+	    String outputMsg = parser.getSolverMessage() ==null? "SATISFIABLE": parser.getSolverMessage().toString() ;
+	    builder.add("exitCode", parser.getExitCode() );
+		builder.add("state", outputMsg);
+		builder.add("overAllTime", elapsedTime);
+	    //put the solutions
+	    builder.add("solutions", parser.getSolutions());
+	    builder.add("numberOfSolutions", parser.getNumSolutions());
+	    return builder.build();
+	}
+	
+
+	
+	
+	
+	
+	public  void compile() throws Exception {
+		
+	
+
+
+	}
+	
+	private String getCommand() {
 		StringBuilder cmd= new StringBuilder();
 		
-		cmd.append(MINIZINC_CMD);
-		cmd.append(SPACE);
+//		cmd.append(MINIZINC_CMD);
+//		cmd.append(SPACE);
 		// minizinc file
-		cmd.append(modelFileName);
-		cmd.append(SPACE);
+//		cmd.append(COMPILATION_PATH+modelFileName);
+//		cmd.append(SPACE);
 		
 
 		
@@ -228,32 +241,21 @@ public class Compiler implements ICompiler{
 	
 	private String getSolvingParametersFromOperations() {
 		//FIXME hacer bien lo de los parametros
-		return " -v";
+		return "";
 	}
 	
 	public JsonObject getOperationsInfo() {
 		return operationsInfo;
 	}
-	public void setOperationsInfo(JsonObject operationsInfo) {
-		this.operationsInfo = operationsInfo;
-	}
+
 	public JsonObject getSolversInfo() {
 		return solversInfo;
 	}
-	public void setSolversInfo(JsonObject solversInfo) {
-		this.solversInfo = solversInfo;
-	}
+
 	public JsonObject getProblemsInfo() {
 		return frontEndParameters;
 	}
-	public void setProblemsInfo(JsonObject problemsInfo) {
-		this.frontEndParameters = problemsInfo;
-	}
-	public ProblemType getProblemType() {
-		return problemType;
-	}
-	public void setProblemType(ProblemType problemType) {
-		this.problemType = problemType;
-	}
+
+
 
 }
