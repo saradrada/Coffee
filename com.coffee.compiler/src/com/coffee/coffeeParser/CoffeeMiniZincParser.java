@@ -29,8 +29,19 @@ public class CoffeeMiniZincParser extends MiniZincOutputParser{
 	
 
 	public JsonArray getSolutions() {
+		
 		JsonArrayBuilder array = Json.createArrayBuilder();
-		String[] solutions= executor.getLastSolverOutput().split(SEPARATOR);
+		String solutionsFromExecutor= executor.getLastSolverOutput();
+		if (solutionsFromExecutor.startsWith("% solving")) {
+			solutionsFromExecutor = solutionsFromExecutor.substring(solutionsFromExecutor.indexOf(System.getProperty("line.separator"))+1);
+			solutionsFromExecutor = solutionsFromExecutor.substring(solutionsFromExecutor.indexOf(System.getProperty("line.separator"))+1);
+		}
+		
+		//System.out.println(solutionsFromExecutor);
+
+				
+		String[] solutions= solutionsFromExecutor.split(SEPARATOR);
+		
 		
 		//obtaining the number of solutions
 		numSolutions= solutions.length;
