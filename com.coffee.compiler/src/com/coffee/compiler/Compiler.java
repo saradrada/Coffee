@@ -187,6 +187,8 @@ public class Compiler implements ICompiler{
 	    //execute
 	    long elapsedTime= executor.waitForSolution();
 	    
+	    System.out.println(executor.getLastSolverOutput());
+
 	    //obtain the output	
 	    return processOutput(executor, elapsedTime);
 	}

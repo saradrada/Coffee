@@ -230,13 +230,13 @@ class CompilerTest {
 			compiler.setUpCompilation(params);
 			//compiling
 			System.out.println("one solution");
-			compiler.getOneSolution();
+			//compiler.getOneSolution();
 			///System.out.println(compiler.getOneSolution().toString());
 			
 			System.out.println("-----");
 			
 			//System.out.println("5 solutions");
-			//System.out.println(compiler.getNSolutions(5).toString());
+			System.out.println(compiler.getNSolutions(5).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
