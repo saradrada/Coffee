@@ -170,7 +170,7 @@ public class Compiler implements ICompiler{
 	    long elapsedTime= executor.waitForSolution();
 	    
 	    //obtain the output
-	    System.out.println(executor.getLastSolverOutput());
+	    //System.out.println(executor.getLastSolverOutput());
 	    return processOutput(executor, elapsedTime);
 	    //return null;
 	    
@@ -187,7 +187,7 @@ public class Compiler implements ICompiler{
 	    //execute
 	    long elapsedTime= executor.waitForSolution();
 	    
-	    System.out.println(executor.getLastSolverOutput());
+	    //System.out.println(executor.getLastSolverOutput());
 
 	    //obtain the output	
 	    return processOutput(executor, elapsedTime);
@@ -209,35 +209,6 @@ public class Compiler implements ICompiler{
 	}
 	
 
-
-	
-	private String getCommand() {
-		StringBuilder cmd= new StringBuilder();
-		
-//		cmd.append(MINIZINC_CMD);
-//		cmd.append(SPACE);
-		// minizinc file
-//		cmd.append(COMPILATION_PATH+modelFileName);
-//		cmd.append(SPACE);
-		
-
-		
-		// solver parameters
-		cmd.append(SOLVER_PARAM);
-		cmd.append(SPACE);
-		cmd.append(solver.getCommand());
-		
-		// parameters from operations
-		
-		cmd.append(getSolvingParametersFromOperations());
-		
-		return cmd.toString();
-	}
-	
-	private String getSolvingParametersFromOperations() {
-		//FIXME hacer bien lo de los parametros
-		return "";
-	}
 	
 	public JsonObject getOperationsInfo() {
 		return operationsInfo;
