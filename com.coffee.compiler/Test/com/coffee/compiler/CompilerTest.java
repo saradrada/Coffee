@@ -10,9 +10,9 @@ import utils.JsonMng;
 class CompilerTest {
 	//private String SOLVERS_CONFIGURATION_PATH= "/Users/Angela/Coffee/compiler_path";
 	//public static final String COMPILATION_PATH = "/Users/Angela/Coffee/compiler_path/";
-	public static final String INPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/InputFiles/";
-	public static final String MZN_FILES_PATH = "/Users/Angela/Coffee/compiler_path/MZNFiles/";
-	public static final String OUTPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/OutputFiles/";
+	public static final String INPUT_FILES_PATH = "testfiles/InputFiles/";
+	public static final String MZN_FILES_PATH = "testfiles/MZNFiles/";
+	public static final String OUTPUT_FILES_PATH = "testfiles/OutputFiles/";
 
 
 	public static final String MODEL_NAME = "MobilePhone";
