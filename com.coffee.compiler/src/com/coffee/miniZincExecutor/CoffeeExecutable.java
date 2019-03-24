@@ -37,6 +37,7 @@ public class CoffeeExecutable implements Executable {
 	@Override
 	public List<String> getOptions(Long arg0, Collection<Path> arg1) {
 		mznFile= new File(compilationPath + mznName +  MZN_EXT);
+		System.out.println(compilationPath + mznName +  MZN_EXT);
 	    
 		List<String> options = new ArrayList<>();
 	    options.addAll(solver.getOptions());

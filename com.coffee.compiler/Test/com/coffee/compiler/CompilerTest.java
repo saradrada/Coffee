@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import utils.JsonMng;
 
 class CompilerTest {
-	//private String SOLVERS_CONFIGURATION_PATH= "/Users/Angela/Coffee/compiler_path";
-	//public static final String COMPILATION_PATH = "/Users/Angela/Coffee/compiler_path/";
+	
+//	public static final String INPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/InputFiles/";
+//	public static final String MZN_FILES_PATH = "/Users/Angela/Coffee/compiler_path/MZNFiles/";
+//	public static final String OUTPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/OutputFiles/";
 	public static final String INPUT_FILES_PATH = "testfiles/InputFiles/";
 	public static final String MZN_FILES_PATH = "testfiles/MZNFiles/";
 	public static final String OUTPUT_FILES_PATH = "testfiles/OutputFiles/";
@@ -23,7 +25,7 @@ class CompilerTest {
 	public static final String MZN_EXT = ".mzn";
 	CompilationParameters params;
 	
-	void createParams() throws FileNotFoundException {
+	void createParams() throws Exception {
 		 params= new CompilationParameters(
 				INPUT_FILES_PATH, 
 				MZN_FILES_PATH, 
@@ -106,7 +108,7 @@ class CompilerTest {
 					OUTPUT_FILES_PATH,
 					"Test0_bool",
 					SOLVERS_CONFIGURATION_FILE,
-					FRONT_END_FILE,
+					FRONT_END_FILE+"Bool",
 					SourceOfCompilation.FILE
 					);
 			
@@ -138,7 +140,7 @@ class CompilerTest {
 					OUTPUT_FILES_PATH,
 					"Test0_bool",
 					SOLVERS_CONFIGURATION_FILE,
-					FRONT_END_FILE,
+					FRONT_END_FILE+"Bool",
 					SourceOfCompilation.FILE
 					);
 			//setting up the compiler 
@@ -165,7 +167,7 @@ class CompilerTest {
 					OUTPUT_FILES_PATH,
 					"Test0_bool",
 					SOLVERS_CONFIGURATION_FILE,
-					FRONT_END_FILE,
+					FRONT_END_FILE+"Bool",
 					SourceOfCompilation.FILE
 					);
 			//setting up the compiler 
@@ -182,14 +184,14 @@ class CompilerTest {
 	}
 	
 	@Test
-	void testCompile() throws FileNotFoundException {
+	void testCompile() throws Exception {
 		CompilationParameters params= new CompilationParameters(
 				INPUT_FILES_PATH, 
 				MZN_FILES_PATH, 
 				OUTPUT_FILES_PATH,
 				MODEL_NAME,
 				SOLVERS_CONFIGURATION_FILE,
-				FRONT_END_FILE,
+				FRONT_END_FILE+"Int",
 				SourceOfCompilation.FILE
 				);
 		//initializing the compiler
@@ -213,14 +215,14 @@ class CompilerTest {
 	}
 	
 	@Test
-	void testCompileBool() throws FileNotFoundException {
+	void testCompileBool() throws Exception {
 		CompilationParameters params= new CompilationParameters(
 				INPUT_FILES_PATH, 
 				MZN_FILES_PATH, 
 				OUTPUT_FILES_PATH,
 				"Test0_bool",
 				SOLVERS_CONFIGURATION_FILE,
-				FRONT_END_FILE,
+				FRONT_END_FILE+"Bool",
 				SourceOfCompilation.FILE
 				);
 		//initializing the compiler

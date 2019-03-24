@@ -1,8 +1,6 @@
 package com.coffee.compiler;
 
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -11,11 +9,8 @@ import javax.json.JsonObjectBuilder;
 
 import com.coffee.coffeeParser.CoffeeMiniZincParser;
 import com.coffee.miniZincExecutor.CoffeeMiniZincExecutor;
-import com.coffee.miniZincExecutor.CoffeePipedExecutor;
 
-import at.siemens.ct.jmz.executor.Executor;
 import at.siemens.ct.jmz.executor.IExecutor;
-import at.siemens.ct.jmz.parser.MiniZincOutputParser;
 
 
 
@@ -164,7 +159,7 @@ public class Compiler implements ICompiler{
 	    executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
 	    
 	    // use the time parameters
-	    executor.startProcess("--output-time");
+	    executor.startProcess("/Users/Angela/git/Coffee/com.coffee.compiler/testfiles/MZNFiles/"+ modelFileName+"_data.json", "--output-time");
 	    
 	    //execute
 	    long elapsedTime= executor.waitForSolution();

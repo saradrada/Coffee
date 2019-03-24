@@ -1,8 +1,13 @@
 package com.coffee.compiler;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonValue;
+import javax.json.JsonWriter;
 
 import utils.JsonMng;
 
@@ -65,7 +70,7 @@ public class CompilationParameters {
 	 * @param frontEndParameters
 	 * @param compilationSource
 	 * @param problemType
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
 	public CompilationParameters(
 			String inputFilesPath, 
@@ -75,7 +80,7 @@ public class CompilationParameters {
 			String solversConfigurationFile, 
 			String frontEndParameters, 
 			SourceOfCompilation compilationSource
-			) throws FileNotFoundException {
+			) throws IOException {
 		super();
 		this.inputFilesPath = inputFilesPath;
 		this.mznFilesPath = mznFilesPath;
@@ -91,7 +96,7 @@ public class CompilationParameters {
 			operationsJson= JsonMng.getfromString(operationsString);
 			break;
 		case FILE:
-			System.out.println(this.inputFilesPath+this.modelName+"_Operations"+  JSON_EXT);
+			//System.out.println(this.inputFilesPath+this.modelName+"_Operations"+  JSON_EXT);
 			operationsJson= JsonMng.getfromFile(this.inputFilesPath+this.modelName+"_Operations"+  JSON_EXT);
 			break;
 			
@@ -117,6 +122,19 @@ public class CompilationParameters {
 		//obtaining problemType
 		
 		problemType= ProblemType.valueOf(operationsJson.getString("problemType"));
+		
+		// obtaining and creating a configuration (dzn file)
+		//FIXME preguntar si la configuracion es null
+		JsonObject configurationData= frontEndJson.getJsonObject("configuration");
+		
+	    FileWriter fw = new FileWriter(this.mznFilesPath+this.modelName+"_data"+  JSON_EXT);
+	    JsonWriter jsonWriter = Json.createWriter(fw);
+	    jsonWriter.writeObject(configurationData);
+	    jsonWriter.close();
+
+		//System.out.println(configurationData);
+		//JsonObject configJson= JsonMng.getfromString(frontEndJson.getString("configuration"));
+		
 	}
 	
 	/**
