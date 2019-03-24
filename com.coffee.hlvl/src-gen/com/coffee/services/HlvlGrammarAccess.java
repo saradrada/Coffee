@@ -46,8 +46,9 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		// * @author Angela Villota
 		// * @version HLVL V4 
 		// * Modified in October 4th for including the root constraint
-		// * Modified on October 9th for fix the setRefinement
+		// * Modified on October 9th for fixing the setRefinement
 		// * Modified on November 16th 2018
+		// * Modified on January 2019 to include conditional and quantified implies
 		// * August 2018
 		// */ Model:
 		//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('operations:'
@@ -606,12 +607,15 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cMaxbAssignment_10 = (Assignment)cGroup.eContents().get(10);
 		private final RuleCall cMaxbINTTerminalRuleCall_10_0 = (RuleCall)cMaxbAssignment_10.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cVar2Assignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final CrossReference cVar2ElmDeclarationCrossReference_12_0 = (CrossReference)cVar2Assignment_12.eContents().get(0);
+		private final RuleCall cVar2ElmDeclarationIDTerminalRuleCall_12_0_1 = (RuleCall)cVar2ElmDeclarationCrossReference_12_0.eContents().get(1);
 		
 		//QImplies:
-		//	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']';
+		//	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']' var2=[ElmDeclaration];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']'
+		//'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']' var2=[ElmDeclaration]
 		public Group getGroup() { return cGroup; }
 		
 		//'['
@@ -667,6 +671,15 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_11() { return cRightSquareBracketKeyword_11; }
+		
+		//var2=[ElmDeclaration]
+		public Assignment getVar2Assignment_12() { return cVar2Assignment_12; }
+		
+		//[ElmDeclaration]
+		public CrossReference getVar2ElmDeclarationCrossReference_12_0() { return cVar2ElmDeclarationCrossReference_12_0; }
+		
+		//ID
+		public RuleCall getVar2ElmDeclarationIDTerminalRuleCall_12_0_1() { return cVar2ElmDeclarationIDTerminalRuleCall_12_0_1; }
 	}
 	public class VarListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.VarList");
@@ -2468,8 +2481,9 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	// * @author Angela Villota
 	// * @version HLVL V4 
 	// * Modified in October 4th for including the root constraint
-	// * Modified on October 9th for fix the setRefinement
+	// * Modified on October 9th for fixing the setRefinement
 	// * Modified on November 16th 2018
+	// * Modified on January 2019 to include conditional and quantified implies
 	// * August 2018
 	// */ Model:
 	//	'model' name=ID 'elements:' elements+=ElmDeclaration* 'relations:' relations+=RelDeclaration* ('operations:'
@@ -2618,7 +2632,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//QImplies:
-	//	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']';
+	//	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies' '[' minb=INT ',' maxb=INT ']' var2=[ElmDeclaration];
 	public QImpliesElements getQImpliesAccess() {
 		return pQImplies;
 	}

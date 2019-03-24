@@ -1176,7 +1176,14 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     QImplies returns QImplies
 	 *
 	 * Constraint:
-	 *     (mina=INT maxa=INT var1=[ElmDeclaration|ID] minb=INT maxb=INT)
+	 *     (
+	 *         mina=INT 
+	 *         maxa=INT 
+	 *         var1=[ElmDeclaration|ID] 
+	 *         minb=INT 
+	 *         maxb=INT 
+	 *         var2=[ElmDeclaration|ID]
+	 *     )
 	 */
 	protected void sequence_QImplies(ISerializationContext context, QImplies semanticObject) {
 		if (errorAcceptor != null) {
@@ -1190,6 +1197,8 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.QIMPLIES__MINB));
 			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.QIMPLIES__MAXB) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.QIMPLIES__MAXB));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.QIMPLIES__VAR2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.QIMPLIES__VAR2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getQImpliesAccess().getMinaINTTerminalRuleCall_1_0(), semanticObject.getMina());
@@ -1197,6 +1206,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getQImpliesAccess().getVar1ElmDeclarationIDTerminalRuleCall_5_0_1(), semanticObject.eGet(HlvlPackage.Literals.QIMPLIES__VAR1, false));
 		feeder.accept(grammarAccess.getQImpliesAccess().getMinbINTTerminalRuleCall_8_0(), semanticObject.getMinb());
 		feeder.accept(grammarAccess.getQImpliesAccess().getMaxbINTTerminalRuleCall_10_0(), semanticObject.getMaxb());
+		feeder.accept(grammarAccess.getQImpliesAccess().getVar2ElmDeclarationIDTerminalRuleCall_12_0_1(), semanticObject.eGet(HlvlPackage.Literals.QIMPLIES__VAR2, false));
 		feeder.finish();
 	}
 	

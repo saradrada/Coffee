@@ -1131,6 +1131,19 @@ ruleQImplies returns [EObject current=null]
 		{
 			newLeafNode(otherlv_11, grammarAccess.getQImpliesAccess().getRightSquareBracketKeyword_11());
 		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getQImpliesRule());
+					}
+				}
+				otherlv_12=RULE_ID
+				{
+					newLeafNode(otherlv_12, grammarAccess.getQImpliesAccess().getVar2ElmDeclarationCrossReference_12_0());
+				}
+			)
+		)
 	)
 ;
 

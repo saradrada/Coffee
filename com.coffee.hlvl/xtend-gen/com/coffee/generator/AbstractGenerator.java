@@ -3,7 +3,6 @@ package com.coffee.generator;
 import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
 import com.coffee.generator.IGenerator;
-import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
@@ -14,16 +13,10 @@ import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MultInstantiation;
-import com.coffee.hlvl.Operation;
-import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
-import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.Symbol;
-import com.coffee.hlvl.ValidConf;
-import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.VariableDecl;
@@ -69,7 +62,7 @@ public abstract class AbstractGenerator implements IGenerator {
   
   private Map<String, ElmDeclaration> attributes;
   
-  private String properties;
+  private StringBuilder operations;
   
   /**
    * Constructor method
@@ -85,7 +78,8 @@ public abstract class AbstractGenerator implements IGenerator {
     this.attributes = _hashMap_1;
     HashMap<String, Relation> _hashMap_2 = new HashMap<String, Relation>();
     this.relations = _hashMap_2;
-    this.properties = "";
+    StringBuilder _stringBuilder = new StringBuilder();
+    this.operations = _stringBuilder;
   }
   
   /**
@@ -302,7 +296,6 @@ public abstract class AbstractGenerator implements IGenerator {
   public CharSequence parseOperations(final Model model) {
     CharSequence _xblockexpression = null;
     {
-      String _properties = this.properties;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("{");
       _builder.newLine();
@@ -312,98 +305,10 @@ public abstract class AbstractGenerator implements IGenerator {
       _builder.append(_string, " ");
       _builder.append("\",");
       _builder.newLineIfNotEmpty();
-      this.properties = (_properties + _builder);
-      String single = "";
-      String notSingle = "";
-      Operations _operations = model.getOperations();
-      boolean _tripleEquals = (_operations == null);
-      boolean _not = (!_tripleEquals);
-      if (_not) {
-        EList<Operation> _op = model.getOperations().getOp();
-        for (final Operation oper : _op) {
-          boolean _matched = false;
-          if (oper instanceof SingleInstruction) {
-            _matched=true;
-            String _single = single;
-            String _name = ((SingleInstruction)oper).getName();
-            String _plus = ("\"" + _name);
-            String _plus_1 = (_plus + "\"");
-            String _plus_2 = (_plus_1 + ",");
-            single = (_single + _plus_2);
-          }
-          if (!_matched) {
-            if (oper instanceof ValidConf) {
-              _matched=true;
-              EList<Valuation> _pairs = ((ValidConf)oper).getValuations().getPairs();
-              for (final Valuation valuation : _pairs) {
-                {
-                  String value = "";
-                  Value _value = valuation.getValue();
-                  boolean _matched_1 = false;
-                  if (_value instanceof com.coffee.hlvl.Number) {
-                    _matched_1=true;
-                    Value _value_1 = valuation.getValue();
-                    int _value_2 = ((com.coffee.hlvl.Number) _value_1).getValue();
-                    String _plus = (Integer.valueOf(_value_2) + "");
-                    value = _plus;
-                  }
-                  if (!_matched_1) {
-                    if (_value instanceof BoolVal) {
-                      _matched_1=true;
-                      Value _value_1 = valuation.getValue();
-                      value = ((BoolVal) _value_1).getValue();
-                    }
-                  }
-                  if (!_matched_1) {
-                    if (_value instanceof Symbol) {
-                      _matched_1=true;
-                      Value _value_1 = valuation.getValue();
-                      value = ((Symbol) _value_1).getValue();
-                    }
-                  }
-                  String _notSingle = notSingle;
-                  StringConcatenation _builder_1 = new StringConcatenation();
-                  _builder_1.append("{");
-                  _builder_1.newLine();
-                  _builder_1.append("\t");
-                  _builder_1.append("\"element\" : \"");
-                  String _name = valuation.getElement().getName();
-                  _builder_1.append(_name, "\t");
-                  _builder_1.append("\",");
-                  _builder_1.newLineIfNotEmpty();
-                  _builder_1.append("\t");
-                  _builder_1.append("\"value\" : \"");
-                  _builder_1.append(value, "\t");
-                  _builder_1.append("\"");
-                  _builder_1.newLineIfNotEmpty();
-                  _builder_1.append("},");
-                  _builder_1.newLine();
-                  notSingle = (_notSingle + _builder_1);
-                }
-              }
-            }
-          }
-        }
-        int _length = single.length();
-        int _minus = (_length - 1);
-        single = single.substring(0, _minus);
-      }
-      String _properties_1 = this.properties;
+      this.operations.append(_builder);
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("\"operationSingle\" : [");
-      _builder_1.append(single);
-      _builder_1.append("],");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("\"validConfiguration\" :[");
-      _builder_1.append(notSingle);
-      _builder_1.append("]");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("}");
-      _builder_1.newLine();
-      this.properties = (_properties_1 + _builder_1);
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append(" ");
-      _xblockexpression = _builder_2;
+      _builder_1.append(" ");
+      _xblockexpression = _builder_1;
     }
     return _xblockexpression;
   }
@@ -442,7 +347,15 @@ public abstract class AbstractGenerator implements IGenerator {
   }
   
   @Override
-  public String getProperties() {
-    return this.properties;
+  public String getOperations(final long time) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(" ");
+    _builder.append("\"parsingTime\"  : ");
+    _builder.append(time, " ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("}");
+    this.operations.append(_builder);
+    return this.operations.toString();
   }
 }

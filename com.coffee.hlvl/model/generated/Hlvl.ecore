@@ -68,6 +68,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="var1" eType="#//ElmDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var2" eType="#//ElmDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarList" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

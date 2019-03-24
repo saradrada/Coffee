@@ -968,6 +968,16 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getQImplies_Var2()
+  {
+    return (EReference)qImpliesEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getVarList()
   {
     return varListEClass;
@@ -2051,6 +2061,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     createEReference(qImpliesEClass, QIMPLIES__VAR1);
     createEAttribute(qImpliesEClass, QIMPLIES__MINB);
     createEAttribute(qImpliesEClass, QIMPLIES__MAXB);
+    createEReference(qImpliesEClass, QIMPLIES__VAR2);
 
     varListEClass = createEClass(VAR_LIST);
     createEAttribute(varListEClass, VAR_LIST__OPERATOR);
@@ -2319,6 +2330,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEReference(getQImplies_Var1(), this.getElmDeclaration(), null, "var1", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getQImplies_Minb(), ecorePackage.getEInt(), "minb", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getQImplies_Maxb(), ecorePackage.getEInt(), "maxb", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQImplies_Var2(), this.getElmDeclaration(), null, "var2", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varListEClass, VarList.class, "VarList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarList_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, VarList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

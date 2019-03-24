@@ -19,11 +19,11 @@ import java.util.ArrayList
 import com.coffee.hlvl.MultInstantiation
 import com.coffee.hlvl.QImplies
 import com.coffee.hlvl.ComplexImplies
-import com.coffee.hlvl.SingleInstruction
-import com.coffee.hlvl.ValidConf
-import com.coffee.hlvl.BoolVal
-import com.coffee.hlvl.Symbol
-import com.coffee.hlvl.Number
+//import com.coffee.hlvl.SingleInstruction
+//import com.coffee.hlvl.ValidConf
+//import com.coffee.hlvl.BoolVal
+//import com.coffee.hlvl.Symbol
+//import com.coffee.hlvl.Number
 
 
 /**
@@ -59,7 +59,7 @@ import com.coffee.hlvl.Number
 	
 	private Map <String, ElmDeclaration> attributes;
 	
-	private String properties;
+	private StringBuilder operations;
 	/**
 	 * Constructor method 
 	 * @param the name of the model
@@ -72,7 +72,7 @@ import com.coffee.hlvl.Number
 		parents= new HashMap<String,ElmDeclaration>();
 		attributes= new HashMap<String,ElmDeclaration>();
 		relations= new HashMap<String, Relation>();
-		properties= "";
+		operations= new StringBuilder();
 	}
 
 	
@@ -218,44 +218,44 @@ import com.coffee.hlvl.Number
 	
 	def parseOperations(Model model) {
 		// creating properties file
-		properties += '''
+		operations.append('''
 			{
 			 "problemType" : "«dialect.toString()»",
-		'''
-		var single = ""
-		var notSingle = ""
-		if (!(model.operations === null)) {
-			for (oper : model.operations.op) {
-				switch (oper) {
-					SingleInstruction: {
-						single += "\""+ oper.name + "\"" + ","
-					}
-					ValidConf: {
-						for (valuation : oper.valuations.pairs) {
-							var value = ""
-							switch valuation.value {
-								Number: value = (valuation.value as Number).value + ""
-								BoolVal: value = (valuation.value as BoolVal).value
-								Symbol: value = (valuation.value as Symbol).value
-							}
-							notSingle += '''
-								{
-									"element" : "«valuation.element.name»",
-									"value" : "«value»"
-								},
-							'''
-						}
-					}
-				}
-			}
-			single= single.substring(0, single.length-1)
-		}
-
-		properties += '''
-			"operationSingle" : [«single»],
-			"validConfiguration" :[«notSingle»]
-			}
-		'''
+		''')
+//		var single = ""
+//		var notSingle = ""
+//		if (!(model.operations === null)) {
+//			for (oper : model.operations.op) {
+//				switch (oper) {
+//					SingleInstruction: {
+//						single += "\""+ oper.name + "\"" + ","
+//					}
+//					ValidConf: {
+//						for (valuation : oper.valuations.pairs) {
+//							var value = ""
+//							switch valuation.value {
+//								Number: value = (valuation.value as Number).value + ""
+//								BoolVal: value = (valuation.value as BoolVal).value
+//								Symbol: value = (valuation.value as Symbol).value
+//							}
+//							notSingle += '''
+//								{
+//									"element" : "«valuation.element.name»",
+//									"value" : "«value»"
+//								},
+//							'''
+//						}
+//					}
+//				}
+//			}
+//			single= single.substring(0, single.length-1)
+//		}
+//
+//		properties += '''
+//			"operationSingle" : [«single»],
+//			"validConfiguration" :[«notSingle»]
+//			}
+//		'''
 		''' '''
 	}
 	
@@ -285,8 +285,12 @@ import com.coffee.hlvl.Number
 		this.factory= factory
 	}
 	
-	override String getProperties(){
-		return properties
+	override String getOperations(long time){
+		operations.append(
+		''' "parsingTime"  : «time»
+		}'''
+		)
+		return operations.toString()
 	}
 	
 	

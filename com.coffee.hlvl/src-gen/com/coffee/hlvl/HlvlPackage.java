@@ -595,13 +595,22 @@ public interface HlvlPackage extends EPackage
   int QIMPLIES__MAXB = RELATION_FEATURE_COUNT + 4;
 
   /**
+   * The feature id for the '<em><b>Var2</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QIMPLIES__VAR2 = RELATION_FEATURE_COUNT + 5;
+
+  /**
    * The number of structural features of the '<em>QImplies</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int QIMPLIES_FEATURE_COUNT = RELATION_FEATURE_COUNT + 5;
+  int QIMPLIES_FEATURE_COUNT = RELATION_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.VarListImpl <em>Var List</em>}' class.
@@ -2410,6 +2419,17 @@ public interface HlvlPackage extends EPackage
   EAttribute getQImplies_Maxb();
 
   /**
+   * Returns the meta object for the reference '{@link com.coffee.hlvl.QImplies#getVar2 <em>Var2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var2</em>'.
+   * @see com.coffee.hlvl.QImplies#getVar2()
+   * @see #getQImplies()
+   * @generated
+   */
+  EReference getQImplies_Var2();
+
+  /**
    * Returns the meta object for class '{@link com.coffee.hlvl.VarList <em>Var List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3873,6 +3893,14 @@ public interface HlvlPackage extends EPackage
      * @generated
      */
     EAttribute QIMPLIES__MAXB = eINSTANCE.getQImplies_Maxb();
+
+    /**
+     * The meta object literal for the '<em><b>Var2</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QIMPLIES__VAR2 = eINSTANCE.getQImplies_Var2();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.VarListImpl <em>Var List</em>}' class.

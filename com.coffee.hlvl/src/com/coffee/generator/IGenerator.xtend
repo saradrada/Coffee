@@ -33,7 +33,7 @@ interface IGenerator {
 	def  void addParents(Decomposition exp);
 	def  Map <String, ElmDeclaration> getParents();
 	def void setFactory( CodeFactory factory)
-	def String getProperties()
+	def String getOperations(long time)
 	
 	
 	

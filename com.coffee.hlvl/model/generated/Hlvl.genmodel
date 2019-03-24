@@ -61,6 +61,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//QImplies/var1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/minb"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/maxb"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//QImplies/var2"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//VarList">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//VarList/operator"/>

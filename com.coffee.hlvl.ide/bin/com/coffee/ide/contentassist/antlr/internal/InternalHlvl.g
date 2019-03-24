@@ -3710,6 +3710,7 @@ rule__QImplies__Group__11
 	}
 :
 	rule__QImplies__Group__11__Impl
+	rule__QImplies__Group__12
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3724,6 +3725,32 @@ rule__QImplies__Group__11__Impl
 	{ before(grammarAccess.getQImpliesAccess().getRightSquareBracketKeyword_11()); }
 	']'
 	{ after(grammarAccess.getQImpliesAccess().getRightSquareBracketKeyword_11()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__QImplies__Group__12
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__QImplies__Group__12__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__QImplies__Group__12__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getQImpliesAccess().getVar2Assignment_12()); }
+	(rule__QImplies__Var2Assignment_12)
+	{ after(grammarAccess.getQImpliesAccess().getVar2Assignment_12()); }
 )
 ;
 finally {
@@ -8600,6 +8627,25 @@ rule__QImplies__MaxbAssignment_10
 		{ before(grammarAccess.getQImpliesAccess().getMaxbINTTerminalRuleCall_10_0()); }
 		RULE_INT
 		{ after(grammarAccess.getQImpliesAccess().getMaxbINTTerminalRuleCall_10_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__QImplies__Var2Assignment_12
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getQImpliesAccess().getVar2ElmDeclarationCrossReference_12_0()); }
+		(
+			{ before(grammarAccess.getQImpliesAccess().getVar2ElmDeclarationIDTerminalRuleCall_12_0_1()); }
+			RULE_ID
+			{ after(grammarAccess.getQImpliesAccess().getVar2ElmDeclarationIDTerminalRuleCall_12_0_1()); }
+		)
+		{ after(grammarAccess.getQImpliesAccess().getVar2ElmDeclarationCrossReference_12_0()); }
 	)
 ;
 finally {

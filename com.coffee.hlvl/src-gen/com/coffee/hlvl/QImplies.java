@@ -18,6 +18,7 @@ package com.coffee.hlvl;
  *   <li>{@link com.coffee.hlvl.QImplies#getVar1 <em>Var1</em>}</li>
  *   <li>{@link com.coffee.hlvl.QImplies#getMinb <em>Minb</em>}</li>
  *   <li>{@link com.coffee.hlvl.QImplies#getMaxb <em>Maxb</em>}</li>
+ *   <li>{@link com.coffee.hlvl.QImplies#getVar2 <em>Var2</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getQImplies()
@@ -155,5 +156,31 @@ public interface QImplies extends Relation
    * @generated
    */
   void setMaxb(int value);
+
+  /**
+   * Returns the value of the '<em><b>Var2</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Var2</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Var2</em>' reference.
+   * @see #setVar2(ElmDeclaration)
+   * @see com.coffee.hlvl.HlvlPackage#getQImplies_Var2()
+   * @model
+   * @generated
+   */
+  ElmDeclaration getVar2();
+
+  /**
+   * Sets the value of the '{@link com.coffee.hlvl.QImplies#getVar2 <em>Var2</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Var2</em>' reference.
+   * @see #getVar2()
+   * @generated
+   */
+  void setVar2(ElmDeclaration value);
 
 } // QImplies

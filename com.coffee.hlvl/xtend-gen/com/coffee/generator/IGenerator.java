@@ -36,5 +36,5 @@ public interface IGenerator {
   
   public abstract void setFactory(final CodeFactory factory);
   
-  public abstract String getProperties();
+  public abstract String getOperations(final long time);
 }

@@ -17,16 +17,28 @@ import com.coffee.hlvl.Comparison
 import com.coffee.hlvl.MulOrDiv
 import com.coffee.hlvl.Plus
 import com.coffee.hlvl.Minus
+import com.coffee.generator.Dialect
 
 class ExpressionsParser {
 
 	
-	static def CharSequence parse(Relational exp){
+	static def CharSequence parse(Relational exp, Dialect dialect){
 		
 		switch(exp){
 			BoolConstant: exp.value
 			IntConstant: exp.value.toString
-			VariableRef: exp.variable.name
+			VariableRef: 
+			{
+				println("datatype: "+ exp.variable.dataType+ " dialect "+ dialect)
+				if (exp.variable.dataType =="boolean" && (dialect==Dialect.ATT || dialect==Dialect.INST)){
+					println('''en el if:  
+					bool2int(«exp.variable.name»)''' )
+					return '''bool2int(«exp.variable.name»)''' 
+				}else{
+					println("en el else " + exp.variable.name)
+					return exp.variable.name
+				}
+			}
 			AttributeRef: exp.attribute.replace('.', '_')
 			Function:
 			{
@@ -50,37 +62,37 @@ class ExpressionsParser {
 					'''n.y.i'''
 				}	
 			}
-			Negation: '''not(«parse(exp.expression)»)'''
+			Negation: '''not(«parse(exp.expression, dialect)»)'''
 			
-			Iff: '''(«parse(exp.left)»  <-> «parse(exp.right)»)'''
+			Iff: '''(«parse(exp.left, dialect)»  <-> «parse(exp.right, dialect)»)'''
 			
-			Implies: '''(«parse(exp.left)»  -> «parse(exp.right)»)'''
+			Implies: '''(«parse(exp.left, dialect)»  -> «parse(exp.right, dialect)»)'''
 			
-			Or: '''(«parse(exp.left)» \/ «parse(exp.right)»)'''
-			And: '''(«parse(exp.left)» /\ «parse(exp.right)»)'''
-			Equality: '''(«parse(exp.left)» = «parse(exp.right)»)'''
+			Or: '''(«parse(exp.left, dialect)» \/ «parse(exp.right, dialect)»)'''
+			And: '''(«parse(exp.left, dialect)» /\ «parse(exp.right, dialect)»)'''
+			Equality: '''(«parse(exp.left, dialect)» = «parse(exp.right, dialect)»)'''
 			Comparison:
 			{
 				if(exp.op==">="){
-					'''(«parse(exp.left)» >= «parse(exp.right)»)'''
+					'''(«parse(exp.left, dialect)» >= «parse(exp.right, dialect)»)'''
 				}else if(exp.op=="<="){
-					'''(«parse(exp.left)» <= «parse(exp.right)»)'''
+					'''(«parse(exp.left, dialect)» <= «parse(exp.right, dialect)»)'''
 				}else if(exp.op==">"){
-					'''(«parse(exp.left)» > «parse(exp.right)»)'''
+					'''(«parse(exp.left, dialect)» > «parse(exp.right, dialect)»)'''
 				}else if(exp.op=="<"){
-					'''(«parse(exp.left)» < «parse(exp.right)»)'''
+					'''(«parse(exp.left, dialect)» < «parse(exp.right, dialect)»)'''
 				}
 			}
-			Plus: '''(«parse(exp.left)» + «parse(exp.right)»)'''
-			Minus: '''(«parse(exp.left)» - «parse(exp.right)»)'''
+			Plus: '''(«parse(exp.left, dialect)» + «parse(exp.right, dialect)»)'''
+			Minus: '''(«parse(exp.left, dialect)» - «parse(exp.right, dialect)»)'''
 			MulOrDiv:
 			{
 				if (exp.op=="*"){
-					'''( «parse(exp.left)» * «parse(exp.right)»)'''	
+					'''( «parse(exp.left, dialect)» * «parse(exp.right, dialect)»)'''	
 				}else if (exp.op == "/"){
-					'''( «parse(exp.left)» / «parse(exp.right)»)'''
+					'''( «parse(exp.left, dialect)» / «parse(exp.right, dialect)»)'''
 				}else{
-					'''( «parse(exp.left)» mod «parse(exp.right)»)'''
+					'''( «parse(exp.left, dialect)» mod «parse(exp.right, dialect)»)'''
 				}
 				
 			}

@@ -5,8 +5,8 @@ package com.coffee.generator;
 
 import com.coffee.generator.Dialect;
 import com.coffee.generator.IGenerator;
-import com.coffee.generator.Integers.IntGenerator;
-import com.coffee.generator.bools.BoolGenerator;
+import com.coffee.generator.rules.att.AttGenerator;
+import com.coffee.generator.rules.bools.BoolGenerator;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
@@ -14,7 +14,6 @@ import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.google.common.base.Objects;
-import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,8 +40,6 @@ public class HlvlGenerator extends AbstractGenerator {
   
   private boolean attributes = false;
   
-  private Properties operations = new Properties();
-  
   private IGenerator generator;
   
   @Override
@@ -59,10 +56,9 @@ public class HlvlGenerator extends AbstractGenerator {
     } else {
       fsa.generateFile((modelName + "_int.mzn"), this.toInteger(model, modelName, dialect));
     }
-    fsa.generateFile((modelName + "_Operations.json"), this.generator.getProperties());
     final long stopTime = System.currentTimeMillis();
     final long elapsedTime = (stopTime - startTime);
-    System.out.println((("time of the transformation " + Long.valueOf(elapsedTime)) + "ms"));
+    fsa.generateFile((modelName + "_Operations.json"), this.generator.getOperations(elapsedTime));
   }
   
   /**
@@ -180,8 +176,8 @@ public class HlvlGenerator extends AbstractGenerator {
   public CharSequence toInteger(final Model model, final String modelName, final Dialect dialect) {
     CharSequence _xblockexpression = null;
     {
-      IntGenerator _intGenerator = new IntGenerator(modelName, dialect);
-      this.generator = _intGenerator;
+      AttGenerator _attGenerator = new AttGenerator(modelName, dialect);
+      this.generator = _attGenerator;
       _xblockexpression = this.generator.parseModel(model);
     }
     return _xblockexpression;

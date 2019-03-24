@@ -1,15 +1,4 @@
 {
- "problem" : "BASIC",
-"operationSingle" : ["validModel","numberOfConfigurations"],
-"validConfiguration" :
-[
-	{
-	"element" : "DFS",
-	"value" : "true"
-	},
-	{
-	"element" : "mstprim",
-	"value" : "false"
-	}
-]
-}
+ "problemType" : "BOOL",
+ "parsingTime"  : 21
+		}

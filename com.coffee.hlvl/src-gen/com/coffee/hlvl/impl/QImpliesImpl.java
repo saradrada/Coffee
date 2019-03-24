@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.coffee.hlvl.impl.QImpliesImpl#getVar1 <em>Var1</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.QImpliesImpl#getMinb <em>Minb</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.QImpliesImpl#getMaxb <em>Maxb</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.QImpliesImpl#getVar2 <em>Var2</em>}</li>
  * </ul>
  *
  * @generated
@@ -122,6 +123,16 @@ public class QImpliesImpl extends RelationImpl implements QImplies
    * @ordered
    */
   protected int maxb = MAXB_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getVar2() <em>Var2</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVar2()
+   * @generated
+   * @ordered
+   */
+  protected ElmDeclaration var2;
 
   /**
    * <!-- begin-user-doc -->
@@ -284,6 +295,49 @@ public class QImpliesImpl extends RelationImpl implements QImplies
    * <!-- end-user-doc -->
    * @generated
    */
+  public ElmDeclaration getVar2()
+  {
+    if (var2 != null && var2.eIsProxy())
+    {
+      InternalEObject oldVar2 = (InternalEObject)var2;
+      var2 = (ElmDeclaration)eResolveProxy(oldVar2);
+      if (var2 != oldVar2)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HlvlPackage.QIMPLIES__VAR2, oldVar2, var2));
+      }
+    }
+    return var2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElmDeclaration basicGetVar2()
+  {
+    return var2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVar2(ElmDeclaration newVar2)
+  {
+    ElmDeclaration oldVar2 = var2;
+    var2 = newVar2;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.QIMPLIES__VAR2, oldVar2, var2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -300,6 +354,9 @@ public class QImpliesImpl extends RelationImpl implements QImplies
         return getMinb();
       case HlvlPackage.QIMPLIES__MAXB:
         return getMaxb();
+      case HlvlPackage.QIMPLIES__VAR2:
+        if (resolve) return getVar2();
+        return basicGetVar2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -328,6 +385,9 @@ public class QImpliesImpl extends RelationImpl implements QImplies
         return;
       case HlvlPackage.QIMPLIES__MAXB:
         setMaxb((Integer)newValue);
+        return;
+      case HlvlPackage.QIMPLIES__VAR2:
+        setVar2((ElmDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -358,6 +418,9 @@ public class QImpliesImpl extends RelationImpl implements QImplies
       case HlvlPackage.QIMPLIES__MAXB:
         setMaxb(MAXB_EDEFAULT);
         return;
+      case HlvlPackage.QIMPLIES__VAR2:
+        setVar2((ElmDeclaration)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -382,6 +445,8 @@ public class QImpliesImpl extends RelationImpl implements QImplies
         return minb != MINB_EDEFAULT;
       case HlvlPackage.QIMPLIES__MAXB:
         return maxb != MAXB_EDEFAULT;
+      case HlvlPackage.QIMPLIES__VAR2:
+        return var2 != null;
     }
     return super.eIsSet(featureID);
   }

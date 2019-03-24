@@ -1,7 +1,6 @@
 package com.coffee.generator
 
 import com.coffee.hlvl.ElmDeclaration
-import com.coffee.hlvl.OptionsDeclaration
 import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
 import com.coffee.hlvl.Group
@@ -10,10 +9,7 @@ import java.util.Map
 import com.coffee.hlvl.Visibility
 import com.coffee.hlvl.Relational
 import java.util.List
-import com.coffee.hlvl.Value
-import com.coffee.hlvl.BoolVal
-import com.coffee.hlvl.Symbol
-import com.coffee.hlvl.Number
+
 
 
 /**

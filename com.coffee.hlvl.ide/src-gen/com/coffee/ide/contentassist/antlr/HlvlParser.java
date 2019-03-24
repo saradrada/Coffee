@@ -151,6 +151,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQImpliesAccess().getVar1Assignment_5(), "rule__QImplies__Var1Assignment_5");
 					put(grammarAccess.getQImpliesAccess().getMinbAssignment_8(), "rule__QImplies__MinbAssignment_8");
 					put(grammarAccess.getQImpliesAccess().getMaxbAssignment_10(), "rule__QImplies__MaxbAssignment_10");
+					put(grammarAccess.getQImpliesAccess().getVar2Assignment_12(), "rule__QImplies__Var2Assignment_12");
 					put(grammarAccess.getVarListAccess().getOperatorAssignment_0(), "rule__VarList__OperatorAssignment_0");
 					put(grammarAccess.getVarListAccess().getVar1Assignment_2(), "rule__VarList__Var1Assignment_2");
 					put(grammarAccess.getVarListAccess().getListAssignment_5(), "rule__VarList__ListAssignment_5");
