@@ -52,9 +52,9 @@ public class HlvlGenerator extends AbstractGenerator {
     final long startTime = System.currentTimeMillis();
     boolean _equals = Objects.equal(dialect, Dialect.BOOL);
     if (_equals) {
-      fsa.generateFile((modelName + "_bool.mzn"), this.toBoolean(model, modelName, fsa));
+      fsa.generateFile((modelName + ".mzn"), this.toBoolean(model, modelName, fsa));
     } else {
-      fsa.generateFile((modelName + "_int.mzn"), this.toInteger(model, modelName, dialect));
+      fsa.generateFile((modelName + ".mzn"), this.toInteger(model, modelName, dialect));
     }
     final long stopTime = System.currentTimeMillis();
     final long elapsedTime = (stopTime - startTime);

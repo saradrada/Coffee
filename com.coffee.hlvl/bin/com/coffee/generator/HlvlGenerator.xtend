@@ -46,11 +46,11 @@ class HlvlGenerator extends AbstractGenerator {
 		// Determining the type of the problem to produce the solver compatible 
 		if(dialect==Dialect.BOOL){
 			//generating an intermediate file with the textual Dimacs representation
-			fsa.generateFile(modelName+"_bool.mzn", toBoolean(model, modelName, fsa))
+			fsa.generateFile(modelName+".mzn", toBoolean(model, modelName, fsa))
 		}
 		else{
 			//generating an intermediate file with the xml XCSP3 representation
-			fsa.generateFile(modelName+"_int.mzn", toInteger(model, modelName, dialect))
+			fsa.generateFile(modelName+".mzn", toInteger(model, modelName, dialect))
 		}
 		// These lines avoid the call to the methods creating the Json file
 		
