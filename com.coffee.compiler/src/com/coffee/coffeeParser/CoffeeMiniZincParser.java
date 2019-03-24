@@ -57,14 +57,13 @@ public class CoffeeMiniZincParser extends MiniZincOutputParser{
 	public JsonObject processSolution(String solution) {
 		
 		String[] parts= solution.split("\n% time elapsed: ");
-
+		String ln = System.getProperty("line.separator");		
 		//solution
-		String solutionString= parts[0].replaceAll(";\n", ",\n\"").replaceAll(" = ", "\" : ");
+		String solutionString= parts[0].replaceAll(";"+ln, ","+ln+"\"").replaceAll(" = ", "\" : ");		
 		solutionString= "{\""+ solutionString.replace(";", "") + "}";
 		
 		//time
-		
-		
+		System.out.println(solutionString);
 		JsonObject object= JsonMng.getfromString(solutionString);
 		JsonObjectBuilder builder= Json.createObjectBuilder(object);
 		//builder.add(solutionString);
