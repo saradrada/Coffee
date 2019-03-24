@@ -156,36 +156,56 @@ public class Compiler implements ICompiler{
 	
 	public JsonObject getOneSolution() throws Exception{
 		///create the executor
-	    executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
-	    
-	    // use the time parameters
-	    executor.startProcess("/Users/Angela/git/Coffee/com.coffee.compiler/testfiles/MZNFiles/"+ modelFileName+"_data.json", "--output-time");
-	    
-	    //execute
-	    long elapsedTime= executor.waitForSolution();
-	    
-	    //obtain the output
-	    //System.out.println(executor.getLastSolverOutput());
-	    return processOutput(executor, elapsedTime);
-	    //return null;
-	    
+		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
+
+
+		//if the frontEnd sends a configuration
+		if(compilationParameters.getConfiguration()) {
+			// calling the executor with the configuration and the time parameters
+			executor.startProcess(
+					compilationParameters.getConfigurationPath(),
+					"--output-time");
+		}
+		else {
+			// calling the executor with the time parameters
+			executor.startProcess("--output-time");
+		}
+
+		//execute
+		long elapsedTime= executor.waitForSolution();
+
+		//obtain the output
+		//System.out.println(executor.getLastSolverOutput());
+		return processOutput(executor, elapsedTime);
+		//return null;
+
 
 	}
 	
 	public JsonObject getNSolutions(int n) throws Exception{
 		///create the executor
-	    executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
-	    
-	 // use the time parameters and number of solutions required
-	    executor.startProcess("--output-time", "-n "+n);
-	    
-	    //execute
-	    long elapsedTime= executor.waitForSolution();
-	    
-	    //System.out.println(executor.getLastSolverOutput());
+		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
 
-	    //obtain the output	
-	    return processOutput(executor, elapsedTime);
+		//if the frontEnd sends a configuration
+		if(compilationParameters.getConfiguration()) {
+			// calling the executor with the configuration, the time parameters and number of solutions required
+			executor.startProcess(
+					compilationParameters.getConfigurationPath(),
+					"--output-time",
+					"-n "+n);
+		}
+		else {
+			// use the time parameters and number of solutions required
+			executor.startProcess("--output-time", "-n "+n);
+		}
+
+		//execute
+		long elapsedTime= executor.waitForSolution();
+
+		//System.out.println(executor.getLastSolverOutput());
+
+		//obtain the output	
+		return processOutput(executor, elapsedTime);
 	}
 	
 	private JsonObject processOutput(IExecutor executor, long elapsedTime) {
@@ -197,9 +217,15 @@ public class Compiler implements ICompiler{
 	    builder.add("exitCode", parser.getExitCode() );
 		builder.add("state", outputMsg);
 		builder.add("overAllTime", elapsedTime);
-	    //put the solutions
-	    builder.add("solutions", parser.getSolutions());
-	    builder.add("numberOfSolutions", parser.getNumSolutions());
+	    //put the solutions When is satisfiable
+		if (outputMsg.equals("UNSATISFIABLE")) {
+			builder.add("solutions", Json.createArrayBuilder().build());
+		    builder.add("numberOfSolutions", 0);
+		}else {
+			builder.add("solutions", parser.getSolutions());
+		    builder.add("numberOfSolutions", parser.getNumSolutions());
+		}
+	    
 	    return builder.build();
 	}
 	

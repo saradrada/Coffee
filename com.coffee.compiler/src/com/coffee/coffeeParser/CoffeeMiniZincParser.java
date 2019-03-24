@@ -63,7 +63,7 @@ public class CoffeeMiniZincParser extends MiniZincOutputParser{
 		solutionString= "{\""+ solutionString.replace(";", "") + "}";
 		
 		//time
-		System.out.println(solutionString);
+		//System.out.println(solutionString);
 		JsonObject object= JsonMng.getfromString(solutionString);
 		JsonObjectBuilder builder= Json.createObjectBuilder(object);
 		//builder.add(solutionString);

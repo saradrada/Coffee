@@ -59,6 +59,16 @@ public class CompilationParameters {
 	 */
 	private JsonObject frontEndJson;
 	
+	
+	/**
+	 * configuration file
+	 */
+	private String configurationPath;
+	
+	/**
+	 * Flag signaling if there is an input configuration
+	 */
+	private boolean configuration;
 
 	/**
 	 * 
@@ -126,15 +136,40 @@ public class CompilationParameters {
 		// obtaining and creating a configuration (dzn file)
 		//FIXME preguntar si la configuracion es null
 		JsonObject configurationData= frontEndJson.getJsonObject("configuration");
+		//System.out.println();
+		if (configurationData.isEmpty()) {
+			configuration= false;
+			configurationPath=null;
+		}
+		else {
+			configuration= true;
+			configurationPath=this.mznFilesPath+this.modelName+"_data"+  JSON_EXT;
+		    FileWriter fw = new FileWriter(configurationPath);
+		    JsonWriter jsonWriter = Json.createWriter(fw);
+		    jsonWriter.writeObject(configurationData);
+		    jsonWriter.close();
+		}
 		
-	    FileWriter fw = new FileWriter(this.mznFilesPath+this.modelName+"_data"+  JSON_EXT);
-	    JsonWriter jsonWriter = Json.createWriter(fw);
-	    jsonWriter.writeObject(configurationData);
-	    jsonWriter.close();
 
 		//System.out.println(configurationData);
 		//JsonObject configJson= JsonMng.getfromString(frontEndJson.getString("configuration"));
 		
+	}
+	
+	/**
+	 * Returns the value of configurtion
+	 * is true if there is a configuration as a parameter
+	 * false if the configuration field in the data from the front-end is empty
+	 */
+	public boolean getConfiguration() {
+		return configuration;
+	}
+	
+	/**
+	 * Returns the path of the configuration file
+	 */
+	public String getConfigurationPath() {
+		return configurationPath;
 	}
 	
 	/**

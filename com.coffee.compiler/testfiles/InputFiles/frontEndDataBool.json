@@ -1,8 +1,7 @@
 {
  "solverSelected" : "",
 "configuration" : 
-	{
-	"DFS":true,
-	"mstprim":false
-	}
+{
+"Gtp": false
+}
 }

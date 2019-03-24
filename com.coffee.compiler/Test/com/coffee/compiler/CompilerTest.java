@@ -42,7 +42,7 @@ class CompilerTest {
 	void testLoadSolverConfiguration() {
 		//loading the json with the configuration of the solvers
 		try {
-			System.out.println(INPUT_FILES_PATH);
+			//System.out.println(INPUT_FILES_PATH);
 			JsonObject solversInfo= JsonMng.getfromFile(INPUT_FILES_PATH+ SOLVERS_CONFIGURATION_FILE + JSON_EXT);
 
 			SolverType type= SolverType.CSPSolver;
@@ -200,6 +200,8 @@ class CompilerTest {
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
 			//compiling
+			System.out.println("-----");
+
 			System.out.println("one solution");
 			System.out.println(compiler.getOneSolution().toString());
 			
@@ -231,6 +233,8 @@ class CompilerTest {
 			//setting up the compiler 
 			compiler.setUpCompilation(params);
 			//compiling
+			System.out.println("-----");
+
 			System.out.println("one solution, picat_test");
 			//compiler.getOneSolution();
 			System.out.println(compiler.getOneSolution().toString());
