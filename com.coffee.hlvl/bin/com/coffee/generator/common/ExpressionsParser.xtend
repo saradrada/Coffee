@@ -18,22 +18,34 @@ import com.coffee.hlvl.MulOrDiv
 import com.coffee.hlvl.Plus
 import com.coffee.hlvl.Minus
 import com.coffee.generator.Dialect
+import java.util.Map
+import com.coffee.hlvl.StringConstant
+import java.util.HashMap
 
 class ExpressionsParser {
+	private Map<String, Integer> symbolsMap
+	new( Map<String, Integer> map){
+		symbolsMap= map
+	}
+	
+	new(){
+		symbolsMap= new HashMap<String, Integer>();
+	}
 
 	
-	static def CharSequence parse(Relational exp, Dialect dialect){
+	 def CharSequence parse(Relational exp, Dialect dialect){
 		
 		switch(exp){
 			BoolConstant: exp.value
 			IntConstant: exp.value.toString
+			StringConstant: {
+				symbolsMap.get(exp.value).toString
+			}
 			VariableRef: 
 			{
-				println("datatype: "+ exp.variable.dataType+ " dialect "+ dialect)
 				if (exp.variable.dataType =="boolean" && (dialect==Dialect.ATT || dialect==Dialect.INST)){
-					println('''en el if:  
-					bool2int(«exp.variable.name»)''' )
-					return '''bool2int(«exp.variable.name»)''' 
+					
+					return '''«exp.variable.name» > 0''' 
 				}else{
 					println("en el else " + exp.variable.name)
 					return exp.variable.name

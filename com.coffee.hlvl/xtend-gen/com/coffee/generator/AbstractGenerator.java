@@ -350,8 +350,9 @@ public abstract class AbstractGenerator implements IGenerator {
   public String getOperations(final long time) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(" ");
-    _builder.append("\"parsingTime\"  : ");
+    _builder.append("\"parsingTime\"  : \"");
     _builder.append(time, " ");
+    _builder.append("ms\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("}");

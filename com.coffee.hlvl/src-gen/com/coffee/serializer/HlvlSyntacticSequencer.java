@@ -167,6 +167,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value='false'
 	 *     (rule start) (ambiguity) value='true'
 	 *     (rule start) (ambiguity) value=INT
+	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) variable=[ElmDeclaration|ID]
 	 *     (rule start) (ambiguity) {And.left=}
 	 *     (rule start) (ambiguity) {Comparison.left=}

@@ -50,6 +50,7 @@ import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
+import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
@@ -444,6 +445,13 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass stringConstantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass intConstantEClass = null;
 
   /**
@@ -621,6 +629,16 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
   public EReference getElmDeclaration_Declaration()
   {
     return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getElmDeclaration_Comment()
+  {
+    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -888,7 +906,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getComplexImplies_Var1()
+  public EReference getComplexImplies_Exp()
   {
     return (EReference)complexImpliesEClass.getEStructuralFeatures().get(0);
   }
@@ -898,7 +916,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getComplexImplies_Exp()
+  public EReference getComplexImplies_Elements()
   {
     return (EReference)complexImpliesEClass.getEStructuralFeatures().get(1);
   }
@@ -1918,6 +1936,26 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStringConstant()
+  {
+    return stringConstantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStringConstant_Value()
+  {
+    return (EAttribute)stringConstantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getIntConstant()
   {
     return intConstantEClass;
@@ -2014,6 +2052,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__DATA_TYPE);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__NAME);
     createEReference(elmDeclarationEClass, ELM_DECLARATION__DECLARATION);
+    createEAttribute(elmDeclarationEClass, ELM_DECLARATION__COMMENT);
 
     declarationEClass = createEClass(DECLARATION);
 
@@ -2052,8 +2091,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     createEReference(pairEClass, PAIR__VAR2);
 
     complexImpliesEClass = createEClass(COMPLEX_IMPLIES);
-    createEReference(complexImpliesEClass, COMPLEX_IMPLIES__VAR1);
     createEReference(complexImpliesEClass, COMPLEX_IMPLIES__EXP);
+    createEReference(complexImpliesEClass, COMPLEX_IMPLIES__ELEMENTS);
 
     qImpliesEClass = createEClass(QIMPLIES);
     createEAttribute(qImpliesEClass, QIMPLIES__MINA);
@@ -2194,6 +2233,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     attributeRefEClass = createEClass(ATTRIBUTE_REF);
     createEAttribute(attributeRefEClass, ATTRIBUTE_REF__ATTRIBUTE);
 
+    stringConstantEClass = createEClass(STRING_CONSTANT);
+    createEAttribute(stringConstantEClass, STRING_CONSTANT__VALUE);
+
     intConstantEClass = createEClass(INT_CONSTANT);
     createEAttribute(intConstantEClass, INT_CONSTANT__VALUE);
 
@@ -2267,6 +2309,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     boolConstantEClass.getESuperTypes().add(this.getRelational());
     variableRefEClass.getESuperTypes().add(this.getRelational());
     attributeRefEClass.getESuperTypes().add(this.getRelational());
+    stringConstantEClass.getESuperTypes().add(this.getRelational());
     intConstantEClass.getESuperTypes().add(this.getRelational());
     singleInstructionEClass.getESuperTypes().add(this.getOperation());
     validConfEClass.getESuperTypes().add(this.getOperation());
@@ -2283,6 +2326,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEAttribute(getElmDeclaration_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getElmDeclaration_Declaration(), this.getDeclaration(), null, "declaration", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getElmDeclaration_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2321,8 +2365,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEReference(getPair_Var2(), this.getElmDeclaration(), null, "var2", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(complexImpliesEClass, ComplexImplies.class, "ComplexImplies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getComplexImplies_Var1(), this.getElmDeclaration(), null, "var1", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getComplexImplies_Exp(), this.getExpression(), null, "exp", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComplexImplies_Elements(), this.getListOfIDs(), null, "elements", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(qImpliesEClass, QImplies.class, "QImplies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getQImplies_Mina(), ecorePackage.getEInt(), "mina", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2462,6 +2506,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(attributeRefEClass, AttributeRef.class, "AttributeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttributeRef_Attribute(), ecorePackage.getEString(), "attribute", null, 0, 1, AttributeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stringConstantEClass, StringConstant.class, "StringConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStringConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intConstantEClass, IntConstant.class, "IntConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntConstant_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

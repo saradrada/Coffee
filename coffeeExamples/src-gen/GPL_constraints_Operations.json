@@ -1,5 +1,4 @@
 {
- "problem" : BASIC,
-"operationSingle" : [],
-"validConfiguration" :[]
-}
+ "problemType" : "BOOL",
+ "parsingTime"  : 77
+		}

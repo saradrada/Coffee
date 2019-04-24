@@ -19,12 +19,28 @@ import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Value;
 import com.coffee.hlvl.VariableDecl;
 import com.google.common.base.Objects;
+import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class AttFactory extends BoolFactory implements IAttributesFactory {
+  private Map<String, Integer> symbolsTable;
+  
+  private Map<String, String> mapsTable;
+  
+  private ExpressionsParser expressionsParser;
+  
+  public AttFactory() {
+    HashMap<String, Integer> _hashMap = new HashMap<String, Integer>();
+    this.symbolsTable = _hashMap;
+    HashMap<String, String> _hashMap_1 = new HashMap<String, String>();
+    this.mapsTable = _hashMap_1;
+    ExpressionsParser _expressionsParser = new ExpressionsParser(this.symbolsTable);
+    this.expressionsParser = _expressionsParser;
+  }
+  
   @Override
   public CharSequence getConstant(final ElmDeclaration element) {
     StringConcatenation _builder = new StringConcatenation();
@@ -70,7 +86,7 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
           _builder_1.newLineIfNotEmpty();
           _switchResult = _builder_1;
           break;
-        case "symbol":
+        case "symbolic":
           StringConcatenation _builder_2 = new StringConcatenation();
           _builder_2.append("% Mapping  variants to integers");
           _builder_2.newLine();
@@ -83,6 +99,10 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
           _builder_2.append(_name_2);
           _builder_2.append(" ");
           _builder_2.append(IConstants.SEMICOLON);
+          _builder_2.newLineIfNotEmpty();
+          _builder_2.append("% Map: ");
+          String _get = this.mapsTable.get(element.getName());
+          _builder_2.append(_get);
           _builder_2.newLineIfNotEmpty();
           _switchResult = _builder_2;
           break;
@@ -210,6 +230,7 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
     String _xblockexpression = null;
     {
       String sum = "";
+      String out = "";
       EList<ElmDeclaration> _values = rel.getChildren().getValues();
       for (final ElmDeclaration child : _values) {
         String _sum = sum;
@@ -222,36 +243,82 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
       int _length = sum.length();
       int _minus = (_length - 2);
       sum = sum.substring(0, _minus);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append(IConstants.CONS_DEF);
-      _builder_1.append(" ");
-      int _min = rel.getMin();
-      _builder_1.append(_min);
-      _builder_1.append(" * ");
-      String _name_1 = rel.getParent().getName();
-      _builder_1.append(_name_1);
-      _builder_1.append(" ");
-      _builder_1.append(IConstants.LEQ);
-      _builder_1.append(" ");
-      _builder_1.append(sum);
-      _builder_1.append(" ");
-      _builder_1.append(IConstants.SEMICOLON);
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append(IConstants.CONS_DEF);
-      _builder_1.append(" ");
-      _builder_1.append(sum);
-      _builder_1.append(" ");
-      _builder_1.append(IConstants.LEQ);
-      _builder_1.append(" ");
+      final int min = rel.getMin();
+      int max = 0;
       String _value = rel.getMax().getValue();
-      _builder_1.append(_value);
-      _builder_1.append(" * ");
-      String _name_2 = rel.getParent().getName();
-      _builder_1.append(_name_2);
-      _builder_1.append(" ");
-      _builder_1.append(IConstants.SEMICOLON);
-      _builder_1.newLineIfNotEmpty();
-      String out = _builder_1.toString();
+      boolean _equals = Objects.equal(_value, "*");
+      if (_equals) {
+        max = rel.getChildren().getValues().size();
+      } else {
+        max = Integer.parseInt(rel.getMax().getValue());
+      }
+      if ((min == max)) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append(IConstants.CONS_DEF);
+        _builder_1.append(" ");
+        _builder_1.append(sum);
+        _builder_1.append(" ");
+        _builder_1.append(IConstants.LEQ);
+        _builder_1.append(" ");
+        _builder_1.append(max);
+        _builder_1.append(" * ");
+        String _name_1 = rel.getParent().getName();
+        _builder_1.append(_name_1);
+        _builder_1.append(" ");
+        _builder_1.append(IConstants.SEMICOLON);
+        _builder_1.newLineIfNotEmpty();
+        out = _builder_1.toString();
+      } else {
+        if ((min == 1)) {
+          String _out = out;
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append(IConstants.CONS_DEF);
+          _builder_2.append(" ");
+          String _name_2 = rel.getParent().getName();
+          _builder_2.append(_name_2);
+          _builder_2.append(" ");
+          _builder_2.append(IConstants.LEQ);
+          _builder_2.append(" ");
+          _builder_2.append(sum);
+          _builder_2.append(" ");
+          _builder_2.append(IConstants.SEMICOLON);
+          _builder_2.newLineIfNotEmpty();
+          out = (_out + _builder_2);
+        } else {
+          String _out_1 = out;
+          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append(IConstants.CONS_DEF);
+          _builder_3.append(" ");
+          _builder_3.append(min);
+          _builder_3.append(" * ");
+          String _name_3 = rel.getParent().getName();
+          _builder_3.append(_name_3);
+          _builder_3.append(" ");
+          _builder_3.append(IConstants.LEQ);
+          _builder_3.append(" ");
+          _builder_3.append(sum);
+          _builder_3.append(" ");
+          _builder_3.append(IConstants.SEMICOLON);
+          _builder_3.newLineIfNotEmpty();
+          out = (_out_1 + _builder_3);
+        }
+        String _out_2 = out;
+        StringConcatenation _builder_4 = new StringConcatenation();
+        _builder_4.append(IConstants.CONS_DEF);
+        _builder_4.append(" ");
+        _builder_4.append(sum);
+        _builder_4.append(" ");
+        _builder_4.append(IConstants.LEQ);
+        _builder_4.append(" ");
+        _builder_4.append(max);
+        _builder_4.append(" * ");
+        String _name_4 = rel.getParent().getName();
+        _builder_4.append(_name_4);
+        _builder_4.append(" ");
+        _builder_4.append(IConstants.SEMICOLON);
+        _builder_4.newLineIfNotEmpty();
+        out = (_out_2 + _builder_4);
+      }
       _xblockexpression = out;
     }
     return _xblockexpression;
@@ -354,10 +421,11 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
             }
             _switchResult = _switchResult_1;
             break;
-          case "symbol":
+          case "symbolic":
             String _xblockexpression_1 = null;
             {
               int i = 1;
+              String mapping = "";
               StringConcatenation _builder_1 = new StringConcatenation();
               _builder_1.append("{");
               String out = _builder_1.toString();
@@ -365,14 +433,24 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
               EList<Value> _values = ((Enumeration) _variants_1).getList().getValues();
               for (final Value value : _values) {
                 {
-                  String _out = out;
+                  String valParsed = this.parseValue(value).toString();
+                  String _mapping = mapping;
                   StringConcatenation _builder_2 = new StringConcatenation();
+                  _builder_2.append(valParsed);
+                  _builder_2.append(" -> ");
                   _builder_2.append(i);
-                  _builder_2.append(" , ");
-                  out = (_out + _builder_2);
+                  _builder_2.append(",  ");
+                  mapping = (_mapping + _builder_2);
+                  this.symbolsTable.put(valParsed, Integer.valueOf(i));
+                  String _out = out;
+                  StringConcatenation _builder_3 = new StringConcatenation();
+                  _builder_3.append(i);
+                  _builder_3.append(" , ");
+                  out = (_out + _builder_3);
                   i++;
                 }
               }
+              this.mapsTable.put(element.getName(), mapping);
               int _length = out.length();
               int _minus = (_length - 2);
               CharSequence _subSequence = out.subSequence(0, _minus);
@@ -395,7 +473,7 @@ public class AttFactory extends BoolFactory implements IAttributesFactory {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(IConstants.CONS_DEF);
     _builder.append(" ");
-    CharSequence _parse = ExpressionsParser.parse(exp, Dialect.ATT);
+    CharSequence _parse = this.expressionsParser.parse(exp, Dialect.ATT);
     _builder.append(_parse);
     _builder.append(" ");
     _builder.append(IConstants.SEMICOLON);

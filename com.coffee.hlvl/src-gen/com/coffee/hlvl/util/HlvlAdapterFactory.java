@@ -49,6 +49,7 @@ import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
+import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
@@ -388,6 +389,11 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAttributeRef(AttributeRef object)
       {
         return createAttributeRefAdapter();
+      }
+      @Override
+      public Adapter caseStringConstant(StringConstant object)
+      {
+        return createStringConstantAdapter();
       }
       @Override
       public Adapter caseIntConstant(IntConstant object)
@@ -1202,6 +1208,21 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.StringConstant <em>String Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.StringConstant
+   * @generated
+   */
+  public Adapter createStringConstantAdapter()
   {
     return null;
   }

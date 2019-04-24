@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDeclaration <em>Declaration</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,6 +104,26 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected Declaration declaration;
+
+  /**
+   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment()
+   * @generated
+   * @ordered
+   */
+  protected static final String COMMENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment()
+   * @generated
+   * @ordered
+   */
+  protected String comment = COMMENT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -247,6 +268,29 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getComment()
+  {
+    return comment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setComment(String newComment)
+  {
+    String oldComment = comment;
+    comment = newComment;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ELM_DECLARATION__COMMENT, oldComment, comment));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -276,6 +320,8 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return getName();
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         return getDeclaration();
+      case HlvlPackage.ELM_DECLARATION__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -301,6 +347,9 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return;
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         setDeclaration((Declaration)newValue);
+        return;
+      case HlvlPackage.ELM_DECLARATION__COMMENT:
+        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -328,6 +377,9 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         setDeclaration((Declaration)null);
         return;
+      case HlvlPackage.ELM_DECLARATION__COMMENT:
+        setComment(COMMENT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -350,6 +402,8 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         return declaration != null;
+      case HlvlPackage.ELM_DECLARATION__COMMENT:
+        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
   }
@@ -371,6 +425,8 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     result.append(dataType);
     result.append(", name: ");
     result.append(name);
+    result.append(", comment: ");
+    result.append(comment);
     result.append(')');
     return result.toString();
   }

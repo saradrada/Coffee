@@ -16,8 +16,18 @@ import com.coffee.hlvl.Relational
 import com.coffee.generator.common.ExpressionsParser
 import com.coffee.generator.Dialect
 import com.coffee.generator.rules.bools.BoolFactory
+import java.util.HashMap
 
 class AttFactory extends BoolFactory implements IAttributesFactory{
+	private Map<String, Integer> symbolsTable;
+	private Map<String, String> mapsTable;
+	private ExpressionsParser expressionsParser;
+	
+	new(){
+		symbolsTable= new HashMap<String, Integer> ();
+		mapsTable= new HashMap<String, String> ();
+		expressionsParser= new ExpressionsParser(symbolsTable);
+	}
 	
 	override getConstant(ElmDeclaration element) {
 		
@@ -37,14 +47,15 @@ class AttFactory extends BoolFactory implements IAttributesFactory{
 			case "integer" :
 				'''«VAR_DEF» «getDomain(element)» : «element.name» «SEMICOLON»
 				'''
-			case "symbol":
+			case "symbolic":
 				'''
 				% Mapping  variants to integers
 				«VAR_DEF» «getDomain(element)» : «element.name» «SEMICOLON»
+				% Map: «mapsTable.get(element.name)»
 				'''
 		}
 	}
-	
+
 	def parseValue(Value aValue){
 		switch aValue{
 			BoolVal:{
@@ -88,16 +99,50 @@ class AttFactory extends BoolFactory implements IAttributesFactory{
 
 	override getGroup(Group rel, Map<String, ElmDeclaration> parents) {
 		var sum=""
+		var out= ""
+	
 		for(child: rel.children.values){
 			sum += '''«child.name» + '''
 		}
 		sum = sum.substring(0, sum.length()-2) 
 		
-		var out= 
-		'''
-		«CONS_DEF» «rel.min» * «rel.parent.name» «LEQ» «sum» «SEMICOLON»
-		«CONS_DEF» «sum» «LEQ» «rel.max.value» * «rel.parent.name» «SEMICOLON»
-		'''
+		val min = rel.min
+		var int max
+		if (rel.max.value == "*"){
+			max=rel.children.values.size
+		}
+		else{
+			max=  Integer.parseInt(rel.max.value)
+		}
+		// there is just one part
+		if (min == max){
+			out= 
+			'''
+			«CONS_DEF» «sum» «LEQ» «max» * «rel.parent.name» «SEMICOLON»
+			'''
+		}
+		else{ // the constraint has two parts
+		
+			// first part
+			if (min == 1){
+				out+= 
+				'''
+				«CONS_DEF» «rel.parent.name» «LEQ» «sum» «SEMICOLON»
+				'''
+			}
+			else{
+				out+=
+				'''
+				«CONS_DEF» «min» * «rel.parent.name» «LEQ» «sum» «SEMICOLON»
+				'''
+			}
+			//second part
+			out+= 
+			'''
+			«CONS_DEF» «sum» «LEQ» «max» * «rel.parent.name» «SEMICOLON»
+			'''
+		}
+		// the output
 		out
 	}
 		
@@ -131,20 +176,25 @@ class AttFactory extends BoolFactory implements IAttributesFactory{
 					}
 				}
 			}
-			case "symbol":{
+			case "symbolic":{
 				var i=1
+				var mapping=""
 				var out ='''{'''
 						for(value: (declaration.variants as Enumeration).list.values){
+							var valParsed= parseValue(value).toString
+							mapping += '''«valParsed» -> «i»,  '''
+							symbolsTable.put(valParsed, i);
 							out+= '''«i» , '''
 							i++
 						}
+						mapsTable.put(element.name, mapping);
 						out= out.subSequence(0, out.length -2)+'''} '''
 			}
 		}
 	}
 	
 		override getExpression(Relational exp) {
-		'''«CONS_DEF» «ExpressionsParser.parse(exp, Dialect.ATT)» «SEMICOLON»
+		'''«CONS_DEF» «expressionsParser.parse(exp, Dialect.ATT)» «SEMICOLON»
 		'''
 	}
 	/*********************************************************************************

@@ -159,13 +159,22 @@ public interface HlvlPackage extends EPackage
   int ELM_DECLARATION__DECLARATION = 3;
 
   /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELM_DECLARATION__COMMENT = 4;
+
+  /**
    * The number of structural features of the '<em>Elm Declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION_FEATURE_COUNT = 4;
+  int ELM_DECLARATION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.DeclarationImpl <em>Declaration</em>}' class.
@@ -513,22 +522,22 @@ public interface HlvlPackage extends EPackage
   int COMPLEX_IMPLIES = 13;
 
   /**
-   * The feature id for the '<em><b>Var1</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPLEX_IMPLIES__VAR1 = RELATION_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPLEX_IMPLIES__EXP = RELATION_FEATURE_COUNT + 1;
+  int COMPLEX_IMPLIES__EXP = RELATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPLEX_IMPLIES__ELEMENTS = RELATION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Complex Implies</em>' class.
@@ -1865,6 +1874,34 @@ public interface HlvlPackage extends EPackage
   int ATTRIBUTE_REF_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.coffee.hlvl.impl.StringConstantImpl <em>String Constant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.hlvl.impl.StringConstantImpl
+   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getStringConstant()
+   * @generated
+   */
+  int STRING_CONSTANT = 52;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_CONSTANT__VALUE = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>String Constant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_CONSTANT_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.IntConstantImpl <em>Int Constant</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1872,7 +1909,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getIntConstant()
    * @generated
    */
-  int INT_CONSTANT = 52;
+  int INT_CONSTANT = 53;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1900,7 +1937,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSingleInstruction()
    * @generated
    */
-  int SINGLE_INSTRUCTION = 53;
+  int SINGLE_INSTRUCTION = 54;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1928,7 +1965,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getValidConf()
    * @generated
    */
-  int VALID_CONF = 54;
+  int VALID_CONF = 55;
 
   /**
    * The feature id for the '<em><b>Valuations</b></em>' containment reference.
@@ -2056,6 +2093,17 @@ public interface HlvlPackage extends EPackage
    * @generated
    */
   EReference getElmDeclaration_Declaration();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.ElmDeclaration#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see com.coffee.hlvl.ElmDeclaration#getComment()
+   * @see #getElmDeclaration()
+   * @generated
+   */
+  EAttribute getElmDeclaration_Comment();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.Declaration <em>Declaration</em>}'.
@@ -2332,17 +2380,6 @@ public interface HlvlPackage extends EPackage
   EClass getComplexImplies();
 
   /**
-   * Returns the meta object for the reference '{@link com.coffee.hlvl.ComplexImplies#getVar1 <em>Var1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Var1</em>'.
-   * @see com.coffee.hlvl.ComplexImplies#getVar1()
-   * @see #getComplexImplies()
-   * @generated
-   */
-  EReference getComplexImplies_Var1();
-
-  /**
    * Returns the meta object for the containment reference '{@link com.coffee.hlvl.ComplexImplies#getExp <em>Exp</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2352,6 +2389,17 @@ public interface HlvlPackage extends EPackage
    * @generated
    */
   EReference getComplexImplies_Exp();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.ComplexImplies#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Elements</em>'.
+   * @see com.coffee.hlvl.ComplexImplies#getElements()
+   * @see #getComplexImplies()
+   * @generated
+   */
+  EReference getComplexImplies_Elements();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.QImplies <em>QImplies</em>}'.
@@ -3427,6 +3475,27 @@ public interface HlvlPackage extends EPackage
   EAttribute getAttributeRef_Attribute();
 
   /**
+   * Returns the meta object for class '{@link com.coffee.hlvl.StringConstant <em>String Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Constant</em>'.
+   * @see com.coffee.hlvl.StringConstant
+   * @generated
+   */
+  EClass getStringConstant();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.StringConstant#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see com.coffee.hlvl.StringConstant#getValue()
+   * @see #getStringConstant()
+   * @generated
+   */
+  EAttribute getStringConstant_Value();
+
+  /**
    * Returns the meta object for class '{@link com.coffee.hlvl.IntConstant <em>Int Constant</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3595,6 +3664,14 @@ public interface HlvlPackage extends EPackage
      * @generated
      */
     EReference ELM_DECLARATION__DECLARATION = eINSTANCE.getElmDeclaration_Declaration();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ELM_DECLARATION__COMMENT = eINSTANCE.getElmDeclaration_Comment();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.DeclarationImpl <em>Declaration</em>}' class.
@@ -3829,20 +3906,20 @@ public interface HlvlPackage extends EPackage
     EClass COMPLEX_IMPLIES = eINSTANCE.getComplexImplies();
 
     /**
-     * The meta object literal for the '<em><b>Var1</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMPLEX_IMPLIES__VAR1 = eINSTANCE.getComplexImplies_Var1();
-
-    /**
      * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference COMPLEX_IMPLIES__EXP = eINSTANCE.getComplexImplies_Exp();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPLEX_IMPLIES__ELEMENTS = eINSTANCE.getComplexImplies_Elements();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.QImpliesImpl <em>QImplies</em>}' class.
@@ -4727,6 +4804,24 @@ public interface HlvlPackage extends EPackage
      * @generated
      */
     EAttribute ATTRIBUTE_REF__ATTRIBUTE = eINSTANCE.getAttributeRef_Attribute();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.hlvl.impl.StringConstantImpl <em>String Constant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.hlvl.impl.StringConstantImpl
+     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getStringConstant()
+     * @generated
+     */
+    EClass STRING_CONSTANT = eINSTANCE.getStringConstant();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_CONSTANT__VALUE = eINSTANCE.getStringConstant_Value();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.IntConstantImpl <em>Int Constant</em>}' class.

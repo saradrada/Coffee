@@ -22,6 +22,7 @@ ElmDeclaration:
 	(dataType=DataType)
 	name= ID
 	declaration= Declaration 
+	('comment:' '{' comment=STRING '}')?
 ;
 
 Declaration:
@@ -74,7 +75,7 @@ Pair:
 ;
 
 ComplexImplies:
-	'implies' '(' var1=[ElmDeclaration] ',' exp=Expression')'
+	'implies' '('  exp=Expression ',' elements=ListOfIDs')'
 ;
 
 QImplies:
@@ -169,6 +170,7 @@ Atomic returns Relational:
 	{BoolConstant} value=('true'|'false') | 
 	{VariableRef} variable=[ElmDeclaration]|
 	{AttributeRef} attribute= QualifiedName |
+	{StringConstant} value=STRING |
 	{IntConstant} value=INT 
 ;
 
@@ -209,7 +211,7 @@ OperationName:
 BoolVal: value=('true'|'false');
 Number: value = INT ;
 
-Symbol: '"' value= STRING '"';
+Symbol:  value=STRING;
 
 Value: 
 	Number|BoolVal|Symbol

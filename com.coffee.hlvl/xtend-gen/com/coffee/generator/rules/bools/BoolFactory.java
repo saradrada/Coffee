@@ -25,6 +25,13 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class BoolFactory extends CodeFactory implements IConstants {
   private int visibility = 0;
   
+  private ExpressionsParser expressionsParser;
+  
+  public BoolFactory() {
+    ExpressionsParser _expressionsParser = new ExpressionsParser();
+    this.expressionsParser = _expressionsParser;
+  }
+  
   @Override
   public CharSequence getConstant(final ElmDeclaration element) {
     CharSequence _xblockexpression = null;
@@ -335,7 +342,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(IConstants.CONS_DEF);
     _builder.append(" ");
-    CharSequence _parse = ExpressionsParser.parse(exp, Dialect.BOOL);
+    CharSequence _parse = this.expressionsParser.parse(exp, Dialect.BOOL);
     _builder.append(_parse);
     _builder.append(" ");
     _builder.append(IConstants.SEMICOLON);
@@ -353,7 +360,7 @@ public class BoolFactory extends CodeFactory implements IConstants {
       _builder.append(" ;");
       _builder.newLineIfNotEmpty();
       _builder.append("constraint ");
-      CharSequence _parse = ExpressionsParser.parse(rel.getCondition(), Dialect.BOOL);
+      CharSequence _parse = this.expressionsParser.parse(rel.getCondition(), Dialect.BOOL);
       _builder.append(_parse);
       _builder.append(" -> B");
       _builder.append(this.visibility);

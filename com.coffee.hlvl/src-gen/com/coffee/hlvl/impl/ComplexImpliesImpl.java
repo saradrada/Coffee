@@ -4,9 +4,9 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.ListOfIDs;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,24 +24,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.ComplexImpliesImpl#getVar1 <em>Var1</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ComplexImpliesImpl#getExp <em>Exp</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.ComplexImpliesImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
 {
-  /**
-   * The cached value of the '{@link #getVar1() <em>Var1</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVar1()
-   * @generated
-   * @ordered
-   */
-  protected ElmDeclaration var1;
-
   /**
    * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -51,6 +41,16 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * @ordered
    */
   protected Expression exp;
+
+  /**
+   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getElements()
+   * @generated
+   * @ordered
+   */
+  protected ListOfIDs elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,49 +71,6 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
   protected EClass eStaticClass()
   {
     return HlvlPackage.Literals.COMPLEX_IMPLIES;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ElmDeclaration getVar1()
-  {
-    if (var1 != null && var1.eIsProxy())
-    {
-      InternalEObject oldVar1 = (InternalEObject)var1;
-      var1 = (ElmDeclaration)eResolveProxy(oldVar1);
-      if (var1 != oldVar1)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HlvlPackage.COMPLEX_IMPLIES__VAR1, oldVar1, var1));
-      }
-    }
-    return var1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ElmDeclaration basicGetVar1()
-  {
-    return var1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setVar1(ElmDeclaration newVar1)
-  {
-    ElmDeclaration oldVar1 = var1;
-    var1 = newVar1;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.COMPLEX_IMPLIES__VAR1, oldVar1, var1));
   }
 
   /**
@@ -169,6 +126,54 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * <!-- end-user-doc -->
    * @generated
    */
+  public ListOfIDs getElements()
+  {
+    return elements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetElements(ListOfIDs newElements, NotificationChain msgs)
+  {
+    ListOfIDs oldElements = elements;
+    elements = newElements;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.COMPLEX_IMPLIES__ELEMENTS, oldElements, newElements);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setElements(ListOfIDs newElements)
+  {
+    if (newElements != elements)
+    {
+      NotificationChain msgs = null;
+      if (elements != null)
+        msgs = ((InternalEObject)elements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.COMPLEX_IMPLIES__ELEMENTS, null, msgs);
+      if (newElements != null)
+        msgs = ((InternalEObject)newElements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.COMPLEX_IMPLIES__ELEMENTS, null, msgs);
+      msgs = basicSetElements(newElements, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.COMPLEX_IMPLIES__ELEMENTS, newElements, newElements));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -176,6 +181,8 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
     {
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
         return basicSetExp(null, msgs);
+      case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
+        return basicSetElements(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -190,11 +197,10 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
   {
     switch (featureID)
     {
-      case HlvlPackage.COMPLEX_IMPLIES__VAR1:
-        if (resolve) return getVar1();
-        return basicGetVar1();
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
         return getExp();
+      case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
+        return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -209,11 +215,11 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
   {
     switch (featureID)
     {
-      case HlvlPackage.COMPLEX_IMPLIES__VAR1:
-        setVar1((ElmDeclaration)newValue);
-        return;
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
         setExp((Expression)newValue);
+        return;
+      case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
+        setElements((ListOfIDs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -229,11 +235,11 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
   {
     switch (featureID)
     {
-      case HlvlPackage.COMPLEX_IMPLIES__VAR1:
-        setVar1((ElmDeclaration)null);
-        return;
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
         setExp((Expression)null);
+        return;
+      case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
+        setElements((ListOfIDs)null);
         return;
     }
     super.eUnset(featureID);
@@ -249,10 +255,10 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
   {
     switch (featureID)
     {
-      case HlvlPackage.COMPLEX_IMPLIES__VAR1:
-        return var1 != null;
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
         return exp != null;
+      case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
+        return elements != null;
     }
     return super.eIsSet(featureID);
   }

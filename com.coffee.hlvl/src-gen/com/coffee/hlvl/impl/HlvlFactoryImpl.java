@@ -50,6 +50,7 @@ import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
+import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
@@ -172,6 +173,7 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.BOOL_CONSTANT: return createBoolConstant();
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
+      case HlvlPackage.STRING_CONSTANT: return createStringConstant();
       case HlvlPackage.INT_CONSTANT: return createIntConstant();
       case HlvlPackage.SINGLE_INSTRUCTION: return createSingleInstruction();
       case HlvlPackage.VALID_CONF: return createValidConf();
@@ -750,6 +752,17 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     AttributeRefImpl attributeRef = new AttributeRefImpl();
     return attributeRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StringConstant createStringConstant()
+  {
+    StringConstantImpl stringConstant = new StringConstantImpl();
+    return stringConstant;
   }
 
   /**

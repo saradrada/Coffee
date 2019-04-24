@@ -1,0 +1,25 @@
+model EShop_Paper
+elements:
+	boolean connection
+	boolean secure
+	boolean unsecure
+	symbolic customerType variants: ['sporadic' , 'regular'] 
+						 comment: {"What is the customer type?"}
+	boolean payment
+	boolean PayPal
+	boolean SMS
+	boolean card
+	boolean credit
+	boolean debit
+	boolean gift
+relations:
+	core: coreElements(customerType, payment)
+	m1: mutex(credit, unsecure)
+	dec1: decomposition(card, [gift, debit])<0>
+	dec2: decomposition(card, [credit])<1>
+	g1: group(payment, [PayPal, SMS, card])[1,*]
+	g2: group(connection, [secure, unsecure])[1,1]
+	exp: expression (customerType = 'regular' => secure)
+	
+	
+	

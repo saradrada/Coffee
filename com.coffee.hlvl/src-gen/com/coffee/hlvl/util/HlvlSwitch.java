@@ -49,6 +49,7 @@ import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
+import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
@@ -524,6 +525,14 @@ public class HlvlSwitch<T> extends Switch<T>
         AttributeRef attributeRef = (AttributeRef)theEObject;
         T result = caseAttributeRef(attributeRef);
         if (result == null) result = caseRelational(attributeRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.STRING_CONSTANT:
+      {
+        StringConstant stringConstant = (StringConstant)theEObject;
+        T result = caseStringConstant(stringConstant);
+        if (result == null) result = caseRelational(stringConstant);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1383,6 +1392,22 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAttributeRef(AttributeRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Constant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Constant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringConstant(StringConstant object)
   {
     return null;
   }

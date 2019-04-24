@@ -287,7 +287,7 @@ import com.coffee.hlvl.ComplexImplies
 	
 	override String getOperations(long time){
 		operations.append(
-		''' "parsingTime"  : «time»
+		''' "parsingTime"  : "«time»ms"
 		}'''
 		)
 		return operations.toString()

@@ -13,8 +13,8 @@ package com.coffee.hlvl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.ComplexImplies#getVar1 <em>Var1</em>}</li>
  *   <li>{@link com.coffee.hlvl.ComplexImplies#getExp <em>Exp</em>}</li>
+ *   <li>{@link com.coffee.hlvl.ComplexImplies#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getComplexImplies()
@@ -23,32 +23,6 @@ package com.coffee.hlvl;
  */
 public interface ComplexImplies extends Relation
 {
-  /**
-   * Returns the value of the '<em><b>Var1</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Var1</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Var1</em>' reference.
-   * @see #setVar1(ElmDeclaration)
-   * @see com.coffee.hlvl.HlvlPackage#getComplexImplies_Var1()
-   * @model
-   * @generated
-   */
-  ElmDeclaration getVar1();
-
-  /**
-   * Sets the value of the '{@link com.coffee.hlvl.ComplexImplies#getVar1 <em>Var1</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var1</em>' reference.
-   * @see #getVar1()
-   * @generated
-   */
-  void setVar1(ElmDeclaration value);
-
   /**
    * Returns the value of the '<em><b>Exp</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -74,5 +48,31 @@ public interface ComplexImplies extends Relation
    * @generated
    */
   void setExp(Expression value);
+
+  /**
+   * Returns the value of the '<em><b>Elements</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Elements</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Elements</em>' containment reference.
+   * @see #setElements(ListOfIDs)
+   * @see com.coffee.hlvl.HlvlPackage#getComplexImplies_Elements()
+   * @model containment="true"
+   * @generated
+   */
+  ListOfIDs getElements();
+
+  /**
+   * Sets the value of the '{@link com.coffee.hlvl.ComplexImplies#getElements <em>Elements</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Elements</em>' containment reference.
+   * @see #getElements()
+   * @generated
+   */
+  void setElements(ListOfIDs value);
 
 } // ComplexImplies

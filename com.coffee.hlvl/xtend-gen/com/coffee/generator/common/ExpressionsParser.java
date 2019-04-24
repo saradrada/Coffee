@@ -16,15 +16,29 @@ import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Plus;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.VariableRef;
 import com.google.common.base.Objects;
+import java.util.HashMap;
+import java.util.Map;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class ExpressionsParser {
-  public static CharSequence parse(final Relational exp, final Dialect dialect) {
+  private Map<String, Integer> symbolsMap;
+  
+  public ExpressionsParser(final Map<String, Integer> map) {
+    this.symbolsMap = map;
+  }
+  
+  public ExpressionsParser() {
+    HashMap<String, Integer> _hashMap = new HashMap<String, Integer>();
+    this.symbolsMap = _hashMap;
+  }
+  
+  public CharSequence parse(final Relational exp, final Dialect dialect) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (exp instanceof BoolConstant) {
@@ -38,33 +52,24 @@ public class ExpressionsParser {
       }
     }
     if (!_matched) {
+      if (exp instanceof StringConstant) {
+        _matched=true;
+        _switchResult = this.symbolsMap.get(((StringConstant)exp).getValue()).toString();
+      }
+    }
+    if (!_matched) {
       if (exp instanceof VariableRef) {
         _matched=true;
-        String _dataType = ((VariableRef)exp).getVariable().getDataType();
-        String _plus = ("datatype: " + _dataType);
-        String _plus_1 = (_plus + " dialect ");
-        String _plus_2 = (_plus_1 + dialect);
-        InputOutput.<String>println(_plus_2);
         if ((Objects.equal(((VariableRef)exp).getVariable().getDataType(), "boolean") && (Objects.equal(dialect, Dialect.ATT) || Objects.equal(dialect, Dialect.INST)))) {
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("en el if:  ");
-          _builder.newLine();
-          _builder.append("\t\t\t\t\t");
-          _builder.append("bool2int(");
           String _name = ((VariableRef)exp).getVariable().getName();
-          _builder.append(_name, "\t\t\t\t\t");
-          _builder.append(")");
-          InputOutput.<String>println(_builder.toString());
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("bool2int(");
-          String _name_1 = ((VariableRef)exp).getVariable().getName();
-          _builder_1.append(_name_1);
-          _builder_1.append(")");
-          return _builder_1;
+          _builder.append(_name);
+          _builder.append(" > 0");
+          return _builder;
         } else {
-          String _name_2 = ((VariableRef)exp).getVariable().getName();
-          String _plus_3 = ("en el else " + _name_2);
-          InputOutput.<String>println(_plus_3);
+          String _name_1 = ((VariableRef)exp).getVariable().getName();
+          String _plus = ("en el else " + _name_1);
+          InputOutput.<String>println(_plus);
           return ((VariableRef)exp).getVariable().getName();
         }
       }
@@ -158,7 +163,7 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("not(");
-        CharSequence _parse = ExpressionsParser.parse(((Negation)exp).getExpression(), dialect);
+        CharSequence _parse = this.parse(((Negation)exp).getExpression(), dialect);
         _builder.append(_parse);
         _builder.append(")");
         _switchResult = _builder;
@@ -169,10 +174,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Iff)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Iff)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append("  <-> ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Iff)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Iff)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -183,10 +188,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Implies)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Implies)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append("  -> ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Implies)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Implies)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -197,10 +202,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Or)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Or)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append(" \\/ ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Or)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Or)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -211,10 +216,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((And)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((And)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append(" /\\ ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((And)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((And)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -225,10 +230,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Equality)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Equality)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append(" = ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Equality)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Equality)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -243,10 +248,10 @@ public class ExpressionsParser {
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("(");
-          CharSequence _parse = ExpressionsParser.parse(((Comparison)exp).getLeft(), dialect);
+          CharSequence _parse = this.parse(((Comparison)exp).getLeft(), dialect);
           _builder.append(_parse);
           _builder.append(" >= ");
-          CharSequence _parse_1 = ExpressionsParser.parse(((Comparison)exp).getRight(), dialect);
+          CharSequence _parse_1 = this.parse(((Comparison)exp).getRight(), dialect);
           _builder.append(_parse_1);
           _builder.append(")");
           _xifexpression = _builder;
@@ -257,10 +262,10 @@ public class ExpressionsParser {
           if (_equals_1) {
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append("(");
-            CharSequence _parse_2 = ExpressionsParser.parse(((Comparison)exp).getLeft(), dialect);
+            CharSequence _parse_2 = this.parse(((Comparison)exp).getLeft(), dialect);
             _builder_1.append(_parse_2);
             _builder_1.append(" <= ");
-            CharSequence _parse_3 = ExpressionsParser.parse(((Comparison)exp).getRight(), dialect);
+            CharSequence _parse_3 = this.parse(((Comparison)exp).getRight(), dialect);
             _builder_1.append(_parse_3);
             _builder_1.append(")");
             _xifexpression_1 = _builder_1;
@@ -271,10 +276,10 @@ public class ExpressionsParser {
             if (_equals_2) {
               StringConcatenation _builder_2 = new StringConcatenation();
               _builder_2.append("(");
-              CharSequence _parse_4 = ExpressionsParser.parse(((Comparison)exp).getLeft(), dialect);
+              CharSequence _parse_4 = this.parse(((Comparison)exp).getLeft(), dialect);
               _builder_2.append(_parse_4);
               _builder_2.append(" > ");
-              CharSequence _parse_5 = ExpressionsParser.parse(((Comparison)exp).getRight(), dialect);
+              CharSequence _parse_5 = this.parse(((Comparison)exp).getRight(), dialect);
               _builder_2.append(_parse_5);
               _builder_2.append(")");
               _xifexpression_2 = _builder_2;
@@ -285,10 +290,10 @@ public class ExpressionsParser {
               if (_equals_3) {
                 StringConcatenation _builder_3 = new StringConcatenation();
                 _builder_3.append("(");
-                CharSequence _parse_6 = ExpressionsParser.parse(((Comparison)exp).getLeft(), dialect);
+                CharSequence _parse_6 = this.parse(((Comparison)exp).getLeft(), dialect);
                 _builder_3.append(_parse_6);
                 _builder_3.append(" < ");
-                CharSequence _parse_7 = ExpressionsParser.parse(((Comparison)exp).getRight(), dialect);
+                CharSequence _parse_7 = this.parse(((Comparison)exp).getRight(), dialect);
                 _builder_3.append(_parse_7);
                 _builder_3.append(")");
                 _xifexpression_3 = _builder_3;
@@ -307,10 +312,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Plus)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Plus)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append(" + ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Plus)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Plus)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -321,10 +326,10 @@ public class ExpressionsParser {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("(");
-        CharSequence _parse = ExpressionsParser.parse(((Minus)exp).getLeft(), dialect);
+        CharSequence _parse = this.parse(((Minus)exp).getLeft(), dialect);
         _builder.append(_parse);
         _builder.append(" - ");
-        CharSequence _parse_1 = ExpressionsParser.parse(((Minus)exp).getRight(), dialect);
+        CharSequence _parse_1 = this.parse(((Minus)exp).getRight(), dialect);
         _builder.append(_parse_1);
         _builder.append(")");
         _switchResult = _builder;
@@ -339,10 +344,10 @@ public class ExpressionsParser {
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("( ");
-          CharSequence _parse = ExpressionsParser.parse(((MulOrDiv)exp).getLeft(), dialect);
+          CharSequence _parse = this.parse(((MulOrDiv)exp).getLeft(), dialect);
           _builder.append(_parse);
           _builder.append(" * ");
-          CharSequence _parse_1 = ExpressionsParser.parse(((MulOrDiv)exp).getRight(), dialect);
+          CharSequence _parse_1 = this.parse(((MulOrDiv)exp).getRight(), dialect);
           _builder.append(_parse_1);
           _builder.append(")");
           _xifexpression = _builder;
@@ -353,20 +358,20 @@ public class ExpressionsParser {
           if (_equals_1) {
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append("( ");
-            CharSequence _parse_2 = ExpressionsParser.parse(((MulOrDiv)exp).getLeft(), dialect);
+            CharSequence _parse_2 = this.parse(((MulOrDiv)exp).getLeft(), dialect);
             _builder_1.append(_parse_2);
             _builder_1.append(" / ");
-            CharSequence _parse_3 = ExpressionsParser.parse(((MulOrDiv)exp).getRight(), dialect);
+            CharSequence _parse_3 = this.parse(((MulOrDiv)exp).getRight(), dialect);
             _builder_1.append(_parse_3);
             _builder_1.append(")");
             _xifexpression_1 = _builder_1;
           } else {
             StringConcatenation _builder_2 = new StringConcatenation();
             _builder_2.append("( ");
-            CharSequence _parse_4 = ExpressionsParser.parse(((MulOrDiv)exp).getLeft(), dialect);
+            CharSequence _parse_4 = this.parse(((MulOrDiv)exp).getLeft(), dialect);
             _builder_2.append(_parse_4);
             _builder_2.append(" mod ");
-            CharSequence _parse_5 = ExpressionsParser.parse(((MulOrDiv)exp).getRight(), dialect);
+            CharSequence _parse_5 = this.parse(((MulOrDiv)exp).getRight(), dialect);
             _builder_2.append(_parse_5);
             _builder_2.append(")");
             _xifexpression_1 = _builder_2;

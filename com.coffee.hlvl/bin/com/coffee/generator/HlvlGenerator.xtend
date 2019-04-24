@@ -112,7 +112,7 @@ class HlvlGenerator extends AbstractGenerator {
 		for (element: model.elements ){
 			attributes = !(element.att=== null)
 			//isBoolean = isBoolean && (element.dataType=="boolean")
-			if (element.dataType=="integer"){
+			if (element.dataType=="integer" || element.dataType=="symbolic"){
 				isBoolean= false
 				return isBoolean
 			}

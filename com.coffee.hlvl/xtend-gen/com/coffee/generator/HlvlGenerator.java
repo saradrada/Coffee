@@ -105,9 +105,7 @@ public class HlvlGenerator extends AbstractGenerator {
         boolean _tripleEquals = (_att == null);
         boolean _not = (!_tripleEquals);
         this.attributes = _not;
-        String _dataType = element.getDataType();
-        boolean _equals = Objects.equal(_dataType, "integer");
-        if (_equals) {
+        if ((Objects.equal(element.getDataType(), "integer") || Objects.equal(element.getDataType(), "symbolic"))) {
           isBoolean = false;
           return isBoolean;
         }

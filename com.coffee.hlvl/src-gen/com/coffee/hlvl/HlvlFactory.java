@@ -492,6 +492,15 @@ public interface HlvlFactory extends EFactory
   AttributeRef createAttributeRef();
 
   /**
+   * Returns a new object of class '<em>String Constant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Constant</em>'.
+   * @generated
+   */
+  StringConstant createStringConstant();
+
+  /**
    * Returns a new object of class '<em>Int Constant</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

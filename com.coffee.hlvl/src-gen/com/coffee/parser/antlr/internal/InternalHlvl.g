@@ -258,6 +258,38 @@ ruleElmDeclaration returns [EObject current=null]
 				}
 			)
 		)
+		(
+			otherlv_4='comment:'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getElmDeclarationAccess().getCommentKeyword_4_0());
+			}
+			otherlv_5='{'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getElmDeclarationAccess().getLeftCurlyBracketKeyword_4_1());
+			}
+			(
+				(
+					lv_comment_6_0=RULE_STRING
+					{
+						newLeafNode(lv_comment_6_0, grammarAccess.getElmDeclarationAccess().getCommentSTRINGTerminalRuleCall_4_2_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getElmDeclarationRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_6_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+			otherlv_7='}'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getElmDeclarationAccess().getRightCurlyBracketKeyword_4_3());
+			}
+		)?
 	)
 ;
 
@@ -962,13 +994,19 @@ ruleComplexImplies returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getComplexImpliesRule());
-					}
+					newCompositeNode(grammarAccess.getComplexImpliesAccess().getExpExpressionParserRuleCall_2_0());
 				}
-				otherlv_2=RULE_ID
+				lv_exp_2_0=ruleExpression
 				{
-					newLeafNode(otherlv_2, grammarAccess.getComplexImpliesAccess().getVar1ElmDeclarationCrossReference_2_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getComplexImpliesRule());
+					}
+					set(
+						$current,
+						"exp",
+						lv_exp_2_0,
+						"com.coffee.Hlvl.Expression");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -979,18 +1017,18 @@ ruleComplexImplies returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getComplexImpliesAccess().getExpExpressionParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getComplexImpliesAccess().getElementsListOfIDsParserRuleCall_4_0());
 				}
-				lv_exp_4_0=ruleExpression
+				lv_elements_4_0=ruleListOfIDs
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getComplexImpliesRule());
 					}
 					set(
 						$current,
-						"exp",
-						lv_exp_4_0,
-						"com.coffee.Hlvl.Expression");
+						"elements",
+						lv_elements_4_0,
+						"com.coffee.Hlvl.ListOfIDs");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2752,15 +2790,15 @@ ruleAtomic returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getAtomicAccess().getIntConstantAction_3_0(),
+						grammarAccess.getAtomicAccess().getStringConstantAction_3_0(),
 						$current);
 				}
 			)
 			(
 				(
-					lv_value_7_0=RULE_INT
+					lv_value_7_0=RULE_STRING
 					{
-						newLeafNode(lv_value_7_0, grammarAccess.getAtomicAccess().getValueINTTerminalRuleCall_3_1_0());
+						newLeafNode(lv_value_7_0, grammarAccess.getAtomicAccess().getValueSTRINGTerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -2770,6 +2808,34 @@ ruleAtomic returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_7_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getAtomicAccess().getIntConstantAction_4_0(),
+						$current);
+				}
+			)
+			(
+				(
+					lv_value_9_0=RULE_INT
+					{
+						newLeafNode(lv_value_9_0, grammarAccess.getAtomicAccess().getValueINTTerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAtomicRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_9_0,
 							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
@@ -3133,32 +3199,22 @@ ruleSymbol returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='"'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getSymbolAccess().getQuotationMarkKeyword_0());
-		}
 		(
-			(
-				lv_value_1_0=RULE_STRING
-				{
-					newLeafNode(lv_value_1_0, grammarAccess.getSymbolAccess().getValueSTRINGTerminalRuleCall_1_0());
+			lv_value_0_0=RULE_STRING
+			{
+				newLeafNode(lv_value_0_0, grammarAccess.getSymbolAccess().getValueSTRINGTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getSymbolRule());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSymbolRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"value",
-						lv_value_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
-				}
-			)
+				setWithLastConsumed(
+					$current,
+					"value",
+					lv_value_0_0,
+					"org.eclipse.xtext.common.Terminals.STRING");
+			}
 		)
-		otherlv_2='"'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getSymbolAccess().getQuotationMarkKeyword_2());
-		}
 	)
 ;
 

@@ -18,6 +18,12 @@ import com.coffee.generator.Dialect
 
 class BoolFactory extends CodeFactory implements IConstants{
 	private int visibility=0
+	private ExpressionsParser expressionsParser;
+	
+	new(){
+
+		expressionsParser= new ExpressionsParser();
+	}
 	
 	override getConstant(ElmDeclaration element) {
 		val value= (element.declaration as ConstantDecl).value
@@ -134,7 +140,7 @@ class BoolFactory extends CodeFactory implements IConstants{
 	}
 	
 	override getExpression(Relational exp) {
-		'''«CONS_DEF» «ExpressionsParser.parse(exp, Dialect.BOOL)» «SEMICOLON»
+		'''«CONS_DEF» «expressionsParser.parse(exp, Dialect.BOOL)» «SEMICOLON»
 		'''
 	}
 	
@@ -142,7 +148,7 @@ class BoolFactory extends CodeFactory implements IConstants{
 		var out= 
 		'''
 		var bool: B«visibility» ;
-		constraint «ExpressionsParser.parse(rel.condition, Dialect.BOOL)» -> B«visibility»;
+		constraint «expressionsParser.parse(rel.condition, Dialect.BOOL)» -> B«visibility»;
 		'''
 			for (r: relations){
 				out+= 
