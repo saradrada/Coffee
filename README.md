@@ -1,3 +1,3 @@
-# Coffee, a constraint based framework for variabilty modelling and reasoning. 
+# Coffee, a Constraint-based Framework for Variabilty Modelling and Reasoning. 
  
 
