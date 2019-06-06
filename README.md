@@ -1,4 +1,3 @@
-# Coffee, a constraint based framework for product line engineering. 
+# Coffee, a Constraint-based Framework for Variabilty Modelling and Reasoning. 
  
-This version of the framework includes the implementation of the specification level with the PLEc and THLCL languages.
 
