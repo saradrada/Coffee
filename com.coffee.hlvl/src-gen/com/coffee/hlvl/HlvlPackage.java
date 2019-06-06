@@ -132,13 +132,22 @@ public interface HlvlPackage extends EPackage
   int ELM_DECLARATION__ATT = 0;
 
   /**
+   * The feature id for the '<em><b>Inst</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELM_DECLARATION__INST = 1;
+
+  /**
    * The feature id for the '<em><b>Data Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION__DATA_TYPE = 1;
+  int ELM_DECLARATION__DATA_TYPE = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -147,7 +156,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION__NAME = 2;
+  int ELM_DECLARATION__NAME = 3;
 
   /**
    * The feature id for the '<em><b>Declaration</b></em>' containment reference.
@@ -156,7 +165,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION__DECLARATION = 3;
+  int ELM_DECLARATION__DECLARATION = 4;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -165,7 +174,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION__COMMENT = 4;
+  int ELM_DECLARATION__COMMENT = 5;
 
   /**
    * The number of structural features of the '<em>Elm Declaration</em>' class.
@@ -174,7 +183,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ELM_DECLARATION_FEATURE_COUNT = 5;
+  int ELM_DECLARATION_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.DeclarationImpl <em>Declaration</em>}' class.
@@ -2062,6 +2071,17 @@ public interface HlvlPackage extends EPackage
   EAttribute getElmDeclaration_Att();
 
   /**
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.ElmDeclaration#getInst <em>Inst</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Inst</em>'.
+   * @see com.coffee.hlvl.ElmDeclaration#getInst()
+   * @see #getElmDeclaration()
+   * @generated
+   */
+  EAttribute getElmDeclaration_Inst();
+
+  /**
    * Returns the meta object for the attribute '{@link com.coffee.hlvl.ElmDeclaration#getDataType <em>Data Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3640,6 +3660,14 @@ public interface HlvlPackage extends EPackage
      * @generated
      */
     EAttribute ELM_DECLARATION__ATT = eINSTANCE.getElmDeclaration_Att();
+
+    /**
+     * The meta object literal for the '<em><b>Inst</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ELM_DECLARATION__INST = eINSTANCE.getElmDeclaration_Inst();
 
     /**
      * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.

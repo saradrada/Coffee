@@ -20,7 +20,7 @@ import java.util.List
  * @version PLEC V3
  * August 2018
  */
-abstract class CodeFactory {
+abstract class TransformationRules {
 	
 
 	// Variables related methods

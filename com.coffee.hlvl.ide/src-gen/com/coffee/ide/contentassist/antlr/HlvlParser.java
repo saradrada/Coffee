@@ -57,7 +57,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getModelAccess().getGroup_6(), "rule__Model__Group_6__0");
 					put(grammarAccess.getElmDeclarationAccess().getGroup(), "rule__ElmDeclaration__Group__0");
-					put(grammarAccess.getElmDeclarationAccess().getGroup_4(), "rule__ElmDeclaration__Group_4__0");
+					put(grammarAccess.getElmDeclarationAccess().getGroup_5(), "rule__ElmDeclaration__Group_5__0");
 					put(grammarAccess.getConstantDeclAccess().getGroup(), "rule__ConstantDecl__Group__0");
 					put(grammarAccess.getConstantDeclAccess().getGroup_1(), "rule__ConstantDecl__Group_1__0");
 					put(grammarAccess.getVariableDeclAccess().getGroup(), "rule__VariableDecl__Group__0");
@@ -128,10 +128,11 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getRelationsAssignment_5(), "rule__Model__RelationsAssignment_5");
 					put(grammarAccess.getModelAccess().getOperationsAssignment_6_1(), "rule__Model__OperationsAssignment_6_1");
 					put(grammarAccess.getElmDeclarationAccess().getAttAssignment_0(), "rule__ElmDeclaration__AttAssignment_0");
-					put(grammarAccess.getElmDeclarationAccess().getDataTypeAssignment_1(), "rule__ElmDeclaration__DataTypeAssignment_1");
-					put(grammarAccess.getElmDeclarationAccess().getNameAssignment_2(), "rule__ElmDeclaration__NameAssignment_2");
-					put(grammarAccess.getElmDeclarationAccess().getDeclarationAssignment_3(), "rule__ElmDeclaration__DeclarationAssignment_3");
-					put(grammarAccess.getElmDeclarationAccess().getCommentAssignment_4_2(), "rule__ElmDeclaration__CommentAssignment_4_2");
+					put(grammarAccess.getElmDeclarationAccess().getInstAssignment_1(), "rule__ElmDeclaration__InstAssignment_1");
+					put(grammarAccess.getElmDeclarationAccess().getDataTypeAssignment_2(), "rule__ElmDeclaration__DataTypeAssignment_2");
+					put(grammarAccess.getElmDeclarationAccess().getNameAssignment_3(), "rule__ElmDeclaration__NameAssignment_3");
+					put(grammarAccess.getElmDeclarationAccess().getDeclarationAssignment_4(), "rule__ElmDeclaration__DeclarationAssignment_4");
+					put(grammarAccess.getElmDeclarationAccess().getCommentAssignment_5_2(), "rule__ElmDeclaration__CommentAssignment_5_2");
 					put(grammarAccess.getConstantDeclAccess().getValueAssignment_1_1(), "rule__ConstantDecl__ValueAssignment_1_1");
 					put(grammarAccess.getVariableDeclAccess().getVariantsAssignment_1_1(), "rule__VariableDecl__VariantsAssignment_1_1");
 					put(grammarAccess.getIntervalAccess().getStartAssignment_0(), "rule__Interval__StartAssignment_0");

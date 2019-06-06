@@ -19,7 +19,7 @@ import java.util.Map;
  * August 2018
  */
 @SuppressWarnings("all")
-public abstract class CodeFactory {
+public abstract class TransformationRules {
   public abstract CharSequence getConstant(final ElmDeclaration element);
   
   public abstract CharSequence getElement(final ElmDeclaration element);

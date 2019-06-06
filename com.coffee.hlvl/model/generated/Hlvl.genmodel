@@ -14,6 +14,7 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//ElmDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/att"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/inst"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/dataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ElmDeclaration/declaration"/>

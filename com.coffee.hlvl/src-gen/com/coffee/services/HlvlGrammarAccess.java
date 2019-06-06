@@ -44,7 +44,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		///**
 		// * Grammar specification of the HLVL, High Level Variability Language
 		// * @author Angela Villota
-		// * @version HLVL V4 
+		// * @version HLVL V1.4 
 		// * Modified in October 4th for including the root constraint
 		// * Modified on October 9th for fixing the setRefinement
 		// * Modified on November 16th 2018
@@ -103,26 +103,29 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAttAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cAttAttKeyword_0_0 = (Keyword)cAttAssignment_0.eContents().get(0);
-		private final Assignment cDataTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cDataTypeDataTypeParserRuleCall_1_0 = (RuleCall)cDataTypeAssignment_1.eContents().get(0);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cDeclarationAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDeclarationDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommentKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Assignment cCommentAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cCommentSTRINGTerminalRuleCall_4_2_0 = (RuleCall)cCommentAssignment_4_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
+		private final Assignment cInstAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cInstInstantiableKeyword_1_0 = (Keyword)cInstAssignment_1.eContents().get(0);
+		private final Assignment cDataTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDataTypeDataTypeParserRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Assignment cDeclarationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDeclarationDeclarationParserRuleCall_4_0 = (RuleCall)cDeclarationAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommentKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cCommentAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cCommentSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cCommentAssignment_5_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
 		
 		//ElmDeclaration:
 		//	att='att'?
+		//	inst='instantiable'?
 		//	dataType=DataType name=ID
 		//	declaration=Declaration ('comment:' '{' comment=STRING '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//att='att'? dataType=DataType name=ID declaration=Declaration ('comment:' '{' comment=STRING '}')?
+		//att='att'? inst='instantiable'? dataType=DataType name=ID declaration=Declaration ('comment:' '{' comment=STRING '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//att='att'?
@@ -131,41 +134,47 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'att'
 		public Keyword getAttAttKeyword_0_0() { return cAttAttKeyword_0_0; }
 		
+		//inst='instantiable'?
+		public Assignment getInstAssignment_1() { return cInstAssignment_1; }
+		
+		//'instantiable'
+		public Keyword getInstInstantiableKeyword_1_0() { return cInstInstantiableKeyword_1_0; }
+		
 		//dataType=DataType
-		public Assignment getDataTypeAssignment_1() { return cDataTypeAssignment_1; }
+		public Assignment getDataTypeAssignment_2() { return cDataTypeAssignment_2; }
 		
 		//DataType
-		public RuleCall getDataTypeDataTypeParserRuleCall_1_0() { return cDataTypeDataTypeParserRuleCall_1_0; }
+		public RuleCall getDataTypeDataTypeParserRuleCall_2_0() { return cDataTypeDataTypeParserRuleCall_2_0; }
 		
 		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
 		
 		//declaration=Declaration
-		public Assignment getDeclarationAssignment_3() { return cDeclarationAssignment_3; }
+		public Assignment getDeclarationAssignment_4() { return cDeclarationAssignment_4; }
 		
 		//Declaration
-		public RuleCall getDeclarationDeclarationParserRuleCall_3_0() { return cDeclarationDeclarationParserRuleCall_3_0; }
+		public RuleCall getDeclarationDeclarationParserRuleCall_4_0() { return cDeclarationDeclarationParserRuleCall_4_0; }
 		
 		//('comment:' '{' comment=STRING '}')?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'comment:'
-		public Keyword getCommentKeyword_4_0() { return cCommentKeyword_4_0; }
+		public Keyword getCommentKeyword_5_0() { return cCommentKeyword_5_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
+		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
 		
 		//comment=STRING
-		public Assignment getCommentAssignment_4_2() { return cCommentAssignment_4_2; }
+		public Assignment getCommentAssignment_5_2() { return cCommentAssignment_5_2; }
 		
 		//STRING
-		public RuleCall getCommentSTRINGTerminalRuleCall_4_2_0() { return cCommentSTRINGTerminalRuleCall_4_2_0; }
+		public RuleCall getCommentSTRINGTerminalRuleCall_5_2_0() { return cCommentSTRINGTerminalRuleCall_5_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4_3() { return cRightCurlyBracketKeyword_4_3; }
+		public Keyword getRightCurlyBracketKeyword_5_3() { return cRightCurlyBracketKeyword_5_3; }
 	}
 	public class DeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Declaration");
@@ -2503,7 +2512,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	///**
 	// * Grammar specification of the HLVL, High Level Variability Language
 	// * @author Angela Villota
-	// * @version HLVL V4 
+	// * @version HLVL V1.4 
 	// * Modified in October 4th for including the root constraint
 	// * Modified on October 9th for fixing the setRefinement
 	// * Modified on November 16th 2018
@@ -2522,6 +2531,7 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ElmDeclaration:
 	//	att='att'?
+	//	inst='instantiable'?
 	//	dataType=DataType name=ID
 	//	declaration=Declaration ('comment:' '{' comment=STRING '}')?;
 	public ElmDeclarationElements getElmDeclarationAccess() {

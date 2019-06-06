@@ -1,7 +1,7 @@
 package com.coffee.generator;
 
-import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
+import com.coffee.generator.TransformationRules;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Model;
@@ -34,7 +34,7 @@ public interface IGenerator {
   
   public abstract Map<String, ElmDeclaration> getParents();
   
-  public abstract void setFactory(final CodeFactory factory);
+  public abstract void setFactory(final TransformationRules factory);
   
   public abstract String getOperations(final long time);
 }

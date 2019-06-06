@@ -204,10 +204,24 @@ ruleElmDeclaration returns [EObject current=null]
 		)?
 		(
 			(
+				lv_inst_1_0='instantiable'
 				{
-					newCompositeNode(grammarAccess.getElmDeclarationAccess().getDataTypeDataTypeParserRuleCall_1_0());
+					newLeafNode(lv_inst_1_0, grammarAccess.getElmDeclarationAccess().getInstInstantiableKeyword_1_0());
 				}
-				lv_dataType_1_0=ruleDataType
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getElmDeclarationRule());
+					}
+					setWithLastConsumed($current, "inst", lv_inst_1_0, "instantiable");
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getElmDeclarationAccess().getDataTypeDataTypeParserRuleCall_2_0());
+				}
+				lv_dataType_2_0=ruleDataType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getElmDeclarationRule());
@@ -215,7 +229,7 @@ ruleElmDeclaration returns [EObject current=null]
 					set(
 						$current,
 						"dataType",
-						lv_dataType_1_0,
+						lv_dataType_2_0,
 						"com.coffee.Hlvl.DataType");
 					afterParserOrEnumRuleCall();
 				}
@@ -223,9 +237,9 @@ ruleElmDeclaration returns [EObject current=null]
 		)
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_name_3_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getElmDeclarationAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_3_0, grammarAccess.getElmDeclarationAccess().getNameIDTerminalRuleCall_3_0());
 				}
 				{
 					if ($current==null) {
@@ -234,7 +248,7 @@ ruleElmDeclaration returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_3_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
@@ -242,9 +256,9 @@ ruleElmDeclaration returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getElmDeclarationAccess().getDeclarationDeclarationParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getElmDeclarationAccess().getDeclarationDeclarationParserRuleCall_4_0());
 				}
-				lv_declaration_3_0=ruleDeclaration
+				lv_declaration_4_0=ruleDeclaration
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getElmDeclarationRule());
@@ -252,26 +266,26 @@ ruleElmDeclaration returns [EObject current=null]
 					set(
 						$current,
 						"declaration",
-						lv_declaration_3_0,
+						lv_declaration_4_0,
 						"com.coffee.Hlvl.Declaration");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_4='comment:'
+			otherlv_5='comment:'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getElmDeclarationAccess().getCommentKeyword_4_0());
+				newLeafNode(otherlv_5, grammarAccess.getElmDeclarationAccess().getCommentKeyword_5_0());
 			}
-			otherlv_5='{'
+			otherlv_6='{'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getElmDeclarationAccess().getLeftCurlyBracketKeyword_4_1());
+				newLeafNode(otherlv_6, grammarAccess.getElmDeclarationAccess().getLeftCurlyBracketKeyword_5_1());
 			}
 			(
 				(
-					lv_comment_6_0=RULE_STRING
+					lv_comment_7_0=RULE_STRING
 					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getElmDeclarationAccess().getCommentSTRINGTerminalRuleCall_4_2_0());
+						newLeafNode(lv_comment_7_0, grammarAccess.getElmDeclarationAccess().getCommentSTRINGTerminalRuleCall_5_2_0());
 					}
 					{
 						if ($current==null) {
@@ -280,14 +294,14 @@ ruleElmDeclaration returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"comment",
-							lv_comment_6_0,
+							lv_comment_7_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
-			otherlv_7='}'
+			otherlv_8='}'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getElmDeclarationAccess().getRightCurlyBracketKeyword_4_3());
+				newLeafNode(otherlv_8, grammarAccess.getElmDeclarationAccess().getRightCurlyBracketKeyword_5_3());
 			}
 		)?
 	)

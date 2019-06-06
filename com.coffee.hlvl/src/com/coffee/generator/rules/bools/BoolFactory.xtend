@@ -1,6 +1,5 @@
 package com.coffee.generator.rules.bools
 
-import com.coffee.generator.CodeFactory
 import com.coffee.hlvl.ElmDeclaration
 import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
@@ -15,9 +14,10 @@ import com.coffee.hlvl.Relational
 import java.util.List
 import com.coffee.hlvl.BoolVal
 import com.coffee.generator.Dialect
+import com.coffee.generator.TransformationRules
 
-class BoolFactory extends CodeFactory implements IConstants{
-	private int visibility=0
+class BoolFactory extends TransformationRules implements IConstants{
+	private int visibilityIdCounter=0
 	private ExpressionsParser expressionsParser;
 	
 	new(){
@@ -37,12 +37,7 @@ class BoolFactory extends CodeFactory implements IConstants{
 		'''«VAR_DEF» «BOOL_DOMAIN» «COLON» «element.name» «SEMICOLON»
 		'''
 	}
-	
-	//TODO consider to delete this method from the code generator or put it in a 
-	// more specific interface, because it is not needed for booleans
-//	override getValuesDeclaration(ElmDeclaration variable, OptionsDeclaration variant) {
-//		''''''
-//	}
+
 
 	
 	override getCore(Core core) {
@@ -147,15 +142,15 @@ class BoolFactory extends CodeFactory implements IConstants{
 	override getVisibility(Visibility rel, List<CharSequence> relations) {
 		var out= 
 		'''
-		var bool: B«visibility» ;
-		constraint «expressionsParser.parse(rel.condition, Dialect.BOOL)» -> B«visibility»;
+		var bool: B«visibilityIdCounter» ;
+		constraint «expressionsParser.parse(rel.condition, Dialect.BOOL)» -> B«visibilityIdCounter»;
 		'''
 			for (r: relations){
 				out+= 
-				'''constraint B«visibility»  <-> «r.subSequence(10, r.length)»
+				'''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
 				'''
 			}
-			visibility++
+			visibilityIdCounter++
 			out
 	}
 	

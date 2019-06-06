@@ -5,7 +5,7 @@ generate hlvl "http://www.coffee.com/Hlvl"
 /**
  * Grammar specification of the HLVL, High Level Variability Language
  * @author Angela Villota
- * @version HLVL V4 
+ * @version HLVL V1.4 
  * Modified in October 4th for including the root constraint
  * Modified on October 9th for fixing the setRefinement
  * Modified on November 16th 2018
@@ -19,6 +19,7 @@ Model:
 	
 ElmDeclaration:
 	(att= 'att')?
+	(inst= 'instantiable')?
 	(dataType=DataType)
 	name= ID
 	declaration= Declaration 

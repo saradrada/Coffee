@@ -1,8 +1,8 @@
 package com.coffee.generator;
 
-import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
 import com.coffee.generator.IGenerator;
+import com.coffee.generator.TransformationRules;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Core;
@@ -48,7 +48,7 @@ public abstract class AbstractGenerator implements IGenerator {
   /**
    * object to obtain the program sentences regarding the type of the problem
    */
-  private CodeFactory factory;
+  private TransformationRules rules;
   
   /**
    * Map with the parent of each variable, for decomposition relations
@@ -135,18 +135,18 @@ public abstract class AbstractGenerator implements IGenerator {
             final Value value = ((ConstantDecl) _declaration_1).getValue();
             if ((Objects.equal(element.getDataType(), "boolean") && (value == null))) {
               String _out = out;
-              CharSequence _element = this.factory.getElement(element);
+              CharSequence _element = this.rules.getElement(element);
               out = (_out + _element);
             } else {
               String _out_1 = out;
-              CharSequence _constant = this.factory.getConstant(element);
+              CharSequence _constant = this.rules.getConstant(element);
               out = (_out_1 + _constant);
             }
           } else {
             Declaration _declaration_2 = element.getDeclaration();
             if ((_declaration_2 instanceof VariableDecl)) {
               String _out_2 = out;
-              CharSequence _element_1 = this.factory.getElement(element);
+              CharSequence _element_1 = this.rules.getElement(element);
               out = (_out_2 + _element_1);
             }
           }
@@ -193,18 +193,18 @@ public abstract class AbstractGenerator implements IGenerator {
     boolean _matched = false;
     if (rel instanceof Core) {
       _matched=true;
-      _switchResult = this.factory.getCore(((Core)rel));
+      _switchResult = this.rules.getCore(((Core)rel));
     }
     if (!_matched) {
       if (rel instanceof Decomposition) {
         _matched=true;
-        _switchResult = this.factory.getDecomposition(((Decomposition)rel), this.parents);
+        _switchResult = this.rules.getDecomposition(((Decomposition)rel), this.parents);
       }
     }
     if (!_matched) {
       if (rel instanceof Group) {
         _matched=true;
-        _switchResult = this.factory.getGroup(((Group)rel), this.parents);
+        _switchResult = this.rules.getGroup(((Group)rel), this.parents);
       }
     }
     if (!_matched) {
@@ -217,9 +217,9 @@ public abstract class AbstractGenerator implements IGenerator {
           String _operator = pair.getOperator();
           boolean _equals = Objects.equal(_operator, "implies");
           if (_equals) {
-            _xifexpression = this.factory.getImpliesPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
+            _xifexpression = this.rules.getImpliesPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
           } else {
-            _xifexpression = this.factory.getMutexPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
+            _xifexpression = this.rules.getMutexPair(((Pair)rel).getVar1(), ((Pair)rel).getVar2());
           }
           _xblockexpression = _xifexpression;
         }
@@ -236,9 +236,9 @@ public abstract class AbstractGenerator implements IGenerator {
           String _operator = pair.getOperator();
           boolean _equals = Objects.equal(_operator, "implies");
           if (_equals) {
-            _xifexpression = this.factory.getImpliesList(((VarList)rel));
+            _xifexpression = this.rules.getImpliesList(((VarList)rel));
           } else {
-            _xifexpression = this.factory.getMutexList(((VarList)rel));
+            _xifexpression = this.rules.getMutexList(((VarList)rel));
           }
           _xblockexpression = _xifexpression;
         }
@@ -248,7 +248,7 @@ public abstract class AbstractGenerator implements IGenerator {
     if (!_matched) {
       if (rel instanceof Expression) {
         _matched=true;
-        _switchResult = this.factory.getExpression(((Expression)rel).getExp());
+        _switchResult = this.rules.getExpression(((Expression)rel).getExp());
       }
     }
     if (!_matched) {
@@ -261,7 +261,7 @@ public abstract class AbstractGenerator implements IGenerator {
           for (final RelDeclaration r : _ids) {
             relations.add(this.parseRelation(r.getExp()));
           }
-          _xblockexpression = this.factory.getVisibility(((Visibility)rel), relations);
+          _xblockexpression = this.rules.getVisibility(((Visibility)rel), relations);
         }
         _switchResult = _xblockexpression;
       }
@@ -342,8 +342,8 @@ public abstract class AbstractGenerator implements IGenerator {
   }
   
   @Override
-  public void setFactory(final CodeFactory factory) {
-    this.factory = factory;
+  public void setFactory(final TransformationRules factory) {
+    this.rules = factory;
   }
   
   @Override

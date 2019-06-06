@@ -2,17 +2,17 @@ package com.coffee.generator.rules.mult
 
 import com.coffee.generator.AbstractGenerator
 import com.coffee.generator.Dialect
-import com.coffee.generator.CodeFactory
 import javax.management.relation.Relation
 import com.coffee.hlvl.MultInstantiation
 import com.coffee.hlvl.QImplies
 import com.coffee.hlvl.ComplexImplies
+import com.coffee.generator.TransformationRules
 
 class MultGenerator extends AbstractGenerator {
 	
 		new(String name, Dialect dialect) {
 		super(name, dialect)
-		val CodeFactory factory = new MultFactory();
+		val TransformationRules factory = new MultFactory();
 		setFactory(factory)
 	}
 	

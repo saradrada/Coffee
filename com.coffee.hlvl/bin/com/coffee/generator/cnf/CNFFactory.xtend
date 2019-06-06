@@ -1,6 +1,5 @@
 package com.coffee.generator.cnf
 
-import com.coffee.generator.CodeFactory
 import com.coffee.hlvl.ElmDeclaration
 import com.coffee.hlvl.Core
 import com.coffee.hlvl.Decomposition
@@ -15,8 +14,9 @@ import com.coffee.hlvl.Relational
 import java.util.List
 import com.coffee.hlvl.BoolVal
 import com.coffee.generator.Dialect
+import com.coffee.generator.TransformationRules
 
-class CNFFactory extends CodeFactory implements IConstants{
+class CNFFactory extends TransformationRules implements IConstants{
 	private int visibility=0
 		private ExpressionsParser expressionsParser;
 	

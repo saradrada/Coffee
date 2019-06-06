@@ -606,7 +606,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_DataType()
+  public EAttribute getElmDeclaration_Inst()
   {
     return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(1);
   }
@@ -616,7 +616,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_Name()
+  public EAttribute getElmDeclaration_DataType()
   {
     return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(2);
   }
@@ -626,9 +626,19 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getElmDeclaration_Name()
+  {
+    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getElmDeclaration_Declaration()
   {
-    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(3);
+    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -638,7 +648,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    */
   public EAttribute getElmDeclaration_Comment()
   {
-    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -2049,6 +2059,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     elmDeclarationEClass = createEClass(ELM_DECLARATION);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__ATT);
+    createEAttribute(elmDeclarationEClass, ELM_DECLARATION__INST);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__DATA_TYPE);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__NAME);
     createEReference(elmDeclarationEClass, ELM_DECLARATION__DECLARATION);
@@ -2323,6 +2334,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(elmDeclarationEClass, ElmDeclaration.class, "ElmDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getElmDeclaration_Att(), ecorePackage.getEString(), "att", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getElmDeclaration_Inst(), ecorePackage.getEString(), "inst", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getElmDeclaration_Declaration(), this.getDeclaration(), null, "declaration", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

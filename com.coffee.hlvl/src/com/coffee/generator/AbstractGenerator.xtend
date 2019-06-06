@@ -45,7 +45,7 @@ import com.coffee.hlvl.ComplexImplies
 	/**
 	 * object to obtain the program sentences regarding the type of the problem
 	 */
-	private CodeFactory factory;
+	private TransformationRules rules;
 	
 	/**
 	 * Map with the parent of each variable, for decomposition relations
@@ -141,14 +141,14 @@ import com.coffee.hlvl.ComplexImplies
 					// una declaracion boolean sin dominio es considerada ConstantDecl
 					if (element.dataType=="boolean" && value ===null){ //&& (value as BoolVal).value===null){
 						
-						out+=factory.getElement(element)
+						out+=rules.getElement(element)
 					}
 					else{
-						out+= factory.getConstant(element)
+						out+= rules.getConstant(element)
 					} 
 				}
 			else if(element.declaration instanceof VariableDecl ){
-				out+=factory.getElement(element)
+				out+=rules.getElement(element)
 			}
 			
 			}
@@ -180,34 +180,34 @@ import com.coffee.hlvl.ComplexImplies
 	override parseRelation(Relation rel) {
 		
 		switch (rel){
-			Core: factory.getCore(rel)
-			Decomposition: factory.getDecomposition(rel, parents)
-			Group: factory.getGroup(rel, parents)
+			Core: rules.getCore(rel)
+			Decomposition: rules.getDecomposition(rel, parents)
+			Group: rules.getGroup(rel, parents)
 			Pair: {
 				val pair= rel as Pair
 				if (pair.operator=="implies"){
-					factory.getImpliesPair(rel.var1, rel.var2)
+					rules.getImpliesPair(rel.var1, rel.var2)
 				}
 				else{
-					factory.getMutexPair(rel.var1, rel.var2)
+					rules.getMutexPair(rel.var1, rel.var2)
 				}
 			}
 			VarList:{
 				val pair= rel as VarList
 				if (pair.operator=="implies"){
-					factory.getImpliesList(rel)
+					rules.getImpliesList(rel)
 				}
 				else{
-					factory.getMutexList(rel)
+					rules.getMutexList(rel)
 				}
 			}
-			Expression: factory.getExpression(rel.exp)
+			Expression: rules.getExpression(rel.exp)
 			Visibility: {
 				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
 				for(r: rel.children.ids){
 					relations.add(parseRelation(r.exp))
 				}
-				factory.getVisibility(rel, relations)
+				rules.getVisibility(rel, relations)
 			}
 			MultInstantiation: '''n.y.i'''
 			QImplies: '''n.y.i'''
@@ -281,8 +281,8 @@ import com.coffee.hlvl.ComplexImplies
 		return parents
 		
 	}
-	override void setFactory( CodeFactory factory){
-		this.factory= factory
+	override void setFactory( TransformationRules factory){
+		this.rules= factory
 	}
 	
 	override String getOperations(long time){

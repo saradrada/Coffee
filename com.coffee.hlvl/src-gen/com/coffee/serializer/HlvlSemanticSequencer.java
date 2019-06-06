@@ -577,7 +577,14 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ElmDeclaration returns ElmDeclaration
 	 *
 	 * Constraint:
-	 *     (att='att'? dataType=DataType name=ID declaration=Declaration comment=STRING?)
+	 *     (
+	 *         att='att'? 
+	 *         inst='instantiable'? 
+	 *         dataType=DataType 
+	 *         name=ID 
+	 *         declaration=Declaration 
+	 *         comment=STRING?
+	 *     )
 	 */
 	protected void sequence_ElmDeclaration(ISerializationContext context, ElmDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

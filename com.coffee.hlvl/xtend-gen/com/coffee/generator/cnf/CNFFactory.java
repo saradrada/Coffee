@@ -1,7 +1,7 @@
 package com.coffee.generator.cnf;
 
-import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
+import com.coffee.generator.TransformationRules;
 import com.coffee.generator.common.ExpressionsParser;
 import com.coffee.generator.minizinc.IConstants;
 import com.coffee.hlvl.BoolVal;
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class CNFFactory extends CodeFactory implements IConstants {
+public class CNFFactory extends TransformationRules implements IConstants {
   private int visibility = 0;
   
   private ExpressionsParser expressionsParser;

@@ -1,7 +1,7 @@
 package com.coffee.generator.rules.bools;
 
-import com.coffee.generator.CodeFactory;
 import com.coffee.generator.Dialect;
+import com.coffee.generator.TransformationRules;
 import com.coffee.generator.common.ExpressionsParser;
 import com.coffee.generator.minizinc.IConstants;
 import com.coffee.hlvl.BoolVal;
@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class BoolFactory extends CodeFactory implements IConstants {
-  private int visibility = 0;
+public class BoolFactory extends TransformationRules implements IConstants {
+  private int visibilityIdCounter = 0;
   
   private ExpressionsParser expressionsParser;
   
@@ -356,14 +356,14 @@ public class BoolFactory extends CodeFactory implements IConstants {
     {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("var bool: B");
-      _builder.append(this.visibility);
+      _builder.append(this.visibilityIdCounter);
       _builder.append(" ;");
       _builder.newLineIfNotEmpty();
       _builder.append("constraint ");
       CharSequence _parse = this.expressionsParser.parse(rel.getCondition(), Dialect.BOOL);
       _builder.append(_parse);
       _builder.append(" -> B");
-      _builder.append(this.visibility);
+      _builder.append(this.visibilityIdCounter);
       _builder.append(";");
       _builder.newLineIfNotEmpty();
       String out = _builder.toString();
@@ -371,14 +371,14 @@ public class BoolFactory extends CodeFactory implements IConstants {
         String _out = out;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("constraint B");
-        _builder_1.append(this.visibility);
+        _builder_1.append(this.visibilityIdCounter);
         _builder_1.append("  <-> ");
         CharSequence _subSequence = r.subSequence(10, r.length());
         _builder_1.append(_subSequence);
         _builder_1.newLineIfNotEmpty();
         out = (_out + _builder_1);
       }
-      this.visibility++;
+      this.visibilityIdCounter++;
       _xblockexpression = out;
     }
     return _xblockexpression;
