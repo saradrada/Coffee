@@ -1,0 +1,7 @@
+model testCommon
+elements:
+ boolean A
+ boolean B
+relations:
+ r1: common(A,B)
+
