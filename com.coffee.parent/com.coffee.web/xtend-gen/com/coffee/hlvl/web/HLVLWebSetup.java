@@ -3,8 +3,13 @@
  */
 package com.coffee.hlvl.web;
 
+import com.coffee.hlvl.HLVLRuntimeModule;
 import com.coffee.hlvl.HLVLStandaloneSetup;
+import com.coffee.hlvl.ide.HLVLIdeModule;
+import com.coffee.hlvl.web.HLVLWebModule;
+import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.eclipse.xtext.util.Modules2;
 
 /**
  * Initialization support for running Xtext languages in web applications.
@@ -13,9 +18,9 @@ import com.google.inject.Injector;
 public class HLVLWebSetup extends HLVLStandaloneSetup {
   @Override
   public Injector createInjector() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from HLVLRuntimeModule to Module"
-      + "\nType mismatch: cannot convert from HLVLIdeModule to Module"
-      + "\nType mismatch: cannot convert from HLVLWebModule to Module");
+    HLVLRuntimeModule _hLVLRuntimeModule = new HLVLRuntimeModule();
+    HLVLIdeModule _hLVLIdeModule = new HLVLIdeModule();
+    HLVLWebModule _hLVLWebModule = new HLVLWebModule();
+    return Guice.createInjector(Modules2.mixin(_hLVLRuntimeModule, _hLVLIdeModule, _hLVLWebModule));
   }
 }

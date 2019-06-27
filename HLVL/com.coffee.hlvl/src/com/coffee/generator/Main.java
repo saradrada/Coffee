@@ -28,7 +28,7 @@ import org.eclipse.xtext.validation.Issue;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
 			System.err.println("Aborting: no path to EMF resource provided!");
 			return;

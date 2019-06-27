@@ -38,7 +38,6 @@ public class HLVLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVarListAccess().getOperatorAlternatives_0_0(), "rule__VarList__OperatorAlternatives_0_0");
 					put(grammarAccess.getHierarchyAccess().getAlternatives(), "rule__Hierarchy__Alternatives");
 					put(grammarAccess.getWildcardAccess().getAlternatives(), "rule__Wildcard__Alternatives");
-					put(grammarAccess.getHiddenAccess().getAlternatives(), "rule__Hidden__Alternatives");
 					put(grammarAccess.getOrderAccess().getAlternatives(), "rule__Order__Alternatives");
 					put(grammarAccess.getEqualityAccess().getOpAlternatives_1_1_0(), "rule__Equality__OpAlternatives_1_1_0");
 					put(grammarAccess.getComparisonAccess().getOpAlternatives_1_1_0(), "rule__Comparison__OpAlternatives_1_1_0");
@@ -117,9 +116,9 @@ public class HLVLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getListOfValuesAccess().getGroup(), "rule__ListOfValues__Group__0");
 					put(grammarAccess.getListOfValuesAccess().getGroup_1(), "rule__ListOfValues__Group_1__0");
 					put(grammarAccess.getListOfIDsAccess().getGroup(), "rule__ListOfIDs__Group__0");
-					put(grammarAccess.getListOfIDsAccess().getGroup_1(), "rule__ListOfIDs__Group_1__0");
+					put(grammarAccess.getListOfIDsAccess().getGroup_2(), "rule__ListOfIDs__Group_2__0");
 					put(grammarAccess.getListOfRelRefsAccess().getGroup(), "rule__ListOfRelRefs__Group__0");
-					put(grammarAccess.getListOfRelRefsAccess().getGroup_1(), "rule__ListOfRelRefs__Group_1__0");
+					put(grammarAccess.getListOfRelRefsAccess().getGroup_2(), "rule__ListOfRelRefs__Group_2__0");
 					put(grammarAccess.getNamesAccess().getGroup(), "rule__Names__Group__0");
 					put(grammarAccess.getNamesAccess().getGroup_1(), "rule__Names__Group_1__0");
 					put(grammarAccess.getValuationAccess().getGroup(), "rule__Valuation__Group__0");
@@ -213,10 +212,10 @@ public class HLVLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSymbolAccess().getValueAssignment(), "rule__Symbol__ValueAssignment");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_0(), "rule__ListOfValues__ValuesAssignment_0");
 					put(grammarAccess.getListOfValuesAccess().getValuesAssignment_1_1(), "rule__ListOfValues__ValuesAssignment_1_1");
-					put(grammarAccess.getListOfIDsAccess().getValuesAssignment_0(), "rule__ListOfIDs__ValuesAssignment_0");
-					put(grammarAccess.getListOfIDsAccess().getValuesAssignment_1_1(), "rule__ListOfIDs__ValuesAssignment_1_1");
-					put(grammarAccess.getListOfRelRefsAccess().getIdsAssignment_0(), "rule__ListOfRelRefs__IdsAssignment_0");
-					put(grammarAccess.getListOfRelRefsAccess().getIdsAssignment_1_1(), "rule__ListOfRelRefs__IdsAssignment_1_1");
+					put(grammarAccess.getListOfIDsAccess().getValuesAssignment_1(), "rule__ListOfIDs__ValuesAssignment_1");
+					put(grammarAccess.getListOfIDsAccess().getValuesAssignment_2_1(), "rule__ListOfIDs__ValuesAssignment_2_1");
+					put(grammarAccess.getListOfRelRefsAccess().getIdsAssignment_1(), "rule__ListOfRelRefs__IdsAssignment_1");
+					put(grammarAccess.getListOfRelRefsAccess().getIdsAssignment_2_1(), "rule__ListOfRelRefs__IdsAssignment_2_1");
 					put(grammarAccess.getNamesAccess().getIdsAssignment_0(), "rule__Names__IdsAssignment_0");
 					put(grammarAccess.getNamesAccess().getIdsAssignment_1_1(), "rule__Names__IdsAssignment_1_1");
 					put(grammarAccess.getValuationAccess().getElementAssignment_1(), "rule__Valuation__ElementAssignment_1");
