@@ -85,6 +85,7 @@ public class Main {
 //		context.setCancelIndicator(CancelIndicator.NullImpl);
 //		generator.generate(resource, fileAccess, context);
 		
+		//FIXME retornar un string
 
 		System.out.println("Code generation finished.");
 	}
