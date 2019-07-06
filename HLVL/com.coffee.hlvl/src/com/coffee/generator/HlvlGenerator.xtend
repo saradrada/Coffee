@@ -30,18 +30,13 @@ class HlvlGenerator extends AbstractGenerator {
 	private boolean instantiable =false;
 	private boolean attributes= false;
 	private IGenerator generator;
-	//FIXME cambio de estos nombres
-	private  Model modelGlobal;
-	private String modelNameGlobal;
-	
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 // obtaining the name of the model from the source code
 		val modelName= modelName(resource.contents.head as Model)
-		modelNameGlobal= modelName
 		// obtaining the model
 		val model= resource.contents.head as Model
-		modelGlobal= model
+		
 		//obtaining the type of problem
 		val dialect= setDialect(model)
 		
@@ -75,7 +70,6 @@ class HlvlGenerator extends AbstractGenerator {
 		return name
 	}
 	
-
 	/**
 	 * Method that determines the dialect used to specify the model
 	 * using the  

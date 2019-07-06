@@ -1,0 +1,26 @@
+model Ex4_MCS_attributes
+variables:
+boolean MCS
+boolean FeedBack
+boolean Memory
+integer Size values: 0..32
+boolean Processor
+integer Cores values: 0..7
+boolean PosSensor
+boolean SpeedSensor
+boolean Visual
+boolean Audio
+boolean Vibration
+constraints:
+c0: MCS is root
+c1: structural: MCS variants:[Processor, Memory, FeedBack, PosSensor, SpeedSensor]
+c2: Processor is optional
+c3: SpeedSensor is optional
+c4: Memory is optional
+c5: PosSensor is optional
+c6: FeedBack is optional
+c7: structural: FeedBack variants:[Visual, Audio, Vibration] card:[1,2]
+c8: attributes:  [Size] of Memory
+c9: attributes: [Cores] of Processor 
+
+

@@ -1,0 +1,13 @@
+model Ex3_SousaQuantified
+variables:
+boolean A
+instantiable [1,2] boolean B
+instantiable [1,10] boolean C
+instantiable [1,2] boolean D
+instantiable [1,2] boolean E
+constraints:
+c0: A is root
+c1: structural: A variants:[B]
+c2: structural: B variants:[D, C]
+c3: structural: D variants:[E]
+c4: [5,10] C requires [2,2] E 
