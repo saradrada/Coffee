@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.coffee.hlvl.impl.VisibilityImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.VisibilityImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.VisibilityImpl#getList <em>List</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,14 +43,14 @@ public class VisibilityImpl extends RelationImpl implements Visibility
   protected Relational condition;
 
   /**
-   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference.
+   * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChildren()
+   * @see #getList()
    * @generated
    * @ordered
    */
-  protected ListOfRelRefs children;
+  protected ListOfRelRefs list;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,9 +126,9 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public ListOfRelRefs getChildren()
+  public ListOfRelRefs getList()
   {
-    return children;
+    return list;
   }
 
   /**
@@ -136,13 +136,13 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetChildren(ListOfRelRefs newChildren, NotificationChain msgs)
+  public NotificationChain basicSetList(ListOfRelRefs newList, NotificationChain msgs)
   {
-    ListOfRelRefs oldChildren = children;
-    children = newChildren;
+    ListOfRelRefs oldList = list;
+    list = newList;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__CHILDREN, oldChildren, newChildren);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__LIST, oldList, newList);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -153,20 +153,20 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setChildren(ListOfRelRefs newChildren)
+  public void setList(ListOfRelRefs newList)
   {
-    if (newChildren != children)
+    if (newList != list)
     {
       NotificationChain msgs = null;
-      if (children != null)
-        msgs = ((InternalEObject)children).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__CHILDREN, null, msgs);
-      if (newChildren != null)
-        msgs = ((InternalEObject)newChildren).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__CHILDREN, null, msgs);
-      msgs = basicSetChildren(newChildren, msgs);
+      if (list != null)
+        msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__LIST, null, msgs);
+      if (newList != null)
+        msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.VISIBILITY__LIST, null, msgs);
+      msgs = basicSetList(newList, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__CHILDREN, newChildren, newChildren));
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.VISIBILITY__LIST, newList, newList));
   }
 
   /**
@@ -181,8 +181,8 @@ public class VisibilityImpl extends RelationImpl implements Visibility
     {
       case HlvlPackage.VISIBILITY__CONDITION:
         return basicSetCondition(null, msgs);
-      case HlvlPackage.VISIBILITY__CHILDREN:
-        return basicSetChildren(null, msgs);
+      case HlvlPackage.VISIBILITY__LIST:
+        return basicSetList(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -199,8 +199,8 @@ public class VisibilityImpl extends RelationImpl implements Visibility
     {
       case HlvlPackage.VISIBILITY__CONDITION:
         return getCondition();
-      case HlvlPackage.VISIBILITY__CHILDREN:
-        return getChildren();
+      case HlvlPackage.VISIBILITY__LIST:
+        return getList();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -218,8 +218,8 @@ public class VisibilityImpl extends RelationImpl implements Visibility
       case HlvlPackage.VISIBILITY__CONDITION:
         setCondition((Relational)newValue);
         return;
-      case HlvlPackage.VISIBILITY__CHILDREN:
-        setChildren((ListOfRelRefs)newValue);
+      case HlvlPackage.VISIBILITY__LIST:
+        setList((ListOfRelRefs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,8 +238,8 @@ public class VisibilityImpl extends RelationImpl implements Visibility
       case HlvlPackage.VISIBILITY__CONDITION:
         setCondition((Relational)null);
         return;
-      case HlvlPackage.VISIBILITY__CHILDREN:
-        setChildren((ListOfRelRefs)null);
+      case HlvlPackage.VISIBILITY__LIST:
+        setList((ListOfRelRefs)null);
         return;
     }
     super.eUnset(featureID);
@@ -257,8 +257,8 @@ public class VisibilityImpl extends RelationImpl implements Visibility
     {
       case HlvlPackage.VISIBILITY__CONDITION:
         return condition != null;
-      case HlvlPackage.VISIBILITY__CHILDREN:
-        return children != null;
+      case HlvlPackage.VISIBILITY__LIST:
+        return list != null;
     }
     return super.eIsSet(featureID);
   }

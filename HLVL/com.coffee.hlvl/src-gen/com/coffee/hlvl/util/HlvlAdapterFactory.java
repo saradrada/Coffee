@@ -4,13 +4,15 @@
 package com.coffee.hlvl.util;
 
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Assign;
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
+import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
+import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
@@ -33,7 +35,6 @@ import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operation;
@@ -43,14 +44,13 @@ import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
+import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
@@ -181,14 +181,9 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createRelationAdapter();
       }
       @Override
-      public Adapter caseCore(Core object)
+      public Adapter caseCommon(Common object)
       {
-        return createCoreAdapter();
-      }
-      @Override
-      public Adapter caseMultInstantiation(MultInstantiation object)
-      {
-        return createMultInstantiationAdapter();
+        return createCommonAdapter();
       }
       @Override
       public Adapter casePair(Pair object)
@@ -201,9 +196,9 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createComplexImpliesAdapter();
       }
       @Override
-      public Adapter caseQImplies(QImplies object)
+      public Adapter caseComplexMutex(ComplexMutex object)
       {
-        return createQImpliesAdapter();
+        return createComplexMutexAdapter();
       }
       @Override
       public Adapter caseVarList(VarList object)
@@ -391,9 +386,14 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createAttributeRefAdapter();
       }
       @Override
-      public Adapter caseStringConstant(StringConstant object)
+      public Adapter caseAssign(Assign object)
       {
-        return createStringConstantAdapter();
+        return createAssignAdapter();
+      }
+      @Override
+      public Adapter caseSymbolConstant(SymbolConstant object)
+      {
+        return createSymbolConstantAdapter();
       }
       @Override
       public Adapter caseIntConstant(IntConstant object)
@@ -583,31 +583,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Core <em>Core</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Common <em>Common</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.Core
+   * @see com.coffee.hlvl.Common
    * @generated
    */
-  public Adapter createCoreAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.MultInstantiation <em>Mult Instantiation</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.MultInstantiation
-   * @generated
-   */
-  public Adapter createMultInstantiationAdapter()
+  public Adapter createCommonAdapter()
   {
     return null;
   }
@@ -643,16 +628,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.QImplies <em>QImplies</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ComplexMutex <em>Complex Mutex</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.QImplies
+   * @see com.coffee.hlvl.ComplexMutex
    * @generated
    */
-  public Adapter createQImpliesAdapter()
+  public Adapter createComplexMutexAdapter()
   {
     return null;
   }
@@ -1213,16 +1198,31 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.StringConstant <em>String Constant</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Assign <em>Assign</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.StringConstant
+   * @see com.coffee.hlvl.Assign
    * @generated
    */
-  public Adapter createStringConstantAdapter()
+  public Adapter createAssignAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.SymbolConstant <em>Symbol Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.SymbolConstant
+   * @generated
+   */
+  public Adapter createSymbolConstantAdapter()
   {
     return null;
   }

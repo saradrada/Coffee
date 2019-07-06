@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.coffee.hlvl.impl.HierarchyImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.HierarchyImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.HierarchyImpl#getMin <em>Min</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +52,26 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
    * @ordered
    */
   protected ListOfIDs children;
+
+  /**
+   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected static final int MIN_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected int min = MIN_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -169,6 +190,29 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getMin()
+  {
+    return min;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMin(int newMin)
+  {
+    int oldMin = min;
+    min = newMin;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.HIERARCHY__MIN, oldMin, min));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -195,6 +239,8 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
         return basicGetParent();
       case HlvlPackage.HIERARCHY__CHILDREN:
         return getChildren();
+      case HlvlPackage.HIERARCHY__MIN:
+        return getMin();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -214,6 +260,9 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
         return;
       case HlvlPackage.HIERARCHY__CHILDREN:
         setChildren((ListOfIDs)newValue);
+        return;
+      case HlvlPackage.HIERARCHY__MIN:
+        setMin((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,6 +284,9 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
       case HlvlPackage.HIERARCHY__CHILDREN:
         setChildren((ListOfIDs)null);
         return;
+      case HlvlPackage.HIERARCHY__MIN:
+        setMin(MIN_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -253,8 +305,27 @@ public class HierarchyImpl extends RelationImpl implements Hierarchy
         return parent != null;
       case HlvlPackage.HIERARCHY__CHILDREN:
         return children != null;
+      case HlvlPackage.HIERARCHY__MIN:
+        return min != MIN_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (min: ");
+    result.append(min);
+    result.append(')');
+    return result.toString();
   }
 
 } //HierarchyImpl

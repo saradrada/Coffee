@@ -14,7 +14,6 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//ElmDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/att"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/inst"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/dataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ElmDeclaration/declaration"/>
@@ -40,13 +39,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//RelDeclaration/exp"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Relation"/>
-    <genClasses ecoreClass="Hlvl.ecore#//Core">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Core/elements"/>
-    </genClasses>
-    <genClasses ecoreClass="Hlvl.ecore#//MultInstantiation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//MultInstantiation/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//MultInstantiation/min"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//MultInstantiation/max"/>
+    <genClasses ecoreClass="Hlvl.ecore#//Common">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Common/elements"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Pair">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Pair/operator"/>
@@ -57,13 +51,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ComplexImplies/exp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ComplexImplies/elements"/>
     </genClasses>
-    <genClasses ecoreClass="Hlvl.ecore#//QImplies">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/mina"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/maxa"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//QImplies/var1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/minb"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//QImplies/maxb"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//QImplies/var2"/>
+    <genClasses ecoreClass="Hlvl.ecore#//ComplexMutex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ComplexMutex/exp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ComplexMutex/elements"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//VarList">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//VarList/operator"/>
@@ -73,12 +63,12 @@
     <genClasses ecoreClass="Hlvl.ecore#//Hierarchy">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Hierarchy/parent"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Hierarchy/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Hierarchy/min"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Decomposition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Decomposition/cardinality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Decomposition/max"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Group">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Group/min"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Group/max"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Range">
@@ -86,7 +76,7 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Visibility">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Visibility/condition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Visibility/children"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Visibility/list"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Order">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//Order/operator"/>
@@ -193,8 +183,12 @@
     <genClasses ecoreClass="Hlvl.ecore#//AttributeRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//AttributeRef/attribute"/>
     </genClasses>
-    <genClasses ecoreClass="Hlvl.ecore#//StringConstant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//StringConstant/value"/>
+    <genClasses ecoreClass="Hlvl.ecore#//Assign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Assign/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Assign/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//SymbolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//SymbolConstant/value"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//IntConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//IntConstant/value"/>

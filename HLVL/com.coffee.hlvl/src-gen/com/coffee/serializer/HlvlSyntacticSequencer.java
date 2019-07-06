@@ -20,9 +20,9 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected HlvlGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ListOfIDs_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_ListOfIDs_CommaKeyword_2_0_p;
 	protected AbstractElementAlias match_ListOfListValues_CommaKeyword_3_0_p;
-	protected AbstractElementAlias match_ListOfRelRefs_CommaKeyword_1_0_p;
+	protected AbstractElementAlias match_ListOfRelRefs_CommaKeyword_2_0_p;
 	protected AbstractElementAlias match_ListOfValuation_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_ListOfValues_CommaKeyword_1_0_p;
 	protected AbstractElementAlias match_Names_CommaKeyword_1_0_p;
@@ -33,9 +33,9 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (HlvlGrammarAccess) access;
-		match_ListOfIDs_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfIDsAccess().getCommaKeyword_1_0());
+		match_ListOfIDs_CommaKeyword_2_0_p = new TokenAlias(true, false, grammarAccess.getListOfIDsAccess().getCommaKeyword_2_0());
 		match_ListOfListValues_CommaKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getListOfListValuesAccess().getCommaKeyword_3_0());
-		match_ListOfRelRefs_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfRelRefsAccess().getCommaKeyword_1_0());
+		match_ListOfRelRefs_CommaKeyword_2_0_p = new TokenAlias(true, false, grammarAccess.getListOfRelRefsAccess().getCommaKeyword_2_0());
 		match_ListOfValuation_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuationAccess().getCommaKeyword_1_0());
 		match_ListOfValues_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
 		match_Names_CommaKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getNamesAccess().getCommaKeyword_1_0());
@@ -56,12 +56,12 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ListOfIDs_CommaKeyword_1_0_p.equals(syntax))
-				emit_ListOfIDs_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_ListOfIDs_CommaKeyword_2_0_p.equals(syntax))
+				emit_ListOfIDs_CommaKeyword_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ListOfListValues_CommaKeyword_3_0_p.equals(syntax))
 				emit_ListOfListValues_CommaKeyword_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ListOfRelRefs_CommaKeyword_1_0_p.equals(syntax))
-				emit_ListOfRelRefs_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ListOfRelRefs_CommaKeyword_2_0_p.equals(syntax))
+				emit_ListOfRelRefs_CommaKeyword_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ListOfValuation_CommaKeyword_1_0_p.equals(syntax))
 				emit_ListOfValuation_CommaKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ListOfValues_CommaKeyword_1_0_p.equals(syntax))
@@ -85,7 +85,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     values+=[ElmDeclaration|ID] (ambiguity) values+=[ElmDeclaration|ID]
 	 */
-	protected void emit_ListOfIDs_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ListOfIDs_CommaKeyword_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -107,7 +107,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     ids+=[RelDeclaration|ID] (ambiguity) ids+=[RelDeclaration|ID]
 	 */
-	protected void emit_ListOfRelRefs_CommaKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ListOfRelRefs_CommaKeyword_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

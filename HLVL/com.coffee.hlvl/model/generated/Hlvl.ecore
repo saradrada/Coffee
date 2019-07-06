@@ -12,7 +12,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inst" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//Declaration"
@@ -43,15 +42,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Core" eSuperTypes="#//Relation">
+  <eClassifiers xsi:type="ecore:EClass" name="Common" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MultInstantiation" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//ElmDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="min" eType="#//Number"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Number"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pair" eSuperTypes="#//Relation">
@@ -60,18 +52,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="var2" eType="#//ElmDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComplexImplies" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QImplies" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mina" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxa" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="var1" eType="#//ElmDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="var2" eType="#//ElmDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexMutex" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarList" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -83,12 +73,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElmDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfIDs"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//Hierarchy">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Hierarchy">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Range" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Range">
@@ -97,7 +87,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Visibility" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Relational"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfRelRefs"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfRelRefs"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="#//Relation">
@@ -237,7 +227,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="AttributeRef" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringConstant" eSuperTypes="#//Relational">
+  <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymbolConstant" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntConstant" eSuperTypes="#//Relational">

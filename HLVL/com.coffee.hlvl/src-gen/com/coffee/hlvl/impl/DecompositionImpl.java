@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getMax <em>Max</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +28,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class DecompositionImpl extends HierarchyImpl implements Decomposition
 {
   /**
-   * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
+   * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCardinality()
+   * @see #getMax()
    * @generated
    * @ordered
    */
-  protected static final int CARDINALITY_EDEFAULT = 0;
+  protected static final int MAX_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
+   * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCardinality()
+   * @see #getMax()
    * @generated
    * @ordered
    */
-  protected int cardinality = CARDINALITY_EDEFAULT;
+  protected int max = MAX_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,9 +73,9 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getCardinality()
+  public int getMax()
   {
-    return cardinality;
+    return max;
   }
 
   /**
@@ -83,12 +83,12 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCardinality(int newCardinality)
+  public void setMax(int newMax)
   {
-    int oldCardinality = cardinality;
-    cardinality = newCardinality;
+    int oldMax = max;
+    max = newMax;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__CARDINALITY, oldCardinality, cardinality));
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__MAX, oldMax, max));
   }
 
   /**
@@ -101,8 +101,8 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
-      case HlvlPackage.DECOMPOSITION__CARDINALITY:
-        return getCardinality();
+      case HlvlPackage.DECOMPOSITION__MAX:
+        return getMax();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +117,8 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
-      case HlvlPackage.DECOMPOSITION__CARDINALITY:
-        setCardinality((Integer)newValue);
+      case HlvlPackage.DECOMPOSITION__MAX:
+        setMax((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
-      case HlvlPackage.DECOMPOSITION__CARDINALITY:
-        setCardinality(CARDINALITY_EDEFAULT);
+      case HlvlPackage.DECOMPOSITION__MAX:
+        setMax(MAX_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +151,8 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
-      case HlvlPackage.DECOMPOSITION__CARDINALITY:
-        return cardinality != CARDINALITY_EDEFAULT;
+      case HlvlPackage.DECOMPOSITION__MAX:
+        return max != MAX_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -168,8 +168,8 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (cardinality: ");
-    result.append(cardinality);
+    result.append(" (max: ");
+    result.append(max);
     result.append(')');
     return result.toString();
   }

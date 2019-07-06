@@ -114,22 +114,13 @@ public interface HlvlFactory extends EFactory
   Relation createRelation();
 
   /**
-   * Returns a new object of class '<em>Core</em>'.
+   * Returns a new object of class '<em>Common</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Core</em>'.
+   * @return a new object of class '<em>Common</em>'.
    * @generated
    */
-  Core createCore();
-
-  /**
-   * Returns a new object of class '<em>Mult Instantiation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Mult Instantiation</em>'.
-   * @generated
-   */
-  MultInstantiation createMultInstantiation();
+  Common createCommon();
 
   /**
    * Returns a new object of class '<em>Pair</em>'.
@@ -150,13 +141,13 @@ public interface HlvlFactory extends EFactory
   ComplexImplies createComplexImplies();
 
   /**
-   * Returns a new object of class '<em>QImplies</em>'.
+   * Returns a new object of class '<em>Complex Mutex</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>QImplies</em>'.
+   * @return a new object of class '<em>Complex Mutex</em>'.
    * @generated
    */
-  QImplies createQImplies();
+  ComplexMutex createComplexMutex();
 
   /**
    * Returns a new object of class '<em>Var List</em>'.
@@ -492,13 +483,22 @@ public interface HlvlFactory extends EFactory
   AttributeRef createAttributeRef();
 
   /**
-   * Returns a new object of class '<em>String Constant</em>'.
+   * Returns a new object of class '<em>Assign</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Constant</em>'.
+   * @return a new object of class '<em>Assign</em>'.
    * @generated
    */
-  StringConstant createStringConstant();
+  Assign createAssign();
+
+  /**
+   * Returns a new object of class '<em>Symbol Constant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Symbol Constant</em>'.
+   * @generated
+   */
+  SymbolConstant createSymbolConstant();
 
   /**
    * Returns a new object of class '<em>Int Constant</em>'.
