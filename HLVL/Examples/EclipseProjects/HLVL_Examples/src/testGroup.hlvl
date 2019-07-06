@@ -1,0 +1,8 @@
+model testGroup
+elements:
+  	boolean payment
+	boolean payPal
+	boolean card
+relations:
+  g1: group(payment, [payPal, card])[1,*]
+

@@ -1,0 +1,16 @@
+model testDecomposition
+elements:
+	boolean card
+	boolean creditCard
+	boolean giftCard
+	boolean debitCard
+	boolean payPal
+	att integer confidentiality variants: 1..5
+	att integer confidentialityBounded is 2
+	att integer certificateType variants: 1..5
+relations:
+	dc1: decomposition(card, [giftCard, debitCard])<0>
+	dc2: decomposition(card, [creditCard])<1>
+	att1:decomposition(payPal,[confidentiality,certificateType])<1>
+	att2:decomposition(card,[confidentiality,certificateType])<1> 
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.coffee.hlvl.generator" project="com.coffee" 
+    file="/com.coffee/src/com/coffee/hlvl/generator" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="52" width="195" x="182" y="54"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.coffee.hlvl.generator.boolParser" project="com.coffee" 
+    file="/com.coffee/src/com/coffee/hlvl/generator/boolParser" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="271" y="191"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="com.coffee.hlvl.generator.commons" project="com.coffee" 
+    file="/com.coffee/src/com/coffee/hlvl/generator/commons" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="309" y="301"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <dependency id="4">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="5">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

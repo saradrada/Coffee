@@ -7,10 +7,17 @@ import com.coffee.HlvlStandaloneSetup;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xtext.generator.GeneratorContext;
 import org.eclipse.xtext.generator.GeneratorDelegate;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
@@ -21,7 +28,7 @@ import org.eclipse.xtext.validation.Issue;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
 			System.err.println("Aborting: no path to EMF resource provided!");
 			return;
@@ -43,10 +50,15 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string) {
+	public void runGenerator(String string) throws IOException {
 		// Load the resource
-		ResourceSet set = resourceSetProvider.get();
-		Resource resource = set.getResource(URI.createFileURI(string), true);
+		//ResourceSet set = resourceSetProvider.get();
+		//Resource resource = set.getResource(URI.createFileURI(string), true);
+		
+		//FIXME to process strings and not files
+		final XMIResource resource = new XMIResourceImpl();
+		final URIConverter.ReadableInputStream stream = new URIConverter.ReadableInputStream(new StringReader(string));
+		resource.load(stream, Collections.EMPTY_MAP);
 
 		// Validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);

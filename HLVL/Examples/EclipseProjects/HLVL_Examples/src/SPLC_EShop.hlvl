@@ -8,7 +8,6 @@ elements:
 	boolean customerProfile
 	boolean payment
 	boolean payPal
-	boolean SMS
 	boolean card
 	boolean creditCard
 	boolean giftCard
@@ -18,15 +17,16 @@ elements:
 	att integer confidentiality variants: 1..5
 	att integer confidentialityBounded is 2
 	att integer certificateType variants: 1..5
-	boolean productType
+	symbolic productType variants: ['services' , 'goods'] 
+						 comment: {"What is the product type?"}
 relations:
 	com1: common(customerType, payment)
 	//mutex
 	m1: mutex(creditCard, insecureConnection) 
-	m2: mutex(customerType='sporadic',[giftCard,creditCard])
+	m2: mutex((customerType='sporadic'),[giftCard,creditCard])
 	//implications 
 	imp1:implies(payPal, secureConnection)
-	imp2: implies(customerType='regular', [secure,customerProfile])
+	imp2: implies((customerType='regular'), [secureConnection,customerProfile])
 	imp3: [2, 4] appServer implies [1, 5] serverMachines
 	//decompositions
 	dc1: decomposition(card, [giftCard, debitCard])<0>
@@ -36,7 +36,7 @@ relations:
 	g1: group(payment, [payPal, card])[1,*]
 	g2: group(connection, [secureConnection, insecureConnection])[1,1]
 	//visibility
-	v1: visibility(productType = 'services', [VR1, VR2])
+	v1: visibility((productType = 'services'), [VR1, VR2])
 	// expression
 	exp1: expression(3 <= card.confidentiality AND 
                              card.confidentiality <= 5)
