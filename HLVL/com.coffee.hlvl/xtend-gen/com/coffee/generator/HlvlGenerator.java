@@ -42,18 +42,12 @@ public class HlvlGenerator extends AbstractGenerator {
   
   private IGenerator generator;
   
-  private Model modelGlobal;
-  
-  private String modelNameGlobal;
-  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     final String modelName = this.modelName(((Model) _head));
-    this.modelNameGlobal = modelName;
     EObject _head_1 = IterableExtensions.<EObject>head(resource.getContents());
     final Model model = ((Model) _head_1);
-    this.modelGlobal = model;
     final Dialect dialect = this.setDialect(model);
     final long startTime = System.currentTimeMillis();
     boolean _equals = Objects.equal(dialect, Dialect.BOOL);

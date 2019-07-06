@@ -1,0 +1,15 @@
+model EX1_PLM_Michel_2011
+variables:
+boolean Document
+boolean Type
+boolean Binding
+boolean Normal
+boolean Booklet
+boolean Top
+boolean Left
+boolean Right
+constraints:
+c0: Document is root
+c1: structural: Type variants: [Normal, Booklet] card: [1,1]
+c2: structural: Binding variants: [Top, Left, Right] card: [1,1]
+c3: Booklet excludes Binding
