@@ -13,7 +13,7 @@ package com.coffee.hlvl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.Decomposition#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link com.coffee.hlvl.Decomposition#getMax <em>Max</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getDecomposition()
@@ -23,29 +23,29 @@ package com.coffee.hlvl;
 public interface Decomposition extends Hierarchy
 {
   /**
-   * Returns the value of the '<em><b>Cardinality</b></em>' attribute.
+   * Returns the value of the '<em><b>Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Cardinality</em>' attribute isn't clear,
+   * If the meaning of the '<em>Max</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Cardinality</em>' attribute.
-   * @see #setCardinality(int)
-   * @see com.coffee.hlvl.HlvlPackage#getDecomposition_Cardinality()
+   * @return the value of the '<em>Max</em>' attribute.
+   * @see #setMax(int)
+   * @see com.coffee.hlvl.HlvlPackage#getDecomposition_Max()
    * @model
    * @generated
    */
-  int getCardinality();
+  int getMax();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Decomposition#getCardinality <em>Cardinality</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.hlvl.Decomposition#getMax <em>Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Cardinality</em>' attribute.
-   * @see #getCardinality()
+   * @param value the new value of the '<em>Max</em>' attribute.
+   * @see #getMax()
    * @generated
    */
-  void setCardinality(int value);
+  void setMax(int value);
 
 } // Decomposition

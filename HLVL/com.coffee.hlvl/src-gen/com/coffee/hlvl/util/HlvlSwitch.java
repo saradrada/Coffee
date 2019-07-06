@@ -4,13 +4,15 @@
 package com.coffee.hlvl.util;
 
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Assign;
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
+import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
+import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
@@ -33,7 +35,6 @@ import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operation;
@@ -43,14 +44,13 @@ import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
+import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
@@ -202,19 +202,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.CORE:
+      case HlvlPackage.COMMON:
       {
-        Core core = (Core)theEObject;
-        T result = caseCore(core);
-        if (result == null) result = caseRelation(core);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.MULT_INSTANTIATION:
-      {
-        MultInstantiation multInstantiation = (MultInstantiation)theEObject;
-        T result = caseMultInstantiation(multInstantiation);
-        if (result == null) result = caseRelation(multInstantiation);
+        Common common = (Common)theEObject;
+        T result = caseCommon(common);
+        if (result == null) result = caseRelation(common);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -234,11 +226,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.QIMPLIES:
+      case HlvlPackage.COMPLEX_MUTEX:
       {
-        QImplies qImplies = (QImplies)theEObject;
-        T result = caseQImplies(qImplies);
-        if (result == null) result = caseRelation(qImplies);
+        ComplexMutex complexMutex = (ComplexMutex)theEObject;
+        T result = caseComplexMutex(complexMutex);
+        if (result == null) result = caseRelation(complexMutex);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -528,11 +520,19 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.STRING_CONSTANT:
+      case HlvlPackage.ASSIGN:
       {
-        StringConstant stringConstant = (StringConstant)theEObject;
-        T result = caseStringConstant(stringConstant);
-        if (result == null) result = caseRelational(stringConstant);
+        Assign assign = (Assign)theEObject;
+        T result = caseAssign(assign);
+        if (result == null) result = caseRelational(assign);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.SYMBOL_CONSTANT:
+      {
+        SymbolConstant symbolConstant = (SymbolConstant)theEObject;
+        T result = caseSymbolConstant(symbolConstant);
+        if (result == null) result = caseRelational(symbolConstant);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -725,33 +725,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Core</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Common</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Core</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Common</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCore(Core object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Mult Instantiation</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mult Instantiation</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseMultInstantiation(MultInstantiation object)
+  public T caseCommon(Common object)
   {
     return null;
   }
@@ -789,17 +773,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>QImplies</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Complex Mutex</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>QImplies</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Complex Mutex</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseQImplies(QImplies object)
+  public T caseComplexMutex(ComplexMutex object)
   {
     return null;
   }
@@ -1397,17 +1381,33 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>String Constant</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Assign</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Constant</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Assign</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStringConstant(StringConstant object)
+  public T caseAssign(Assign object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Symbol Constant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Symbol Constant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSymbolConstant(SymbolConstant object)
   {
     return null;
   }

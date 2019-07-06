@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getAtt <em>Att</em>}</li>
- *   <li>{@link com.coffee.hlvl.ElmDeclaration#getInst <em>Inst</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getDataType <em>Data Type</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getDeclaration <em>Declaration</em>}</li>
@@ -53,32 +52,6 @@ public interface ElmDeclaration extends EObject
    * @generated
    */
   void setAtt(String value);
-
-  /**
-   * Returns the value of the '<em><b>Inst</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Inst</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Inst</em>' attribute.
-   * @see #setInst(String)
-   * @see com.coffee.hlvl.HlvlPackage#getElmDeclaration_Inst()
-   * @model
-   * @generated
-   */
-  String getInst();
-
-  /**
-   * Sets the value of the '{@link com.coffee.hlvl.ElmDeclaration#getInst <em>Inst</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Inst</em>' attribute.
-   * @see #getInst()
-   * @generated
-   */
-  void setInst(String value);
 
   /**
    * Returns the value of the '<em><b>Data Type</b></em>' attribute.

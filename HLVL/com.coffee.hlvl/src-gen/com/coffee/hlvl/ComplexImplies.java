@@ -32,12 +32,12 @@ public interface ComplexImplies extends Relation
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(Expression)
+   * @see #setExp(Relational)
    * @see com.coffee.hlvl.HlvlPackage#getComplexImplies_Exp()
    * @model containment="true"
    * @generated
    */
-  Expression getExp();
+  Relational getExp();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.ComplexImplies#getExp <em>Exp</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface ComplexImplies extends Relation
    * @see #getExp()
    * @generated
    */
-  void setExp(Expression value);
+  void setExp(Relational value);
 
   /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference.

@@ -14,7 +14,7 @@ package com.coffee.hlvl;
  * </p>
  * <ul>
  *   <li>{@link com.coffee.hlvl.Visibility#getCondition <em>Condition</em>}</li>
- *   <li>{@link com.coffee.hlvl.Visibility#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.Visibility#getList <em>List</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getVisibility()
@@ -50,29 +50,29 @@ public interface Visibility extends Relation
   void setCondition(Relational value);
 
   /**
-   * Returns the value of the '<em><b>Children</b></em>' containment reference.
+   * Returns the value of the '<em><b>List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Children</em>' containment reference isn't clear,
+   * If the meaning of the '<em>List</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Children</em>' containment reference.
-   * @see #setChildren(ListOfRelRefs)
-   * @see com.coffee.hlvl.HlvlPackage#getVisibility_Children()
+   * @return the value of the '<em>List</em>' containment reference.
+   * @see #setList(ListOfRelRefs)
+   * @see com.coffee.hlvl.HlvlPackage#getVisibility_List()
    * @model containment="true"
    * @generated
    */
-  ListOfRelRefs getChildren();
+  ListOfRelRefs getList();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Visibility#getChildren <em>Children</em>}' containment reference.
+   * Sets the value of the '{@link com.coffee.hlvl.Visibility#getList <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Children</em>' containment reference.
-   * @see #getChildren()
+   * @param value the new value of the '<em>List</em>' containment reference.
+   * @see #getList()
    * @generated
    */
-  void setChildren(ListOfRelRefs value);
+  void setList(ListOfRelRefs value);
 
 } // Visibility

@@ -4,13 +4,15 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Assign;
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
+import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
+import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
@@ -34,7 +36,6 @@ import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operation;
@@ -44,14 +45,13 @@ import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
+import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
@@ -151,14 +151,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass coreEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass multInstantiationEClass = null;
+  private EClass commonEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -179,7 +172,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass qImpliesEClass = null;
+  private EClass complexMutexEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -445,7 +438,14 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass stringConstantEClass = null;
+  private EClass assignEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass symbolConstantEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -606,7 +606,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_Inst()
+  public EAttribute getElmDeclaration_DataType()
   {
     return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(1);
   }
@@ -616,7 +616,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_DataType()
+  public EAttribute getElmDeclaration_Name()
   {
     return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(2);
   }
@@ -626,19 +626,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_Name()
-  {
-    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getElmDeclaration_Declaration()
   {
-    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(4);
+    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -648,7 +638,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    */
   public EAttribute getElmDeclaration_Comment()
   {
-    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -806,9 +796,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCore()
+  public EClass getCommon()
   {
-    return coreEClass;
+    return commonEClass;
   }
 
   /**
@@ -816,49 +806,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCore_Elements()
+  public EReference getCommon_Elements()
   {
-    return (EReference)coreEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getMultInstantiation()
-  {
-    return multInstantiationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMultInstantiation_Name()
-  {
-    return (EReference)multInstantiationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMultInstantiation_Min()
-  {
-    return (EReference)multInstantiationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMultInstantiation_Max()
-  {
-    return (EReference)multInstantiationEClass.getEStructuralFeatures().get(2);
+    return (EReference)commonEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -936,9 +886,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getQImplies()
+  public EClass getComplexMutex()
   {
-    return qImpliesEClass;
+    return complexMutexEClass;
   }
 
   /**
@@ -946,9 +896,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getQImplies_Mina()
+  public EReference getComplexMutex_Exp()
   {
-    return (EAttribute)qImpliesEClass.getEStructuralFeatures().get(0);
+    return (EReference)complexMutexEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -956,49 +906,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getQImplies_Maxa()
+  public EReference getComplexMutex_Elements()
   {
-    return (EAttribute)qImpliesEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getQImplies_Var1()
-  {
-    return (EReference)qImpliesEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getQImplies_Minb()
-  {
-    return (EAttribute)qImpliesEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getQImplies_Maxb()
-  {
-    return (EAttribute)qImpliesEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getQImplies_Var2()
-  {
-    return (EReference)qImpliesEClass.getEStructuralFeatures().get(5);
+    return (EReference)complexMutexEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1076,6 +986,16 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getHierarchy_Min()
+  {
+    return (EAttribute)hierarchyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDecomposition()
   {
     return decompositionEClass;
@@ -1086,7 +1006,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDecomposition_Cardinality()
+  public EAttribute getDecomposition_Max()
   {
     return (EAttribute)decompositionEClass.getEStructuralFeatures().get(0);
   }
@@ -1106,19 +1026,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getGroup_Min()
-  {
-    return (EAttribute)groupEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getGroup_Max()
   {
-    return (EReference)groupEClass.getEStructuralFeatures().get(1);
+    return (EReference)groupEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1166,7 +1076,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVisibility_Children()
+  public EReference getVisibility_List()
   {
     return (EReference)visibilityEClass.getEStructuralFeatures().get(1);
   }
@@ -1946,9 +1856,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getStringConstant()
+  public EClass getAssign()
   {
-    return stringConstantEClass;
+    return assignEClass;
   }
 
   /**
@@ -1956,9 +1866,39 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStringConstant_Value()
+  public EReference getAssign_Variable()
   {
-    return (EAttribute)stringConstantEClass.getEStructuralFeatures().get(0);
+    return (EReference)assignEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssign_Value()
+  {
+    return (EReference)assignEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSymbolConstant()
+  {
+    return symbolConstantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSymbolConstant_Value()
+  {
+    return (EAttribute)symbolConstantEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2059,7 +1999,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     elmDeclarationEClass = createEClass(ELM_DECLARATION);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__ATT);
-    createEAttribute(elmDeclarationEClass, ELM_DECLARATION__INST);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__DATA_TYPE);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__NAME);
     createEReference(elmDeclarationEClass, ELM_DECLARATION__DECLARATION);
@@ -2088,13 +2027,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     relationEClass = createEClass(RELATION);
 
-    coreEClass = createEClass(CORE);
-    createEReference(coreEClass, CORE__ELEMENTS);
-
-    multInstantiationEClass = createEClass(MULT_INSTANTIATION);
-    createEReference(multInstantiationEClass, MULT_INSTANTIATION__NAME);
-    createEReference(multInstantiationEClass, MULT_INSTANTIATION__MIN);
-    createEReference(multInstantiationEClass, MULT_INSTANTIATION__MAX);
+    commonEClass = createEClass(COMMON);
+    createEReference(commonEClass, COMMON__ELEMENTS);
 
     pairEClass = createEClass(PAIR);
     createEAttribute(pairEClass, PAIR__OPERATOR);
@@ -2105,13 +2039,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     createEReference(complexImpliesEClass, COMPLEX_IMPLIES__EXP);
     createEReference(complexImpliesEClass, COMPLEX_IMPLIES__ELEMENTS);
 
-    qImpliesEClass = createEClass(QIMPLIES);
-    createEAttribute(qImpliesEClass, QIMPLIES__MINA);
-    createEAttribute(qImpliesEClass, QIMPLIES__MAXA);
-    createEReference(qImpliesEClass, QIMPLIES__VAR1);
-    createEAttribute(qImpliesEClass, QIMPLIES__MINB);
-    createEAttribute(qImpliesEClass, QIMPLIES__MAXB);
-    createEReference(qImpliesEClass, QIMPLIES__VAR2);
+    complexMutexEClass = createEClass(COMPLEX_MUTEX);
+    createEReference(complexMutexEClass, COMPLEX_MUTEX__EXP);
+    createEReference(complexMutexEClass, COMPLEX_MUTEX__ELEMENTS);
 
     varListEClass = createEClass(VAR_LIST);
     createEAttribute(varListEClass, VAR_LIST__OPERATOR);
@@ -2121,12 +2051,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     hierarchyEClass = createEClass(HIERARCHY);
     createEReference(hierarchyEClass, HIERARCHY__PARENT);
     createEReference(hierarchyEClass, HIERARCHY__CHILDREN);
+    createEAttribute(hierarchyEClass, HIERARCHY__MIN);
 
     decompositionEClass = createEClass(DECOMPOSITION);
-    createEAttribute(decompositionEClass, DECOMPOSITION__CARDINALITY);
+    createEAttribute(decompositionEClass, DECOMPOSITION__MAX);
 
     groupEClass = createEClass(GROUP);
-    createEAttribute(groupEClass, GROUP__MIN);
     createEReference(groupEClass, GROUP__MAX);
 
     rangeEClass = createEClass(RANGE);
@@ -2134,7 +2064,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     visibilityEClass = createEClass(VISIBILITY);
     createEReference(visibilityEClass, VISIBILITY__CONDITION);
-    createEReference(visibilityEClass, VISIBILITY__CHILDREN);
+    createEReference(visibilityEClass, VISIBILITY__LIST);
 
     orderEClass = createEClass(ORDER);
     createEAttribute(orderEClass, ORDER__OPERATOR);
@@ -2244,8 +2174,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     attributeRefEClass = createEClass(ATTRIBUTE_REF);
     createEAttribute(attributeRefEClass, ATTRIBUTE_REF__ATTRIBUTE);
 
-    stringConstantEClass = createEClass(STRING_CONSTANT);
-    createEAttribute(stringConstantEClass, STRING_CONSTANT__VALUE);
+    assignEClass = createEClass(ASSIGN);
+    createEReference(assignEClass, ASSIGN__VARIABLE);
+    createEReference(assignEClass, ASSIGN__VALUE);
+
+    symbolConstantEClass = createEClass(SYMBOL_CONSTANT);
+    createEAttribute(symbolConstantEClass, SYMBOL_CONSTANT__VALUE);
 
     intConstantEClass = createEClass(INT_CONSTANT);
     createEAttribute(intConstantEClass, INT_CONSTANT__VALUE);
@@ -2290,11 +2224,10 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     variableDeclEClass.getESuperTypes().add(this.getDeclaration());
     intervalEClass.getESuperTypes().add(this.getOptionsDeclaration());
     enumerationEClass.getESuperTypes().add(this.getOptionsDeclaration());
-    coreEClass.getESuperTypes().add(this.getRelation());
-    multInstantiationEClass.getESuperTypes().add(this.getRelation());
+    commonEClass.getESuperTypes().add(this.getRelation());
     pairEClass.getESuperTypes().add(this.getRelation());
     complexImpliesEClass.getESuperTypes().add(this.getRelation());
-    qImpliesEClass.getESuperTypes().add(this.getRelation());
+    complexMutexEClass.getESuperTypes().add(this.getRelation());
     varListEClass.getESuperTypes().add(this.getRelation());
     hierarchyEClass.getESuperTypes().add(this.getRelation());
     decompositionEClass.getESuperTypes().add(this.getHierarchy());
@@ -2320,7 +2253,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     boolConstantEClass.getESuperTypes().add(this.getRelational());
     variableRefEClass.getESuperTypes().add(this.getRelational());
     attributeRefEClass.getESuperTypes().add(this.getRelational());
-    stringConstantEClass.getESuperTypes().add(this.getRelational());
+    assignEClass.getESuperTypes().add(this.getRelational());
+    symbolConstantEClass.getESuperTypes().add(this.getRelational());
     intConstantEClass.getESuperTypes().add(this.getRelational());
     singleInstructionEClass.getESuperTypes().add(this.getOperation());
     validConfEClass.getESuperTypes().add(this.getOperation());
@@ -2334,7 +2268,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(elmDeclarationEClass, ElmDeclaration.class, "ElmDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getElmDeclaration_Att(), ecorePackage.getEString(), "att", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getElmDeclaration_Inst(), ecorePackage.getEString(), "inst", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getElmDeclaration_Declaration(), this.getDeclaration(), null, "declaration", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2363,13 +2296,8 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(coreEClass, Core.class, "Core", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCore_Elements(), this.getListOfIDs(), null, "elements", null, 0, 1, Core.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(multInstantiationEClass, MultInstantiation.class, "MultInstantiation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMultInstantiation_Name(), this.getElmDeclaration(), null, "name", null, 0, 1, MultInstantiation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMultInstantiation_Min(), this.getNumber(), null, "min", null, 0, 1, MultInstantiation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMultInstantiation_Max(), this.getNumber(), null, "max", null, 0, 1, MultInstantiation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(commonEClass, Common.class, "Common", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCommon_Elements(), this.getListOfIDs(), null, "elements", null, 0, 1, Common.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pairEClass, Pair.class, "Pair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPair_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2377,16 +2305,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEReference(getPair_Var2(), this.getElmDeclaration(), null, "var2", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(complexImpliesEClass, ComplexImplies.class, "ComplexImplies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getComplexImplies_Exp(), this.getExpression(), null, "exp", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComplexImplies_Exp(), this.getRelational(), null, "exp", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getComplexImplies_Elements(), this.getListOfIDs(), null, "elements", null, 0, 1, ComplexImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(qImpliesEClass, QImplies.class, "QImplies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getQImplies_Mina(), ecorePackage.getEInt(), "mina", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQImplies_Maxa(), ecorePackage.getEInt(), "maxa", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getQImplies_Var1(), this.getElmDeclaration(), null, "var1", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQImplies_Minb(), ecorePackage.getEInt(), "minb", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQImplies_Maxb(), ecorePackage.getEInt(), "maxb", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getQImplies_Var2(), this.getElmDeclaration(), null, "var2", null, 0, 1, QImplies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(complexMutexEClass, ComplexMutex.class, "ComplexMutex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getComplexMutex_Exp(), this.getRelational(), null, "exp", null, 0, 1, ComplexMutex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComplexMutex_Elements(), this.getListOfIDs(), null, "elements", null, 0, 1, ComplexMutex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varListEClass, VarList.class, "VarList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarList_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, VarList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2396,12 +2320,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(hierarchyEClass, Hierarchy.class, "Hierarchy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getHierarchy_Parent(), this.getElmDeclaration(), null, "parent", null, 0, 1, Hierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHierarchy_Children(), this.getListOfIDs(), null, "children", null, 0, 1, Hierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getHierarchy_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Hierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(decompositionEClass, Decomposition.class, "Decomposition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDecomposition_Cardinality(), ecorePackage.getEInt(), "cardinality", null, 0, 1, Decomposition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDecomposition_Max(), ecorePackage.getEInt(), "max", null, 0, 1, Decomposition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGroup_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGroup_Max(), this.getRange(), null, "max", null, 0, 1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rangeEClass, Range.class, "Range", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2409,7 +2333,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(visibilityEClass, Visibility.class, "Visibility", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVisibility_Condition(), this.getRelational(), null, "condition", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVisibility_Children(), this.getListOfRelRefs(), null, "children", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVisibility_List(), this.getListOfRelRefs(), null, "list", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrder_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2519,8 +2443,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(attributeRefEClass, AttributeRef.class, "AttributeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttributeRef_Attribute(), ecorePackage.getEString(), "attribute", null, 0, 1, AttributeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(stringConstantEClass, StringConstant.class, "StringConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStringConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(assignEClass, Assign.class, "Assign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssign_Variable(), this.getElmDeclaration(), null, "variable", null, 0, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssign_Value(), this.getValue(), null, "value", null, 0, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(symbolConstantEClass, SymbolConstant.class, "SymbolConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSymbolConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, SymbolConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intConstantEClass, IntConstant.class, "IntConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntConstant_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

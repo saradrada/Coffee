@@ -4,13 +4,15 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Assign;
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.BoolVal;
+import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
+import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Core;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
@@ -34,7 +36,6 @@ import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.MultInstantiation;
 import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operation;
@@ -44,14 +45,13 @@ import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.QImplies;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.StringConstant;
 import com.coffee.hlvl.Symbol;
+import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
@@ -131,11 +131,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.ENUMERATION: return createEnumeration();
       case HlvlPackage.REL_DECLARATION: return createRelDeclaration();
       case HlvlPackage.RELATION: return createRelation();
-      case HlvlPackage.CORE: return createCore();
-      case HlvlPackage.MULT_INSTANTIATION: return createMultInstantiation();
+      case HlvlPackage.COMMON: return createCommon();
       case HlvlPackage.PAIR: return createPair();
       case HlvlPackage.COMPLEX_IMPLIES: return createComplexImplies();
-      case HlvlPackage.QIMPLIES: return createQImplies();
+      case HlvlPackage.COMPLEX_MUTEX: return createComplexMutex();
       case HlvlPackage.VAR_LIST: return createVarList();
       case HlvlPackage.HIERARCHY: return createHierarchy();
       case HlvlPackage.DECOMPOSITION: return createDecomposition();
@@ -173,7 +172,8 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.BOOL_CONSTANT: return createBoolConstant();
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
-      case HlvlPackage.STRING_CONSTANT: return createStringConstant();
+      case HlvlPackage.ASSIGN: return createAssign();
+      case HlvlPackage.SYMBOL_CONSTANT: return createSymbolConstant();
       case HlvlPackage.INT_CONSTANT: return createIntConstant();
       case HlvlPackage.SINGLE_INSTRUCTION: return createSingleInstruction();
       case HlvlPackage.VALID_CONF: return createValidConf();
@@ -297,21 +297,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Core createCore()
+  public Common createCommon()
   {
-    CoreImpl core = new CoreImpl();
-    return core;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MultInstantiation createMultInstantiation()
-  {
-    MultInstantiationImpl multInstantiation = new MultInstantiationImpl();
-    return multInstantiation;
+    CommonImpl common = new CommonImpl();
+    return common;
   }
 
   /**
@@ -341,10 +330,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public QImplies createQImplies()
+  public ComplexMutex createComplexMutex()
   {
-    QImpliesImpl qImplies = new QImpliesImpl();
-    return qImplies;
+    ComplexMutexImpl complexMutex = new ComplexMutexImpl();
+    return complexMutex;
   }
 
   /**
@@ -759,10 +748,21 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public StringConstant createStringConstant()
+  public Assign createAssign()
   {
-    StringConstantImpl stringConstant = new StringConstantImpl();
-    return stringConstant;
+    AssignImpl assign = new AssignImpl();
+    return assign;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SymbolConstant createSymbolConstant()
+  {
+    SymbolConstantImpl symbolConstant = new SymbolConstantImpl();
+    return symbolConstant;
   }
 
   /**

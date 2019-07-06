@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getAtt <em>Att</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getInst <em>Inst</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDeclaration <em>Declaration</em>}</li>
@@ -55,26 +54,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String att = ATT_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getInst() <em>Inst</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInst()
-   * @generated
-   * @ordered
-   */
-  protected static final String INST_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getInst() <em>Inst</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInst()
-   * @generated
-   * @ordered
-   */
-  protected String inst = INST_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
@@ -188,29 +167,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     att = newAtt;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ELM_DECLARATION__ATT, oldAtt, att));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getInst()
-  {
-    return inst;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setInst(String newInst)
-  {
-    String oldInst = inst;
-    inst = newInst;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ELM_DECLARATION__INST, oldInst, inst));
   }
 
   /**
@@ -358,8 +314,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     {
       case HlvlPackage.ELM_DECLARATION__ATT:
         return getAtt();
-      case HlvlPackage.ELM_DECLARATION__INST:
-        return getInst();
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         return getDataType();
       case HlvlPackage.ELM_DECLARATION__NAME:
@@ -384,9 +338,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     {
       case HlvlPackage.ELM_DECLARATION__ATT:
         setAtt((String)newValue);
-        return;
-      case HlvlPackage.ELM_DECLARATION__INST:
-        setInst((String)newValue);
         return;
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         setDataType((String)newValue);
@@ -417,9 +368,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
       case HlvlPackage.ELM_DECLARATION__ATT:
         setAtt(ATT_EDEFAULT);
         return;
-      case HlvlPackage.ELM_DECLARATION__INST:
-        setInst(INST_EDEFAULT);
-        return;
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         setDataType(DATA_TYPE_EDEFAULT);
         return;
@@ -448,8 +396,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     {
       case HlvlPackage.ELM_DECLARATION__ATT:
         return ATT_EDEFAULT == null ? att != null : !ATT_EDEFAULT.equals(att);
-      case HlvlPackage.ELM_DECLARATION__INST:
-        return INST_EDEFAULT == null ? inst != null : !INST_EDEFAULT.equals(inst);
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
       case HlvlPackage.ELM_DECLARATION__NAME:
@@ -475,8 +421,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (att: ");
     result.append(att);
-    result.append(", inst: ");
-    result.append(inst);
     result.append(", dataType: ");
     result.append(dataType);
     result.append(", name: ");

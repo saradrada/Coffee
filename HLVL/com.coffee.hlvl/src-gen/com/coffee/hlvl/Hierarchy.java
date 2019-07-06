@@ -15,6 +15,7 @@ package com.coffee.hlvl;
  * <ul>
  *   <li>{@link com.coffee.hlvl.Hierarchy#getParent <em>Parent</em>}</li>
  *   <li>{@link com.coffee.hlvl.Hierarchy#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.Hierarchy#getMin <em>Min</em>}</li>
  * </ul>
  *
  * @see com.coffee.hlvl.HlvlPackage#getHierarchy()
@@ -74,5 +75,31 @@ public interface Hierarchy extends Relation
    * @generated
    */
   void setChildren(ListOfIDs value);
+
+  /**
+   * Returns the value of the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Min</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Min</em>' attribute.
+   * @see #setMin(int)
+   * @see com.coffee.hlvl.HlvlPackage#getHierarchy_Min()
+   * @model
+   * @generated
+   */
+  int getMin();
+
+  /**
+   * Sets the value of the '{@link com.coffee.hlvl.Hierarchy#getMin <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Min</em>' attribute.
+   * @see #getMin()
+   * @generated
+   */
+  void setMin(int value);
 
 } // Hierarchy

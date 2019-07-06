@@ -5,21 +5,24 @@ generate hlvl "http://www.coffee.com/Hlvl"
 /**
  * Grammar specification of the HLVL, High Level Variability Language
  * @author Angela Villota
- * @version HLVL V1.4 
+ * @version HLVL V1.4
+ * August 2018
  * Modified in October 4th for including the root constraint
  * Modified on October 9th for fixing the setRefinement
  * Modified on November 16th 2018
  * Modified on January 2019 to include conditional and quantified implies
- * August 2018
+ * Modified on April 2019
+ * Modified July 2019 to adjust the syntax with the MODEVAR paper syntax
  */
 Model:
 	'model' name=ID 'elements:' elements+=(ElmDeclaration)*  'relations:'relations+=(RelDeclaration)*
 	('operations:' operations = Operations )?
 	;
-	
+
+// modified by avillota to comply with the modevar paper syntax	
 ElmDeclaration:
 	(att= 'att')?
-	(inst= 'instantiable')?
+	//(inst= 'instantiable' '[' min=INT ',' max=INT ']')?
 	(dataType=DataType)
 	name= ID
 	declaration= Declaration 
@@ -58,30 +61,38 @@ RelDeclaration:
 ;
 
 Relation:
-	Core | Hierarchy |Pair |VarList|Order |
-	MultInstantiation|Expression |Visibility|QImplies|
-	ComplexImplies
+	Common | Hierarchy |Pair |VarList|Order |
+	//MultInstantiation|
+	Expression |Visibility|//QImplies|//|
+	ComplexImplies|ComplexMutex
 ;
 
-Core:
-	{Core}'coreElements' '(' elements=ListOfIDs')'
+Common:
+	{Common}'common' '(' elements=ListOfIDs')'
 ;
 
-MultInstantiation:
-	'instantiable' name=[ElmDeclaration] '['min=Number ',' max=Number ']'
-;
 
+//MultInstantiation:
+//	'instantiable' name=[ElmDeclaration] '['min=Number ',' max=Number ']'
+//;
+
+//FIXME separate the simple implies and mutex
 Pair:
 	operator=('implies'|'mutex') '(' var1=[ElmDeclaration] ',' var2=[ElmDeclaration]')'
 ;
 
 ComplexImplies:
-	'implies' '('  exp=Expression ',' elements=ListOfIDs')'
+	'implies''(' '('exp=Relational')' ',' '['elements=ListOfIDs']'')'
 ;
 
-QImplies:
-	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies'  '[' minb=INT ',' maxb=INT']' var2=[ElmDeclaration] 
+ComplexMutex:
+	'mutex' '(' '('exp=Relational')' ',' '['elements=ListOfIDs']'')'
 ;
+
+//FIXME commented to be redefined with a different syntax
+//QImplies:
+//	'[' mina=INT ',' maxa=INT ']' var1=[ElmDeclaration] 'implies'  '[' minb=INT ',' maxb=INT']' var2=[ElmDeclaration] 
+//;
 
 VarList:
 	operator=('implies'|'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')'
@@ -90,18 +101,27 @@ Hierarchy:
 	Decomposition|Group
 ;
 
+// modified by avillota to comply with the modevar paper syntax
 Decomposition:
-	{Decomposition}'decomposition' '(' parent=[ElmDeclaration] ',' '['children=ListOfIDs ']' ')' 
-	'<' cardinality=INT'>'
+	{Decomposition}
+	'decomposition' 
+	'(' 
+		parent=[ElmDeclaration] 
+		',' '['children=ListOfIDs ']'
+		// ')''<' cardinality=INT'>'
+		','	'[' min= INT ',' max=INT ']'
+	 ')' 
 ;
 
+// modified by avillota to comply with the modevar paper syntax
 Group:
-	{Group} 'group' '(' 
-	parent=[ElmDeclaration] ',' 
-	'['children=ListOfIDs ']' ')' 
-	'[' min= INT ',' 
-	max=Range 
-	']'
+	{Group} 
+	'group' 
+	'(' 
+		parent=[ElmDeclaration] 
+		',' '['children=ListOfIDs ']'
+		',' '[' min= INT ',' max=Range ']'
+	 ')' 
 ;
 
 Range:
@@ -113,8 +133,13 @@ wildcard:
 ;
 
 Visibility:
-	'visibility' '(' condition= Relational ',' '['children=ListOfRelRefs ']' ')'
+	'visibility' '(' condition= Relational ',' '['list= ListOfRelRefs ']' ')'
 ;
+
+
+//List:
+//	ListOfIDs| ListOfRelRefs
+//;
 
 Order:
 	operator='before' |'after' left= [ElmDeclaration] ',' '[' right+=ListOfIDs']'
@@ -171,7 +196,8 @@ Atomic returns Relational:
 	{BoolConstant} value=('true'|'false') | 
 	{VariableRef} variable=[ElmDeclaration]|
 	{AttributeRef} attribute= QualifiedName |
-	{StringConstant} value=STRING |
+	{Assign} variable= [ElmDeclaration] 'is' value=Value|
+	{SymbolConstant} value=STRING |
 	{IntConstant} value=INT 
 ;
 
@@ -217,8 +243,7 @@ Symbol:  value=STRING;
 Value: 
 	Number|BoolVal|Symbol
 ;	
-//EnumerableValue: Number ;
-//NonEnumerableValue:BoolVal|Symbol;
+
 
 DataType:
 	 'boolean' |'integer'|'symbolic' ;
@@ -226,12 +251,13 @@ DataType:
 ListOfValues:
 	values+= Value (',' + values+= Value)*
 ;
+
 ListOfIDs:
-	values+= ([ElmDeclaration]) (',' + values+= [ElmDeclaration])*
+	{ListOfIDs} values+= ([ElmDeclaration]) (',' + values+= [ElmDeclaration])*
 ;
 
 ListOfRelRefs:
-	ids+= ([RelDeclaration]) (',' + ids+= [RelDeclaration])*
+	{ListOfRelRefs} ids+= ([RelDeclaration]) (',' + ids+= [RelDeclaration])*
 ;
 Names:
 	ids+= (ID) (',' + ids+= ID)*
@@ -254,9 +280,11 @@ GlobalOp:
 ;
 
 FunctionOp:
-	'pow'|'dist'|'min'|'max'
+	'pow'|'dist'|'min'|'max'|'if'
 ;
 UnaryOp:
-	'abs'|'sqrt'| 'instances'
+	'abs'|'sqrt'| 'instances'| 'entailed'
 	
 ;
+
+

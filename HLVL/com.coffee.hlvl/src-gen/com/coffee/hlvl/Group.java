@@ -13,7 +13,6 @@ package com.coffee.hlvl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.Group#getMin <em>Min</em>}</li>
  *   <li>{@link com.coffee.hlvl.Group#getMax <em>Max</em>}</li>
  * </ul>
  *
@@ -23,32 +22,6 @@ package com.coffee.hlvl;
  */
 public interface Group extends Hierarchy
 {
-  /**
-   * Returns the value of the '<em><b>Min</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Min</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Min</em>' attribute.
-   * @see #setMin(int)
-   * @see com.coffee.hlvl.HlvlPackage#getGroup_Min()
-   * @model
-   * @generated
-   */
-  int getMin();
-
-  /**
-   * Sets the value of the '{@link com.coffee.hlvl.Group#getMin <em>Min</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Min</em>' attribute.
-   * @see #getMin()
-   * @generated
-   */
-  void setMin(int value);
-
   /**
    * Returns the value of the '<em><b>Max</b></em>' containment reference.
    * <!-- begin-user-doc -->

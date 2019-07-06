@@ -4,9 +4,9 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.ListOfIDs;
+import com.coffee.hlvl.Relational;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -40,7 +40,7 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * @generated
    * @ordered
    */
-  protected Expression exp;
+  protected Relational exp;
 
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference.
@@ -78,7 +78,7 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getExp()
+  public Relational getExp()
   {
     return exp;
   }
@@ -88,9 +88,9 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExp(Expression newExp, NotificationChain msgs)
+  public NotificationChain basicSetExp(Relational newExp, NotificationChain msgs)
   {
-    Expression oldExp = exp;
+    Relational oldExp = exp;
     exp = newExp;
     if (eNotificationRequired())
     {
@@ -105,7 +105,7 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExp(Expression newExp)
+  public void setExp(Relational newExp)
   {
     if (newExp != exp)
     {
@@ -216,7 +216,7 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
     switch (featureID)
     {
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
-        setExp((Expression)newValue);
+        setExp((Relational)newValue);
         return;
       case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
         setElements((ListOfIDs)newValue);
@@ -236,7 +236,7 @@ public class ComplexImpliesImpl extends RelationImpl implements ComplexImplies
     switch (featureID)
     {
       case HlvlPackage.COMPLEX_IMPLIES__EXP:
-        setExp((Expression)null);
+        setExp((Relational)null);
         return;
       case HlvlPackage.COMPLEX_IMPLIES__ELEMENTS:
         setElements((ListOfIDs)null);

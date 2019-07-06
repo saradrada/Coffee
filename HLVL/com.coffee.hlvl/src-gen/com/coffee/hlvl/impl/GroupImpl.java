@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getMin <em>Min</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getMax <em>Max</em>}</li>
  * </ul>
  *
@@ -31,26 +30,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class GroupImpl extends HierarchyImpl implements Group
 {
-  /**
-   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMin()
-   * @generated
-   * @ordered
-   */
-  protected static final int MIN_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMin()
-   * @generated
-   * @ordered
-   */
-  protected int min = MIN_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getMax() <em>Max</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -80,29 +59,6 @@ public class GroupImpl extends HierarchyImpl implements Group
   protected EClass eStaticClass()
   {
     return HlvlPackage.Literals.GROUP;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public int getMin()
-  {
-    return min;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMin(int newMin)
-  {
-    int oldMin = min;
-    min = newMin;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.GROUP__MIN, oldMin, min));
   }
 
   /**
@@ -179,8 +135,6 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
-      case HlvlPackage.GROUP__MIN:
-        return getMin();
       case HlvlPackage.GROUP__MAX:
         return getMax();
     }
@@ -197,9 +151,6 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
-      case HlvlPackage.GROUP__MIN:
-        setMin((Integer)newValue);
-        return;
       case HlvlPackage.GROUP__MAX:
         setMax((Range)newValue);
         return;
@@ -217,9 +168,6 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
-      case HlvlPackage.GROUP__MIN:
-        setMin(MIN_EDEFAULT);
-        return;
       case HlvlPackage.GROUP__MAX:
         setMax((Range)null);
         return;
@@ -237,29 +185,10 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
-      case HlvlPackage.GROUP__MIN:
-        return min != MIN_EDEFAULT;
       case HlvlPackage.GROUP__MAX:
         return max != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (min: ");
-    result.append(min);
-    result.append(')');
-    return result.toString();
   }
 
 } //GroupImpl
