@@ -52,7 +52,7 @@ class HLVLGeneratorTest {
 		var HlvlGenerator gen = new HlvlGenerator
 		gen.findDialect(model)
 		
-		Assert.assertEquals(Dialect.BASIC, gen.findDialect(model))
+		Assert.assertEquals(Dialect.BASIC_BOOL, gen.findDialect(model))
 		
 		val attProgram = 
 		'''
@@ -159,7 +159,7 @@ class HLVLGeneratorTest {
 		% The solving parameters from the parameters files
 		'''
 		//Obtained code
-		val parser= ParserFactory.getParser(Dialect.BASIC, model.name);
+		val parser= ParserFactory.getParser(Dialect.BASIC_BOOL, model.name);
 		val actual= parser.parseModel(model)
 		
 		//Assert

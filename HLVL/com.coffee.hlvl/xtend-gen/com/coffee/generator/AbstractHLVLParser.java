@@ -5,16 +5,16 @@ import com.coffee.generator.IHLVLParser;
 import com.coffee.generator.TransformationRules;
 import com.coffee.hlvl.Common;
 import com.coffee.hlvl.ConstantDecl;
+import com.coffee.hlvl.Constraint;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
-import com.coffee.hlvl.Value;
+import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.VariableDecl;
 import com.coffee.hlvl.Visibility;
@@ -130,7 +130,7 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
           Declaration _declaration = element.getDeclaration();
           if ((_declaration instanceof ConstantDecl)) {
             Declaration _declaration_1 = element.getDeclaration();
-            final Value value = ((ConstantDecl) _declaration_1).getValue();
+            final Relational value = ((ConstantDecl) _declaration_1).getValue();
             if ((Objects.equal(element.getDataType(), "boolean") && (value == null))) {
               builder.append(this.rules.getElement(element));
             } else {
@@ -235,9 +235,9 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
       }
     }
     if (!_matched) {
-      if (rel instanceof Expression) {
+      if (rel instanceof Constraint) {
         _matched=true;
-        _switchResult = this.rules.getExpression(((Expression)rel).getExp());
+        _switchResult = this.rules.getExpression(((Constraint)rel).getExp());
       }
     }
     if (!_matched) {
@@ -304,6 +304,10 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
   
   public void setTransformationRules(final TransformationRules rules) {
     this.rules = rules;
+  }
+  
+  public TransformationRules getTransformationRules() {
+    return this.rules;
   }
   
   @Override

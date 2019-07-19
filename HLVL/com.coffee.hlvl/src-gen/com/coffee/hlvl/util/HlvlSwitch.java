@@ -3,62 +3,7 @@
  */
 package com.coffee.hlvl.util;
 
-import com.coffee.hlvl.And;
-import com.coffee.hlvl.Assign;
-import com.coffee.hlvl.AttributeRef;
-import com.coffee.hlvl.BoolConstant;
-import com.coffee.hlvl.BoolVal;
-import com.coffee.hlvl.Common;
-import com.coffee.hlvl.Comparison;
-import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ComplexMutex;
-import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Declaration;
-import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Enumeration;
-import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Group;
-import com.coffee.hlvl.Hierarchy;
-import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.Iff;
-import com.coffee.hlvl.Implies;
-import com.coffee.hlvl.IntConstant;
-import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.ListOfIDs;
-import com.coffee.hlvl.ListOfListValues;
-import com.coffee.hlvl.ListOfRelRefs;
-import com.coffee.hlvl.ListOfValuation;
-import com.coffee.hlvl.ListOfValues;
-import com.coffee.hlvl.Minus;
-import com.coffee.hlvl.Model;
-import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.Names;
-import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.Operation;
-import com.coffee.hlvl.Operations;
-import com.coffee.hlvl.OptionsDeclaration;
-import com.coffee.hlvl.Or;
-import com.coffee.hlvl.Order;
-import com.coffee.hlvl.Pair;
-import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.Range;
-import com.coffee.hlvl.RelDeclaration;
-import com.coffee.hlvl.Relation;
-import com.coffee.hlvl.Relational;
-import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.Symbol;
-import com.coffee.hlvl.SymbolConstant;
-import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.ValidConf;
-import com.coffee.hlvl.Valuation;
-import com.coffee.hlvl.Value;
-import com.coffee.hlvl.VarList;
-import com.coffee.hlvl.VariableDecl;
-import com.coffee.hlvl.VariableRef;
-import com.coffee.hlvl.Visibility;
+import com.coffee.hlvl.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -242,19 +187,10 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.HIERARCHY:
-      {
-        Hierarchy hierarchy = (Hierarchy)theEObject;
-        T result = caseHierarchy(hierarchy);
-        if (result == null) result = caseRelation(hierarchy);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case HlvlPackage.DECOMPOSITION:
       {
         Decomposition decomposition = (Decomposition)theEObject;
         T result = caseDecomposition(decomposition);
-        if (result == null) result = caseHierarchy(decomposition);
         if (result == null) result = caseRelation(decomposition);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -263,7 +199,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Group group = (Group)theEObject;
         T result = caseGroup(group);
-        if (result == null) result = caseHierarchy(group);
         if (result == null) result = caseRelation(group);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -291,11 +226,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.EXPRESSION:
+      case HlvlPackage.CONSTRAINT:
       {
-        Expression expression = (Expression)theEObject;
-        T result = caseExpression(expression);
-        if (result == null) result = caseRelation(expression);
+        Constraint constraint = (Constraint)theEObject;
+        T result = caseConstraint(constraint);
+        if (result == null) result = caseRelation(constraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -303,6 +238,13 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Relational relational = (Relational)theEObject;
         T result = caseRelational(relational);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.QUALIFIED_NAME:
+      {
+        QualifiedName qualifiedName = (QualifiedName)theEObject;
+        T result = caseQualifiedName(qualifiedName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -317,37 +259,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         Operation operation = (Operation)theEObject;
         T result = caseOperation(operation);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.BOOL_VAL:
-      {
-        BoolVal boolVal = (BoolVal)theEObject;
-        T result = caseBoolVal(boolVal);
-        if (result == null) result = caseValue(boolVal);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.NUMBER:
-      {
-        com.coffee.hlvl.Number number = (com.coffee.hlvl.Number)theEObject;
-        T result = caseNumber(number);
-        if (result == null) result = caseValue(number);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.SYMBOL:
-      {
-        Symbol symbol = (Symbol)theEObject;
-        T result = caseSymbol(symbol);
-        if (result == null) result = caseValue(symbol);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.VALUE:
-      {
-        Value value = (Value)theEObject;
-        T result = caseValue(value);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -372,13 +283,6 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.NAMES:
-      {
-        Names names = (Names)theEObject;
-        T result = caseNames(names);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case HlvlPackage.VALUATION:
       {
         Valuation valuation = (Valuation)theEObject;
@@ -390,13 +294,6 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         ListOfValuation listOfValuation = (ListOfValuation)theEObject;
         T result = caseListOfValuation(listOfValuation);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.LIST_OF_LIST_VALUES:
-      {
-        ListOfListValues listOfListValues = (ListOfListValues)theEObject;
-        T result = caseListOfListValues(listOfListValues);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -488,6 +385,14 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HlvlPackage.INSTANCES:
+      {
+        Instances instances = (Instances)theEObject;
+        T result = caseInstances(instances);
+        if (result == null) result = caseRelational(instances);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case HlvlPackage.FUNCTION:
       {
         Function function = (Function)theEObject;
@@ -517,14 +422,6 @@ public class HlvlSwitch<T> extends Switch<T>
         AttributeRef attributeRef = (AttributeRef)theEObject;
         T result = caseAttributeRef(attributeRef);
         if (result == null) result = caseRelational(attributeRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case HlvlPackage.ASSIGN:
-      {
-        Assign assign = (Assign)theEObject;
-        T result = caseAssign(assign);
-        if (result == null) result = caseRelational(assign);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -805,22 +702,6 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Hierarchy</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Hierarchy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseHierarchy(Hierarchy object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Decomposition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -901,17 +782,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExpression(Expression object)
+  public T caseConstraint(Constraint object)
   {
     return null;
   }
@@ -928,6 +809,22 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRelational(Relational object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Qualified Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseQualifiedName(QualifiedName object)
   {
     return null;
   }
@@ -960,70 +857,6 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseOperation(Operation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Bool Val</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bool Val</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBoolVal(BoolVal object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Number</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Number</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNumber(com.coffee.hlvl.Number object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Symbol</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Symbol</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSymbol(Symbol object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseValue(Value object)
   {
     return null;
   }
@@ -1077,22 +910,6 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Names</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Names</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNames(Names object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Valuation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1120,22 +937,6 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfValuation(ListOfValuation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>List Of List Values</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>List Of List Values</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseListOfListValues(ListOfListValues object)
   {
     return null;
   }
@@ -1317,6 +1118,22 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Instances</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Instances</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInstances(Instances object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Function</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1376,22 +1193,6 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAttributeRef(AttributeRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Assign</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Assign</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAssign(Assign object)
   {
     return null;
   }

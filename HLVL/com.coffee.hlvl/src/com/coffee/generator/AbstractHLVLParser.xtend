@@ -10,7 +10,6 @@ import com.coffee.hlvl.Relation
 import com.coffee.hlvl.Model
 import com.coffee.hlvl.ConstantDecl
 import com.coffee.hlvl.Decomposition
-import com.coffee.hlvl.Expression
 import com.coffee.hlvl.VariableDecl
 import com.coffee.hlvl.Group
 import com.coffee.hlvl.VarList
@@ -20,6 +19,7 @@ import com.coffee.hlvl.Visibility
 import com.coffee.hlvl.Pair
 //import com.coffee.hlvl.hLVL.ComplexImplies
 import com.coffee.hlvl.Common
+import com.coffee.hlvl.Constraint
 
 /**
  * Abstract Generator, this is the class that process the model and traverses the 
@@ -182,7 +182,7 @@ import com.coffee.hlvl.Common
 					rules.getMutexList(rel)
 				}
 			}
-			Expression: rules.getExpression(rel.exp)
+			Constraint: rules.getExpression(rel.exp)
 			Visibility: {
 				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
 				for(r: rel.list.ids){
@@ -190,10 +190,6 @@ import com.coffee.hlvl.Common
 				}
 				rules.getVisibility(rel, relations)
 			}
-			//MultInstantiation: '''n.y.i'''
-			//QImplies: '''n.y.i'''
-			//ComplexImplies: '''n.y.i'''
-			
 		}
 	}
 	
@@ -266,6 +262,9 @@ import com.coffee.hlvl.Common
 		this.rules= rules
 	}
 	
+	def TransformationRules getTransformationRules(){
+		return this.rules
+	}
 	override CharSequence getOperations(long time){
 		operations.append(
 		''' "parsingTime"  : "«time»ms"

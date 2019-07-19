@@ -3,63 +3,7 @@
  */
 package com.coffee.hlvl.impl;
 
-import com.coffee.hlvl.And;
-import com.coffee.hlvl.Assign;
-import com.coffee.hlvl.AttributeRef;
-import com.coffee.hlvl.BoolConstant;
-import com.coffee.hlvl.BoolVal;
-import com.coffee.hlvl.Common;
-import com.coffee.hlvl.Comparison;
-import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ComplexMutex;
-import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Declaration;
-import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Enumeration;
-import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Group;
-import com.coffee.hlvl.Hierarchy;
-import com.coffee.hlvl.HlvlFactory;
-import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.Iff;
-import com.coffee.hlvl.Implies;
-import com.coffee.hlvl.IntConstant;
-import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.ListOfIDs;
-import com.coffee.hlvl.ListOfListValues;
-import com.coffee.hlvl.ListOfRelRefs;
-import com.coffee.hlvl.ListOfValuation;
-import com.coffee.hlvl.ListOfValues;
-import com.coffee.hlvl.Minus;
-import com.coffee.hlvl.Model;
-import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.Names;
-import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.Operation;
-import com.coffee.hlvl.Operations;
-import com.coffee.hlvl.OptionsDeclaration;
-import com.coffee.hlvl.Or;
-import com.coffee.hlvl.Order;
-import com.coffee.hlvl.Pair;
-import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.Range;
-import com.coffee.hlvl.RelDeclaration;
-import com.coffee.hlvl.Relation;
-import com.coffee.hlvl.Relational;
-import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.Symbol;
-import com.coffee.hlvl.SymbolConstant;
-import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.ValidConf;
-import com.coffee.hlvl.Valuation;
-import com.coffee.hlvl.Value;
-import com.coffee.hlvl.VarList;
-import com.coffee.hlvl.VariableDecl;
-import com.coffee.hlvl.VariableRef;
-import com.coffee.hlvl.Visibility;
+import com.coffee.hlvl.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -136,27 +80,21 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.COMPLEX_IMPLIES: return createComplexImplies();
       case HlvlPackage.COMPLEX_MUTEX: return createComplexMutex();
       case HlvlPackage.VAR_LIST: return createVarList();
-      case HlvlPackage.HIERARCHY: return createHierarchy();
       case HlvlPackage.DECOMPOSITION: return createDecomposition();
       case HlvlPackage.GROUP: return createGroup();
       case HlvlPackage.RANGE: return createRange();
       case HlvlPackage.VISIBILITY: return createVisibility();
       case HlvlPackage.ORDER: return createOrder();
-      case HlvlPackage.EXPRESSION: return createExpression();
+      case HlvlPackage.CONSTRAINT: return createConstraint();
       case HlvlPackage.RELATIONAL: return createRelational();
+      case HlvlPackage.QUALIFIED_NAME: return createQualifiedName();
       case HlvlPackage.OPERATIONS: return createOperations();
       case HlvlPackage.OPERATION: return createOperation();
-      case HlvlPackage.BOOL_VAL: return createBoolVal();
-      case HlvlPackage.NUMBER: return createNumber();
-      case HlvlPackage.SYMBOL: return createSymbol();
-      case HlvlPackage.VALUE: return createValue();
       case HlvlPackage.LIST_OF_VALUES: return createListOfValues();
       case HlvlPackage.LIST_OF_IDS: return createListOfIDs();
       case HlvlPackage.LIST_OF_REL_REFS: return createListOfRelRefs();
-      case HlvlPackage.NAMES: return createNames();
       case HlvlPackage.VALUATION: return createValuation();
       case HlvlPackage.LIST_OF_VALUATION: return createListOfValuation();
-      case HlvlPackage.LIST_OF_LIST_VALUES: return createListOfListValues();
       case HlvlPackage.IFF: return createIff();
       case HlvlPackage.IMPLIES: return createImplies();
       case HlvlPackage.OR: return createOr();
@@ -168,11 +106,11 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.MUL_OR_DIV: return createMulOrDiv();
       case HlvlPackage.NEGATION: return createNegation();
       case HlvlPackage.UNARY: return createUnary();
+      case HlvlPackage.INSTANCES: return createInstances();
       case HlvlPackage.FUNCTION: return createFunction();
       case HlvlPackage.BOOL_CONSTANT: return createBoolConstant();
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
-      case HlvlPackage.ASSIGN: return createAssign();
       case HlvlPackage.SYMBOL_CONSTANT: return createSymbolConstant();
       case HlvlPackage.INT_CONSTANT: return createIntConstant();
       case HlvlPackage.SINGLE_INSTRUCTION: return createSingleInstruction();
@@ -352,17 +290,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Hierarchy createHierarchy()
-  {
-    HierarchyImpl hierarchy = new HierarchyImpl();
-    return hierarchy;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Decomposition createDecomposition()
   {
     DecompositionImpl decomposition = new DecompositionImpl();
@@ -418,10 +345,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression createExpression()
+  public Constraint createConstraint()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    ConstraintImpl constraint = new ConstraintImpl();
+    return constraint;
   }
 
   /**
@@ -433,6 +360,17 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     RelationalImpl relational = new RelationalImpl();
     return relational;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public QualifiedName createQualifiedName()
+  {
+    QualifiedNameImpl qualifiedName = new QualifiedNameImpl();
+    return qualifiedName;
   }
 
   /**
@@ -455,50 +393,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     OperationImpl operation = new OperationImpl();
     return operation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BoolVal createBoolVal()
-  {
-    BoolValImpl boolVal = new BoolValImpl();
-    return boolVal;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public com.coffee.hlvl.Number createNumber()
-  {
-    NumberImpl number = new NumberImpl();
-    return number;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Symbol createSymbol()
-  {
-    SymbolImpl symbol = new SymbolImpl();
-    return symbol;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Value createValue()
-  {
-    ValueImpl value = new ValueImpl();
-    return value;
   }
 
   /**
@@ -539,17 +433,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Names createNames()
-  {
-    NamesImpl names = new NamesImpl();
-    return names;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Valuation createValuation()
   {
     ValuationImpl valuation = new ValuationImpl();
@@ -565,17 +448,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     ListOfValuationImpl listOfValuation = new ListOfValuationImpl();
     return listOfValuation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ListOfListValues createListOfListValues()
-  {
-    ListOfListValuesImpl listOfListValues = new ListOfListValuesImpl();
-    return listOfListValues;
   }
 
   /**
@@ -704,6 +576,17 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Instances createInstances()
+  {
+    InstancesImpl instances = new InstancesImpl();
+    return instances;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Function createFunction()
   {
     FunctionImpl function = new FunctionImpl();
@@ -741,17 +624,6 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     AttributeRefImpl attributeRef = new AttributeRefImpl();
     return attributeRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Assign createAssign()
-  {
-    AssignImpl assign = new AssignImpl();
-    return assign;
   }
 
   /**

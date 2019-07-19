@@ -13,6 +13,7 @@ generate hlvl "http://www.coffee.com/Hlvl"
  * Modified on January 2019 to include conditional and quantified implies
  * Modified on April 2019
  * Modified July 2019 to adjust the syntax with the MODEVAR paper syntax
+ * Modified on July 15 to refine the constantvalues (eliminated the production Value)
  */
 Model:
 	'model' name=ID 'elements:' elements+=(ElmDeclaration)*  'relations:'relations+=(RelDeclaration)*
@@ -23,7 +24,7 @@ Model:
 ElmDeclaration:
 	(att= 'att')?
 	//(inst= 'instantiable' '[' min=INT ',' max=INT ']')?
-	(dataType=DataType)
+	(dataType=('boolean' |'integer'|'symbolic'))
 	name= ID
 	declaration= Declaration 
 	('comment:' '{' comment=STRING '}')?
@@ -33,7 +34,7 @@ Declaration:
 	ConstantDecl |VariableDecl 
 ;
 ConstantDecl:
-	{ConstantDecl}('is' value= Value)?
+	{ConstantDecl}('is' value= Relational)?
 ;
 
 VariableDecl:
@@ -61,9 +62,10 @@ RelDeclaration:
 ;
 
 Relation:
-	Common | Hierarchy |Pair |VarList|Order |
+	Common | //Hierarchy |
+	Pair |VarList|Order | Decomposition| Group|
 	//MultInstantiation|
-	Expression |Visibility|//QImplies|//|
+	Constraint |Visibility|//QImplies|//|
 	ComplexImplies|ComplexMutex
 ;
 
@@ -97,9 +99,9 @@ ComplexMutex:
 VarList:
 	operator=('implies'|'mutex') '(' var1=[ElmDeclaration] ',' '[' list=ListOfIDs ']' ')'
 ;
-Hierarchy:
-	Decomposition|Group
-;
+//Hierarchy:
+//	Decomposition|Group
+//;
 
 // modified by avillota to comply with the modevar paper syntax
 Decomposition:
@@ -125,10 +127,10 @@ Group:
 ;
 
 Range:
-	 {Range} value = wildcard 
+	 {Range} value = Wildcard 
 ;
 
-wildcard:
+Wildcard:
 	INT |'*'
 ;
 
@@ -145,7 +147,7 @@ Order:
 	operator='before' |'after' left= [ElmDeclaration] ',' '[' right+=ListOfIDs']'
 ;
 
-Expression:
+Constraint:
 	'expression''('exp= Relational ')'
 ;
 
@@ -184,11 +186,15 @@ MulOrDiv returns Relational:
 	Primary ( {MulOrDiv.left=current} op=('*'|'/'|'mod') right=Primary)* 
 ;
 
+//FIXME the assign production was commented to solve an inconsistency
 Primary returns Relational:
 	 '(' Relational ')' | 
 	 {Negation} "~"expression=Primary | 
-	 {Unary} op=UnaryOp '('expression=Primary')' | 
-	 {Function} op=FunctionOp '('left=Primary ',' right=Primary ')' |
+	 {Unary} op=('abs'|'sqrt'| 'entailed') '('expression=Primary')' | 
+	 {Instances} 'instances' '(' element= [ElmDeclaration] ','number= INT ')'|
+	 
+	 {Function} op=('pow'|'dist'|'min'|'max'|'if') '('left=Primary ',' right=Primary ')' |
+	 //{Assign} variable= [ElmDeclaration] 'is' value=Relational| //value=Value| changed by avillota
 	 Atomic
 ;
 
@@ -196,13 +202,13 @@ Atomic returns Relational:
 	{BoolConstant} value=('true'|'false') | 
 	{VariableRef} variable=[ElmDeclaration]|
 	{AttributeRef} attribute= QualifiedName |
-	{Assign} variable= [ElmDeclaration] 'is' value=Value|
 	{SymbolConstant} value=STRING |
 	{IntConstant} value=INT 
 ;
 
+//extender para otros modelos
 QualifiedName:
-	ID ('.' ID)+
+	element= [ElmDeclaration] '.'  att= [ElmDeclaration]
 ;
 
 Operations:
@@ -234,22 +240,24 @@ OperationName:
 
 
 // syntactic categories
+//
+//BoolVal: value=('true'|'false');
+//Number: value = INT ;
+//
+//Symbol:  value=STRING;
+//
+//Value: 
+//	Number|BoolVal|Symbol
+//;	
 
-BoolVal: value=('true'|'false');
-Number: value = INT ;
-
-Symbol:  value=STRING;
-
-Value: 
-	Number|BoolVal|Symbol
-;	
-
-
-DataType:
-	 'boolean' |'integer'|'symbolic' ;
+//
+//DataType:
+//	 'boolean' |'integer'|'symbolic' ;
 	 
 ListOfValues:
-	values+= Value (',' + values+= Value)*
+	//FIXME Value for relational
+	values+= Relational (',' + values+= Relational)*
+	//values+= Value (',' + values+= Value)*
 ;
 
 ListOfIDs:
@@ -259,32 +267,31 @@ ListOfIDs:
 ListOfRelRefs:
 	{ListOfRelRefs} ids+= ([RelDeclaration]) (',' + ids+= [RelDeclaration])*
 ;
-Names:
-	ids+= (ID) (',' + ids+= ID)*
-;
+
 
 // For configuration
 
 Valuation:
-	'(' element= [ElmDeclaration] ',' value= Value ')'
+	//FIXME Value for relational
+	'(' element= [ElmDeclaration] ',' value= Relational ')' //value= Value ')'
 ;
 
 ListOfValuation:
 	pairs+= Valuation (',' + pairs+= Valuation)*
 ;
-ListOfListValues:
-	'['list+= ListOfValues']' (',' + '[' list+= ListOfValues ']')*
-;
-GlobalOp:
-	'at_most'|'all_different'
-;
-
-FunctionOp:
-	'pow'|'dist'|'min'|'max'|'if'
-;
-UnaryOp:
-	'abs'|'sqrt'| 'instances'| 'entailed'
-	
-;
+//ListOfListValues:
+//	'['list+= ListOfValues']' (',' + '[' list+= ListOfValues ']')*
+//;
+//GlobalOp:
+//	'at_most'|'all_different'
+//;
+//
+//FunctionOp:
+//	'pow'|'dist'|'min'|'max'|'if'
+//;
+//UnaryOp:
+//	'abs'|'sqrt'| 'instances'| 'entailed'
+//	
+//;
 
 

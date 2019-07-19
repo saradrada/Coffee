@@ -86,7 +86,7 @@ public class HlvlGenerator extends AbstractGenerator {
     final boolean allElementsBooleanNotAttributes = this.allElementsBoolean(model);
     final boolean basicRelationsNotMultiplicity = this.booleanRelations(model);
     if ((allElementsBooleanNotAttributes && basicRelationsNotMultiplicity)) {
-      return Dialect.BASIC;
+      return Dialect.BASIC_BOOL;
     } else {
       boolean _existInstantiable = this.existInstantiable();
       if (_existInstantiable) {

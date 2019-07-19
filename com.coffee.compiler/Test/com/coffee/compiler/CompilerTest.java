@@ -9,9 +9,7 @@ import utils.JsonMng;
 
 class CompilerTest {
 	
-//	public static final String INPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/InputFiles/";
-//	public static final String MZN_FILES_PATH = "/Users/Angela/Coffee/compiler_path/MZNFiles/";
-//	public static final String OUTPUT_FILES_PATH = "/Users/Angela/Coffee/compiler_path/OutputFiles/";
+
 	public static final String INPUT_FILES_PATH = "testfiles/InputFiles/";
 	public static final String MZN_FILES_PATH = "testfiles/MZNFiles/";
 	public static final String OUTPUT_FILES_PATH = "testfiles/OutputFiles/";
@@ -100,7 +98,7 @@ class CompilerTest {
 	}
 
 		@Test
-		void setUpCompilationTestUsingFiles() throws Exception {
+	void setUpCompilationTestUsingFiles() throws Exception {
 			Compiler compiler= new Compiler();
 			params= new CompilationParameters(
 					INPUT_FILES_PATH, 
@@ -119,7 +117,7 @@ class CompilerTest {
 				compiler.setUpCompilation(params);
 				assertNotNull(compiler.getSolversInfo());
 				assertNotNull(compiler.getOperationsInfo());
-				assertEquals(compiler.getOperationsInfo().getString("problemType"), "BOOL");
+				assertEquals(compiler.getOperationsInfo().getString("problemType"), "BASIC_BOOL");
 	
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -203,12 +201,12 @@ class CompilerTest {
 			System.out.println("-----");
 
 			System.out.println("one solution");
-			System.out.println(compiler.getOneSolution().toString());
+			System.out.println(compiler.getOneSolutionJson().toString());
 			
 			System.out.println("-----");
 			
 			System.out.println("5 solutions");
-			System.out.println(compiler.getNSolutions(5).toString());
+			System.out.println(compiler.getNSolutionsJson(5).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,17 +235,90 @@ class CompilerTest {
 
 			System.out.println("one solution, picat_test");
 			//compiler.getOneSolution();
-			System.out.println(compiler.getOneSolution().toString());
+			System.out.println(compiler.getOneSolutionJson().toString());
 			
 			System.out.println("-----");
 			
 			System.out.println("5 solutions, picat_test\"");
-			System.out.println(compiler.getNSolutions(5).toString());
+			System.out.println(compiler.getNSolutionsJson(5).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
+	}
+	
+	@Test
+	void testCompilerAnswer() throws Exception{
+		// testing with a boolean example
+		CompilationParameters params= new CompilationParameters(
+				INPUT_FILES_PATH, 
+				MZN_FILES_PATH, 
+				OUTPUT_FILES_PATH,
+				"Test0_bool",
+				SOLVERS_CONFIGURATION_FILE,
+				FRONT_END_FILE+"Bool",
+				SourceOfCompilation.FILE
+				);
+		
+		//initializing the compiler
+				Compiler compiler= new Compiler();
+				try {
+					//setting up the compiler 
+					compiler.setUpCompilation(params);
+					//compiling
+					System.out.println("-----");
+					
+					CompilerAnswer answer= compiler.getSolutions(2);
+					
+					assertEquals(answer.getState(), "SATISFIABLE");
+					assertEquals(answer.getExitCode(), 0);
+					assertEquals(answer.getNumberOfSolutions(), 2);
+					
+					//System.out.println(answer.toString());
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					fail(e.getMessage());
+				}
+		
+	}
+	@Test
+	void testAllSolutions() throws Exception{
+		// testing with a boolean example
+		CompilationParameters params= new CompilationParameters(
+				INPUT_FILES_PATH, 
+				MZN_FILES_PATH, 
+				OUTPUT_FILES_PATH,
+				"Test0_bool",
+				SOLVERS_CONFIGURATION_FILE,
+				FRONT_END_FILE+"Bool",
+				SourceOfCompilation.FILE
+				);
+		
+		//initializing the compiler
+				Compiler compiler= new Compiler();
+				try {
+					//setting up the compiler 
+					compiler.setUpCompilation(params);
+					//compiling
+					System.out.println("-----");
+					
+					//CompilerAnswer answer= compiler.getSolutions(2);
+//					assertEquals(answer.getState(), "SATISFIABLE");
+//					assertEquals(answer.getExitCode(), 0);
+//					assertEquals(answer.getNumberOfSolutions(), 2);
+					
+					System.out.println( compiler.getAllSolutionsJson().
+							toString());
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					fail(e.getMessage());
+				}
+		
 	}
 
 }

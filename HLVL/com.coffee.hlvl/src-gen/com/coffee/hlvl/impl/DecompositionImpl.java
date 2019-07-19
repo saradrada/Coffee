@@ -4,11 +4,15 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.Decomposition;
+import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.ListOfIDs;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -20,13 +24,56 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getMin <em>Min</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.DecompositionImpl#getMax <em>Max</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DecompositionImpl extends HierarchyImpl implements Decomposition
+public class DecompositionImpl extends RelationImpl implements Decomposition
 {
+  /**
+   * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParent()
+   * @generated
+   * @ordered
+   */
+  protected ElmDeclaration parent;
+
+  /**
+   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChildren()
+   * @generated
+   * @ordered
+   */
+  protected ListOfIDs children;
+
+  /**
+   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected static final int MIN_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected int min = MIN_EDEFAULT;
+
   /**
    * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -73,6 +120,120 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
    * <!-- end-user-doc -->
    * @generated
    */
+  public ElmDeclaration getParent()
+  {
+    if (parent != null && parent.eIsProxy())
+    {
+      InternalEObject oldParent = (InternalEObject)parent;
+      parent = (ElmDeclaration)eResolveProxy(oldParent);
+      if (parent != oldParent)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HlvlPackage.DECOMPOSITION__PARENT, oldParent, parent));
+      }
+    }
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElmDeclaration basicGetParent()
+  {
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setParent(ElmDeclaration newParent)
+  {
+    ElmDeclaration oldParent = parent;
+    parent = newParent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__PARENT, oldParent, parent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfIDs getChildren()
+  {
+    return children;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetChildren(ListOfIDs newChildren, NotificationChain msgs)
+  {
+    ListOfIDs oldChildren = children;
+    children = newChildren;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__CHILDREN, oldChildren, newChildren);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setChildren(ListOfIDs newChildren)
+  {
+    if (newChildren != children)
+    {
+      NotificationChain msgs = null;
+      if (children != null)
+        msgs = ((InternalEObject)children).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.DECOMPOSITION__CHILDREN, null, msgs);
+      if (newChildren != null)
+        msgs = ((InternalEObject)newChildren).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.DECOMPOSITION__CHILDREN, null, msgs);
+      msgs = basicSetChildren(newChildren, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__CHILDREN, newChildren, newChildren));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getMin()
+  {
+    return min;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMin(int newMin)
+  {
+    int oldMin = min;
+    min = newMin;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.DECOMPOSITION__MIN, oldMin, min));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getMax()
   {
     return max;
@@ -97,10 +258,33 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case HlvlPackage.DECOMPOSITION__CHILDREN:
+        return basicSetChildren(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case HlvlPackage.DECOMPOSITION__PARENT:
+        if (resolve) return getParent();
+        return basicGetParent();
+      case HlvlPackage.DECOMPOSITION__CHILDREN:
+        return getChildren();
+      case HlvlPackage.DECOMPOSITION__MIN:
+        return getMin();
       case HlvlPackage.DECOMPOSITION__MAX:
         return getMax();
     }
@@ -117,6 +301,15 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
+      case HlvlPackage.DECOMPOSITION__PARENT:
+        setParent((ElmDeclaration)newValue);
+        return;
+      case HlvlPackage.DECOMPOSITION__CHILDREN:
+        setChildren((ListOfIDs)newValue);
+        return;
+      case HlvlPackage.DECOMPOSITION__MIN:
+        setMin((Integer)newValue);
+        return;
       case HlvlPackage.DECOMPOSITION__MAX:
         setMax((Integer)newValue);
         return;
@@ -134,6 +327,15 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
+      case HlvlPackage.DECOMPOSITION__PARENT:
+        setParent((ElmDeclaration)null);
+        return;
+      case HlvlPackage.DECOMPOSITION__CHILDREN:
+        setChildren((ListOfIDs)null);
+        return;
+      case HlvlPackage.DECOMPOSITION__MIN:
+        setMin(MIN_EDEFAULT);
+        return;
       case HlvlPackage.DECOMPOSITION__MAX:
         setMax(MAX_EDEFAULT);
         return;
@@ -151,6 +353,12 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
   {
     switch (featureID)
     {
+      case HlvlPackage.DECOMPOSITION__PARENT:
+        return parent != null;
+      case HlvlPackage.DECOMPOSITION__CHILDREN:
+        return children != null;
+      case HlvlPackage.DECOMPOSITION__MIN:
+        return min != MIN_EDEFAULT;
       case HlvlPackage.DECOMPOSITION__MAX:
         return max != MAX_EDEFAULT;
     }
@@ -168,7 +376,9 @@ public class DecompositionImpl extends HierarchyImpl implements Decomposition
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (max: ");
+    result.append(" (min: ");
+    result.append(min);
+    result.append(", max: ");
     result.append(max);
     result.append(')');
     return result.toString();

@@ -6,11 +6,12 @@ package com.coffee.compiler;
  * - BOOL, for models using the constructors 
  * - ATT, for attribute based 
  * - Inst, for cardinality-based 
+ * July 2019
+ * CHANGES IN THE NAMES TO MATCH THE CHANGES IN THE HLVL PARSERXW
 */
 public enum ProblemType {
-	BOOL,
-	INT_ATT,
-	INT_CARD;
-	
-
+	BASIC_BOOL,
+	BASIC_INT,
+	ATTRIBUTE,
+	MULTIPLICITY;
 }

@@ -5,8 +5,8 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Valuation;
-import com.coffee.hlvl.Value;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -51,7 +51,7 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected Relational value;
 
   /**
    * <!-- begin-user-doc -->
@@ -122,7 +122,7 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public Relational getValue()
   {
     return value;
   }
@@ -132,9 +132,9 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Relational newValue, NotificationChain msgs)
   {
-    Value oldValue = value;
+    Relational oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -149,7 +149,7 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValue(Relational newValue)
   {
     if (newValue != value)
     {
@@ -214,7 +214,7 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
         setElement((ElmDeclaration)newValue);
         return;
       case HlvlPackage.VALUATION__VALUE:
-        setValue((Value)newValue);
+        setValue((Relational)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,7 +234,7 @@ public class ValuationImpl extends MinimalEObjectImpl.Container implements Valua
         setElement((ElmDeclaration)null);
         return;
       case HlvlPackage.VALUATION__VALUE:
-        setValue((Value)null);
+        setValue((Relational)null);
         return;
     }
     super.eUnset(featureID);

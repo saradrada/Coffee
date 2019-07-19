@@ -3,6 +3,13 @@
  */
 package com.coffee.validation
 
+import org.eclipse.xtext.validation.Check
+import com.coffee.hlvl.ConstantDecl
+import com.coffee.hlvl.HlvlPackage
+import com.coffee.hlvl.ElmDeclaration
+import com.coffee.hlvl.BoolConstant
+import com.coffee.hlvl.SymbolConstant
+import com.coffee.hlvl.IntConstant
 
 /**
  * This class contains custom validation rules. 
@@ -10,6 +17,9 @@ package com.coffee.validation
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class HlvlValidator extends AbstractHlvlValidator {
+	public static val WRONG_TYPE ="org.example.expressions.WrongType";
+	//@Inject extension TypeProvider
+	static val packageInstance = HlvlPackage.eINSTANCE
 	
 //	public static val INVALID_NAME = 'invalidName'
 //
@@ -30,5 +40,46 @@ class HlvlValidator extends AbstractHlvlValidator {
 	 * - las variables elemento.attributo en una expresion: existe la descomposicion
 	 * 
 	 */
+	 
+	 
+	/**
+	 * Method for checking that non boolean domains are correctly declarated 
+	 */
+	@Check
+	def checkTypeForNonBooleanDomain(ElmDeclaration decl){
+		if (decl.dataType=="boolean"){
+			return
+		}else{
+			if (decl.declaration === null){
+				error("A domain declaration is required for variable '"+decl.name+"'",
+					packageInstance.elmDeclaration_Declaration)
+				return
+			}
+		}
+		
+		}
 	
+	 //FIXME ajustar esta validaciopn
+//	 @Check
+//	def checkValues(ElmDeclaration elem){
+//		
+//		if (elem.declaration !== null){
+//			if (elem.declaration instanceof ConstantDecl){
+//				val value = (elem.declaration as ConstantDecl).value
+//				if (value instanceof BoolConstant){
+//					return
+//				}else if (value instanceof SymbolConstant){
+//				return
+//				} else if (value instanceof IntConstant){
+//					return 
+//				}else{
+//					error("A "+ elem.dataType +" value is expected in the declaration of element '"+ elem.name+"'",
+//					packageInstance.elmDeclaration_Name)
+//				return
+//				}
+//			}else{
+//				return
+//			}
+//		}
+//	}
 }

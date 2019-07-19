@@ -1,5 +1,5 @@
 {
- "problemType" : "BOOL",
+ "problemType" : "BASIC_BOOL",
 "operationSingle" : ["validModel","numberOfConfigurations"],
 "validConfiguration" :
 [

@@ -159,15 +159,6 @@ public interface HlvlFactory extends EFactory
   VarList createVarList();
 
   /**
-   * Returns a new object of class '<em>Hierarchy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Hierarchy</em>'.
-   * @generated
-   */
-  Hierarchy createHierarchy();
-
-  /**
    * Returns a new object of class '<em>Decomposition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -213,13 +204,13 @@ public interface HlvlFactory extends EFactory
   Order createOrder();
 
   /**
-   * Returns a new object of class '<em>Expression</em>'.
+   * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expression</em>'.
+   * @return a new object of class '<em>Constraint</em>'.
    * @generated
    */
-  Expression createExpression();
+  Constraint createConstraint();
 
   /**
    * Returns a new object of class '<em>Relational</em>'.
@@ -229,6 +220,15 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   Relational createRelational();
+
+  /**
+   * Returns a new object of class '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Qualified Name</em>'.
+   * @generated
+   */
+  QualifiedName createQualifiedName();
 
   /**
    * Returns a new object of class '<em>Operations</em>'.
@@ -247,42 +247,6 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   Operation createOperation();
-
-  /**
-   * Returns a new object of class '<em>Bool Val</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bool Val</em>'.
-   * @generated
-   */
-  BoolVal createBoolVal();
-
-  /**
-   * Returns a new object of class '<em>Number</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Number</em>'.
-   * @generated
-   */
-  Number createNumber();
-
-  /**
-   * Returns a new object of class '<em>Symbol</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Symbol</em>'.
-   * @generated
-   */
-  Symbol createSymbol();
-
-  /**
-   * Returns a new object of class '<em>Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
-   * @generated
-   */
-  Value createValue();
 
   /**
    * Returns a new object of class '<em>List Of Values</em>'.
@@ -312,15 +276,6 @@ public interface HlvlFactory extends EFactory
   ListOfRelRefs createListOfRelRefs();
 
   /**
-   * Returns a new object of class '<em>Names</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Names</em>'.
-   * @generated
-   */
-  Names createNames();
-
-  /**
    * Returns a new object of class '<em>Valuation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -337,15 +292,6 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   ListOfValuation createListOfValuation();
-
-  /**
-   * Returns a new object of class '<em>List Of List Values</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>List Of List Values</em>'.
-   * @generated
-   */
-  ListOfListValues createListOfListValues();
 
   /**
    * Returns a new object of class '<em>Iff</em>'.
@@ -447,6 +393,15 @@ public interface HlvlFactory extends EFactory
   Unary createUnary();
 
   /**
+   * Returns a new object of class '<em>Instances</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Instances</em>'.
+   * @generated
+   */
+  Instances createInstances();
+
+  /**
    * Returns a new object of class '<em>Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -481,15 +436,6 @@ public interface HlvlFactory extends EFactory
    * @generated
    */
   AttributeRef createAttributeRef();
-
-  /**
-   * Returns a new object of class '<em>Assign</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Assign</em>'.
-   * @generated
-   */
-  Assign createAssign();
 
   /**
    * Returns a new object of class '<em>Symbol Constant</em>'.

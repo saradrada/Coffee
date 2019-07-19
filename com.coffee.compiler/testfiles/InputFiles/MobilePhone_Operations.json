@@ -1,5 +1,5 @@
 {
- "problemType" : "INT_ATT",
+ "problemType" : "ATTRIBUTE",
 "operationSingle" : ["validModel","numberOfConfigurations"],
 "validConfiguration" :
 [

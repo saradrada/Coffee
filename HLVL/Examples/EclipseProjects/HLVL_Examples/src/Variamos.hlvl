@@ -1,6 +1,8 @@
 model  Auto_generated
 elements: 
-	boolean Logging
+	boolean Logging is true
+	integer x variants: 1..2
+	integer a is (2+3)
 	boolean Ms
 	boolean Sec
 	boolean Db
@@ -81,4 +83,4 @@ relations:
 	r34: implies(File,Ftp)
 	r35: implies(Db,Database)
 	r36: implies(Keywordsupport,Text)
-	r37: implies(Dynamic,Active)
+	r37: implies(Dynamic,Active) 

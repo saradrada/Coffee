@@ -59,7 +59,7 @@ public class HLVLGeneratorTest {
       Assert.assertTrue(model.eResource().getErrors().isEmpty());
       HlvlGenerator gen = new HlvlGenerator();
       gen.findDialect(model);
-      Assert.assertEquals(Dialect.BASIC, gen.findDialect(model));
+      Assert.assertEquals(Dialect.BASIC_BOOL, gen.findDialect(model));
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("model empty");
       _builder_1.newLine();
@@ -178,7 +178,7 @@ public class HLVLGeneratorTest {
       _builder_1.append("% The solving parameters from the parameters files");
       _builder_1.newLine();
       final String expected = _builder_1.toString();
-      final IHLVLParser parser = ParserFactory.getParser(Dialect.BASIC, model.getName());
+      final IHLVLParser parser = ParserFactory.getParser(Dialect.BASIC_BOOL, model.getName());
       final CharSequence actual = parser.parseModel(model);
       Assert.assertEquals(expected.toString(), actual.toString());
     } catch (Throwable _e) {

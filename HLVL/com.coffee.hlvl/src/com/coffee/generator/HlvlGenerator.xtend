@@ -105,7 +105,7 @@ class HlvlGenerator extends AbstractGenerator {
 		
 		if ( allElementsBooleanNotAttributes
 			&& basicRelationsNotMultiplicity){
-			return Dialect.BASIC
+			return Dialect.BASIC_BOOL
 		}else if(existInstantiable()){
 			return Dialect.MULTIPLICITY
 		}else{ 

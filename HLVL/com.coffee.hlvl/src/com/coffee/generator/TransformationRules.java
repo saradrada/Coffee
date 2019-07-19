@@ -29,14 +29,36 @@ public abstract class TransformationRules {
 	public  abstract CharSequence getElement(ElmDeclaration element);
 	
 	
-	public abstract CharSequence getCore(Common core);
+	
+	
+	public CharSequence getCore(Common core) {
+		StringBuilder out= new StringBuilder();
+		for(ElmDeclaration element: core.getElements().getValues()){
+			out.append(getCoreSingle(element));	
+		}
+		return out.toString();
+	}
+	
+	public CharSequence getImpliesList(VarList rel) {
+		StringBuilder out= new StringBuilder();
+		for( ElmDeclaration element: rel.getList().getValues()){
+			out.append(getImpliesPair(rel.getVar1(), element));
+		}
+		return out.toString();
+	}
+	
+	public CharSequence getMutexList(VarList rel) {
+		StringBuilder out= new StringBuilder();
+		for(ElmDeclaration element: rel.getList().getValues()){
+			out.append(getMutexPair(rel.getVar1(), element));
+		}	
+		return out.toString();
+	}
 	public abstract CharSequence getCoreSingle(ElmDeclaration element);
 	public abstract CharSequence getDecomposition(Decomposition rel, Map<String,ElmDeclaration> parents);
 	public abstract CharSequence getGroup(Group rel, Map<String,ElmDeclaration> parents);
 	public abstract CharSequence getImpliesPair(ElmDeclaration left, ElmDeclaration right);
 	public abstract CharSequence getMutexPair(ElmDeclaration left, ElmDeclaration right);
-	public abstract CharSequence getImpliesList(VarList rel);
-	public abstract CharSequence getMutexList(VarList rel);
 	public abstract CharSequence getExpression(Relational rel);
 	public abstract CharSequence getVisibility(Visibility rel, List<CharSequence> relations);
 	

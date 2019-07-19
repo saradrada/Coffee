@@ -23,29 +23,29 @@ package com.coffee.hlvl;
 public interface AttributeRef extends Relational
 {
   /**
-   * Returns the value of the '<em><b>Attribute</b></em>' attribute.
+   * Returns the value of the '<em><b>Attribute</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Attribute</em>' attribute isn't clear,
+   * If the meaning of the '<em>Attribute</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Attribute</em>' attribute.
-   * @see #setAttribute(String)
+   * @return the value of the '<em>Attribute</em>' containment reference.
+   * @see #setAttribute(QualifiedName)
    * @see com.coffee.hlvl.HlvlPackage#getAttributeRef_Attribute()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getAttribute();
+  QualifiedName getAttribute();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.AttributeRef#getAttribute <em>Attribute</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.hlvl.AttributeRef#getAttribute <em>Attribute</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Attribute</em>' attribute.
+   * @param value the new value of the '<em>Attribute</em>' containment reference.
    * @see #getAttribute()
    * @generated
    */
-  void setAttribute(String value);
+  void setAttribute(QualifiedName value);
 
 } // AttributeRef

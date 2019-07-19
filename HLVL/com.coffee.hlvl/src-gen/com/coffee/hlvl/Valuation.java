@@ -59,12 +59,12 @@ public interface Valuation extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
+   * @see #setValue(Relational)
    * @see com.coffee.hlvl.HlvlPackage#getValuation_Value()
    * @model containment="true"
    * @generated
    */
-  Value getValue();
+  Relational getValue();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.Valuation#getValue <em>Value</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface Valuation extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(Relational value);
 
 } // Valuation

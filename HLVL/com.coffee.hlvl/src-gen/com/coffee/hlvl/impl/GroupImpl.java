@@ -3,8 +3,10 @@
  */
 package com.coffee.hlvl.impl;
 
+import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.ListOfIDs;
 import com.coffee.hlvl.Range;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,13 +25,56 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getMin <em>Min</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.GroupImpl#getMax <em>Max</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GroupImpl extends HierarchyImpl implements Group
+public class GroupImpl extends RelationImpl implements Group
 {
+  /**
+   * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParent()
+   * @generated
+   * @ordered
+   */
+  protected ElmDeclaration parent;
+
+  /**
+   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChildren()
+   * @generated
+   * @ordered
+   */
+  protected ListOfIDs children;
+
+  /**
+   * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected static final int MIN_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMin()
+   * @generated
+   * @ordered
+   */
+  protected int min = MIN_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getMax() <em>Max</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -59,6 +104,120 @@ public class GroupImpl extends HierarchyImpl implements Group
   protected EClass eStaticClass()
   {
     return HlvlPackage.Literals.GROUP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElmDeclaration getParent()
+  {
+    if (parent != null && parent.eIsProxy())
+    {
+      InternalEObject oldParent = (InternalEObject)parent;
+      parent = (ElmDeclaration)eResolveProxy(oldParent);
+      if (parent != oldParent)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HlvlPackage.GROUP__PARENT, oldParent, parent));
+      }
+    }
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElmDeclaration basicGetParent()
+  {
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setParent(ElmDeclaration newParent)
+  {
+    ElmDeclaration oldParent = parent;
+    parent = newParent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.GROUP__PARENT, oldParent, parent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ListOfIDs getChildren()
+  {
+    return children;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetChildren(ListOfIDs newChildren, NotificationChain msgs)
+  {
+    ListOfIDs oldChildren = children;
+    children = newChildren;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.GROUP__CHILDREN, oldChildren, newChildren);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setChildren(ListOfIDs newChildren)
+  {
+    if (newChildren != children)
+    {
+      NotificationChain msgs = null;
+      if (children != null)
+        msgs = ((InternalEObject)children).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.GROUP__CHILDREN, null, msgs);
+      if (newChildren != null)
+        msgs = ((InternalEObject)newChildren).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.GROUP__CHILDREN, null, msgs);
+      msgs = basicSetChildren(newChildren, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.GROUP__CHILDREN, newChildren, newChildren));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getMin()
+  {
+    return min;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMin(int newMin)
+  {
+    int oldMin = min;
+    min = newMin;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.GROUP__MIN, oldMin, min));
   }
 
   /**
@@ -119,6 +278,8 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
+      case HlvlPackage.GROUP__CHILDREN:
+        return basicSetChildren(null, msgs);
       case HlvlPackage.GROUP__MAX:
         return basicSetMax(null, msgs);
     }
@@ -135,6 +296,13 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
+      case HlvlPackage.GROUP__PARENT:
+        if (resolve) return getParent();
+        return basicGetParent();
+      case HlvlPackage.GROUP__CHILDREN:
+        return getChildren();
+      case HlvlPackage.GROUP__MIN:
+        return getMin();
       case HlvlPackage.GROUP__MAX:
         return getMax();
     }
@@ -151,6 +319,15 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
+      case HlvlPackage.GROUP__PARENT:
+        setParent((ElmDeclaration)newValue);
+        return;
+      case HlvlPackage.GROUP__CHILDREN:
+        setChildren((ListOfIDs)newValue);
+        return;
+      case HlvlPackage.GROUP__MIN:
+        setMin((Integer)newValue);
+        return;
       case HlvlPackage.GROUP__MAX:
         setMax((Range)newValue);
         return;
@@ -168,6 +345,15 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
+      case HlvlPackage.GROUP__PARENT:
+        setParent((ElmDeclaration)null);
+        return;
+      case HlvlPackage.GROUP__CHILDREN:
+        setChildren((ListOfIDs)null);
+        return;
+      case HlvlPackage.GROUP__MIN:
+        setMin(MIN_EDEFAULT);
+        return;
       case HlvlPackage.GROUP__MAX:
         setMax((Range)null);
         return;
@@ -185,10 +371,33 @@ public class GroupImpl extends HierarchyImpl implements Group
   {
     switch (featureID)
     {
+      case HlvlPackage.GROUP__PARENT:
+        return parent != null;
+      case HlvlPackage.GROUP__CHILDREN:
+        return children != null;
+      case HlvlPackage.GROUP__MIN:
+        return min != MIN_EDEFAULT;
       case HlvlPackage.GROUP__MAX:
         return max != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (min: ");
+    result.append(min);
+    result.append(')');
+    return result.toString();
   }
 
 } //GroupImpl

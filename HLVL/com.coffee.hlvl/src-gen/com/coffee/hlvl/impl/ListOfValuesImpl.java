@@ -5,7 +5,7 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.ListOfValues;
-import com.coffee.hlvl.Value;
+import com.coffee.hlvl.Relational;
 
 import java.util.Collection;
 
@@ -44,7 +44,7 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
    * @generated
    * @ordered
    */
-  protected EList<Value> values;
+  protected EList<Relational> values;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Value> getValues()
+  public EList<Relational> getValues()
   {
     if (values == null)
     {
-      values = new EObjectContainmentEList<Value>(Value.class, this, HlvlPackage.LIST_OF_VALUES__VALUES);
+      values = new EObjectContainmentEList<Relational>(Relational.class, this, HlvlPackage.LIST_OF_VALUES__VALUES);
     }
     return values;
   }
@@ -126,7 +126,7 @@ public class ListOfValuesImpl extends MinimalEObjectImpl.Container implements Li
     {
       case HlvlPackage.LIST_OF_VALUES__VALUES:
         getValues().clear();
-        getValues().addAll((Collection<? extends Value>)newValue);
+        getValues().addAll((Collection<? extends Relational>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

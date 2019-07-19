@@ -3,7 +3,12 @@
  */
 package com.coffee.validation;
 
+import com.coffee.hlvl.Declaration;
+import com.coffee.hlvl.ElmDeclaration;
+import com.coffee.hlvl.HlvlPackage;
 import com.coffee.validation.AbstractHlvlValidator;
+import com.google.common.base.Objects;
+import org.eclipse.xtext.validation.Check;
 
 /**
  * This class contains custom validation rules.
@@ -12,4 +17,30 @@ import com.coffee.validation.AbstractHlvlValidator;
  */
 @SuppressWarnings("all")
 public class HlvlValidator extends AbstractHlvlValidator {
+  public final static String WRONG_TYPE = "org.example.expressions.WrongType";
+  
+  private final static HlvlPackage packageInstance = HlvlPackage.eINSTANCE;
+  
+  /**
+   * Method for checking that non boolean domains are correctly declarated
+   */
+  @Check
+  public void checkTypeForNonBooleanDomain(final ElmDeclaration decl) {
+    String _dataType = decl.getDataType();
+    boolean _equals = Objects.equal(_dataType, "boolean");
+    if (_equals) {
+      return;
+    } else {
+      Declaration _declaration = decl.getDeclaration();
+      boolean _tripleEquals = (_declaration == null);
+      if (_tripleEquals) {
+        String _name = decl.getName();
+        String _plus = ("A domain declaration is required for variable \'" + _name);
+        String _plus_1 = (_plus + "\'");
+        this.error(_plus_1, 
+          HlvlValidator.packageInstance.getElmDeclaration_Declaration());
+        return;
+      }
+    }
+  }
 }

@@ -5,7 +5,7 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.Value;
+import com.coffee.hlvl.Relational;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,7 +38,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected Relational value;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public Relational getValue()
   {
     return value;
   }
@@ -76,9 +76,9 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Relational newValue, NotificationChain msgs)
   {
-    Value oldValue = value;
+    Relational oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValue(Relational newValue)
   {
     if (newValue != value)
     {
@@ -152,7 +152,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
     switch (featureID)
     {
       case HlvlPackage.CONSTANT_DECL__VALUE:
-        setValue((Value)newValue);
+        setValue((Relational)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class ConstantDeclImpl extends DeclarationImpl implements ConstantDecl
     switch (featureID)
     {
       case HlvlPackage.CONSTANT_DECL__VALUE:
-        setValue((Value)null);
+        setValue((Relational)null);
         return;
     }
     super.eUnset(featureID);

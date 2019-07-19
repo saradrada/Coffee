@@ -4,46 +4,43 @@
 package com.coffee.serializer;
 
 import com.coffee.hlvl.And;
-import com.coffee.hlvl.Assign;
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.BoolConstant;
-import com.coffee.hlvl.BoolVal;
 import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
 import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.ConstantDecl;
+import com.coffee.hlvl.Constraint;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Expression;
 import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
+import com.coffee.hlvl.Instances;
 import com.coffee.hlvl.IntConstant;
 import com.coffee.hlvl.Interval;
 import com.coffee.hlvl.ListOfIDs;
-import com.coffee.hlvl.ListOfListValues;
 import com.coffee.hlvl.ListOfRelRefs;
 import com.coffee.hlvl.ListOfValuation;
 import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.Names;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operations;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.Order;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.Plus;
+import com.coffee.hlvl.QualifiedName;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.Symbol;
 import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.Unary;
 import com.coffee.hlvl.ValidConf;
@@ -82,17 +79,11 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.AND:
 				sequence_And(context, (And) semanticObject); 
 				return; 
-			case HlvlPackage.ASSIGN:
-				sequence_Atomic(context, (Assign) semanticObject); 
-				return; 
 			case HlvlPackage.ATTRIBUTE_REF:
 				sequence_Atomic(context, (AttributeRef) semanticObject); 
 				return; 
 			case HlvlPackage.BOOL_CONSTANT:
 				sequence_Atomic(context, (BoolConstant) semanticObject); 
-				return; 
-			case HlvlPackage.BOOL_VAL:
-				sequence_BoolVal(context, (BoolVal) semanticObject); 
 				return; 
 			case HlvlPackage.COMMON:
 				sequence_Common(context, (Common) semanticObject); 
@@ -109,6 +100,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.CONSTANT_DECL:
 				sequence_ConstantDecl(context, (ConstantDecl) semanticObject); 
 				return; 
+			case HlvlPackage.CONSTRAINT:
+				sequence_Constraint(context, (Constraint) semanticObject); 
+				return; 
 			case HlvlPackage.DECOMPOSITION:
 				sequence_Decomposition(context, (Decomposition) semanticObject); 
 				return; 
@@ -120,9 +114,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case HlvlPackage.EQUALITY:
 				sequence_Equality(context, (Equality) semanticObject); 
-				return; 
-			case HlvlPackage.EXPRESSION:
-				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
 			case HlvlPackage.FUNCTION:
 				sequence_Primary(context, (Function) semanticObject); 
@@ -136,6 +127,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.IMPLIES:
 				sequence_Implies(context, (Implies) semanticObject); 
 				return; 
+			case HlvlPackage.INSTANCES:
+				sequence_Primary(context, (Instances) semanticObject); 
+				return; 
 			case HlvlPackage.INT_CONSTANT:
 				sequence_Atomic(context, (IntConstant) semanticObject); 
 				return; 
@@ -144,9 +138,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case HlvlPackage.LIST_OF_IDS:
 				sequence_ListOfIDs(context, (ListOfIDs) semanticObject); 
-				return; 
-			case HlvlPackage.LIST_OF_LIST_VALUES:
-				sequence_ListOfListValues(context, (ListOfListValues) semanticObject); 
 				return; 
 			case HlvlPackage.LIST_OF_REL_REFS:
 				sequence_ListOfRelRefs(context, (ListOfRelRefs) semanticObject); 
@@ -166,14 +157,8 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.MUL_OR_DIV:
 				sequence_MulOrDiv(context, (MulOrDiv) semanticObject); 
 				return; 
-			case HlvlPackage.NAMES:
-				sequence_Names(context, (Names) semanticObject); 
-				return; 
 			case HlvlPackage.NEGATION:
 				sequence_Primary(context, (Negation) semanticObject); 
-				return; 
-			case HlvlPackage.NUMBER:
-				sequence_Number(context, (com.coffee.hlvl.Number) semanticObject); 
 				return; 
 			case HlvlPackage.OPERATIONS:
 				sequence_Operations(context, (Operations) semanticObject); 
@@ -190,6 +175,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.PLUS:
 				sequence_PlusOrMinus(context, (Plus) semanticObject); 
 				return; 
+			case HlvlPackage.QUALIFIED_NAME:
+				sequence_QualifiedName(context, (QualifiedName) semanticObject); 
+				return; 
 			case HlvlPackage.RANGE:
 				sequence_Range(context, (Range) semanticObject); 
 				return; 
@@ -198,9 +186,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case HlvlPackage.SINGLE_INSTRUCTION:
 				sequence_Sample(context, (SingleInstruction) semanticObject); 
-				return; 
-			case HlvlPackage.SYMBOL:
-				sequence_Symbol(context, (Symbol) semanticObject); 
 				return; 
 			case HlvlPackage.SYMBOL_CONSTANT:
 				sequence_Atomic(context, (SymbolConstant) semanticObject); 
@@ -266,46 +251,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAndAccess().getAndLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getAndAccess().getRightEqualityParserRuleCall_1_2_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Relational returns Assign
-	 *     Iff returns Assign
-	 *     Iff.Iff_1_0 returns Assign
-	 *     Implies returns Assign
-	 *     Implies.Implies_1_0 returns Assign
-	 *     Or returns Assign
-	 *     Or.Or_1_0 returns Assign
-	 *     And returns Assign
-	 *     And.And_1_0 returns Assign
-	 *     Equality returns Assign
-	 *     Equality.Equality_1_0 returns Assign
-	 *     Comparison returns Assign
-	 *     Comparison.Comparison_1_0 returns Assign
-	 *     PlusOrMinus returns Assign
-	 *     PlusOrMinus.Plus_1_0_0_0 returns Assign
-	 *     PlusOrMinus.Minus_1_0_1_0 returns Assign
-	 *     MulOrDiv returns Assign
-	 *     MulOrDiv.MulOrDiv_1_0 returns Assign
-	 *     Primary returns Assign
-	 *     Atomic returns Assign
-	 *
-	 * Constraint:
-	 *     (variable=[ElmDeclaration|ID] value=Value)
-	 */
-	protected void sequence_Atomic(ISerializationContext context, Assign semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.ASSIGN__VARIABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.ASSIGN__VARIABLE));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.ASSIGN__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.ASSIGN__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicAccess().getVariableElmDeclarationIDTerminalRuleCall_3_1_0_1(), semanticObject.eGet(HlvlPackage.Literals.ASSIGN__VARIABLE, false));
-		feeder.accept(grammarAccess.getAtomicAccess().getValueValueParserRuleCall_3_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -410,7 +355,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.INT_CONSTANT__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicAccess().getValueINTTerminalRuleCall_5_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAtomicAccess().getValueINTTerminalRuleCall_4_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -447,7 +392,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.SYMBOL_CONSTANT__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicAccess().getValueSTRINGTerminalRuleCall_4_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAtomicAccess().getValueSTRINGTerminalRuleCall_3_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -486,19 +431,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAtomicAccess().getVariableElmDeclarationIDTerminalRuleCall_1_1_0_1(), semanticObject.eGet(HlvlPackage.Literals.VARIABLE_REF__VARIABLE, false));
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BoolVal returns BoolVal
-	 *     Value returns BoolVal
-	 *
-	 * Constraint:
-	 *     (value='true' | value='false')
-	 */
-	protected void sequence_BoolVal(ISerializationContext context, BoolVal semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -601,7 +533,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ConstantDecl returns ConstantDecl
 	 *
 	 * Constraint:
-	 *     value=Value?
+	 *     value=Relational?
 	 */
 	protected void sequence_ConstantDecl(ISerializationContext context, ConstantDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -610,8 +542,26 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Relation returns Constraint
+	 *     Constraint returns Constraint
+	 *
+	 * Constraint:
+	 *     exp=Relational
+	 */
+	protected void sequence_Constraint(ISerializationContext context, Constraint semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.CONSTRAINT__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.CONSTRAINT__EXP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConstraintAccess().getExpRelationalParserRuleCall_2_0(), semanticObject.getExp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Relation returns Decomposition
-	 *     Hierarchy returns Decomposition
 	 *     Decomposition returns Decomposition
 	 *
 	 * Constraint:
@@ -619,17 +569,17 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Decomposition(ISerializationContext context, Decomposition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__PARENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__PARENT));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__CHILDREN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__CHILDREN));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__MIN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__MIN));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.DECOMPOSITION__PARENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.DECOMPOSITION__PARENT));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.DECOMPOSITION__CHILDREN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.DECOMPOSITION__CHILDREN));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.DECOMPOSITION__MIN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.DECOMPOSITION__MIN));
 			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.DECOMPOSITION__MAX) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.DECOMPOSITION__MAX));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDecompositionAccess().getParentElmDeclarationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.HIERARCHY__PARENT, false));
+		feeder.accept(grammarAccess.getDecompositionAccess().getParentElmDeclarationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.DECOMPOSITION__PARENT, false));
 		feeder.accept(grammarAccess.getDecompositionAccess().getChildrenListOfIDsParserRuleCall_6_0(), semanticObject.getChildren());
 		feeder.accept(grammarAccess.getDecompositionAccess().getMinINTTerminalRuleCall_10_0(), semanticObject.getMin());
 		feeder.accept(grammarAccess.getDecompositionAccess().getMaxINTTerminalRuleCall_12_0(), semanticObject.getMax());
@@ -642,7 +592,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ElmDeclaration returns ElmDeclaration
 	 *
 	 * Constraint:
-	 *     (att='att'? dataType=DataType name=ID declaration=Declaration comment=STRING?)
+	 *     (att='att'? (dataType='boolean' | dataType='integer' | dataType='symbolic') name=ID declaration=Declaration comment=STRING?)
 	 */
 	protected void sequence_ElmDeclaration(ISerializationContext context, ElmDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -700,27 +650,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Relation returns Expression
-	 *     Expression returns Expression
-	 *
-	 * Constraint:
-	 *     exp=Relational
-	 */
-	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.EXPRESSION__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.EXPRESSION__EXP));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExpressionAccess().getExpRelationalParserRuleCall_2_0(), semanticObject.getExp());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Relation returns Group
-	 *     Hierarchy returns Group
 	 *     Group returns Group
 	 *
 	 * Constraint:
@@ -728,17 +658,17 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Group(ISerializationContext context, Group semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__PARENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__PARENT));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__CHILDREN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__CHILDREN));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.HIERARCHY__MIN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.HIERARCHY__MIN));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.GROUP__PARENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.GROUP__PARENT));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.GROUP__CHILDREN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.GROUP__CHILDREN));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.GROUP__MIN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.GROUP__MIN));
 			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.GROUP__MAX) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.GROUP__MAX));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGroupAccess().getParentElmDeclarationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.HIERARCHY__PARENT, false));
+		feeder.accept(grammarAccess.getGroupAccess().getParentElmDeclarationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.GROUP__PARENT, false));
 		feeder.accept(grammarAccess.getGroupAccess().getChildrenListOfIDsParserRuleCall_6_0(), semanticObject.getChildren());
 		feeder.accept(grammarAccess.getGroupAccess().getMinINTTerminalRuleCall_10_0(), semanticObject.getMin());
 		feeder.accept(grammarAccess.getGroupAccess().getMaxRangeParserRuleCall_12_0(), semanticObject.getMax());
@@ -860,18 +790,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ListOfListValues returns ListOfListValues
-	 *
-	 * Constraint:
-	 *     (list+=ListOfValues list+=ListOfValues*)
-	 */
-	protected void sequence_ListOfListValues(ISerializationContext context, ListOfListValues semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ListOfRelRefs returns ListOfRelRefs
 	 *
 	 * Constraint:
@@ -899,7 +817,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ListOfValues returns ListOfValues
 	 *
 	 * Constraint:
-	 *     (values+=Value values+=Value*)
+	 *     (values+=Relational values+=Relational*)
 	 */
 	protected void sequence_ListOfValues(ISerializationContext context, ListOfValues semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -945,37 +863,6 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_MulOrDiv(ISerializationContext context, MulOrDiv semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Names returns Names
-	 *
-	 * Constraint:
-	 *     (ids+=ID ids+=ID*)
-	 */
-	protected void sequence_Names(ISerializationContext context, Names semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Number returns Number
-	 *     Value returns Number
-	 *
-	 * Constraint:
-	 *     value=INT
-	 */
-	protected void sequence_Number(ISerializationContext context, com.coffee.hlvl.Number semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.NUMBER__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.NUMBER__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNumberAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
 	}
 	
 	
@@ -1157,21 +1044,48 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Primary returns Function
 	 *
 	 * Constraint:
-	 *     (op=FunctionOp left=Primary right=Primary)
+	 *     ((op='pow' | op='dist' | op='min' | op='max' | op='if') left=Primary right=Primary)
 	 */
 	protected void sequence_Primary(ISerializationContext context, Function semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Relational returns Instances
+	 *     Iff returns Instances
+	 *     Iff.Iff_1_0 returns Instances
+	 *     Implies returns Instances
+	 *     Implies.Implies_1_0 returns Instances
+	 *     Or returns Instances
+	 *     Or.Or_1_0 returns Instances
+	 *     And returns Instances
+	 *     And.And_1_0 returns Instances
+	 *     Equality returns Instances
+	 *     Equality.Equality_1_0 returns Instances
+	 *     Comparison returns Instances
+	 *     Comparison.Comparison_1_0 returns Instances
+	 *     PlusOrMinus returns Instances
+	 *     PlusOrMinus.Plus_1_0_0_0 returns Instances
+	 *     PlusOrMinus.Minus_1_0_1_0 returns Instances
+	 *     MulOrDiv returns Instances
+	 *     MulOrDiv.MulOrDiv_1_0 returns Instances
+	 *     Primary returns Instances
+	 *
+	 * Constraint:
+	 *     (element=[ElmDeclaration|ID] number=INT)
+	 */
+	protected void sequence_Primary(ISerializationContext context, Instances semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.FUNCTION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.FUNCTION__OP));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.FUNCTION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.FUNCTION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.FUNCTION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.FUNCTION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.INSTANCES__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.INSTANCES__ELEMENT));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.INSTANCES__NUMBER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.INSTANCES__NUMBER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPrimaryAccess().getOpFunctionOpParserRuleCall_3_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getPrimaryAccess().getLeftPrimaryParserRuleCall_3_3_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getPrimaryAccess().getRightPrimaryParserRuleCall_3_5_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getPrimaryAccess().getElementElmDeclarationIDTerminalRuleCall_3_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.INSTANCES__ELEMENT, false));
+		feeder.accept(grammarAccess.getPrimaryAccess().getNumberINTTerminalRuleCall_3_5_0(), semanticObject.getNumber());
 		feeder.finish();
 	}
 	
@@ -1235,18 +1149,30 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Primary returns Unary
 	 *
 	 * Constraint:
-	 *     (op=UnaryOp expression=Primary)
+	 *     ((op='abs' | op='sqrt' | op='entailed') expression=Primary)
 	 */
 	protected void sequence_Primary(ISerializationContext context, Unary semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     QualifiedName returns QualifiedName
+	 *
+	 * Constraint:
+	 *     (element=[ElmDeclaration|ID] att=[ElmDeclaration|ID])
+	 */
+	protected void sequence_QualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.UNARY__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.UNARY__OP));
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.UNARY__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.UNARY__EXPRESSION));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.QUALIFIED_NAME__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.QUALIFIED_NAME__ELEMENT));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.QUALIFIED_NAME__ATT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.QUALIFIED_NAME__ATT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPrimaryAccess().getOpUnaryOpParserRuleCall_2_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getPrimaryAccess().getExpressionPrimaryParserRuleCall_2_3_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getQualifiedNameAccess().getElementElmDeclarationIDTerminalRuleCall_0_0_1(), semanticObject.eGet(HlvlPackage.Literals.QUALIFIED_NAME__ELEMENT, false));
+		feeder.accept(grammarAccess.getQualifiedNameAccess().getAttElmDeclarationIDTerminalRuleCall_2_0_1(), semanticObject.eGet(HlvlPackage.Literals.QUALIFIED_NAME__ATT, false));
 		feeder.finish();
 	}
 	
@@ -1256,7 +1182,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Range returns Range
 	 *
 	 * Constraint:
-	 *     value=wildcard
+	 *     value=Wildcard
 	 */
 	protected void sequence_Range(ISerializationContext context, Range semanticObject) {
 		if (errorAcceptor != null) {
@@ -1330,29 +1256,10 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Symbol returns Symbol
-	 *     Value returns Symbol
-	 *
-	 * Constraint:
-	 *     value=STRING
-	 */
-	protected void sequence_Symbol(ISerializationContext context, Symbol semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.SYMBOL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.SYMBOL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSymbolAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Valuation returns Valuation
 	 *
 	 * Constraint:
-	 *     (element=[ElmDeclaration|ID] value=Value)
+	 *     (element=[ElmDeclaration|ID] value=Relational)
 	 */
 	protected void sequence_Valuation(ISerializationContext context, Valuation semanticObject) {
 		if (errorAcceptor != null) {
@@ -1363,7 +1270,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getValuationAccess().getElementElmDeclarationIDTerminalRuleCall_1_0_1(), semanticObject.eGet(HlvlPackage.Literals.VALUATION__ELEMENT, false));
-		feeder.accept(grammarAccess.getValuationAccess().getValueValueParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getValuationAccess().getValueRelationalParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

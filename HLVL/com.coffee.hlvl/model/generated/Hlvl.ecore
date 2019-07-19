@@ -20,7 +20,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantDecl" eSuperTypes="#//Declaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDecl" eSuperTypes="#//Declaration">
@@ -69,16 +69,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfIDs"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Hierarchy" eSuperTypes="#//Relation">
+  <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElmDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfIDs"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//Hierarchy">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Hierarchy">
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfIDs"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Range" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Range">
@@ -96,29 +98,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
         eType="#//ListOfIDs" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Relation">
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relational"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="att" eType="#//ElmDeclaration"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="op" upperBound="-1" eType="#//Operation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolVal" eSuperTypes="#//Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Symbol" eSuperTypes="#//Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfValues">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="#//Value" containment="true"/>
+        eType="#//Relational" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfIDs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" unique="false"
@@ -128,22 +124,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
         eType="#//RelDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Names">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ids" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Valuation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfValuation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
         eType="#//Valuation" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListOfListValues">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="list" upperBound="-1" eType="#//ListOfValues"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Iff" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
@@ -211,6 +199,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instances" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
@@ -225,11 +217,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//ElmDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeRef" eSuperTypes="#//Relational">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//Relational">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//ElmDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//QualifiedName"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SymbolConstant" eSuperTypes="#//Relational">

@@ -19,6 +19,9 @@ public interface IMiniZincConstants {
 	public static  final String VAR_DEF="var";
 	public static  final String BOOL_DOMAIN="bool";
 	public static  final String ASSIGN="=";
+	
+	// Integer declarations
+	public static  final String INT_DOMAIN="int";
 
 	//Constraints
 	public static final String CONS_DEF ="constraint"; 

@@ -5,10 +5,13 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.AttributeRef;
 import com.coffee.hlvl.HlvlPackage;
+import com.coffee.hlvl.QualifiedName;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -28,24 +31,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class AttributeRefImpl extends RelationalImpl implements AttributeRef
 {
   /**
-   * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAttribute()
    * @generated
    * @ordered
    */
-  protected static final String ATTRIBUTE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttribute()
-   * @generated
-   * @ordered
-   */
-  protected String attribute = ATTRIBUTE_EDEFAULT;
+  protected QualifiedName attribute;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class AttributeRefImpl extends RelationalImpl implements AttributeRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAttribute()
+  public QualifiedName getAttribute()
   {
     return attribute;
   }
@@ -83,12 +76,53 @@ public class AttributeRefImpl extends RelationalImpl implements AttributeRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAttribute(String newAttribute)
+  public NotificationChain basicSetAttribute(QualifiedName newAttribute, NotificationChain msgs)
   {
-    String oldAttribute = attribute;
+    QualifiedName oldAttribute = attribute;
     attribute = newAttribute;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE, oldAttribute, attribute));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE, oldAttribute, newAttribute);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAttribute(QualifiedName newAttribute)
+  {
+    if (newAttribute != attribute)
+    {
+      NotificationChain msgs = null;
+      if (attribute != null)
+        msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE, null, msgs);
+      if (newAttribute != null)
+        msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE, null, msgs);
+      msgs = basicSetAttribute(newAttribute, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE, newAttribute, newAttribute));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE:
+        return basicSetAttribute(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class AttributeRefImpl extends RelationalImpl implements AttributeRef
     switch (featureID)
     {
       case HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE:
-        setAttribute((String)newValue);
+        setAttribute((QualifiedName)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class AttributeRefImpl extends RelationalImpl implements AttributeRef
     switch (featureID)
     {
       case HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE:
-        setAttribute(ATTRIBUTE_EDEFAULT);
+        setAttribute((QualifiedName)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class AttributeRefImpl extends RelationalImpl implements AttributeRef
     switch (featureID)
     {
       case HlvlPackage.ATTRIBUTE_REF__ATTRIBUTE:
-        return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
+        return attribute != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (attribute: ");
-    result.append(attribute);
-    result.append(')');
-    return result.toString();
   }
 
 } //AttributeRefImpl

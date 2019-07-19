@@ -3,12 +3,15 @@ package com.coffee.generator;
 
 /**
  * type of problem can be 
- * - BOOL, for models using the constructors 
- * - ATT, for attribute based 
- * - Inst, for cardinality-based 
+ * BASIC_BOOL, for models with the basic constructs and translated into boolean problems
+ * BASIC_INT, for models with the basic constructs and translated into integer problems
+ * ATTRIBUTE, for models with attributes
+ * MULTIPLICITY for models with multiplicities
+ * Modified on july 2019 
 */
 public enum Dialect {
-	BASIC,
+	BASIC_BOOL,
+	BASIC_INT,
 	ATTRIBUTE,
 	MULTIPLICITY
 

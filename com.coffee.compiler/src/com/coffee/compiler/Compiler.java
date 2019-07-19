@@ -2,12 +2,17 @@ package com.coffee.compiler;
 
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import com.coffee.coffeeParser.CoffeeMiniZincParser;
+import com.coffee.coffeeParser.Solution;
 import com.coffee.miniZincExecutor.CoffeeMiniZincExecutor;
 
 import at.siemens.ct.jmz.executor.IExecutor;
@@ -95,7 +100,7 @@ public class Compiler implements ICompiler{
 		//String problemType= operationsInfo.getString("problemType"); 
 		// type of problem from the parameters object
 		switch(compilationParameters.getProblemType()){
-		case BOOL:
+		case BASIC_BOOL:
 			solver= selectSolver(SolverType.SATSolver);
 			break;
 		default:
@@ -154,7 +159,31 @@ public class Compiler implements ICompiler{
 		return solver;
 	}
 	
-	public JsonObject getOneSolution() throws Exception{
+	@Override
+	public CompilerAnswer getSolutions(int n) throws Exception {
+		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
+		//if the frontEnd sends a configuration
+				if(compilationParameters.getConfiguration()) {
+					// calling the executor with the configuration, the time parameters and number of solutions required
+					executor.startProcess(
+							compilationParameters.getConfigurationPath(),
+							"--output-time",
+							"-n "+n);
+				}
+				else {
+					// use the time parameters and number of solutions required
+					executor.startProcess("--output-time", "-n "+n);
+				}
+
+				//execute
+				long elapsedTime= executor.waitForSolution();
+
+				//System.out.println(executor.getLastSolverOutput());
+
+				//obtain the output	
+				return createCollection(executor, elapsedTime);
+	}
+	public JsonObject getOneSolutionJson() throws Exception{
 		///create the executor
 		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
 
@@ -182,7 +211,7 @@ public class Compiler implements ICompiler{
 
 	}
 	
-	public JsonObject getNSolutions(int n) throws Exception{
+	public JsonObject getNSolutionsJson(int n) throws Exception{
 		///create the executor
 		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
 
@@ -202,7 +231,30 @@ public class Compiler implements ICompiler{
 		//execute
 		long elapsedTime= executor.waitForSolution();
 
-		//System.out.println(executor.getLastSolverOutput());
+		//obtain the output	
+		return processOutput(executor, elapsedTime);
+	}
+	
+	//FIXME this throws an exception
+	public JsonObject getAllSolutionsJson() throws Exception{
+		///create the executor
+		executor= new CoffeeMiniZincExecutor(compilationParameters.getMznFilesPath(), modelFileName, solver);
+
+		//if the frontEnd sends a configuration
+		if(compilationParameters.getConfiguration()) {
+			// calling the executor with the configuration, the time parameters and number of solutions required
+			executor.startProcess(
+					compilationParameters.getConfigurationPath(),
+					//"--output-time",
+					"-a ");
+		}
+		else {
+			// use the time parameters and number of solutions required
+			executor.startProcess("--output-time", "-a ");
+		}
+
+		//execute
+		long elapsedTime= executor.waitForSolution();
 
 		//obtain the output	
 		return processOutput(executor, elapsedTime);
@@ -225,10 +277,32 @@ public class Compiler implements ICompiler{
 			builder.add("solutions", parser.getSolutions());
 		    builder.add("numberOfSolutions", parser.getNumSolutions());
 		}
-	    
 	    return builder.build();
 	}
 	
+	private CompilerAnswer createCollection( IExecutor executor, long elapsedTime) {
+		//JsonObjectBuilder builder= Json.createObjectBuilder();
+		CompilerAnswer answer= new CompilerAnswer();
+	    CoffeeMiniZincParser parser = new CoffeeMiniZincParser(executor);
+	    // setting the overall answer: COMPLETE, UNBOUNDED, UNSATISFIABLE, UNKNOWN, SATISFIABLE
+	    // put the overall of the solving
+	    String outputMsg = parser.getSolverMessage() ==null? "SATISFIABLE": parser.getSolverMessage().toString() ;
+	    
+	    answer.setExitCode(parser.getExitCode());
+	    answer.setState(outputMsg);
+		answer.setOverAllTime(elapsedTime);
+		
+	    //put the solutions When is satisfiable
+		if (outputMsg.equals("UNSATISFIABLE")) {
+			answer.setSolutions(new ArrayList<Solution>());
+		    answer.setNumberOfSolutions(0);
+		}else {
+			answer.setSolutions( parser.getListSolutions());
+			answer.setNumberOfSolutions(parser.getNumSolutions());
+		    
+		}
+		return answer;
+	}
 
 	
 	public JsonObject getOperationsInfo() {
@@ -243,6 +317,4 @@ public class Compiler implements ICompiler{
 		return frontEndParameters;
 	}
 
-
-
-}
+	}

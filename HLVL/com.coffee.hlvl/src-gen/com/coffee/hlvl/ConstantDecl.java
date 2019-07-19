@@ -31,12 +31,12 @@ public interface ConstantDecl extends Declaration
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
+   * @see #setValue(Relational)
    * @see com.coffee.hlvl.HlvlPackage#getConstantDecl_Value()
    * @model containment="true"
    * @generated
    */
-  Value getValue();
+  Relational getValue();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.ConstantDecl#getValue <em>Value</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface ConstantDecl extends Declaration
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(Relational value);
 
 } // ConstantDecl

@@ -3,62 +3,7 @@
  */
 package com.coffee.hlvl.util;
 
-import com.coffee.hlvl.And;
-import com.coffee.hlvl.Assign;
-import com.coffee.hlvl.AttributeRef;
-import com.coffee.hlvl.BoolConstant;
-import com.coffee.hlvl.BoolVal;
-import com.coffee.hlvl.Common;
-import com.coffee.hlvl.Comparison;
-import com.coffee.hlvl.ComplexImplies;
-import com.coffee.hlvl.ComplexMutex;
-import com.coffee.hlvl.ConstantDecl;
-import com.coffee.hlvl.Declaration;
-import com.coffee.hlvl.Decomposition;
-import com.coffee.hlvl.ElmDeclaration;
-import com.coffee.hlvl.Enumeration;
-import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Expression;
-import com.coffee.hlvl.Function;
-import com.coffee.hlvl.Group;
-import com.coffee.hlvl.Hierarchy;
-import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.Iff;
-import com.coffee.hlvl.Implies;
-import com.coffee.hlvl.IntConstant;
-import com.coffee.hlvl.Interval;
-import com.coffee.hlvl.ListOfIDs;
-import com.coffee.hlvl.ListOfListValues;
-import com.coffee.hlvl.ListOfRelRefs;
-import com.coffee.hlvl.ListOfValuation;
-import com.coffee.hlvl.ListOfValues;
-import com.coffee.hlvl.Minus;
-import com.coffee.hlvl.Model;
-import com.coffee.hlvl.MulOrDiv;
-import com.coffee.hlvl.Names;
-import com.coffee.hlvl.Negation;
-import com.coffee.hlvl.Operation;
-import com.coffee.hlvl.Operations;
-import com.coffee.hlvl.OptionsDeclaration;
-import com.coffee.hlvl.Or;
-import com.coffee.hlvl.Order;
-import com.coffee.hlvl.Pair;
-import com.coffee.hlvl.Plus;
-import com.coffee.hlvl.Range;
-import com.coffee.hlvl.RelDeclaration;
-import com.coffee.hlvl.Relation;
-import com.coffee.hlvl.Relational;
-import com.coffee.hlvl.SingleInstruction;
-import com.coffee.hlvl.Symbol;
-import com.coffee.hlvl.SymbolConstant;
-import com.coffee.hlvl.Unary;
-import com.coffee.hlvl.ValidConf;
-import com.coffee.hlvl.Valuation;
-import com.coffee.hlvl.Value;
-import com.coffee.hlvl.VarList;
-import com.coffee.hlvl.VariableDecl;
-import com.coffee.hlvl.VariableRef;
-import com.coffee.hlvl.Visibility;
+import com.coffee.hlvl.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -206,11 +151,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createVarListAdapter();
       }
       @Override
-      public Adapter caseHierarchy(Hierarchy object)
-      {
-        return createHierarchyAdapter();
-      }
-      @Override
       public Adapter caseDecomposition(Decomposition object)
       {
         return createDecompositionAdapter();
@@ -236,14 +176,19 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createOrderAdapter();
       }
       @Override
-      public Adapter caseExpression(Expression object)
+      public Adapter caseConstraint(Constraint object)
       {
-        return createExpressionAdapter();
+        return createConstraintAdapter();
       }
       @Override
       public Adapter caseRelational(Relational object)
       {
         return createRelationalAdapter();
+      }
+      @Override
+      public Adapter caseQualifiedName(QualifiedName object)
+      {
+        return createQualifiedNameAdapter();
       }
       @Override
       public Adapter caseOperations(Operations object)
@@ -254,26 +199,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseOperation(Operation object)
       {
         return createOperationAdapter();
-      }
-      @Override
-      public Adapter caseBoolVal(BoolVal object)
-      {
-        return createBoolValAdapter();
-      }
-      @Override
-      public Adapter caseNumber(com.coffee.hlvl.Number object)
-      {
-        return createNumberAdapter();
-      }
-      @Override
-      public Adapter caseSymbol(Symbol object)
-      {
-        return createSymbolAdapter();
-      }
-      @Override
-      public Adapter caseValue(Value object)
-      {
-        return createValueAdapter();
       }
       @Override
       public Adapter caseListOfValues(ListOfValues object)
@@ -291,11 +216,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createListOfRelRefsAdapter();
       }
       @Override
-      public Adapter caseNames(Names object)
-      {
-        return createNamesAdapter();
-      }
-      @Override
       public Adapter caseValuation(Valuation object)
       {
         return createValuationAdapter();
@@ -304,11 +224,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseListOfValuation(ListOfValuation object)
       {
         return createListOfValuationAdapter();
-      }
-      @Override
-      public Adapter caseListOfListValues(ListOfListValues object)
-      {
-        return createListOfListValuesAdapter();
       }
       @Override
       public Adapter caseIff(Iff object)
@@ -366,6 +281,11 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createUnaryAdapter();
       }
       @Override
+      public Adapter caseInstances(Instances object)
+      {
+        return createInstancesAdapter();
+      }
+      @Override
       public Adapter caseFunction(Function object)
       {
         return createFunctionAdapter();
@@ -384,11 +304,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAttributeRef(AttributeRef object)
       {
         return createAttributeRefAdapter();
-      }
-      @Override
-      public Adapter caseAssign(Assign object)
-      {
-        return createAssignAdapter();
       }
       @Override
       public Adapter caseSymbolConstant(SymbolConstant object)
@@ -658,21 +573,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Hierarchy <em>Hierarchy</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Hierarchy
-   * @generated
-   */
-  public Adapter createHierarchyAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Decomposition <em>Decomposition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -748,16 +648,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Expression <em>Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Constraint <em>Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.Expression
+   * @see com.coffee.hlvl.Constraint
    * @generated
    */
-  public Adapter createExpressionAdapter()
+  public Adapter createConstraintAdapter()
   {
     return null;
   }
@@ -773,6 +673,21 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRelationalAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.QualifiedName <em>Qualified Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.QualifiedName
+   * @generated
+   */
+  public Adapter createQualifiedNameAdapter()
   {
     return null;
   }
@@ -803,66 +718,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createOperationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.BoolVal <em>Bool Val</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.BoolVal
-   * @generated
-   */
-  public Adapter createBoolValAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Number <em>Number</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Number
-   * @generated
-   */
-  public Adapter createNumberAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Symbol <em>Symbol</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Symbol
-   * @generated
-   */
-  public Adapter createSymbolAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Value
-   * @generated
-   */
-  public Adapter createValueAdapter()
   {
     return null;
   }
@@ -913,21 +768,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Names <em>Names</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Names
-   * @generated
-   */
-  public Adapter createNamesAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Valuation <em>Valuation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -953,21 +793,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfValuationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.ListOfListValues <em>List Of List Values</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.ListOfListValues
-   * @generated
-   */
-  public Adapter createListOfListValuesAdapter()
   {
     return null;
   }
@@ -1138,6 +963,21 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Instances <em>Instances</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.Instances
+   * @generated
+   */
+  public Adapter createInstancesAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Function <em>Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1193,21 +1033,6 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Assign <em>Assign</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.coffee.hlvl.Assign
-   * @generated
-   */
-  public Adapter createAssignAdapter()
   {
     return null;
   }

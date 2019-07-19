@@ -1,6 +1,6 @@
 package com.coffee.generator;
 
-import com.coffee.generator.boolParser.BoolParser;
+import com.coffee.generator.boolParser.BasicBoolParser;
 import com.coffee.generator.integerParser.AttributesParser;
 
 /**
@@ -15,10 +15,9 @@ public class ParserFactory {
 	 static public IHLVLParser getParser(Dialect dialect, String modelName ) {
 		IHLVLParser generator=null;
 		switch(dialect) {
-		case BASIC:
-			generator= new BoolParser(modelName, dialect);
+		case BASIC_BOOL:
+			generator= new BasicBoolParser(modelName, dialect);
 			break;
-			
 		default:
 			generator= new AttributesParser(modelName);	
 		}
