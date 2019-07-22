@@ -377,11 +377,11 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.UNARY:
+      case HlvlPackage.UNARY_FUNCTION:
       {
-        Unary unary = (Unary)theEObject;
-        T result = caseUnary(unary);
-        if (result == null) result = caseRelational(unary);
+        UnaryFunction unaryFunction = (UnaryFunction)theEObject;
+        T result = caseUnaryFunction(unaryFunction);
+        if (result == null) result = caseRelational(unaryFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -393,11 +393,19 @@ public class HlvlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HlvlPackage.FUNCTION:
+      case HlvlPackage.ENTAILED:
       {
-        Function function = (Function)theEObject;
-        T result = caseFunction(function);
-        if (result == null) result = caseRelational(function);
+        Entailed entailed = (Entailed)theEObject;
+        T result = caseEntailed(entailed);
+        if (result == null) result = caseRelational(entailed);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.BINARY_FUNCTION:
+      {
+        BinaryFunction binaryFunction = (BinaryFunction)theEObject;
+        T result = caseBinaryFunction(binaryFunction);
+        if (result == null) result = caseRelational(binaryFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1102,17 +1110,17 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Unary</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Unary Function</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Unary</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Unary Function</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseUnary(Unary object)
+  public T caseUnaryFunction(UnaryFunction object)
   {
     return null;
   }
@@ -1134,17 +1142,33 @@ public class HlvlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Function</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Entailed</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Function</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Entailed</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFunction(Function object)
+  public T caseEntailed(Entailed object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Binary Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Binary Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBinaryFunction(BinaryFunction object)
   {
     return null;
   }

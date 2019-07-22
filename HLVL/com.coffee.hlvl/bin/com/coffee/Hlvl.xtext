@@ -190,10 +190,10 @@ MulOrDiv returns Relational:
 Primary returns Relational:
 	 '(' Relational ')' | 
 	 {Negation} "~"expression=Primary | 
-	 {Unary} op=('abs'|'sqrt'| 'entailed') '('expression=Primary')' | 
+	 {UnaryFunction} op=('abs'|'sqrt') expression=Primary | 
 	 {Instances} 'instances' '(' element= [ElmDeclaration] ','number= INT ')'|
-	 
-	 {Function} op=('pow'|'dist'|'min'|'max'|'if') '('left=Primary ',' right=Primary ')' |
+	 {Entailed} 'entailed' '(' element= [ElmDeclaration]')'|
+	 {BinaryFunction} op=('pow'|'dist'|'min'|'max'|'if') '('left=Primary ',' right=Primary ')' |
 	 //{Assign} variable= [ElmDeclaration] 'is' value=Relational| //value=Value| changed by avillota
 	 Atomic
 ;

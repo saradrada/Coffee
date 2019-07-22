@@ -25,13 +25,4 @@ public interface IBooleanExpressionsRules {
 	public CharSequence getAnd(And exp);
 	public CharSequence getOr(Or exp);
 
-
-
-	
-	
-
-
-	
-	
-
 }

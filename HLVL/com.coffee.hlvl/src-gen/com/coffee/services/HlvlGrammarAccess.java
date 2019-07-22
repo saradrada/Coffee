@@ -1483,16 +1483,13 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpressionAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cExpressionPrimaryParserRuleCall_1_2_0 = (RuleCall)cExpressionAssignment_1_2.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cUnaryAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Action cUnaryFunctionAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Assignment cOpAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final Alternatives cOpAlternatives_2_1_0 = (Alternatives)cOpAssignment_2_1.eContents().get(0);
 		private final Keyword cOpAbsKeyword_2_1_0_0 = (Keyword)cOpAlternatives_2_1_0.eContents().get(0);
 		private final Keyword cOpSqrtKeyword_2_1_0_1 = (Keyword)cOpAlternatives_2_1_0.eContents().get(1);
-		private final Keyword cOpEntailedKeyword_2_1_0_2 = (Keyword)cOpAlternatives_2_1_0.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
-		private final Assignment cExpressionAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cExpressionPrimaryParserRuleCall_2_3_0 = (RuleCall)cExpressionAssignment_2_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
+		private final Assignment cExpressionAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cExpressionPrimaryParserRuleCall_2_2_0 = (RuleCall)cExpressionAssignment_2_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cInstancesAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Keyword cInstancesKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
@@ -1505,33 +1502,43 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNumberINTTerminalRuleCall_3_5_0 = (RuleCall)cNumberAssignment_3_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3_6 = (Keyword)cGroup_3.eContents().get(6);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cFunctionAction_4_0 = (Action)cGroup_4.eContents().get(0);
-		private final Assignment cOpAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final Alternatives cOpAlternatives_4_1_0 = (Alternatives)cOpAssignment_4_1.eContents().get(0);
-		private final Keyword cOpPowKeyword_4_1_0_0 = (Keyword)cOpAlternatives_4_1_0.eContents().get(0);
-		private final Keyword cOpDistKeyword_4_1_0_1 = (Keyword)cOpAlternatives_4_1_0.eContents().get(1);
-		private final Keyword cOpMinKeyword_4_1_0_2 = (Keyword)cOpAlternatives_4_1_0.eContents().get(2);
-		private final Keyword cOpMaxKeyword_4_1_0_3 = (Keyword)cOpAlternatives_4_1_0.eContents().get(3);
-		private final Keyword cOpIfKeyword_4_1_0_4 = (Keyword)cOpAlternatives_4_1_0.eContents().get(4);
+		private final Action cEntailedAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Keyword cEntailedKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
-		private final Assignment cLeftAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cLeftPrimaryParserRuleCall_4_3_0 = (RuleCall)cLeftAssignment_4_3.eContents().get(0);
-		private final Keyword cCommaKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
-		private final Assignment cRightAssignment_4_5 = (Assignment)cGroup_4.eContents().get(5);
-		private final RuleCall cRightPrimaryParserRuleCall_4_5_0 = (RuleCall)cRightAssignment_4_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4_6 = (Keyword)cGroup_4.eContents().get(6);
-		private final RuleCall cAtomicParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final Assignment cElementAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
+		private final CrossReference cElementElmDeclarationCrossReference_4_3_0 = (CrossReference)cElementAssignment_4_3.eContents().get(0);
+		private final RuleCall cElementElmDeclarationIDTerminalRuleCall_4_3_0_1 = (RuleCall)cElementElmDeclarationCrossReference_4_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
+		private final Action cBinaryFunctionAction_5_0 = (Action)cGroup_5.eContents().get(0);
+		private final Assignment cOpAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final Alternatives cOpAlternatives_5_1_0 = (Alternatives)cOpAssignment_5_1.eContents().get(0);
+		private final Keyword cOpPowKeyword_5_1_0_0 = (Keyword)cOpAlternatives_5_1_0.eContents().get(0);
+		private final Keyword cOpDistKeyword_5_1_0_1 = (Keyword)cOpAlternatives_5_1_0.eContents().get(1);
+		private final Keyword cOpMinKeyword_5_1_0_2 = (Keyword)cOpAlternatives_5_1_0.eContents().get(2);
+		private final Keyword cOpMaxKeyword_5_1_0_3 = (Keyword)cOpAlternatives_5_1_0.eContents().get(3);
+		private final Keyword cOpIfKeyword_5_1_0_4 = (Keyword)cOpAlternatives_5_1_0.eContents().get(4);
+		private final Keyword cLeftParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
+		private final Assignment cLeftAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
+		private final RuleCall cLeftPrimaryParserRuleCall_5_3_0 = (RuleCall)cLeftAssignment_5_3.eContents().get(0);
+		private final Keyword cCommaKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
+		private final Assignment cRightAssignment_5_5 = (Assignment)cGroup_5.eContents().get(5);
+		private final RuleCall cRightPrimaryParserRuleCall_5_5_0 = (RuleCall)cRightAssignment_5_5.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5_6 = (Keyword)cGroup_5.eContents().get(6);
+		private final RuleCall cAtomicParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		////FIXME the assign production was commented to solve an inconsistency
 		//Primary Relational:
-		//	'(' Relational ')' | {Negation} "~" expression=Primary | {Unary} op=('abs' | 'sqrt' | 'entailed') '('
-		//	expression=Primary ')' | {Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Function}
-		//	op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ',' right=Primary ')' | Atomic;
+		//	'(' Relational ')' | {Negation} "~" expression=Primary | {UnaryFunction} op=('abs' | 'sqrt') expression=Primary |
+		//	{Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Entailed} 'entailed' '('
+		//	element=[ElmDeclaration] ')' | {BinaryFunction} op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ','
+		//	right=Primary ')' | Atomic;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' Relational ')' | {Negation} "~" expression=Primary | {Unary} op=('abs' | 'sqrt' | 'entailed') '(' expression=Primary
-		//')' | {Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Function} op=('pow' | 'dist' | 'min' |
-		//'max' | 'if') '(' left=Primary ',' right=Primary ')' | Atomic
+		//'(' Relational ')' | {Negation} "~" expression=Primary | {UnaryFunction} op=('abs' | 'sqrt') expression=Primary |
+		//{Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Entailed} 'entailed' '('
+		//element=[ElmDeclaration] ')' | {BinaryFunction} op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ','
+		//right=Primary ')' | Atomic
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'(' Relational ')'
@@ -1561,16 +1568,16 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//Primary
 		public RuleCall getExpressionPrimaryParserRuleCall_1_2_0() { return cExpressionPrimaryParserRuleCall_1_2_0; }
 		
-		//{Unary} op=('abs' | 'sqrt' | 'entailed') '(' expression=Primary ')'
+		//{UnaryFunction} op=('abs' | 'sqrt') expression=Primary
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//{Unary}
-		public Action getUnaryAction_2_0() { return cUnaryAction_2_0; }
+		//{UnaryFunction}
+		public Action getUnaryFunctionAction_2_0() { return cUnaryFunctionAction_2_0; }
 		
-		//op=('abs' | 'sqrt' | 'entailed')
+		//op=('abs' | 'sqrt')
 		public Assignment getOpAssignment_2_1() { return cOpAssignment_2_1; }
 		
-		//('abs' | 'sqrt' | 'entailed')
+		//('abs' | 'sqrt')
 		public Alternatives getOpAlternatives_2_1_0() { return cOpAlternatives_2_1_0; }
 		
 		//'abs'
@@ -1579,20 +1586,11 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//'sqrt'
 		public Keyword getOpSqrtKeyword_2_1_0_1() { return cOpSqrtKeyword_2_1_0_1; }
 		
-		//'entailed'
-		public Keyword getOpEntailedKeyword_2_1_0_2() { return cOpEntailedKeyword_2_1_0_2; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_2_2() { return cLeftParenthesisKeyword_2_2; }
-		
 		//expression=Primary
-		public Assignment getExpressionAssignment_2_3() { return cExpressionAssignment_2_3; }
+		public Assignment getExpressionAssignment_2_2() { return cExpressionAssignment_2_2; }
 		
 		//Primary
-		public RuleCall getExpressionPrimaryParserRuleCall_2_3_0() { return cExpressionPrimaryParserRuleCall_2_3_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_2_4() { return cRightParenthesisKeyword_2_4; }
+		public RuleCall getExpressionPrimaryParserRuleCall_2_2_0() { return cExpressionPrimaryParserRuleCall_2_2_0; }
 		
 		//{Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')'
 		public Group getGroup_3() { return cGroup_3; }
@@ -1627,57 +1625,81 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_3_6() { return cRightParenthesisKeyword_3_6; }
 		
-		//{Function} op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ',' right=Primary ')'
+		//{Entailed} 'entailed' '(' element=[ElmDeclaration] ')'
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//{Function}
-		public Action getFunctionAction_4_0() { return cFunctionAction_4_0; }
+		//{Entailed}
+		public Action getEntailedAction_4_0() { return cEntailedAction_4_0; }
 		
-		//op=('pow' | 'dist' | 'min' | 'max' | 'if')
-		public Assignment getOpAssignment_4_1() { return cOpAssignment_4_1; }
-		
-		//('pow' | 'dist' | 'min' | 'max' | 'if')
-		public Alternatives getOpAlternatives_4_1_0() { return cOpAlternatives_4_1_0; }
-		
-		//'pow'
-		public Keyword getOpPowKeyword_4_1_0_0() { return cOpPowKeyword_4_1_0_0; }
-		
-		//'dist'
-		public Keyword getOpDistKeyword_4_1_0_1() { return cOpDistKeyword_4_1_0_1; }
-		
-		//'min'
-		public Keyword getOpMinKeyword_4_1_0_2() { return cOpMinKeyword_4_1_0_2; }
-		
-		//'max'
-		public Keyword getOpMaxKeyword_4_1_0_3() { return cOpMaxKeyword_4_1_0_3; }
-		
-		//'if'
-		public Keyword getOpIfKeyword_4_1_0_4() { return cOpIfKeyword_4_1_0_4; }
+		//'entailed'
+		public Keyword getEntailedKeyword_4_1() { return cEntailedKeyword_4_1; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_4_2() { return cLeftParenthesisKeyword_4_2; }
 		
-		//left=Primary
-		public Assignment getLeftAssignment_4_3() { return cLeftAssignment_4_3; }
+		//element=[ElmDeclaration]
+		public Assignment getElementAssignment_4_3() { return cElementAssignment_4_3; }
 		
-		//Primary
-		public RuleCall getLeftPrimaryParserRuleCall_4_3_0() { return cLeftPrimaryParserRuleCall_4_3_0; }
+		//[ElmDeclaration]
+		public CrossReference getElementElmDeclarationCrossReference_4_3_0() { return cElementElmDeclarationCrossReference_4_3_0; }
 		
-		//','
-		public Keyword getCommaKeyword_4_4() { return cCommaKeyword_4_4; }
-		
-		//right=Primary
-		public Assignment getRightAssignment_4_5() { return cRightAssignment_4_5; }
-		
-		//Primary
-		public RuleCall getRightPrimaryParserRuleCall_4_5_0() { return cRightPrimaryParserRuleCall_4_5_0; }
+		//ID
+		public RuleCall getElementElmDeclarationIDTerminalRuleCall_4_3_0_1() { return cElementElmDeclarationIDTerminalRuleCall_4_3_0_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_4_6() { return cRightParenthesisKeyword_4_6; }
+		public Keyword getRightParenthesisKeyword_4_4() { return cRightParenthesisKeyword_4_4; }
+		
+		//{BinaryFunction} op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ',' right=Primary ')'
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//{BinaryFunction}
+		public Action getBinaryFunctionAction_5_0() { return cBinaryFunctionAction_5_0; }
+		
+		//op=('pow' | 'dist' | 'min' | 'max' | 'if')
+		public Assignment getOpAssignment_5_1() { return cOpAssignment_5_1; }
+		
+		//('pow' | 'dist' | 'min' | 'max' | 'if')
+		public Alternatives getOpAlternatives_5_1_0() { return cOpAlternatives_5_1_0; }
+		
+		//'pow'
+		public Keyword getOpPowKeyword_5_1_0_0() { return cOpPowKeyword_5_1_0_0; }
+		
+		//'dist'
+		public Keyword getOpDistKeyword_5_1_0_1() { return cOpDistKeyword_5_1_0_1; }
+		
+		//'min'
+		public Keyword getOpMinKeyword_5_1_0_2() { return cOpMinKeyword_5_1_0_2; }
+		
+		//'max'
+		public Keyword getOpMaxKeyword_5_1_0_3() { return cOpMaxKeyword_5_1_0_3; }
+		
+		//'if'
+		public Keyword getOpIfKeyword_5_1_0_4() { return cOpIfKeyword_5_1_0_4; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_5_2() { return cLeftParenthesisKeyword_5_2; }
+		
+		//left=Primary
+		public Assignment getLeftAssignment_5_3() { return cLeftAssignment_5_3; }
+		
+		//Primary
+		public RuleCall getLeftPrimaryParserRuleCall_5_3_0() { return cLeftPrimaryParserRuleCall_5_3_0; }
+		
+		//','
+		public Keyword getCommaKeyword_5_4() { return cCommaKeyword_5_4; }
+		
+		//right=Primary
+		public Assignment getRightAssignment_5_5() { return cRightAssignment_5_5; }
+		
+		//Primary
+		public RuleCall getRightPrimaryParserRuleCall_5_5_0() { return cRightPrimaryParserRuleCall_5_5_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_5_6() { return cRightParenthesisKeyword_5_6; }
 		
 		////{Assign} variable= [ElmDeclaration] 'is' value=Relational| //value=Value| changed by avillota
 		//Atomic
-		public RuleCall getAtomicParserRuleCall_5() { return cAtomicParserRuleCall_5; }
+		public RuleCall getAtomicParserRuleCall_6() { return cAtomicParserRuleCall_6; }
 	}
 	public class AtomicElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.coffee.Hlvl.Atomic");
@@ -2674,9 +2696,10 @@ public class HlvlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////FIXME the assign production was commented to solve an inconsistency
 	//Primary Relational:
-	//	'(' Relational ')' | {Negation} "~" expression=Primary | {Unary} op=('abs' | 'sqrt' | 'entailed') '('
-	//	expression=Primary ')' | {Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Function}
-	//	op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ',' right=Primary ')' | Atomic;
+	//	'(' Relational ')' | {Negation} "~" expression=Primary | {UnaryFunction} op=('abs' | 'sqrt') expression=Primary |
+	//	{Instances} 'instances' '(' element=[ElmDeclaration] ',' number=INT ')' | {Entailed} 'entailed' '('
+	//	element=[ElmDeclaration] ')' | {BinaryFunction} op=('pow' | 'dist' | 'min' | 'max' | 'if') '(' left=Primary ','
+	//	right=Primary ')' | Atomic;
 	public PrimaryElements getPrimaryAccess() {
 		return pPrimary;
 	}

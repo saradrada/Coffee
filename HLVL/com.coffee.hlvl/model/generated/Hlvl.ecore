@@ -194,7 +194,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Relational"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Unary" eSuperTypes="#//Relational">
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryFunction" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Relational"
         containment="true"/>
@@ -203,7 +203,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Relational">
+  <eClassifiers xsi:type="ecore:EClass" name="Entailed" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryFunction" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
         containment="true"/>

@@ -276,9 +276,9 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createNegationAdapter();
       }
       @Override
-      public Adapter caseUnary(Unary object)
+      public Adapter caseUnaryFunction(UnaryFunction object)
       {
-        return createUnaryAdapter();
+        return createUnaryFunctionAdapter();
       }
       @Override
       public Adapter caseInstances(Instances object)
@@ -286,9 +286,14 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createInstancesAdapter();
       }
       @Override
-      public Adapter caseFunction(Function object)
+      public Adapter caseEntailed(Entailed object)
       {
-        return createFunctionAdapter();
+        return createEntailedAdapter();
+      }
+      @Override
+      public Adapter caseBinaryFunction(BinaryFunction object)
+      {
+        return createBinaryFunctionAdapter();
       }
       @Override
       public Adapter caseBoolConstant(BoolConstant object)
@@ -948,16 +953,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Unary <em>Unary</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.UnaryFunction <em>Unary Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.Unary
+   * @see com.coffee.hlvl.UnaryFunction
    * @generated
    */
-  public Adapter createUnaryAdapter()
+  public Adapter createUnaryFunctionAdapter()
   {
     return null;
   }
@@ -978,16 +983,31 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Function <em>Function</em>}'.
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Entailed <em>Entailed</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.coffee.hlvl.Function
+   * @see com.coffee.hlvl.Entailed
    * @generated
    */
-  public Adapter createFunctionAdapter()
+  public Adapter createEntailedAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.BinaryFunction <em>Binary Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.BinaryFunction
+   * @generated
+   */
+  public Adapter createBinaryFunctionAdapter()
   {
     return null;
   }

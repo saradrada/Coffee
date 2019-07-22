@@ -5,6 +5,7 @@ package com.coffee.serializer;
 
 import com.coffee.hlvl.And;
 import com.coffee.hlvl.AttributeRef;
+import com.coffee.hlvl.BinaryFunction;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
@@ -14,9 +15,9 @@ import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Constraint;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
+import com.coffee.hlvl.Entailed;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.Iff;
@@ -42,7 +43,7 @@ import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.SymbolConstant;
-import com.coffee.hlvl.Unary;
+import com.coffee.hlvl.UnaryFunction;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.VarList;
@@ -82,6 +83,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.ATTRIBUTE_REF:
 				sequence_Atomic(context, (AttributeRef) semanticObject); 
 				return; 
+			case HlvlPackage.BINARY_FUNCTION:
+				sequence_Primary(context, (BinaryFunction) semanticObject); 
+				return; 
 			case HlvlPackage.BOOL_CONSTANT:
 				sequence_Atomic(context, (BoolConstant) semanticObject); 
 				return; 
@@ -109,14 +113,14 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.ELM_DECLARATION:
 				sequence_ElmDeclaration(context, (ElmDeclaration) semanticObject); 
 				return; 
+			case HlvlPackage.ENTAILED:
+				sequence_Primary(context, (Entailed) semanticObject); 
+				return; 
 			case HlvlPackage.ENUMERATION:
 				sequence_Enumeration(context, (Enumeration) semanticObject); 
 				return; 
 			case HlvlPackage.EQUALITY:
 				sequence_Equality(context, (Equality) semanticObject); 
-				return; 
-			case HlvlPackage.FUNCTION:
-				sequence_Primary(context, (Function) semanticObject); 
 				return; 
 			case HlvlPackage.GROUP:
 				sequence_Group(context, (Group) semanticObject); 
@@ -190,8 +194,8 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case HlvlPackage.SYMBOL_CONSTANT:
 				sequence_Atomic(context, (SymbolConstant) semanticObject); 
 				return; 
-			case HlvlPackage.UNARY:
-				sequence_Primary(context, (Unary) semanticObject); 
+			case HlvlPackage.UNARY_FUNCTION:
+				sequence_Primary(context, (UnaryFunction) semanticObject); 
 				return; 
 			case HlvlPackage.VALID_CONF:
 				sequence_Sample(context, (ValidConf) semanticObject); 
@@ -1023,31 +1027,67 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Relational returns Function
-	 *     Iff returns Function
-	 *     Iff.Iff_1_0 returns Function
-	 *     Implies returns Function
-	 *     Implies.Implies_1_0 returns Function
-	 *     Or returns Function
-	 *     Or.Or_1_0 returns Function
-	 *     And returns Function
-	 *     And.And_1_0 returns Function
-	 *     Equality returns Function
-	 *     Equality.Equality_1_0 returns Function
-	 *     Comparison returns Function
-	 *     Comparison.Comparison_1_0 returns Function
-	 *     PlusOrMinus returns Function
-	 *     PlusOrMinus.Plus_1_0_0_0 returns Function
-	 *     PlusOrMinus.Minus_1_0_1_0 returns Function
-	 *     MulOrDiv returns Function
-	 *     MulOrDiv.MulOrDiv_1_0 returns Function
-	 *     Primary returns Function
+	 *     Relational returns BinaryFunction
+	 *     Iff returns BinaryFunction
+	 *     Iff.Iff_1_0 returns BinaryFunction
+	 *     Implies returns BinaryFunction
+	 *     Implies.Implies_1_0 returns BinaryFunction
+	 *     Or returns BinaryFunction
+	 *     Or.Or_1_0 returns BinaryFunction
+	 *     And returns BinaryFunction
+	 *     And.And_1_0 returns BinaryFunction
+	 *     Equality returns BinaryFunction
+	 *     Equality.Equality_1_0 returns BinaryFunction
+	 *     Comparison returns BinaryFunction
+	 *     Comparison.Comparison_1_0 returns BinaryFunction
+	 *     PlusOrMinus returns BinaryFunction
+	 *     PlusOrMinus.Plus_1_0_0_0 returns BinaryFunction
+	 *     PlusOrMinus.Minus_1_0_1_0 returns BinaryFunction
+	 *     MulOrDiv returns BinaryFunction
+	 *     MulOrDiv.MulOrDiv_1_0 returns BinaryFunction
+	 *     Primary returns BinaryFunction
 	 *
 	 * Constraint:
 	 *     ((op='pow' | op='dist' | op='min' | op='max' | op='if') left=Primary right=Primary)
 	 */
-	protected void sequence_Primary(ISerializationContext context, Function semanticObject) {
+	protected void sequence_Primary(ISerializationContext context, BinaryFunction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Relational returns Entailed
+	 *     Iff returns Entailed
+	 *     Iff.Iff_1_0 returns Entailed
+	 *     Implies returns Entailed
+	 *     Implies.Implies_1_0 returns Entailed
+	 *     Or returns Entailed
+	 *     Or.Or_1_0 returns Entailed
+	 *     And returns Entailed
+	 *     And.And_1_0 returns Entailed
+	 *     Equality returns Entailed
+	 *     Equality.Equality_1_0 returns Entailed
+	 *     Comparison returns Entailed
+	 *     Comparison.Comparison_1_0 returns Entailed
+	 *     PlusOrMinus returns Entailed
+	 *     PlusOrMinus.Plus_1_0_0_0 returns Entailed
+	 *     PlusOrMinus.Minus_1_0_1_0 returns Entailed
+	 *     MulOrDiv returns Entailed
+	 *     MulOrDiv.MulOrDiv_1_0 returns Entailed
+	 *     Primary returns Entailed
+	 *
+	 * Constraint:
+	 *     element=[ElmDeclaration|ID]
+	 */
+	protected void sequence_Primary(ISerializationContext context, Entailed semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.ENTAILED__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.ENTAILED__ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryAccess().getElementElmDeclarationIDTerminalRuleCall_4_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.ENTAILED__ELEMENT, false));
+		feeder.finish();
 	}
 	
 	
@@ -1128,30 +1168,30 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Relational returns Unary
-	 *     Iff returns Unary
-	 *     Iff.Iff_1_0 returns Unary
-	 *     Implies returns Unary
-	 *     Implies.Implies_1_0 returns Unary
-	 *     Or returns Unary
-	 *     Or.Or_1_0 returns Unary
-	 *     And returns Unary
-	 *     And.And_1_0 returns Unary
-	 *     Equality returns Unary
-	 *     Equality.Equality_1_0 returns Unary
-	 *     Comparison returns Unary
-	 *     Comparison.Comparison_1_0 returns Unary
-	 *     PlusOrMinus returns Unary
-	 *     PlusOrMinus.Plus_1_0_0_0 returns Unary
-	 *     PlusOrMinus.Minus_1_0_1_0 returns Unary
-	 *     MulOrDiv returns Unary
-	 *     MulOrDiv.MulOrDiv_1_0 returns Unary
-	 *     Primary returns Unary
+	 *     Relational returns UnaryFunction
+	 *     Iff returns UnaryFunction
+	 *     Iff.Iff_1_0 returns UnaryFunction
+	 *     Implies returns UnaryFunction
+	 *     Implies.Implies_1_0 returns UnaryFunction
+	 *     Or returns UnaryFunction
+	 *     Or.Or_1_0 returns UnaryFunction
+	 *     And returns UnaryFunction
+	 *     And.And_1_0 returns UnaryFunction
+	 *     Equality returns UnaryFunction
+	 *     Equality.Equality_1_0 returns UnaryFunction
+	 *     Comparison returns UnaryFunction
+	 *     Comparison.Comparison_1_0 returns UnaryFunction
+	 *     PlusOrMinus returns UnaryFunction
+	 *     PlusOrMinus.Plus_1_0_0_0 returns UnaryFunction
+	 *     PlusOrMinus.Minus_1_0_1_0 returns UnaryFunction
+	 *     MulOrDiv returns UnaryFunction
+	 *     MulOrDiv.MulOrDiv_1_0 returns UnaryFunction
+	 *     Primary returns UnaryFunction
 	 *
 	 * Constraint:
-	 *     ((op='abs' | op='sqrt' | op='entailed') expression=Primary)
+	 *     ((op='abs' | op='sqrt') expression=Primary)
 	 */
-	protected void sequence_Primary(ISerializationContext context, Unary semanticObject) {
+	protected void sequence_Primary(ISerializationContext context, UnaryFunction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

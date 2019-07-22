@@ -5,6 +5,7 @@ package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.And;
 import com.coffee.hlvl.AttributeRef;
+import com.coffee.hlvl.BinaryFunction;
 import com.coffee.hlvl.BoolConstant;
 import com.coffee.hlvl.Common;
 import com.coffee.hlvl.Comparison;
@@ -15,9 +16,9 @@ import com.coffee.hlvl.Constraint;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
+import com.coffee.hlvl.Entailed;
 import com.coffee.hlvl.Enumeration;
 import com.coffee.hlvl.Equality;
-import com.coffee.hlvl.Function;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.HlvlFactory;
 import com.coffee.hlvl.HlvlPackage;
@@ -48,7 +49,7 @@ import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.SymbolConstant;
-import com.coffee.hlvl.Unary;
+import com.coffee.hlvl.UnaryFunction;
 import com.coffee.hlvl.ValidConf;
 import com.coffee.hlvl.Valuation;
 import com.coffee.hlvl.VarList;
@@ -356,7 +357,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass unaryEClass = null;
+  private EClass unaryFunctionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -370,7 +371,14 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass functionEClass = null;
+  private EClass entailedEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass binaryFunctionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1619,9 +1627,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getUnary()
+  public EClass getUnaryFunction()
   {
-    return unaryEClass;
+    return unaryFunctionEClass;
   }
 
   /**
@@ -1629,9 +1637,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getUnary_Op()
+  public EAttribute getUnaryFunction_Op()
   {
-    return (EAttribute)unaryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)unaryFunctionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1639,9 +1647,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getUnary_Expression()
+  public EReference getUnaryFunction_Expression()
   {
-    return (EReference)unaryEClass.getEStructuralFeatures().get(1);
+    return (EReference)unaryFunctionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1679,9 +1687,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFunction()
+  public EClass getEntailed()
   {
-    return functionEClass;
+    return entailedEClass;
   }
 
   /**
@@ -1689,9 +1697,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunction_Op()
+  public EReference getEntailed_Element()
   {
-    return (EAttribute)functionEClass.getEStructuralFeatures().get(0);
+    return (EReference)entailedEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1699,9 +1707,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunction_Left()
+  public EClass getBinaryFunction()
   {
-    return (EReference)functionEClass.getEStructuralFeatures().get(1);
+    return binaryFunctionEClass;
   }
 
   /**
@@ -1709,9 +1717,29 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunction_Right()
+  public EAttribute getBinaryFunction_Op()
   {
-    return (EReference)functionEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)binaryFunctionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryFunction_Left()
+  {
+    return (EReference)binaryFunctionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryFunction_Right()
+  {
+    return (EReference)binaryFunctionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2037,18 +2065,21 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     negationEClass = createEClass(NEGATION);
     createEReference(negationEClass, NEGATION__EXPRESSION);
 
-    unaryEClass = createEClass(UNARY);
-    createEAttribute(unaryEClass, UNARY__OP);
-    createEReference(unaryEClass, UNARY__EXPRESSION);
+    unaryFunctionEClass = createEClass(UNARY_FUNCTION);
+    createEAttribute(unaryFunctionEClass, UNARY_FUNCTION__OP);
+    createEReference(unaryFunctionEClass, UNARY_FUNCTION__EXPRESSION);
 
     instancesEClass = createEClass(INSTANCES);
     createEReference(instancesEClass, INSTANCES__ELEMENT);
     createEAttribute(instancesEClass, INSTANCES__NUMBER);
 
-    functionEClass = createEClass(FUNCTION);
-    createEAttribute(functionEClass, FUNCTION__OP);
-    createEReference(functionEClass, FUNCTION__LEFT);
-    createEReference(functionEClass, FUNCTION__RIGHT);
+    entailedEClass = createEClass(ENTAILED);
+    createEReference(entailedEClass, ENTAILED__ELEMENT);
+
+    binaryFunctionEClass = createEClass(BINARY_FUNCTION);
+    createEAttribute(binaryFunctionEClass, BINARY_FUNCTION__OP);
+    createEReference(binaryFunctionEClass, BINARY_FUNCTION__LEFT);
+    createEReference(binaryFunctionEClass, BINARY_FUNCTION__RIGHT);
 
     boolConstantEClass = createEClass(BOOL_CONSTANT);
     createEAttribute(boolConstantEClass, BOOL_CONSTANT__VALUE);
@@ -2125,9 +2156,10 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     minusEClass.getESuperTypes().add(this.getRelational());
     mulOrDivEClass.getESuperTypes().add(this.getRelational());
     negationEClass.getESuperTypes().add(this.getRelational());
-    unaryEClass.getESuperTypes().add(this.getRelational());
+    unaryFunctionEClass.getESuperTypes().add(this.getRelational());
     instancesEClass.getESuperTypes().add(this.getRelational());
-    functionEClass.getESuperTypes().add(this.getRelational());
+    entailedEClass.getESuperTypes().add(this.getRelational());
+    binaryFunctionEClass.getESuperTypes().add(this.getRelational());
     boolConstantEClass.getESuperTypes().add(this.getRelational());
     variableRefEClass.getESuperTypes().add(this.getRelational());
     attributeRefEClass.getESuperTypes().add(this.getRelational());
@@ -2290,18 +2322,21 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(negationEClass, Negation.class, "Negation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNegation_Expression(), this.getRelational(), null, "expression", null, 0, 1, Negation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(unaryEClass, Unary.class, "Unary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getUnary_Op(), ecorePackage.getEString(), "op", null, 0, 1, Unary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getUnary_Expression(), this.getRelational(), null, "expression", null, 0, 1, Unary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(unaryFunctionEClass, UnaryFunction.class, "UnaryFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnaryFunction_Op(), ecorePackage.getEString(), "op", null, 0, 1, UnaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnaryFunction_Expression(), this.getRelational(), null, "expression", null, 0, 1, UnaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instancesEClass, Instances.class, "Instances", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInstances_Element(), this.getElmDeclaration(), null, "element", null, 0, 1, Instances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstances_Number(), ecorePackage.getEInt(), "number", null, 0, 1, Instances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFunction_Op(), ecorePackage.getEString(), "op", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunction_Left(), this.getRelational(), null, "left", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunction_Right(), this.getRelational(), null, "right", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(entailedEClass, Entailed.class, "Entailed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntailed_Element(), this.getElmDeclaration(), null, "element", null, 0, 1, Entailed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(binaryFunctionEClass, BinaryFunction.class, "BinaryFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBinaryFunction_Op(), ecorePackage.getEString(), "op", null, 0, 1, BinaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryFunction_Left(), this.getRelational(), null, "left", null, 0, 1, BinaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryFunction_Right(), this.getRelational(), null, "right", null, 0, 1, BinaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolConstantEClass, BoolConstant.class, "BoolConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoolConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, BoolConstant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

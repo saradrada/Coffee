@@ -54,9 +54,8 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
   private Map<String, String> mapsTable;
   
   public BasicIntegerRules(final Dialect dialect) {
-    IntegerExpressionsParser _integerExpressionsParser = new IntegerExpressionsParser();
+    IntegerExpressionsParser _integerExpressionsParser = new IntegerExpressionsParser(this.symbolsTable, dialect);
     this.expressionsParser = _integerExpressionsParser;
-    this.expressionsParser.setDialect(dialect);
     this.visibilityIdCounter = 0;
     HashMap<String, Integer> _hashMap = new HashMap<String, Integer>();
     this.symbolsTable = _hashMap;
@@ -238,7 +237,6 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
           _builder.append(" 0..1: ");
           String _name = element.getName();
           _builder.append(_name);
-          _builder.append(" ");
           _builder.append(IMiniZincConstants.SEMICOLON);
           _builder.newLineIfNotEmpty();
           _switchResult = _builder;
@@ -252,7 +250,6 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
           _builder_1.append(" : ");
           String _name_1 = element.getName();
           _builder_1.append(_name_1);
-          _builder_1.append(" ");
           _builder_1.append(IMiniZincConstants.SEMICOLON);
           _builder_1.newLineIfNotEmpty();
           _switchResult = _builder_1;
@@ -268,7 +265,6 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
           _builder_2.append(" : ");
           String _name_2 = element.getName();
           _builder_2.append(_name_2);
-          _builder_2.append(" ");
           _builder_2.append(IMiniZincConstants.SEMICOLON);
           _builder_2.newLineIfNotEmpty();
           _builder_2.append("% Map: ");
@@ -292,8 +288,7 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
     _builder.append(" ");
     _builder.append(IMiniZincConstants.EQUIV);
     _builder.append(" ");
-    _builder.append(IMiniZincConstants.TRUE_ATOM);
-    _builder.append(" ");
+    _builder.append(IMiniZincConstants.INT_TRUE);
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -316,11 +311,10 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
             String _name = rel.getParent().getName();
             _builder.append(_name);
             _builder.append(" ");
-            _builder.append(IMiniZincConstants.IFF);
+            _builder.append(IMiniZincConstants.EQUIV);
             _builder.append(" ");
             String _name_1 = element.getName();
             _builder.append(_name_1);
-            _builder.append(" ");
             _builder.append(IMiniZincConstants.SEMICOLON);
             _builder.newLineIfNotEmpty();
             out = (_out + _builder);
@@ -329,14 +323,13 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append(IMiniZincConstants.CONS_DEF);
             _builder_1.append(" ");
-            String _name_2 = element.getName();
+            String _name_2 = rel.getParent().getName();
             _builder_1.append(_name_2);
             _builder_1.append(" ");
-            _builder_1.append(IMiniZincConstants.IMPLIES_LR);
+            _builder_1.append(IMiniZincConstants.GEQ);
             _builder_1.append(" ");
-            String _name_3 = rel.getParent().getName();
+            String _name_3 = element.getName();
             _builder_1.append(_name_3);
-            _builder_1.append(" ");
             _builder_1.append(IMiniZincConstants.SEMICOLON);
             _builder_1.newLineIfNotEmpty();
             out = (_out_1 + _builder_1);
@@ -350,106 +343,97 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
   
   @Override
   public CharSequence getGroup(final Group rel, final Map<String, ElmDeclaration> parents) {
-    String _xifexpression = null;
-    if (((rel.getMin() == 1) && Objects.equal(rel.getMax().getValue(), "1"))) {
-      _xifexpression = this.getXor(rel, parents);
-    } else {
-      _xifexpression = this.getOR(rel, parents);
-    }
-    return _xifexpression;
-  }
-  
-  public String getXor(final Group rel, final Map<String, ElmDeclaration> parents) {
     String _xblockexpression = null;
     {
+      String sum = "";
       String out = "";
       EList<ElmDeclaration> _values = rel.getChildren().getValues();
-      for (final ElmDeclaration element : _values) {
-        {
-          parents.put(element.getName(), rel.getParent());
-          String _out = out;
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append(IMiniZincConstants.CONS_DEF);
-          _builder.append(" ");
-          String _name = element.getName();
-          _builder.append(_name);
-          _builder.append(" ");
-          _builder.append(IMiniZincConstants.IFF);
-          _builder.append(" ");
-          _builder.append(IMiniZincConstants.OPEN_CALL);
-          out = (_out + _builder);
-          EList<ElmDeclaration> _values_1 = rel.getChildren().getValues();
-          for (final ElmDeclaration inElement : _values_1) {
-            String _name_1 = element.getName();
-            String _name_2 = inElement.getName();
-            boolean _notEquals = (!Objects.equal(_name_1, _name_2));
-            if (_notEquals) {
-              String _out_1 = out;
-              StringConcatenation _builder_1 = new StringConcatenation();
-              _builder_1.append(IMiniZincConstants.NOT);
-              _builder_1.append(IMiniZincConstants.OPEN_CALL);
-              String _name_3 = inElement.getName();
-              _builder_1.append(_name_3);
-              _builder_1.append(IMiniZincConstants.CLOSE_CALL);
-              _builder_1.append(" ");
-              _builder_1.append(IMiniZincConstants.AND);
-              _builder_1.append(" ");
-              out = (_out_1 + _builder_1);
-            }
-          }
-          String _out_2 = out;
-          StringConcatenation _builder_2 = new StringConcatenation();
-          String _name_4 = rel.getParent().getName();
-          _builder_2.append(_name_4);
-          _builder_2.append(IMiniZincConstants.CLOSE_CALL);
-          _builder_2.append(" ");
-          _builder_2.append(IMiniZincConstants.SEMICOLON);
-          _builder_2.newLineIfNotEmpty();
-          out = (_out_2 + _builder_2);
-        }
+      for (final ElmDeclaration child : _values) {
+        String _sum = sum;
+        StringConcatenation _builder = new StringConcatenation();
+        String _name = child.getName();
+        _builder.append(_name);
+        _builder.append(" + ");
+        sum = (_sum + _builder);
       }
-      _xblockexpression = out;
-    }
-    return _xblockexpression;
-  }
-  
-  public String getOR(final Group rel, final Map<String, ElmDeclaration> parents) {
-    String _xblockexpression = null;
-    {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append(IMiniZincConstants.CONS_DEF);
-      _builder.append(" ");
-      String _name = rel.getParent().getName();
-      _builder.append(_name);
-      _builder.append(" ");
-      _builder.append(IMiniZincConstants.IFF);
-      _builder.append(" ");
-      _builder.append(IMiniZincConstants.OPEN_CALL);
-      String out = _builder.toString();
-      EList<ElmDeclaration> _values = rel.getChildren().getValues();
-      for (final ElmDeclaration element : _values) {
-        {
-          parents.put(element.getName(), rel.getParent());
-          String _out = out;
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(" ");
-          String _name_1 = element.getName();
-          _builder_1.append(_name_1, " ");
-          _builder_1.append(" ");
-          _builder_1.append(IMiniZincConstants.OR, " ");
-          out = (_out + _builder_1);
-        }
-      }
-      int _length = out.length();
+      int _length = sum.length();
       int _minus = (_length - 2);
-      CharSequence _subSequence = out.subSequence(0, _minus);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append(IMiniZincConstants.CLOSE_CALL);
-      _builder_1.append(" ");
-      _builder_1.append(IMiniZincConstants.SEMICOLON);
-      _builder_1.newLineIfNotEmpty();
-      String _plus = (_subSequence + _builder_1.toString());
-      out = _plus;
+      sum = sum.substring(0, _minus);
+      final int min = rel.getMin();
+      int max = 0;
+      String _value = rel.getMax().getValue();
+      boolean _equals = Objects.equal(_value, "*");
+      if (_equals) {
+        max = rel.getChildren().getValues().size();
+      } else {
+        max = Integer.parseInt(rel.getMax().getValue());
+      }
+      if ((min == 1)) {
+        String _out = out;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append(IMiniZincConstants.CONS_DEF);
+        _builder_1.append(" ");
+        String _name_1 = rel.getParent().getName();
+        _builder_1.append(_name_1);
+        _builder_1.append(" ");
+        _builder_1.append(IMiniZincConstants.LEQ);
+        _builder_1.append(" ");
+        _builder_1.append(sum);
+        _builder_1.append(IMiniZincConstants.SEMICOLON);
+        _builder_1.newLineIfNotEmpty();
+        out = (_out + _builder_1);
+      } else {
+        String _out_1 = out;
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append(IMiniZincConstants.CONS_DEF);
+        _builder_2.append(" ");
+        _builder_2.append(min);
+        _builder_2.append(" ");
+        _builder_2.append(IMiniZincConstants.TIMES);
+        _builder_2.append(" ");
+        String _name_2 = rel.getParent().getName();
+        _builder_2.append(_name_2);
+        _builder_2.append(" ");
+        _builder_2.append(IMiniZincConstants.LEQ);
+        _builder_2.append(" ");
+        _builder_2.append(sum);
+        _builder_2.append(IMiniZincConstants.SEMICOLON);
+        _builder_2.newLineIfNotEmpty();
+        out = (_out_1 + _builder_2);
+      }
+      if ((max == 1)) {
+        String _out_2 = out;
+        StringConcatenation _builder_3 = new StringConcatenation();
+        _builder_3.append(IMiniZincConstants.CONS_DEF);
+        _builder_3.append(" ");
+        _builder_3.append(sum);
+        _builder_3.append(" ");
+        _builder_3.append(IMiniZincConstants.LEQ);
+        _builder_3.append(" ");
+        String _name_3 = rel.getParent().getName();
+        _builder_3.append(_name_3);
+        _builder_3.append(IMiniZincConstants.SEMICOLON);
+        _builder_3.newLineIfNotEmpty();
+        out = (_out_2 + _builder_3);
+      } else {
+        String _out_3 = out;
+        StringConcatenation _builder_4 = new StringConcatenation();
+        _builder_4.append(IMiniZincConstants.CONS_DEF);
+        _builder_4.append(" ");
+        _builder_4.append(sum);
+        _builder_4.append(" ");
+        _builder_4.append(IMiniZincConstants.LEQ);
+        _builder_4.append(" ");
+        _builder_4.append(max);
+        _builder_4.append(" ");
+        _builder_4.append(IMiniZincConstants.TIMES);
+        _builder_4.append(" ");
+        String _name_4 = rel.getParent().getName();
+        _builder_4.append(_name_4);
+        _builder_4.append(IMiniZincConstants.SEMICOLON);
+        _builder_4.newLineIfNotEmpty();
+        out = (_out_3 + _builder_4);
+      }
       _xblockexpression = out;
     }
     return _xblockexpression;
@@ -463,11 +447,10 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
     String _name = left.getName();
     _builder.append(_name);
     _builder.append(" ");
-    _builder.append(IMiniZincConstants.IMPLIES_LR);
+    _builder.append(IMiniZincConstants.LEQ);
     _builder.append(" ");
     String _name_1 = right.getName();
     _builder.append(_name_1);
-    _builder.append(" ");
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -478,17 +461,16 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(IMiniZincConstants.CONS_DEF);
     _builder.append(" ");
-    _builder.append(IMiniZincConstants.NOT);
-    _builder.append(" ");
-    _builder.append(IMiniZincConstants.OPEN_CALL);
     String _name = left.getName();
     _builder.append(_name);
     _builder.append(" ");
-    _builder.append(IMiniZincConstants.AND);
+    _builder.append(IMiniZincConstants.PLUS);
     _builder.append(" ");
     String _name_1 = right.getName();
     _builder.append(_name_1);
-    _builder.append(IMiniZincConstants.CLOSE_CALL);
+    _builder.append(" ");
+    _builder.append(IMiniZincConstants.LEQ);
+    _builder.append(" 1 ");
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -501,7 +483,6 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
     _builder.append(" ");
     CharSequence _parse = this.expressionsParser.parse(exp);
     _builder.append(_parse);
-    _builder.append(" ");
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;

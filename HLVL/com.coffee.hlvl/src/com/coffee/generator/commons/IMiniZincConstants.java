@@ -22,6 +22,7 @@ public interface IMiniZincConstants {
 	
 	// Integer declarations
 	public static  final String INT_DOMAIN="int";
+	public static  final String INT_TRUE="1";
 
 	//Constraints
 	public static final String CONS_DEF ="constraint"; 
@@ -46,5 +47,10 @@ public interface IMiniZincConstants {
 	//Atoms
 	public static final String TRUE_ATOM ="true"; 
 	public static final String FALSE_ATOM ="false"; 
+	
+	// Arithmetic operators
+	public static final String PLUS="+";
+	public static final String MINUS="-";
+	public static final String TIMES="*";
 
 }

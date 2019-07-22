@@ -9,6 +9,9 @@ import com.coffee.hlvl.Implies
 import com.coffee.hlvl.Or
 import com.coffee.hlvl.And
 import com.coffee.generator.Dialect
+import com.coffee.hlvl.IntConstant
+import com.coffee.hlvl.SymbolConstant
+import java.util.Map
 
 /**
  * Parser for boolean expressions 
@@ -17,7 +20,7 @@ import com.coffee.generator.Dialect
  *  July 2019
  */
 
-class IntegerExpressionsParser implements IExpressionsParser {
+class IntegerExpressionsParser extends BooleanExpressionsParser implements IExpressionsParser {
 	/** 
 	 * Tranformation rules
 	 */
@@ -25,9 +28,17 @@ class IntegerExpressionsParser implements IExpressionsParser {
 	
 	private Dialect dialect;
 	
-	new(){
-		rules= new BooleanExpressionsRules(this)
+	/**
+	 * 
+	 */
+	private Map<String, Integer> symbolsMap
+	
+	new( Map<String, Integer> map, Dialect dialect ){
+		symbolsMap= map
+		this.dialect= dialect;
+		rules= new IntegerExpressionsRules(this, dialect)
 	}
+	
 	override setDialect(Dialect dialect) {
 		this.dialect= dialect;
 	}
@@ -36,6 +47,11 @@ class IntegerExpressionsParser implements IExpressionsParser {
 		
 		switch(exp){
 			BoolConstant: exp.value
+			IntConstant: exp.value.toString
+			SymbolConstant: {
+				symbolsMap.get(exp.value).toString
+			}
+			// Boolean operations
 			VariableRef: rules.getVariable(exp)
 			Negation: rules.getNegation(exp)
 			Iff: rules.getIff(exp)
@@ -47,3 +63,4 @@ class IntegerExpressionsParser implements IExpressionsParser {
 		}
 	}
 }
+

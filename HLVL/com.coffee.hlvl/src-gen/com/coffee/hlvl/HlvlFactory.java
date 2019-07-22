@@ -384,13 +384,13 @@ public interface HlvlFactory extends EFactory
   Negation createNegation();
 
   /**
-   * Returns a new object of class '<em>Unary</em>'.
+   * Returns a new object of class '<em>Unary Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Unary</em>'.
+   * @return a new object of class '<em>Unary Function</em>'.
    * @generated
    */
-  Unary createUnary();
+  UnaryFunction createUnaryFunction();
 
   /**
    * Returns a new object of class '<em>Instances</em>'.
@@ -402,13 +402,22 @@ public interface HlvlFactory extends EFactory
   Instances createInstances();
 
   /**
-   * Returns a new object of class '<em>Function</em>'.
+   * Returns a new object of class '<em>Entailed</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function</em>'.
+   * @return a new object of class '<em>Entailed</em>'.
    * @generated
    */
-  Function createFunction();
+  Entailed createEntailed();
+
+  /**
+   * Returns a new object of class '<em>Binary Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Binary Function</em>'.
+   * @generated
+   */
+  BinaryFunction createBinaryFunction();
 
   /**
    * Returns a new object of class '<em>Bool Constant</em>'.

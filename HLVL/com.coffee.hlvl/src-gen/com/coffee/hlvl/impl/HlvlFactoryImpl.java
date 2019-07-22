@@ -105,9 +105,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.MINUS: return createMinus();
       case HlvlPackage.MUL_OR_DIV: return createMulOrDiv();
       case HlvlPackage.NEGATION: return createNegation();
-      case HlvlPackage.UNARY: return createUnary();
+      case HlvlPackage.UNARY_FUNCTION: return createUnaryFunction();
       case HlvlPackage.INSTANCES: return createInstances();
-      case HlvlPackage.FUNCTION: return createFunction();
+      case HlvlPackage.ENTAILED: return createEntailed();
+      case HlvlPackage.BINARY_FUNCTION: return createBinaryFunction();
       case HlvlPackage.BOOL_CONSTANT: return createBoolConstant();
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
       case HlvlPackage.ATTRIBUTE_REF: return createAttributeRef();
@@ -565,10 +566,10 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Unary createUnary()
+  public UnaryFunction createUnaryFunction()
   {
-    UnaryImpl unary = new UnaryImpl();
-    return unary;
+    UnaryFunctionImpl unaryFunction = new UnaryFunctionImpl();
+    return unaryFunction;
   }
 
   /**
@@ -587,10 +588,21 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Function createFunction()
+  public Entailed createEntailed()
   {
-    FunctionImpl function = new FunctionImpl();
-    return function;
+    EntailedImpl entailed = new EntailedImpl();
+    return entailed;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BinaryFunction createBinaryFunction()
+  {
+    BinaryFunctionImpl binaryFunction = new BinaryFunctionImpl();
+    return binaryFunction;
   }
 
   /**

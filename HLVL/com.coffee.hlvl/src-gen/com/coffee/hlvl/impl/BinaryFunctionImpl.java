@@ -3,7 +3,7 @@
  */
 package com.coffee.hlvl.impl;
 
-import com.coffee.hlvl.Function;
+import com.coffee.hlvl.BinaryFunction;
 import com.coffee.hlvl.HlvlPackage;
 import com.coffee.hlvl.Relational;
 
@@ -17,20 +17,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function</b></em>'.
+ * An implementation of the model object '<em><b>Binary Function</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.FunctionImpl#getOp <em>Op</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.FunctionImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.FunctionImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.BinaryFunctionImpl#getOp <em>Op</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.BinaryFunctionImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link com.coffee.hlvl.impl.BinaryFunctionImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FunctionImpl extends RelationalImpl implements Function
+public class BinaryFunctionImpl extends RelationalImpl implements BinaryFunction
 {
   /**
    * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
@@ -77,7 +77,7 @@ public class FunctionImpl extends RelationalImpl implements Function
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FunctionImpl()
+  protected BinaryFunctionImpl()
   {
     super();
   }
@@ -90,7 +90,7 @@ public class FunctionImpl extends RelationalImpl implements Function
   @Override
   protected EClass eStaticClass()
   {
-    return HlvlPackage.Literals.FUNCTION;
+    return HlvlPackage.Literals.BINARY_FUNCTION;
   }
 
   /**
@@ -113,7 +113,7 @@ public class FunctionImpl extends RelationalImpl implements Function
     String oldOp = op;
     op = newOp;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.FUNCTION__OP, oldOp, op));
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.BINARY_FUNCTION__OP, oldOp, op));
   }
 
   /**
@@ -137,7 +137,7 @@ public class FunctionImpl extends RelationalImpl implements Function
     left = newLeft;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.FUNCTION__LEFT, oldLeft, newLeft);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.BINARY_FUNCTION__LEFT, oldLeft, newLeft);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -154,14 +154,14 @@ public class FunctionImpl extends RelationalImpl implements Function
     {
       NotificationChain msgs = null;
       if (left != null)
-        msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.FUNCTION__LEFT, null, msgs);
+        msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.BINARY_FUNCTION__LEFT, null, msgs);
       if (newLeft != null)
-        msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.FUNCTION__LEFT, null, msgs);
+        msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.BINARY_FUNCTION__LEFT, null, msgs);
       msgs = basicSetLeft(newLeft, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.FUNCTION__LEFT, newLeft, newLeft));
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.BINARY_FUNCTION__LEFT, newLeft, newLeft));
   }
 
   /**
@@ -185,7 +185,7 @@ public class FunctionImpl extends RelationalImpl implements Function
     right = newRight;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.FUNCTION__RIGHT, oldRight, newRight);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HlvlPackage.BINARY_FUNCTION__RIGHT, oldRight, newRight);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -202,14 +202,14 @@ public class FunctionImpl extends RelationalImpl implements Function
     {
       NotificationChain msgs = null;
       if (right != null)
-        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.FUNCTION__RIGHT, null, msgs);
+        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.BINARY_FUNCTION__RIGHT, null, msgs);
       if (newRight != null)
-        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.FUNCTION__RIGHT, null, msgs);
+        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HlvlPackage.BINARY_FUNCTION__RIGHT, null, msgs);
       msgs = basicSetRight(newRight, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.FUNCTION__RIGHT, newRight, newRight));
+      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.BINARY_FUNCTION__RIGHT, newRight, newRight));
   }
 
   /**
@@ -222,9 +222,9 @@ public class FunctionImpl extends RelationalImpl implements Function
   {
     switch (featureID)
     {
-      case HlvlPackage.FUNCTION__LEFT:
+      case HlvlPackage.BINARY_FUNCTION__LEFT:
         return basicSetLeft(null, msgs);
-      case HlvlPackage.FUNCTION__RIGHT:
+      case HlvlPackage.BINARY_FUNCTION__RIGHT:
         return basicSetRight(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -240,11 +240,11 @@ public class FunctionImpl extends RelationalImpl implements Function
   {
     switch (featureID)
     {
-      case HlvlPackage.FUNCTION__OP:
+      case HlvlPackage.BINARY_FUNCTION__OP:
         return getOp();
-      case HlvlPackage.FUNCTION__LEFT:
+      case HlvlPackage.BINARY_FUNCTION__LEFT:
         return getLeft();
-      case HlvlPackage.FUNCTION__RIGHT:
+      case HlvlPackage.BINARY_FUNCTION__RIGHT:
         return getRight();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -260,13 +260,13 @@ public class FunctionImpl extends RelationalImpl implements Function
   {
     switch (featureID)
     {
-      case HlvlPackage.FUNCTION__OP:
+      case HlvlPackage.BINARY_FUNCTION__OP:
         setOp((String)newValue);
         return;
-      case HlvlPackage.FUNCTION__LEFT:
+      case HlvlPackage.BINARY_FUNCTION__LEFT:
         setLeft((Relational)newValue);
         return;
-      case HlvlPackage.FUNCTION__RIGHT:
+      case HlvlPackage.BINARY_FUNCTION__RIGHT:
         setRight((Relational)newValue);
         return;
     }
@@ -283,13 +283,13 @@ public class FunctionImpl extends RelationalImpl implements Function
   {
     switch (featureID)
     {
-      case HlvlPackage.FUNCTION__OP:
+      case HlvlPackage.BINARY_FUNCTION__OP:
         setOp(OP_EDEFAULT);
         return;
-      case HlvlPackage.FUNCTION__LEFT:
+      case HlvlPackage.BINARY_FUNCTION__LEFT:
         setLeft((Relational)null);
         return;
-      case HlvlPackage.FUNCTION__RIGHT:
+      case HlvlPackage.BINARY_FUNCTION__RIGHT:
         setRight((Relational)null);
         return;
     }
@@ -306,11 +306,11 @@ public class FunctionImpl extends RelationalImpl implements Function
   {
     switch (featureID)
     {
-      case HlvlPackage.FUNCTION__OP:
+      case HlvlPackage.BINARY_FUNCTION__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
-      case HlvlPackage.FUNCTION__LEFT:
+      case HlvlPackage.BINARY_FUNCTION__LEFT:
         return left != null;
-      case HlvlPackage.FUNCTION__RIGHT:
+      case HlvlPackage.BINARY_FUNCTION__RIGHT:
         return right != null;
     }
     return super.eIsSet(featureID);
@@ -333,4 +333,4 @@ public class FunctionImpl extends RelationalImpl implements Function
     return result.toString();
   }
 
-} //FunctionImpl
+} //BinaryFunctionImpl

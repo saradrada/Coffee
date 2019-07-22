@@ -4,9 +4,9 @@ import com.coffee.generator.Dialect
 
 class AttributesParser  extends BasicIntegerParser {
 	
-		new(String name) {
-		super(name, Dialect.BASIC_BOOL)
-		setTransformationRules(new AttributesTranformationRules(Dialect.BASIC_BOOL))
+		new(String name, Dialect dialect) {
+		super(name, dialect)
+		setTransformationRules(new BasicIntegerRules(dialect))
 	}
 	
 }

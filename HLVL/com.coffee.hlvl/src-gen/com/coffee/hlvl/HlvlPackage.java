@@ -1475,14 +1475,14 @@ public interface HlvlPackage extends EPackage
   int NEGATION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link com.coffee.hlvl.impl.UnaryImpl <em>Unary</em>}' class.
+   * The meta object id for the '{@link com.coffee.hlvl.impl.UnaryFunctionImpl <em>Unary Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.coffee.hlvl.impl.UnaryImpl
-   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getUnary()
+   * @see com.coffee.hlvl.impl.UnaryFunctionImpl
+   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getUnaryFunction()
    * @generated
    */
-  int UNARY = 40;
+  int UNARY_FUNCTION = 40;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1491,7 +1491,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNARY__OP = RELATIONAL_FEATURE_COUNT + 0;
+  int UNARY_FUNCTION__OP = RELATIONAL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1500,16 +1500,16 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNARY__EXPRESSION = RELATIONAL_FEATURE_COUNT + 1;
+  int UNARY_FUNCTION__EXPRESSION = RELATIONAL_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Unary</em>' class.
+   * The number of structural features of the '<em>Unary Function</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNARY_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
+  int UNARY_FUNCTION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.InstancesImpl <em>Instances</em>}' class.
@@ -1549,14 +1549,42 @@ public interface HlvlPackage extends EPackage
   int INSTANCES_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link com.coffee.hlvl.impl.FunctionImpl <em>Function</em>}' class.
+   * The meta object id for the '{@link com.coffee.hlvl.impl.EntailedImpl <em>Entailed</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.coffee.hlvl.impl.FunctionImpl
-   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getFunction()
+   * @see com.coffee.hlvl.impl.EntailedImpl
+   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getEntailed()
    * @generated
    */
-  int FUNCTION = 42;
+  int ENTAILED = 42;
+
+  /**
+   * The feature id for the '<em><b>Element</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTAILED__ELEMENT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Entailed</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTAILED_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link com.coffee.hlvl.impl.BinaryFunctionImpl <em>Binary Function</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.hlvl.impl.BinaryFunctionImpl
+   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getBinaryFunction()
+   * @generated
+   */
+  int BINARY_FUNCTION = 43;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1565,7 +1593,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION__OP = RELATIONAL_FEATURE_COUNT + 0;
+  int BINARY_FUNCTION__OP = RELATIONAL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1574,7 +1602,7 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION__LEFT = RELATIONAL_FEATURE_COUNT + 1;
+  int BINARY_FUNCTION__LEFT = RELATIONAL_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -1583,16 +1611,16 @@ public interface HlvlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
+  int BINARY_FUNCTION__RIGHT = RELATIONAL_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Function</em>' class.
+   * The number of structural features of the '<em>Binary Function</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
+  int BINARY_FUNCTION_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.BoolConstantImpl <em>Bool Constant</em>}' class.
@@ -1602,7 +1630,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getBoolConstant()
    * @generated
    */
-  int BOOL_CONSTANT = 43;
+  int BOOL_CONSTANT = 44;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1630,7 +1658,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getVariableRef()
    * @generated
    */
-  int VARIABLE_REF = 44;
+  int VARIABLE_REF = 45;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1658,7 +1686,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getAttributeRef()
    * @generated
    */
-  int ATTRIBUTE_REF = 45;
+  int ATTRIBUTE_REF = 46;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' containment reference.
@@ -1686,7 +1714,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSymbolConstant()
    * @generated
    */
-  int SYMBOL_CONSTANT = 46;
+  int SYMBOL_CONSTANT = 47;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1714,7 +1742,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getIntConstant()
    * @generated
    */
-  int INT_CONSTANT = 47;
+  int INT_CONSTANT = 48;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1742,7 +1770,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSingleInstruction()
    * @generated
    */
-  int SINGLE_INSTRUCTION = 48;
+  int SINGLE_INSTRUCTION = 49;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1770,7 +1798,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getValidConf()
    * @generated
    */
-  int VALID_CONF = 49;
+  int VALID_CONF = 50;
 
   /**
    * The feature id for the '<em><b>Valuations</b></em>' containment reference.
@@ -2995,36 +3023,36 @@ public interface HlvlPackage extends EPackage
   EReference getNegation_Expression();
 
   /**
-   * Returns the meta object for class '{@link com.coffee.hlvl.Unary <em>Unary</em>}'.
+   * Returns the meta object for class '{@link com.coffee.hlvl.UnaryFunction <em>Unary Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Unary</em>'.
-   * @see com.coffee.hlvl.Unary
+   * @return the meta object for class '<em>Unary Function</em>'.
+   * @see com.coffee.hlvl.UnaryFunction
    * @generated
    */
-  EClass getUnary();
+  EClass getUnaryFunction();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.hlvl.Unary#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.UnaryFunction#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see com.coffee.hlvl.Unary#getOp()
-   * @see #getUnary()
+   * @see com.coffee.hlvl.UnaryFunction#getOp()
+   * @see #getUnaryFunction()
    * @generated
    */
-  EAttribute getUnary_Op();
+  EAttribute getUnaryFunction_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.Unary#getExpression <em>Expression</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.UnaryFunction#getExpression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Expression</em>'.
-   * @see com.coffee.hlvl.Unary#getExpression()
-   * @see #getUnary()
+   * @see com.coffee.hlvl.UnaryFunction#getExpression()
+   * @see #getUnaryFunction()
    * @generated
    */
-  EReference getUnary_Expression();
+  EReference getUnaryFunction_Expression();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.Instances <em>Instances</em>}'.
@@ -3059,47 +3087,68 @@ public interface HlvlPackage extends EPackage
   EAttribute getInstances_Number();
 
   /**
-   * Returns the meta object for class '{@link com.coffee.hlvl.Function <em>Function</em>}'.
+   * Returns the meta object for class '{@link com.coffee.hlvl.Entailed <em>Entailed</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Function</em>'.
-   * @see com.coffee.hlvl.Function
+   * @return the meta object for class '<em>Entailed</em>'.
+   * @see com.coffee.hlvl.Entailed
    * @generated
    */
-  EClass getFunction();
+  EClass getEntailed();
 
   /**
-   * Returns the meta object for the attribute '{@link com.coffee.hlvl.Function#getOp <em>Op</em>}'.
+   * Returns the meta object for the reference '{@link com.coffee.hlvl.Entailed#getElement <em>Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Element</em>'.
+   * @see com.coffee.hlvl.Entailed#getElement()
+   * @see #getEntailed()
+   * @generated
+   */
+  EReference getEntailed_Element();
+
+  /**
+   * Returns the meta object for class '{@link com.coffee.hlvl.BinaryFunction <em>Binary Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Binary Function</em>'.
+   * @see com.coffee.hlvl.BinaryFunction
+   * @generated
+   */
+  EClass getBinaryFunction();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.coffee.hlvl.BinaryFunction#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see com.coffee.hlvl.Function#getOp()
-   * @see #getFunction()
+   * @see com.coffee.hlvl.BinaryFunction#getOp()
+   * @see #getBinaryFunction()
    * @generated
    */
-  EAttribute getFunction_Op();
+  EAttribute getBinaryFunction_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.Function#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.BinaryFunction#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see com.coffee.hlvl.Function#getLeft()
-   * @see #getFunction()
+   * @see com.coffee.hlvl.BinaryFunction#getLeft()
+   * @see #getBinaryFunction()
    * @generated
    */
-  EReference getFunction_Left();
+  EReference getBinaryFunction_Left();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.Function#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link com.coffee.hlvl.BinaryFunction#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see com.coffee.hlvl.Function#getRight()
-   * @see #getFunction()
+   * @see com.coffee.hlvl.BinaryFunction#getRight()
+   * @see #getBinaryFunction()
    * @generated
    */
-  EReference getFunction_Right();
+  EReference getBinaryFunction_Right();
 
   /**
    * Returns the meta object for class '{@link com.coffee.hlvl.BoolConstant <em>Bool Constant</em>}'.
@@ -4256,14 +4305,14 @@ public interface HlvlPackage extends EPackage
     EReference NEGATION__EXPRESSION = eINSTANCE.getNegation_Expression();
 
     /**
-     * The meta object literal for the '{@link com.coffee.hlvl.impl.UnaryImpl <em>Unary</em>}' class.
+     * The meta object literal for the '{@link com.coffee.hlvl.impl.UnaryFunctionImpl <em>Unary Function</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.coffee.hlvl.impl.UnaryImpl
-     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getUnary()
+     * @see com.coffee.hlvl.impl.UnaryFunctionImpl
+     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getUnaryFunction()
      * @generated
      */
-    EClass UNARY = eINSTANCE.getUnary();
+    EClass UNARY_FUNCTION = eINSTANCE.getUnaryFunction();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -4271,7 +4320,7 @@ public interface HlvlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute UNARY__OP = eINSTANCE.getUnary_Op();
+    EAttribute UNARY_FUNCTION__OP = eINSTANCE.getUnaryFunction_Op();
 
     /**
      * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
@@ -4279,7 +4328,7 @@ public interface HlvlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference UNARY__EXPRESSION = eINSTANCE.getUnary_Expression();
+    EReference UNARY_FUNCTION__EXPRESSION = eINSTANCE.getUnaryFunction_Expression();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.InstancesImpl <em>Instances</em>}' class.
@@ -4308,14 +4357,32 @@ public interface HlvlPackage extends EPackage
     EAttribute INSTANCES__NUMBER = eINSTANCE.getInstances_Number();
 
     /**
-     * The meta object literal for the '{@link com.coffee.hlvl.impl.FunctionImpl <em>Function</em>}' class.
+     * The meta object literal for the '{@link com.coffee.hlvl.impl.EntailedImpl <em>Entailed</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.coffee.hlvl.impl.FunctionImpl
-     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getFunction()
+     * @see com.coffee.hlvl.impl.EntailedImpl
+     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getEntailed()
      * @generated
      */
-    EClass FUNCTION = eINSTANCE.getFunction();
+    EClass ENTAILED = eINSTANCE.getEntailed();
+
+    /**
+     * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTAILED__ELEMENT = eINSTANCE.getEntailed_Element();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.hlvl.impl.BinaryFunctionImpl <em>Binary Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.hlvl.impl.BinaryFunctionImpl
+     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getBinaryFunction()
+     * @generated
+     */
+    EClass BINARY_FUNCTION = eINSTANCE.getBinaryFunction();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -4323,7 +4390,7 @@ public interface HlvlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION__OP = eINSTANCE.getFunction_Op();
+    EAttribute BINARY_FUNCTION__OP = eINSTANCE.getBinaryFunction_Op();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -4331,7 +4398,7 @@ public interface HlvlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__LEFT = eINSTANCE.getFunction_Left();
+    EReference BINARY_FUNCTION__LEFT = eINSTANCE.getBinaryFunction_Left();
 
     /**
      * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -4339,7 +4406,7 @@ public interface HlvlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__RIGHT = eINSTANCE.getFunction_Right();
+    EReference BINARY_FUNCTION__RIGHT = eINSTANCE.getBinaryFunction_Right();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.BoolConstantImpl <em>Bool Constant</em>}' class.

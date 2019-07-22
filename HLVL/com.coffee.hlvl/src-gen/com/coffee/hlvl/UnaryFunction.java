@@ -6,22 +6,22 @@ package com.coffee.hlvl;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Unary</b></em>'.
+ * A representation of the model object '<em><b>Unary Function</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.Unary#getOp <em>Op</em>}</li>
- *   <li>{@link com.coffee.hlvl.Unary#getExpression <em>Expression</em>}</li>
+ *   <li>{@link com.coffee.hlvl.UnaryFunction#getOp <em>Op</em>}</li>
+ *   <li>{@link com.coffee.hlvl.UnaryFunction#getExpression <em>Expression</em>}</li>
  * </ul>
  *
- * @see com.coffee.hlvl.HlvlPackage#getUnary()
+ * @see com.coffee.hlvl.HlvlPackage#getUnaryFunction()
  * @model
  * @generated
  */
-public interface Unary extends Relational
+public interface UnaryFunction extends Relational
 {
   /**
    * Returns the value of the '<em><b>Op</b></em>' attribute.
@@ -33,14 +33,14 @@ public interface Unary extends Relational
    * <!-- end-user-doc -->
    * @return the value of the '<em>Op</em>' attribute.
    * @see #setOp(String)
-   * @see com.coffee.hlvl.HlvlPackage#getUnary_Op()
+   * @see com.coffee.hlvl.HlvlPackage#getUnaryFunction_Op()
    * @model
    * @generated
    */
   String getOp();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Unary#getOp <em>Op</em>}' attribute.
+   * Sets the value of the '{@link com.coffee.hlvl.UnaryFunction#getOp <em>Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Op</em>' attribute.
@@ -59,14 +59,14 @@ public interface Unary extends Relational
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expression</em>' containment reference.
    * @see #setExpression(Relational)
-   * @see com.coffee.hlvl.HlvlPackage#getUnary_Expression()
+   * @see com.coffee.hlvl.HlvlPackage#getUnaryFunction_Expression()
    * @model containment="true"
    * @generated
    */
   Relational getExpression();
 
   /**
-   * Sets the value of the '{@link com.coffee.hlvl.Unary#getExpression <em>Expression</em>}' containment reference.
+   * Sets the value of the '{@link com.coffee.hlvl.UnaryFunction#getExpression <em>Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Expression</em>' containment reference.
@@ -75,4 +75,4 @@ public interface Unary extends Relational
    */
   void setExpression(Relational value);
 
-} // Unary
+} // UnaryFunction

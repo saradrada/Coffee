@@ -30,7 +30,7 @@
 'decomposition'=34
 'dist'=61
 'elements:'=12
-'entailed'=58
+'entailed'=59
 'expression'=40
 'false'=66
 'findAllConfigurations'=72
@@ -38,7 +38,7 @@
 'group'=35
 'if'=64
 'implies'=31
-'instances'=59
+'instances'=58
 'integer'=17
 'is'=22
 'max'=63

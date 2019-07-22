@@ -194,7 +194,6 @@ public abstract class AbstractHlvlProposalProvider extends TerminalsProposalProv
 	public void completePrimary_Op(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 		// subclasses may override
-		// subclasses may override
 	}
 	public void completePrimary_Element(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
