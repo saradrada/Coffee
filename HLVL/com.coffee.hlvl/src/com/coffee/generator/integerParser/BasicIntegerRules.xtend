@@ -21,7 +21,7 @@ import com.coffee.hlvl.Interval
 import com.coffee.hlvl.Enumeration
 
 /**
- * class implementing the boolean transformation rules for in Benavides2010
+ * class implementing the boolean transformation rules for in Mazo2012
  * for obtaining the HLCL representation in the MiniZinc language. 
  * This class implements TransformationRules
  * @author Angela Villota

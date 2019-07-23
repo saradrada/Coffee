@@ -4,11 +4,13 @@ import com.coffee.generator.commons.IMiniZincConstants;
 import com.coffee.generator.expressionsParser.IBooleanExpressionsRules;
 import com.coffee.generator.expressionsParser.IExpressionsParser;
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Or;
 import com.coffee.hlvl.VariableRef;
+import com.google.common.base.Objects;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 /**
@@ -99,5 +101,42 @@ public class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZ
   @Override
   public CharSequence getVariable(final VariableRef exp) {
     return exp.getVariable().getName();
+  }
+  
+  @Override
+  public CharSequence getEquality(final Equality exp) {
+    String _xblockexpression = null;
+    {
+      String out = "";
+      String _op = exp.getOp();
+      boolean _equals = Objects.equal(_op, "!=");
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("(");
+        CharSequence _parse = this.parser.parse(exp.getLeft());
+        _builder.append(_parse);
+        _builder.append(" ");
+        _builder.append(IMiniZincConstants.NEQUIV);
+        _builder.append(" ");
+        CharSequence _parse_1 = this.parser.parse(exp.getRight());
+        _builder.append(_parse_1);
+        _builder.append(")");
+        out = _builder.toString();
+      } else {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("(");
+        CharSequence _parse_2 = this.parser.parse(exp.getLeft());
+        _builder_1.append(_parse_2);
+        _builder_1.append(" ");
+        _builder_1.append(IMiniZincConstants.EQUIV);
+        _builder_1.append(" ");
+        CharSequence _parse_3 = this.parser.parse(exp.getRight());
+        _builder_1.append(_parse_3);
+        _builder_1.append(")");
+        out = _builder_1.toString();
+      }
+      _xblockexpression = out;
+    }
+    return _xblockexpression;
   }
 }

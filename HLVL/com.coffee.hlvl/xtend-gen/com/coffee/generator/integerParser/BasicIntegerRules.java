@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 /**
- * class implementing the boolean transformation rules for in Benavides2010
+ * class implementing the boolean transformation rules for in Mazo2012
  * for obtaining the HLCL representation in the MiniZinc language.
  * This class implements TransformationRules
  * @author Angela Villota

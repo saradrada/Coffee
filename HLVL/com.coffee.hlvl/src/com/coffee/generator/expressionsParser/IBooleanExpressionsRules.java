@@ -2,6 +2,7 @@ package com.coffee.generator.expressionsParser;
 
 
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.Negation;
@@ -24,5 +25,6 @@ public interface IBooleanExpressionsRules {
 	public CharSequence getImplies(Implies exp);
 	public CharSequence getAnd(And exp);
 	public CharSequence getOr(Or exp);
+	public CharSequence getEquality(Equality exp);
 
 }

@@ -9,6 +9,7 @@ import com.coffee.hlvl.Implies
 import com.coffee.hlvl.Or
 import com.coffee.hlvl.And
 import com.coffee.generator.Dialect
+import com.coffee.hlvl.Equality
 
 /**
  * Parser for boolean expressions 
@@ -42,7 +43,8 @@ class BooleanExpressionsParser implements IExpressionsParser {
 			Implies: rules.getImplies(exp)
 			Or: rules.getOr(exp)
 			And: rules.getAnd(exp)
-			//Equality: '''(«parse(exp.left)» = «parse(exp.right)»)'''
+			Equality: rules.getEquality(exp) 
+			
 
 		}
 	}

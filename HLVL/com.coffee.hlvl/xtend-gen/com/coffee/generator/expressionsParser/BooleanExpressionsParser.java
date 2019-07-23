@@ -6,6 +6,7 @@ import com.coffee.generator.expressionsParser.IBooleanExpressionsRules;
 import com.coffee.generator.expressionsParser.IExpressionsParser;
 import com.coffee.hlvl.And;
 import com.coffee.hlvl.BoolConstant;
+import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.Negation;
@@ -80,6 +81,12 @@ public class BooleanExpressionsParser implements IExpressionsParser {
       if (exp instanceof And) {
         _matched=true;
         _switchResult = this.rules.getAnd(((And)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Equality) {
+        _matched=true;
+        _switchResult = this.rules.getEquality(((Equality)exp));
       }
     }
     return _switchResult;

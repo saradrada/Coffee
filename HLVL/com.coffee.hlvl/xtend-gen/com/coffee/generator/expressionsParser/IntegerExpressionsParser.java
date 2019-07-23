@@ -2,18 +2,24 @@ package com.coffee.generator.expressionsParser;
 
 import com.coffee.generator.Dialect;
 import com.coffee.generator.expressionsParser.BooleanExpressionsParser;
-import com.coffee.generator.expressionsParser.IBooleanExpressionsRules;
 import com.coffee.generator.expressionsParser.IExpressionsParser;
 import com.coffee.generator.expressionsParser.IntegerExpressionsRules;
 import com.coffee.hlvl.And;
+import com.coffee.hlvl.BinaryFunction;
 import com.coffee.hlvl.BoolConstant;
+import com.coffee.hlvl.Comparison;
+import com.coffee.hlvl.Equality;
 import com.coffee.hlvl.Iff;
 import com.coffee.hlvl.Implies;
 import com.coffee.hlvl.IntConstant;
+import com.coffee.hlvl.Minus;
+import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Or;
+import com.coffee.hlvl.Plus;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SymbolConstant;
+import com.coffee.hlvl.UnaryFunction;
 import com.coffee.hlvl.VariableRef;
 import java.util.Map;
 
@@ -28,7 +34,7 @@ public class IntegerExpressionsParser extends BooleanExpressionsParser implement
   /**
    * Tranformation rules
    */
-  private IBooleanExpressionsRules rules;
+  private IntegerExpressionsRules rules;
   
   private Dialect dialect;
   
@@ -100,6 +106,48 @@ public class IntegerExpressionsParser extends BooleanExpressionsParser implement
       if (exp instanceof And) {
         _matched=true;
         _switchResult = this.rules.getAnd(((And)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Equality) {
+        _matched=true;
+        _switchResult = this.rules.getEquality(((Equality)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Comparison) {
+        _matched=true;
+        _switchResult = this.rules.getComparison(((Comparison)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Plus) {
+        _matched=true;
+        _switchResult = this.rules.getPlus(((Plus)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Minus) {
+        _matched=true;
+        _switchResult = this.rules.getMinus(((Minus)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof MulOrDiv) {
+        _matched=true;
+        _switchResult = this.rules.getMulOrDiv(((MulOrDiv)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof UnaryFunction) {
+        _matched=true;
+        _switchResult = this.rules.getUnaryFunction(((UnaryFunction)exp));
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof BinaryFunction) {
+        _matched=true;
+        _switchResult = this.rules.getBinaryFunction(((BinaryFunction)exp));
       }
     }
     return _switchResult;

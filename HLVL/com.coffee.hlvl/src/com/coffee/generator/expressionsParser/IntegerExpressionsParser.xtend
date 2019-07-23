@@ -12,6 +12,13 @@ import com.coffee.generator.Dialect
 import com.coffee.hlvl.IntConstant
 import com.coffee.hlvl.SymbolConstant
 import java.util.Map
+import com.coffee.hlvl.Equality
+import com.coffee.hlvl.Comparison
+import com.coffee.hlvl.Plus
+import com.coffee.hlvl.Minus
+import com.coffee.hlvl.MulOrDiv
+import com.coffee.hlvl.UnaryFunction
+import com.coffee.hlvl.BinaryFunction
 
 /**
  * Parser for boolean expressions 
@@ -24,7 +31,7 @@ class IntegerExpressionsParser extends BooleanExpressionsParser implements IExpr
 	/** 
 	 * Tranformation rules
 	 */
-	private IBooleanExpressionsRules rules;
+	private IntegerExpressionsRules rules;
 	
 	private Dialect dialect;
 	
@@ -58,8 +65,15 @@ class IntegerExpressionsParser extends BooleanExpressionsParser implements IExpr
 			Implies: rules.getImplies(exp)
 			Or: rules.getOr(exp)
 			And: rules.getAnd(exp)
-			//Equality: '''(«parse(exp.left)» = «parse(exp.right)»)'''
-
+			Equality: rules.getEquality(exp) 
+			
+			// Integer operations
+			Comparison: rules.getComparison(exp)
+			Plus: rules.getPlus(exp)
+			Minus: rules.getMinus(exp)
+			MulOrDiv: rules.getMulOrDiv(exp)
+			UnaryFunction: rules.getUnaryFunction(exp)
+			BinaryFunction: rules.getBinaryFunction(exp)
 		}
 	}
 }

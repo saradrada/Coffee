@@ -7,6 +7,7 @@ import com.coffee.hlvl.Negation
 import com.coffee.hlvl.Or
 import com.coffee.hlvl.VariableRef
 import com.coffee.generator.commons.IMiniZincConstants
+import com.coffee.hlvl.Equality
 
 /**
  * Implementation of boolean rules
@@ -14,7 +15,7 @@ import com.coffee.generator.commons.IMiniZincConstants
  * @version HLVL V1.4
  *  May 2019
  */
-class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZincConstants{
+public class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZincConstants{
 	/**
 	 * 
 	 */
@@ -50,5 +51,17 @@ class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZincCons
 	override getVariable(VariableRef exp) {
 		return exp.variable.name
 	}
+	
+	override getEquality(Equality exp) {
+		var out= ""
+		if (exp.op== "!="){
+			out= '''(«parser.parse(exp.left)» «NEQUIV» «parser.parse(exp.right)»)'''
+		}
+		else{
+			out= '''(«parser.parse(exp.left)» «EQUIV» «parser.parse(exp.right)»)'''
+		}
+		out
+	}
+	
 	
 }

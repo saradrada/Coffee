@@ -154,8 +154,8 @@ class HLVLGeneratorTest {
 		var bool : A ;
 		var bool : B ;
 		% Variables and constraints from the variability relations definition
-		constraint A = true ;
-		constraint B = true ;
+		constraint A == true ;
+		constraint B == true ;
 		% The solving parameters from the parameters files
 		'''
 		//Obtained code
@@ -249,7 +249,7 @@ class HLVLGeneratorTest {
 		var bool : mstkruskal ;
 		var bool : shortest ;
 		% Variables and constraints from the variability relations definition
-		constraint GPL = true ;
+		constraint GPL == true ;
 		constraint Weight -> GPL ;
 		constraint Search -> GPL ;
 		constraint GPL <-> Gtp ;
@@ -362,11 +362,11 @@ class HLVLGeneratorTest {
 		var 0..1: mstkruskal;
 		var 0..1: shortest;
 		% Variables and constraints from the variability relations definition
-		constraint GPL = 1;
+		constraint GPL == 1;
 		constraint GPL >= Weight;
 		constraint GPL >= Search;
-		constraint GPL = Gtp;
-		constraint GPL = Algorithms;
+		constraint GPL == Gtp;
+		constraint GPL == Algorithms;
 		constraint Gtp <= directed + undirected ;
 		constraint directed + undirected  <= Gtp;
 		constraint Weight <= weighted + unweighted ;

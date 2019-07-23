@@ -1,10 +1,6 @@
 package com.coffee.generator.expressionsParser;
 
-import com.coffee.hlvl.And
-import com.coffee.hlvl.Iff
-import com.coffee.hlvl.Implies
-import com.coffee.hlvl.Negation
-import com.coffee.hlvl.Or
+
 import com.coffee.hlvl.VariableRef
 import com.coffee.generator.commons.IMiniZincConstants
 import com.coffee.hlvl.BinaryFunction
@@ -14,6 +10,7 @@ import com.coffee.hlvl.MulOrDiv
 import com.coffee.hlvl.Plus
 import com.coffee.hlvl.UnaryFunction
 import com.coffee.generator.Dialect
+import com.coffee.hlvl.Equality
 
 /**
  * Implementation of boolean rules
@@ -21,38 +18,17 @@ import com.coffee.generator.Dialect
  * @version HLVL V1.4
  *  May 2019
  */
-class IntegerExpressionsRules implements IIntegerExpressionsRules, IMiniZincConstants{
+public class IntegerExpressionsRules extends BooleanExpressionsRules implements IIntegerExpressionsRules, IMiniZincConstants{
 	/**
 	 * 
 	 */
 	private IExpressionsParser parser;
 	private Dialect dialect;
+
 	new(IExpressionsParser parser, Dialect dialect) {
+		super(parser)
 		this.parser = parser
 		this.dialect = dialect
-		
-	}
-	override getAnd(And exp) {
-		'''(«parser.parse(exp.left)» «AND» «parser.parse(exp.right)»)'''
-	}
-	
-	override getIff(Iff exp) {
-		'''(«parser.parse(exp.left)»  «IFF» «parser.parse(exp.right)»)'''
-	}
-	
-	override getImplies(Implies exp) {
-		'''(«parser.parse(exp.left)»  «IMPLIES_LR» «parser.parse(exp.right)»)'''
-	}
-	
-	/**
-	 * 
-	 */
-	override getNegation(Negation exp) {
-		'''«NOT»(«parser.parse(exp.expression)»)'''
-	}
-	
-	override getOr(Or exp) {
-		'''(«parser.parse(exp.left)» «OR» «parser.parse(exp.right)»)'''
 	}
 	
 	override getVariable(VariableRef exp) {
@@ -66,28 +42,64 @@ class IntegerExpressionsRules implements IIntegerExpressionsRules, IMiniZincCons
 				}
 	}
 	
-	override getBinaryFunction(BinaryFunction exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
 	
 	override getComparison(Comparison exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		if (exp.op == ">=") {
+			'''(«parser.parse(exp.left)» «GEQ» «parser.parse(exp.right)»)'''
+		} else if (exp.op == "<=") {
+			'''(«parser.parse(exp.left)» «LEQ» «parser.parse(exp.right)»)'''
+		} else if (exp.op == ">") {
+			'''(«parser.parse(exp.left)» «GT» «parser.parse(exp.right)»)'''
+		} else if (exp.op == "<") {
+			'''(«parser.parse(exp.left)» «LT» «parser.parse(exp.right)»)'''
+		}
 	}
 	
 	override getMinus(Minus exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''(«parser.parse(exp.left)» «MINUS» «parser.parse(exp.right)»)'''
 	}
 	
 	override getMulOrDiv(MulOrDiv exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		if (exp.op == "*") {
+			'''( «parser.parse(exp.left)» «TIMES» «parser.parse(exp.right)»)'''
+		} else if (exp.op == "/") {
+			'''( «parser.parse(exp.left)» «DIV» «parser.parse(exp.right)»)'''
+		} else {
+			'''( «parser.parse(exp.left)» «MOD» «parser.parse(exp.right)»)'''
+		}
 	}
 	
 	override getPlus(Plus exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''(«parser.parse(exp.left)» «PLUS» «parser.parse(exp.right)»)'''
 	}
 	
 	override getUnaryFunction(UnaryFunction exp) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		if (exp.op == "abs" ){
+			'''«ABSOLUTE_VALUE»(«parser.parse(exp.expression)»)'''
+		}else if (exp.op == "sqrt") {
+			'''«SQUARE_ROOT»(«parser.parse(exp.expression)»)'''
+		}
+	}
+	
+	override getBinaryFunction(BinaryFunction exp) {
+		if (exp.op == "pow" ){
+			'''«MIN»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+		}else if (exp.op == "min") {
+			'''«MAX»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+		}else if (exp.op == "max") {
+			'''«POWER»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+		}
+	}
+	
+	override getEquality(Equality exp) {
+		var out= ""
+		if (exp.op== "!="){
+			out= '''(«parser.parse(exp.left)» «NEQUIV» «parser.parse(exp.right)»)'''
+		}
+		else{
+			out= '''(«parser.parse(exp.left)» «EQUIV» «parser.parse(exp.right)»)'''
+		}
+		out
 	}
 	
 }

@@ -12,9 +12,11 @@ package com.coffee.generator.commons;
 public interface IMiniZincConstants {
 	
 	public static  final String SEMICOLON=";";
+	public static  final String COMMA=",";
 	public static  final String COLON=":";
 	public static  final String OPEN_CALL="(";
 	public static  final String CLOSE_CALL=")";
+	
 	//
 	public static  final String VAR_DEF="var";
 	public static  final String BOOL_DOMAIN="bool";
@@ -28,8 +30,9 @@ public interface IMiniZincConstants {
 	public static final String CONS_DEF ="constraint"; 
 
 	//Relational operators
-	public static final String EQUIV ="=" ;
-	public static final String NEQUIV ="!=";
+
+	public static final String EQUIV ="==" ;
+	public static final String NEQUIV ="!=" ;
 	public static final String LT ="<";
 	public static final String GT =">";
 	public static final String LEQ ="<=";
@@ -52,5 +55,18 @@ public interface IMiniZincConstants {
 	public static final String PLUS="+";
 	public static final String MINUS="-";
 	public static final String TIMES="*";
+	public static final String DIV="/";
+	public static final String MOD="mod";
+	
+	//UNARY FUNCTIONS
+	public static final String ABSOLUTE_VALUE="abs";
+	public static final String SQUARE_ROOT="sqrt";
+	
+	//BINARY FUNCTIONS
+	
+	public static  final String MIN="min";
+	public static  final String MAX="max";
+	public static  final String POWER="pow";
+	
 
 }
