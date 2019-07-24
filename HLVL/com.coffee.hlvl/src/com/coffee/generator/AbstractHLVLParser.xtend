@@ -4,7 +4,6 @@ package com.coffee.generator;
 import java.util.HashMap
 import java.util.Map
 
-import java.util.ArrayList
 import com.coffee.hlvl.ElmDeclaration
 import com.coffee.hlvl.Relation
 import com.coffee.hlvl.Model
@@ -13,7 +12,6 @@ import com.coffee.hlvl.Decomposition
 import com.coffee.hlvl.VariableDecl
 import com.coffee.hlvl.Group
 import com.coffee.hlvl.VarList
-import com.coffee.hlvl.Visibility
 //import com.coffee.hlvl.hLVL.MultInstantiation
 //import com.coffee.hlvl.hLVL.QImplies
 import com.coffee.hlvl.Pair
@@ -28,6 +26,7 @@ import com.coffee.hlvl.Constraint
  * @version HLVL 1
  * August 2018
  * adpated to the HLVl grammar on January 2019
+ * updated on july 2019 to include the attributes declaration in the attributesParser
  */
  abstract class AbstractHLVLParser implements IHLVLParser{
 	/**
@@ -52,7 +51,6 @@ import com.coffee.hlvl.Constraint
 	 */
 	private Map <String, Relation> relations;
 	
-	private Map <String, ElmDeclaration> attributes;
 	
 	private StringBuilder operations;
 	/**
@@ -65,7 +63,6 @@ import com.coffee.hlvl.Constraint
 		this.dialect= dialect
 		//initializing the data sctucture with the map of parents
 		parents= new HashMap<String,ElmDeclaration>();
-		attributes= new HashMap<String,ElmDeclaration>();
 		relations= new HashMap<String, Relation>();
 		operations= new StringBuilder();
 	}
@@ -110,29 +107,20 @@ import com.coffee.hlvl.Constraint
 	 * @param model
 	 */
 	override parseElements(Model model) {
-		var StringBuilder builder= new StringBuilder();
-		
-		for(element : model.elements){
-			if (element.att !==null && element.att=="att"){
-				attributes.put(element.name, element)
-			}
-			else{ 
-				if (element.declaration instanceof ConstantDecl){
-					val value= (element.declaration as ConstantDecl).value
+		var StringBuilder builder = new StringBuilder();
+
+		for (element : model.elements) {
+				if (element.declaration instanceof ConstantDecl) {
+					val value = (element.declaration as ConstantDecl).value
 					// una declaracion boolean sin dominio es considerada ConstantDecl
-					if (element.dataType=="boolean" && value ===null){ //&& (value as BoolVal).value===null){
-						
+					if (element.dataType == "boolean" && value === null) { // && (value as BoolVal).value===null){
 						builder.append(rules.getElement(element))
-					}
-					else{
+					} else {
 						builder.append(rules.getConstant(element))
-					} 
+					}
+				} else if (element.declaration instanceof VariableDecl) {
+					builder.append(rules.getElement(element))
 				}
-			else if(element.declaration instanceof VariableDecl ){
-				builder.append(rules.getElement(element))
-			}
-			
-			}
 		}
 		builder.toString()
 	}
@@ -159,7 +147,6 @@ import com.coffee.hlvl.Constraint
 	 * @param rel is a variability relation
 	 */
 	override parseRelation(Relation rel) {
-		
 		switch (rel){
 			Common: rules.getCore(rel)
 			Decomposition: rules.getDecomposition(rel, parents)
@@ -183,13 +170,13 @@ import com.coffee.hlvl.Constraint
 				}
 			}
 			Constraint: rules.getExpression(rel.exp)
-			Visibility: {
-				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
-				for(r: rel.list.ids){
-					relations.add(parseRelation(r.exp))
-				}
-				rules.getVisibility(rel, relations)
-			}
+//			Visibility: {
+//				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
+//				for(r: rel.list.ids){
+//					relations.add(parseRelation(r.exp))
+//				}
+//				rules.getVisibility(rel, relations)
+//			}
 		}
 	}
 	

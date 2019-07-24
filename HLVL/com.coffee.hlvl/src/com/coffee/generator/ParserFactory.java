@@ -1,8 +1,10 @@
 package com.coffee.generator;
 
 import com.coffee.generator.boolParser.BasicBoolParser;
+import com.coffee.generator.boolParser.ComplexBoolParser;
 import com.coffee.generator.integerParser.AttributesParser;
 import com.coffee.generator.integerParser.BasicIntegerParser;
+import com.coffee.generator.integerParser.ComplexIntegerParser;
 
 /**
  * Simple factory for creating concrete instances of code generators
@@ -21,6 +23,12 @@ public class ParserFactory {
 			break;
 		case BASIC_INT:
 			generator= new BasicIntegerParser(modelName, dialect);
+			break;
+		case COMPLEX_BOOL:
+			generator= new ComplexBoolParser(modelName, dialect);
+			break;
+		case COMPLEX_INT:
+			generator= new ComplexIntegerParser(modelName, dialect);
 			break;
 		default:
 			generator= new AttributesParser(modelName, dialect);	

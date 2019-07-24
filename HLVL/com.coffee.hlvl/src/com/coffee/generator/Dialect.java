@@ -12,6 +12,8 @@ package com.coffee.generator;
 public enum Dialect {
 	BASIC_BOOL,
 	BASIC_INT,
+	COMPLEX_BOOL,
+	COMPLEX_INT,
 	ATTRIBUTE,
 	MULTIPLICITY
 

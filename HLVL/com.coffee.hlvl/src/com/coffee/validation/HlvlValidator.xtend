@@ -4,12 +4,12 @@
 package com.coffee.validation
 
 import org.eclipse.xtext.validation.Check
-import com.coffee.hlvl.ConstantDecl
+//import com.coffee.hlvl.ConstantDecl
 import com.coffee.hlvl.HlvlPackage
 import com.coffee.hlvl.ElmDeclaration
-import com.coffee.hlvl.BoolConstant
-import com.coffee.hlvl.SymbolConstant
-import com.coffee.hlvl.IntConstant
+//import com.coffee.hlvl.BoolConstant
+//import com.coffee.hlvl.SymbolConstant
+//import com.coffee.hlvl.IntConstant
 
 /**
  * This class contains custom validation rules. 

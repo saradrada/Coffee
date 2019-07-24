@@ -12,9 +12,7 @@ import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Relational;
-import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -354,44 +352,9 @@ public class BasicBooleanRules extends TransformationRules implements IMiniZincC
     _builder.append(" ");
     CharSequence _parse = this.expressionsParser.parse(exp);
     _builder.append(_parse);
-    _builder.append(" ");
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
-  }
-  
-  @Override
-  public CharSequence getVisibility(final Visibility rel, final List<CharSequence> relations) {
-    String _xblockexpression = null;
-    {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("var bool: B");
-      _builder.append(this.visibilityIdCounter);
-      _builder.append(" ;");
-      _builder.newLineIfNotEmpty();
-      _builder.append("constraint ");
-      CharSequence _parse = this.expressionsParser.parse(rel.getCondition());
-      _builder.append(_parse);
-      _builder.append(" -> B");
-      _builder.append(this.visibilityIdCounter);
-      _builder.append(";");
-      _builder.newLineIfNotEmpty();
-      String out = _builder.toString();
-      for (final CharSequence r : relations) {
-        String _out = out;
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("constraint B");
-        _builder_1.append(this.visibilityIdCounter);
-        _builder_1.append("  <-> ");
-        CharSequence _subSequence = r.subSequence(10, r.length());
-        _builder_1.append(_subSequence);
-        _builder_1.newLineIfNotEmpty();
-        out = (_out + _builder_1);
-      }
-      this.visibilityIdCounter++;
-      _xblockexpression = out;
-    }
-    return _xblockexpression;
   }
   
   /**

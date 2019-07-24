@@ -1,14 +1,10 @@
 package com.coffee.generator.boolParser
 
 import com.coffee.hlvl.ElmDeclaration
-import com.coffee.hlvl.Common
 import com.coffee.hlvl.Decomposition
 import java.util.Map
 import com.coffee.hlvl.Relational
 import com.coffee.hlvl.Group
-import com.coffee.hlvl.VarList
-import com.coffee.hlvl.Visibility
-import java.util.List
 import com.coffee.hlvl.ConstantDecl
 import com.coffee.generator.commons.IMiniZincConstants
 import com.coffee.generator.TransformationRules
@@ -153,25 +149,11 @@ class BasicBooleanRules extends TransformationRules implements IMiniZincConstant
 	
 	//FIXME fix the 
 	override getExpression(Relational exp) {
-		'''«CONS_DEF» «expressionsParser.parse(exp)» «SEMICOLON»
+		'''«CONS_DEF» «expressionsParser.parse(exp)»«SEMICOLON»
 		'''
 	}
 	
-	//FIXME fix the visibility for CNF representations
-	override getVisibility(Visibility rel, List<CharSequence> relations) {
-		var out= 
-		'''
-			var bool: B«visibilityIdCounter» ;
-			constraint «expressionsParser.parse(rel.condition)» -> B«visibilityIdCounter»;
-		'''
-			for (r: relations){
-				out+= 
-				'''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
-			'''
-			}
-			visibilityIdCounter++
-			out
-	}
+
 	
 	/*===================================================================
 	 *===================================================================

@@ -1,30 +1,30 @@
 model RFW
 elements:
-	symbolic vp1 
+	symbolic VP1 
 	variants: ['medium-class car', 'upper-class car', 'small truck', 'big truck'] 
 	comment:{"Type of vehicle"}
 	
-	symbolic vp2 
+	symbolic VP2 
 	variants: ['switchable', 'durable'] 
 	comment:{"Activation"}
 	
-	boolean  vp3 comment:{"Comfort functions"}
+	boolean  VP3 comment:{"Comfort functions"}
 	boolean  v7 comment:{"Non stopping warning"}
 	boolean  v8 comment:{"Overspeed warning"}
 	
-	boolean  vp4 comment:{"Other signs"}
+	boolean  VP4 comment:{"Other signs"}
 	boolean  v41 comment:{"Road w/right of way start"}
 	boolean  v42 comment:{"city limit"}
 	
-	boolean  vp5 comment:{"Prohibition signs"}
-	boolean  v51 comment:{"No vehicles"}
-	boolean  v52 comment:{"No cars"}
+	boolean  VP5 comment:{"Prohibition signs"}
+	boolean  V51 comment:{"No vehicles"}
+	boolean  V52 comment:{"No cars"}
 relations:
-	r1: coreElements(vp1, vp2, vp3)
-	d1: decomposition(vp5, [v51, v52])<0>
-	d2: decomposition(vp4, [v41, v42])<0>
-	d3: decomposition(vp3, [v7, v8])<0>
-	exp1: expression(vp1 ='big truck' => vp2 ='durable')
-	imp1: implies(vp1 ='medium-class car', [v51,v52])
+	r1: common(VP1, VP2, VP3)
+	d1: decomposition(VP5, [V51, V52], [0,1])
+	d2: decomposition(VP4, [v41, v42], [0,1])
+	d3: decomposition(VP3, [v7, v8], [0,1])
+	exp1: expression(VP1 ='big truck' => VP2 ='durable')
+	imp1: implies((VP1 ='medium-class car'), [V51,V52])
 	imp2: implies(v8, v42)
 	

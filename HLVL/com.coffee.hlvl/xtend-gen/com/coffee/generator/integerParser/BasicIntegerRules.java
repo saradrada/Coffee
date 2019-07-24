@@ -17,10 +17,8 @@ import com.coffee.hlvl.OptionsDeclaration;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.VariableDecl;
-import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -39,28 +37,21 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 @SuppressWarnings("all")
 public class BasicIntegerRules extends TransformationRules implements IMiniZincConstants {
   /**
-   * integer variable to produce the identifiers for the variables and constraints
-   * in visibility relations
-   */
-  private int visibilityIdCounter;
-  
-  /**
    * expressions parser with an implementation for integer constraints
    */
-  private IntegerExpressionsParser expressionsParser;
+  protected IntegerExpressionsParser expressionsParser;
   
-  private Map<String, Integer> symbolsTable;
+  protected Map<String, Integer> symbolsTable;
   
-  private Map<String, String> mapsTable;
+  protected Map<String, String> mapsTable;
   
   public BasicIntegerRules(final Dialect dialect) {
-    IntegerExpressionsParser _integerExpressionsParser = new IntegerExpressionsParser(this.symbolsTable, dialect);
-    this.expressionsParser = _integerExpressionsParser;
-    this.visibilityIdCounter = 0;
     HashMap<String, Integer> _hashMap = new HashMap<String, Integer>();
     this.symbolsTable = _hashMap;
     HashMap<String, String> _hashMap_1 = new HashMap<String, String>();
     this.mapsTable = _hashMap_1;
+    IntegerExpressionsParser _integerExpressionsParser = new IntegerExpressionsParser(this.symbolsTable, dialect);
+    this.expressionsParser = _integerExpressionsParser;
   }
   
   private Object parseValue(final Relational aValue) {
@@ -486,39 +477,5 @@ public class BasicIntegerRules extends TransformationRules implements IMiniZincC
     _builder.append(IMiniZincConstants.SEMICOLON);
     _builder.newLineIfNotEmpty();
     return _builder;
-  }
-  
-  @Override
-  public CharSequence getVisibility(final Visibility rel, final List<CharSequence> relations) {
-    String _xblockexpression = null;
-    {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("var bool: B");
-      _builder.append(this.visibilityIdCounter);
-      _builder.append(" ;");
-      _builder.newLineIfNotEmpty();
-      _builder.append("constraint ");
-      CharSequence _parse = this.expressionsParser.parse(rel.getCondition());
-      _builder.append(_parse);
-      _builder.append(" -> B");
-      _builder.append(this.visibilityIdCounter);
-      _builder.append(";");
-      _builder.newLineIfNotEmpty();
-      String out = _builder.toString();
-      for (final CharSequence r : relations) {
-        String _out = out;
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("constraint B");
-        _builder_1.append(this.visibilityIdCounter);
-        _builder_1.append("  <-> ");
-        CharSequence _subSequence = r.subSequence(10, r.length());
-        _builder_1.append(_subSequence);
-        _builder_1.newLineIfNotEmpty();
-        out = (_out + _builder_1);
-      }
-      this.visibilityIdCounter++;
-      _xblockexpression = out;
-    }
-    return _xblockexpression;
   }
 }

@@ -21,17 +21,17 @@ elements:
   boolean carRace
   boolean tetris
 relations:
- R0: coreElements(mobilePhone)
- R1: decomposition(mobilePhone, [hardware])<1>
- R2: decomposition(mobilePhone, [videoCall, taskScheduler, games])<0>
- R2a: decomposition(videoCall, [maxParConn])<1>
- R3: decomposition(hardware, [screen, processors, ram])<1>
- R3a: decomposition(screen, [resolution])<1>
- R3b: decomposition(ram, [size])<1>
- R4: decomposition(hardware, [connector3G, gps])<0>
- R4a: decomposition(connector3G, [speed])<1>
- R5: group(games, [chess, carRace, tetris])[1,6]
- R6: decomposition(processors, [gpu])<0>
+ R0: common(mobilePhone)
+ R1: decomposition(mobilePhone, [hardware], [1,1])
+ R2: decomposition(mobilePhone, [videoCall, taskScheduler, games], [0,1])
+ R2a: decomposition(videoCall, [maxParConn], [1,1])
+ R3: decomposition(hardware, [screen, processors, ram], [1,1])
+ R3a: decomposition(screen, [resolution], [1,1])
+ R3b: decomposition(ram, [size], [1,1])
+ R4: decomposition(hardware, [connector3G, gps], [0,1])
+ R4a: decomposition(connector3G, [speed], [1,1])
+ R5: group(games, [chess, carRace, tetris],[1,6])
+ R6: decomposition(processors, [gpu] , [0,1])
  R7: instantiable cpu [1,2]
  
  //complex constraints

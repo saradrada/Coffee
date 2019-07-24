@@ -5,8 +5,6 @@ import com.coffee.hlvl.Decomposition
 import java.util.Map
 import com.coffee.hlvl.Relational
 import com.coffee.hlvl.Group
-import com.coffee.hlvl.Visibility
-import java.util.List
 import com.coffee.hlvl.ConstantDecl
 import com.coffee.generator.commons.IMiniZincConstants
 import com.coffee.generator.TransformationRules
@@ -36,21 +34,20 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 	 * integer variable to produce the identifiers for the variables and constraints
 	 * in visibility relations
 	 */
-	private int visibilityIdCounter;
+	//private int visibilityIdCounter;
 
 	/**
 	 * expressions parser with an implementation for integer constraints
 	 */
-	private IntegerExpressionsParser expressionsParser;
+	protected IntegerExpressionsParser expressionsParser;
 
-	private Map<String, Integer> symbolsTable;
-	private Map<String, String> mapsTable;
+	protected Map<String, Integer> symbolsTable;
+	protected Map<String, String> mapsTable;
 
 	new(Dialect dialect) {
-		expressionsParser = new IntegerExpressionsParser(symbolsTable, dialect);
-		visibilityIdCounter = 0;
 		symbolsTable = new HashMap<String, Integer>();
 		mapsTable = new HashMap<String, String>();
+		expressionsParser = new IntegerExpressionsParser(symbolsTable, dialect);
 	}
 
 	private def parseValue(Relational aValue) {
@@ -201,17 +198,17 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 		'''
 	}
 
-	override getVisibility(Visibility rel, List<CharSequence> relations) {
-		var out = '''
-			var bool: B«visibilityIdCounter» ;
-			constraint «expressionsParser.parse(rel.condition)» -> B«visibilityIdCounter»;
-		'''
-		for (r : relations) {
-			out += '''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
-			'''
-		}
-		visibilityIdCounter++
-		out
-	}
+//	override getVisibility(Visibility rel, List<CharSequence> relations) {
+//		var out = '''
+//			var bool: B«visibilityIdCounter» ;
+//			constraint «expressionsParser.parse(rel.condition)» -> B«visibilityIdCounter»;
+//		'''
+//		for (r : relations) {
+//			out += '''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
+//			'''
+//		}
+//		visibilityIdCounter++
+//		out
+//	}
 
 }

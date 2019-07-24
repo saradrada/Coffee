@@ -17,9 +17,7 @@ import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.VarList;
 import com.coffee.hlvl.VariableDecl;
-import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -32,6 +30,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
  * @version HLVL 1
  * August 2018
  * adpated to the HLVl grammar on January 2019
+ * updated on july 2019 to include the attributes declaration in the attributesParser
  */
 @SuppressWarnings("all")
 public abstract class AbstractHLVLParser implements IHLVLParser {
@@ -57,8 +56,6 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
    */
   private Map<String, Relation> relations;
   
-  private Map<String, ElmDeclaration> attributes;
-  
   private StringBuilder operations;
   
   /**
@@ -71,10 +68,8 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
     this.dialect = dialect;
     HashMap<String, ElmDeclaration> _hashMap = new HashMap<String, ElmDeclaration>();
     this.parents = _hashMap;
-    HashMap<String, ElmDeclaration> _hashMap_1 = new HashMap<String, ElmDeclaration>();
-    this.attributes = _hashMap_1;
-    HashMap<String, Relation> _hashMap_2 = new HashMap<String, Relation>();
-    this.relations = _hashMap_2;
+    HashMap<String, Relation> _hashMap_1 = new HashMap<String, Relation>();
+    this.relations = _hashMap_1;
     StringBuilder _stringBuilder = new StringBuilder();
     this.operations = _stringBuilder;
   }
@@ -124,23 +119,19 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
       StringBuilder builder = new StringBuilder();
       EList<ElmDeclaration> _elements = model.getElements();
       for (final ElmDeclaration element : _elements) {
-        if (((element.getAtt() != null) && Objects.equal(element.getAtt(), "att"))) {
-          this.attributes.put(element.getName(), element);
-        } else {
-          Declaration _declaration = element.getDeclaration();
-          if ((_declaration instanceof ConstantDecl)) {
-            Declaration _declaration_1 = element.getDeclaration();
-            final Relational value = ((ConstantDecl) _declaration_1).getValue();
-            if ((Objects.equal(element.getDataType(), "boolean") && (value == null))) {
-              builder.append(this.rules.getElement(element));
-            } else {
-              builder.append(this.rules.getConstant(element));
-            }
+        Declaration _declaration = element.getDeclaration();
+        if ((_declaration instanceof ConstantDecl)) {
+          Declaration _declaration_1 = element.getDeclaration();
+          final Relational value = ((ConstantDecl) _declaration_1).getValue();
+          if ((Objects.equal(element.getDataType(), "boolean") && (value == null))) {
+            builder.append(this.rules.getElement(element));
           } else {
-            Declaration _declaration_2 = element.getDeclaration();
-            if ((_declaration_2 instanceof VariableDecl)) {
-              builder.append(this.rules.getElement(element));
-            }
+            builder.append(this.rules.getConstant(element));
+          }
+        } else {
+          Declaration _declaration_2 = element.getDeclaration();
+          if ((_declaration_2 instanceof VariableDecl)) {
+            builder.append(this.rules.getElement(element));
           }
         }
       }
@@ -238,21 +229,6 @@ public abstract class AbstractHLVLParser implements IHLVLParser {
       if (rel instanceof Constraint) {
         _matched=true;
         _switchResult = this.rules.getExpression(((Constraint)rel).getExp());
-      }
-    }
-    if (!_matched) {
-      if (rel instanceof Visibility) {
-        _matched=true;
-        CharSequence _xblockexpression = null;
-        {
-          ArrayList<CharSequence> relations = new ArrayList<CharSequence>();
-          EList<RelDeclaration> _ids = ((Visibility)rel).getList().getIds();
-          for (final RelDeclaration r : _ids) {
-            relations.add(this.parseRelation(r.getExp()));
-          }
-          _xblockexpression = this.rules.getVisibility(((Visibility)rel), relations);
-        }
-        _switchResult = _xblockexpression;
       }
     }
     return _switchResult;

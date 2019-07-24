@@ -5,10 +5,8 @@ import com.coffee.hlvl.Decomposition;
 import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
 import com.coffee.hlvl.Relational;
-import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -361,11 +359,6 @@ public class DIMACSRules extends TransformationRules {
       _xblockexpression = _builder;
     }
     return _xblockexpression;
-  }
-  
-  @Override
-  public CharSequence getVisibility(final Visibility rel, final List<CharSequence> relations) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   /**
