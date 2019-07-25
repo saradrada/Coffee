@@ -9,7 +9,9 @@ import com.coffee.hlvl.ComplexImplies;
 import com.coffee.hlvl.ComplexMutex;
 import com.coffee.hlvl.Constraint;
 import com.coffee.hlvl.Decomposition;
+import com.coffee.hlvl.ElmDeclaration;
 import com.coffee.hlvl.Group;
+import com.coffee.hlvl.NamedItem;
 import com.coffee.hlvl.Pair;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
@@ -18,6 +20,7 @@ import com.coffee.hlvl.Visibility;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class ComplexBoolParser extends AbstractHLVLParser {
@@ -107,9 +110,21 @@ public class ComplexBoolParser extends AbstractHLVLParser {
           CharSequence _xblockexpression_1 = null;
           {
             ArrayList<CharSequence> relations = new ArrayList<CharSequence>();
-            EList<RelDeclaration> _ids = ((Visibility)rel).getList().getIds();
-            for (final RelDeclaration r : _ids) {
-              relations.add(this.parseRelation(r.getExp()));
+            EList<NamedItem> _ids = ((Visibility)rel).getList().getIds();
+            for (final NamedItem r : _ids) {
+              boolean _matched_1 = false;
+              if (r instanceof ElmDeclaration) {
+                _matched_1=true;
+                StringConcatenation _builder = new StringConcatenation();
+                _builder.append("% a visibility rule n.y.i.");
+                relations.add(_builder);
+              }
+              if (!_matched_1) {
+                if (r instanceof RelDeclaration) {
+                  _matched_1=true;
+                  relations.add(this.parseRelation(((RelDeclaration)r).getExp()));
+                }
+              }
             }
             _xblockexpression_1 = rules.getVisibility(((Visibility)rel), relations);
           }

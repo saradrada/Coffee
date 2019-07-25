@@ -4,7 +4,7 @@
 package com.coffee.hlvl.impl;
 
 import com.coffee.hlvl.HlvlPackage;
-import com.coffee.hlvl.ListOfRelRefs;
+import com.coffee.hlvl.MixedList;
 import com.coffee.hlvl.Relational;
 import com.coffee.hlvl.Visibility;
 
@@ -50,7 +50,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * @generated
    * @ordered
    */
-  protected ListOfRelRefs list;
+  protected MixedList list;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +126,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public ListOfRelRefs getList()
+  public MixedList getList()
   {
     return list;
   }
@@ -136,9 +136,9 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetList(ListOfRelRefs newList, NotificationChain msgs)
+  public NotificationChain basicSetList(MixedList newList, NotificationChain msgs)
   {
-    ListOfRelRefs oldList = list;
+    MixedList oldList = list;
     list = newList;
     if (eNotificationRequired())
     {
@@ -153,7 +153,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setList(ListOfRelRefs newList)
+  public void setList(MixedList newList)
   {
     if (newList != list)
     {
@@ -219,7 +219,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
         setCondition((Relational)newValue);
         return;
       case HlvlPackage.VISIBILITY__LIST:
-        setList((ListOfRelRefs)newValue);
+        setList((MixedList)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,7 +239,7 @@ public class VisibilityImpl extends RelationImpl implements Visibility
         setCondition((Relational)null);
         return;
       case HlvlPackage.VISIBILITY__LIST:
-        setList((ListOfRelRefs)null);
+        setList((MixedList)null);
         return;
     }
     super.eUnset(featureID);

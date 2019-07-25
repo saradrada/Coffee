@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,14 +25,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getAtt <em>Att</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDataType <em>Data Type</em>}</li>
- *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.ElmDeclarationImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements ElmDeclaration
+public class ElmDeclarationImpl extends NamedItemImpl implements ElmDeclaration
 {
   /**
    * The default value of the '{@link #getAtt() <em>Att</em>}' attribute.
@@ -74,26 +72,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String dataType = DATA_TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getDeclaration() <em>Declaration</em>}' containment reference.
@@ -197,29 +175,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.ELM_DECLARATION__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Declaration getDeclaration()
   {
     return declaration;
@@ -316,8 +271,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return getAtt();
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         return getDataType();
-      case HlvlPackage.ELM_DECLARATION__NAME:
-        return getName();
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         return getDeclaration();
       case HlvlPackage.ELM_DECLARATION__COMMENT:
@@ -341,9 +294,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return;
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         setDataType((String)newValue);
-        return;
-      case HlvlPackage.ELM_DECLARATION__NAME:
-        setName((String)newValue);
         return;
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         setDeclaration((Declaration)newValue);
@@ -371,9 +321,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         setDataType(DATA_TYPE_EDEFAULT);
         return;
-      case HlvlPackage.ELM_DECLARATION__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         setDeclaration((Declaration)null);
         return;
@@ -398,8 +345,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
         return ATT_EDEFAULT == null ? att != null : !ATT_EDEFAULT.equals(att);
       case HlvlPackage.ELM_DECLARATION__DATA_TYPE:
         return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
-      case HlvlPackage.ELM_DECLARATION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case HlvlPackage.ELM_DECLARATION__DECLARATION:
         return declaration != null;
       case HlvlPackage.ELM_DECLARATION__COMMENT:
@@ -423,8 +368,6 @@ public class ElmDeclarationImpl extends MinimalEObjectImpl.Container implements 
     result.append(att);
     result.append(", dataType: ");
     result.append(dataType);
-    result.append(", name: ");
-    result.append(name);
     result.append(", comment: ");
     result.append(comment);
     result.append(')');

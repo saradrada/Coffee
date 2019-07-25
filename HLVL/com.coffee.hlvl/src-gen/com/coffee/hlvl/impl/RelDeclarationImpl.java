@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,34 +23,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.coffee.hlvl.impl.RelDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.impl.RelDeclarationImpl#getExp <em>Exp</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements RelDeclaration
+public class RelDeclarationImpl extends NamedItemImpl implements RelDeclaration
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -81,29 +59,6 @@ public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements 
   protected EClass eStaticClass()
   {
     return HlvlPackage.Literals.REL_DECLARATION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HlvlPackage.REL_DECLARATION__NAME, oldName, name));
   }
 
   /**
@@ -180,8 +135,6 @@ public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case HlvlPackage.REL_DECLARATION__NAME:
-        return getName();
       case HlvlPackage.REL_DECLARATION__EXP:
         return getExp();
     }
@@ -198,9 +151,6 @@ public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case HlvlPackage.REL_DECLARATION__NAME:
-        setName((String)newValue);
-        return;
       case HlvlPackage.REL_DECLARATION__EXP:
         setExp((Relation)newValue);
         return;
@@ -218,9 +168,6 @@ public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case HlvlPackage.REL_DECLARATION__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case HlvlPackage.REL_DECLARATION__EXP:
         setExp((Relation)null);
         return;
@@ -238,29 +185,10 @@ public class RelDeclarationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case HlvlPackage.REL_DECLARATION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case HlvlPackage.REL_DECLARATION__EXP:
         return exp != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //RelDeclarationImpl

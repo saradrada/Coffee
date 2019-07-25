@@ -15,7 +15,6 @@
     <genClasses ecoreClass="Hlvl.ecore#//ElmDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/att"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/dataType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ElmDeclaration/declaration"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//ElmDeclaration/comment"/>
     </genClasses>
@@ -35,7 +34,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Enumeration/list"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//RelDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//RelDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//RelDeclaration/exp"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Relation"/>
@@ -104,6 +102,12 @@
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//ListOfRelRefs">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//ListOfRelRefs/ids"/>
+    </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//MixedList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//MixedList/ids"/>
+    </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//NamedItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//NamedItem/name"/>
     </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//Valuation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Valuation/element"/>

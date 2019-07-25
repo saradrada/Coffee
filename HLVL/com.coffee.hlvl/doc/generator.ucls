@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.coffee.generator.HlvlGenerator" project="com.coffee.hlvl" 
-    file="/com.coffee.hlvl/xtend-gen/com/coffee/generator/HlvlGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="296" y="276"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="2" language="java" name="com.coffee.generator.Dialect" project="com.coffee.hlvl" 
+  <enumeration id="1" language="java" name="com.coffee.generator.Dialect" project="com.coffee.hlvl" 
     file="/com.coffee.hlvl/src/com/coffee/generator/Dialect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="941" y="641"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -19,10 +10,6 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <dependency id="3">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -58,12 +58,12 @@ public interface Visibility extends Relation
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>List</em>' containment reference.
-   * @see #setList(ListOfRelRefs)
+   * @see #setList(MixedList)
    * @see com.coffee.hlvl.HlvlPackage#getVisibility_List()
    * @model containment="true"
    * @generated
    */
-  ListOfRelRefs getList();
+  MixedList getList();
 
   /**
    * Sets the value of the '{@link com.coffee.hlvl.Visibility#getList <em>List</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface Visibility extends Relation
    * @see #getList()
    * @generated
    */
-  void setList(ListOfRelRefs value);
+  void setList(MixedList value);
 
 } // Visibility

@@ -8,13 +8,13 @@ import java.util.Map
 import com.coffee.hlvl.ElmDeclaration
 import java.util.HashMap
 
-class AttributesParser extends BasicIntegerParser {
+class AttributesParser extends ComplexIntegerParser {
 
 	private Map<String, ElmDeclaration> attributes;
 
 	new(String name, Dialect dialect) {
 		super(name, dialect)
-		setTransformationRules(new BasicIntegerRules(dialect))
+		setTransformationRules(new ComplexIntegerRules(dialect))
 		
 		attributes= new HashMap<String,ElmDeclaration>();
 		

@@ -32,11 +32,11 @@ relations:
  R4a: decomposition(connector3G, [speed], [1,1])
  R5: group(games, [chess, carRace, tetris],[1,6])
  R6: decomposition(processors, [gpu] , [0,1])
- R7: instantiable cpu [1,2]
+ R7: decomposition(processors, [cpu] , [1,2])
  
  //complex constraints
- c1: expression(instances(cpu) = 2 => taskScheduler=1)
+ //c1: expression(instances(cpu) = 2 => taskScheduler=1)
  C2a:  expression((screen.resolution = 3) AND (connector3G.speed >= 6))
  C2: visibility(videoCall.maxParConn = 4, [C2a])
-C3: implies(carRace, expression((gpu =1 AND ram.size= 512) OR (ram.size= 1024)))
+//C3: implies(carRace, expression((gpu =1 AND ram.size= 512) OR (ram.size= 1024)))
  

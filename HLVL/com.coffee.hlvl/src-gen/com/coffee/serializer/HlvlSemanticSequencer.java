@@ -30,6 +30,7 @@ import com.coffee.hlvl.ListOfRelRefs;
 import com.coffee.hlvl.ListOfValuation;
 import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
+import com.coffee.hlvl.MixedList;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
 import com.coffee.hlvl.Negation;
@@ -154,6 +155,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case HlvlPackage.MINUS:
 				sequence_PlusOrMinus(context, (Minus) semanticObject); 
+				return; 
+			case HlvlPackage.MIXED_LIST:
+				sequence_MixedList(context, (MixedList) semanticObject); 
 				return; 
 			case HlvlPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -594,6 +598,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     ElmDeclaration returns ElmDeclaration
+	 *     NamedItem returns ElmDeclaration
 	 *
 	 * Constraint:
 	 *     (att='att'? (dataType='boolean' | dataType='integer' | dataType='symbolic') name=ID declaration=Declaration comment=STRING?)
@@ -824,6 +829,18 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (values+=Relational values+=Relational*)
 	 */
 	protected void sequence_ListOfValues(ISerializationContext context, ListOfValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MixedList returns MixedList
+	 *
+	 * Constraint:
+	 *     (ids+=[NamedItem|ID] ids+=[NamedItem|ID]*)
+	 */
+	protected void sequence_MixedList(ISerializationContext context, MixedList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1238,20 +1255,21 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     RelDeclaration returns RelDeclaration
+	 *     NamedItem returns RelDeclaration
 	 *
 	 * Constraint:
 	 *     (name=ID exp=Relation)
 	 */
 	protected void sequence_RelDeclaration(ISerializationContext context, RelDeclaration semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.REL_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.REL_DECLARATION__NAME));
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.NAMED_ITEM__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.NAMED_ITEM__NAME));
 			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.REL_DECLARATION__EXP) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.REL_DECLARATION__EXP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRelDeclarationAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRelDeclarationAccess().getExpRelationParserRuleCall_2_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getRelDeclarationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRelDeclarationAccess().getExpRelationParserRuleCall_3_0(), semanticObject.getExp());
 		feeder.finish();
 	}
 	
@@ -1353,7 +1371,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Visibility returns Visibility
 	 *
 	 * Constraint:
-	 *     (condition=Relational list=ListOfRelRefs)
+	 *     (condition=Relational list=MixedList)
 	 */
 	protected void sequence_Visibility(ISerializationContext context, Visibility semanticObject) {
 		if (errorAcceptor != null) {
@@ -1364,7 +1382,7 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getVisibilityAccess().getConditionRelationalParserRuleCall_2_0(), semanticObject.getCondition());
-		feeder.accept(grammarAccess.getVisibilityAccess().getListListOfRelRefsParserRuleCall_5_0(), semanticObject.getList());
+		feeder.accept(grammarAccess.getVisibilityAccess().getListMixedListParserRuleCall_5_0(), semanticObject.getList());
 		feeder.finish();
 	}
 	

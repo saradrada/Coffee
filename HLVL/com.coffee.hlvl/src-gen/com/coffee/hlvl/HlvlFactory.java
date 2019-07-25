@@ -276,6 +276,24 @@ public interface HlvlFactory extends EFactory
   ListOfRelRefs createListOfRelRefs();
 
   /**
+   * Returns a new object of class '<em>Mixed List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mixed List</em>'.
+   * @generated
+   */
+  MixedList createMixedList();
+
+  /**
+   * Returns a new object of class '<em>Named Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Named Item</em>'.
+   * @generated
+   */
+  NamedItem createNamedItem();
+
+  /**
    * Returns a new object of class '<em>Valuation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

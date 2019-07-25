@@ -1,4 +1,4 @@
 {
- "problemType" : "BASIC",
- "parsingTime"  : "126ms"
+ "problemType" : "MULTIPLICITY",
+ "parsingTime"  : "22ms"
 		}

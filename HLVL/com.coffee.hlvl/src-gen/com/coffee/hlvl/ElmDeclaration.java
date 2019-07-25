@@ -3,7 +3,6 @@
  */
 package com.coffee.hlvl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getAtt <em>Att</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getDataType <em>Data Type</em>}</li>
- *   <li>{@link com.coffee.hlvl.ElmDeclaration#getName <em>Name</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link com.coffee.hlvl.ElmDeclaration#getComment <em>Comment</em>}</li>
  * </ul>
@@ -25,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ElmDeclaration extends EObject
+public interface ElmDeclaration extends NamedItem
 {
   /**
    * Returns the value of the '<em><b>Att</b></em>' attribute.
@@ -78,32 +76,6 @@ public interface ElmDeclaration extends EObject
    * @generated
    */
   void setDataType(String value);
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see com.coffee.hlvl.HlvlPackage#getElmDeclaration_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link com.coffee.hlvl.ElmDeclaration#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Declaration</b></em>' containment reference.

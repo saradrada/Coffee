@@ -93,6 +93,8 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.LIST_OF_VALUES: return createListOfValues();
       case HlvlPackage.LIST_OF_IDS: return createListOfIDs();
       case HlvlPackage.LIST_OF_REL_REFS: return createListOfRelRefs();
+      case HlvlPackage.MIXED_LIST: return createMixedList();
+      case HlvlPackage.NAMED_ITEM: return createNamedItem();
       case HlvlPackage.VALUATION: return createValuation();
       case HlvlPackage.LIST_OF_VALUATION: return createListOfValuation();
       case HlvlPackage.IFF: return createIff();
@@ -427,6 +429,28 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     ListOfRelRefsImpl listOfRelRefs = new ListOfRelRefsImpl();
     return listOfRelRefs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MixedList createMixedList()
+  {
+    MixedListImpl mixedList = new MixedListImpl();
+    return mixedList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NamedItem createNamedItem()
+  {
+    NamedItemImpl namedItem = new NamedItemImpl();
+    return namedItem;
   }
 
   /**

@@ -2,8 +2,8 @@ package com.coffee.generator.integerParser;
 
 import com.coffee.generator.Dialect;
 import com.coffee.generator.TransformationRules;
-import com.coffee.generator.integerParser.BasicIntegerParser;
-import com.coffee.generator.integerParser.BasicIntegerRules;
+import com.coffee.generator.integerParser.ComplexIntegerParser;
+import com.coffee.generator.integerParser.ComplexIntegerRules;
 import com.coffee.hlvl.ConstantDecl;
 import com.coffee.hlvl.Declaration;
 import com.coffee.hlvl.ElmDeclaration;
@@ -16,13 +16,13 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 
 @SuppressWarnings("all")
-public class AttributesParser extends BasicIntegerParser {
+public class AttributesParser extends ComplexIntegerParser {
   private Map<String, ElmDeclaration> attributes;
   
   public AttributesParser(final String name, final Dialect dialect) {
     super(name, dialect);
-    BasicIntegerRules _basicIntegerRules = new BasicIntegerRules(dialect);
-    this.setTransformationRules(_basicIntegerRules);
+    ComplexIntegerRules _complexIntegerRules = new ComplexIntegerRules(dialect);
+    this.setTransformationRules(_complexIntegerRules);
     HashMap<String, ElmDeclaration> _hashMap = new HashMap<String, ElmDeclaration>();
     this.attributes = _hashMap;
   }

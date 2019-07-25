@@ -13,6 +13,8 @@ import com.coffee.hlvl.Visibility
 import java.util.ArrayList
 import com.coffee.hlvl.ComplexImplies
 import com.coffee.hlvl.ComplexMutex
+import com.coffee.hlvl.RelDeclaration
+import com.coffee.hlvl.ElmDeclaration
 
 class ComplexBoolParser extends AbstractHLVLParser  {
 		new(String name, Dialect dialect) {
@@ -58,7 +60,11 @@ class ComplexBoolParser extends AbstractHLVLParser  {
 			Visibility: {
 				var ArrayList<CharSequence> relations= new ArrayList<CharSequence>();
 				for(r: rel.list.ids){
-					relations.add(parseRelation(r.exp))
+					switch(r){
+						ElmDeclaration: relations.add('''% a visibility rule n.y.i.''')
+						RelDeclaration: relations.add(parseRelation(r.exp))
+					}
+					//relations.add(parseRelation(r.exp))
 				}
 				rules.getVisibility(rel, relations)
 			}

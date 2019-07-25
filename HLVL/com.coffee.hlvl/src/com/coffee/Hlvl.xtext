@@ -21,7 +21,10 @@ Model:
 	;
 
 // modified by avillota to comply with the modevar paper syntax	
-ElmDeclaration:
+
+
+ElmDeclaration://; returns NamedItem:
+	{ElmDeclaration}
 	(att= 'att')?
 	//(inst= 'instantiable' '[' min=INT ',' max=INT ']')?
 	(dataType=('boolean' |'integer'|'symbolic'))
@@ -57,8 +60,8 @@ Enumeration:
 	('[') list =  ListOfValues  (']')
 ;
 
-RelDeclaration:
-	  name=ID ':'  exp= Relation 
+RelDeclaration: //; returns NamedItem:
+	{RelDeclaration}  name=ID ':'  exp= Relation 
 ;
 
 Relation:
@@ -135,7 +138,7 @@ Wildcard:
 ;
 
 Visibility:
-	'visibility' '(' condition= Relational ',' '['list= ListOfRelRefs ']' ')'
+	'visibility' '(' condition= Relational ',' '['list= MixedList ']' ')'
 ;
 
 
@@ -266,6 +269,15 @@ ListOfIDs:
 
 ListOfRelRefs:
 	{ListOfRelRefs} ids+= ([RelDeclaration]) (',' + ids+= [RelDeclaration])*
+;
+
+
+MixedList:
+	{MixedList} ids+= ([NamedItem]) (',' + ids+= [NamedItem])*
+;
+
+NamedItem:
+	ElmDeclaration |RelDeclaration
 ;
 
 

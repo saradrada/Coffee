@@ -10,10 +10,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" eType="#//Operations"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration" eSuperTypes="#//NamedItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//Declaration"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -36,8 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfValues"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelDeclaration" eSuperTypes="#//NamedItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relation"
         containment="true"/>
   </eClassifiers>
@@ -89,7 +87,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Visibility" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Relational"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfRelRefs"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//MixedList"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="#//Relation">
@@ -123,6 +121,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="ListOfRelRefs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
         eType="#//RelDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//NamedItem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Valuation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>

@@ -216,6 +216,16 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createListOfRelRefsAdapter();
       }
       @Override
+      public Adapter caseMixedList(MixedList object)
+      {
+        return createMixedListAdapter();
+      }
+      @Override
+      public Adapter caseNamedItem(NamedItem object)
+      {
+        return createNamedItemAdapter();
+      }
+      @Override
       public Adapter caseValuation(Valuation object)
       {
         return createValuationAdapter();
@@ -768,6 +778,36 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfRelRefsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.MixedList <em>Mixed List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.MixedList
+   * @generated
+   */
+  public Adapter createMixedListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.NamedItem <em>Named Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.NamedItem
+   * @generated
+   */
+  public Adapter createNamedItemAdapter()
   {
     return null;
   }

@@ -32,8 +32,10 @@ import com.coffee.hlvl.ListOfRelRefs;
 import com.coffee.hlvl.ListOfValuation;
 import com.coffee.hlvl.ListOfValues;
 import com.coffee.hlvl.Minus;
+import com.coffee.hlvl.MixedList;
 import com.coffee.hlvl.Model;
 import com.coffee.hlvl.MulOrDiv;
+import com.coffee.hlvl.NamedItem;
 import com.coffee.hlvl.Negation;
 import com.coffee.hlvl.Operation;
 import com.coffee.hlvl.Operations;
@@ -267,6 +269,20 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * @generated
    */
   private EClass listOfRelRefsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mixedListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass namedItemEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -577,19 +593,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getElmDeclaration_Name()
-  {
-    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getElmDeclaration_Declaration()
   {
-    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(3);
+    return (EReference)elmDeclarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -599,7 +605,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    */
   public EAttribute getElmDeclaration_Comment()
   {
-    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)elmDeclarationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -727,19 +733,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRelDeclaration_Name()
-  {
-    return (EAttribute)relDeclarationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getRelDeclaration_Exp()
   {
-    return (EReference)relDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)relDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1250,6 +1246,46 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
   public EReference getListOfRelRefs_Ids()
   {
     return (EReference)listOfRelRefsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMixedList()
+  {
+    return mixedListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMixedList_Ids()
+  {
+    return (EReference)mixedListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNamedItem()
+  {
+    return namedItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNamedItem_Name()
+  {
+    return (EAttribute)namedItemEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1921,7 +1957,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     elmDeclarationEClass = createEClass(ELM_DECLARATION);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__ATT);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__DATA_TYPE);
-    createEAttribute(elmDeclarationEClass, ELM_DECLARATION__NAME);
     createEReference(elmDeclarationEClass, ELM_DECLARATION__DECLARATION);
     createEAttribute(elmDeclarationEClass, ELM_DECLARATION__COMMENT);
 
@@ -1943,7 +1978,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     createEReference(enumerationEClass, ENUMERATION__LIST);
 
     relDeclarationEClass = createEClass(REL_DECLARATION);
-    createEAttribute(relDeclarationEClass, REL_DECLARATION__NAME);
     createEReference(relDeclarationEClass, REL_DECLARATION__EXP);
 
     relationEClass = createEClass(RELATION);
@@ -2015,6 +2049,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     listOfRelRefsEClass = createEClass(LIST_OF_REL_REFS);
     createEReference(listOfRelRefsEClass, LIST_OF_REL_REFS__IDS);
+
+    mixedListEClass = createEClass(MIXED_LIST);
+    createEReference(mixedListEClass, MIXED_LIST__IDS);
+
+    namedItemEClass = createEClass(NAMED_ITEM);
+    createEAttribute(namedItemEClass, NAMED_ITEM__NAME);
 
     valuationEClass = createEClass(VALUATION);
     createEReference(valuationEClass, VALUATION__ELEMENT);
@@ -2132,10 +2172,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    elmDeclarationEClass.getESuperTypes().add(this.getNamedItem());
     constantDeclEClass.getESuperTypes().add(this.getDeclaration());
     variableDeclEClass.getESuperTypes().add(this.getDeclaration());
     intervalEClass.getESuperTypes().add(this.getOptionsDeclaration());
     enumerationEClass.getESuperTypes().add(this.getOptionsDeclaration());
+    relDeclarationEClass.getESuperTypes().add(this.getNamedItem());
     commonEClass.getESuperTypes().add(this.getRelation());
     pairEClass.getESuperTypes().add(this.getRelation());
     complexImpliesEClass.getESuperTypes().add(this.getRelation());
@@ -2178,7 +2220,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEClass(elmDeclarationEClass, ElmDeclaration.class, "ElmDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getElmDeclaration_Att(), ecorePackage.getEString(), "att", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getElmDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getElmDeclaration_Declaration(), this.getDeclaration(), null, "declaration", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getElmDeclaration_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, ElmDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2200,7 +2241,6 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     initEReference(getEnumeration_List(), this.getListOfValues(), null, "list", null, 0, 1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relDeclarationEClass, RelDeclaration.class, "RelDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRelDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, RelDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelDeclaration_Exp(), this.getRelation(), null, "exp", null, 0, 1, RelDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2243,7 +2283,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(visibilityEClass, Visibility.class, "Visibility", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVisibility_Condition(), this.getRelational(), null, "condition", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVisibility_List(), this.getListOfRelRefs(), null, "list", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVisibility_List(), this.getMixedList(), null, "list", null, 0, 1, Visibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrder_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2272,6 +2312,12 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(listOfRelRefsEClass, ListOfRelRefs.class, "ListOfRelRefs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getListOfRelRefs_Ids(), this.getRelDeclaration(), null, "ids", null, 0, -1, ListOfRelRefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mixedListEClass, MixedList.class, "MixedList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMixedList_Ids(), this.getNamedItem(), null, "ids", null, 0, -1, MixedList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(namedItemEClass, NamedItem.class, "NamedItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNamedItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valuationEClass, Valuation.class, "Valuation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getValuation_Element(), this.getElmDeclaration(), null, "element", null, 0, 1, Valuation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

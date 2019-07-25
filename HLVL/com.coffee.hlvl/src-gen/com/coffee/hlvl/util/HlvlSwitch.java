@@ -84,6 +84,7 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         ElmDeclaration elmDeclaration = (ElmDeclaration)theEObject;
         T result = caseElmDeclaration(elmDeclaration);
+        if (result == null) result = caseNamedItem(elmDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -137,6 +138,7 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         RelDeclaration relDeclaration = (RelDeclaration)theEObject;
         T result = caseRelDeclaration(relDeclaration);
+        if (result == null) result = caseNamedItem(relDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -280,6 +282,20 @@ public class HlvlSwitch<T> extends Switch<T>
       {
         ListOfRelRefs listOfRelRefs = (ListOfRelRefs)theEObject;
         T result = caseListOfRelRefs(listOfRelRefs);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.MIXED_LIST:
+      {
+        MixedList mixedList = (MixedList)theEObject;
+        T result = caseMixedList(mixedList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HlvlPackage.NAMED_ITEM:
+      {
+        NamedItem namedItem = (NamedItem)theEObject;
+        T result = caseNamedItem(namedItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -913,6 +929,38 @@ public class HlvlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfRelRefs(ListOfRelRefs object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mixed List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mixed List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMixedList(MixedList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Named Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Named Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNamedItem(NamedItem object)
   {
     return null;
   }
