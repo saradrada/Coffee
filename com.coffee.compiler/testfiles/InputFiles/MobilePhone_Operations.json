@@ -1,0 +1,15 @@
+{
+ "problemType" : "ATTRIBUTE",
+"operationSingle" : ["validModel","numberOfConfigurations"],
+"validConfiguration" :
+[
+	{
+	"element" : "DFS",
+	"value" : "true"
+	},
+	{
+	"element" : "mstprim",
+	"value" : "false"
+	}
+]
+}  

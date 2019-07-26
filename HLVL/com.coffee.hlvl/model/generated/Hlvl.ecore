@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hlvl" nsURI="http://www.coffee.com/Hlvl" nsPrefix="hlvl">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ElmDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//RelDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" eType="#//Operations"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration" eSuperTypes="#//NamedItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//Declaration"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Declaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantDecl" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDecl" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variants" eType="#//OptionsDeclaration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionsDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//OptionsDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//OptionsDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfValues"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelDeclaration" eSuperTypes="#//NamedItem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Common" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pair" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var1" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var2" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexImplies" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexMutex" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//ListOfIDs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VarList" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var1" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//ListOfIDs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfIDs"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ListOfIDs"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Range" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Range">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Visibility" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//MixedList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
+        eType="#//ListOfIDs" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relational"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="att" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" upperBound="-1" eType="#//Operation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfValues">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//Relational" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfIDs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" unique="false"
+        upperBound="-1" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfRelRefs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//RelDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//NamedItem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Valuation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfValuation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
+        eType="#//Valuation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Iff" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Implies" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Equality" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comparison" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MulOrDiv" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryFunction" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instances" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entailed" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryFunction" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Relational"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolConstant" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableRef" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//ElmDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeRef" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//QualifiedName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymbolConstant" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntConstant" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleInstruction" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidConf" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valuations" eType="#//ListOfValuation"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

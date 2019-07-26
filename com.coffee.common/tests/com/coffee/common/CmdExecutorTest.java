@@ -11,36 +11,20 @@ import commandExecutor.CmdExecutor;
 
 class CmdExecutorTest {
 
-	CmdExecutor executor;
-
 	@Test
 	void testRun() {
-
-		executor = new CmdExecutor();
-		List<String> params = new ArrayList<String>();
+		
+		CmdExecutor executor= new CmdExecutor();
+		List<String> params= new ArrayList<String>();
 		params.add("ls");
 		params.add("-la");
 		executor.addCmd(params);
 		try {
 			executor.runCmd();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Test
-	void testRun_pathByParameter() {
-		executor = new CmdExecutor("C:/Users/");
-		List<String> params = new ArrayList<String>();
-		
-		params.add("ls");
-		executor.addCmd(params);
-		try {
-			executor.runCmd();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 }
