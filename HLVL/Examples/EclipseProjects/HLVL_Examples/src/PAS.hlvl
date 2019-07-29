@@ -1,0 +1,23 @@
+model PAS
+elements:
+ boolean  PAS
+ boolean  Sensors
+ boolean  SpeedSensor
+ boolean  PositionSensor
+ boolean  Processor
+ boolean  Feedback
+ boolean  Visual
+ boolean  Audio
+ boolean  Vibration
+ boolean  Memory
+ att integer Cores variants:  0..7
+ att integer Size variants: [0,2,4,8,16,32] 
+relations: 
+ c1: decomposition(PAS, [Processor, Sensors, Memory], [1,1])
+ c2: decomposition(PAS, [Feedback], [0,1])
+ c3: decomposition(Processor, [Cores], [1,1])
+ c4: decomposition(Memory, [Size], [1,1])
+ c5: group(Sensors, [SpeedSensor, PositionSensor], [1,*])
+// c6: decomposition(Sensors, [SpeedSensor], [0,1])
+// c7: decomposition(Sensors, [PositionSensor], [0,2])
+ c8: group(Feedback, [Visual, Audio, Vibration], [1,2])
