@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: com.coffee.hlvl.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: com.coffee.hlvl.ide
 Bundle-Vendor: My Company
@@ -8,8 +9,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: com.coffee.hlvl,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
- org.antlr.runtime
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.coffee.ide.contentassist.antlr.internal,
- com.coffee.ide.contentassist.antlr
-
+Export-Package: com.coffee.ide.contentassist.antlr,
+ com.coffee.ide.contentassist.antlr.internal
