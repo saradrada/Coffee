@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: com.coffee.hlvl
+Main-Class: com.coffee.generator.HLVLParser,
 Bundle-ManifestVersion: 2
 Bundle-Name: com.coffee.hlvl
 Bundle-Vendor: My Company
