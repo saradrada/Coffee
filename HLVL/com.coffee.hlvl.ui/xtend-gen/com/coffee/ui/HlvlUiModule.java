@@ -13,7 +13,7 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 @FinalFieldsConstructor
 @SuppressWarnings("all")
 public class HlvlUiModule extends AbstractHlvlUiModule {
-  public HlvlUiModule(final AbstractUIPlugin arg0) {
-    super(arg0);
+  public HlvlUiModule(final AbstractUIPlugin plugin) {
+    super(plugin);
   }
 }
