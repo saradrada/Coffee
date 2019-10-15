@@ -204,15 +204,6 @@
 			</activeWhen>
 		</handler>
 	</extension>
-	<extension point="org.eclipse.core.contenttype.contentTypes">
-		<content-type
-			base-type="org.eclipse.core.runtime.text"
-			file-extensions="hlvl"
-			id="com.coffee.Hlvl.contenttype"
-			name="Hlvl File"
-			priority="normal">
-		</content-type>
-	</extension>
 	<!-- adding resource factories -->
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
@@ -397,18 +388,12 @@
 			class="com.coffee.ui.HlvlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="hlvl">
 		</viewer>
-		<contentTypeBinding
-			contentTypeId="com.coffee.Hlvl.contenttype"
-			contentViewerId="com.coffee.Hlvl.compare.contentViewers" />
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
 		<viewer id="com.coffee.Hlvl.compare.contentMergeViewers"
 			class="com.coffee.ui.HlvlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="hlvl" label="Hlvl Compare">
 		</viewer>
-		<contentTypeBinding
-			contentTypeId="com.coffee.Hlvl.contenttype"
-			contentMergeViewerId="com.coffee.Hlvl.compare.contentMergeViewers" />
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
 		<provider id="com.coffee.Hlvl.editors.documentProviders"

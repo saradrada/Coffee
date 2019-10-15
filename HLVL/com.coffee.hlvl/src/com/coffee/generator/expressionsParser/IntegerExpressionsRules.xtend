@@ -36,7 +36,7 @@ public class IntegerExpressionsRules extends BooleanExpressionsRules implements 
 			(dialect==Dialect.BASIC_INT || 
 				dialect==Dialect.ATTRIBUTE ||
 				dialect==Dialect.MULTIPLICITY)){
-					return '''«exp.variable.name» > 0''' 
+					return '''Â«exp.variable.nameÂ» > 0''' 
 				}else{
 					return exp.variable.name 
 				}
@@ -45,59 +45,59 @@ public class IntegerExpressionsRules extends BooleanExpressionsRules implements 
 	
 	override getComparison(Comparison exp) {
 		if (exp.op == ">=") {
-			'''(«parser.parse(exp.left)» «GEQ» «parser.parse(exp.right)»)'''
+			'''(Â«parser.parse(exp.left)Â» Â«GEQÂ» Â«parser.parse(exp.right)Â»)'''
 		} else if (exp.op == "<=") {
-			'''(«parser.parse(exp.left)» «LEQ» «parser.parse(exp.right)»)'''
+			'''(Â«parser.parse(exp.left)Â» Â«LEQÂ» Â«parser.parse(exp.right)Â»)'''
 		} else if (exp.op == ">") {
-			'''(«parser.parse(exp.left)» «GT» «parser.parse(exp.right)»)'''
+			'''(Â«parser.parse(exp.left)Â» Â«GTÂ» Â«parser.parse(exp.right)Â»)'''
 		} else if (exp.op == "<") {
-			'''(«parser.parse(exp.left)» «LT» «parser.parse(exp.right)»)'''
+			'''(Â«parser.parse(exp.left)Â» Â«LTÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 	}
 	
 	override getMinus(Minus exp) {
-		'''(«parser.parse(exp.left)» «MINUS» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â» Â«MINUSÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	override getMulOrDiv(MulOrDiv exp) {
 		if (exp.op == "*") {
-			'''( «parser.parse(exp.left)» «TIMES» «parser.parse(exp.right)»)'''
+			'''( Â«parser.parse(exp.left)Â» Â«TIMESÂ» Â«parser.parse(exp.right)Â»)'''
 		} else if (exp.op == "/") {
-			'''( «parser.parse(exp.left)» «DIV» «parser.parse(exp.right)»)'''
+			'''( Â«parser.parse(exp.left)Â» Â«DIVÂ» Â«parser.parse(exp.right)Â»)'''
 		} else {
-			'''( «parser.parse(exp.left)» «MOD» «parser.parse(exp.right)»)'''
+			'''( Â«parser.parse(exp.left)Â» Â«MODÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 	}
 	
 	override getPlus(Plus exp) {
-		'''(«parser.parse(exp.left)» «PLUS» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â» Â«PLUSÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	override getUnaryFunction(UnaryFunction exp) {
 		if (exp.op == "abs" ){
-			'''«ABSOLUTE_VALUE»(«parser.parse(exp.expression)»)'''
+			'''Â«ABSOLUTE_VALUEÂ»(Â«parser.parse(exp.expression)Â»)'''
 		}else if (exp.op == "sqrt") {
-			'''«SQUARE_ROOT»(«parser.parse(exp.expression)»)'''
+			'''Â«SQUARE_ROOTÂ»(Â«parser.parse(exp.expression)Â»)'''
 		}
 	}
 	
 	override getBinaryFunction(BinaryFunction exp) {
 		if (exp.op == "pow" ){
-			'''«MIN»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+			'''Â«MINÂ»(Â«parser.parse(exp.left)Â» Â«COMMAÂ» Â«parser.parse(exp.right)Â»)'''
 		}else if (exp.op == "min") {
-			'''«MAX»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+			'''Â«MAXÂ»(Â«parser.parse(exp.left)Â» Â«COMMAÂ» Â«parser.parse(exp.right)Â»)'''
 		}else if (exp.op == "max") {
-			'''«POWER»(«parser.parse(exp.left)» «COMMA» «parser.parse(exp.right)»)'''
+			'''Â«POWERÂ»(Â«parser.parse(exp.left)Â» Â«COMMAÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 	}
 	
 	override getEquality(Equality exp) {
 		var out= ""
 		if (exp.op== "!="){
-			out= '''(«parser.parse(exp.left)» «NEQUIV» «parser.parse(exp.right)»)'''
+			out= '''(Â«parser.parse(exp.left)Â» Â«NEQUIVÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 		else{
-			out= '''(«parser.parse(exp.left)» «EQUIV» «parser.parse(exp.right)»)'''
+			out= '''(Â«parser.parse(exp.left)Â» Â«EQUIVÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 		out
 	}

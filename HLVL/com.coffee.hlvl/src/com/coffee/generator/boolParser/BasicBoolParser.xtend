@@ -18,8 +18,8 @@ class BasicBoolParser extends AbstractHLVLParser  {
 		var program= rules.getHeader();
 		program+= 
 		'''
-		p cnf «rules.getNumClauses» «rules.getNumVars»
-		«rules.getCNF» 
+		p cnf Â«rules.getNumClausesÂ» Â«rules.getNumVarsÂ»
+		Â«rules.getCNFÂ» 
 		'''
 		program
 		

@@ -26,26 +26,26 @@ public class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZ
 		
 	}
 	override getAnd(And exp) {
-		'''(«parser.parse(exp.left)» «AND» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â» Â«ANDÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	override getIff(Iff exp) {
-		'''(«parser.parse(exp.left)»  «IFF» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â»  Â«IFFÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	override getImplies(Implies exp) {
-		'''(«parser.parse(exp.left)»  «IMPLIES_LR» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â»  Â«IMPLIES_LRÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	/**
 	 * 
 	 */
 	override getNegation(Negation exp) {
-		'''«NOT»(«parser.parse(exp.expression)»)'''
+		'''Â«NOTÂ»(Â«parser.parse(exp.expression)Â»)'''
 	}
 	
 	override getOr(Or exp) {
-		'''(«parser.parse(exp.left)» «OR» «parser.parse(exp.right)»)'''
+		'''(Â«parser.parse(exp.left)Â» Â«ORÂ» Â«parser.parse(exp.right)Â»)'''
 	}
 	
 	override getVariable(VariableRef exp) {
@@ -55,10 +55,10 @@ public class BooleanExpressionsRules implements IBooleanExpressionsRules, IMiniZ
 	override getEquality(Equality exp) {
 		var out= ""
 		if (exp.op== "!="){
-			out= '''(«parser.parse(exp.left)» «NEQUIV» «parser.parse(exp.right)»)'''
+			out= '''(Â«parser.parse(exp.left)Â» Â«NEQUIVÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 		else{
-			out= '''(«parser.parse(exp.left)» «EQUIV» «parser.parse(exp.right)»)'''
+			out= '''(Â«parser.parse(exp.left)Â» Â«EQUIVÂ» Â«parser.parse(exp.right)Â»)'''
 		}
 		out
 	}

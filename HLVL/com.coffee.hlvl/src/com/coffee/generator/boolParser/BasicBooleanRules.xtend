@@ -23,70 +23,74 @@ import com.coffee.hlvl.BoolConstant
  * modified on July 2019 to comply with the modifications in the syntax method: getDecomposition
  * fixed a bug in the group with cardinality [1,1]
  */
-class BasicBooleanRules extends TransformationRules implements IMiniZincConstants {
+
+class BasicBooleanRules extends TransformationRules implements IMiniZincConstants
+ {
 	/**
 	 * integer variable to produce the identifiers for the variables and constraints
 	 * in visibility relations
 	 */
 	private int visibilityIdCounter;
-
+	
 	private DIMACSRules dimacs;
-
+	
 	private BooleanExpressionsParser expressionsParser;
 	private StringBuilder cnfBuilder;
-
-	new(Dialect dialect) {
-		expressionsParser = new BooleanExpressionsParser();
+	
+	new(Dialect dialect){	
+		expressionsParser= new BooleanExpressionsParser();
 		expressionsParser.dialect = dialect
-		visibilityIdCounter = 0;
-		cnfBuilder = new StringBuilder();
+		visibilityIdCounter=0;
+		cnfBuilder= new StringBuilder();
 		dimacs = new DIMACSRules();
 	}
-
-	def String getCNF() {
+	
+	def String getCNF(){
 		return cnfBuilder.toString();
 	}
-
 	override getConstant(ElmDeclaration element) {
-		val value = (element.declaration as ConstantDecl).value
+		val value= (element.declaration as ConstantDecl).value
 		cnfBuilder.append(dimacs.getElement(element))
-		'''«BOOL_DOMAIN» «COLON» «element.name» «ASSIGN» «(value as BoolConstant).value»  «SEMICOLON»
+		'''Â«BOOL_DOMAINÂ» Â«COLONÂ» Â«element.nameÂ» Â«ASSIGNÂ» Â«(value as BoolConstant).valueÂ»  Â«SEMICOLONÂ»
 		'''
 	}
-
+	
 	override getElement(ElmDeclaration element) {
-		// var String out=""
-		// val declaration= element.declaration as VariableDecl
+		//var String out=""
+		//val declaration= element.declaration as VariableDecl
 		cnfBuilder.append(dimacs.getElement(element))
-		'''«VAR_DEF» «BOOL_DOMAIN» «COLON» «element.name» «SEMICOLON»
+		'''Â«VAR_DEFÂ» Â«BOOL_DOMAINÂ» Â«COLONÂ» Â«element.nameÂ» Â«SEMICOLONÂ»
 		'''
-
+		
 	}
+	
 
-	override getCoreSingle(ElmDeclaration element) {
+	
+	override getCoreSingle(ElmDeclaration element){
 		cnfBuilder.append(dimacs.getCoreSingle(element))
-		'''«CONS_DEF» «element.name» «EQUIV» «TRUE_ATOM» «SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«element.nameÂ» Â«EQUIVÂ» Â«TRUE_ATOMÂ» Â«SEMICOLONÂ»
 		'''
 	}
-
+	
 	override getDecomposition(Decomposition rel, Map<String, ElmDeclaration> parents) {
-		var out = ""
-		for (element : rel.children.values) {
+		var out=""
+		for(element: rel.children.values){
 			parents.put(element.name, rel.parent)
-			// TODO modified by avillota to comply with the syntax changes
-			if (rel.min == 1 && rel.max == 1) {
-				out += '''«CONS_DEF» «rel.parent.name» «IFF» «element.name» «SEMICOLON»
+			//TODO modified by avillota to comply with the syntax changes
+			if(rel.min==1 && rel.max==1){
+				out+= '''Â«CONS_DEFÂ» Â«rel.parent.nameÂ» Â«IFFÂ» Â«element.nameÂ» Â«SEMICOLONÂ»
 				'''
 				cnfBuilder.append(dimacs.getMandatory(rel.parent.name, element.name));
-			} else {
-				out += '''«CONS_DEF» «element.name» «IMPLIES_LR» «rel.parent.name» «SEMICOLON»
+			}
+			else{
+				out+= '''Â«CONS_DEFÂ» Â«element.nameÂ» Â«IMPLIES_LRÂ» Â«rel.parent.nameÂ» Â«SEMICOLONÂ»
 				'''
 				cnfBuilder.append(dimacs.getOptional(rel.parent.name, element.name));
 			}
 		}
 		out
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -102,66 +106,71 @@ class BasicBooleanRules extends TransformationRules implements IMiniZincConstant
 			getOR(rel, parents)
 		}
 	}
-
-	def getXor(Group rel, Map<String, ElmDeclaration> parents) {
-		var out = ""
-		for (element : rel.children.values) {
+	
+	def getXor(Group rel, Map<String, ElmDeclaration> parents){
+		var out=""
+		for(element: rel.children.values){
 			parents.put(element.name, rel.parent)
-			out += '''«CONS_DEF» «element.name» «IFF» «OPEN_CALL»'''
-			for (inElement : rel.children.values) {
-				if (element.name != inElement.name) {
-					out += '''«NOT»«OPEN_CALL»«inElement.name»«CLOSE_CALL» «AND» '''
+			out+= '''Â«CONS_DEFÂ» Â«element.nameÂ» Â«IFFÂ» Â«OPEN_CALLÂ»'''
+			for(inElement: rel.children.values){
+				if(element.name!= inElement.name){
+					out+='''Â«NOTÂ»Â«OPEN_CALLÂ»Â«inElement.nameÂ»Â«CLOSE_CALLÂ» Â«ANDÂ» '''
 				}
 			}
-			out += '''«rel.parent.name»«CLOSE_CALL» «SEMICOLON»
+			out += '''Â«rel.parent.nameÂ»Â«CLOSE_CALLÂ» Â«SEMICOLONÂ»
 			'''
 		}
 		out
 	}
-
-	def getOR(Group rel, Map<String, ElmDeclaration> parents) {
-		var out = '''«CONS_DEF» «rel.parent.name» «IFF» «OPEN_CALL»'''
-		for (element : rel.children.values) {
+	
+	def getOR(Group rel, Map<String, ElmDeclaration> parents){
+		var out='''Â«CONS_DEFÂ» Â«rel.parent.nameÂ» Â«IFFÂ» Â«OPEN_CALLÂ»'''
+		for(element: rel.children.values){
 			parents.put(element.name, rel.parent)
-			out += ''' «element.name» «OR»'''
+			out+= ''' Â«element.nameÂ» Â«ORÂ»'''
 		}
-		out = out.subSequence(0, out.length - 2) + '''«CLOSE_CALL» «SEMICOLON»
+		out= out.subSequence(0, out.length-2) +'''Â«CLOSE_CALLÂ» Â«SEMICOLONÂ»
 		'''
 		out
 	}
-
+	
 	override getImpliesPair(ElmDeclaration left, ElmDeclaration right) {
 		cnfBuilder.append(dimacs.getImpliesPair(left, right));
-		'''«CONS_DEF» «left.name» «IMPLIES_LR» «right.name» «SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«left.nameÂ» Â«IMPLIES_LRÂ» Â«right.nameÂ» Â«SEMICOLONÂ»
 		'''
 	}
-
+	
 	override getMutexPair(ElmDeclaration left, ElmDeclaration right) {
 		cnfBuilder.append(dimacs.getMutexPair(left, right));
-		'''«CONS_DEF» «NOT» «OPEN_CALL»«left.name» «AND» «right.name»«CLOSE_CALL»«SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«NOTÂ» Â«OPEN_CALLÂ»Â«left.nameÂ» Â«ANDÂ» Â«right.nameÂ»Â«CLOSE_CALLÂ»Â«SEMICOLONÂ»
 		'''
 	}
-
-	// FIXME fix the 
+	
+	
+	//FIXME fix the 
 	override getExpression(Relational exp) {
-		'''«CONS_DEF» «expressionsParser.parse(exp)»«SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«expressionsParser.parse(exp)Â»Â«SEMICOLONÂ»
 		'''
 	}
+	
 
+	
 	/*===================================================================
-	 * ===================================================================
+	 *===================================================================
 	 * Methods for DIMACS notation
 	 * */
-	def getHeader() {
-		return dimacs.getHeader();
-	}
-
-	def getNumClauses() {
-		return dimacs.getNumClauses();
-	}
-
-	def getNumVars() {
-		return dimacs.getNumVars();
-	}
-
+	 
+	 def getHeader(){
+	 	return dimacs.getHeader();
+	 }
+	 
+	 def getNumClauses(){
+	 	return dimacs.getNumClauses();
+	 }
+	 
+	 def getNumVars(){
+	 	return dimacs.getNumVars();
+	 }
+	
+	
 }

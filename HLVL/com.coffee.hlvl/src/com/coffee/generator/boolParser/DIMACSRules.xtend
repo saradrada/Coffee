@@ -15,35 +15,36 @@ import com.coffee.hlvl.Group
  * @version HLVL V1.4
  * July 2019
  */
-class DIMACSRules extends TransformationRules {
-
+class DIMACSRules extends TransformationRules{
+	
 	/**
 	 * Strings in the Textual DIMACS format
 	 */
-	private static final String HEADER = '''
+	private static final String HEADER=
+		'''
 		c
 		c DIMACS code generated using the Coffee framework
 		c
-	'''
+		'''
 	/**
 	 * number of clauses in the problem
 	 */
 	protected int numClauses
-
+	
 	/**
 	 * Map of variables to obtain the numeric Id using the name of 
 	 * the variable as key
 	 */
 	protected Map<String, Integer> variables
-
+	
 	/**
 	 * Constructor 
 	 */
-	new() {
-		numClauses = 0
-		variables = new HashMap<String, Integer>()
+	new(){
+		numClauses=0
+		variables= new HashMap<String, Integer>()
 	}
-
+	
 	/**
 	 * @returns returns the code generated for the 
 	 * header of a CNF file in the DIMACS format
@@ -51,57 +52,60 @@ class DIMACSRules extends TransformationRules {
 	def getHeader() {
 		return HEADER
 	}
-
+	
+	
+	
 	override getCoreSingle(ElmDeclaration element) {
 		addNumClauses(1)
-		'''«variables.get(element.name)»'''
+		'''Â«variables.get(element.name)Â»'''
 	}
-
+	
 	/**
 	 * 
 	 */
 	override getDecomposition(Decomposition rel, Map<String, ElmDeclaration> parents) {
-		var out = ""
-		for (child : rel.children.values) {
+		var out=""
+		for(child: rel.children.values){
 			parents.put(child.name, rel.parent)
-			// TODO modified by avillota to comply with the syntax changes
-			if (rel.min == 1 && rel.max == 1) { // mandatory
+			//TODO modified by avillota to comply with the syntax changes
+			if(rel.min==1 && rel.max==1){ //mandatory
 				addNumClauses(2)
-				out += '''
-					«variables.get(rel.parent.name)» -«variables.get(child.name)»
-					-«variables.get(rel.parent.name)» «variables.get(child.name)»
+				out+= '''
+				Â«variables.get(rel.parent.name)Â» -Â«variables.get(child.name)Â»
+				-Â«variables.get(rel.parent.name)Â» Â«variables.get(child.name)Â»
 				'''
-			} else { // optional
+			}
+			else{ // optional
 				addNumClauses(1)
-				out += '''
-					-«variables.get(child.name)» «variables.get(rel.parent.name)»
+				out+= 
+				'''
+				-Â«variables.get(child.name)Â» Â«variables.get(rel.parent.name)Â»
 				'''
 			}
 		}
 		out
 	}
-
+	
 	/**
 	 * Method to obtain a CNF representation of a mandatory relation 
 	 */
 	def getMandatory(String parent, String child) {
 		addNumClauses(2)
 		'''
-			«variables.get(parent)» -«variables.get(child)»
-			-«variables.get(parent)» «variables.get(child)»
+		Â«variables.get(parent)Â» -Â«variables.get(child)Â»
+		-Â«variables.get(parent)Â» Â«variables.get(child)Â»
 		'''
 	}
-
 	/**
 	 * Method to obtain a CNF representation of an optional relation 
 	 */
 	def getOptional(String parent, String child) {
 		addNumClauses(1)
 		'''
-			-«variables.get(child)» «variables.get(parent)»
+		-Â«variables.get(child)Â» Â«variables.get(parent)Â»
 		'''
 	}
-
+	
 	/**
 	 * This method includes the variable name in a variables map to obtain an
 	 * integer for the DIMACS transformation
@@ -109,53 +113,54 @@ class DIMACSRules extends TransformationRules {
 	 * @return the empty String, variables are not translated in the DIMCAS code
 	 */
 	override getElement(ElmDeclaration element) {
-		val id = variables.keySet.size + 1
+		val id= variables.keySet.size + 1
 		variables.put(element.name, id)
 		''''''
 	}
-
-	// FIXME arreglar la asignacion
+	
+	//FIXME arreglar la asignacion
 	override getConstant(ElmDeclaration element) {
-		val id = variables.keySet.size + 1
+		val id= variables.keySet.size + 1
 		variables.put(element.name, id)
 		''''''
 	}
-
+	
 	override getExpression(Relational rel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-
+	
 	override getGroup(Group rel, Map<String, ElmDeclaration> parents) {
 		// groups [1, 1] alternative
-		if (rel.min == 1 && rel.max.value == "1") {
-			getXor(rel)
-		} // TODO include the [n, m] rule from literature
+		if(rel.min==1 && rel.max.value=="1"){
+				getXor(rel)		
+		}
+		//TODO include the [n, m] rule from literature
 		// groups [1, *] OR groups
-		else {
+		else{
 			getOR(rel)
 		}
 	}
-
+	
 	def getXor(Group rel) {
 		var out = ""
 		// There are n+1 clauses for each child
 		for (child : rel.children.values) {
 			addNumClauses(rel.children.values.size + 1)
-			var singleClause = '''-«variables.get(rel.parent.name)» «variables.get(child.name)»'''
+			var singleClause = '''-Â«variables.get(rel.parent.name)Â» Â«variables.get(child.name)Â»'''
 			var clauses = '''
-				-«variables.get(child.name)» «variables.get(rel.parent.name)»
+				-Â«variables.get(child.name)Â» Â«variables.get(rel.parent.name)Â»
 			'''
 			for (inChild : rel.children.values) {
 				if (!(child.name == inChild.name)) {
-					singleClause += ''' «variables.get(inChild.name)»'''
+					singleClause += ''' Â«variables.get(inChild.name)Â»'''
 					clauses += '''
-						-«variables.get(child.name)» -«variables.get(inChild.name)»
+						-Â«variables.get(child.name)Â» -Â«variables.get(inChild.name)Â»
 					'''
 				}
 			}
 			out += '''
-				«singleClause»
-				«clauses»
+				Â«singleClauseÂ»
+				Â«clausesÂ»
 			'''
 		}
 		out
@@ -165,57 +170,61 @@ class DIMACSRules extends TransformationRules {
 		var output = ""
 		// in total are |children| +1 clauses
 		addNumClauses(rel.children.values.size + 1)
-		var singleClause = '''-«variables.get(rel.parent.name)»'''
+		var singleClause = '''-Â«variables.get(rel.parent.name)Â»'''
 		var clauses = ""
 		for (child : rel.children.values) {
-			singleClause += ''' «variables.get(child.name)»'''
-			clauses += '''«variables.get(rel.parent.name)» -«variables.get(child.name)»
+			singleClause += ''' Â«variables.get(child.name)Â»'''
+			clauses += '''Â«variables.get(rel.parent.name)Â» -Â«variables.get(child.name)Â»
 			'''
 		}
 		output = '''
-			«singleClause»
-			«clauses»
+			Â«singleClauseÂ»
+			Â«clausesÂ»
 		'''
 		return output;
 	}
-
+	
+	
 	override getImpliesPair(ElmDeclaration left, ElmDeclaration right) {
 		addNumClauses(1)
 		'''
-			-«variables.get(left.name)» «variables.get(right.name)»
+		-Â«variables.get(left.name)Â» Â«variables.get(right.name)Â»
 		'''
 	}
 
+	
 	override getMutexPair(ElmDeclaration left, ElmDeclaration right) {
 		addNumClauses(1)
 		'''
-			-«variables.get(left.name)» -«variables.get(right.name)»
+		-Â«variables.get(left.name)Â» -Â«variables.get(right.name)Â»
 		'''
 	}
+	
 
+	
 	/*===================================================================
-	 * ===================================================================
+	 *===================================================================
 	 * Methods used just in this notation
 	 * */
+	
 	/** 
 	 * Increased the count of clauses by the number in amount
 	 * @param number of clauses to add
 	 */
-	def void addNumClauses(int amount) {
-		numClauses += amount
+	 def void addNumClauses(int amount){
+		numClauses+= amount
 	}
-
+	
 	/**
 	 * @return returns the number of variables in the problem
 	 */
-	def getNumVars() {
+	def getNumVars(){
 		return variables.keySet.size
 	}
-
 	/**
 	 * @return returns the number of generated clauses
 	 */
-	def getNumClauses() {
+	def getNumClauses(){
 		return numClauses
 	}
 }
