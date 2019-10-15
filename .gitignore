@@ -14,3 +14,11 @@ HLVL/com.coffee.hlvl/xtend-gen/com/coffee/.HlvlStandaloneSetup.xtendbin
 HLVL/com.coffee.hlvl/xtend-gen/com/coffee/generator/.HlvlGenerator.xtendbin
 HLVL/com.coffee.hlvl/xtend-gen/com/coffee/scoping/.HlvlScopeProvider.xtendbin
 HLVL/com.coffee.hlvl/xtend-gen/com/coffee/validation/.HlvlValidator.xtendbin
+
+HLVL/com.coffee.hlvl/xtend-gen/
+
+HLVL/com.coffee.hlvl.tests/bin/
+
+HLVL/com.coffee.hlvl.tests/xtend-gen/
+
+HLVL/com.coffee.hlvl/bin/
