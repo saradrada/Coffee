@@ -110,6 +110,7 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
       case HlvlPackage.UNARY_FUNCTION: return createUnaryFunction();
       case HlvlPackage.INSTANCES: return createInstances();
       case HlvlPackage.ENTAILED: return createEntailed();
+      case HlvlPackage.SELECTED: return createSelected();
       case HlvlPackage.BINARY_FUNCTION: return createBinaryFunction();
       case HlvlPackage.BOOL_CONSTANT: return createBoolConstant();
       case HlvlPackage.VARIABLE_REF: return createVariableRef();
@@ -616,6 +617,17 @@ public class HlvlFactoryImpl extends EFactoryImpl implements HlvlFactory
   {
     EntailedImpl entailed = new EntailedImpl();
     return entailed;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Selected createSelected()
+  {
+    SelectedImpl selected = new SelectedImpl();
+    return selected;
   }
 
   /**

@@ -12,4 +12,5 @@ relations:
  R1: group(screen, [basicScreen, hrScreen],[1,1])
  R2: mutex(GPS, basicScreen)
  R3: implies(camera, hrScreen)
+
  

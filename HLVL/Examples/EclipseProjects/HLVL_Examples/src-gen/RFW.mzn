@@ -27,5 +27,7 @@ constraint VP4 >= V42;
 constraint VP3 >= V7;
 constraint VP3 >= V8;
 constraint ((VP1 == 4)  -> (VP2 == 2));
-nullconstraint V8 <= V42;
+constraint (VP1 == 1) -> V51;
+constraint (VP1 == 1) -> V52;
+constraint V8 <= V42;
 % The solving parameters from the parameters files

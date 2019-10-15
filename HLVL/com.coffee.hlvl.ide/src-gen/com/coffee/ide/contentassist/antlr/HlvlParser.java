@@ -45,7 +45,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMulOrDivAccess().getOpAlternatives_1_1_0(), "rule__MulOrDiv__OpAlternatives_1_1_0");
 					put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 					put(grammarAccess.getPrimaryAccess().getOpAlternatives_2_1_0(), "rule__Primary__OpAlternatives_2_1_0");
-					put(grammarAccess.getPrimaryAccess().getOpAlternatives_5_1_0(), "rule__Primary__OpAlternatives_5_1_0");
+					put(grammarAccess.getPrimaryAccess().getOpAlternatives_6_1_0(), "rule__Primary__OpAlternatives_6_1_0");
 					put(grammarAccess.getAtomicAccess().getAlternatives(), "rule__Atomic__Alternatives");
 					put(grammarAccess.getAtomicAccess().getValueAlternatives_0_1_0(), "rule__Atomic__ValueAlternatives_0_1_0");
 					put(grammarAccess.getSampleAccess().getAlternatives(), "rule__Sample__Alternatives");
@@ -97,6 +97,7 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimaryAccess().getGroup_3(), "rule__Primary__Group_3__0");
 					put(grammarAccess.getPrimaryAccess().getGroup_4(), "rule__Primary__Group_4__0");
 					put(grammarAccess.getPrimaryAccess().getGroup_5(), "rule__Primary__Group_5__0");
+					put(grammarAccess.getPrimaryAccess().getGroup_6(), "rule__Primary__Group_6__0");
 					put(grammarAccess.getAtomicAccess().getGroup_0(), "rule__Atomic__Group_0__0");
 					put(grammarAccess.getAtomicAccess().getGroup_1(), "rule__Atomic__Group_1__0");
 					put(grammarAccess.getAtomicAccess().getGroup_2(), "rule__Atomic__Group_2__0");
@@ -177,9 +178,10 @@ public class HlvlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimaryAccess().getElementAssignment_3_3(), "rule__Primary__ElementAssignment_3_3");
 					put(grammarAccess.getPrimaryAccess().getNumberAssignment_3_5(), "rule__Primary__NumberAssignment_3_5");
 					put(grammarAccess.getPrimaryAccess().getElementAssignment_4_3(), "rule__Primary__ElementAssignment_4_3");
-					put(grammarAccess.getPrimaryAccess().getOpAssignment_5_1(), "rule__Primary__OpAssignment_5_1");
-					put(grammarAccess.getPrimaryAccess().getLeftAssignment_5_3(), "rule__Primary__LeftAssignment_5_3");
-					put(grammarAccess.getPrimaryAccess().getRightAssignment_5_5(), "rule__Primary__RightAssignment_5_5");
+					put(grammarAccess.getPrimaryAccess().getElementAssignment_5_3(), "rule__Primary__ElementAssignment_5_3");
+					put(grammarAccess.getPrimaryAccess().getOpAssignment_6_1(), "rule__Primary__OpAssignment_6_1");
+					put(grammarAccess.getPrimaryAccess().getLeftAssignment_6_3(), "rule__Primary__LeftAssignment_6_3");
+					put(grammarAccess.getPrimaryAccess().getRightAssignment_6_5(), "rule__Primary__RightAssignment_6_5");
 					put(grammarAccess.getAtomicAccess().getValueAssignment_0_1(), "rule__Atomic__ValueAssignment_0_1");
 					put(grammarAccess.getAtomicAccess().getVariableAssignment_1_1(), "rule__Atomic__VariableAssignment_1_1");
 					put(grammarAccess.getAtomicAccess().getAttributeAssignment_2_1(), "rule__Atomic__AttributeAssignment_2_1");

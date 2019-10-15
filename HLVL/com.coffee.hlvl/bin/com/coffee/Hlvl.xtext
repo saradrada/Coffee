@@ -196,6 +196,7 @@ Primary returns Relational:
 	 {UnaryFunction} op=('abs'|'sqrt') expression=Primary | 
 	 {Instances} 'instances' '(' element= [ElmDeclaration] ','number= INT ')'|
 	 {Entailed} 'entailed' '(' element= [ElmDeclaration]')'|
+	 {Selected} 'selected' '(' element= [ElmDeclaration]')'|
 	 {BinaryFunction} op=('pow'|'dist'|'min'|'max'|'if') '('left=Primary ',' right=Primary ')' |
 	 //{Assign} variable= [ElmDeclaration] 'is' value=Relational| //value=Value| changed by avillota
 	 Atomic

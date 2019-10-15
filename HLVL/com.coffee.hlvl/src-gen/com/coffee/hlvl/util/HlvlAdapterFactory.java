@@ -301,6 +301,11 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
         return createEntailedAdapter();
       }
       @Override
+      public Adapter caseSelected(Selected object)
+      {
+        return createSelectedAdapter();
+      }
+      @Override
       public Adapter caseBinaryFunction(BinaryFunction object)
       {
         return createBinaryFunctionAdapter();
@@ -1033,6 +1038,21 @@ public class HlvlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEntailedAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.coffee.hlvl.Selected <em>Selected</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.coffee.hlvl.Selected
+   * @generated
+   */
+  public Adapter createSelectedAdapter()
   {
     return null;
   }

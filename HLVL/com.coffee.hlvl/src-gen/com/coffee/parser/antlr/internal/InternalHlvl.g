@@ -2588,70 +2588,14 @@ rulePrimary returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getPrimaryAccess().getBinaryFunctionAction_5_0(),
+						grammarAccess.getPrimaryAccess().getSelectedAction_5_0(),
 						$current);
 				}
 			)
-			(
-				(
-					(
-						lv_op_22_1='pow'
-						{
-							newLeafNode(lv_op_22_1, grammarAccess.getPrimaryAccess().getOpPowKeyword_5_1_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getPrimaryRule());
-							}
-							setWithLastConsumed($current, "op", lv_op_22_1, null);
-						}
-						    |
-						lv_op_22_2='dist'
-						{
-							newLeafNode(lv_op_22_2, grammarAccess.getPrimaryAccess().getOpDistKeyword_5_1_0_1());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getPrimaryRule());
-							}
-							setWithLastConsumed($current, "op", lv_op_22_2, null);
-						}
-						    |
-						lv_op_22_3='min'
-						{
-							newLeafNode(lv_op_22_3, grammarAccess.getPrimaryAccess().getOpMinKeyword_5_1_0_2());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getPrimaryRule());
-							}
-							setWithLastConsumed($current, "op", lv_op_22_3, null);
-						}
-						    |
-						lv_op_22_4='max'
-						{
-							newLeafNode(lv_op_22_4, grammarAccess.getPrimaryAccess().getOpMaxKeyword_5_1_0_3());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getPrimaryRule());
-							}
-							setWithLastConsumed($current, "op", lv_op_22_4, null);
-						}
-						    |
-						lv_op_22_5='if'
-						{
-							newLeafNode(lv_op_22_5, grammarAccess.getPrimaryAccess().getOpIfKeyword_5_1_0_4());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getPrimaryRule());
-							}
-							setWithLastConsumed($current, "op", lv_op_22_5, null);
-						}
-					)
-				)
-			)
+			otherlv_22='selected'
+			{
+				newLeafNode(otherlv_22, grammarAccess.getPrimaryAccess().getSelectedKeyword_5_1());
+			}
 			otherlv_23='('
 			{
 				newLeafNode(otherlv_23, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_5_2());
@@ -2659,9 +2603,100 @@ rulePrimary returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPrimaryAccess().getLeftPrimaryParserRuleCall_5_3_0());
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPrimaryRule());
+						}
 					}
-					lv_left_24_0=rulePrimary
+					otherlv_24=RULE_ID
+					{
+						newLeafNode(otherlv_24, grammarAccess.getPrimaryAccess().getElementElmDeclarationCrossReference_5_3_0());
+					}
+				)
+			)
+			otherlv_25=')'
+			{
+				newLeafNode(otherlv_25, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_5_4());
+			}
+		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getPrimaryAccess().getBinaryFunctionAction_6_0(),
+						$current);
+				}
+			)
+			(
+				(
+					(
+						lv_op_27_1='pow'
+						{
+							newLeafNode(lv_op_27_1, grammarAccess.getPrimaryAccess().getOpPowKeyword_6_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPrimaryRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_27_1, null);
+						}
+						    |
+						lv_op_27_2='dist'
+						{
+							newLeafNode(lv_op_27_2, grammarAccess.getPrimaryAccess().getOpDistKeyword_6_1_0_1());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPrimaryRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_27_2, null);
+						}
+						    |
+						lv_op_27_3='min'
+						{
+							newLeafNode(lv_op_27_3, grammarAccess.getPrimaryAccess().getOpMinKeyword_6_1_0_2());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPrimaryRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_27_3, null);
+						}
+						    |
+						lv_op_27_4='max'
+						{
+							newLeafNode(lv_op_27_4, grammarAccess.getPrimaryAccess().getOpMaxKeyword_6_1_0_3());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPrimaryRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_27_4, null);
+						}
+						    |
+						lv_op_27_5='if'
+						{
+							newLeafNode(lv_op_27_5, grammarAccess.getPrimaryAccess().getOpIfKeyword_6_1_0_4());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPrimaryRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_27_5, null);
+						}
+					)
+				)
+			)
+			otherlv_28='('
+			{
+				newLeafNode(otherlv_28, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_6_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getPrimaryAccess().getLeftPrimaryParserRuleCall_6_3_0());
+					}
+					lv_left_29_0=rulePrimary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimaryRule());
@@ -2669,22 +2704,22 @@ rulePrimary returns [EObject current=null]
 						set(
 							$current,
 							"left",
-							lv_left_24_0,
+							lv_left_29_0,
 							"com.coffee.Hlvl.Primary");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_25=','
+			otherlv_30=','
 			{
-				newLeafNode(otherlv_25, grammarAccess.getPrimaryAccess().getCommaKeyword_5_4());
+				newLeafNode(otherlv_30, grammarAccess.getPrimaryAccess().getCommaKeyword_6_4());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPrimaryAccess().getRightPrimaryParserRuleCall_5_5_0());
+						newCompositeNode(grammarAccess.getPrimaryAccess().getRightPrimaryParserRuleCall_6_5_0());
 					}
-					lv_right_26_0=rulePrimary
+					lv_right_31_0=rulePrimary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimaryRule());
@@ -2692,24 +2727,24 @@ rulePrimary returns [EObject current=null]
 						set(
 							$current,
 							"right",
-							lv_right_26_0,
+							lv_right_31_0,
 							"com.coffee.Hlvl.Primary");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_27=')'
+			otherlv_32=')'
 			{
-				newLeafNode(otherlv_27, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_5_6());
+				newLeafNode(otherlv_32, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_6_6());
 			}
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimaryAccess().getAtomicParserRuleCall_6());
+			newCompositeNode(grammarAccess.getPrimaryAccess().getAtomicParserRuleCall_7());
 		}
-		this_Atomic_28=ruleAtomic
+		this_Atomic_33=ruleAtomic
 		{
-			$current = $this_Atomic_28.current;
+			$current = $this_Atomic_33.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

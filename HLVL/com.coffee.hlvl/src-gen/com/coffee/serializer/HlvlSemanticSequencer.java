@@ -42,6 +42,7 @@ import com.coffee.hlvl.Plus;
 import com.coffee.hlvl.QualifiedName;
 import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
+import com.coffee.hlvl.Selected;
 import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.UnaryFunction;
@@ -191,6 +192,9 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case HlvlPackage.REL_DECLARATION:
 				sequence_RelDeclaration(context, (RelDeclaration) semanticObject); 
+				return; 
+			case HlvlPackage.SELECTED:
+				sequence_Primary(context, (Selected) semanticObject); 
 				return; 
 			case HlvlPackage.SINGLE_INSTRUCTION:
 				sequence_Sample(context, (SingleInstruction) semanticObject); 
@@ -1179,6 +1183,42 @@ public class HlvlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPrimaryAccess().getExpressionPrimaryParserRuleCall_1_2_0(), semanticObject.getExpression());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Relational returns Selected
+	 *     Iff returns Selected
+	 *     Iff.Iff_1_0 returns Selected
+	 *     Implies returns Selected
+	 *     Implies.Implies_1_0 returns Selected
+	 *     Or returns Selected
+	 *     Or.Or_1_0 returns Selected
+	 *     And returns Selected
+	 *     And.And_1_0 returns Selected
+	 *     Equality returns Selected
+	 *     Equality.Equality_1_0 returns Selected
+	 *     Comparison returns Selected
+	 *     Comparison.Comparison_1_0 returns Selected
+	 *     PlusOrMinus returns Selected
+	 *     PlusOrMinus.Plus_1_0_0_0 returns Selected
+	 *     PlusOrMinus.Minus_1_0_1_0 returns Selected
+	 *     MulOrDiv returns Selected
+	 *     MulOrDiv.MulOrDiv_1_0 returns Selected
+	 *     Primary returns Selected
+	 *
+	 * Constraint:
+	 *     element=[ElmDeclaration|ID]
+	 */
+	protected void sequence_Primary(ISerializationContext context, Selected semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, HlvlPackage.Literals.SELECTED__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, HlvlPackage.Literals.SELECTED__ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryAccess().getElementElmDeclarationIDTerminalRuleCall_5_3_0_1(), semanticObject.eGet(HlvlPackage.Literals.SELECTED__ELEMENT, false));
 		feeder.finish();
 	}
 	

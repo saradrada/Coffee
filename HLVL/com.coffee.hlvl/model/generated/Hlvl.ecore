@@ -211,6 +211,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Entailed" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selected" eSuperTypes="#//Relational">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ElmDeclaration"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryFunction" eSuperTypes="#//Relational">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Relational"

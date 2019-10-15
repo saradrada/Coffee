@@ -5,7 +5,7 @@
 '+'=64
 ','=54
 '-'=65
-'.'=69
+'.'=70
 '..'=47
 '/'=23
 ':'=50
@@ -22,8 +22,8 @@
 ']'=49
 'abs'=25
 'after'=58
-'att'=71
-'before'=72
+'att'=72
+'before'=73
 'boolean'=11
 'comment:'=42
 'common'=51
@@ -50,10 +50,11 @@
 'operations:'=41
 'pow'=27
 'relations:'=40
+'selected'=69
 'sqrt'=26
 'symbolic'=13
 'true'=32
-'validConfiguration'=70
+'validConfiguration'=71
 'validModel'=34
 'variants:'=46
 'visibility'=57
@@ -129,3 +130,4 @@ T__69=69
 T__70=70
 T__71=71
 T__72=72
+T__73=73

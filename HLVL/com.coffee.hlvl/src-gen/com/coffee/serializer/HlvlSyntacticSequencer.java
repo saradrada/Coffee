@@ -147,6 +147,7 @@ public class HlvlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'entailed' '(' element=[ElmDeclaration|ID]
 	 *     (rule start) (ambiguity) 'instances' '(' element=[ElmDeclaration|ID]
+	 *     (rule start) (ambiguity) 'selected' '(' element=[ElmDeclaration|ID]
 	 *     (rule start) (ambiguity) '~' expression=Primary
 	 *     (rule start) (ambiguity) attribute=QualifiedName
 	 *     (rule start) (ambiguity) op='abs'

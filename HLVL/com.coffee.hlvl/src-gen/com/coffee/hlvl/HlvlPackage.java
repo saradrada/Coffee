@@ -1633,6 +1633,34 @@ public interface HlvlPackage extends EPackage
   int ENTAILED_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.coffee.hlvl.impl.SelectedImpl <em>Selected</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.coffee.hlvl.impl.SelectedImpl
+   * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSelected()
+   * @generated
+   */
+  int SELECTED = 45;
+
+  /**
+   * The feature id for the '<em><b>Element</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTED__ELEMENT = RELATIONAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Selected</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTED_FEATURE_COUNT = RELATIONAL_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.coffee.hlvl.impl.BinaryFunctionImpl <em>Binary Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1640,7 +1668,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getBinaryFunction()
    * @generated
    */
-  int BINARY_FUNCTION = 45;
+  int BINARY_FUNCTION = 46;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1686,7 +1714,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getBoolConstant()
    * @generated
    */
-  int BOOL_CONSTANT = 46;
+  int BOOL_CONSTANT = 47;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1714,7 +1742,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getVariableRef()
    * @generated
    */
-  int VARIABLE_REF = 47;
+  int VARIABLE_REF = 48;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1742,7 +1770,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getAttributeRef()
    * @generated
    */
-  int ATTRIBUTE_REF = 48;
+  int ATTRIBUTE_REF = 49;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' containment reference.
@@ -1770,7 +1798,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSymbolConstant()
    * @generated
    */
-  int SYMBOL_CONSTANT = 49;
+  int SYMBOL_CONSTANT = 50;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1798,7 +1826,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getIntConstant()
    * @generated
    */
-  int INT_CONSTANT = 50;
+  int INT_CONSTANT = 51;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1826,7 +1854,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSingleInstruction()
    * @generated
    */
-  int SINGLE_INSTRUCTION = 51;
+  int SINGLE_INSTRUCTION = 52;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1854,7 +1882,7 @@ public interface HlvlPackage extends EPackage
    * @see com.coffee.hlvl.impl.HlvlPackageImpl#getValidConf()
    * @generated
    */
-  int VALID_CONF = 52;
+  int VALID_CONF = 53;
 
   /**
    * The feature id for the '<em><b>Valuations</b></em>' containment reference.
@@ -3184,6 +3212,27 @@ public interface HlvlPackage extends EPackage
   EReference getEntailed_Element();
 
   /**
+   * Returns the meta object for class '{@link com.coffee.hlvl.Selected <em>Selected</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Selected</em>'.
+   * @see com.coffee.hlvl.Selected
+   * @generated
+   */
+  EClass getSelected();
+
+  /**
+   * Returns the meta object for the reference '{@link com.coffee.hlvl.Selected#getElement <em>Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Element</em>'.
+   * @see com.coffee.hlvl.Selected#getElement()
+   * @see #getSelected()
+   * @generated
+   */
+  EReference getSelected_Element();
+
+  /**
    * Returns the meta object for class '{@link com.coffee.hlvl.BinaryFunction <em>Binary Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4469,6 +4518,24 @@ public interface HlvlPackage extends EPackage
      * @generated
      */
     EReference ENTAILED__ELEMENT = eINSTANCE.getEntailed_Element();
+
+    /**
+     * The meta object literal for the '{@link com.coffee.hlvl.impl.SelectedImpl <em>Selected</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.coffee.hlvl.impl.SelectedImpl
+     * @see com.coffee.hlvl.impl.HlvlPackageImpl#getSelected()
+     * @generated
+     */
+    EClass SELECTED = eINSTANCE.getSelected();
+
+    /**
+     * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SELECTED__ELEMENT = eINSTANCE.getSelected_Element();
 
     /**
      * The meta object literal for the '{@link com.coffee.hlvl.impl.BinaryFunctionImpl <em>Binary Function</em>}' class.

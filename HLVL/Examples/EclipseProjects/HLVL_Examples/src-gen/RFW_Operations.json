@@ -1,4 +1,4 @@
 {
- "problemType" : "ATTRIBUTE",
- "parsingTime"  : "553ms"
+ "problemType" : "MULTIPLICITY",
+ "parsingTime"  : "92ms"
 		}

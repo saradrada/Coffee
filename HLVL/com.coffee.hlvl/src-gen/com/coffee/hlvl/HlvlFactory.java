@@ -429,6 +429,15 @@ public interface HlvlFactory extends EFactory
   Entailed createEntailed();
 
   /**
+   * Returns a new object of class '<em>Selected</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Selected</em>'.
+   * @generated
+   */
+  Selected createSelected();
+
+  /**
    * Returns a new object of class '<em>Binary Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

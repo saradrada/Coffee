@@ -169,6 +169,9 @@
     <genClasses ecoreClass="Hlvl.ecore#//Entailed">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Entailed/element"/>
     </genClasses>
+    <genClasses ecoreClass="Hlvl.ecore#//Selected">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Hlvl.ecore#//Selected/element"/>
+    </genClasses>
     <genClasses ecoreClass="Hlvl.ecore#//BinaryFunction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Hlvl.ecore#//BinaryFunction/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Hlvl.ecore#//BinaryFunction/left"/>

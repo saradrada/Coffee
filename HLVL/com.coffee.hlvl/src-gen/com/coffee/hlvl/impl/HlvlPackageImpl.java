@@ -49,6 +49,7 @@ import com.coffee.hlvl.Range;
 import com.coffee.hlvl.RelDeclaration;
 import com.coffee.hlvl.Relation;
 import com.coffee.hlvl.Relational;
+import com.coffee.hlvl.Selected;
 import com.coffee.hlvl.SingleInstruction;
 import com.coffee.hlvl.SymbolConstant;
 import com.coffee.hlvl.UnaryFunction;
@@ -388,6 +389,13 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * @generated
    */
   private EClass entailedEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass selectedEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1743,6 +1751,26 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getSelected()
+  {
+    return selectedEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSelected_Element()
+  {
+    return (EReference)selectedEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBinaryFunction()
   {
     return binaryFunctionEClass;
@@ -2116,6 +2144,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     entailedEClass = createEClass(ENTAILED);
     createEReference(entailedEClass, ENTAILED__ELEMENT);
 
+    selectedEClass = createEClass(SELECTED);
+    createEReference(selectedEClass, SELECTED__ELEMENT);
+
     binaryFunctionEClass = createEClass(BINARY_FUNCTION);
     createEAttribute(binaryFunctionEClass, BINARY_FUNCTION__OP);
     createEReference(binaryFunctionEClass, BINARY_FUNCTION__LEFT);
@@ -2201,6 +2232,7 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
     unaryFunctionEClass.getESuperTypes().add(this.getRelational());
     instancesEClass.getESuperTypes().add(this.getRelational());
     entailedEClass.getESuperTypes().add(this.getRelational());
+    selectedEClass.getESuperTypes().add(this.getRelational());
     binaryFunctionEClass.getESuperTypes().add(this.getRelational());
     boolConstantEClass.getESuperTypes().add(this.getRelational());
     variableRefEClass.getESuperTypes().add(this.getRelational());
@@ -2378,6 +2410,9 @@ public class HlvlPackageImpl extends EPackageImpl implements HlvlPackage
 
     initEClass(entailedEClass, Entailed.class, "Entailed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEntailed_Element(), this.getElmDeclaration(), null, "element", null, 0, 1, Entailed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selectedEClass, Selected.class, "Selected", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSelected_Element(), this.getElmDeclaration(), null, "element", null, 0, 1, Selected.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(binaryFunctionEClass, BinaryFunction.class, "BinaryFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBinaryFunction_Op(), ecorePackage.getEString(), "op", null, 0, 1, BinaryFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

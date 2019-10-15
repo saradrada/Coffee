@@ -1,21 +1,18 @@
 model RFW
 elements:
 	symbolic VP1 
-	variants: ['medium-class car', 'upper-class car', 'small truck', 'big truck'] 
+	variants: ['medium-class car', 'upper-class car', 
+	            'small truck', 'big truck'] 
 	comment:{"Type of vehicle"}
-	
 	symbolic VP2 
 	variants: ['switchable', 'durable'] 
 	comment:{"Activation"}
-	
 	boolean  VP3 comment:{"Comfort functions"}
 	boolean  V7 comment:{"Non stopping warning"}
 	boolean  V8 comment:{"Overspeed warning"}
-	
 	boolean  VP4 comment:{"Other signs"}
 	boolean  V41 comment:{"Road w/right of way start"}
 	boolean  V42 comment:{"city limit"}
-	
 	boolean  VP5 comment:{"Prohibition signs"}
 	boolean  V51 comment:{"No vehicles"}
 	boolean  V52 comment:{"No cars"}
