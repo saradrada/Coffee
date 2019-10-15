@@ -48,12 +48,12 @@ class ComplexBooleanRules extends BasicBooleanRules implements IMiniZincConstant
 	override getVisibility(Visibility rel, List<CharSequence> relations) {
 		var out= 
 		'''
-			var bool: B«visibilityIdCounter»«SEMICOLON»
-			constraint «expressionsParser.parse(rel.condition)» -> B«visibilityIdCounter»«SEMICOLON»
+			var bool: BÂ«visibilityIdCounterÂ»Â«SEMICOLONÂ»
+			constraint Â«expressionsParser.parse(rel.condition)Â» -> BÂ«visibilityIdCounterÂ»Â«SEMICOLONÂ»
 		'''
 			for (r: relations){
 				out+= 
-				'''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
+				'''constraint BÂ«visibilityIdCounterÂ»  <-> Â«r.subSequence(10, r.length)Â»
 			'''
 			}
 			visibilityIdCounter++
@@ -65,7 +65,7 @@ class ComplexBooleanRules extends BasicBooleanRules implements IMiniZincConstant
 		for (element: rel.elements.values){
 			out.append(
 			'''
-			«CONS_DEF» «expressionsParser.parse(rel.exp)» «IMPLIES_LR» «element.name»«SEMICOLON»
+			Â«CONS_DEFÂ» Â«expressionsParser.parse(rel.exp)Â» Â«IMPLIES_LRÂ» Â«element.nameÂ»Â«SEMICOLONÂ»
 			''')
 		}
 		out.toString;
@@ -76,7 +76,7 @@ class ComplexBooleanRules extends BasicBooleanRules implements IMiniZincConstant
 		for (element: rel.elements.values){
 			out.append(
 			'''
-			«CONS_DEF» «NOT»(«expressionsParser.parse(rel.exp)» «AND» «element.name»)«SEMICOLON»
+			Â«CONS_DEFÂ» Â«NOTÂ»(Â«expressionsParser.parse(rel.exp)Â» Â«ANDÂ» Â«element.nameÂ»)Â«SEMICOLONÂ»
 			''')
 		}
 		out.toString;

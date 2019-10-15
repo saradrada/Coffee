@@ -72,11 +72,11 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 			case "boolean": '''0..1'''
 			case "integer": {
 				switch declaration.variants {
-					Interval: '''«(declaration.variants as Interval).start»..«(declaration.variants as Interval).end»'''
+					Interval: '''Â«(declaration.variants as Interval).startÂ»..Â«(declaration.variants as Interval).endÂ»'''
 					Enumeration: {
 						var out = '''{'''
 						for (value : (declaration.variants as Enumeration).list.values) {
-							out += '''«parseValue(value)» , '''
+							out += '''Â«parseValue(value)Â» , '''
 						}
 						out = out.subSequence(0, out.length - 2) + '''} '''
 					}
@@ -88,9 +88,9 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 				var out = '''{'''
 				for (value : (declaration.variants as Enumeration).list.values) {
 					var valParsed = parseValue(value).toString
-					mapping += '''«valParsed» -> «i»,  '''
+					mapping += '''Â«valParsedÂ» -> Â«iÂ»,  '''
 					symbolsTable.put(valParsed, i);
-					out += '''«i» , '''
+					out += '''Â«iÂ» , '''
 					i++
 				}
 				mapsTable.put(element.name, mapping);
@@ -101,26 +101,26 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 
 	override getConstant(ElmDeclaration element) {
 		'''
-			«BOOL_DOMAIN» «COLON»  «element.name» «ASSIGN» «parseValue((element.declaration as ConstantDecl).value)»«SEMICOLON»
+			Â«BOOL_DOMAINÂ» Â«COLONÂ»  Â«element.nameÂ» Â«ASSIGNÂ» Â«parseValue((element.declaration as ConstantDecl).value)Â»Â«SEMICOLONÂ»
 		'''
 	}
 
 	override getElement(ElmDeclaration element) {
 		switch element.dataType {
-			case "boolean": '''«VAR_DEF» 0..1: «element.name»«SEMICOLON»
+			case "boolean": '''Â«VAR_DEFÂ» 0..1: Â«element.nameÂ»Â«SEMICOLONÂ»
 			'''
-			case "integer": '''«VAR_DEF» «getDomain(element)» : «element.name»«SEMICOLON»
+			case "integer": '''Â«VAR_DEFÂ» Â«getDomain(element)Â» : Â«element.nameÂ»Â«SEMICOLONÂ»
 			'''
 			case "symbolic": '''
 				% Mapping  variants to integers
-				«VAR_DEF» «getDomain(element)» : «element.name»«SEMICOLON»
-				% Map: «mapsTable.get(element.name)»
+				Â«VAR_DEFÂ» Â«getDomain(element)Â» : Â«element.nameÂ»Â«SEMICOLONÂ»
+				% Map: Â«mapsTable.get(element.name)Â»
 			'''
 		}
 	}
 
 	override getCoreSingle(ElmDeclaration element) {
-		'''«CONS_DEF» «element.name» «EQUIV» «INT_TRUE»«SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«element.nameÂ» Â«EQUIVÂ» Â«INT_TRUEÂ»Â«SEMICOLONÂ»
 		'''
 	}
 
@@ -130,10 +130,10 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 			parents.put(element.name, rel.parent)
 			// TODO modified by avillota to comply with the syntax changes
 			if (rel.min == 1 && rel.max == 1) {
-				out += '''«CONS_DEF» «rel.parent.name» «EQUIV» «element.name»«SEMICOLON»
+				out += '''Â«CONS_DEFÂ» Â«rel.parent.nameÂ» Â«EQUIVÂ» Â«element.nameÂ»Â«SEMICOLONÂ»
 				'''
 			} else {
-				out += '''«CONS_DEF» «rel.parent.name» «GEQ» «element.name»«SEMICOLON»
+				out += '''Â«CONS_DEFÂ» Â«rel.parent.nameÂ» Â«GEQÂ» Â«element.nameÂ»Â«SEMICOLONÂ»
 				'''
 			}
 		}
@@ -148,7 +148,7 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 		var out = ""
 
 		for (child : rel.children.values) {
-			sum += '''«child.name» + ''';
+			sum += '''Â«child.nameÂ» + ''';
 		}
 		sum = sum.substring(0, sum.length() - 2)
 
@@ -162,21 +162,21 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 		// first part
 		if (min == 1) {
 			out += '''
-				«CONS_DEF» «rel.parent.name» «LEQ» «sum»«SEMICOLON»
+				Â«CONS_DEFÂ» Â«rel.parent.nameÂ» Â«LEQÂ» Â«sumÂ»Â«SEMICOLONÂ»
 			'''
 		} else {
 			out += '''
-				«CONS_DEF» «min» «TIMES» «rel.parent.name» «LEQ» «sum»«SEMICOLON»
+				Â«CONS_DEFÂ» Â«minÂ» Â«TIMESÂ» Â«rel.parent.nameÂ» Â«LEQÂ» Â«sumÂ»Â«SEMICOLONÂ»
 			'''
 		}
 		// second part
 		if (max == 1) {
 			out += '''
-				«CONS_DEF» «sum» «LEQ» «rel.parent.name»«SEMICOLON»
+				Â«CONS_DEFÂ» Â«sumÂ» Â«LEQÂ» Â«rel.parent.nameÂ»Â«SEMICOLONÂ»
 			'''
 		} else {
 			out += '''
-				«CONS_DEF» «sum» «LEQ» «max» «TIMES» «rel.parent.name»«SEMICOLON»
+				Â«CONS_DEFÂ» Â«sumÂ» Â«LEQÂ» Â«maxÂ» Â«TIMESÂ» Â«rel.parent.nameÂ»Â«SEMICOLONÂ»
 			'''
 		}
 		out
@@ -184,27 +184,27 @@ class BasicIntegerRules extends TransformationRules implements IMiniZincConstant
 	}
 
 	override getImpliesPair(ElmDeclaration left, ElmDeclaration right) {
-		'''«CONS_DEF» «left.name» «LEQ» «right.name»«SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«left.nameÂ» Â«LEQÂ» Â«right.nameÂ»Â«SEMICOLONÂ»
 		'''
 	}
 
 	override getMutexPair(ElmDeclaration left, ElmDeclaration right) {
-		'''«CONS_DEF» «left.name» «PLUS» «right.name» «LEQ» 1 «SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«left.nameÂ» Â«PLUSÂ» Â«right.nameÂ» Â«LEQÂ» 1 Â«SEMICOLONÂ»
 		'''
 	}
 
 	override getExpression(Relational exp) {
-		'''«CONS_DEF» «expressionsParser.parse(exp)»«SEMICOLON»
+		'''Â«CONS_DEFÂ» Â«expressionsParser.parse(exp)Â»Â«SEMICOLONÂ»
 		'''
 	}
 
 //	override getVisibility(Visibility rel, List<CharSequence> relations) {
 //		var out = '''
-//			var bool: B«visibilityIdCounter» ;
-//			constraint «expressionsParser.parse(rel.condition)» -> B«visibilityIdCounter»;
+//			var bool: BÂ«visibilityIdCounterÂ» ;
+//			constraint Â«expressionsParser.parse(rel.condition)Â» -> BÂ«visibilityIdCounterÂ»;
 //		'''
 //		for (r : relations) {
-//			out += '''constraint B«visibilityIdCounter»  <-> «r.subSequence(10, r.length)»
+//			out += '''constraint BÂ«visibilityIdCounterÂ»  <-> Â«r.subSequence(10, r.length)Â»
 //			'''
 //		}
 //		visibilityIdCounter++
