@@ -5,7 +5,9 @@ package com.coffee.generator;
 
 import com.coffee.HlvlStandaloneSetup;
 import com.coffee.hlvl.Model;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -17,15 +19,20 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.xtext.generator.GeneratorDelegate;
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 public class HLVLParser {
 
+	
 	public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
 			
@@ -35,6 +42,18 @@ public class HLVLParser {
 		
 		HLVLParser.runGenerator(args[0]);
 	}
+
+	@Inject
+	private Provider<ResourceSet> resourceSetProvider;
+
+	@Inject
+	private IResourceValidator validator;
+
+	@Inject
+	private GeneratorDelegate generator;
+
+	@Inject
+	private JavaIoFileSystemAccess fileAccess;
 
 	public static String runGenerator(String string) throws IOException {
 		Injector injector = new HlvlStandaloneSetup().createInjectorAndDoEMFRegistration();
