@@ -3,12 +3,18 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hlvl" nsURI="http://www.coffee.com/Hlvl" nsPrefix="hlvl">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedModels" upperBound="-1"
+        eType="#//ListOfModelRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ElmDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
         eType="#//RelDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" eType="#//Operations"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfModelRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//Model"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElmDeclaration" eSuperTypes="#//NamedItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="att" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

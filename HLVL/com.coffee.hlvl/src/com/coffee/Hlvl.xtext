@@ -14,14 +14,21 @@ generate hlvl "http://www.coffee.com/Hlvl"
  * Modified on April 2019
  * Modified July 2019 to adjust the syntax with the MODEVAR paper syntax
  * Modified on July 15 to refine the constantvalues (eliminated the production Value)
+ * Modified on 
  */
 Model:
-	'model' name=ID 'elements:' elements+=(ElmDeclaration)*  'relations:'relations+=(RelDeclaration)*
+	'model' name=ID 
+	('extends' extendedModels+=(ListOfModelRef))?// Coffee Junior 
+	'elements:' elements+=(ElmDeclaration)*  
+	'relations:'relations+=(RelDeclaration)*
 	('operations:' operations = Operations )?
 	;
+	
+ListOfModelRef:
+	{ListOfModelRef} ids+= ([Model]) (',' + ids+= [Model])* //Coffee Junior (Como excluir el modelo propio de las referencias?)
+;
 
 // modified by avillota to comply with the modevar paper syntax	
-
 
 ElmDeclaration://; returns NamedItem:
 	{ElmDeclaration}
@@ -205,6 +212,8 @@ Primary returns Relational:
 Atomic returns Relational: 
 	{BoolConstant} value=('true'|'false') | 
 	{VariableRef} variable=[ElmDeclaration]|
+// Coffee Junior
+//	{AttributeRef} attribute= [ElmDeclaration | QualifiedName] |
 	{AttributeRef} attribute= QualifiedName |
 	{SymbolConstant} value=STRING |
 	{IntConstant} value=INT 
@@ -214,6 +223,11 @@ Atomic returns Relational:
 QualifiedName:
 	element= [ElmDeclaration] '.'  att= [ElmDeclaration]
 ;
+
+// Coffee Junior
+// QualifiedName:
+// ID ("." ID)* 
+// ;
 
 Operations:
 	op+= Operation (',' + op+= Operation)*
