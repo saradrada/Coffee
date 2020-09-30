@@ -44,8 +44,6 @@ Workflow {
 				generateJavaMain = true
 			}
 		}
-	
-	
 		
 	}
 	
